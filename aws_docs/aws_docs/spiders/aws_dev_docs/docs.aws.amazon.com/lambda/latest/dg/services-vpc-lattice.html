@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using AWS Lambda with Amazon VPC Lattice - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="services-vpc-lattice" /><meta name="default_state" content="services-vpc-lattice" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-vpc-lattice.html" /><meta name="description" content="Configure a Lambda function as a service within an Amazon VPC Lattice Service Network." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-vpc-lattice.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-vpc-lattice.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-vpc-lattice.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-vpc-lattice.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-vpc-lattice.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-vpc-lattice.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-vpc-lattice.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-vpc-lattice.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-vpc-lattice.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-vpc-lattice.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-vpc-lattice.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-vpc-lattice.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-vpc-lattice.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-vpc-lattice.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-vpc-lattice.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-vpc-lattice.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-vpc-lattice.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-vpc-lattice.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-vpc-lattice.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/services-vpc-lattice.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/services-vpc-lattice.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-vpc-lattice.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using AWS Lambda with Amazon VPC Lattice" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using AWS Lambda with Amazon VPC Lattice - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-vpc-lattice" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-vpc-lattice.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-vpc-lattice.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-vpc-lattice.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,Lambda VPC Lattice,Lambda VPC Lattice network,Lambda VPC Lattice trigger,Lambda service network,Lambda function target group" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using AWS Lambda with Amazon VPC Lattice",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-vpc-lattice" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#vpc-lattice-concepts">VPC Lattice concepts</a><a href="#vpc-lattice-prerequisites">Prerequisites and permissions</a><a href="#vpc-lattice-limitations">Limitations</a><a href="#vpc-lattice-register">Registering your Lambda function with a VPC Lattice network</a><a href="#vpc-lattice-update">Updating the target of a service in a VPC Lattice network</a><a href="#vpc-lattice-deregister">Deregistering a Lambda function target</a><a href="#vpc-lattice-cross-account">Cross-account networking</a><a href="#vpc-lattice-receiving-events">Receiving events from VPC Lattice</a><a href="#vpc-lattice-sending-responses">Sending responses back to VPC Lattice</a><a href="#vpc-lattice-monitoring">Monitoring a service in a VPC Lattice network</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="services-vpc-lattice">Using AWS Lambda with Amazon VPC Lattice</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can register your Lambda functions as targets within an <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html">Amazon VPC Lattice service network</a>. By doing this,
+    your Lambda function becomes a service within the network, and clients that have access to the VPC Lattice
+    service network can call your service. If your Lambda function needs to access services within a service
+    network, you can connect your function to a VPC that's already associated with the service network.
+    Having your services live within a VPC Lattice network can help you more easily discover, connect, access,
+    and monitor them.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#vpc-lattice-concepts">VPC Lattice concepts</a></li><li><a href="#vpc-lattice-prerequisites">Prerequisites and permissions</a></li><li><a href="#vpc-lattice-limitations">Limitations</a></li><li><a href="#vpc-lattice-register">Registering your Lambda function with a VPC Lattice network</a></li><li><a href="#vpc-lattice-update">Updating the target of a service in a VPC Lattice network</a></li><li><a href="#vpc-lattice-deregister">Deregistering a Lambda function target</a></li><li><a href="#vpc-lattice-cross-account">Cross-account networking</a></li><li><a href="#vpc-lattice-receiving-events">Receiving events from VPC Lattice</a></li><li><a href="#vpc-lattice-sending-responses">Sending responses back to VPC Lattice</a></li><li><a href="#vpc-lattice-monitoring">Monitoring a service in a VPC Lattice network</a></li></ul></div>
+    <h2 id="vpc-lattice-concepts">VPC Lattice concepts</h2>
+    <p>Throughout this guide, we'll frequently refer to the following <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/how-it-works.html">VPC Lattice terms</a>:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Service</b> – A service is any software application that can
+          run on an instance, container, or within a serverless function. This topic focuses only on services
+          built using Lambda functions.</p>
+      </li><li class="listitem">
+        <p><b>Service network</b> – A service network is a logical boundary
+          containing a network of services. This topic covers how to configure your Lambda functions as services
+          within a VPC Lattice service network.</p>
+      </li><li class="listitem">
+        <p><b>Target group</b> – A target group is a collection of compute
+          type destinations that run a service. Target groups for Lambda can contain only one Lambda function
+          as the target. You cannot have a target group with multiple functions as targets.</p>
+      </li><li class="listitem">
+        <p><b>Listener</b> – A listener is a process that receives traffic
+          and routes it to different target groups within the service network.</p>
+      </li><li class="listitem">
+        <p><b>Listener rule</b> – A listener rule encompasses the
+          priority, actions, and conditions that a listener uses to determine where to route traffic. Each
+          listener has a default listener rule, and a listener can have multiple listener rules. A listener
+          rule can contain the following:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Protocol</b> – The protocol that the listener uses to
+              send the request to the destination. Can be either HTTP or HTTPS.</p>
+          </li><li class="listitem">
+            <p><b>Port</b> – The port that the listener polls for incoming
+              requests. Can be between 1 and 65535 inclusive.</p>
+          </li><li class="listitem">
+            <p><b>Path</b> – The path to the target resource. For the
+              default listener rule, path is the default path of <code class="code">/</code>. A listener rule can have 6
+              paths at maximum, including the default path.</p>
+          </li><li class="listitem">
+            <p><b>Priority</b> – A listener uses the priority of a path
+              to determine which path to route traffic to. A lower number denotes higher priority. The default
+              path has the lowest priority. If you add a new path, VPC Lattice assigns it at the second
+              lowest priority by default. This is just above the priority of the default path, but at a lower
+              priority than all other non-default paths.</p>
+          </li></ul></div>
+      </li></ul></div>
+    <p>In addition, we'll refer to the following AWS Identity and Access Management (IAM) entities:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Network owner</b> – The network owner is the IAM role
+          that owns the VPC Lattice service network.</p>
+      </li><li class="listitem">
+        <p><b>Service owner</b> – The service owner is the IAM role
+          that owns the service built using a Lambda function. The service owner and the network owner do not
+          have to be the same entity.</p>
+      </li></ul></div>
+     
+      <h3 id="lattice-vs-vpc-enabled-functions">Using Lambda with VPC Lattice and VPC-enabled
+          functions</h3>
+      <p>By default, Lambda functions cannot access any private resources in a VPC. When you configure
+        a Lambda function to connect to private subnets in a VPC, you're allowing the VPC-enabled function
+        to access resources within that VPC. In other words, you're only focusing on the scope of a single VPC.</p>
+      <p>Lambda functions registered as services in a VPC Lattice network are not the same as VPC-enabled
+        functions, but they can be complementary to each other. When you register a Lambda function as a service
+        in a VPC Lattice network, you're creating an ingress path to your function from one or more VPCs.
+        Additionally, your function may have an optional egress path to another VPC.</p>
+      <p>When registering a Lambda function as a service, you're focusing on the ingress scenario. This
+        encompasses the specific listener rule configurations that listeners use to route traffic to your
+        service. From there, your Lambda function may communicate with other AWS services within your VPC
+        through a <a href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-networking.html#foundation-nw-eni">
+          Hyperplane ENI (elastic network interface)</a>. The following diagram illustrates this, where
+        the Lambda function is a service within the VPC Lattice network.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/VPC-vs-Lattice-Final.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          An architecture diagram showing how different components of a VPC Lattice service network&#xA;            interact, focusing on the Lambda function as a registered service.&#xA;        " />
+         
+         
+      </div>
+     
+   
+    <h2 id="vpc-lattice-prerequisites">Prerequisites and permissions</h2>
+    <p>This topic assumes that you have both a VPC Lattice service network and a Lambda function. If you
+      don't already have a VPC Lattice service network, refer to the <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/service-networks.html#create-service-network">VPC Lattice user guide to
+      create one</a>.</p>
+    <p>When you register your Lambda function as a target via the Lambda console or AWS Command Line Interface
+      (AWS CLI), Lambda automatically adds the necessary permissions for you. </p>
+    <p>For Lambda to automatically add permissions for you, so that you can successfully create a
+      Lambda function as a target of a Lambda service, your role must have the following IAM
+      permissions:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html">AddPermission</a></p>
+      </li><li class="listitem">
+        <p><b>
+          CreateListener</b></p>
+      </li><li class="listitem">
+        <p><b>
+          CreateService</b></p>
+      </li><li class="listitem">
+        <p><b>
+          CreateServiceNetworkServiceAssociation</b></p>
+      </li><li class="listitem">
+        <p><b>
+          CreateTargetGroup</b></p>
+      </li><li class="listitem">
+        <p><b>
+          ListServiceNetworks</b> (required for console workflow only)</p>
+      </li><li class="listitem">
+        <p><b>
+          RegisterTargets</b></p>
+      </li></ul></div>
+    <p>To update an existing service in a VPC Lattice network to point to a Lambda function, your role
+      must have the following IAM permissions:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>
+          CreateService</b></p>
+      </li><li class="listitem">
+        <p><b>
+          ListListeners</b> (required for console workflow only)</p>
+      </li><li class="listitem">
+        <p><b>
+          ListServices</b> (required for console workflow only)</p>
+      </li><li class="listitem">
+        <p><b>
+          RegisterTargets</b></p>
+      </li></ul></div>
+    <p>You can also manually add the permission using the following AWS CLI command:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda add-permission 
+    --function-name <code class="replaceable">my-function</code> \ 
+    --action lambda:InvokeFunction \
+    --statement-id allow-vpc-lattice \
+    --principal vpc-lattice.amazonaws.com
+    --source-arn <code class="replaceable">target-group-arn</code></code></pre>
+   
+    <h2 id="vpc-lattice-limitations">Limitations</h2>
+    <p>When using Lambda functions with VPC Lattice networks, keep in mind the following limitations:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The Lambda function and the target group must be in the same account and in the same
+          Region.</p>
+      </li><li class="listitem">
+        <p>The maximum size of the request body that you can forward to a service created using a Lambda
+          function is 6 MB.</p>
+      </li><li class="listitem">
+        <p>The maximum size of the response JSON that the Lambda function can return is 6 MB.</p>
+      </li><li class="listitem">
+        <p>You an choose HTTP and HTTPS protocols only.</p>
+      </li></ul></div>
+   
+    <h2 id="vpc-lattice-register">Registering your Lambda function with a VPC Lattice network</h2>
+    <p>You can register any existing Lambda function with a VPC Lattice network using the AWS
+      console or AWS CLI. After registering the function as a service, it can immediately start receiving
+      requests.</p>
+    <div class="procedure"><h6>To register a Lambda function with a VPC Lattice network (console)</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Function page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+          of the Lambda console.</p>
+      </li><li>
+        <p>Choose the name of the function you want to register.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add trigger</b>.</p>
+      </li><li>
+        <p>In the dropdown menu, select <b>VPC Lattice Application Network</b>.</p>
+      </li><li>
+        <p>For <b>Intent</b>, choose <b>Create new</b>.</p>
+      </li><li>
+        <p>For <b>Service name</b>, enter a name for your service.</p>
+      </li><li>
+        <p>For <b>VPC Lattice network</b>, select the service network that you want to
+          associate this Lambda function with. You can also enter the full Amazon Resource Name (ARN) of
+          the service network. If you don't have an existing service network, you can choose the link in the
+          description, which takes you to the Amazon VPC console where you can create a VPC Lattice network.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You don't need to select a VPC Lattice network to finish setting up the trigger. However,
+          if you create the trigger without selecting a network, clients cannot access your service until you
+          associate it with a VPC Lattice network.</p></div></div>
+      </li><li>
+        <p>For <b>Listener</b>, configure the following settings:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Listener name</b> – Enter a name for your listener</p>
+          </li><li class="listitem">
+            <p><b>Protocol</b> – The protocol that the listener uses to send the
+              request to the destination. Can be either HTTP or HTTPS.</p>
+          </li><li class="listitem">
+            <p><b>Port</b> – The port that the listener polls for incoming requests.
+              Can be between 1 and 65535 inclusive.</p>
+          </li><li class="listitem">
+            <p>Choose <b>Add Listener</b>. VPC Lattice will create a default routing with
+              the default path <code class="code">/</code>. After service creation, you cannot change its name, protocol,
+              and port settings, but you can still define new routing paths.</p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <b>Add</b>.</p>
+      </li></ol></div>
+    <div class="procedure"><h6>To register a Lambda function with a VPC Lattice network (AWS CLI)</h6><ol><li>
+        <p>Create a service using the <code class="code">create-service</code> command. Note down the service's ARN
+          in the response. You'll need it in the next steps.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice create-service --name my-vpc-lattice-service</code></pre>
+      </li><li>
+        <p>Create a target group using the <code class="code">create-target-group</code> command. Note down the
+          target group's ARN in the response. You'll need it in the next steps.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice create-target-group \
+    --name my-vpc-lattice-target-group \
+    --type LAMBDA</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>By default, this command creates a target group that sends events with the
+          <a href="#vpc-lattice-v1-event">V1 event structure</a> to
+          your Lambda function. To send a <a href="#vpc-lattice-v2-event">V2 event
+          structure</a> that's compatible with Amazon API Gateway, specify the
+          <code class="code">LambdaEventStructureVersion</code> option. For example, append
+          <code class="code">--lambda-event-structure-version V2</code> to the end of the previous command.</p></div></div>
+      </li><li>
+        <p>Create a listener within the service network using the <code class="code">create-listener</code>
+          command. New listeners automatically use the default path of <code class="code">/</code>. Replace the
+          value of the <code class="code">service</code> parameter with your service's ARN from step 1. Replace
+          the value of <code class="code">TargetGroupArn</code> in the <code class="code">default-action</code> parameter with
+          your target group ARN from step 2.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice create-listener \
+    --name https
+    --service-identifier svc-0e2f2665e1cebb720 \
+    --protocol HTTPS \
+    --default-action forward='<span>{</span>targetGroups=<span>{</span>targetGroupIdentifier=tg-0e2f2665e1cebb720}}'</code></pre>
+      </li><li>
+        <p>Register your Lambda function as a target using the <code class="code">register-targets</code> command.
+          Replace the value of the <code class="code">target-group-arn</code> parameter with your target group ARN
+          from step 2. Replace the value of <code class="code">Id</code> in the <code class="code">targets</code> parameter with
+          the ARN of your Lambda function.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice register-targets \
+    --target-group-identifier arn:aws:vpc-lattice:us-west-2:123456789012:targetgroup/tg-0e2f2665e1cebb720 \
+    --targets id=arn:aws:lambda:us-west-2:123456789012:function:my-function</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In the previous <code class="code">register-targets</code> command, if your Lambda function doesn't already
+            explicitly allow VPC Lattice to invoke it, VPC Lattice attaches the necessary
+            permissions to your function's execution role automatically. To allow VPC Lattice to
+            automatically attach permissions, your role needs to have the <a href="https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html">AddPermission</a> permission.</p></div></div>
+      </li><li>
+        <p>Associate the service with the service network using the <code class="code">create-service-network-service-association</code>
+          command. Replace the value of the <code class="code">service</code> parameter with your service ARN
+          from step 1. Replace the value of the <code class="code">service-network</code> parameter with the ARN of
+          your VPC Lattice service network.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice create-service-network-service-association \
+    --service-identifier arn:aws:vpc-lattice:us-west-2:123456789012:service/svc-0b9b89d907bc8668c \
+    --service-network-identifier arn:aws:vpc-lattice:us-west-2:123456789012:servicenetwork/03d622a31e5154247</code></pre>
+      </li></ol></div>
+   
+    <h2 id="vpc-lattice-update">Updating the target of a service in a VPC Lattice network</h2>
+    <p>You can update any existing service within a VPC Lattice network to point to a Lambda function
+      target. You can do this by adding a new routing path using the AWS console or AWS CLI. When you
+      add a new path, VPC Lattice assigns that path the second lowest priority, just above the default
+      path (lowest priority).</p>
+    <div class="procedure"><h6>To update the target of a service to point to a Lambda function (console)</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Function page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+          of the Lambda console.</p>
+      </li><li>
+        <p>Choose the name of the function you want to register.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add trigger</b>.</p>
+      </li><li>
+        <p>In the dropdown menu, select <b>VPC Lattice Application Network</b>.</p>
+      </li><li>
+        <p>For <b>Intent</b>, choose <b>Select existing</b>.</p>
+      </li><li>
+        <p>For <b>Service name</b>, choose an existing service.</p>
+      </li><li>
+        <p>For <b>Listener</b>, choose an existing listener.</p>
+      </li><li>
+        <p>For <b>Rule name</b>, enter a name for the new rule.</p>
+      </li><li>
+        <p>For <b>Path</b>, define a new routing path for the listener.</p>
+      </li><li>
+        <p>Choose <b>Add</b>.</p>
+      </li></ol></div>
+    <div class="procedure"><p>For the following steps, you'll need the ARN of your service, as well as the ARN of the
+        listener that you want to add a new rule for.</p><ol><li>
+        <p>Create a new target group using the <code class="code">create-target-group</code> command. Note down
+          the target group's ARN in the response, as you'll need it for future steps.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice create-target-group \
+    --name my-vpc-lattice-target-group \
+    --type LAMBDA</code></pre>
+      </li><li>
+        <p>Create a new rule for your existing listener using the <code class="code">create-rule</code> command.
+          This command assumes that your conditions are in a file called <code class="code">conditions-pattern.json</code>
+          in your current directory. Replace the value of the <code class="code">listener-arn</code> parameter with
+          the ARN of your listener. Replace the value of <code class="code">TargetGroupArn</code> in the
+          <code class="code">actions</code> parameter with your target group ARN from step 1.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice create-rule \
+    --name my-rule
+    --priority 1 \
+    --listener-identifier listener-0e9af499f72e5251b \
+    --service-identifier svc-01755f67d3a427803
+    --match httpMatch='<span>{</span>pathMatch=<span>{</span>match=<span>{</span>prefix="/test"}}}' 
+    --default action forward='<span>{</span>targetGroups=[<span>{</span>targetGroupIdentifier=tg-042d5b70f1e743940}]}'</code></pre>
+      </li><li>
+        <p>Register your Lambda function as a target using the <code class="code">register-targets</code> command.
+          Replace the value of the <code class="code">target-group-arn</code> parameter with your target group ARN
+          from step 2. Replace the value of <code class="code">Id</code> in the <code class="code">targets</code> parameter
+          with the ARN of your Lambda function.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice register-targets \
+    --target-group-identifier arn:aws:vpc-lattice:us-west-2:123456789012:targetgroup/tg-0e2f2665e1cebb720 \
+    --targets id=arn:aws:lambda:us-west-2:123456789012:function:my-new-function</code></pre>
+      </li></ol></div>
+   
+    <h2 id="vpc-lattice-deregister">Deregistering a Lambda function target</h2>
+    <p>To deregister a Lambda function target in a VPC Lattice network, use the VPC console.
+      For more information, see the VPC Lattice user guide.</p>
+    <p>Alternatively, you can use the following AWS CLI command:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice deregister-targets \
+      --target-group-identifier arn:aws:vpc-lattice:us-west-2:123456789012:targetgroup/tg-0e2f2665e1cebb720 \
+      --targets id=arn:aws:lambda:us-west-2:123456789012:function:my-new-function</code></pre>
+    <p>You cannot deregister a service built using Lambda functions from the Lambda console.</p>
+   
+    <h2 id="vpc-lattice-cross-account">Cross-account networking</h2>
+    <p>Services within your VPC Lattice service network don't have to all be in the same AWS
+      account. In addition, the VPC Lattice service network itself can reside in a different account.
+      This means that you can associate a service built using Lambda functions with a service network
+      in a different AWS account. You'll need specific permissions from the network owner to
+      create these service associations. For more information about permissions required, see
+      <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/setting-up.html#setting-up-install-preview">
+      Prepare to call the VPC Lattice API</a> in the Amazon VPC Lattice user guide.</p>
+    <p>You can create an association between a Lambda function with a service network in a
+      different account through the AWS console. To do this, instead of choosing the
+      <b>VPC Lattice network</b> from the dropdown menu (this only
+      displays networks in your account), paste the full ARN of the network.</p>
+    <p>In general, you can create an association between any service and any service network
+      with the <code class="code">create-service-network-service-association</code> AWS CLI command. This means
+      you can manage your service networks in a central account and have services built using
+      Lambda functions in other accounts across your AWS organization. In the following example,
+      note that the <code class="code">service</code> and <code class="code">service-network</code> live in two different
+      accounts:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws vpc-lattice create-service-network-service-association \
+    --service arn:aws:vpc-lattice:us-west-2:123456789012:service/svc-0b9b89d907bc8668c \
+    --service-network arn:aws:vpc-lattice:us-west-2:444455556666:servicenetwork/03d622a31e5154247</code></pre>
+   
+    <h2 id="vpc-lattice-receiving-events">Receiving events from VPC Lattice</h2>
+    <p>The VPC Lattice service routes Lambda invocation requests over HTTP and HTTPS. 
+      The event structure version that your function receives depends on your
+      <code class="code">LambdaEventStructureVersion</code> setting when you
+      <a href="https://docs.aws.amazon.com/vpc-lattice/latest/APIReference/API_CreateTargetGroup.html">
+      created your target group</a>.</p>
+     
+      <h3 id="vpc-lattice-v1-event">Sample V1 event structure</h3>
+      <p>The following is an example V1 event that your Lambda function might receive from
+        VPC Lattice, in JSON format:</p>
+      <pre class="programlisting"><div class="code-btn-container"></div><code class="json "><span>{</span>
+    "raw_path": "<code class="replaceable">/path/to/resource</code>",
+    "method": "GET|POST|HEAD|...",
+    "headers": <span>{</span>"<code class="replaceable">header-key</code>": "<code class="replaceable">header-value</code>", ... },
+    "query_string_parameters": <span>{</span>"<code class="replaceable">key</code>": "<code class="replaceable">value</code>", ...},
+    "body": "<code class="replaceable">request-body</code>",
+    "is_base64_encoded": true|false
+}</code></pre>
+      <p>If the <code class="code">content-encoding</code> header is not present, Base64 encoding depends on the
+        content type. For the content types, <code class="code">text/*</code>, <code class="code">application/json</code>,
+        <code class="code">application/xml</code>, and <code class="code">application/javascript</code>, the service sends the
+        body as is and sets <code class="code">isBase64Encoded</code> to <code class="code">false</code>.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The request body can have a maximum size of 1023 KiB if sent in plaintext, or 767 KiB
+        if base64 encoded. The list of request headers can have a maximum of 50 key-value pairs.</p></div></div>
+     
+     
+      <h3 id="vpc-lattice-v2-event">Sample V2 event structure</h3>
+      <p>The following is an example V2 event that your Lambda function might receive from
+        VPC Lattice, in JSON format:</p>
+      <pre class="programlisting"><div class="code-btn-container"></div><code class="json "><span>{</span>
+    "version": "2.0",
+    "path": "/",
+    "method": "GET|POST|HEAD|...",
+    "headers": <span>{</span>"<code class="replaceable">header-key</code>": "<code class="replaceable">header-value</code>", ... },    
+    "requestContext": <span>{</span>
+        "serviceNetworkArn": "arn:aws:vpc-lattice:<code class="replaceable">region</code>:<code class="replaceable">123456789012</code>:servicenetwork/<code class="replaceable">sn-0bf3f2882e9cc805a</code>",
+        "serviceArn": "arn:aws:vpc-lattice:<code class="replaceable">region</code>:<code class="replaceable">123456789012</code>:service/<code class="replaceable">svc-0a40eebed65f8d69c</code>",
+        "targetGroupArn": "arn:aws:vpc-lattice:<code class="replaceable">region</code>:<code class="replaceable">123456789012</code>:targetgroup/<code class="replaceable">tg-6d0ecf831eec9f09</code>",
+        "identity": <span>{</span>
+            "sourceVpcArn": "arn:aws:ec2:<code class="replaceable">region</code>:<code class="replaceable">123456789012</code>:vpc/<code class="replaceable">vpc-0b8276c84697e7339</code>",
+            "type" : "AWS_IAM",
+            "principal": "arn:aws:sts::123456789012:assumed-role/example-role/057d00f8b51257ba3c853a0f248943cf",
+            "sessionName": "057d00f8b51257ba3c853a0f248943cf",
+            "x509SanDns": "example.com"
+        },
+        "region": "<code class="replaceable">region</code>",
+        "timeEpoch": "1690497599177430"
+    }
+}</code></pre>
+     
+   
+    <h2 id="vpc-lattice-sending-responses">Sending responses back to VPC Lattice</h2>
+    <p>When you send a response from your Lambda function back to VPC Lattice, the response
+      must include the Base64 encoding status, status code, and relevant headers. The body is
+      optional. The following is an example response in JSON format:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="json "><span>{</span>
+    "isBase64Encoded": false,
+    "statusCode": 200,
+    "statusDescription": "200 OK",
+    "headers": <span>{</span>
+        "Set-Cookie": "cookies",
+        "Content-Type": "application/json"
+    },
+    "body": "Hello from Lambda (optional)"
+}</code></pre>
+    <p>To include binary content in the response body, you must Base64 encode the content
+      and set <code class="code">isBase64Encoded</code> to <code class="code">true</code>. This tells VPC Lattice to
+      decode the content before sending the response to the client.</p>
+    <p>VPC Lattice doesn't honor hop-by-hop headers such as <code class="code">Connection</code> or
+      <code class="code">Transfer-Encoding</code>. Also, you can omit the <code class="code">Content-Length</code>
+      header because VPC Lattice automatically computes it before sending responses to
+      clients.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The response body can have a maximum size of 1023 KiB if sent in plaintext, or 767 KiB
+      if base64 encoded. The list of response headers can have a maximum of 50 key-value pairs.</p></div></div>
+   
+    <h2 id="vpc-lattice-monitoring">Monitoring a service in a VPC Lattice network</h2>
+    <p>To monitor services built using Lambda functions in a VPC Lattice network, VPC Lattice
+      provides Amazon CloudWatch metrics, AWS CloudTrail logs, and access logs. These tools can help you track
+      key performance metrics such as the total number of requests to your service and the
+      number of connection timeouts.</p>
+    <p>By default, Lambda automatically emits metrics to CloudWatch and event history logs to CloudTrail.
+      Access logs are optional, and Lambda deactivates them by default. For more information on
+      monitoring, see <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/monitoring-overview.html">
+      Monitoring Amazon VPC Lattice</a> in the VPC Lattice user guide.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-sqs-example-use-app-spec.html">Sample template</div><div id="next" class="next-link" accesskey="n" href="./best-practices.html">Best practices</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-vpc-lattice.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-vpc-lattice.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

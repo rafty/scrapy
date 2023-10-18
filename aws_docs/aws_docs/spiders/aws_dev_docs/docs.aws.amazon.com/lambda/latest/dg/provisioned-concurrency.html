@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring provisioned concurrency - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="provisioned-concurrency" /><meta name="default_state" content="provisioned-concurrency" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html" /><meta name="description" content="This topic details how to manage and configure provisioned concurrency. For a conceptual overview of these two types of concurrency controls, see Reserved concurrency and provisioned concurrency . For more information on configuring reserved concurrency, see" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/provisioned-concurrency.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/provisioned-concurrency.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/provisioned-concurrency.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/provisioned-concurrency.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/provisioned-concurrency.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/provisioned-concurrency.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/provisioned-concurrency.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/provisioned-concurrency.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/provisioned-concurrency.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/provisioned-concurrency.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/provisioned-concurrency.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/provisioned-concurrency.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/provisioned-concurrency.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/provisioned-concurrency.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/provisioned-concurrency.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/provisioned-concurrency.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/provisioned-concurrency.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/provisioned-concurrency.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configuring provisioned concurrency" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configuring provisioned concurrency - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#provisioned-concurrency" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/provisioned-concurrency.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/provisioned-concurrency.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/provisioned-concurrency.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda concurrency,configure Lambda networking,configure Lambda database access,configure Lambda code signing,Lambda concurrency,Lambda function scaling,function scaling,calculate Lambda concurrency,Lambda concurrency quotas,Lambda concurrency metrics,auto scaling concurrency,provisioned concurrency,concurrency scaling,provisioned concurrency configuration" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Managing AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-managing.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda function scaling",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Configuring provisioned concurrency",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#provisioned-concurrency" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#configuring-provisioned-concurrency">Configuring provisioned concurrency</a><a href="#estimating-provisioned-concurrency">Accurately estimating required provisioned concurrency</a><a href="#optimizing-latency">Optimizing latency with provisioned concurrency</a><a href="#managing-provisioned-concurency">Managing provisioned concurrency with Application Auto Scaling </a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="provisioned-concurrency">Configuring provisioned concurrency</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In Lambda, <a href="./lambda-concurrency.html">concurrency</a> is the number of
+    in-flight requests your function is handling at the same time. There are two types
+    of concurrency controls available:</p><div class="itemizedlist">
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>Reserved concurrency – Reserved concurrency is the maximum number of
+        concurrent instances you want to allocate to your function. When a function has
+        reserved concurrency, no other function can use that concurrency. There is no
+        charge for configuring reserved concurrency for a function.</p>
+    </li><li class="listitem">
+      <p>Provisioned concurrency – Provisioned concurrency is the number of
+        pre-initialized execution environments you want to allocate to your function.
+        These execution environments are prepared to respond immediately to incoming
+        function requests. Configuring provisioned concurrency incurs charges to your
+        AWS account.</p>
+    </li></ul></div><p>This topic details how to manage and configure provisioned concurrency. For a
+    conceptual overview of these two types of concurrency controls, see
+    <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html#reserved-and-provisioned">
+    Reserved concurrency and provisioned concurrency</a>. For more information on
+    configuring reserved concurrency, see <a href="./configuration-concurrency.html">Configuring reserved concurrency</a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Lambda functions that are invoked by an Amazon MQ event source mapping have a default maximum concurrency. For Apache Active MQ, 
+the maximum number of concurrent instances is 5. For Rabbit MQ, the maximum number of concurrent instances is 1. Setting reserved or provisioned concurrency for your 
+function doesn't change these limits. To request an increase in the default maximum concurrency when using Amazon MQ, contact AWS Support.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#configuring-provisioned-concurrency">Configuring provisioned concurrency</a></li><li><a href="#estimating-provisioned-concurrency">Accurately estimating required provisioned concurrency</a></li><li><a href="#optimizing-latency">Optimizing latency with provisioned concurrency</a></li><li><a href="#managing-provisioned-concurency">Managing provisioned concurrency with Application Auto Scaling </a></li></ul></div>
+    <h2 id="configuring-provisioned-concurrency">Configuring provisioned concurrency</h2>
+    <p>You can configure provisioned concurrency settings for a function using the Lambda
+      console or the Lambda API.</p>
+    <div class="procedure"><h6>To allocate provisioned concurrency for a function (console)</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the function you want to allocate provisioned concurrency for.</p>
+      </li><li>
+        <p>Choose <b>Configuration</b> and then choose <b>Concurrency</b>.</p>
+      </li><li>
+        <p>Under <b>Provisioned concurrency configurations</b>, choose
+          <b>Add configuration</b>.</p>
+      </li><li>
+        <p>Choose <b>Reserve concurrency</b>. Enter the amount of concurrency to reserve
+          for the function.</p>
+      </li><li>
+        <p>Choose the qualifier type, and alias or version.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You cannot use provisioned concurrency with the $LATEST version of any function.</p><p>In addition, if you're using an event source with your Lambda function, make sure that
+            event source points to the correct alias or version. Otherwise, your function won't use
+            provisioned concurrency environments.</p></div></div>
+      </li><li>
+        <p>Enter a number under <b>Provisioned concurrency</b>. Lambda provides an estimate of
+          monthly costs.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>You can configure up to the <b>Unreserved account concurrency</b> in your
+      account, minus 100. The remaining 100 units of concurrency are for functions that aren't using
+      reserved concurrency. For example, if your account has a concurrency limit of 1,000, and you
+      haven't assigned any reserved or provisioned concurrency to any of your other functions, you can
+      configure a maximum of 900 provisioned concurrency units for a single function.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/provisioned-concurrency-over-limit.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        An error occurs if you try to allocate too much provisioned concurrency.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Configuring provisioned concurrency for a function impacts the concurrency pool that's
+      available to other functions. For example, if you configure 100 units of provisioned concurrency
+      for <code class="code">function-a</code>, other functions in your account must share the remaining 900
+      units of concurrency, even if <code class="code">function-a</code> doesn't use all 100 provisioned
+      concurrency units.</p>
+    <p>You can allocate both reserved concurrency and provisioned concurrency for the same function.
+      If you do so, the amount of provisioned concurrency cannot exceed the amount of reserved concurrency.</p>
+    <p>This limit also applies to function versions. The maximum amount of provisioned concurrency you
+      can allocate to a specific function version is equal to the function's reserved concurrency minus the
+      provisioned concurrency on other function versions.</p>
+    <p>To configure provisioned concurrency with the Lambda API, use the following API operations.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_PutProvisionedConcurrencyConfig.html">PutProvisionedConcurrencyConfig</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_GetProvisionedConcurrencyConfig.html">GetProvisionedConcurrencyConfig</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_ListProvisionedConcurrencyConfigs.html">ListProvisionedConcurrencyConfigs</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_DeleteProvisionedConcurrencyConfig.html">DeleteProvisionedConcurrencyConfig</a></p>
+      </li></ul></div>
+    <p>For example, to configure provisioned concurrency with the AWS Command Line Interface (CLI), use the
+      <code class="code">put-provisioned-concurrency-config</code> command. The following command allocates
+      100 units of provisioned concurrency for the <code class="code">BLUE</code> alias of a function named
+      <code class="code">my-function</code>:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda put-provisioned-concurrency-config --function-name my-function \
+  --qualifier BLUE \
+  --provisioned-concurrent-executions 100
+    </code></pre>
+    <p>You should see output that looks like the following:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "Requested ProvisionedConcurrentExecutions": 100,
+  "Allocated ProvisionedConcurrentExecutions": 0,
+  "Status": "IN_PROGRESS",
+  "LastModified": "2023-01-21T11:30:00+0000"
+}</code></pre>
+   
+    <h2 id="estimating-provisioned-concurrency">Accurately estimating required provisioned concurrency</h2>
+    <p>If your function is currently serving traffic, you can easily view its concurrency
+      metrics using <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/working_with_metrics.html">CloudWatch metrics</a>.
+      Specifically, the <code class="code">ConcurrentExecutions</code> metric shows you the number of
+      concurrent invocations for each function in your account.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/concurrency-concurrent-executions-metrics.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Graph showing concurrency for a function over time.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>The previous graph suggests that this function serves an average of 5 to 10
+      concurrent requests at any given time, and peaks at 20 requests on a typical day.
+      Suppose that there are many other functions in your account. <b>
+      If this function is critical to your application and you need a low-latency response
+      on every invocation</b>, use a number greater than or equal to 20 as your
+      provisioned concurrency setting.</p>
+    <p>Alternatively, recall that you can also <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html#calculating-concurrency">
+      calculate concurrency</a> using the following formula:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Concurrency = (average requests per second) * (average request duration in seconds)</code></pre>
+    <p>Multiplying average requests per second with the average request duration in
+      seconds gives you a rough estimate of how much concurrency you need to reserve.
+      You can estimate average requests per second using the <code class="code">Invocation</code>
+      metric, and the average request duration in seconds using the <code class="code">Duration</code>
+      metric. See <a href="./monitoring-metrics.html">Working with Lambda function metrics</a>
+      for more details.</p>
+    <p>When working with provisioned concurrency, Lambda suggests including a 10% buffer
+      on top of the amount of concurrency your function typically needs. For example,
+      if your function usually peaks at 200 concurrent requests, set your provisioned
+      concurrency at 220 instead (200 concurrent requests + 10% = 220 provisioned
+      concurrency).</p>
+   
+    <h2 id="optimizing-latency">Optimizing latency with provisioned concurrency</h2>
+    <p>The way you structure your function code to optimize for latency can depend on
+      whether you choose provisioned concurrency or on-demand environments. For functions
+      running on provisioned concurrency, Lambda runs any initialization code (i.e. loading
+      libraries and instantiating clients) at allocation time. So, putting as much
+      initialization outside of the main function handler is a good idea, since doing so
+      won't impact latency during actual function invocations. In contrast, if you
+      initialize libraries or instantiate clients within your main handler code, your
+      function has to run this each time you invoke it, regardless of whether or not
+      you're using provisioned concurrency.</p>
+    <p>If you're using on-demand instances, Lambda may have to re-run your initialization
+      code every time your function receives a request (cold start). Depending on what
+      your function needs to achieve, you may choose to defer initialization for a
+      specific capability until the function needs that capability. For example, consider
+      the following control flow for a Lambda handler:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">def handler(event, context):
+    ...
+    if ( some_condition ):
+        // Initialize CLIENT_A to perform a task
+    else:
+        // Do nothing</code></pre>
+    <p>In the previous example, instead of initializing <code class="code">CLIENT_A</code> outside
+      of the main handler, the function author chose to initialize it within the <code class="code">if</code>
+      statement. By doing this, Lambda only runs this code if <code class="code">some_condition</code> is
+      satisfied. If the author initializes <code class="code">CLIENT_A</code> outside the main handler,
+      Lambda runs that code on every cold start, increasing overall latency.</p>
+    <p>It's possible for your function to use up all of its provisioned concurrency. To
+      handle excess traffic, your function has to use on-demand instances. To help you
+      determine what type of initialization Lambda used for a particular environment, check
+      the value of the <code class="code">AWS_LAMBDA_INITIALIZATION_TYPE</code> environment variable.
+      This variable can have two possible values: <code class="code">provisioned-concurrency</code> or
+      <code class="code">on-demand</code>. the value of <code class="code">AWS_LAMBDA_INITIALIZATION_TYPE</code> is
+      immutable and does not change over the lifetime of the execution environment.</p>
+    <p>If you use the .NET 6 or .NET 7 runtimes, you can configure the
+      <code class="code">AWS_LAMBDA_DOTNET_PREJIT</code> environment variable to improve the latency for
+      functions, even if they don't use provisioned concurrency. The .NET runtime lazily
+      compiles and initializes each library that your code calls for the first time. As a
+      result, the first invocation of a Lambda function can take longer than subsequent
+      invocations. To mitigate this, you can choose one of three values for
+      <code class="code">AWS_LAMBDA_DOTNET_PREJIT</code>:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">ProvisionedConcurrency</code>: Lambda performs ahead-of-time JIT
+          compilation for all environments using provisioned concurrency. This is the
+          default value.</p>
+      </li><li class="listitem">
+        <p><code class="code">Always</code>: Lambda performs ahead-of-time JIT compilation for every
+          environment, even if the function doesn't use provisioned concurrency.</p>
+      </li><li class="listitem">
+        <p><code class="code">Never</code>: Lambda disables ahead-of-time JIT compilation for all
+          environments.</p>
+      </li></ul></div>
+    <p>For provisioned concurrency environments, your function's initialization code
+      runs during allocation, and every few hours as Lambda recycles active instances
+      of your environment. You can see the initialization time in logs and
+      <a href="./services-xray.html">traces</a> after an environment instance
+      processes a request. However, Lambda bills you for initialization even if the
+      environment instance never processes a request. Provisioned concurrency runs
+      continually and is billed separately from initialization and invocation costs.
+      For details, see <a href="https://aws.amazon.com/lambda/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>For additional guidance on optimizing functions using provisioned concurrency,
+      see <a href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/execution-environments" rel="noopener noreferrer" target="_blank"><span>
+      Lambda execution environments</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in Serverless Land.</p>
+   
+    <h2 id="managing-provisioned-concurency">Managing provisioned concurrency with Application Auto Scaling </h2>
+    <p>You can use Application Auto Scaling to manage provisioned concurrency on a schedule or based
+      on utilization. If you observe predictable patterns of traffic to your function,
+      use scheduled scaling. If you want your function to maintain a specific utilization
+      percentage, use a target tracking scaling policy.</p>
+     
+      <h3 id="managing-provisioned-concurrency-scheduling">Scheduled scaling</h3>
+      <p>With Application Auto Scaling, you can set your own scaling schedule according to predictable
+        load changes. For more information and examples, see <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html">
+        Scheduled scaling for Application Auto Scaling</a> in the Application Auto Scaling User Guide, and
+        <a href="https://aws.amazon.com/blogs/compute/scheduling-aws-lambda-provisioned-concurrency-for-recurring-peak-usage/" rel="noopener noreferrer" target="_blank"><span>
+        Scheduling AWS Lambda Provisioned Concurrency for recurring peak usage</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the
+        AWS Compute Blog.</p>
+     
+     
+      <h3 id="managing-provisioned-concurrency-targeting">Target tracking</h3>
+      <p>With target tracking, Application Auto Scaling creates and manages a set of CloudWatch alarms
+        based on how you define your scaling policy. When these alarms activate,
+        Application Auto Scaling automatically adjusts the amount of environments allocated using
+        provisioned concurrency. Target tracking is ideal for applications that
+        don't have predictable traffic patterns.</p>
+      <p>To scale provisioned concurrency using target tracking, use the
+        <code class="code">RegisterScalableTarget</code> and <code class="code">PutScalingPolicy</code>
+        Application Auto Scaling API operations. For example, if you're using the AWS Command Line Interface (CLI),
+        follow these steps:</p>
+      <div class="procedure"><ol><li>
+          <p>Register a function's alias as a scaling target. The following example
+            registers the BLUE alias of a function named <code class="code">my-function</code>:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws application-autoscaling register-scalable-target --service-namespace lambda \
+    --resource-id function:my-function:BLUE --min-capacity 1 --max-capacity 100 \
+    --scalable-dimension lambda:function:ProvisionedConcurrency</code></code></pre>
+        </li><li>
+          <p>Apply a scaling policy to the target. The following example configures
+            Application Auto Scaling to adjust the provisioned concurrency configuration for an alias
+            to keep utilization near 70 percent.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws application-autoscaling put-scaling-policy \
+    --service-namespace lambda \
+    --scalable-dimension lambda:function:ProvisionedConcurrency \
+    --resource-id function:my-function:BLUE \
+    --policy-name my-policy \
+    --policy-type TargetTrackingScaling \
+    --target-tracking-scaling-policy-configuration '<span>{</span> "TargetValue": 0.7, "PredefinedMetricSpecification": <span>{</span> "PredefinedMetricType": "LambdaProvisionedConcurrencyUtilization" }}'</code></code></pre>
+        </li></ol></div>
+      <p>You should see output that looks like this:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "PolicyARN": "arn:aws:autoscaling:us-east-2:123456789012:scalingPolicy:12266dbb-1524-xmpl-a64e-9a0a34b996fa:resource/lambda/function:my-function:BLUE:policyName/my-policy",
+    "Alarms": [
+        <span>{</span>
+            "AlarmName": "TargetTracking-function:my-function:BLUE-AlarmHigh-aed0e274-xmpl-40fe-8cba-2e78f000c0a7",
+            "AlarmARN": "arn:aws:cloudwatch:us-east-2:123456789012:alarm:TargetTracking-function:my-function:BLUE-AlarmHigh-aed0e274-xmpl-40fe-8cba-2e78f000c0a7"
+        },
+        <span>{</span>
+            "AlarmName": "TargetTracking-function:my-function:BLUE-AlarmLow-7e1a928e-xmpl-4d2b-8c01-782321bc6f66",
+            "AlarmARN": "arn:aws:cloudwatch:us-east-2:123456789012:alarm:TargetTracking-function:my-function:BLUE-AlarmLow-7e1a928e-xmpl-4d2b-8c01-782321bc6f66"
+        }
+    ]
+}</code></pre>
+      <p>Application Auto Scaling creates two alarms in CloudWatch. The first alarm triggers when the
+        utilization of provisioned concurrency consistently exceeds 70%. When this
+        happens, Application Auto Scaling allocates more provisioned concurrency to reduce
+        utilization. The second alarm triggers when utilization is consistently
+        less than 63% (90 percent of the 70% target). When this happens, Application Auto Scaling
+        reduces the alias's provisioned concurrency.</p>
+      <p>In the following example, a function scales between a minimum and
+        maximum amount of provisioned concurrency based on utilization.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/features-scaling-provisioned-auto.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Autoscaling provisioned concurrency with Application Auto Scaling target tracking.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <div class="itemizedlist">
+        <h6>Legend</h6>
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><span class="inlinemediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/features-scaling-provisioned.instances.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:100%" />
+             
+          </span> Function instances</p>
+        </li><li class="listitem">
+          <p><span class="inlinemediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/features-scaling-provisioned.open.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:100%" />
+             
+          </span> Open requests</p>
+        </li><li class="listitem">
+          <p><span class="inlinemediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/features-scaling-provisioned.provisioned.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:100%" />
+             
+          </span> Provisioned concurrency</p>
+        </li><li class="listitem">
+          <p><span class="inlinemediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/features-scaling-provisioned.standard.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" style="max-width:100%" />
+             
+          </span> Standard concurrency</p>
+        </li></ul></div>
+      <p>When the number of open requests increase, Application Auto Scaling increases provisioned
+        concurrency in large steps until it reaches the configured maximum. Once it
+        reaches the maximum, the function can continue to scale on standard, unreserved
+        concurrency if your account hasn't reached its account concurrency limit. When
+        utilization drops and stays consistently low, Application Auto Scaling decreases provisioned
+        concurrency in smaller periodic steps.</p>
+      <p>Both of the alarms that Application Auto Scaling manages use the average statistic by default.
+        Functions that have traffic patterns that come in quick bursts may not trigger
+        these alarms. For example, suppose your Lambda function executes quickly
+        (i.e. 20-100 ms) and your traffic pattern comes in quick bursts. In this case,
+        the number of requests may exceed allocated provisioned concurrency during the
+        burst, but the burst load must sustain for at least 3 minutes for Application Auto Scaling
+        to provision additional environments. Additionally, both CloudWatch alarms require 3
+        data points that hit the target average before activating the auto scaling policy.</p>
+      <p>For more information on target tracking scaling policies, see
+        <a href="https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html">
+        Target tracking scaling policies for Application Auto Scaling</a>.</p>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./configuration-concurrency.html">Configuring reserved concurrency</div><div id="next" class="next-link" accesskey="n" href="./burst-concurrency.html">Burst concurrency</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/provisioned-concurrency.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/provisioned-concurrency.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

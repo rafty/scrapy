@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Using AWS Lambda with Amazon DocumentDB Streams - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-documentdb-tutorial" /><meta name="default_state" content="with-documentdb-tutorial" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb-tutorial.html" /><meta name="description" content="Learn how to create a Lambda function that consumes messages from a Amazon DocumentDB change stream." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb-tutorial.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb-tutorial.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Using AWS Lambda with Amazon DocumentDB Streams" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Using AWS Lambda with Amazon DocumentDB Streams - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-documentdb-tutorial" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb-tutorial.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb-tutorial.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb-tutorial.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,Lambda Amazon DocumentDB,Lambda documentdb cluster,Lambda documentdb event,Lambda documentdb event source,Lambda documentdb trigger,DocumentDB" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Lambda with Amazon DocumentDB",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Using AWS Lambda with Amazon DocumentDB Streams",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-documentdb-tutorial" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#docdb-prerequisites">Prerequisites</a><a href="#docdb-cloud9-environment">Create the AWS Cloud9 environment</a><a href="#docdb-ec2-security-group">Create the EC2 security group</a><a href="#docdb-secret-in-secrets-manager">Create the secret in Secrets Manager</a><a href="#docdb-documentdb-cluster">Create the DocumentDB cluster</a><a href="#docdb-install-the-mongo-shell">Install the mongo shell</a><a href="#docdb-connect-to-cluster">Connect to the DocumentDB cluster</a><a href="#docdb-activate-change-streams">Activate change streams</a><a href="#docdb-create-interface-vpc-endpoints">Create interface VPC endpoints</a><a href="#docdb-create-the-execution-role">Create the execution role</a><a href="#docdb-create-the-lambda-function">Create the Lambda function</a><a href="#docdb-create-the-lambda-event-source-mapping">Create the Lambda event source mapping</a><a href="#docdb-test-your-function-manual-invoke">Test your function - manual invoke</a><a href="#docdb-test-insert">Test your function - insert a record</a><a href="#docdb-test-update">Test your function - update a record</a><a href="#docdb-test-delete">Test your function - delete a record</a><a href="#docdb-cleanup">Clean up your resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-documentdb-tutorial">Tutorial: Using AWS Lambda with Amazon DocumentDB Streams</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>
+    In this tutorial, you create a basic Lambda function that consumes events from an Amazon DocumentDB (with MongoDB compatibility) change stream.
+    To complete this tutorial, you will go through the following stages:
+  </p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>Set up your Amazon DocumentDB cluster, connect to it, and activate change streams on it.</p>
+    </li><li class="listitem">
+      <p>Create your Lambda function, and configure your Amazon DocumentDB cluster as an event source for your function.</p>
+    </li><li class="listitem">
+      <p>Test the end-to-end setup by inserting items into your Amazon DocumentDB database.</p>
+    </li></ul></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#docdb-prerequisites">Prerequisites</a></li><li><a href="#docdb-cloud9-environment">Create the AWS Cloud9 environment</a></li><li><a href="#docdb-ec2-security-group">Create the EC2 security group</a></li><li><a href="#docdb-secret-in-secrets-manager">Create the secret in Secrets Manager</a></li><li><a href="#docdb-documentdb-cluster">Create the DocumentDB cluster</a></li><li><a href="#docdb-install-the-mongo-shell">Install the mongo shell</a></li><li><a href="#docdb-connect-to-cluster">Connect to the DocumentDB cluster</a></li><li><a href="#docdb-activate-change-streams">Activate change streams</a></li><li><a href="#docdb-create-interface-vpc-endpoints">Create interface VPC endpoints</a></li><li><a href="#docdb-create-the-execution-role">Create the execution role</a></li><li><a href="#docdb-create-the-lambda-function">Create the Lambda function</a></li><li><a href="#docdb-create-the-lambda-event-source-mapping">Create the Lambda event source mapping</a></li><li><a href="#docdb-test-your-function-manual-invoke">Test your function - manual invoke</a></li><li><a href="#docdb-test-insert">Test your function - insert a record</a></li><li><a href="#docdb-test-update">Test your function - update a record</a></li><li><a href="#docdb-test-delete">Test your function - delete a record</a></li><li><a href="#docdb-cleanup">Clean up your resources</a></li></ul></div>
+    <h2 id="docdb-prerequisites">Prerequisites</h2>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Sign up for an AWS account" id="sign-up-for-aws" expanded="false"><p>If you do not have an AWS account, complete the following steps to create one.</p><div class="procedure"><h6>To sign up for an AWS account</h6><ol><li><p>Open <a href="https://portal.aws.amazon.com/billing/signup" rel="noopener noreferrer" target="_blank"><span>https://portal.aws.amazon.com/billing/signup</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li><p>Follow the online instructions.</p>
+  <p>Part of the sign-up procedure involves receiving a phone call and entering 
+  a verification code on the phone keypad.</p>
+  <p>When you sign up for an AWS account, an <em>AWS account root user</em> is created. The root user has access to all AWS services
+  and resources in the account. As a security best practice, <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">assign administrative access to an administrative user</a>, and use only the root user to perform <a href="https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html">tasks that require root user access</a>.</p>
+  </li></ol></div><p>AWS sends you a confirmation email after the sign-up process is
+complete. At any time, you can view your current account activity and manage your account by
+going to <a href="https://aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>https://aws.amazon.com/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and choosing <b>My
+  Account</b>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="Create an administrative user" id="create-an-admin" expanded="false"><p>After you sign up for an AWS account, create an administrative user so that you 
+don't use the root user for everyday tasks.</p><div class="procedure"><h6>Secure your AWS account root user</h6><ol><li>
+ 
+
+<p> Sign in to the <a href="https://console.aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>AWS Management Console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> as the account owner by choosing <b>Root user</b> and entering your AWS account email address. On the next page, enter your password.</p>
+ 
+ <p>For help signing in by using root user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial">Signing in as the root user</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li><li>
+ <p>Turn on multi-factor authentication (MFA) for your root user.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root">Enable a virtual MFA device for your AWS account root user (console)</a> in the <em>IAM User Guide</em>.</p> 
+</li></ol></div><div class="procedure"><h6>Create an administrative user</h6><ul><li>
+ <p>For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM Identity Center.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">Getting started</a> in the <em>AWS IAM Identity Center User Guide</em>.</p>
+</li></ul></div><div class="procedure"><h6>Sign in as the administrative user</h6><ul><li>
+
+<p>To sign in with your IAM Identity Center user, use the sign-in URL that was sent to your email address when you created the IAM Identity Center user.</p>
+
+<p>For help signing in using an IAM Identity Center user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html">Signing in to the AWS access portal</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Install the AWS Command Line Interface" id="install_aws_cli" expanded="false"><p>If you have not yet installed the AWS Command Line Interface, follow the steps at  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Installing or updating the latest version of the AWS CLI</a> 
+          to install it.</p><p>The tutorial requires a command line terminal or shell to run commands. In Linux and macOS, use your preferred shell and package manager.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+            To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+          </p></div></div></awsui-expandable-section></div>
+   
+    <h2 id="docdb-cloud9-environment">Create the AWS Cloud9 environment</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 1 create a AWS Cloud9 environment&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      Before creating the Lambda function, you need to create and configure your Amazon DocumentDB cluster. The steps to set up
+      your cluster in this tutorial is based on the procedure in
+      <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/get-started-guide.html">Get Started with Amazon DocumentDB</a>.
+    </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you already have a Amazon DocumentDB cluster set up, ensure that you activate change streams and
+      create the necessary interface VPC endpoints. Then, you can skip directly to the
+      function creation steps.</p></div></div>
+    <p>
+      First, create an AWS Cloud9 environment. You’ll use this environment throughout this tutorial to connect to and query your DocumentDB cluster.
+    </p>
+    <div class="procedure"><h6>To create an AWS Cloud9 environment</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/cloud9control/home#" rel="noopener noreferrer" target="_blank"><span>Cloud9 console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and choose
+          <strong>Create environment</strong>.</p>
+      </li><li>
+        <p>Create an environment with the following configuration:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Under <strong>Details</strong>:</p>
+            <div class="itemizedlist">
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><strong>Name</strong> – <code class="code">DocumentDBCloud9Environment</code></p>
+              </li><li class="listitem">
+                <p><strong>Environment type</strong> – New EC2 instance</p>
+              </li></ul></div>
+          </li><li class="listitem">
+            <p>Under <strong>New EC2 instance</strong>:</p>
+            <div class="itemizedlist">
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><strong>Instance type</strong> – <code class="code">t2.micro</code> (1 GiB RAM + 1 vCPU)</p>
+              </li><li class="listitem">
+                <p><strong>Platform</strong> – Amazon Linux 2</p>
+              </li><li class="listitem">
+                <p><strong>Timeout</strong> – 30 minutes</p>
+              </li></ul></div>
+          </li><li class="listitem">
+            <p>Under <strong>Network settings</strong>:</p>
+            <div class="itemizedlist">
+               
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><strong>Connection</strong> – AWS Systems Manager (SSM)</p>
+              </li><li class="listitem">
+                <p>Expand the <strong>VPC settings</strong> dropdown.</p>
+              </li><li class="listitem">
+                <p><strong>Amazon Virtual Private Cloud (VPC)</strong> – Choose your
+                  <a href="https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html">default VPC</a>.</p>
+              </li><li class="listitem">
+                <p><strong>Subnet</strong> – No preference</p>
+              </li></ul></div>
+          </li><li class="listitem">
+            <p>Keep all other default settings.</p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <strong>Create</strong>. Provisioning your new AWS Cloud9 environment can take several minutes.</p>
+      </li></ol></div>
+   
+    <h2 id="docdb-ec2-security-group">Create the EC2 security group</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 2 create an EC2 security group&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      Next, create a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html">EC2 security group</a>
+      with rules that allow traffic between your DocumentDB cluster and your Cloud9 environment.
+    </p>
+    <div class="procedure"><h6>To create an EC2 security group</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/ec2" rel="noopener noreferrer" target="_blank"><span>EC2 console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Under
+          <strong>Network and Security</strong>, choose <strong>Security groups</strong>.</p>
+      </li><li>
+        <p>Choose <strong>Create security group</strong>.</p>
+      </li><li>
+        <p>Create a security group with the following configuration:</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Under <strong>Basic details</strong>:</p>
+            <div class="itemizedlist">
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><strong>Security group name</strong> – <code class="code">DocDBTutorial</code></p>
+              </li><li class="listitem">
+                <p><strong>Description</strong> – Security group for traffic between Cloud9 and DocumentDB.</p>
+              </li><li class="listitem">
+                <p><strong>VPC</strong> – Choose your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html">default VPC</a>.</p>
+              </li></ul></div>
+          </li><li class="listitem">
+            <p>Under <strong>Inbound rules</strong>, choose <strong>Add rule</strong>.
+              Create a rule with the following configuration:</p>
+            <div class="itemizedlist">
+               
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><strong>Type</strong> – Custom TCP</p>
+              </li><li class="listitem">
+                <p><strong>Port range</strong> – 27017</p>
+              </li><li class="listitem">
+                <p><strong>Source</strong> – Custom</p>
+              </li><li class="listitem">
+                <p>In the search box next to <strong>Source</strong>, choose the security group for the AWS Cloud9 environment
+                  you created in the previous step. To see a list of available security groups, enter <code class="code">cloud9</code> in the search box.
+                  Choose the security group with the name <code class="code">aws-cloud9-&lt;environment_name&gt;</code>.</p>
+              </li></ul></div>
+          </li><li class="listitem">
+            <p>Keep all other default settings.</p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <strong>Create security group</strong>.</p>
+      </li></ol></div>
+   
+    <h2 id="docdb-secret-in-secrets-manager">Create the secret in Secrets Manager</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_3.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 3 create a secret in Secrets Manager&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      To access your DocumentDB cluster manually, you must provide username and password credentials. For Lambda to access your cluster,
+      you must provide a Secrets Manager secret that contains these same access credentials when setting up your event source mapping.
+      In this step, you’ll create this secret.
+    </p>
+    <div class="procedure"><h6>To create the secret in Secrets Manager</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/secretsmanager/home#" rel="noopener noreferrer" target="_blank"><span>Secrets Manager</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> console and choose
+          <strong>Store a new secret</strong>.</p>
+      </li><li>
+        <p>For <strong>Choose secret type</strong>, choose the following options:</p>
+        <div class="itemizedlist">
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Under <strong>Basic details</strong>:</p>
+            <div class="itemizedlist">
+               
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><strong>Secret type</strong> – Credentials for Amazon DocumentDB database</p>
+              </li><li class="listitem">
+                <p>Under <strong>Credentials</strong>, enter the username and password you’ll use to access your DocumentDB cluster.</p>
+              </li><li class="listitem">
+                <p><strong>Database</strong> – Choose your DocumentDB cluster.</p>
+              </li><li class="listitem">
+                <p>Choose <strong>Next</strong>.</p>
+              </li></ul></div>
+          </li></ul></div>
+      </li><li>
+        <p>For <strong>Configure secret</strong>, choose the following options:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><strong>Secret name</strong> – <code class="code">DocumentDBSecret</code></p>
+          </li><li class="listitem">
+            <p>Choose <strong>Next</strong>.</p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <strong>Next</strong>.</p>
+      </li><li>
+        <p>Choose <strong>Store</strong>.</p>
+      </li><li>
+        <p>Refresh the console to verify that you successfully stored the <code class="code">DocumentDBSecret</code> secret.</p>
+      </li></ol></div>
+    <p>
+      Note down the <strong>Secret ARN</strong> of your secret. You’ll need it in a later step.
+    </p>
+   
+    <h2 id="docdb-documentdb-cluster">Create the DocumentDB cluster</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_4.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 4 create a DocumentDB cluster&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      In this step, you’ll create a DocumentDB cluster using the security group from the previous step.
+    </p>
+    <div class="procedure"><h6>To create a DocumentDB cluster</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/docdb/home#" rel="noopener noreferrer" target="_blank"><span>DocumentDB console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+          Under <strong>Clusters</strong>, choose <strong>Create</strong>.</p>
+      </li><li>
+        <p>Create a cluster with the following configuration:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>For <strong>Cluster type</strong>, choose Instance Based Cluster.</p>
+          </li><li class="listitem">
+            <p>Under <strong>Configuration</strong>:</p>
+            <div class="itemizedlist">
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><strong>Engine version</strong> – 4.0.0</p>
+              </li><li class="listitem">
+                <p><strong>Instance class</strong> – db.t3.medium</p>
+              </li><li class="listitem">
+                <p><strong>Number of instances</strong> – 1.</p>
+              </li></ul></div>
+          </li><li class="listitem">
+            <p>Under <strong>Authentication</strong>:</p>
+            <div class="itemizedlist">
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>Enter the <strong>Username</strong> and <strong>Password</strong> needed
+                  to connect to your cluster (same credentials as you used to create the secret in the previous step). In
+                  <strong>Confirm password</strong>, confirm your password.</p>
+              </li></ul></div>
+          </li><li class="listitem">
+            <p>Toggle on <strong>Show advanced settings</strong>.</p>
+          </li><li class="listitem">
+            <p>Under <strong>Network settings</strong>:</p>
+            <div class="itemizedlist">
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><strong>Virtual Private Cloud (VPC)</strong> – Choose your
+                  <a href="https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html">default VPC</a>.</p>
+              </li><li class="listitem">
+                <p><strong>Subnet group</strong> – default</p>
+              </li><li class="listitem">
+                <p><strong>VPC security groups</strong> – In addition to <code class="code">default (VPC)</code>,
+                  choose the <code class="code">DocDBTutorial (VPC)</code> security group you created in the previous step.</p>
+              </li></ul></div>
+          </li><li class="listitem">
+            <p>Keep all other default settings.</p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <strong>Create cluster</strong>. Provisioning your DocumentDB cluster can take several minutes.</p>
+      </li></ol></div>
+   
+    <h2 id="docdb-install-the-mongo-shell">Install the mongo shell</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_5.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 5 install the mongo shell&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      In this step, you’ll install the mongo shell in your Cloud9 environment. The mongo shell is a command-line utility
+      that you use to connect to and query your DocumentDB cluster.
+    </p>
+    <div class="procedure"><h6>To install the mongo shell on your Cloud9 environment</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/cloud9control/home#" rel="noopener noreferrer" target="_blank"><span>Cloud9 console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Next to the
+          <code class="code">DocumentDBCloud9Environment</code> environment you created earlier, click on the <strong>Open</strong>
+          link under the <strong>Cloud9 IDE</strong> column.</p>
+      </li><li>
+        <p>In the terminal window, create the MongoDB repository file with the following command:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">echo -e "[mongodb-org-4.0] \nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/4.0/x86_64/\ngpgcheck=1 \nenabled=1 \ngpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc" | sudo tee /etc/yum.repos.d/mongodb-org-4.0.repo</code></pre>
+      </li><li>
+        <p>Then, install the mongo shell with the following command:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sudo yum install -y mongodb-org-shell</code></pre>
+      </li><li>
+        <p>To encrypt data in transit, download the <a href="https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem" rel="noopener noreferrer" target="_blank"><span>public key for Amazon DocumentDB</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+          The following command downloads a file named <code class="code">global-bundle.pem</code>:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem</code></pre>
+      </li></ol></div>
+   
+    <h2 id="docdb-connect-to-cluster">Connect to the DocumentDB cluster</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_6.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 6 connect to the DocumentDB cluster&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      You’re now ready to connect to your DocumentDB cluster using the mongo shell.
+    </p>
+    <div class="procedure"><h6>To connect to your DocumentDB cluster</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/docdb/home#" rel="noopener noreferrer" target="_blank"><span>DocumentDB console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Under
+          <strong>Clusters</strong>, choose your cluster by choosing its cluster identifier.</p>
+      </li><li>
+        <p>In the <strong>Connectivity &amp; security</strong> tab, under
+          <strong>Connect to this cluster with the mongo shell</strong>,
+          choose <strong>Copy</strong>.</p>
+      </li><li>
+        <p>In your Cloud9 environment, paste this command into the terminal. Replace <code class="code">&lt;insertYourPassword&gt;</code>
+          with the correct password.</p>
+      </li></ol></div>
+    <p>
+      After entering this command, if the command prompt becomes <code class="code">rs0:PRIMARY&gt;</code>, then you’re connected to your Amazon DocumentDB cluster.
+    </p>
+   
+    <h2 id="docdb-activate-change-streams">Activate change streams</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_7.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 7 activate change streams&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      For this tutorial, you’ll track changes to the <code class="code">products</code> collection of the <code class="code">docdbdemo</code> database
+      in your DocumentDB cluster. You do this by activating
+      <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/change_streams.html">change streams</a>.
+      First, create the <code class="code">docdbdemo</code> database and test it by inserting a record.
+    </p>
+    <div class="procedure"><h6>To create a new database within your cluster</h6><ol><li>
+        <p>In your Cloud9 environment, ensure that you’re still <a href="#docdb-connect-to-cluster">connected to your DocumentDB cluster</a>.</p>
+      </li><li>
+        <p>In the terminal window, use the following command to create a new database called <code class="code">docdbdemo</code>:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">use docdbdemo</code></pre>
+      </li><li>
+        <p>Then, use the following command to insert a record into <code class="code">docdbdemo</code>:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">db.products.insert(<span>{</span>"hello":"world"})</code></pre>
+        <p>You should see output that looks like this:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">WriteResult(<span>{</span> "nInserted" : 1 })</code></pre>
+      </li><li>
+        <p>Use the following command to list all databases:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">show dbs</code></pre>
+        <p>Ensure that your output contains the <code class="code">docdbdemo</code> database:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">docdbdemo  0.000GB</code></pre>
+      </li></ol></div>
+    <p>
+      Next, activate change streams on the <code class="code">products</code> collection of the <code class="code">docdbdemo</code> database using the following command:
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">db.adminCommand(<span>{</span>modifyChangeStreams: 1,
+    database: "docdbdemo",
+    collection: "products", 
+    enable: true});</code></pre>
+    <p>
+      You should see output that looks like this:
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "ok" : 1, "operationTime" : Timestamp(1680126165, 1) }</code></pre>
+   
+    <h2 id="docdb-create-interface-vpc-endpoints">Create interface VPC endpoints</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_8.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 8 create interface VPC endpoints&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      Next, create <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws">interface VPC endpoints</a>
+      to ensure that Lambda and Secrets Manager (used later to store our cluster access credentials) can connect to your default VPC. 
+    </p>
+    <div class="procedure"><h6>To create interface VPC endpoints</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/vpc/home#" rel="noopener noreferrer" target="_blank"><span>VPC console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. In the left menu, under <strong>Virtual private cloud</strong>,
+          choose <strong>Endpoints</strong>.</p>
+      </li><li>
+        <p>Choose <strong>Create endpoint</strong>. Create an endpoint with the following configuration:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>For <strong>Name tag</strong>, enter <code class="code">lambda-default-vpc</code>.</p>
+          </li><li class="listitem">
+            <p>For <strong>Service category</strong>, choose AWS services.</p>
+          </li><li class="listitem">
+            <p>For <strong>Services</strong>, enter <code class="code">lambda</code> in the search box. Choose the service with format <code class="code">com.amazonaws.&lt;region&gt;.lambda</code>.</p>
+          </li><li class="listitem">
+            <p>For <strong>VPC</strong>, choose your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html">default VPC</a>.</p>
+          </li><li class="listitem">
+            <p>For <strong>Subnets</strong>, check the boxes next to each availability zone. Choose the correct subnet ID for each availability zone.</p>
+          </li><li class="listitem">
+            <p>For <strong>IP address type</strong>, select IPv4.</p>
+          </li><li class="listitem">
+            <p>For <strong>Security groups</strong>, choose the default VPC security group (Group name of <code class="code">default</code>), and the security group you created earlier (Group name of <code class="code">DocDBTutorial</code>).</p>
+          </li><li class="listitem">
+            <p>Keep all other default settings.</p>
+          </li><li class="listitem">
+            <p>Choose <strong>Create endpoint</strong>.</p>
+          </li></ul></div>
+      </li><li>
+        <p>Again, choose <strong>Create endpoint</strong>. Create an endpoint with the following configuration:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>For <strong>Name tag</strong>, enter <code class="code">secretsmanager-default-vpc</code>.</p>
+          </li><li class="listitem">
+            <p>For <strong>Service category</strong>, choose AWS services.</p>
+          </li><li class="listitem">
+            <p>For <strong>Services</strong>, enter <code class="code">secretsmanager</code> in the search box. Choose the service with format <code class="code">com.amazonaws.&lt;region&gt;.secretsmanager</code>.</p>
+          </li><li class="listitem">
+            <p>For <strong>VPC</strong>, choose your <a href="https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html">default VPC</a>.</p>
+          </li><li class="listitem">
+            <p>For <strong>Subnets</strong>, check the boxes next to each availability zone. Choose the correct subnet ID for each availability zone.</p>
+          </li><li class="listitem">
+            <p>For <strong>IP address type</strong>, select IPv4.</p>
+          </li><li class="listitem">
+            <p>For <strong>Security groups</strong>, choose the default VPC security group (Group name of <code class="code">default</code>), and the security group you created earlier (Group name of <code class="code">DocDBTutorial</code>).</p>
+          </li><li class="listitem">
+            <p>Keep all other default settings.</p>
+          </li><li class="listitem">
+            <p>Choose <strong>Create endpoint</strong>.</p>
+          </li></ul></div>
+      </li></ol></div>
+    <p>
+      This completes the cluster setup portion of this tutorial.
+    </p>
+   
+    <h2 id="docdb-create-the-execution-role">Create the execution role</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_9.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 9 create the execution role&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      In the next set of steps, you’ll create your Lambda function. First, you need to create the execution role that gives
+      your function permission to access your cluster. You do this by creating an IAM policy first, then attaching this
+      policy to an IAM role.
+    </p>
+    <div class="procedure"><h6>To create IAM policy</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/policies" rel="noopener noreferrer" target="_blank"><span>Policies page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the IAM console
+          and choose <strong>Create policy</strong>.</p>
+      </li><li>
+        <p>Choose the <strong>JSON</strong> tab. In the following policy, replace the Secrets Manager resource ARN
+          in the final line of the statement with your secret ARN from earlier, and copy the policy into the editor.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "LambdaESMNetworkingAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribeVpcs",
+                "ec2:DeleteNetworkInterface",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups",
+                "kms:Decrypt"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Sid": "LambdaDocDBESMAccess",
+            "Effect": "Allow",
+            "Action": [
+                "rds:DescribeDBClusters",
+                "rds:DescribeDBClusterParameters",
+                "rds:DescribeDBSubnetGroups"
+            ],
+            "Resource": "*"
+        },
+        <span>{</span>
+            "Sid": "LambdaDocDBESMGetSecretValueAccess",
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:DocumentDBSecret"
+        }
+    ]
+}</code></pre>
+      </li><li>
+        <p>Choose <strong>Next: Tags</strong>, then choose <strong>Next: Review</strong>.</p>
+      </li><li>
+        <p>For <strong>Name</strong>, enter <code class="code">AWSDocumentDBLambdaPolicy</code>.</p>
+      </li><li>
+        <p>Choose <strong>Create policy</strong>.</p>
+      </li></ol></div>
+    <div class="procedure"><h6>To create the IAM role</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the IAM console and choose
+          <strong>Create role</strong>.</p>
+      </li><li>
+        <p>For <strong>Select trusted entity</strong>, choose the following options:</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><strong>Trusted entity type</strong> – AWS service</p>
+          </li><li class="listitem">
+            <p><strong>Use case</strong> – Lambda</p>
+          </li><li class="listitem">
+            <p>Choose <strong>Next</strong>.</p>
+          </li></ul></div>
+      </li><li>
+        <p>For <strong>Add permissions</strong>, choose the <code class="code">AWSDocumentDBLambdaPolicy</code> policy you just created,
+          as well as the <code class="code">AWSLambdaBasicExecutionRole</code> to give your function permissions to write to Amazon CloudWatch Logs.</p>
+      </li><li>
+        <p>Choose <strong>Next</strong>.</p>
+      </li><li>
+        <p>For <strong>Role name</strong>, enter <code class="code">AWSDocumentDBLambdaExecutionRole</code>.</p>
+      </li><li>
+        <p>Choose <strong>Create role</strong>.</p>
+      </li></ol></div>
+   
+    <h2 id="docdb-create-the-lambda-function">Create the Lambda function</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_10.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 10 create the Lambda function&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      The following example code receives a DocumentDB event input and processes the message that it contains.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">console.log('Loading function');
+exports.handler = async (event, context) =&gt; 
+<span>{</span>
+    console.log('Received event:', JSON.stringify(event, null, 2));
+    return 'OK';
+};</code></pre>
+    <div class="procedure"><h6>To create the Lambda function</h6><ol><li>
+        <p>Copy the sample code into a file named <code class="code">index.js</code>.</p>
+      </li><li>
+        <p>Create a deployment package with the following command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">zip function.zip index.js</code></pre>
+      </li><li>
+        <p>Use the following CLI command to create the function. Replace <code class="code">us-east-1</code> with the region,
+          and <code class="code">123456789012</code> with your account ID.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda create-function --function-name ProcessDocumentDBRecords \
+    --zip-file fileb://function.zip --handler index.handler --runtime nodejs16.x \
+    --region us-east-1 \
+    --role arn:aws:iam::123456789012:role/AWSDocumentDBLambdaExecutionRole</code></pre>
+      </li></ol></div>
+   
+    <h2 id="docdb-create-the-lambda-event-source-mapping">Create the Lambda event source mapping</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_11.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 11 create the Lambda event source mapping&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      Create the event source mapping that associates your DocumentDB change stream with your Lambda function.
+      After you create this event source mapping, AWS Lambda immediately starts polling the stream.
+    </p>
+    <div class="procedure"><h6>To create the event source mapping</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Lambda console.</p>
+      </li><li>
+        <p>Choose the <code class="code">ProcessDocumentDBRecords</code> function you created earlier.</p>
+      </li><li>
+        <p>Choose the <strong>Configuration</strong> tab, then choose <strong>Triggers</strong> in the left menu.</p>
+      </li><li>
+        <p>Choose <strong>Add trigger</strong>.</p>
+      </li><li>
+        <p>Under <strong>Trigger configuration</strong>, for the source, select <strong>DocumentDB</strong>.</p>
+      </li><li>
+        <p>Create the event source mapping with the following configuration:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><strong>DocumentDB cluster</strong> – Choose the cluster you created earlier.</p>
+          </li><li class="listitem">
+            <p><strong>Database name</strong> – <code class="code">docdbdemo</code></p>
+          </li><li class="listitem">
+            <p><strong>Collection name</strong> – products</p>
+          </li><li class="listitem">
+            <p><strong>Batch size</strong> – 1</p>
+          </li><li class="listitem">
+            <p><strong>Starting position</strong> – Latest</p>
+          </li><li class="listitem">
+            <p><strong>Authentication</strong> – BASIC_AUTH</p>
+          </li><li class="listitem">
+            <p><strong>Secrets Manager key</strong> – Choose the <code class="code">DocumentDBSecret</code> you just created.</p>
+          </li><li class="listitem">
+            <p><strong>Batch window</strong> – 1</p>
+          </li><li class="listitem">
+            <p><strong>Full document configuration</strong> – UpdateLookup</p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <strong>Add</strong>. Creating your event source mapping can take a few minutes.</p>
+      </li></ol></div>
+   
+    <h2 id="docdb-test-your-function-manual-invoke">Test your function - manual invoke</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_12.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 12 test your function with a manual invoke&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      To test that you created your function and event source mapping correctly, invoke your function using the <code class="code">invoke</code> command.
+      To do this, first copy the following event JSON into a file called <code class="code">input.txt</code>:
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "eventSourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:canaryclusterb2a659a2-qo5tcmqkcl03",
+  "events": [
+    <span>{</span>
+      "event": <span>{</span>
+        "_id": <span>{</span>
+          "_data": "0163eeb6e7000000090100000009000041e1"
+        },
+        "clusterTime": <span>{</span>
+          "$timestamp": <span>{</span>
+            "t": 1676588775,
+            "i": 9
+          }
+        },
+        "documentKey": <span>{</span>
+          "_id": <span>{</span>
+            "$oid": "63eeb6e7d418cd98afb1c1d7"
+          }
+        },
+        "fullDocument": <span>{</span>
+          "_id": <span>{</span>
+            "$oid": "63eeb6e7d418cd98afb1c1d7"
+          },
+          "anyField": "sampleValue"
+        },
+        "ns": <span>{</span>
+          "db": "docdbdemo",
+          "coll": "products"
+        },
+        "operationType": "insert"
+      }
+    }
+  ],
+  "eventSource": "aws:docdb"
+}</code></pre>
+    <p>
+      Then, use the following command to invoke your function with this event:
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda invoke --function-name ProcessDocumentDBRecords \
+    --cli-binary-format raw-in-base64-out \
+    --region us-east-1 \
+    --payload file://input.txt out.txt</code></pre>
+    <p>
+      You should see a response that looks like the following:
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+   "StatusCode": 200,
+   "ExecutedVersion": "$LATEST"
+}</code></pre>
+    <p>
+      You can verify that your function successfully processed the event by checking CloudWatch Logs.
+    </p>
+    <div class="procedure"><h6>To verify manual invocation via CloudWatch Logs</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Lambda console.</p>
+      </li><li>
+        <p>Choose the <strong>Monitor</strong> tab, then choose <strong>View CloudWatch logs</strong>.
+          This takes you to the specific log group associated with your function in the CloudWatch console.</p>
+      </li><li>
+        <p>Choose the most recent log stream. Within the log messages, you should see the event JSON.</p>
+      </li></ol></div>
+   
+    <h2 id="docdb-test-insert">Test your function - insert a record</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_13.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 13 test your function by inserting a record.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      Test your end-to-end setup by interacting directly with your DocumentDB database. In the next set of steps,
+      you’ll insert a record, update it, then delete it.
+    </p>
+    <div class="procedure"><h6>To insert a record</h6><ol><li>
+        <p><a href="#docdb-connect-to-cluster">Reconnect to your DocumentDB cluster</a> in your Cloud9 environment.</p>
+      </li><li>
+        <p>Use this command to ensure that you’re currently using the <code class="code">docdbdemo</code> database:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">use docdbdemo</code></pre>
+      </li><li>
+        <p>Insert a record into the <code class="code">products</code> collection of the <code class="code">docdbdemo</code> database:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">db.products.insert(<span>{</span>"name":"Pencil", "price": 1.00})</code></pre>
+      </li></ol></div>
+   
+    <h2 id="docdb-test-update">Test your function - update a record</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_14.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 14 test your function by updating a record.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      Next, update the record you just inserted with the following command:
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">db.products.update(
+    <span>{</span> "name": "Pencil" },
+    <span>{</span> $set: <span>{</span> "price": 0.50 }}
+)</code></pre>
+    <p>
+      Verify that your function successfully processed this event by checking CloudWatch Logs.
+    </p>
+   
+    <h2 id="docdb-test-delete">Test your function - delete a record</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/docdb_tutorial_15.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 15 test your function by deleting a record.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>
+      Finally, delete the record you just updated with the following command:
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">db.products.remove( <span>{</span> "name": "Pencil" } )</code></pre>
+    <p>
+      Verify that your function successfully processed this event by checking CloudWatch Logs.
+    </p>
+   
+    <h2 id="docdb-cleanup">Clean up your resources</h2>
+    <p>
+      You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS
+      resources that you're no longer using, you prevent unnecessary charges to your AWS account.
+    </p>
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+  </li><li>
+    <p>Select the execution role that you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the role in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    <div class="procedure"><h6>To delete the VPC endpoints</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/vpc/home#" rel="noopener noreferrer" target="_blank"><span>VPC console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. In the left menu, under <strong>Virtual private cloud</strong>,
+      choose <strong>Endpoints</strong>.</p>
+  </li><li>
+    <p>Select the endpoints you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete VPC endpoints</b>.</p>
+  </li><li>
+    <p>Enter <code class="userinput">delete</code> in the text input field.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+    <div class="procedure"><h6>To delete the Amazon DocumentDB cluster</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/docdb/home#" rel="noopener noreferrer" target="_blank"><span>DocumentDB console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li>
+    <p>Choose the DocumentDB cluster you created for this tutorial, and disable deletion protection.</p>
+  </li><li>
+    <p>In the main <b>Clusters</b> page, choose your DocumentDB cluster again.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>For <b>Create final cluster snapshot</b>, select <b>No</b>.</p>
+  </li><li>
+    <p>Enter <code class="userinput">delete</code> in the text input field.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+    <div class="procedure"><h6>To delete the secret in Secrets Manager</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/secretsmanager/home#" rel="noopener noreferrer" target="_blank"><span>Secrets Manager</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> console.</p>
+  </li><li>
+    <p>Choose the secret you created for this tutorial.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete secret</b>.</p>
+  </li><li>
+    <p>Choose <b>Schedule deletion</b>.</p>
+  </li></ol></div>
+    <div class="procedure"><h6>To delete the Amazon EC2 security group</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/ec2" rel="noopener noreferrer" target="_blank"><span>EC2 console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Under
+      <strong>Network and Security</strong>, choose <strong>Security groups</strong>.</p>
+  </li><li>
+    <p>Select the security group you created for this tutorial.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete security groups</b>.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+    <div class="procedure"><h6>To delete the Cloud9 environment</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/cloud9control/home#" rel="noopener noreferrer" target="_blank"><span>Cloud9 console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li>
+    <p>Select the environment you created for this tutorial.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter <code class="userinput">delete</code> in the text input field.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-documentdb.html">DocumentDB</div><div id="next" class="next-link" accesskey="n" href="./with-ddb.html">DynamoDB</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb-tutorial.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb-tutorial.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring Lambda function options - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="configuration-function-common" /><meta name="default_state" content="configuration-function-common" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html" /><meta name="description" content="Learn optional configuration tasks, such as increasing the memory allotted to your Lambda function, in both the Lambda console and CLI." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-function-common.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-function-common.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-function-common.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-function-common.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-function-common.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-function-common.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-function-common.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-function-common.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-function-common.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-function-common.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-function-common.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-function-common.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-function-common.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-function-common.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-function-common.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-function-common.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/configuration-function-common.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/configuration-function-common.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configuring Lambda function options" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configuring Lambda function options - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-function-common" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-common.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-common.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-common.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda function,create Lambda function,function configuration,function settings,update function settings,console configuration,configure functions from console" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configuring AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Configuring Lambda function options",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-function-common" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#configuration-function-latest">Function versions</a><a href="#configuration-functions-designer">Using the function overview</a><a href="#configuration-common-summary">Configuring functions (console)</a><a href="#configuration-function-api">Configuring functions (API)</a><a href="#configuration-memory-console">Configuring function memory (console)</a><a href="#configuration-timeout-console">Configuring function timeout (console)</a><a href="#configuration-ephemeral-storage">Configuring ephemeral storage (console)</a><a href="#configuration-memory-optimization-accept">Accepting function memory recommendations (console)</a><a href="#configuration-common-triggers">Configuring triggers (console)</a><a href="#configuration-common-test">Testing functions (console)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="configuration-function-common">Configuring Lambda function options</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>After you create a function, you can configure additional capabilities for the function, such as triggers,
+    network access, and file system access. You can also adjust resources associated with the function, such as memory
+    and concurrency. These configurations apply to functions defined as .zip file archives and to functions defined as
+    container images.</p><p>You can also create and edit test events to test your function using the console.</p><p>For function configuration best practices, see <a href="./best-practices.html#function-configuration">Function configuration</a>.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#configuration-function-latest">Function versions</a></li><li><a href="#configuration-functions-designer">Using the function overview</a></li><li><a href="#configuration-common-summary">Configuring functions (console)</a></li><li><a href="#configuration-function-api">Configuring functions (API)</a></li><li><a href="#configuration-memory-console">Configuring function memory (console)</a></li><li><a href="#configuration-timeout-console">Configuring function timeout (console)</a></li><li><a href="#configuration-ephemeral-storage">Configuring ephemeral storage (console)</a></li><li><a href="#configuration-memory-optimization-accept">Accepting function memory recommendations (console)</a></li><li><a href="#configuration-common-triggers">Configuring triggers (console)</a></li><li><a href="#configuration-common-test">Testing functions (console)</a></li></ul></div>
+    <h2 id="configuration-function-latest">Function versions</h2>
+    <p>A function has an unpublished version, and can have published versions and aliases. By default, the console
+      displays configuration information for the unpublished version of the function. You change the unpublished version
+      when you update your function's code and configuration. </p>
+    <p>A published version is a snapshot of your function code and configuration that can't be changed (except for a
+      few configuration items relevant to a function version, such as provisioned concurrency).  </p>
+   
+    <h2 id="configuration-functions-designer">Using the function overview</h2>
+    
+    <p>The <b>Function overview</b> shows a visualization of your function and its upstream and downstream
+      resources. You can use it to jump to trigger and destination configuration. You can use it to jump to layer configuration
+      for functions defined as .zip file archives.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/console-designer.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        The Lambda function overview, with no configured triggers or destinations.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+   
+    <h2 id="configuration-common-summary">Configuring functions (console)</h2>
+    <p>For the following function configurations, you can change the settings only for the unpublished version of a
+      function. In the console, the function <b>Configuration</b> tab provides the following
+      sections:</p>
+    <div class="itemizedlist">
+           
+       
+
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>General configuration</b> – Configure
+           <a href="#configuration-memory-console">memory</a> or opt in to the
+          <a href="#configuration-memory-optimization-accept">AWS Compute Optimizer</a>.
+          You can also configure function <a href="#configuration-timeout-console">timeout</a> and the execution role.</p>
+      </li><li class="listitem">
+        <p><b>Permissions</b> –
+          Configure the execution role and other <a href="./lambda-permissions.html">permissions</a>.</p>
+      </li><li class="listitem">
+        <p><b>Environment variables</b> – Key-value pairs that Lambda sets in the execution
+        environment. To extend your function's configuration outside of code,
+        <a href="./configuration-envvars.html">use environment variables</a>. </p>
+      </li><li class="listitem">
+        <p><b>Tags</b> – Key-value pairs that Lambda attaches to your function resource. <a href="./configuration-tags.html">Use tags</a> to organize Lambda functions into groups for cost reporting and filtering in
+  the Lambda console.</p>
+        <p>Tags apply to the entire function, including all versions and aliases.</p>
+      </li><li class="listitem">
+        <p><b>Virtual private cloud (VPC)</b> – If your function needs network access to resources
+  that are not available over the internet, <a href="./configuration-vpc.html">configure it to connect to a virtual private cloud (VPC)</a>.</p>
+      </li><li class="listitem">
+        <p><b>Monitoring and operations tools</b> – configure CloudWatch and other <a href="./lambda-monitoring.html">monitoring tools</a>.</p>
+      </li><li class="listitem">
+        <p><b>Concurrency</b> – <a href="./configuration-concurrency.html">Reserve concurrency for a
+    function</a> to set the maximum number of simultaneous executions for a function. Provision concurrency
+    to ensure that a function can scale without fluctuations in latency.  Reserved concurrency applies to the entire
+          function, including all versions and aliases.</p>
+      </li><li class="listitem">
+        <p><b>Function URL</b> – Configure a <a href="./lambda-urls.html">function URL</a>
+          to add a unique HTTP(S) endpoint to your Lambda function. You can configure a function URL on the
+            <code class="code">$LATEST</code> unpublished function version, or on any function alias.</p>
+      </li></ul></div>
+    <p>You can configure the following options on a function, a function version, or an alias.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Triggers</b> –
+          Configure <a href="#configuration-common-triggers">triggers</a>.</p>
+      </li><li class="listitem">
+        <p><b>Destinations</b> –
+          Configure <a href="./invocation-async.html#invocation-async-destinations">destinations</a> for asynchronous invocations.</p>
+      </li><li class="listitem">
+        <p><b>Asynchronous invocation</b> – <a href="./invocation-async.html">Configure error handling behavior</a> to reduce
+  the number of retries that Lambda attempts, or the amount of time that unprocessed events stay queued before
+  Lambda discards them. <a href="./invocation-async.html#invocation-dlq">Configure a dead-letter queue</a> to retain discarded events.</p>
+      </li><li class="listitem">
+        <p><b>Code signing</b> – To use <a href="./configuration-codesigning.html">Code
+            signing</a> with your function, configure the function to include a code-signing configuration. </p>
+      </li><li class="listitem">
+        <p><b>File systems</b> –
+          Connect your function to a <a href="./configuration-filesystem.html">file system</a>.</p>
+      </li><li class="listitem">
+        <p><b>State machines</b> – Use a state machine to orchestrate and apply error handling to
+          your function.</p>
+      </li></ul></div>
+    <p>The console provides separate tabs to configure aliases and versions: </p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem"><p><b>Aliases</b> – An alias is a named resource that maps to a
+      function version. You can change an alias to map to a different function version.</p></li><li class="listitem"><p><b>Versions</b> – Lambda assigns a new version number each time you publish your function. For
+          more information about managing versions, see <a href="./configuration-versions.html">Lambda  function versions</a>.</p></li></ul></div>
+   <p>You can configure the following items for a published function version:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>Triggers</p></li><li class="listitem"><p>Destinations</p></li><li class="listitem"><p>Provisioned concurrency</p></li><li class="listitem"><p>Asynchronous invocation</p></li><li class="listitem"><p>Database proxies</p></li></ul></div>
+   
+    <h2 id="configuration-function-api">Configuring functions (API)</h2>
+    <p>To configure functions with the Lambda API, use the following actions:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="./API_UpdateFunctionCode.html">UpdateFunctionCode</a> – Update the function's code.</p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateFunctionConfiguration.html">UpdateFunctionConfiguration</a> – Update version-specific settings.</p>
+      </li><li class="listitem">
+        <p><a href="./API_TagResource.html">TagResource</a> – Tag a function.</p>
+      </li><li class="listitem">
+        <p><a href="./API_AddPermission.html">AddPermission</a> – Modify the <a href="./access-control-resource-based.html">resource-based
+          policy</a> of a function, version, or alias.</p>
+      </li><li class="listitem">
+        <p><a href="./API_PutFunctionConcurrency.html">PutFunctionConcurrency</a> – Configure a function's reserved concurrency.</p>
+      </li><li class="listitem">
+        <p><a href="./API_PublishVersion.html">PublishVersion</a> – Create an immutable version with the current code and configuration.</p>
+      </li><li class="listitem">
+        <p><a href="./API_CreateAlias.html">CreateAlias</a> – Create aliases for function versions.</p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_PutFunctionEventInvokeConfig.html">PutFunctionEventInvokeConfig</a> – Configure error handling for asynchronous invocation.</p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html">CreateFunctionUrlConfig</a> – Create a function URL configuration.</p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_UpdateFunctionUrlConfig.html">UpdateFunctionUrlConfig</a> – Update an existing function URL configuration.</p>
+      </li></ul></div>
+
+   
+    <h2 id="configuration-memory-console">Configuring function memory (console)</h2>
+    <p>Lambda allocates CPU power in proportion to the amount of memory configured. <em>Memory</em> is the amount of memory available to your Lambda function at runtime. You can increase or decrease the memory and CPU power allocated to your function using the <b>Memory (MB)</b> setting. To configure the memory for your function, set a value between 128 MB and 10,240 MB in 1-MB increments. At 1,769 MB, a
+      function has the equivalent of one vCPU (one vCPU-second of credits per second).</p>
+    <p>You can configure the memory of your function in the Lambda console.</p>
+    <div class="procedure"><h6>To update the memory of a function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>On the function configuration page, on the <b>General configuration</b> pane, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>For <b>Memory (MB)</b>, set a value from 128 MB to 10,240 MB.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="configuration-timeout-console">Configuring function timeout (console)</h2>
+    <p>Lambda runs your code for a set amount of time before timing out.
+      <em>Timeout</em> is the maximum amount of time in seconds that a Lambda function can run. The 
+      default value for this setting is 3 seconds, but you can adjust this in increments of 1 second up to a maximum value
+      of 15 minutes.</p>
+    <p>You can configure the timeout of your function in the Lambda console.</p>
+    <div class="procedure"><h6>To change the timeout of a function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>On the function configuration page, on the <b>General configuration</b> pane, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>For <b>Timeout</b>, set a value from 1 second to 15 minutes.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="configuration-ephemeral-storage">Configuring ephemeral storage (console)</h2>
+    <p>
+      By default, Lambda allocates 512 MB for a function’s /tmp directory. 
+      You can increase or decrease this amount using the <b>Ephemeral storage (MB)</b> setting. 
+      To configure the size of a function’s /tmp directory, set a whole number value between 512 MB and 10,240 MB, in 1-MB increments.
+    </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+        Configuring ephemeral storage past the default 512 MB allocated incurs a cost. 
+        For more information, see <a href="https://aws.amazon.com/lambda/pricing" rel="noopener noreferrer" target="_blank"><span>Lambda pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+      </p></div></div>
+    <p>You can configure the size of a function’s /tmp directory in the Lambda console.</p>
+    <div class="procedure"><h6>To update the size of a function’s /tmp directory</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>On the function configuration page, on the <b>General configuration</b> pane, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>For <b>Ephemeral storage (MB)</b>, set a value from 512 MB to 10,240 MB.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="configuration-memory-optimization-accept">Accepting function memory recommendations (console)</h2>
+    <p>If you have administrator permissions in AWS Identity and Access Management (IAM), you can opt in to receive Lambda function memory
+      setting recommendations from AWS Compute Optimizer. For instructions on opting in to memory recommendations for your account or
+      organization, see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/getting-started.html#account-opt-in">Opting in your account</a> in the
+        <em>AWS Compute Optimizer User Guide</em>.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Compute Optimizer supports only functions that use x86_64 architecture.</p></div></div>
+    <p>When you've opted in and your <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html#requirements-lambda-functions">Lambda
+        function meets Compute Optimizer requirements</a>, you can view and accept function memory
+      recommendations from Compute Optimizer in the Lambda console.</p>
+    <div class="procedure"><h6>To accept a function memory recommendation</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>On the function configuration page, on the <b>General configuration</b> pane, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>Under <b>Memory (MB)</b>, in the memory alert, choose <b>Update</b>.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="configuration-common-triggers">Configuring triggers (console)</h2>
+    <p>You can configure other AWS services to trigger your function each time a specified event occurs.</p>
+    <p>For details about how services trigger Lambda functions, see <a href="./lambda-services.html">Using AWS Lambda with other services</a>.</p>
+    <div class="procedure"><h6>To add a trigger to your function.</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the function to update.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add trigger</b>.</p>
+      </li><li>
+        <p>From the drop-down list of triggers, choose a trigger. The console displays additional configuration fields required for this trigger.</p>
+      </li><li>
+        <p>Choose <b>Add</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="configuration-common-test">Testing functions (console)</h2>
+    <p>You can create test events for your function from the <b>Test</b> tab. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/testing-functions.html">Testing Lambda functions in the console</a>.</p>
+    <p>You can also invoke your function without saving your test event by choosing <b>Test</b> before saving. This creates an unsaved test event that Lambda
+      will preserve for the duration of the session. You can access your unsaved test events from either the <b>Test</b> or <b>Code</b> tab.
+    </p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-functions.html">Configuring functions</div><div id="next" class="next-link" accesskey="n" href="./configuration-envvars.html">Environment variables</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-common.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-common.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

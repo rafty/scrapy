@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>InvokeWithResponseStream - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="API_InvokeWithResponseStream" /><meta name="default_state" content="API_InvokeWithResponseStream" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/API_InvokeWithResponseStream.html" /><meta name="description" content="Configure your Lambda functions to stream response payloads back to clients. For more information, see Configuring a Lambda function to stream responses ." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/API_InvokeWithResponseStream.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_InvokeWithResponseStream.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="InvokeWithResponseStream" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>InvokeWithResponseStream - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#API_InvokeWithResponseStream" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_InvokeWithResponseStream.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_InvokeWithResponseStream.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_InvokeWithResponseStream.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,API,requests,InvokeWithResponseStream" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "API reference",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Reference.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Actions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Operations.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "InvokeWithResponseStream",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Operations.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#API_InvokeWithResponseStream" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#API_InvokeWithResponseStream_RequestSyntax">Request Syntax</a><a href="#API_InvokeWithResponseStream_RequestParameters">URI Request Parameters</a><a href="#API_InvokeWithResponseStream_RequestBody">Request Body</a><a href="#API_InvokeWithResponseStream_ResponseSyntax">Response Syntax</a><a href="#API_InvokeWithResponseStream_ResponseElements">Response Elements</a><a href="#API_InvokeWithResponseStream_Errors">Errors</a><a href="#API_InvokeWithResponseStream_SeeAlso">See Also</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="API_InvokeWithResponseStream">InvokeWithResponseStream</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Configure your Lambda functions to stream response payloads back to clients. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html">Configuring a Lambda function to stream responses</a>.</p><p>This operation requires permission for the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html">lambda:InvokeFunction</a> action. For details on how to set up
+      permissions for cross-account invocations, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke">Granting function
+        access to other accounts</a>.</p>
+      <h2 id="API_InvokeWithResponseStream_RequestSyntax">Request Syntax</h2>
+      <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">POST /2021-11-15/functions/<code class="replaceable">FunctionName</code>/response-streaming-invocations?Qualifier=<code class="replaceable">Qualifier</code> HTTP/1.1
+X-Amz-Invocation-Type: <code class="replaceable">InvocationType</code>
+X-Amz-Log-Type: <code class="replaceable">LogType</code>
+X-Amz-Client-Context: <code class="replaceable">ClientContext</code>
+
+<code class="replaceable">Payload</code></code></pre>
+    
+      <h2 id="API_InvokeWithResponseStream_RequestParameters">URI Request Parameters</h2>
+      <p>The request uses the following URI parameters.</p>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+      <dl>
+            <dt id="SSS-InvokeWithResponseStream-request-ClientContext"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_RequestSyntax">ClientContext</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the context
+      object.</p>
+            </dd>
+          
+            <dt id="SSS-InvokeWithResponseStream-request-FunctionName"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_RequestSyntax">FunctionName</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The name of the Lambda function.</p>
+               <div class="itemizedlist">
+                  <h6>Name formats</h6>
+                   
+                   
+                   
+               <ul class="itemizedlist"><li class="listitem">
+                     <p>
+                        <b>Function name</b> – <code class="code">my-function</code>.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Function ARN</b> – <code class="code">arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Partial ARN</b> – <code class="code">123456789012:function:my-function</code>.</p>
+                  </li></ul></div>
+               <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64
+      characters in length.</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 170.</p>
+               <p>Pattern: <code class="code">(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1}:)?(\d<span>{</span>12}:)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?</code>
+               </p>
+               <p>Required: Yes</p>
+            </dd>
+          
+            <dt id="SSS-InvokeWithResponseStream-request-InvocationType"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_RequestSyntax">InvocationType</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Use one of the following options:</p>
+               <div class="itemizedlist">
+                   
+                   
+               <ul class="itemizedlist"><li class="listitem">
+                     <p>
+                        <code class="code">RequestResponse</code> (default) – Invoke the function synchronously. Keep the
+          connection open until the function returns a response or times out. The API operation
+          response includes the function response and additional data.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <code class="code">DryRun</code> – Validate parameter values and verify that the IAM user or role has permission to invoke
+          the function.</p>
+                  </li></ul></div>
+               <p>Valid Values: <code class="code">RequestResponse | DryRun</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-InvokeWithResponseStream-request-LogType"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_RequestSyntax">LogType</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Set to <code class="code">Tail</code> to include the execution log in the response. Applies to synchronously invoked functions only.</p>
+               <p>Valid Values: <code class="code">None | Tail</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-InvokeWithResponseStream-request-Qualifier"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_RequestSyntax">Qualifier</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The alias name.</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 128.</p>
+               <p>Pattern: <code class="code">(|[a-zA-Z0-9$_-]+)</code>
+               </p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_InvokeWithResponseStream_RequestBody">Request Body</h2>
+      <p>The request accepts the following binary data.</p>
+      <div class="variablelist">
+          
+      <dl>
+            <dt id="SSS-InvokeWithResponseStream-request-Payload"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_RequestSyntax">Payload</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The JSON that you want to provide to your Lambda function as input.</p>
+               <p>You can enter the JSON directly. For example, <code class="code">--payload '<span>{</span> "key": "value" }'</code>. You can also
+      specify a file path. For example, <code class="code">--payload file://payload.json</code>.</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_InvokeWithResponseStream_ResponseSyntax">Response Syntax</h2>
+      <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">HTTP/1.1 <code class="replaceable">StatusCode</code>
+X-Amz-Executed-Version: <code class="replaceable">ExecutedVersion</code>
+Content-Type: <code class="replaceable">ResponseStreamContentType</code>
+Content-type: application/json
+
+<span>{</span>
+   "<a href="#SSS-InvokeWithResponseStream-response-InvokeComplete">InvokeComplete</a>": <span>{</span> 
+      "<a href="./API_InvokeWithResponseStreamCompleteEvent.html#SSS-Type-InvokeWithResponseStreamCompleteEvent-ErrorCode">ErrorCode</a>": "<b><em>string</em></b>",
+      "<a href="./API_InvokeWithResponseStreamCompleteEvent.html#SSS-Type-InvokeWithResponseStreamCompleteEvent-ErrorDetails">ErrorDetails</a>": "<b><em>string</em></b>",
+      "<a href="./API_InvokeWithResponseStreamCompleteEvent.html#SSS-Type-InvokeWithResponseStreamCompleteEvent-LogResult">LogResult</a>": "<b><em>string</em></b>"
+   },
+   "<a href="#SSS-InvokeWithResponseStream-response-PayloadChunk">PayloadChunk</a>": <span>{</span> 
+      "<a href="./API_InvokeResponseStreamUpdate.html#SSS-Type-InvokeResponseStreamUpdate-Payload">Payload</a>": <b><em>blob</em></b>
+   }
+}</code></pre>
+    
+      <h2 id="API_InvokeWithResponseStream_ResponseElements">Response Elements</h2>
+      <p>If the action is successful, the service sends back the following HTTP response.</p><div class="variablelist">
+             
+         <dl>
+               <dt id="SSS-InvokeWithResponseStream-response-StatusCode"><span class="term">
+                  <b>
+                     <a href="#API_InvokeWithResponseStream_ResponseSyntax">StatusCode</a>
+                  </b>
+               </span></dt>
+               <dd>
+                  <p>For a successful request, the HTTP status code is in the 200 range. For the
+        <code class="code">RequestResponse</code> invocation type, this status code is 200. For the <code class="code">DryRun</code>
+      invocation type, this status code is 204.</p>
+               </dd>
+            </dl></div>
+      <p>The response returns the following HTTP headers.</p>
+      <div class="variablelist">
+          
+          
+      <dl>
+            <dt id="SSS-InvokeWithResponseStream-response-ExecutedVersion"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_ResponseSyntax">ExecutedVersion</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The version of the function that executed. When you invoke a function with an alias, this
+      indicates which version the alias resolved to.</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 1024.</p>
+               <p>Pattern: <code class="code">(\$LATEST|[0-9]+)</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-InvokeWithResponseStream-response-ResponseStreamContentType"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_ResponseSyntax">ResponseStreamContentType</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The type of data the stream is returning.</p>
+            </dd>
+         </dl></div>
+      <p>The following data is returned in JSON format by the service.</p>
+      <div class="variablelist">
+          
+          
+      <dl>
+            <dt id="SSS-InvokeWithResponseStream-response-InvokeComplete"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_ResponseSyntax">InvokeComplete</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>An object that's returned when the stream has ended and all the payload chunks have been
+      returned.</p>
+               <p>Type: <a href="./API_InvokeWithResponseStreamCompleteEvent.html">InvokeWithResponseStreamCompleteEvent</a> object</p>
+            </dd>
+          
+            <dt id="SSS-InvokeWithResponseStream-response-PayloadChunk"><span class="term">
+               <b>
+                  <a href="#API_InvokeWithResponseStream_ResponseSyntax">PayloadChunk</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>A chunk of the streamed response payload.</p>
+               <p>Type: <a href="./API_InvokeResponseStreamUpdate.html">InvokeResponseStreamUpdate</a> object</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_InvokeWithResponseStream_Errors">Errors</h2>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      <dl>
+            <dt><span class="term">
+               <b>
+                  EC2AccessDeniedException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Need additional permissions to configure VPC settings.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  EC2ThrottledException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Amazon EC2 throttled AWS Lambda during Lambda function initialization using
+      the execution role provided for the function.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  EC2UnexpectedException
+               </b>
+            </span></dt>
+            <dd>
+               <p>
+                  AWS Lambda received an unexpected Amazon EC2 client exception while setting up for the
+        Lambda function.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  EFSIOException
+               </b>
+            </span></dt>
+            <dd>
+               <p>An error occurred when reading from or writing to a connected file system.</p>
+               <p>HTTP Status Code: 410</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  EFSMountConnectivityException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The Lambda function couldn't make a network connection to the configured file system.</p>
+               <p>HTTP Status Code: 408</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  EFSMountFailureException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The Lambda function couldn't mount the configured file system due to a permission or configuration
+      issue.</p>
+               <p>HTTP Status Code: 403</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  EFSMountTimeoutException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The Lambda function made a network connection to the configured file system, but the mount
+      operation timed out.</p>
+               <p>HTTP Status Code: 408</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  ENILimitReachedException
+               </b>
+            </span></dt>
+            <dd>
+               <p>
+                  AWS Lambda couldn't create an elastic network interface in the VPC, specified as part of Lambda function configuration, because the limit for network interfaces has been reached. For more
+      information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+        quotas</a>.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  InvalidParameterValueException
+               </b>
+            </span></dt>
+            <dd>
+               <p>One of the parameters in the request is not valid.</p>
+               <p>HTTP Status Code: 400</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  InvalidRequestContentException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The request body could not be parsed as JSON.</p>
+               <p>HTTP Status Code: 400</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  InvalidRuntimeException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The runtime or runtime version specified is not supported.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  InvalidSecurityGroupIDException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The security group ID provided in the Lambda function VPC configuration is not valid.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  InvalidSubnetIDException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The subnet ID provided in the Lambda function VPC configuration is not valid.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  InvalidZipFileException
+               </b>
+            </span></dt>
+            <dd>
+               <p>
+                  AWS Lambda could not unzip the deployment package.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  KMSAccessDeniedException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Lambda couldn't decrypt the environment variables because AWS KMS access was denied.
+      Check the Lambda function's KMS permissions.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  KMSDisabledException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Lambda couldn't decrypt the environment variables because the AWS KMS key used is
+      disabled. Check the Lambda function's KMS key settings.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  KMSInvalidStateException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Lambda couldn't decrypt the environment variables because the state of the AWS KMS key used is not valid for Decrypt. Check the function's KMS key settings.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  KMSNotFoundException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Lambda couldn't decrypt the environment variables because the AWS KMS key was not
+      found. Check the function's KMS key settings.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  RecursiveInvocationException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Lambda has detected your function being invoked in a recursive loop with other AWS resources and stopped your function's invocation.</p>
+               <p>HTTP Status Code: 400</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  RequestTooLargeException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The request payload exceeded the <code class="code">Invoke</code> request body JSON input quota. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+      quotas</a>.</p>
+               <p>HTTP Status Code: 413</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  ResourceConflictException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The resource already exists, or another operation is in progress.</p>
+               <p>HTTP Status Code: 409</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  ResourceNotFoundException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The resource specified in the request does not exist.</p>
+               <p>HTTP Status Code: 404</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  ResourceNotReadyException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function is inactive and its VPC connection is no longer available. Wait for the VPC connection to
+      reestablish and try again.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  ServiceException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The AWS Lambda service encountered an internal error.</p>
+               <p>HTTP Status Code: 500</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  SnapStartException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The <code class="code">afterRestore()</code>
+                  <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime hook</a> encountered an error. For more information, check the Amazon CloudWatch logs.</p>
+               <p>HTTP Status Code: 400</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  SnapStartNotReadyException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Lambda is initializing your function. You can invoke the function when the <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">function state</a> becomes <code class="code">Active</code>.</p>
+               <p>HTTP Status Code: 409</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  SnapStartTimeoutException
+               </b>
+            </span></dt>
+            <dd>
+               <p>Lambda couldn't restore the snapshot within the timeout limit.</p>
+               <p>HTTP Status Code: 408</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  SubnetIPAddressLimitReachedException
+               </b>
+            </span></dt>
+            <dd>
+               <p>
+                  AWS Lambda couldn't set up VPC access for the Lambda function because one or more
+      configured subnets has no available IP addresses.</p>
+               <p>HTTP Status Code: 502</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  TooManyRequestsException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The request throughput limit was exceeded. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda quotas</a>.</p>
+               <p>HTTP Status Code: 429</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  UnsupportedMediaTypeException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The content type of the <code class="code">Invoke</code> request body is not JSON.</p>
+               <p>HTTP Status Code: 415</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_InvokeWithResponseStream_SeeAlso">See Also</h2>
+      <p>For more information about using this API in one of the language-specific AWS SDKs, see the following:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/aws-cli/lambda-2015-03-31/InvokeWithResponseStream">AWS Command Line Interface</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/DotNetSDKV3/lambda-2015-03-31/InvokeWithResponseStream">AWS SDK for .NET</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForCpp/lambda-2015-03-31/InvokeWithResponseStream">AWS SDK for C++</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForGoV1/lambda-2015-03-31/InvokeWithResponseStream">AWS SDK for Go</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForJavaV2/lambda-2015-03-31/InvokeWithResponseStream">AWS SDK for Java V2</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/lambda-2015-03-31/InvokeWithResponseStream">AWS SDK for JavaScript</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForPHPV3/lambda-2015-03-31/InvokeWithResponseStream">AWS SDK for PHP V3</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/boto3/lambda-2015-03-31/InvokeWithResponseStream">AWS SDK for Python</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForRubyV3/lambda-2015-03-31/InvokeWithResponseStream">AWS SDK for Ruby V3</a>
+            </p>
+         </li></ul></div>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./API_InvokeAsync.html">InvokeAsync</div><div id="next" class="next-link" accesskey="n" href="./API_ListAliases.html">ListAliases</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/API_InvokeWithResponseStream.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/API_InvokeWithResponseStream.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Deploy Java Lambda functions with .zip or JAR file archives - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="java-package" /><meta name="default_state" content="java-package" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/java-package.html" /><meta name="description" content="This page describes how to create your deployment package as a .zip file or Jar file, and then use the deployment package to deploy your function code to AWS Lambda using the AWS Command Line Interface (AWS CLI)." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/java-package.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/java-package.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/java-package.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/java-package.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/java-package.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/java-package.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/java-package.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/java-package.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/java-package.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/java-package.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/java-package.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/java-package.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/java-package.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/java-package.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/java-package.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/java-package.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/java-package.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/java-package.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/java-package.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/java-package.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/java-package.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/java-package.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Deploy Java Lambda functions with .zip or JAR file archives" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Deploy Java Lambda functions with .zip or JAR file archives - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#java-package" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/java-package.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/java-package.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/java-package.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,java runtimes,java lambda,java Lambda function" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with Java",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Deploy Java Lambda functions with .zip or JAR file archives",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#java-package" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#java-package-prereqs">Prerequisites</a><a href="#java-package-libraries">Tools and libraries</a><a href="#java-package-gradle">Building a deployment package with Gradle</a><a href="#java-package-layers">Creating a Java layer for your dependencies</a><a href="#java-package-maven">Building a deployment package with Maven</a><a href="#java-package-console">Uploading a deployment package with the Lambda console</a><a href="#java-package-cli">Uploading a deployment package with the AWS CLI</a><a href="#java-package-cloudformation">Uploading a deployment package with AWS SAM</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="java-package">Deploy Java Lambda functions with .zip or JAR file archives</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Your AWS Lambda function's code consists of scripts or compiled programs and their dependencies. 
+You use a <em>deployment package</em> to deploy your function code to Lambda. Lambda supports two types of deployment packages: 
+container images and .zip file archives. </p><p>This page describes how to create your deployment package as a .zip file or Jar file, and then use the
+    deployment package to deploy your function code to AWS Lambda using the AWS Command Line Interface (AWS CLI).</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#java-package-prereqs">Prerequisites</a></li><li><a href="#java-package-libraries">Tools and libraries</a></li><li><a href="#java-package-gradle">Building a deployment package with Gradle</a></li><li><a href="#java-package-layers">Creating a Java layer for your dependencies</a></li><li><a href="#java-package-maven">Building a deployment package with Maven</a></li><li><a href="#java-package-console">Uploading a deployment package with the Lambda console</a></li><li><a href="#java-package-cli">Uploading a deployment package with the AWS CLI</a></li><li><a href="#java-package-cloudformation">Uploading a deployment package with AWS SAM</a></li></ul></div>
+    <h2 id="java-package-prereqs">Prerequisites</h2>
+    
+    
+    <p>The AWS CLI is an open-source tool that enables you to interact with AWS services using commands in your command line shell. To complete the steps in this section, you must have the following:</p>
+    <div class="itemizedlist">
+         
+         
+    <ul class="itemizedlist"><li class="listitem"><p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a></p></li><li class="listitem"><p><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">AWS CLI – Quick configuration with <code class="code">aws configure</code></a></p></li></ul></div>
+
+   
+    <h2 id="java-package-libraries">Tools and libraries</h2>
+  
+    
+  <p>Lambda provides the following libraries for Java functions:</p>
+  <div class="itemizedlist">
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-java-libs/tree/master/aws-lambda-java-core" rel="noopener noreferrer" target="_blank"><span>com.amazonaws:aws-lambda-java-core</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+        (required) – Defines handler method interfaces and the context object that the runtime passes to the
+        handler. If you define your own input types, this is the only library that you need.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-java-libs/tree/master/aws-lambda-java-events" rel="noopener noreferrer" target="_blank"><span>com.amazonaws:aws-lambda-java-events</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Input types for events from services that invoke Lambda
+        functions.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-java-libs/tree/master/aws-lambda-java-log4j2" rel="noopener noreferrer" target="_blank"><span>com.amazonaws:aws-lambda-java-log4j2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – An appender library for Apache Log4j 2 that you can use
+        to add the request ID for the current invocation to your <a href="./java-logging.html">function
+          logs</a>.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-sdk-java-v2" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Java 2.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – The official AWS SDK for the Java programming language.</p>
+    </li></ul></div>
+
+    <p>These libraries are available through <a href="https://search.maven.org/search?q=g:com.amazonaws" rel="noopener noreferrer" target="_blank"><span>Maven
+      Central Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Add them to your build definition as follows:</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Gradle</dt><dd tab-id="gradle">
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="groovy ">dependencies <span>{</span>
+    <code class="userinput">implementation 'com.amazonaws:aws-lambda-java-core:1.2.2'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.1'
+    runtimeOnly 'com.amazonaws:aws-lambda-java-log4j2:1.5.1'</code>
+}</code></pre>
+        </dd>
+      <dt>Maven</dt><dd tab-id="maven">
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="xml ">  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.amazonaws&lt;/groupId&gt;
+      &lt;artifactId&gt;aws-lambda-java-core&lt;/artifactId&gt;
+      &lt;version&gt;1.2.2&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.amazonaws&lt;/groupId&gt;
+      &lt;artifactId&gt;aws-lambda-java-events&lt;/artifactId&gt;
+      &lt;version&gt;3.11.1&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.amazonaws&lt;/groupId&gt;
+      &lt;artifactId&gt;aws-lambda-java-log4j2&lt;/artifactId&gt;
+      &lt;version&gt;1.5.1&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>To create a deployment package, compile your function code and dependencies into a single .zip file or Java
+      Archive (JAR) file. For Gradle, <a href="#java-package-gradle">use the Zip build type</a>. For
+      Apache Maven, <a href="#java-package-maven">use the Maven Shade plugin</a>. To upload your deployment
+      package, use the Lambda console, the Lambda API, or AWS Serverless Application Model (AWS SAM).</p>
+    
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To keep your deployment package size small, package your function's dependencies in layers.
+    Layers enable you to manage your dependencies independently, can be used by multiple functions, and can be shared with other accounts.
+    For more information, see <a href="./chapter-layers.html">Working with Lambda layers</a>.</p></div></div>
+   
+    <h2 id="java-package-gradle">Building a deployment package with Gradle</h2>
+    <p>To create a deployment package with your function's code and dependencies in Gradle, use the <code class="code">Zip</code>
+      build type. Here's an example from a
+      <a href="https://github.com/awsdocs/aws-lambda-developer-guide/blob/main/sample-apps/s3-java/build.gradle" rel="noopener noreferrer" target="_blank"><span>complete
+        sample build.gradle file</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>:</p>
+    <div class="example"><h6>Example build.gradle – Build task</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">task buildZip(type: Zip) <span>{</span>
+    into('lib') <span>{</span>
+        from(jar)
+        from(configurations.runtimeClasspath)
+    }
+}</code></pre></div></div>
+    <p>This build configuration produces a deployment package in the <code class="code">build/distributions</code> directory.
+      Within the <code class="code">into('lib')</code> statement, the <code class="code">jar</code> task assembles a jar archive containing
+      your main classes into a folder named <code class="code">lib</code>. Additionally, the <code class="code">configurations.runtimeClassPath</code>
+      task copies dependency libraries from the build's classpath into the same <code class="code">lib</code> folder.</p>
+    <div class="example"><h6>Example build.gradle – Dependencies</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">dependencies <span>{</span>
+    ...
+    <code class="userinput">implementation 'com.amazonaws:aws-lambda-java-core:1.2.2'
+    implementation 'com.amazonaws:aws-lambda-java-events:3.11.1'</code>
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    runtimeOnly 'org.apache.logging.log4j:log4j-slf4j18-impl:2.17.1'
+    <code class="userinput">runtimeOnly 'com.amazonaws:aws-lambda-java-log4j2:1.5.1'</code>
+    ...
+}</code></pre></div></div>
+    <p>Lambda loads JAR files in Unicode alphabetical order. If multiple JAR files in the <code class="code">lib</code> directory
+      contain the same class, the first one is used. You can use the following shell script to identify duplicate
+      classes:</p>
+    <div class="example"><h6>Example test-zip.sh</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">mkdir -p expanded
+unzip path/to/my/function.zip -d expanded
+find ./expanded/lib -name '*.jar' | xargs -n1 zipinfo -1 | grep '.*.class' | sort | uniq -c | sort</code></pre></div></div>
+   
+    <h2 id="java-package-layers">Creating a Java layer for your dependencies</h2>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Using layers with functions in a compiled language like Java may not provide
+          the same amount of benefit as with an interpreted language like Python.
+          Since Java is a compiled language, your functions still have to manually load any
+          shared assemblies into memory during the init phase, which can increase cold start
+          times. Instead, we recommend including any shared code at compile time to take
+          advantage of any built-in compiler optimizations.</p></div></div>
+    <p>The instructions in this section show you how to include your dependencies in a layer. For instructions
+      on how to include your dependencies in your deployment package, see
+      <a href="#java-package-gradle">Building a deployment package with Gradle</a> or
+      <a href="#java-package-maven">Building a deployment package with Maven</a>.</p>
+    <p>When you add a layer to a function, Lambda loads the layer content into the
+      <code class="code">/opt</code> directory of that execution environment. For each Lambda runtime,
+      the <code class="code">PATH</code> variable already includes specific folder paths within the
+      <code class="code">/opt</code> directory. To ensure that your layer content gets picked up by
+      the <code class="code">PATH</code> variable, include the content in the following folder paths:</p>
+    <div class="itemizedlist">
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">java/lib</code> (<code class="code">CLASSPATH</code>)</p>
+      </li></ul></div>
+    <p>For example, your layer .zip file structure might look like the following:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">jackson.zip
+└ java/lib/jackson-core-2.2.3.jar</code></pre>
+    <p>In addition, Lambda automatically detects any libraries in the <code class="code">/opt/lib</code>
+      directory, and any binaries in the <code class="code">/opt/bin</code> directory. To ensure
+      that Lambda properly finds your layer content, you can also create a layer
+      with the following structure:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">custom-layer.zip
+└ lib
+    | lib_1
+    | lib_2
+└ bin
+    | bin_1
+    | bin_2</code></pre>
+    <p>After you package your layer, see <a href="./creating-deleting-layers.html">Creating and deleting layers in Lambda</a>
+      and <a href="./adding-layers.html">Adding layers to functions</a> to complete your layer setup.</p>
+   
+    <h2 id="java-package-maven">Building a deployment package with Maven</h2>
+    <p>To build a deployment package with Maven, use the <a href="https://maven.apache.org/plugins/maven-shade-plugin/" rel="noopener noreferrer" target="_blank"><span>Maven Shade plugin</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The plugin creates a JAR
+      file that contains the compiled function code and all of its dependencies.</p>
+    <div class="example"><h6>Example pom.xml – Plugin configuration</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="xml ">      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+        &lt;version&gt;3.2.2&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;createDependencyReducedPom&gt;false&lt;/createDependencyReducedPom&gt;
+        &lt;/configuration&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;shade&lt;/goal&gt;
+            &lt;/goals&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+      &lt;/plugin&gt;</code></pre></div></div>
+    
+    <p>To build the deployment package, use the <code class="code">mvn package</code> command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">[INFO] Scanning for projects...
+[INFO] -----------------------&lt; com.example:java-maven &gt;-----------------------
+[INFO] Building java-maven-function 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+...
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ java-maven ---
+[INFO] Building jar: target/java-maven-1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- maven-shade-plugin:3.2.2:shade (default) @ java-maven ---
+[INFO] Including com.amazonaws:aws-lambda-java-core:jar:1.2.2 in the shaded jar.
+[INFO] Including com.amazonaws:aws-lambda-java-events:jar:3.11.1 in the shaded jar.
+[INFO] Including joda-time:joda-time:jar:2.6 in the shaded jar.
+[INFO] Including com.google.code.gson:gson:jar:2.8.6 in the shaded jar.
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing target/java-maven-1.0-SNAPSHOT.jar with target/java-maven-1.0-SNAPSHOT-shaded.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.321 s
+[INFO] Finished at: 2020-03-03T09:07:19Z
+[INFO] ------------------------------------------------------------------------</code></pre>
+    <p>This command generates a JAR file in the <code class="code">target</code> directory.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you're working with a <a href="https://openjdk.org/jeps/238" rel="noopener noreferrer" target="_blank"><span>multi-release JAR (MRJAR)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>,
+        you must include the MRJAR (i.e. the shaded JAR produced by the Maven Shade plugin) in the <code class="code">lib</code>
+        directory and zip it before uploading your deployment package to Lambda. Otherwise, Lambda may not properly
+        unpack your JAR file, causing your <code class="code">MANIFEST.MF</code> file to be ignored.</p></div></div>
+    <p>If you use the appender library (<code class="code">aws-lambda-java-log4j2</code>), you must also configure a transformer
+      for the Maven Shade plugin. The transformer library combines versions of a cache file that appear in both the
+      appender library and in Log4j.</p>
+    <div class="example"><h6>Example pom.xml – Plugin configuration with Log4j 2 appender</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="xml ">      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+        &lt;version&gt;3.2.2&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;createDependencyReducedPom&gt;false&lt;/createDependencyReducedPom&gt;
+        &lt;/configuration&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;shade&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+              &lt;transformers&gt;
+                &lt;transformer implementation="com.github.edwgiz.maven_shade_plugin.log4j2_cache_transformer.PluginsCacheFileTransformer"&gt;
+                &lt;/transformer&gt;
+              &lt;/transformers&gt;
+            &lt;/configuration&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+        &lt;dependencies&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;com.github.edwgiz&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-shade-plugin.log4j2-cachefile-transformer&lt;/artifactId&gt;
+            &lt;version&gt;2.13.0&lt;/version&gt;
+          &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+      &lt;/plugin&gt;</code></pre></div></div>
+   
+    <h2 id="java-package-console">Uploading a deployment package with the Lambda console</h2>
+    <p>
+      To create a new function, you must first create the function in the console, then upload your .zip or JAR file. To update an existing 
+      function, open the page for your function, then follow the same procedure to add your updated .zip or JAR file.
+    </p>
+    <p>
+      If your deployment package file is less than 50MB, you can create or update a function by uploading the file directly from your local machine. 
+      For .zip or JAR files greater than 50MB, you must upload your package to an Amazon S3 bucket first. For instructions on how to upload a file to an Amazon S3 
+      bucket using the AWS Management Console, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html">Getting started with Amazon S3</a>. 
+      To upload files using the AWS CLI, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-move">Move objects</a> 
+      in the <em>AWS CLI User Guide</em>.
+    </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You cannot convert an existing container image function to use a .zip archive. You must create a new function.</p></div></div>
+    <div class="procedure"><h6>To create a new function (console)</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console and choose <b>Create Function</b>.</p>
+      </li><li>
+        <p>Choose <b>Author from scratch</b>.</p>
+      </li><li>
+        <p>Under <b>Basic information</b>, do the following:</p>
+        <ol><li>
+            <p>For <b>Function name</b>, enter the name for your function.</p>
+          </li><li>
+            <p>For <b>Runtime</b>, select the runtime you want to use.</p>
+          </li><li>
+            <p>(Optional) For <b>Architecture</b>, choose the instruction set architecture for your function. The default architecture is x86_64. Ensure that the .zip deployment package for your function is compatible with the instruction set architecture you select.</p>
+          </li></ol>
+      </li><li>
+        <p>(Optional) Under <b>Permissions</b>, expand <b>Change default execution role</b>. You can create a new <b>Execution role</b> or use an existing one.</p>
+      </li><li>
+        <p>Choose <b>Create function</b>. Lambda creates a basic 'Hello world' function using your chosen runtime.</p>
+      </li></ol></div>
+    <div class="procedure"><h6>To upload a .zip or JAR archive from your local machine (console)</h6><ol><li>
+        <p>In the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console, choose the function you want to 
+          upload the .zip or JAR file for.</p>
+      </li><li>
+        <p>Select the <b>Code</b> tab.</p>
+      </li><li>
+        <p>In the <b>Code source</b> pane, choose <b>Upload from</b>.</p>
+      </li><li>
+        <p>Choose <b>.zip or .jar file</b>.</p>
+      </li><li>
+        <p>To upload the .zip or JAR file, do the following:</p>
+        <ol><li>
+            <p>Select <b>Upload</b>, then select your .zip or JAR file in the file chooser.</p>
+          </li><li>
+            <p>Choose <b>Open</b>.</p>
+          </li><li>
+            <p>Choose <b>Save</b>.</p>
+          </li></ol>
+      </li></ol></div>
+    
+    <div class="procedure"><h6>To upload a .zip or JAR archive from an Amazon S3 bucket (console)</h6><ol><li>
+        <p>In the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console, choose the function you want to 
+          upload a new .zip or JAR file for.</p>
+      </li><li>
+        <p>Select the <b>Code</b> tab.</p>
+      </li><li>
+        <p>In the <b>Code source</b> pane, choose <b>Upload from</b>.</p>
+      </li><li>
+        <p>Choose <b>Amazon S3 location</b>.</p>
+      </li><li>
+        <p>Paste the Amazon S3 link URL of your .zip file and choose <b>Save</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="java-package-cli">Uploading a deployment package with the AWS CLI</h2>
+    <p>
+    You can can use the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI</a> to create a new function or 
+    to update an existing one using a .zip or JAR file. Use the <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html">create-function</a> 
+    and <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html">update-function-code</a> commands to deploy your .zip or JAR
+    package. If your file is smaller than 50MB, you can upload the package from a file location on your local build machine. For larger files, 
+    you must upload your .zip or JAR package from an Amazon S3 bucket. For instructions on how to upload a file to an Amazon S3 bucket using the AWS CLI, 
+    see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-move">Move objects</a> in the <em>AWS CLI User Guide</em>.
+    </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you upload your .zip or JAR file from an Amazon S3 bucket using the AWS CLI, the bucket must be located in the same AWS Region as your function.</p></div></div>
+    <p>
+      To create a new function using a .zip or JAR file with the AWS CLI, you must specify the following:
+    </p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The name of your function (<code class="code">--function-name</code>)</p>
+      </li><li class="listitem">
+        <p>Your function’s runtime (<code class="code">--runtime</code>)</p>
+      </li><li class="listitem">
+        <p>The Amazon Resource Name (ARN) of your function’s <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html">execution role</a> (<code class="code">--role</code>)</p>
+      </li><li class="listitem">
+        <p>The name of the handler method in your function code (<code class="code">--handler</code>)</p>
+      </li></ul></div>
+    <p>
+      You must also specify the location of your .zip or JAR file. If your .zip or JAR file is located in a folder on your local build machine, use 
+      the <code class="code">--zip-file</code> option to specify the file path, as shown in the following example command.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name myFunction \
+--runtime java17 --handler example.handler \
+--role arn:aws:iam::123456789012:role/service-role/my-lambda-role \
+--zip-file fileb://myFunction.zip</code></code></pre>
+    <p>
+      To specify the location of .zip file in an Amazon S3 bucket, use the <code class="code">--code</code> option as shown in the following example command. You only 
+      need to use the <code class="code">S3ObjectVersion</code> parameter for versioned objects.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name myFunction \
+--runtime java17 --handler example.handler \
+--role arn:aws:iam::123456789012:role/service-role/my-lambda-role \
+--code S3Bucket=myBucketName,S3Key=myFileName.zip,S3ObjectVersion=myObjectVersion</code></code></pre>
+    <p>
+      To update an existing function using the CLI, you specify the the name of your function using the <code class="code">--function-name</code> parameter. You 
+      must also specify the location of the .zip file you want to use to update your function code. If your .zip file is located in a folder on your 
+      local build machine, use the <code class="code">--zip-file</code> option to specify the file path, as shown in the following example command.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-function-code --function-name myFunction \
+--zip-file fileb://myFunction.zip</code></code></pre>
+    <p>
+      To specify the location of .zip file in an Amazon S3 bucket, use the <code class="code">--s3-bucket</code> and <code class="code">--s3-key</code> options as shown in the 
+      following example command. You only need to use the <code class="code">--s3-object-version</code> parameter for versioned objects.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-function-code --function-name myFunction \
+--s3-bucket myBucketName --s3-key myFileName.zip --s3-object-version myObject Version</code></code></pre>
+   
+    <h2 id="java-package-cloudformation">Uploading a deployment package with AWS SAM</h2>
+    
+    <p>You can use AWS SAM to automate deployments of your function code, configuration, and dependencies. AWS SAM is an
+      extension of AWS CloudFormation that provides a simplified syntax for defining serverless applications. The following example
+      template defines a function with a deployment package in the <code class="code">build/distributions</code> directory that
+      Gradle uses:</p>
+    <div class="example"><h6>Example template.yml</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="yaml ">AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Lambda application that calls the Lambda API.
+Resources:
+  function:
+    Type: <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html">AWS::Serverless::Function</a>
+    Properties:
+      <code class="userinput">CodeUri: build/distributions/java-basic.zip</code>
+      Handler: example.Handler
+      Runtime: java8
+      Description: Java function
+      MemorySize: 512
+      Timeout: 10
+      # Function's execution role
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AWSLambda_ReadOnlyAccess
+        - AWSXrayWriteOnlyAccess
+        - AWSLambdaVPCAccessExecutionRole
+      Tracing: Active</code></pre></div></div>
+    <p>To create the function, use the <code class="code">package</code> and <code class="code">deploy</code> commands. These commands are
+      customizations to the AWS CLI. They wrap other commands to upload the deployment package to Amazon S3, rewrite the
+      template with the object URI, and update the function's code.</p>
+    <p>The following example script runs a Gradle build and uploads the deployment package that it creates. It
+      creates an AWS CloudFormation stack the first time you run it. If the stack already exists, the script updates it.</p>
+    <div class="example"><h6>Example deploy.sh</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/bash
+set -eo pipefail
+aws cloudformation package --template-file template.yml --s3-bucket MY_BUCKET --output-template-file out.yml
+aws cloudformation deploy --template-file out.yml --stack-name java-basic --capabilities CAPABILITY_NAMED_IAM</code></pre></div></div>
+    <p>For a complete working example, see the following sample applications:</p>
+    <div class="itemizedlist">
+  <h6>Sample Lambda applications in Java</h6>
+   
+   
+   
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p><a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/java17-examples" rel="noopener noreferrer" target="_blank"><span>java17-examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A Java function that
+      demonstrates how to use a Java record to represent an input event data object.</p>
+  </li><li class="listitem">
+    <p><a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/java-basic" rel="noopener noreferrer" target="_blank"><span>java-basic</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A collection of minimal Java functions
+      with unit tests and variable logging configuration.</p>
+  </li><li class="listitem">
+    <p><a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/java-events" rel="noopener noreferrer" target="_blank"><span>java-events</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A collection of Java functions that
+      contain skeleton code for how to handle events from various services such as Amazon API Gateway, Amazon SQS, and Amazon Kinesis.
+      These functions use the latest version of the <a href="./java-package.html">aws-lambda-java-events</a>
+      library (3.0.0 and newer). These examples do not require the AWS SDK as a dependency.</p>
+  </li><li class="listitem">
+    <p><a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/s3-java" rel="noopener noreferrer" target="_blank"><span>s3-java</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A Java function that processes
+      notification events from Amazon S3 and uses the Java Class Library (JCL) to create thumbnails from uploaded image
+      files.</p>
+  </li><li class="listitem">
+    <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/example_cross_LambdaAPIGateway_section.html">Use
+      API Gateway to invoke a Lambda function</a> – A Java function that scans a Amazon DynamoDB table that
+      contains employee information. It then uses Amazon Simple Notification Service to send a text message to employees celebrating
+      their work anniversaries. This example uses API Gateway to invoke the function.</p>
+  </li></ul></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./java-handler.html">Handler</div><div id="next" class="next-link" accesskey="n" href="./java-image.html">Deploy container images</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/java-package.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/java-package.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

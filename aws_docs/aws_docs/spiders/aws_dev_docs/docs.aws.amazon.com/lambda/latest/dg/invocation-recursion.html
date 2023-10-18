@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda recursive loop detection - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="invocation-recursion" /><meta name="default_state" content="invocation-recursion" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html" /><meta name="description" content="Learn how Lambda can detect and stop infinite recursive loops between your functions, Amazon SNS, and Amazon SQS." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/invocation-recursion.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/invocation-recursion.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/invocation-recursion.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/invocation-recursion.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/invocation-recursion.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/invocation-recursion.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/invocation-recursion.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/invocation-recursion.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/invocation-recursion.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/invocation-recursion.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-recursion.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-recursion.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/invocation-recursion.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/invocation-recursion.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/invocation-recursion.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/invocation-recursion.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/invocation-recursion.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/invocation-recursion.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda recursive loop detection" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda recursive loop detection - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#invocation-recursion" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-recursion.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-recursion.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-recursion.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,invoke,trigger,kick off function,start function,send request to function,event source mapping,Lambda monitoring,Lambda recursion,Lambda recursive loops,Amazon SNS,Amazon SQS" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Invoking Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda recursive loop detection",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#invocation-recursion" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#invocation-recursion-concepts">Understanding recursive loop detection</a><a href="#invocation-recursion-supported">Supported AWS services and SDKs</a><a href="#invocation-recursion-monitoring">Recursive loop notifications</a><a href="#invocation-recursion-responding">Responding to recursive loop detection notifications</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="invocation-recursion">Lambda recursive loop detection</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you configure a Lambda function to output to the same service or resource that invokes the function, it's possible to create 
+    an infinite recursive loop. For example, a Lambda function might write a message to an Amazon Simple Queue Service (Amazon SQS) queue, which then invokes the same 
+    function. This invocation causes the function to write another message to the queue, which in turn invokes the function again.</p><p>Unintentional recursive loops can result in unexpected charges being billed to your AWS account. Loops can
+    also cause Lambda to <a href="./lambda-concurrency.html">scale</a> and use all of your account's available
+    concurrency. To help reduce the impact of unintentional loops, Lambda can detect certain types of recursive loops
+    shortly after they occur. When Lambda detects a recursive loop, it stops your function being invoked and notifies
+    you.</p><p>If your design intentionally uses recursive patterns, then you can request to turn off Lambda recursive loop
+    detection. To request this change, <a href="https://repost.aws/knowledge-center/aws-phone-support" rel="noopener noreferrer" target="_blank"><span>contact
+      AWS Support</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If your design intentionally uses a Lambda function to write data back to the same AWS resource that invokes
+      the function, then use caution and implement suitable guard rails to prevent unexpected charges being billed to
+      your AWS account. To learn more about best practices for using recursive invocation patterns, see <a href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/recursive-runaway" rel="noopener noreferrer" target="_blank"><span>Recursive patterns that cause
+        run-away Lambda functions</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in Serverless Land.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#invocation-recursion-concepts">Understanding recursive loop detection</a></li><li><a href="#invocation-recursion-supported">Supported AWS services and SDKs</a></li><li><a href="#invocation-recursion-monitoring">Recursive loop notifications</a></li><li><a href="#invocation-recursion-responding">Responding to recursive loop detection notifications</a></li></ul></div>
+    <h2 id="invocation-recursion-concepts">Understanding recursive loop detection</h2>
+    <p>Recursive loop detection in Lambda works by tracking events. Lambda is an event-driven compute service that runs
+      your function code when certain events occur. For example, when an item is added to an Amazon SQS queue or Amazon Simple Notification Service
+      (Amazon SNS) topic. Lambda passes events to your function as JSON objects, which contain information about the change in
+      the system state. When an event causes your function to run, this is called an
+      <em>invocation</em>.</p>
+    <p>To detect recursive loops, Lambda uses <a href="https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html">AWS X-Ray</a> tracing headers. When <a href="#invocation-recursion-supportedservices">AWS services that
+        support recursive loop detection</a> send events to Lambda, those events are automatically annotated with
+      metadata. When your Lambda function writes one of these events to another supported AWS service using a <a href="#invocation-recursion-supportedsdks">supported version of an AWS SDK</a>, it updates this metadata.
+      The updated metadata includes a count of the number of times that the event has invoked the function.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You don't need to enable X-Ray active tracing for this feature to work. Recursive loop detection is turned on by default for all 
+        AWS customers. There is no charge to use the feature.</p></div></div>
+    <p>A <em>chain of requests</em> is a sequence of Lambda invocations caused by the same
+      triggering event. For example, imagine that an Amazon SQS queue invokes your Lambda function. Your Lambda function then
+      sends the processed event back to the same Amazon SQS queue, which invokes your function again. In this example, each
+      invocation of your function falls in the same chain of requests.</p>
+    <p>If your function is invoked more than 16 times in the same chain of requests, then Lambda automatically stops
+      the next function invocation in that request chain and notifies you. If your function is configured with multiple triggers, then invocations from other
+      triggers aren't affected.</p> 
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When the <code class="code">maxReceiveCount</code> setting on the source queue's redrive policy is higher than 16, Lambda recursion protection does not prevent Amazon SQS from retrying the message after a recursive loop is detected and terminated. When Lambda detects a recursive loop and drops subsequent invocations, it returns a <code class="code">RecursiveInvocationException</code> to the event source mapping. This increments the <code class="code">maxReceiveCount</code> value. However, Amazon SQS continues to retry the message until <code class="code">maxReceiveCount</code> is exceeded and the message is sent to the dead-letter queue.</p></div></div>  
+      <p>If you have an <a href="./invocation-async.html#invocation-async-destinations">on-failure destination</a> or <a href="./invocation-async.html#invocation-dlq">dead-letter queue</a> configured for your function, then Lambda also sends the event from the stopped
+      invocation to your destination or dead-letter queue. When configuring a destination or dead-letter queue for your function, be sure not to use an Amazon SNS
+        topic or Amazon SQS queue that your function also uses as an event trigger or event source mapping. If you send
+        events to the same resource that invokes your function, then you can create another recursive loop.</p>
+   
+    <h2 id="invocation-recursion-supported">Supported AWS services and SDKs</h2>
+    <p>Lambda can detect only recursive loops that include certain supported AWS services. For recursive loops to be
+      detected, your function must also use one of the supported AWS SDKs.</p>
+     
+      <h3 id="invocation-recursion-supportedservices">Supported AWS services</h3>
+      <p>Lambda currently detects recursive loops between your functions, Amazon SQS, and Amazon SNS. Lambda also detects loops comprised only 
+        of Lambda functions, which may invoke each other synchronously or asynchronously. The following diagrams show some examples of loops that Lambda can detect:</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/RunawayWorkloadDetected_v2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          Diagrams of recursive loops between a Lambda function, Amazon SNS, and an Amazon SQS queue.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <p>When another AWS service such as Amazon DynamoDB or Amazon Simple Storage Service (Amazon S3) forms part of the loop, Lambda can't
+        currently detect and stop it.</p>
+      <p>Because Lambda currently detects only recursive loops involving Amazon SQS and Amazon SNS, it's still possible that
+        loops involving other AWS services can result in unintended usage of your Lambda functions.</p>
+       <p>To guard against unexpected charges being billed to your AWS account, we recommend that you configure
+          <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html">Amazon CloudWatch
+          alarms</a> to alert you to unusual usage patterns. For example, you can configure CloudWatch to notify you about
+        spikes in Lambda function concurrency or invocations. You can also configure a <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html">billing alarm</a>
+        to notify you when spending in your account exceeds a threshold that you specify. Or, you can use <a href="https://docs.aws.amazon.com/cost-management/latest/userguide/manage-ad.html">AWS Cost Anomaly Detection</a> to alert you to
+        unusual billing patterns.</p>
+     
+     
+      <h3 id="invocation-recursion-supportedsdks">Supported AWS SDKs</h3>
+       <p>For Lambda to detect recursive loops, your function must use one of the following SDK versions or
+        higher:</p>
+     <div class="table-container"><div class="table-contents"><table id="w917aac31c91c17b7b5"><thead>
+           <tr>
+             <th>Runtime</th>
+             <th>Minimum required AWS SDK version</th>
+           </tr>
+         </thead>
+           <tr>
+             <td tabindex="-1">
+               <p>Node.js</p>
+             </td>
+             <td tabindex="-1">
+               <p>2.1147.0 (SDK version 2)</p>
+               <p>3.105.0 (SDK version 3)</p>
+             </td>
+           </tr>
+           <tr>
+             <td tabindex="-1">
+               <p>Python</p>
+             </td>
+             <td tabindex="-1">
+               <p>1.24.46 (boto3)</p>
+               <p>1.27.46 (botocore)</p>
+             </td>
+           </tr>
+           <tr>
+             <td tabindex="-1">
+               <p>Java 8 and Java 11</p>
+             </td>
+             <td tabindex="-1">
+               <p>1.12.200 (SDK version 1)</p>
+               <p>2.17.135 (SDK version 2)</p>
+             </td>
+           </tr>
+           <tr>
+             <td tabindex="-1">
+               <p>Java 17</p>
+             </td>
+             <td tabindex="-1">
+               <p>2.20.81</p>
+             </td>
+           </tr>
+           <tr>
+             <td tabindex="-1">
+               <p>.NET</p>
+             </td>
+             <td tabindex="-1">
+               <p>3.7.293.0</p>
+             </td>
+           </tr>
+           <tr>
+             <td tabindex="-1">
+               <p>Ruby</p>
+             </td>
+             <td tabindex="-1">
+               <p>3.134.0</p>
+             </td>
+           </tr>
+         </table></div></div>
+        <p>Some Lambda runtimes such as Python and Node.js include a version of the AWS SDK. If the SDK version
+        included in your function's runtime is lower than the minimum required, then you can add a supported version of
+        the SDK to your function's <a href="./gettingstarted-package.html">deployment package</a>. You can also add a
+        supported SDK version to your function using a <a href="./chapter-layers.html">Lambda layer</a>. For a
+        list of the SDKs included with each Lambda runtime, see <a href="./lambda-runtimes.html">Lambda runtimes</a>.</p>
+      <p>Lambda recursion detection is not supported for the Lambda Go runtime.</p>
+     
+   
+    <h2 id="invocation-recursion-monitoring">Recursive loop notifications</h2>
+    <p>When Lambda stops a recursive loop, you receive notifications through the <a href="http://aws.amazon.com/premiumsupport/technology/aws-health-dashboard/" rel="noopener noreferrer" target="_blank"><span>AWS Health Dashboard</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and through email. You can also use CloudWatch metrics to
+      monitor the number of recursive invocations that Lambda has stopped.</p>
+     
+      <h3 id="invocation-recursion-phd">AWS Health Dashboard notifications</h3>
+      <p>When Lambda stops a recursive invocation, the AWS Health Dashboard displays a notification on the <b>Your account health</b> page, 
+        under <a href="https://health.aws.amazon.com/health/home#/account/dashboard/open-issues" rel="noopener noreferrer" target="_blank"><span>Open and recent issues</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Note that it can take up to three hours after Lambda stops a recursive invocation before this notification is displayed. For more information about viewing account events in the AWS Health Dashboard, see <a href="https://docs.aws.amazon.com/health/latest/ug/getting-started-health-dashboard.html">Getting started with your AWS Health Dashboard – Your account health</a> 
+        in the <em>AWS Health User Guide</em>.</p>
+     
+     
+      <h3 id="invocation-recursion-email">Email alerts</h3>
+      <p>When Lambda first stops a recursive invocation of your function, it sends you an email alert. Lambda sends a maximum of one email every 
+        24 hours for each function in your AWS account. After Lambda sends an email notification, you won't receive any more emails for that 
+        function for another 24 hours, even if Lambda stops further recursive invocations of the function. Note that it can take up to three hours after Lambda stops a recursive invocation before you receive this email alert.</p> 
+        <p>Lambda sends recursive loop email alerts to 
+        your AWS account's primary account contact and alternate operations contact. For information about viewing or updating the email addresses 
+        in your account, see <a href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-update-contact.html">Updating contact information</a> 
+        in the <em>AWS General Reference</em>.</p>
+     
+   
+    <h3 id="invocation-recursion-cloudwatch">Amazon CloudWatch metrics</h3>
+    <p>The <a href="./monitoring-metrics.html#monitoring-metrics-types">CloudWatch metric</a>
+        <code class="code">RecursiveInvocationsDropped</code> records the number of function invocations that Lambda has stopped
+        because your function has been invoked more than 16 times in a single chain of requests. Lambda emits this metric as soon as it stops a recursive invocation. To view this metric,
+        follow the instructions for <a href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html#monitoring-metrics-console">Viewing metrics on the CloudWatch
+          console</a> and choose the metric <code class="code">RecursiveInvocationsDropped</code>.</p>
+   
+   
+    <h2 id="invocation-recursion-responding">Responding to recursive loop detection notifications</h2>
+    <p>When your function is invoked more than 16 times by the same triggering event, Lambda stops the next function
+      invocation for that event to break the recursive loop. To prevent a reoccurrence of a recursive loop that Lambda
+      has broken, do the following: </p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Reduce your function's available <a href="./lambda-concurrency.html">concurrency</a> to zero, which throttles all future 
+          invocations.</p>
+      </li><li class="listitem">
+        <p>Remove or disable the trigger or event source mapping that's invoking your function.</p>
+      </li><li class="listitem">
+        <p>Identify and fix code defects that write events back to the AWS resource that's invoking your function.
+          A common source of defects occurs when you use variables to define a function's event source and target. Check
+          that you're not using the same value for both variables.</p>
+      </li></ul></div>
+    <p>Additionally, if the event source for your Lambda function is an Amazon SQS queue, then consider <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue.html">configuring a dead-letter queue</a> on the source queue.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Make sure that you configure the dead-letter queue on the source queue, not on the Lambda function. The
+        dead-letter queue that you configure on a function is used for the function's <a href="./invocation-async.html">asynchronous invocation queue</a>, not for event source queues.</p></div></div> 
+    <p>If the event source is an Amazon SNS topic,
+      then consider adding an <a href="./invocation-async.html#invocation-async-destinations">on-failure destination</a> for your
+      function.</p>
+    <div class="procedure"><h6>To reduce your function's available concurrency to zero (console)</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of your function.</p>
+      </li><li>
+        <p>Choose <b>Throttle</b>.</p>
+      </li><li>
+        <p>In the <b>Throttle your function</b> dialog box, choose
+          <b>Confirm</b>.</p>
+      </li></ol></div>
+    <div class="procedure"><h6>To remove a trigger or event source mapping for your function (console)</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of your function.</p>
+      </li><li>
+        <p>Choose the <b>Configuration</b> tab, then choose <b>Triggers</b>.</p>
+      </li><li>
+        <p>Under <b>Triggers</b>, select the trigger or event source mapping that you want to delete,
+          then choose <b>Delete</b>.</p>
+      </li><li>
+        <p>In the <b>Delete triggers</b> dialog box, choose <b>Delete</b>.</p>
+      </li></ol></div>
+    <div class="procedure"><h6>To disable an event source mapping for your function (AWS CLI)</h6><ol><li>
+        <p>To find the UUID for the event source mapping that you want to disable, run the AWS Command Line Interface (AWS CLI) <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/list-event-source-mappings.html" rel="noopener noreferrer" target="_blank"><span>list-event-source-mappings</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda list-event-source-mappings</code></code></pre>
+      </li><li>
+        <p>To disable the event source mapping, run the following AWS CLI <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span>update-event-source-mapping</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-event-source-mapping --function-name <code class="replaceable">MyFunction</code> \
+--uuid <code class="replaceable">a1b2c3d4-5678-90ab-cdef-EXAMPLE11111</code> --no-enabled</code></code></pre>
+      </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./invocation-images.html">Invoking functions defined as container images</div><div id="next" class="next-link" accesskey="n" href="./lambda-urls.html">Function URLs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-recursion.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-recursion.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using Lambda with Amazon DocumentDB - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-documentdb" /><meta name="default_state" content="with-documentdb" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html" /><meta name="description" content="Learn how to set up and start using Amazon DocumentDB with Lambda." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-documentdb.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-documentdb.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-documentdb.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-documentdb.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-documentdb.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-documentdb.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-documentdb.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-documentdb.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-documentdb.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-documentdb.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-documentdb.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-documentdb.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-documentdb.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-documentdb.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-documentdb.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-documentdb.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-documentdb.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-documentdb.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using Lambda with Amazon DocumentDB" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using Lambda with Amazon DocumentDB - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-documentdb" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,Lambda Amazon DocumentDB,Lambda documentdb cluster,Lambda documentdb event,Lambda documentdb event source,Lambda documentdb trigger" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Lambda with Amazon DocumentDB",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-documentdb" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#docdb-sample-event">Example Amazon DocumentDB event</a><a href="#docdb-prereqs">Prerequisites and permissions</a><a href="#docdb-network">Network configuration</a><a href="#docdb-configuration">Creating an Amazon DocumentDB event source mapping (console)</a><a href="#docdb-api">Creating an Amazon DocumentDB event source mapping (SDK or CLI)</a><a href="#docdb-stream-polling">Polling and stream starting positions</a><a href="#docdb-monitoring">Monitoring your Amazon DocumentDB event source</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-documentdb">Using Lambda with Amazon DocumentDB</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use a Lambda function to process events in an <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/change_streams.html">Amazon DocumentDB (with MongoDB compatibility) change stream</a> by configuring an
+    Amazon DocumentDB cluster as an event source. Then, you can automate event-driven workloads by invoking your Lambda function
+    each time that data changes with your Amazon DocumentDB cluster.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Lambda supports version 4.0 and 5.0 of Amazon DocumentDB only. Lambda doesn't support version 3.6.</p><p>Also, for event source mappings, Lambda supports instance-based clusters and
+      regional clusters only. Lambda doesn't support
+      <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/docdb-using-elastic-clusters.html">
+        elastic clusters</a> or
+      <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/global-clusters.html">
+        global clusters</a>. This limitation doesn't apply when using Lambda as a client to connect to Amazon DocumentDB. Lambda can connect to 
+    all cluster types to perform CRUD operations.</p></div></div><p>Lambda processes events from Amazon DocumentDB change streams sequentially in the order in which they arrive.
+    Because of this, your function can handle only one concurrent invocation from DocumentDB at a time.
+    To monitor your function, you can track its <a href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-concurrency.html">concurrency metrics</a>.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="#docdb-sample-event">Example Amazon DocumentDB event</a></li><li><a href="#docdb-prereqs">Prerequisites and permissions</a></li><li><a href="#docdb-network">Network configuration</a></li><li><a href="#docdb-configuration">Creating an Amazon DocumentDB event source mapping (console)</a></li><li><a href="#docdb-api">Creating an Amazon DocumentDB event source mapping (SDK or CLI)</a></li><li><a href="#docdb-stream-polling">Polling and stream starting positions</a></li><li><a href="#docdb-monitoring">Monitoring your Amazon DocumentDB event source</a></li><li><a href="./with-documentdb-tutorial.html">Tutorial: Using AWS Lambda with Amazon DocumentDB Streams</a></li></ul></div>
+    <h2 id="docdb-sample-event">Example Amazon DocumentDB event</h2>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "eventSourceArn": "arn:aws:rds:us-east-1:123456789012:cluster:canaryclusterb2a659a2-qo5tcmqkcl03",
+    "events": [
+        <span>{</span>
+            "event": <span>{</span>
+                "_id": <span>{</span>
+                    "_data": "0163eeb6e7000000090100000009000041e1"
+                },
+                "clusterTime": <span>{</span>
+                    "$timestamp": <span>{</span>
+                        "t": 1676588775,
+                        "i": 9
+                    }
+                },
+                "documentKey": <span>{</span>
+                    "_id": <span>{</span>
+                        "$oid": "63eeb6e7d418cd98afb1c1d7"
+                    }
+                },
+                "fullDocument": <span>{</span>
+                    "_id": <span>{</span>
+                        "$oid": "63eeb6e7d418cd98afb1c1d7"
+                    },
+                    "anyField": "sampleValue"
+                },
+                "ns": <span>{</span>
+                    "db": "test_database",
+                    "coll": "test_collection"
+                },
+                "operationType": "insert"
+            }
+        }
+    ],
+    "eventSource": "aws:docdb"
+}</code></pre>
+    <p>For more information about the events in this example and their shapes, see <a href="https://www.mongodb.com/docs/manual/reference/change-events/" rel="noopener noreferrer" target="_blank"><span>Change Events</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the MongoDB
+      Documentation website.</p>
+   
+    <h2 id="docdb-prereqs">Prerequisites and permissions</h2>
+    <p>Before you can use Amazon DocumentDB as an event source for your Lambda function, note the following prerequisites. You
+      must:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Have an existing Amazon DocumentDB cluster in the same AWS account and AWS Region as your
+            function.</b> If you don't have an existing cluster, you can create one by following the steps in
+            <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/get-started-guide.html">Get Started with
+              Amazon DocumentDB</a> in the <em>Amazon DocumentDB Developer Guide</em>. Alternatively, the first set of steps in
+            <a href="./with-documentdb-tutorial.html">Tutorial: Using AWS Lambda with Amazon DocumentDB Streams</a> guide you
+            through creating a DocumentDB cluster with all the necessary prerequisites.</p>
+      </li><li class="listitem">
+        <p><b>Allow Lambda to access the Amazon Virtual Private Cloud (Amazon VPC) resources associated with your Amazon DocumentDB
+            cluster.</b> For more information, see <a href="#docdb-network">Network configuration</a>.</p>
+      </li><li class="listitem">
+        <p><b>Enable TLS on your Amazon DocumentDB cluster.</b> This is the default setting. If you
+          disable TLS, then Lambda cannot communicate with your cluster.</p>
+      </li><li class="listitem">
+        <p><b>Activate change streams on your Amazon DocumentDB cluster.</b> For more information,
+          see <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/change_streams.html">Using Change
+            Streams with Amazon DocumentDB</a> in the <em>Amazon DocumentDB Developer Guide</em>.</p>
+      </li><li class="listitem">
+        <p><b>Provide Lambda with credentials to access your Amazon DocumentDB cluster.</b> When
+          setting up the event source, provide the <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html">AWS Secrets Manager</a> key that contains the authentication
+          details (username and password) required to access your cluster. To provide this key during setup, do either
+          of the following:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>If you're using the Lambda console for setup, then provide the key in the <b>Secrets manager
+                key</b> field.</p>
+          </li><li class="listitem">
+            <p>If you're using the AWS Command Line Interface (AWS CLI) for setup, then provide this key in the
+                <code class="code">source-access-configurations</code> option. You can include this option with either the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/create-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span><code class="code">create-event-source-mapping</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command or the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span><code class="code">update-event-source-mapping</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command. For example:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda create-event-source-mapping \
+    ...
+    --source-access-configurations  '[<span>{</span>"Type":"BASIC_AUTH","URI":"arn:aws:secretsmanager:us-west-2:123456789012:secret:DocDBSecret-AbC4E6"}]' \
+    ...</code></pre>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p><b>Grant Lambda permissions to manage resources related to your Amazon DocumentDB
+            stream.</b> Manually add the following permissions to your function's <a href="./lambda-intro-execution-role.html">execution role</a>:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html">rds:DescribeDBClusters</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusterParameters.html">rds:DescribeDBClusterParameters</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBSubnetGroups.html">rds:DescribeDBSubnetGroups</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html">ec2:CreateNetworkInterface</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeNetworkInterfaces.html">ec2:DescribeNetworkInterfaces</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpcs.html">ec2:DescribeVpcs</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteNetworkInterface.html">ec2:DeleteNetworkInterface</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSubnets.html">ec2:DescribeSubnets</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html">ec2:DescribeSecurityGroups</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html">kms:Decrypt</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html">secretsmanager:GetSecretValue</a></p>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p><b>Keep the size of Amazon DocumentDB change stream events that you send to Lambda under 6
+            MB.</b> Lambda supports payload sizes of up to 6 MB. If your change stream tries to send Lambda an
+          event larger than 6 MB, then Lambda drops the message and emits the <code class="code">OversizedRecordCount</code> metric.
+          Lambda emits all metrics on a best-effort basis.</p>
+      </li></ul></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>While Lambda functions typically have a maximum timeout limit of 15 minutes,
+      event source mappings for Amazon MSK, self-managed Apache Kafka, Amazon DocumentDB, and Amazon MQ for ActiveMQ and RabbitMQ only support functions with
+      maximum timeout limits of 14 minutes. This constraint ensures that the event source mapping can properly
+      handle function errors and retries.</p></div></div>
+   
+    <h2 id="docdb-network">Network configuration</h2>
+    <p>Lambda must have access to the Amazon VPC resources associated with your Amazon DocumentDB cluster. If you configured a secret
+      in Secrets Manager to authenticate Lambda with the clusters, then also deploy a <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html">VPC endpoint for Secrets Manager</a>.</p>
+    <p>Alternatively, ensure that the VPC associated with your Amazon DocumentDB cluster includes one NAT gateway per public
+      subnet. For more information, see <a href="./configuration-vpc.html#vpc-internet">Internet and service access for VPC-connected functions</a>.</p>
+    <p>Configure your Amazon VPC security groups with the following rules (at minimum):</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Inbound rules</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>For the security groups that you specify for your event source, allow all traffic on the Amazon DocumentDB
+              cluster port (27017).</p>
+          </li><li class="listitem">
+            <p>(VPC endpoints only) For the security groups associated with your VPC endpoints, allow all traffic on
+              port 443 from the security groups that you specify for your event source.</p>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p>Outbound rules</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>For all destinations, allow all traffic on port 443.</p>
+          </li><li class="listitem">
+            <p>For the security groups that you specify for your event source, allow all traffic on the Amazon DocumentDB
+              cluster port (27017).</p>
+          </li></ul></div>
+      </li></ul></div>
+   
+    <h2 id="docdb-configuration">Creating an Amazon DocumentDB event source mapping (console)</h2>
+    <p>For a Lambda function to read from an Amazon DocumentDB cluster's change stream, create an <a href="./invocation-eventsourcemapping.html">event source mapping</a>. This section describes how to do this from
+      the Lambda console. For AWS SDK and AWS CLI instructions, see <a href="#docdb-api">Creating an Amazon DocumentDB event source mapping (SDK or CLI)</a>.</p>
+    <div class="procedure"><h6>To create an Amazon DocumentDB event source mapping (console)</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of a function.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add
+          trigger</b>.</p>
+      </li><li>
+        <p>Under <b>Trigger configuration</b>, in the dropdown list, choose
+            <b>DocumentDB</b>.</p>
+      </li><li>
+        <p>Configure the required options, and then choose <b>Add</b>.</p>
+      </li></ol></div>
+    <p>Lambda supports the following options for Amazon DocumentDB event sources:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>DocumentDB cluster</b> – Select an Amazon DocumentDB cluster.</p>
+      </li><li class="listitem">
+        <p><b>Activate trigger</b> – Choose whether you want to activate the trigger
+          immediately. If you select this check box, then your function immediately starts receiving traffic from the
+          specified Amazon DocumentDB change stream upon creation of the event source mapping. We recommend that you clear the
+          check box to create the event source mapping in a deactivated state for testing. After creation, you can
+          activate the event source mapping at any time.</p>
+      </li><li class="listitem">
+        <p><b>Database name</b> – Enter the name of a database within the cluster to
+          consume.</p>
+      </li><li class="listitem">
+        <p>(Optional) <b>Collection name</b> – Enter the name of a collection within the
+          database to consume. If you don't specify a collection, then Lambda listens to all events from each collection
+          in the database.</p>
+      </li><li class="listitem">
+        <p><b>Batch size</b> – Set the maximum number of messages to retrieve in a single batch,
+          up to 10,000. The default batch size is 100.</p>
+      </li><li class="listitem">
+        <p><b>Starting position</b> – Choose the position in the stream to start reading records
+          from.</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Latest</b> – Process only new records that are added to the stream. Your
+              function starts processing records only after Lambda finishes creating your event source. This means that
+              some records may be dropped until your event source is created successfully.</p>
+          </li><li class="listitem">
+            <p><b>Trim horizon</b> – Process all records in the stream. Lambda uses the log
+              retention duration of your cluster to determine where to start reading events from. Specifically, Lambda
+              starts reading from <code class="code">current_time - log_retention_duration</code>. Your change stream must already be
+              active before this timestamp for Lambda to read all events properly.</p>
+          </li><li class="listitem">
+            <p><b>At timestamp</b> – Process records starting from a specific time. Your change
+              stream must already be active before the specified timestamp for Lambda to read all events properly.</p>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p><b>Authentication</b> – Choose the authentication method for accessing the brokers in
+          your cluster.</p>
+        <div class="itemizedlist">
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>BASIC_AUTH</b> – With basic authentication, you must provide the Secrets Manager key
+              that contains the credentials to access your cluster.</p>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p><b>Secrets Manager key</b> – Choose the Secrets Manager key that contains the authentication details
+          (username and password) required to access your Amazon DocumentDB cluster.</p>
+      </li><li class="listitem">
+        <p>(Optional) <b>Batch window</b> – Set the maximum amount of time in seconds to gather
+          records before invoking your function, up to 300.</p>
+      </li><li class="listitem">
+        <p>(Optional) <b>Full document configuration</b> – For document update operations,
+          choose what you want to send to the stream. The default value is <code class="code">Default</code>, which means that for
+          each change stream event, Amazon DocumentDB sends only a delta describing the changes made. For more information about
+          this field, see <a href="https://mongodb.github.io/mongo-java-driver/3.9/javadoc/com/mongodb/client/model/changestream/FullDocument.html#DEFAULT" rel="noopener noreferrer" target="_blank"><span>FullDocument</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the MongoDB Javadoc API documentation.</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Default</b> – Lambda sends only a partial document describing the changes
+              made.</p>
+          </li><li class="listitem">
+            <p><b>UpdateLookup</b> – Lambda sends a delta describing the changes, along with a
+              copy of the entire document.</p>
+          </li></ul></div>
+      </li></ul></div>
+   
+    <h2 id="docdb-api">Creating an Amazon DocumentDB event source mapping (SDK or CLI)</h2>
+    <p>To create or manage an Amazon DocumentDB event source mapping with an <a href="https://aws.amazon.com/developer/tools/" rel="noopener noreferrer" target="_blank"><span>AWS SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, you can use the following API
+      operations:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_ListEventSourceMappings.html">ListEventSourceMappings</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_GetEventSourceMapping.html">GetEventSourceMapping</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateEventSourceMapping.html">UpdateEventSourceMapping</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_DeleteEventSourceMapping.html">DeleteEventSourceMapping</a></p>
+      </li></ul></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When you update, disable, or delete an event source mapping for Amazon DocumentDB, it can take up to 15 minutes for your changes to take effect. 
+        Before this period has elapsed, your event source mapping may continue to process events and invoke your function using your previous 
+        settings. This is true even when the status of the event source mapping displayed in the console indicates that your changes have been applied.</p></div></div>
+    <p>To create the event source mapping with the AWS CLI, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/create-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span><code class="code">create-event-source-mapping</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command. The following example uses this command to map a
+      function named <code class="code">my-function</code> to an Amazon DocumentDB change stream. The event source is specified by an Amazon
+      Resource Name (ARN), with a batch size of 500, starting from the timestamp in Unix time. The command also
+      specifies the Secrets Manager key that Lambda uses to connect to Amazon DocumentDB. Additionally, it includes
+        <code class="code">document-db-event-source-config</code> parameters that specify the database and the collection to read
+      from.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda create-event-source-mapping --function-name my-function \
+    --event-source-arn arn:aws:rds:us-west-2:123456789012:cluster:privatecluster7de2-epzcyvu4pjoy
+    --batch-size 500 \
+    --starting-position AT_TIMESTAMP \
+    --starting-position-timestamp 1541139109 \
+    --source-access-configurations '[<span>{</span>"Type":"BASIC_AUTH","URI":"arn:aws:secretsmanager:us-east-1:123456789012:secret:DocDBSecret-BAtjxi"}]' \
+    --document-db-event-source-config '<span>{</span>"DatabaseName":"test_database", "CollectionName": "test_collection"}' \</code></pre>
+    <p>You should see output that looks like this:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "UUID": "2b733gdc-8ac3-cdf5-af3a-1827b3b11284",
+    "BatchSize": 500,
+    "DocumentDBEventSourceConfig": <span>{</span>
+        "CollectionName": "test_collection",
+        "DatabaseName": "test_database",
+        "FullDocument": "Default"
+    },
+    "MaximumBatchingWindowInSeconds": 0,
+    "EventSourceArn": "arn:aws:rds:us-west-2:123456789012:cluster:privatecluster7de2-epzcyvu4pjoy",
+    "FunctionArn": "arn:aws:lambda:us-west-2:123456789012:function:my-function",
+    "LastModified": 1541348195.412,
+    "LastProcessingResult": "No records processed",
+    "State": "Creating",
+    "StateTransitionReason": "User action"
+}</code></pre>
+    <p>After creation, you can use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span><code class="code">update-event-source-mapping</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to update the settings for your Amazon DocumentDB event
+      source. The following example updates the batch size to 1,000 and the batch window to 10 seconds. For this
+      command, you need the UUID of your event source mapping, which you can retrieve using the
+        <code class="code">list-event-source-mapping</code> command or the Lambda console.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda update-event-source-mapping --function-name my-function \
+    --uuid f89f8514-cdd9-4602-9e1f-01a5b77d449b \
+    --batch-size 1000 \
+    --batch-window 10</code></pre>
+    <p>You should see this output that looks like this:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "UUID": "2b733gdc-8ac3-cdf5-af3a-1827b3b11284",
+    "BatchSize": 500,
+    "DocumentDBEventSourceConfig": <span>{</span>
+        "CollectionName": "test_collection",
+        "DatabaseName": "test_database",
+        "FullDocument": "Default"
+    },
+    "MaximumBatchingWindowInSeconds": 0,
+    "EventSourceArn": "arn:aws:rds:us-west-2:123456789012:cluster:privatecluster7de2-epzcyvu4pjoy",
+    "FunctionArn": "arn:aws:lambda:us-west-2:123456789012:function:my-function",
+    "LastModified": 1541359182.919,
+    "LastProcessingResult": "OK",
+    "State": "Updating",
+    "StateTransitionReason": "User action"
+}</code></pre>
+    <p>Lambda updates settings asynchronously, so you may not see these changes in the output until the process
+      completes. To view the current settings of your event source mapping, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/get-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span><code class="code">get-event-source-mapping</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda get-event-source-mapping --uuid f89f8514-cdd9-4602-9e1f-01a5b77d449b</code></pre>
+    <p>You should see this output that looks like this:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "UUID": "2b733gdc-8ac3-cdf5-af3a-1827b3b11284",
+    "DocumentDBEventSourceConfig": <span>{</span>
+        "CollectionName": "test_collection",
+        "DatabaseName": "test_database",
+        "FullDocument": "Default"
+    },
+    "BatchSize": 1000,
+    "MaximumBatchingWindowInSeconds": 10,
+    "EventSourceArn": "arn:aws:rds:us-west-2:123456789012:cluster:privatecluster7de2-epzcyvu4pjoy",
+    "FunctionArn": "arn:aws:lambda:us-west-2:123456789012:function:my-function",
+    "LastModified": 1541359182.919,
+    "LastProcessingResult": "OK",
+    "State": "Enabled",
+    "StateTransitionReason": "User action"
+}</code></pre>
+    <p>To delete your Amazon DocumentDB event source mapping, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/delete-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span><code class="code">delete-event-source-mapping</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda delete-event-source-mapping \
+    --uuid 2b733gdc-8ac3-cdf5-af3a-1827b3b11284</code></pre>
+   
+    <h2 id="docdb-stream-polling">Polling and stream starting positions</h2>
+    <p>Be aware that stream polling during event source mapping creation and updates is eventually consistent.</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>During event source mapping creation, it may take several minutes to start polling events from the stream.</p>
+      </li><li class="listitem">
+        <p>During event source mapping updates, it may take several minutes to stop and restart polling events from the stream.</p>
+      </li></ul></div>
+    <p>This behavior means that if you specify <code class="code">LATEST</code> as the starting position for the stream, the event source mapping could 
+    miss events during creation or updates. To ensure that no events are missed, specify the stream starting position as <code class="code">TRIM_HORIZON</code> 
+    or <code class="code">AT_TIMESTAMP</code>.</p>
+   
+    <h2 id="docdb-monitoring">Monitoring your Amazon DocumentDB event source</h2>
+    <p>To help you monitor your Amazon DocumentDB event source, Lambda emits the <code class="code">IteratorAge</code> metric when your
+      function finishes processing a batch of records. <em>Iterator age</em> is the difference between the
+      timestamp of the most recent event and the current timestamp. Essentially, the <code class="code">IteratorAge</code> metric
+      indicates how old the last processed record in the batch is. If your function is currently processing new events,
+      then you can use the iterator age to estimate the latency between when a record is added and when your function
+      processes it.</p>
+    <p>An increasing trend in <code class="code">IteratorAge</code> can indicate issues with your function.
+      For more information, see <a href="./monitoring-metrics.html">Working with Lambda function metrics</a>.</p>
+    <p>Lambda supports payloads of up to 6 MB. However, Amazon DocumentDB change stream events can be up to 16 MB in size. If
+      your change stream tries to send Lambda a change stream event larger than 6 MB, then Lambda drops the message and
+      emits the <code class="code">OversizedRecordCount</code> metric. Lambda emits all metrics on a best-effort basis.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./services-connect.html">Connect</div><div id="next" class="next-link" accesskey="n" href="./with-documentdb-tutorial.html">Tutorial</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-documentdb.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

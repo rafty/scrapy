@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Using AWS Lambda with scheduled events - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="services-cloudwatchevents-tutorial" /><meta name="default_state" content="services-cloudwatchevents-tutorial" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-tutorial.html" /><meta name="description" content="In this tutorial, you do the following:" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-tutorial.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents-tutorial.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Using AWS Lambda with scheduled events" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Using AWS Lambda with scheduled events - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-cloudwatchevents-tutorial" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-cloudwatchevents-tutorial.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-cloudwatchevents-tutorial.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-cloudwatchevents-tutorial.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using AWS Lambda with Amazon EventBridge (CloudWatch Events)",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Using AWS Lambda with scheduled events",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/services-cloudwatchevents.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-cloudwatchevents-tutorial" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#services-cloudwatchevents-tutorial-prereqs">Prerequisites</a><a href="#services-cloudwatchevents-tutorial-create">Create a Lambda function</a><a href="#services-cloudwatchevents-tutorial-test">Test the Lambda function</a><a href="#services-cloudwatchevents-tutorial-subscribe">Create an Amazon SNS topic and subscribe to it</a><a href="#services-cloudwatchevents-tutorial-alarm">Configure an alarm</a><a href="#services-cloudwatchevents-tutorial-testalarm">Test the alarm</a><a href="#cleanup">Clean up your resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="services-cloudwatchevents-tutorial">Tutorial: Using AWS Lambda with scheduled events</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you do the following:</p><div class="itemizedlist">
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>Create a Lambda function using the <b>Schedule a periodic check of any URL</b>
+        blueprint. You configure the Lambda function to run every minute. Note that if the function returns an error, Lambda logs error metrics to Amazon CloudWatch.</p>
+    </li><li class="listitem">
+      <p>Configure a CloudWatch alarm on the <code class="code">Errors</code> metric of your Lambda function to post a message to your
+        Amazon SNS topic when AWS Lambda emits error metrics to CloudWatch. You subscribe to the Amazon SNS topics to get email
+        notification. In this tutorial, you do the following to set this up:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Create an Amazon SNS topic.</p>
+        </li><li class="listitem">
+          <p>Subscribe to the topic so you can get email notifications when a new message is posted to the
+            topic.</p>
+        </li><li class="listitem">
+          <p>In Amazon CloudWatch, set an alarm on the <code class="code">Errors</code> metric of your Lambda function to publish a message
+            to your SNS topic when errors occur.</p>
+        </li></ul></div>
+    </li></ul></div>
+    <h2 id="services-cloudwatchevents-tutorial-prereqs">Prerequisites</h2>
+    
+    <p>This tutorial assumes that you have some knowledge of basic Lambda operations and the Lambda console. If you
+      haven't already, follow the instructions in <a href="./getting-started.html#getting-started-create-function">Create a Lambda function with the console</a> to create your first Lambda function.</p>
+
+    
+   
+    <h2 id="services-cloudwatchevents-tutorial-create">Create a Lambda function</h2>
+    <div class="procedure"><ol><li><p>Sign in to the AWS Management Console and open the AWS Lambda console at
+         <a href="https://console.aws.amazon.com/lambda/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/lambda/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+        <p>Choose <b>Create function</b>.</p>
+      </li><li>
+        <p>Choose <b>Use a blueprint</b>.</p>
+      </li><li>
+        <p>Open the <b>Select blueprint</b> dropdown list and choose the <b>Schedule a periodic check of any URL</b> blueprint.</p>
+      </li><li>
+        <p>Configure the following settings.</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Function name</b> – <code class="userinput">lambda-canary</code>.</p>
+          </li><li class="listitem">
+            <p><b>Execution role</b> – <b>Create a new role from AWS policy
+              templates</b>.</p>
+          </li><li class="listitem">
+            <p><b>Role name</b> – <code class="userinput">lambda-eventbridge-role</code>.</p>
+          </li><li class="listitem">
+            <p><b>Policy templates</b> – <b>Simple microservice
+              permissions</b>.</p>
+          </li><li class="listitem">
+            <p><b>Rule</b> – <b>Create a new rule</b>.</p>
+          </li><li class="listitem">
+            <p><b>Rule name</b> – <code class="userinput">CheckWebsiteScheduledEvent</code>.</p>
+          </li><li class="listitem">
+            <p><b>Rule description</b> – <code class="userinput">CheckWebsiteScheduledEvent
+                trigger</code>.</p>
+          </li><li class="listitem">
+            <p><b>Rule type</b> – <code class="userinput">Schedule expression</code>.</p>
+          </li><li class="listitem">
+            <p><b>Schedule expression</b> – <code class="userinput">rate(1 minute)</code>.</p>
+          </li><li class="listitem">
+            <p><b>Environment variables</b></p>
+            <div class="itemizedlist">
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p><b>site</b> – <code class="userinput">https://docs.aws.amazon.com/lambda/latest/dg/welcome.html</code></p>
+              </li><li class="listitem">
+                <p><b>expected</b> – <code class="userinput">What is AWS Lambda?</code></p>
+              </li></ul></div>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <b>Create function</b>.</p>
+      </li></ol></div>
+    <p>EventBridge (CloudWatch Events) emits an event every minute, based on the schedule expression. The event triggers the Lambda function,
+      which verifies that the expected string appears in the specified page. For more information on expressions
+      schedules, see <a href="./services-cloudwatchevents-expressions.html">Schedule expressions using rate or cron</a>.</p>
+   
+    <h2 id="services-cloudwatchevents-tutorial-test">Test the Lambda function</h2>
+    <p>Test the function with a sample event provided by the Lambda console.</p>
+    <div class="procedure"><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the <b>lambda-canary</b> function.</p>
+      </li><li>
+        <p>Choose <b>Test</b>.</p>
+      </li><li>
+        <p>Create a new event using the <b>CloudWatch</b> event template (<b>cloudwatch-scheduled-event</b>).</p>
+      </li><li>
+        <p>Choose <b>Create event</b>.</p>
+      </li><li>
+        <p>Choose <b>Invoke</b>.</p>
+      </li></ol></div>
+    <p>The output from the function execution is shown at the top of the page.</p>
+   
+    <h2 id="services-cloudwatchevents-tutorial-subscribe">Create an Amazon SNS topic and subscribe to it</h2>
+    <p>Create an Amazon Simple Notification Service (Amazon SNS) topic to receive notifications when the canary function returns an error.</p>
+    <div class="procedure"><h6>To create a topic</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/sns/home" rel="noopener noreferrer" target="_blank"><span>Amazon SNS console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li>
+        <p>Switch to the AWS Region where you created the Lambda function.</p>
+      </li><li>
+        <p>Choose <b>Topics</b>, and then choose <b>Create topic</b>.</p>
+      </li><li>
+        <p>Create a topic with the following settings.</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Type</b> – <b>Standard</b>.</p>
+          </li><li class="listitem">
+            <p><b>Name</b> – <code class="userinput">lambda-canary-notifications</code>.</p>
+          </li><li class="listitem">
+            <p><b>Display name</b> – <code class="userinput">Canary</code>.</p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <b>Create topic</b>.</p>
+      </li><li>
+        <p>On the <b>lambda-canary-notifications</b> topic page, choose <b>Create subscription</b>.</p>
+      </li><li>
+        <p>Create a subscription with the following settings.</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Protocol</b> – <code class="userinput">Email</code>.</p>
+          </li><li class="listitem">
+            <p><b>Endpoint</b> – Your email address.</p>
+          </li></ul></div>
+      </li><li>
+          <p>Choose <b>Create subscription</b>.</p>
+        </li></ol></div>
+    <p>Amazon SNS sends an email from <code class="code">Canary &lt;no-reply@sns.amazonaws.com&gt;</code>, reflecting the friendly name
+      of the topic. Use the link in the email to confirm your address.</p>
+   
+    <h2 id="services-cloudwatchevents-tutorial-alarm">Configure an alarm</h2>
+    <p>Configure an alarm in Amazon CloudWatch that monitors the Lambda function and sends a notification when it fails.</p>
+    <div class="procedure"><h6>To create an alarm</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/cloudwatch" rel="noopener noreferrer" target="_blank"><span>CloudWatch console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li>
+        <p>Switch to the AWS Region where you created the Lambda function.</p>
+      </li><li>
+        <p>Choose <b>All alarms</b>.</p>
+      </li><li>
+        <p>Choose <b>Create alarm</b>.</p>
+      </li><li>
+        <p>On the <b>Specify metric and conditions</b> page, choose <b>Select metric</b>.</p>
+      </li><li>
+        <p>In the <b>Metrics</b> search box, enter <b>lambda-canary Errors</b>.</p>
+      </li><li>
+        <p>Choose <b>Lambda &gt; By Function 1 Name</b>.</p>
+      </li><li>
+        <p>Select the <b>lambda-canary Errors</b> metric.</p>
+      </li><li>
+        <p>On the <b>Specify metric and conditions</b> page, in the <b>Statistic</b>  drop-down menu, choose <b>Sum</b>.</p>
+      </li><li>
+        <p>Set the threshold to <b>Greater/Equal</b> than <code class="userinput">1</code>.</p>
+      </li><li>
+        <p>On the <b>Configure actions</b> page, add a notification with the following settings:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Alarm state trigger – <b>In alarm</b></p>
+          </li><li class="listitem">
+            <p><b>Send notification to...</b> – <code class="userinput">lambda-canary-notifications</code></p>
+          </li></ul></div>
+      </li><li>
+          <p>On the <b>Add name and description</b> page, enter the following:</p>
+          <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Name</b> – <code class="userinput">lambda-canary-alarm</code></p>
+          </li><li class="listitem">
+            <p><b>Description</b> – <code class="userinput">Lambda canary alarm</code></p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <b>Create alarm</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="services-cloudwatchevents-tutorial-testalarm">Test the alarm</h2>
+    <p>Update the function configuration to cause the function to return an error, which triggers the alarm.</p>
+    <div class="procedure"><h6>To trigger an alarm</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the <b>lambda-canary</b> function.</p>
+      </li><li>
+        <p>Scroll down. Under <b>Environment variables</b>, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>Set <b>expected</b> to <code class="userinput">404</code>.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>Wait a minute, and then check your email for a message from Amazon SNS.</p>
+   
+    <h2 id="cleanup">Clean up your resources</h2>
+    
+    <p>You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS resources that you're no longer using, you prevent unnecessary charges to your AWS account.</p>
+
+    
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+
+    
+    <div class="procedure"><h6>To delete the CloudWatch alarm</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/cloudwatch/home#alarmsV2:" rel="noopener noreferrer" target="_blank"><span>All alarms page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the CloudWatch console.</p>
+  </li><li>
+    <p>Select the alarm you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+
+    
+    <div class="procedure"><h6>To delete the Amazon SNS subscription</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/sns/home#subscriptions:" rel="noopener noreferrer" target="_blank"><span>Subscriptions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Amazon SNS console.</p>
+  </li><li>
+    <p>Select the subscription you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>, <b>Delete</b>.</p>
+  </li></ol></div>
+
+    
+    <div class="procedure"><h6>To delete the Amazon SNS topic</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/sns/home#topics:" rel="noopener noreferrer" target="_blank"><span>Topics page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Amazon SNS console.</p>
+  </li><li>
+    <p>Select the topic you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter <code class="userinput">delete me</code> in the text input field.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./services-cloudwatchevents.html">EventBridge (CloudWatch Events)</div><div id="next" class="next-link" accesskey="n" href="./services-cloudwatchevents-expressions.html">Schedule expressions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-cloudwatchevents-tutorial.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-cloudwatchevents-tutorial.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

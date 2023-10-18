@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Monitoring functions on the Lambda console - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="monitoring-functions-access-metrics" /><meta name="default_state" content="monitoring-functions-access-metrics" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-access-metrics.html" /><meta name="description" content="Use the Lambda console to view function metrics, including total requests, duration, and error rates." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-access-metrics.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-access-metrics.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Monitoring functions on the Lambda console" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Monitoring functions on the Lambda console - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#monitoring-functions-access-metrics" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-functions-access-metrics.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-functions-access-metrics.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-functions-access-metrics.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Lambda metrics,monitoring,CloudWatch Logs Insights,Lambda Insights" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Monitoring and troubleshooting Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Monitoring functions on the Lambda console",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#monitoring-functions-access-metrics" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#monitoring-console-metrics-pricing">Pricing</a><a href="#monitoring-console-metrics">Using the Lambda console</a><a href="#monitoring-console-graph-types">Types of monitoring graphs</a><a href="#monitoring-console-graph-types-console">Viewing graphs on the Lambda
+        console</a><a href="#monitoring-console-queries">Viewing queries on the CloudWatch Logs console</a><a href="#monitoring-console-next-up">What's next?</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="monitoring-functions-access-metrics">Monitoring functions on the Lambda console</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Lambda monitors functions on your behalf and sends metrics to Amazon CloudWatch. The Lambda console creates monitoring
+    graphs for these metrics and shows them on the <b>Monitoring</b> page for each Lambda function.</p><p>This page describes the basics of using the Lambda console to view function metrics, including total requests, duration, and error rates.</p>
+    <h2 id="monitoring-console-metrics-pricing">Pricing</h2>
+    <p>CloudWatch has a perpetual free tier. Beyond the free tier threshold, CloudWatch charges for metrics, dashboards, alarms, logs, and insights. For more information, see <a href="http://aws.amazon.com/cloudwatch/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon CloudWatch pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+   
+    <h2 id="monitoring-console-metrics">Using the Lambda console</h2>
+      
+    <p>You can monitor your Lambda functions and applications on the Lambda console.</p>
+    <div class="procedure"><h6>To monitor a function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>Choose the <b>Monitor</b> tab.</p>
+      </li></ol></div>
+
+   
+      <h2 id="monitoring-console-graph-types">Types of monitoring graphs</h2>
+      <p>The following section describes the monitoring graphs on the Lambda console.</p>
+      <div class="itemizedlist">
+        <h6>Lambda monitoring graphs</h6>
+         
+         
+         
+         
+         
+        
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>Invocations</b> – The number of times that the function was invoked.</p>
+        </li><li class="listitem">
+          <p><b>Duration</b> – The average, minimum, and maximum amount of time your function
+            code spends processing an event.</p>
+        </li><li class="listitem">
+          <p><b>Error count and success rate (%)</b> – The number of errors and the percentage
+            of invocations that completed without error.</p>
+        </li><li class="listitem">
+          <p><b>Throttles</b> – The number of times that an invocation failed due to concurrency
+            limits.</p>
+        </li><li class="listitem">
+          <p><b>IteratorAge</b> – For stream event sources, the age of the last item in the batch
+            when Lambda received it and invoked the function.</p>
+        </li><li class="listitem">
+          <p><b>Async delivery failures</b> – The number of errors that occurred when Lambda
+            attempted to write to a destination or dead-letter queue.</p>
+        </li><li class="listitem">
+          <p><b>Concurrent executions</b> – The number of function instances that are processing
+            events.</p>
+        </li></ul></div>
+     
+      <h2 id="monitoring-console-graph-types-console">Viewing graphs on the Lambda
+        console</h2>
+        <p>The following section describes how to view CloudWatch monitoring graphs on the Lambda console, and open the CloudWatch metrics dashboard.</p>
+        <div class="procedure"><h6>To view monitoring graphs for a function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+            <p>Choose a function.</p>
+          </li><li>
+            <p>Choose the <b>Monitor</b> tab.</p>
+          </li><li>
+            <p>On the <b>Metrics</b>, <b>Logs</b>, or <b>Traces</b> tab,
+          choose from the predefined time ranges, or choose a custom time range.</p>
+          </li><li>
+            <p>To see the definition of a graph in CloudWatch, choose the three vertical dots
+            (<b>Widget actions</b>), and then choose <b>View in metrics</b> to open the
+            <b>Metrics</b> dashboard on the CloudWatch console.</p>
+          </li></ol></div>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/console-monitoring-definition.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            An example monitoring definition on the Lambda console.&#xA;          " style="max-width:100%" />
+           
+           
+        </div>
+       
+      <h2 id="monitoring-console-queries">Viewing queries on the CloudWatch Logs console</h2>
+  <p>The following section describes how to view and add reports from CloudWatch Logs Insights to a custom dashboard on the CloudWatch Logs console. </p>
+  <div class="procedure"><h6>To view reports for a function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>Choose the <b>Monitor</b> tab.</p>
+      </li><li>
+        <p>Choose <b>View logs in CloudWatch</b>.</p>
+      </li><li>
+        <p>Choose <b>View in Logs Insights</b>.</p>
+      </li><li>
+        <p>Choose from the predefined time ranges, or choose a custom time range.</p>
+      </li><li>
+        <p>Choose <b>Run query</b>.</p>
+      </li><li>
+        <p>(Optional) Choose <b>Save</b>.</p>
+      </li></ol></div>
+  <div class="mediaobject">
+     
+      <img src="/images/lambda/latest/dg/images/console-monitoring-insights.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      The CloudWatch Logs Insights reports on the CloudWatch dashboard.&#xA;    " style="max-width:100%" />
+     
+     
+  </div>
+   
+    <h2 id="monitoring-console-next-up">What's next?</h2>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Learn about the metrics that Lambda records and sends to CloudWatch in <a href="./monitoring-metrics.html">Working with Lambda function metrics</a>.</p>
+      </li><li class="listitem">
+        <p>Learn how to use CloudWatch Lambda Insights to collect and aggregate Lambda function runtime performance metrics and logs
+          in <a href="./monitoring-insights.html">Using Lambda Insights in Amazon CloudWatch</a>.</p>
+      </li></ul></div>
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-monitoring.html">Monitoring functions</div><div id="next" class="next-link" accesskey="n" href="./monitoring-metrics.html">Function metrics</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-functions-access-metrics.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-functions-access-metrics.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

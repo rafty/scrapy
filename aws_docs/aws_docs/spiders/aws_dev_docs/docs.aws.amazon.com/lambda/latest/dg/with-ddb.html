@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using AWS Lambda with Amazon DynamoDB - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-ddb" /><meta name="default_state" content="with-ddb" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html" /><meta name="description" content="How to set up and start using DynamoDB with the AWS Lambda service." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-ddb.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-ddb.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-ddb.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-ddb.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-ddb.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-ddb.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-ddb.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-ddb.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-ddb.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-ddb.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-ddb.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-ddb.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-ddb.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-ddb.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-ddb.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-ddb.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-ddb.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-ddb.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using AWS Lambda with Amazon DynamoDB" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using AWS Lambda with Amazon DynamoDB - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-ddb" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-ddb.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-ddb.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-ddb.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,Lambda dynamodb,Lambda dynamodb trigger" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using AWS Lambda with Amazon DynamoDB",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-ddb" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#events-sample-dynamodb">Example event</a><a href="#dynamodb-polling-and-batching">Polling and batching streams</a><a href="#dyanmo-db-stream-poll">Polling and stream starting positions</a><a href="#events-dynamodb-simultaneous-readers">Simultaneous readers</a><a href="#events-dynamodb-permissions">Execution role permissions</a><a href="#services-dynamodb-eventsourcemapping">Configuring a stream as an event source</a><a href="#services-dynamodb-api">Event source mapping APIs</a><a href="#services-dynamodb-errors">Error handling</a><a href="#events-dynamodb-metrics">Amazon CloudWatch metrics</a><a href="#services-ddb-windows">Time windows</a><a href="#services-ddb-batchfailurereporting">Reporting batch item failures</a><a href="#services-ddb-params">Amazon DynamoDB Streams configuration parameters</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-ddb">Using AWS Lambda with Amazon DynamoDB</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you want to send data to a target other than a Lambda function or enrich the data before sending it, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html">
+    Amazon EventBridge Pipes</a>.</p></div></div><p>You can use an AWS Lambda function to process records in an <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html">Amazon DynamoDB
+      stream</a>. With DynamoDB Streams, you can trigger a Lambda function to perform additional work each time a DynamoDB table is
+    updated.</p><p>Lambda reads records from the stream and invokes your function <a href="./invocation-sync.html">synchronously</a> with an event that contains stream records. Lambda reads records in batches and invokes your
+    function to process records from the batch.</p><div class="highlights"><h6>Sections</h6><ul><li><a href="#events-sample-dynamodb">Example event</a></li><li><a href="#dynamodb-polling-and-batching">Polling and batching streams</a></li><li><a href="#dyanmo-db-stream-poll">Polling and stream starting positions</a></li><li><a href="#events-dynamodb-simultaneous-readers">Simultaneous readers of a shard in DynamoDB Streams</a></li><li><a href="#events-dynamodb-permissions">Execution role permissions</a></li><li><a href="#services-dynamodb-eventsourcemapping">Configuring a stream as an event source</a></li><li><a href="#services-dynamodb-api">Event source mapping APIs</a></li><li><a href="#services-dynamodb-errors">Error handling</a></li><li><a href="#events-dynamodb-metrics">Amazon CloudWatch metrics</a></li><li><a href="#services-ddb-windows">Time windows</a></li><li><a href="#services-ddb-batchfailurereporting">Reporting batch item failures</a></li><li><a href="#services-ddb-params">Amazon DynamoDB Streams configuration parameters</a></li><li><a href="./with-ddb-example.html">Tutorial: Using AWS Lambda with Amazon DynamoDB streams</a></li><li><a href="./with-ddb-create-package.html">Sample function code</a></li><li><a href="./kinesis-tutorial-spec.html">AWS SAM template for a DynamoDB application</a></li></ul></div>
+    <h2 id="events-sample-dynamodb">Example event</h2>
+    <div class="example"><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "Records": [
+    <span>{</span>
+      "eventID": "1",
+      "eventVersion": "1.0",
+      "dynamodb": <span>{</span>
+        "Keys": <span>{</span>
+          "Id": <span>{</span>
+            "N": "101"
+          }
+        },
+        "NewImage": <span>{</span>
+          "Message": <span>{</span>
+            "S": "New item!"
+          },
+          "Id": <span>{</span>
+            "N": "101"
+          }
+        },
+        "StreamViewType": "NEW_AND_OLD_IMAGES",
+        "SequenceNumber": "111",
+        "SizeBytes": 26
+      },
+      "awsRegion": "us-west-2",
+      "eventName": "INSERT",
+      "eventSourceARN": "arn:aws:dynamodb:us-west-2:111122223333:table/TestTable/stream/2015-05-11T21:21:33.291",
+      "eventSource": "aws:dynamodb"
+    },
+    <span>{</span>
+      "eventID": "2",
+      "eventVersion": "1.0",
+      "dynamodb": <span>{</span>
+        "OldImage": <span>{</span>
+          "Message": <span>{</span>
+            "S": "New item!"
+          },
+          "Id": <span>{</span>
+            "N": "101"
+          }
+        },
+        "SequenceNumber": "222",
+        "Keys": <span>{</span>
+          "Id": <span>{</span>
+            "N": "101"
+          }
+        },
+        "SizeBytes": 59,
+        "NewImage": <span>{</span>
+          "Message": <span>{</span>
+            "S": "This item has changed"
+          },
+          "Id": <span>{</span>
+            "N": "101"
+          }
+        },
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+      },
+      "awsRegion": "us-west-2",
+      "eventName": "MODIFY",
+      "eventSourceARN": "arn:aws:dynamodb:us-west-2:111122223333:table/TestTable/stream/2015-05-11T21:21:33.291",
+      "eventSource": "aws:dynamodb"
+    }
+  ]}</code></pre></div></div>
+   
+    <h2 id="dynamodb-polling-and-batching">Polling and batching streams</h2>
+  
+  <p>Lambda polls shards in your DynamoDB stream for records at a base rate of 4 times per second. When records are
+    available, Lambda invokes your function and waits for the result. If processing succeeds, Lambda resumes polling until
+    it receives more records.</p>
+   <p>By default, Lambda invokes your function as soon as records are available. If the batch
+      that Lambda reads from the event source has only one record in it, Lambda sends only one record to the function. To avoid invoking the function
+      with a small number of records, you can tell the event source to buffer records for up to 5 minutes by configuring a
+        <em>batching window</em>. Before invoking the function, Lambda continues to read records from the event source
+      until it has gathered a full batch, the batching window expires, or the batch reaches the payload limit of 6 MB. For more information,
+      see <a href="./invocation-eventsourcemapping.html#invocation-eventsourcemapping-batching">Batching behavior</a>.</p>
+   <p>If your function returns an error, Lambda retries the batch until processing succeeds or the data expires. To
+    avoid stalled shards, you can configure the event source mapping to retry with a smaller batch size, limit the
+    number of retries, or discard records that are too old. To retain discarded events, you can configure the event
+    source mapping to send details about failed batches to a standard SQS queue or standard SNS topic.</p>
+   <p>You can also increase concurrency by processing multiple batches from each shard in parallel. Lambda can process
+    up to 10 batches in each shard simultaneously. If you increase the number of concurrent batches per shard, Lambda still ensures
+    in-order processing at the partition key level.</p>
+	<p>Configure the <code class="code">ParallelizationFactor</code> setting to process one shard of a Kinesis or DynamoDB data stream with more than one Lambda invocation simultaneously. 
+	You can specify the number of concurrent batches that Lambda polls from a shard via a parallelization factor from 1 (default) to 10. For example, when you set <code class="code">ParallelizationFactor</code> 
+	to 2, you can have 200 concurrent Lambda invocations at maximum to process 100 Kinesis data shards. This helps scale up the processing throughput when the data volume is volatile and 
+	the <code class="code">IteratorAge</code> is high. Note that parallelization factor will not work if you are using Kinesis aggregation. For more information, see
+	<a href="http://aws.amazon.com/blogs/compute/new-aws-lambda-scaling-controls-for-kinesis-and-dynamodb-event-sources/" rel="noopener noreferrer" target="_blank"><span>New AWS Lambda scaling controls for Kinesis and DynamoDB event sources</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+	Also, see the <a href="https://data-processing.serverlessworkshops.io/" rel="noopener noreferrer" target="_blank"><span>Serverless Data Processing on AWS</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> workshop for complete tutorials.</p>
+     
+    <h2 id="dyanmo-db-stream-poll">Polling and stream starting positions</h2>
+    <p>Be aware that stream polling during event source mapping creation and updates is eventually consistent.</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>During event source mapping creation, it may take several minutes to start polling events from the stream.</p>
+      </li><li class="listitem">
+        <p>During event source mapping updates, it may take several minutes to stop and restart polling events from the stream.</p>
+      </li></ul></div>
+    <p>This behavior means that if you specify <code class="code">LATEST</code> as the starting position for the stream, the event source mapping could 
+    miss events during creation or updates. To ensure that no events are missed, specify the stream starting position as <code class="code">TRIM_HORIZON</code>.</p>
+   
+      <h2 id="events-dynamodb-simultaneous-readers">Simultaneous readers of a shard in DynamoDB Streams</h2>
+      <p>For single-Region tables that are not global tables, you can design for up to two Lambda functions to read from the same DynamoDB Streams shard at the same time. Exceeding this limit can result in request throttling. For global tables, we recommend you limit the number of simultaneous functions to one to avoid request throttling.</p>
+     
+    <h2 id="events-dynamodb-permissions">Execution role permissions</h2>
+    <p>Lambda needs the following permissions to manage resources related to your DynamoDB stream. Add them to your
+      function's execution role.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_DescribeStream.html">dynamodb:DescribeStream</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_GetRecords.html">dynamodb:GetRecords</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_GetShardIterator.html">dynamodb:GetShardIterator</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_streams_ListStreams.html">dynamodb:ListStreams</a></p>
+      </li></ul></div>
+    <p>The <code class="code">AWSLambdaDynamoDBExecutionRole</code> managed policy includes these permissions. For more
+      information, see <a href="./lambda-intro-execution-role.html">Lambda execution role</a>.</p>
+     <p>To send records of failed batches to a standard SQS queue or standard SNS topic, your function needs
+  additional permissions. Each destination service requires a different permission, as follows:</p>
+<div class="itemizedlist">
+   
+<ul class="itemizedlist"><li class="listitem"><p><b>Amazon SQS</b> – <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html">sqs:SendMessage</a></p></li><li class="listitem"><p><b>Amazon SNS</b> – <a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">sns:Publish</a></p></li></ul></div>
+    
+   
+    <h2 id="services-dynamodb-eventsourcemapping">Configuring a stream as an event source</h2>
+    
+    <p>Create an event source mapping to tell Lambda to send records from your stream to a Lambda function. You can
+      create multiple event source mappings to process the same data with multiple Lambda functions, or to process items
+      from multiple streams with a single function.</p>
+    <p>To configure your function to read from DynamoDB Streams in the Lambda console, create a <b>DynamoDB</b>
+      trigger.</p>
+     <div class="procedure"><h6>To create a trigger</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of a function.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add trigger</b>.</p>
+      </li><li>
+        <p>Choose a trigger type.</p>
+      </li><li>
+        <p>Configure the required options, and then choose <b>Add</b>.</p>
+      </li></ol></div>
+    
+    <p>Lambda supports the following options for DynamoDB event sources.</p>
+    <div class="itemizedlist">
+      <h6>Event source options</h6>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>DynamoDB table</b> – The DynamoDB table to read records from.</p>
+      </li><li class="listitem">
+        <p><b>Batch size</b> – The number of records to send to the function in each batch, up
+          to 10,000. Lambda passes all of the records in the batch to the function in a single call, as long as the total
+          size of the events doesn't exceed the <a href="./gettingstarted-limits.html">payload limit</a> for
+          synchronous invocation (6 MB).</p>
+      </li><li class="listitem"><p><b>Batch window</b> – Specify the maximum amount of time to gather records before
+          invoking the function, in seconds.</p></li><li class="listitem">
+        <p><b>Starting position</b> – Process only new records, or all existing records.</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Latest</b> – Process new records that are added to the stream.</p>
+          </li><li class="listitem">
+            <p><b>Trim horizon</b> – Process all records in the stream.</p>
+          </li></ul></div>
+        <p>After processing any existing records, the function is caught up and continues to process new
+          records.</p>
+      </li><li class="listitem"><p><b>On-failure destination</b> – A standard SQS queue or standard SNS topic
+  for records that can't be processed. When Lambda discards a batch of records that's too old or has exhausted
+  all retries, Lambda sends details about the batch to the queue or topic.</p></li><li class="listitem"><p><b>Retry attempts</b> – The maximum number of times that
+  Lambda retries when the function returns an error. This doesn't apply to service errors or throttles where the
+  batch didn't reach the function.</p></li><li class="listitem"><p><b>Maximum age of record</b> – The maximum age of a record that
+  Lambda sends to your function.</p></li><li class="listitem"><p><b>Split batch on error</b> – When the function returns an error,
+  split the batch into two before retrying. Your original batch size setting remains unchanged.</p></li><li class="listitem"><p><b>Concurrent batches per shard</b> – Concurrently process multiple batches from the same shard.</p></li><li class="listitem">
+        <p><b>Enabled</b> – Set to true to enable the event source mapping. Set to false to stop
+          processing records. Lambda keeps track of the last record processed and resumes processing from that point when
+          the mapping is reenabled.</p>
+      </li></ul></div>
+    
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You are not charged for GetRecords API calls invoked by Lambda as part of DynamoDB triggers.</p></div></div>
+    <p>To manage the event source configuration later, choose the trigger in the designer.</p>
+   
+    <h2 id="services-dynamodb-api">Event source mapping APIs</h2>
+     <p>To manage an event source with the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI)</a> or an <a href="http://aws.amazon.com/getting-started/tools-sdks/" rel="noopener noreferrer" target="_blank"><span>AWS SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, you can use the following API operations:</p>
+    <div class="itemizedlist">
+        
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p> <a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p> <a href="./API_ListEventSourceMappings.html">ListEventSourceMappings</a>  </p>
+      </li><li class="listitem">
+        <p> <a href="./API_GetEventSourceMapping.html">GetEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateEventSourceMapping.html">UpdateEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p><a href="./API_DeleteEventSourceMapping.html">DeleteEventSourceMapping</a>  </p>
+      </li></ul></div>
+     <p>The following example uses the AWS CLI to map a function named <code class="code">my-function</code> to a DynamoDB stream
+      that its Amazon Resource Name (ARN) specifies, with a batch size of 500.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-event-source-mapping --function-name my-function --batch-size 500 --maximum-batching-window-in-seconds 5 --starting-position LATEST \
+--event-source-arn arn:aws:dynamodb:<code class="replaceable">us-east-2:123456789012:table/my-table/stream/2019-06-10T19:26:16.525</code></code></code></pre>
+  <p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "UUID": "14e0db71-5d35-4eb5-b481-8945cf9d10c2",
+    "BatchSize": 500,
+    "MaximumBatchingWindowInSeconds": 5,
+    "ParallelizationFactor": 1,
+    "EventSourceArn": "arn:aws:dynamodb:us-east-2:123456789012:table/my-table/stream/2019-06-10T19:26:16.525",
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+    "LastModified": 1560209851.963,
+    "LastProcessingResult": "No records processed",
+    "State": "Creating",
+    "StateTransitionReason": "User action",
+    "DestinationConfig": <span>{</span>},
+    "MaximumRecordAgeInSeconds": 604800,
+    "BisectBatchOnFunctionError": false,
+    "MaximumRetryAttempts": 10000
+}</code></pre>
+     <p>Configure additional options to customize how batches are processed and to specify when
+  to discard records that can't be processed. The following example updates an event source mapping to send a
+  failure record to a standard SQS queue after two retry attempts, or if the records are more than an hour old.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-event-source-mapping --uuid f89f8514-cdd9-4602-9e1f-01a5b77d449b \
+--maximum-retry-attempts 2  --maximum-record-age-in-seconds 3600
+--destination-config '<span>{</span>"OnFailure": <span>{</span>"Destination": "arn:aws:sqs:us-east-2:123456789012:dlq"}}'</code></code></pre>
+<p>You should see this output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "UUID": "f89f8514-cdd9-4602-9e1f-01a5b77d449b",
+    "BatchSize": 100,
+    "MaximumBatchingWindowInSeconds": 0,
+    "ParallelizationFactor": 1,
+    "EventSourceArn": "arn:aws:dynamodb:us-east-2:123456789012:table/my-table/stream/2019-06-10T19:26:16.525",
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+    "LastModified": 1573243620.0,
+    "LastProcessingResult": "PROBLEM: Function call failed",
+    <code class="userinput">"State": "Updating",
+    "StateTransitionReason": "User action",</code>
+    "DestinationConfig": <span>{</span>},
+    "MaximumRecordAgeInSeconds": 604800,
+    "BisectBatchOnFunctionError": false,
+    "MaximumRetryAttempts": 10000
+}</code></pre>
+    <p>Updated settings are applied asynchronously and aren't reflected in the output until the process completes. Use
+    the <code class="code">get-event-source-mapping</code> command to view the current status.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda get-event-source-mapping --uuid f89f8514-cdd9-4602-9e1f-01a5b77d449b</code></code></pre>
+<p>You should see this output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "UUID": "f89f8514-cdd9-4602-9e1f-01a5b77d449b",
+    "BatchSize": 100,
+    "MaximumBatchingWindowInSeconds": 0,
+    "ParallelizationFactor": 1,
+    "EventSourceArn": "arn:aws:dynamodb:us-east-2:123456789012:table/my-table/stream/2019-06-10T19:26:16.525",
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+    "LastModified": 1573244760.0,
+    "LastProcessingResult": "PROBLEM: Function call failed",
+    "State": "Enabled",
+    "StateTransitionReason": "User action",
+    <code class="userinput">"DestinationConfig": <span>{</span>
+        "OnFailure": <span>{</span>
+            "Destination": "arn:aws:sqs:us-east-2:123456789012:dlq"
+        }
+    },
+    "MaximumRecordAgeInSeconds": 3600,</code>
+    "BisectBatchOnFunctionError": false,
+    <code class="userinput">"MaximumRetryAttempts": 2</code>
+}</code></pre>
+     <p>To process multiple batches concurrently, use the <code class="code">--parallelization-factor</code> option.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-event-source-mapping --uuid 2b733gdc-8ac3-cdf5-af3a-1827b3b11284 \
+--parallelization-factor 5</code></code></pre>
+    
+   
+    <h2 id="services-dynamodb-errors">Error handling</h2>
+     <p>The event source mapping that reads records from your DynamoDB stream, invokes your
+   function synchronously, and retries on errors. If Lambda throttles the function or returns an error without
+   invoking the function, Lambda retries until the records expire or exceed the maximum age that you configure on the event
+   source mapping.</p>
+     <p>If the function receives the records but returns an error, Lambda retries until
+  the records in the batch expire, exceed the maximum age, or reach the configured retry quota. For function errors,
+  you can also configure the event source mapping to split a failed batch into two batches. Retrying with smaller
+  batches isolates bad records and works around timeout issues. Splitting a batch does not count towards the retry quota.</p> 
+     <p>If the error handling measures fail, Lambda discards the records and continues processing
+  batches from the stream. With the default settings, this means that a bad record can block processing on the affected
+  shard for up to one day. To avoid this, configure your function's event source mapping with a reasonable
+  number of retries and a maximum record age that fits your use case.</p>
+     <p>To retain a record of discarded batches, configure a failed-event destination. Lambda
+  sends a document to the destination queue or topic with details about the batch.</p>
+  <div class="procedure"><h6>To configure a destination for failed-event records</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add destination</b>.</p>
+      </li><li>
+        <p>For <b>Source</b>, choose <b>Stream invocation</b>.</p>
+      </li><li>
+        <p>For <b>Stream</b>, choose a stream that is mapped to the function.</p>
+      </li><li>
+        <p>For <b>Destination type</b>, choose the type of resource that receives the invocation
+          record.</p>
+      </li><li>
+        <p>For <b>Destination</b>, choose a resource.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+     <p>The following example shows an invocation record for a DynamoDB stream.</p>
+<div class="example"><h6>Example Invocation Record</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "requestContext": <span>{</span>
+        "requestId": "316aa6d0-8154-xmpl-9af7-85d5f4a6bc81",
+        "functionArn": "arn:aws:lambda:us-east-2:123456789012:function:myfunction",
+        "condition": "RetryAttemptsExhausted",
+        "approximateInvokeCount": 1
+    },
+    "responseContext": <span>{</span>
+        "statusCode": 200,
+        "executedVersion": "$LATEST",
+        "functionError": "Unhandled"
+    },
+    "version": "1.0",
+    "timestamp": "2019-11-14T00:13:49.717Z",
+    "DDBStreamBatchInfo": <span>{</span>
+        "shardId": "shardId-00000001573689847184-864758bb",
+        "startSequenceNumber": "800000000003126276362",
+        "endSequenceNumber": "800000000003126276362",
+        "approximateArrivalOfFirstRecord": "2019-11-14T00:13:19Z",
+        "approximateArrivalOfLastRecord": "2019-11-14T00:13:19Z",
+        "batchSize": 1,
+        "streamArn": "arn:aws:dynamodb:us-east-2:123456789012:table/mytable/stream/2019-11-14T00:04:06.388"
+    }
+}</code></pre></div></div>
+     <p>You can use this information to retrieve the affected records from the stream for
+  troubleshooting. The actual records aren't included, so you must process this record and retrieve them from the
+  stream before they expire and are lost.</p>
+    
+   
+    <h2 id="events-dynamodb-metrics">Amazon CloudWatch metrics</h2>
+    
+     <p>Lambda emits the <code class="code">IteratorAge</code> metric when your function finishes processing a batch of records. The
+      metric indicates how old the last record in the batch was when processing finished. If your function is processing
+      new events, you can use the iterator age to estimate the latency between when a record is added and when the
+      function processes it.</p>
+    <p>An increasing trend in iterator age can indicate issues with your function. For more information, see <a href="./monitoring-metrics.html">Working with Lambda function metrics</a>.</p>
+    
+   
+    <h2 id="services-ddb-windows">Time windows</h2>
+    
+  <p>Lambda functions can run continuous stream processing applications. A stream represents unbounded data that flows
+    continuously through your application. To analyze information from this continuously updating input, you can bound
+    the included records using a window defined in terms of time.</p>
+
+  <p>Tumbling windows are distinct time windows that open and close at regular intervals. By default, Lambda invocations
+    are stateless—you cannot use them for processing data across multiple continuous invocations without an external database.
+    However, with tumbling windows, you can maintain your state across invocations. This state contains the aggregate result
+    of the messages previously processed for the current window. Your state can be a maximum of 1 MB per shard. If it exceeds
+    that size, Lambda terminates the window early.</p>
+  <p>Each record in a stream belongs to a specific window. Lambda will process each record at least once, but doesn't guarantee that each record will be processed only once. In rare cases, such as error handling, some records might be processed more than once. Records are always processed in order the first time. If records are processed more than once, they might be processed out of order.</p>
+   
+    <h3 id="streams-tumbling-processing">Aggregation and processing</h3>
+    <p>Your user managed function is invoked both for aggregation and for processing the final results of that
+      aggregation. Lambda aggregates all records received in the window. You can receive these records in multiple
+      batches, each as a separate invocation. Each invocation receives a state. Thus, when using tumbling windows,
+      your Lambda function response must contain a <code class="code">state</code> property. If the response does not contain a
+      <code class="code">state</code> property, Lambda considers this a failed invocation. To satisfy this condition, your function
+      can return a <code class="code">TimeWindowEventResponse</code> object, which has the following JSON shape:</p>
+    <div class="example"><h6>Example <code class="code">TimeWindowEventResponse</code> values</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "state": <span>{</span>
+        "1": 282,
+        "2": 715
+    },
+    "batchItemFailures": []
+}</code></pre></div></div>
+
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For Java functions, we recommend using a <code class="code">Map&lt;String, String&gt;</code> to represent the state.</p></div></div>
+
+    <p>At the end of the window, the flag <code class="code">isFinalInvokeForWindow</code> is set to <code class="code">true</code> to indicate
+      that this is the final state and that it’s ready for processing. After processing, the window completes and your
+      final invocation completes, and then the state is dropped.</p>
+
+    <p>At the end of your window, Lambda uses final processing for actions on the aggregation results. Your final
+      processing is synchronously invoked. After successful invocation, your function checkpoints the sequence number
+      and stream processing continues. If invocation is unsuccessful, your Lambda function suspends further processing
+      until a successful invocation.</p>
+   
+
+    
+  <div class="example"><h6>Example  DynamodbTimeWindowEvent</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">
+<span>{</span>
+   "Records":[
+      <span>{</span>
+         "eventID":"1",
+         "eventName":"INSERT",
+         "eventVersion":"1.0",
+         "eventSource":"aws:dynamodb",
+         "awsRegion":"us-east-1",
+         "dynamodb":<span>{</span>
+            "Keys":<span>{</span>
+               "Id":<span>{</span>
+                  "N":"101"
+               }
+            },
+            "NewImage":<span>{</span>
+               "Message":<span>{</span>
+                  "S":"New item!"
+               },
+               "Id":<span>{</span>
+                  "N":"101"
+               }
+            },
+            "SequenceNumber":"111",
+            "SizeBytes":26,
+            "StreamViewType":"NEW_AND_OLD_IMAGES"
+         },
+         "eventSourceARN":"stream-ARN"
+      },
+      <span>{</span>
+         "eventID":"2",
+         "eventName":"MODIFY",
+         "eventVersion":"1.0",
+         "eventSource":"aws:dynamodb",
+         "awsRegion":"us-east-1",
+         "dynamodb":<span>{</span>
+            "Keys":<span>{</span>
+               "Id":<span>{</span>
+                  "N":"101"
+               }
+            },
+            "NewImage":<span>{</span>
+               "Message":<span>{</span>
+                  "S":"This item has changed"
+               },
+               "Id":<span>{</span>
+                  "N":"101"
+               }
+            },
+            "OldImage":<span>{</span>
+               "Message":<span>{</span>
+                  "S":"New item!"
+               },
+               "Id":<span>{</span>
+                  "N":"101"
+               }
+            },
+            "SequenceNumber":"222",
+            "SizeBytes":59,
+            "StreamViewType":"NEW_AND_OLD_IMAGES"
+         },
+         "eventSourceARN":"stream-ARN"
+      },
+      <span>{</span>
+         "eventID":"3",
+         "eventName":"REMOVE",
+         "eventVersion":"1.0",
+         "eventSource":"aws:dynamodb",
+         "awsRegion":"us-east-1",
+         "dynamodb":<span>{</span>
+            "Keys":<span>{</span>
+               "Id":<span>{</span>
+                  "N":"101"
+               }
+            },
+            "OldImage":<span>{</span>
+               "Message":<span>{</span>
+                  "S":"This item has changed"
+               },
+               "Id":<span>{</span>
+                  "N":"101"
+               }
+            },
+            "SequenceNumber":"333",
+            "SizeBytes":38,
+            "StreamViewType":"NEW_AND_OLD_IMAGES"
+         },
+         "eventSourceARN":"stream-ARN"
+      }
+   ],
+    "window": <span>{</span>
+        "start": "2020-07-30T17:00:00Z",
+        "end": "2020-07-30T17:05:00Z"
+    },
+    "state": <span>{</span>
+        "1": "state1"
+    },
+    "shardId": "shard123456789",
+    "eventSourceARN": "stream-ARN",
+    "isFinalInvokeForWindow": false,
+    "isWindowTerminatedEarly": false
+}
+</code></pre></div></div>
+
+   
+    <h3 id="streams-tumbling-config">Configuration</h3>
+    <p>You can configure tumbling windows when you create or update an <a href="./invocation-eventsourcemapping.html">event source mapping</a>. To configure a tumbling window, specify the window in seconds. The following
+      example AWS Command Line Interface (AWS CLI) command creates a streaming event source mapping that has a tumbling window of 120
+      seconds. The Lambda function defined for aggregation and processing is named
+        <code class="code">tumbling-window-example-function</code>.</p>
+
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-event-source-mapping --event-source-arn arn:aws:dynamodb:us-east-1:123456789012:stream/lambda-stream --function-name "arn:aws:lambda:us-east-1:123456789018:function:tumbling-window-example-function" --region us-east-1 --starting-position TRIM_HORIZON --tumbling-window-in-seconds <code class="replaceable">120</code></code></code></pre>
+
+    <p>Lambda determines tumbling window boundaries based on the time when records were inserted into the stream. All
+      records have an approximate timestamp available that Lambda uses in boundary determinations.</p>
+
+    <p>Tumbling window aggregations do not support resharding. When the shard ends, Lambda considers the window
+      closed, and the child shards start their own window in a fresh state.</p>
+
+    <p>Tumbling windows fully support the existing retry policies <code class="code">maxRetryAttempts</code> and
+        <code class="code">maxRecordAge</code>.</p>
+
+
+    <div class="example"><h6>Example  Handler.py – Aggregation and processing</h6><div class="example-contents"><p>The following Python function demonstrates how to aggregate and then process your final state:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">def lambda_handler(event, context):
+    print('Incoming event: ', event)
+    print('Incoming state: ', event['state'])
+
+#Check if this is the end of the window to either aggregate or process.
+    if event['isFinalInvokeForWindow']:
+        # logic to handle final state of the window
+        print('Destination invoke')
+    else:
+        print('Aggregate invoke')
+
+#Check for early terminations
+    if event['isWindowTerminatedEarly']:
+        print('Window terminated early')
+
+    #Aggregation logic
+    state = event['state']
+    for record in event['Records']:
+        state[record['dynamodb']['NewImage']['Id']] = state.get(record['dynamodb']['NewImage']['Id'], 0) + 1
+
+    print('Returning state: ', state)
+    return <span>{</span>'state': state}</code></pre></div></div>
+   
+
+   
+    <h2 id="services-ddb-batchfailurereporting">Reporting batch item failures</h2>
+    
+  <p>When consuming and processing streaming data from an event source, by default Lambda checkpoints to the highest
+    sequence number of a batch only when the batch is a complete success. Lambda treats all other results as a complete
+    failure and retries processing the batch up to the retry limit. To allow for partial successes while processing
+    batches from a stream, turn on <code class="code">ReportBatchItemFailures</code>. Allowing partial successes can help to reduce
+    the number of retries on a record, though it doesn’t entirely prevent the possibility of retries in a successful record.</p>
+
+  <p>To turn on <code class="code">ReportBatchItemFailures</code>, include the enum value
+      <code class="userinput">ReportBatchItemFailures</code> in the <code class="code">FunctionResponseTypes</code> list. This list indicates
+    which response types are enabled for your function. You can configure this list when you create or update an <a href="./invocation-eventsourcemapping.html">event source mapping</a>.</p>
+
+   
+    <h3 id="streams-batchfailurereporting-syntax">Report syntax</h3>
+
+    <p>When configuring reporting on batch item failures, the <code class="code">StreamsEventResponse</code> class is returned with a
+      list of batch item failures. You can use a <code class="code">StreamsEventResponse</code> object to return the sequence number
+      of the first failed record in the batch. You can also create your own custom class using the correct response
+      syntax. The following JSON structure shows the required response syntax:</p>
+
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> 
+  "batchItemFailures": [ 
+        <span>{</span>
+            "itemIdentifier": "&lt;id&gt;"
+        }
+    ]
+}</code></pre>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If the <code class="code">batchItemFailures</code> array contains multiple items, Lambda uses the record with the lowest
+      sequence number as the checkpoint. Lambda then retries all records starting from that checkpoint.</p></div></div>
+   
+
+   
+    <h3 id="streams-batchfailurereporting-conditions">Success and failure conditions</h3>
+    <p>Lambda treats a batch as a complete success if you return any of the following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>An empty <code class="code">batchItemFailure</code> list</p>
+      </li><li class="listitem">
+        <p>A null <code class="code">batchItemFailure</code> list</p>
+      </li><li class="listitem">
+        <p>An empty <code class="code">EventResponse</code></p>
+      </li><li class="listitem">
+        <p>A null <code class="code">EventResponse</code></p>
+      </li></ul></div>
+
+    <p>Lambda treats a batch as a complete failure if you return any of the following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>An empty string <code class="code">itemIdentifier</code></p>
+      </li><li class="listitem">
+        <p>A null <code class="code">itemIdentifier</code></p>
+      </li><li class="listitem">
+        <p>An <code class="code">itemIdentifier</code> with a bad key name</p>
+      </li></ul></div>
+    <p>Lambda retries failures based on your retry strategy.</p>
+   
+
+   
+    <h3 id="streams-batchfailurereporting-bisect">Bisecting a batch</h3>
+    <p>If your invocation fails and <code class="code">BisectBatchOnFunctionError</code> is turned on, the batch is bisected
+      regardless of your <code class="code">ReportBatchItemFailures</code> setting.</p>
+
+    <p>When a partial batch success response is received and both <code class="code">BisectBatchOnFunctionError</code> and
+        <code class="code">ReportBatchItemFailures</code> are turned on, the batch is bisected at the returned sequence number and
+      Lambda retries only the remaining records.</p>
+   
+
+    
+  <awsdocs-tabs><dl style="display: none">
+    <dt>Java</dt><dd tab-id="java">
+        <div class="example"><h6>Example Handler.java – return new StreamsEventResponse()</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="java ">import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.DynamodbEvent;
+import com.amazonaws.services.lambda.runtime.events.StreamsEventResponse;
+import com.amazonaws.services.lambda.runtime.events.models.dynamodb.StreamRecord;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProcessDynamodbRecords implements RequestHandler&lt;DynamodbEvent, Serializable&gt; <span>{</span>
+
+    @Override
+    public StreamsEventResponse handleRequest(DynamodbEvent input, Context context) <span>{</span>
+
+        List&lt;StreamsEventResponse.BatchItemFailure&gt; batchItemFailures = new ArrayList&lt;&gt;();
+        String curRecordSequenceNumber = "";
+
+        for (DynamodbEvent.DynamodbStreamRecord dynamodbStreamRecord : input.getRecords()) <span>{</span>
+          try <span>{</span>
+                //Process your record
+                StreamRecord dynamodbRecord = dynamodbStreamRecord.getDynamodb();
+                curRecordSequenceNumber = dynamodbRecord.getSequenceNumber();
+                
+            } catch (Exception e) <span>{</span>
+                /* Since we are working with streams, we can return the failed item immediately.
+                   Lambda will immediately begin to retry processing from this failed item onwards. */
+                batchItemFailures.add(new StreamsEventResponse.BatchItemFailure(curRecordSequenceNumber));
+                return new StreamsEventResponse(batchItemFailures);
+            }
+        }
+       
+       return new StreamsEventResponse();   
+    }
+}</code></pre></div></div>
+      </dd>
+    <dt>Python</dt><dd tab-id="python">
+        <div class="example"><h6>Example Handler.py – return batchItemFailures[]</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">def handler(event, context):
+    records = event.get("Records")
+    curRecordSequenceNumber = "";
+    
+    for record in records:
+        try:
+            # Process your record
+            curRecordSequenceNumber = record["dynamodb"]["SequenceNumber"]
+        except Exception as e:
+            # Return failed record's sequence number
+            return <span>{</span>"batchItemFailures":[<span>{</span>"itemIdentifier": curRecordSequenceNumber}]}
+
+    return <span>{</span>"batchItemFailures":[]}</code></pre></div></div>
+      </dd>
+  </dl></awsdocs-tabs>
+
+   
+    <h2 id="services-ddb-params">Amazon DynamoDB Streams configuration parameters</h2>
+    <p>All Lambda event source types share the same <a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a> and <a href="./API_UpdateEventSourceMapping.html">UpdateEventSourceMapping</a>
+      API operations. However, only some of the parameters apply to DynamoDB Streams.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac81d113c55b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Event source parameters that apply to DynamoDB Streams</div></th></tr>
+          <tr>
+            <th>Parameter</th>
+            <th>Required</th>
+            <th>Default</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>BatchSize</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>100</p>
+            </td>
+            <td tabindex="-1">
+              <p>Maximum: 10,000</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>BisectBatchOnFunctionError</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>false</p>
+            </td>
+            <td tabindex="-1">
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>DestinationConfig</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+            </td>
+            <td tabindex="-1">
+              <p>Standard Amazon SQS queue or standard Amazon SNS topic destination for discarded records</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Enabled</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>true</p>
+            </td>
+            <td tabindex="-1">
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>EventSourceArn</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1"></td>
+            <td tabindex="-1">
+              <p>ARN of the data stream or a stream consumer</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>FilterCriteria</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+            </td>
+            <td tabindex="-1">
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>FunctionName</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1">
+            </td>
+            <td tabindex="-1">
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>MaximumBatchingWindowInSeconds</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>0</p>
+            </td>
+            <td tabindex="-1">
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>MaximumRecordAgeInSeconds</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>-1</p>
+            </td>
+            <td tabindex="-1">
+              <p>-1 means infinite: failed records are retried until the record expires</p>
+              <p>Minimum: 60</p>
+              <p>Maximum: 604,800</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>MaximumRetryAttempts</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>-1</p>
+            </td>
+            <td tabindex="-1">
+              <p>-1 means infinite: failed records are retried until the record expires</p>
+              <p>Minimum: 0</p>
+              <p>Maximum: 10,000</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>ParallelizationFactor</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>1</p>
+            </td>
+            <td tabindex="-1">
+              <p>Maximum: 10</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>StartingPosition</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1">
+            </td>
+            <td tabindex="-1">
+              <p>TRIM_HORIZON or LATEST</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>TumblingWindowInSeconds</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+            </td>
+            <td tabindex="-1">
+              <p>Minimum: 0</p>
+              <p>Maximum: 900</p>
+            </td>
+          </tr>
+        </table></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-documentdb-tutorial.html">Tutorial</div><div id="next" class="next-link" accesskey="n" href="./with-ddb-example.html">Tutorial</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-ddb.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-ddb.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

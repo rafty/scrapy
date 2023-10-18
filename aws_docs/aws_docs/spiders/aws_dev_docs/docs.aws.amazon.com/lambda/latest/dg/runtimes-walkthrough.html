@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial – Publishing a custom runtime - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="runtimes-walkthrough" /><meta name="default_state" content="runtimes-walkthrough" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html" /><meta name="description" content="In this tutorial, you create a Lambda function with a custom runtime. You start by including the runtime in the function's deployment package. Then you migrate it to a layer that you manage independently from the function. Finally, you share the runtime layer with the world by updating its resource-based permissions policy." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/runtimes-walkthrough.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/runtimes-walkthrough.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/runtimes-walkthrough.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/runtimes-walkthrough.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/runtimes-walkthrough.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/runtimes-walkthrough.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/runtimes-walkthrough.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/runtimes-walkthrough.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/runtimes-walkthrough.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/runtimes-walkthrough.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/runtimes-walkthrough.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/runtimes-walkthrough.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/runtimes-walkthrough.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/runtimes-walkthrough.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/runtimes-walkthrough.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/runtimes-walkthrough.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/runtimes-walkthrough.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/runtimes-walkthrough.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial – Publishing a custom runtime" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial – Publishing a custom runtime - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#runtimes-walkthrough" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-walkthrough.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-walkthrough.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-walkthrough.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,languages,runtime,supported languages,linux distribution,linux environment" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Lambda runtimes",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Tutorial – Publishing a custom runtime",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#runtimes-walkthrough" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#runtimes-walkthrough-prereqs">Prerequisites</a><a href="#runtimes-walkthrough-function">Create a function</a><a href="#runtimes-walkthrough-layer">Create a layer</a><a href="#runtimes-walkthrough-update">Update the function</a><a href="#runtimes-walkthrough-runtime">Update the runtime</a><a href="#runtimes-walkthrough-share">Share the layer</a><a href="#runtimes-walkthrough-cleanup">Clean up</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="runtimes-walkthrough">Tutorial – Publishing a custom runtime</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you create a Lambda function with a custom runtime. You start by including the runtime in the
+    function's deployment package. Then you migrate it to a layer that you manage independently from the function.
+    Finally, you share the runtime layer with the world by updating its resource-based permissions policy.</p>
+    <h2 id="runtimes-walkthrough-prereqs">Prerequisites</h2>
+     <p>This tutorial assumes that you have some knowledge of basic Lambda operations and the Lambda console. If you
+      haven't already, follow the instructions in <a href="./getting-started.html#getting-started-create-function">Create a Lambda function with the console</a> to create your first Lambda function.</p>
+     <p>To complete the following steps, you need the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a>. Commands and the expected output are listed in separate blocks:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><code class="userinput">aws --version</code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="">aws-cli/2.0.57 Python/3.7.4 Darwin/19.6.0 exe/x86_64</code></pre>
+    <p>For long commands, an escape character (<code class="code">\</code>) is used to split a command over multiple lines.</p>
+    <p>On Linux and macOS, use your preferred shell and package manager.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+    To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+     Example CLI commands in this guide use Linux formatting. Commands which include inline JSON documents must be reformatted if you are using the Windows CLI.
+    </p></div></div>
+     <p>You need an IAM role to create a Lambda function. The role needs permission to send logs to CloudWatch Logs and access
+      the AWS services that your function uses. If you don't have a role for function development, create one
+      now.</p>
+    <div class="procedure"><h6>To create an execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the IAM console.</p>
+  </li><li>
+    <p>Choose <b>Create role</b>.</p>
+  </li><li>
+    <p>Create a role with the following properties.</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Trusted entity</b> – <b>Lambda</b>.</p>
+      </li><li class="listitem">
+        <p><b>Permissions</b> – <b>AWSLambdaBasicExecutionRole</b>.</p>
+      </li><li class="listitem">
+        <p><b>Role name</b> – <code class="userinput">lambda-role</code>.</p>
+      </li></ul></div>
+    <p>The <b>AWSLambdaBasicExecutionRole</b> policy has the permissions that the function needs to
+      write logs to CloudWatch Logs.</p>
+  </li></ol></div>
+    
+   
+    <h2 id="runtimes-walkthrough-function">Create a function</h2>
+    <p>Create a Lambda function with a custom runtime. This example includes two files, a runtime
+        <code class="code">bootstrap</code> file, and a function handler. Both are implemented in Bash.</p>
+    
+    <p>The runtime loads a function script from the deployment package. It uses two variables to locate the script.
+        <code class="code">LAMBDA_TASK_ROOT</code> tells it where the package was extracted, and <code class="code">_HANDLER</code> includes the
+      name of the script.</p>
+    <div class="example"><h6>Example bootstrap</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">#!/bin/sh
+
+set -euo pipefail
+
+# Initialization - load function handler
+source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh"
+
+# Processing
+while true
+do
+  HEADERS="$(mktemp)"
+  # Get an event. The HTTP request will block until one is received
+  EVENT_DATA=$(curl -sS -LD "$HEADERS" "http://$<span>{</span>AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/next")
+
+  # Extract request ID by scraping response headers received above
+  REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
+
+  # Run the handler function from the script
+  RESPONSE=$($(echo "$_HANDLER" | cut -d. -f2) "$EVENT_DATA")
+
+  # Send the response
+  curl "http://$<span>{</span>AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/$REQUEST_ID/response"  -d "$RESPONSE"
+done</code></pre></div></div>
+    <p>After loading the script, the runtime processes events in a loop. It uses the runtime API to retrieve an
+      invocation event from Lambda, passes the event to the handler, and posts the response back to Lambda. To get the
+      request ID, the runtime saves the headers from the API response to a temporary file, and reads the
+        <code class="code">Lambda-Runtime-Aws-Request-Id</code> header from the file.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Runtimes have additional responsibilities, including error handling, and providing context information to
+        the handler. For details, see <a href="./runtimes-custom.html#runtimes-custom-build">Building a custom runtime</a>.</p></div></div>
+    
+    <p>The script defines a handler function that takes event data, logs it to <code class="code">stderr</code>, and returns
+      it.</p>
+    <div class="example"><h6>Example function.sh</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">function handler () <span>{</span>
+  EVENT_DATA=$1
+  echo "$EVENT_DATA" 1&gt;&amp;2;
+  RESPONSE="Echoing request: '$EVENT_DATA'"
+
+  echo $RESPONSE
+}</code></pre></div></div>
+    <p>Save both files in a project directory named <code class="code">runtime-tutorial</code>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">runtime-tutorial
+├ bootstrap
+└ function.sh</code></pre>
+    <p>Make the files executable and add them to a .zip file archive.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">chmod 755 function.sh bootstrap</code>
+runtime-tutorial$ <code class="userinput">zip function.zip function.sh bootstrap</code>
+  adding: function.sh (deflated 24%)
+  adding: bootstrap (deflated 39%)</code></pre>
+    <p>Create a function named <code class="code">bash-runtime</code>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda create-function --function-name bash-runtime \
+--zip-file fileb://function.zip --handler function.handler --runtime provided \
+--role arn:aws:iam::<code class="replaceable">123456789012</code>:role/lambda-role</code>
+<span>{</span>
+    "FunctionName": "bash-runtime",
+    "FunctionArn": "arn:aws:lambda:us-east-1:123456789012:function:bash-runtime",
+    "Runtime": "provided",
+    "Role": "arn:aws:iam::123456789012:role/lambda-role",
+    "Handler": "function.handler",
+    "CodeSha256": "mv/xRv84LPCxdpcbKvmwuuFzwo7sLwUO1VxcUv3wKlM=",
+    "Version": "$LATEST",
+    "TracingConfig": <span>{</span>
+        "Mode": "PassThrough"
+    },
+    "RevisionId": "2e1d51b0-6144-4763-8e5c-7d5672a01713",
+    ...
+}</code></pre>
+    <p>Invoke the function and verify the response.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda invoke --function-name bash-runtime --payload '<span>{</span>"text":"Hello"}' response.txt --cli-binary-format raw-in-base64-out</code>
+<span>{</span>
+    "StatusCode": 200,
+    "ExecutedVersion": "$LATEST"
+}
+runtime-tutorial$ <code class="userinput">cat response.txt</code>
+Echoing request: '<span>{</span>"text":"Hello"}'</code></pre>
+   
+    <h2 id="runtimes-walkthrough-layer">Create a layer</h2>
+    <p>To separate the runtime code from the function code, create a layer that only contains the runtime. Layers let
+      you develop your function's dependencies independently, and can reduce storage usage when you use the same layer
+      with multiple functions.</p>
+    <p>Create a layer archive that contains the <code class="code">bootstrap</code> file.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">zip runtime.zip bootstrap</code>
+  adding: bootstrap (deflated 39%)</code></pre>
+    <p>Create a layer with the <code class="code">publish-layer-version</code> command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda publish-layer-version --layer-name bash-runtime --zip-file fileb://runtime.zip</code>
+ <span>{</span>
+    "Content": <span>{</span>
+        "Location": "https://awslambda-us-east-1-layers.s3.us-east-1.amazonaws.com/snapshots/123456789012/bash-runtime-018c209b...",
+        "CodeSha256": "bXVLhHi+D3H1QbDARUVPrDwlC7bssPxySQqt1QZqusE=",
+        "CodeSize": 584,
+        "UncompressedCodeSize": 0
+    },
+    "LayerArn": "arn:aws:lambda:us-east-1:123456789012:layer:bash-runtime",
+    "LayerVersionArn": "arn:aws:lambda:us-east-1:123456789012:layer:bash-runtime:1",
+    "Description": "",
+    "CreatedDate": "2018-11-28T07:49:14.476+0000",
+    "Version": 1
+}</code></pre>
+    
+    <p>This creates the first version of the layer.</p>
+   
+    <h2 id="runtimes-walkthrough-update">Update the function</h2>
+    <p>To use the runtime layer with the function, configure the function to use the layer, and remove the runtime
+      code from the function.</p>
+    <p>Update the function configuration to pull in the layer.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda update-function-configuration --function-name bash-runtime \
+--layers arn:aws:lambda:us-east-1:<code class="replaceable">123456789012</code>:layer:bash-runtime:1</code>
+<span>{</span>
+    "FunctionName": "bash-runtime",
+    "Layers": [
+        <span>{</span>
+            "Arn": "arn:aws:lambda:us-east-1:123456789012:layer:bash-runtime:1",
+            "CodeSize": 584,
+            "UncompressedCodeSize": 679
+        }
+    ]
+    ...
+}</code></pre>
+    <p>This adds the runtime to the function in the <code class="code">/opt</code> directory. Lambda uses this runtime, but only if
+      you remove it from the function's deployment package. Update the function code to only include the handler
+      script.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">zip function-only.zip function.sh</code>
+  adding: function.sh (deflated 24%)
+runtime-tutorial$ <code class="userinput">aws lambda update-function-code --function-name bash-runtime --zip-file fileb://function-only.zip</code>
+<span>{</span>
+    "FunctionName": "bash-runtime",
+    "CodeSize": 270,
+    "Layers": [
+        <span>{</span>
+            "Arn": "arn:aws:lambda:us-east-1:123456789012:layer:bash-runtime:7",
+            "CodeSize": 584,
+            "UncompressedCodeSize": 679
+        }
+    ]
+    ...
+}</code></pre>
+    <p>Invoke the function to verify that it works with the runtime layer.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda invoke --function-name bash-runtime --payload '<span>{</span>"text":"Hello"}' response.txt --cli-binary-format raw-in-base64-out</code>
+<span>{</span>
+    "StatusCode": 200,
+    "ExecutedVersion": "$LATEST"
+}
+runtime-tutorial$ <code class="userinput">cat response.txt</code>
+Echoing request: '<span>{</span>"text":"Hello"}'</code></pre>
+   
+    <h2 id="runtimes-walkthrough-runtime">Update the runtime</h2>
+    <p>To log information about the execution environment, update the runtime script to output environment
+      variables.</p>
+    <div class="example"><h6>Example bootstrap</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">#!/bin/sh
+
+set -euo pipefail
+
+echo "##  Environment variables:"
+env
+
+# Initialization - load function handler
+source $LAMBDA_TASK_ROOT/"$(echo $_HANDLER | cut -d. -f1).sh"
+...</code></pre></div></div>
+    <p>Create a second version of the layer with the new code.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">zip runtime.zip bootstrap</code>
+updating: bootstrap (deflated 39%)
+runtime-tutorial$ <code class="userinput">aws lambda publish-layer-version --layer-name bash-runtime --zip-file fileb://runtime.zip</code></code></pre>
+    <p>Configure the function to use the new version of the layer.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda update-function-configuration --function-name bash-runtime \
+--layers arn:aws:lambda:us-east-1:<code class="replaceable">123456789012</code>:layer:bash-runtime:2</code></code></pre>
+   
+    <h2 id="runtimes-walkthrough-share">Share the layer</h2>
+    <p>Add a permission statement to your runtime layer to share it with other accounts.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda add-layer-version-permission --layer-name bash-runtime --version-number 2 \
+--principal "*" --statement-id publish --action lambda:GetLayerVersion</code>
+<span>{</span>
+    "Statement": "<span>{</span>\"Sid\":\"publish\",\"Effect\":\"Allow\",\"Principal\":\"*\",\"Action\":\"lambda:GetLayerVersion\",\"Resource\":\"arn:aws:lambda:us-east-1:123456789012:layer:bash-runtime:2\"}",
+    "RevisionId": "9d5fe08e-2a1e-4981-b783-37ab551247ff"
+}</code></pre>
+    <p>You can add multiple statements that each grant permission to a single account, accounts in an organization,
+      or all accounts.</p>
+   
+    <h2 id="runtimes-walkthrough-cleanup">Clean up</h2>
+    
+    <p>Delete each version of the layer.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda delete-layer-version --layer-name bash-runtime --version-number 1</code>
+runtime-tutorial$ <code class="userinput">aws lambda delete-layer-version --layer-name bash-runtime --version-number 2</code></code></pre>
+    <p>Because the function holds a reference to version 2 of the layer, it still exists in Lambda. The function
+      continues to work, but functions can no longer be configured to use the deleted version. If you then modify the
+      list of layers on the function, you must specify a new version or omit the deleted layer.</p>
+    
+    <p>Delete the tutorial function with the <code class="code">delete-function</code> command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">runtime-tutorial$ <code class="userinput">aws lambda delete-function --function-name bash-runtime</code></code></pre>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./runtimes-custom.html">Custom runtimes</div><div id="next" class="next-link" accesskey="n" href="./runtimes-avx2.html">AVX2 vectorization</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-walkthrough.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-walkthrough.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

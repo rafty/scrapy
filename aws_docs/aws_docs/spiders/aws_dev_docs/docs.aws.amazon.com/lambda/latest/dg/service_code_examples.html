@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Code examples for Lambda using AWS SDKs - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="service_code_examples" /><meta name="default_state" content="service_code_examples" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples.html" /><meta name="description" content="Code examples that show how to use Lambda with an AWS SDK." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/service_code_examples.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/service_code_examples.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/service_code_examples.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/service_code_examples.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/service_code_examples.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/service_code_examples.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/service_code_examples.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/service_code_examples.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/service_code_examples.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/service_code_examples.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/service_code_examples.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/service_code_examples.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/service_code_examples.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/service_code_examples.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/service_code_examples.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/service_code_examples.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/service_code_examples.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/service_code_examples.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Code examples for Lambda using AWS SDKs" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Code examples for Lambda using AWS SDKs - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#service_code_examples" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/service_code_examples.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/service_code_examples.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/service_code_examples.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Code examples for Lambda using AWS SDKs",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#service_code_examples" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="service_code_examples">Code examples for Lambda using AWS SDKs</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following code examples show how to use Lambda with an AWS software development kit (SDK).
+        </p><p><em>Actions</em> are code excerpts from larger programs and must be run in context. While actions
+    show you how to call individual service functions, you can see actions in context in their related scenarios and
+    cross-service examples.</p><p><em>Scenarios</em> are code examples that show you how to accomplish a specific task by
+    calling multiple functions within the same service.</p><p><em>Cross-service examples</em> are sample applications that work across multiple AWS services.</p><p>For a complete list of AWS SDK developer guides and code examples, see
+    <a href="./sdk-general-information-section.html">Using Lambda with an AWS SDK</a>.
+    This topic also includes information about getting started and details about previous SDK versions.</p><p><b>Get started</b></p>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Hello Lambda" id="example_lambda_Hello_section" expanded="false"><p>The following code examples show how to get started using Lambda.</p><awsdocs-tabs><dl style="display: none">
+    <dt>.NET</dt><dd tab-id=".net">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">AWS SDK for .NET</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">namespace LambdaActions;
+
+using Amazon.Lambda;
+
+public class HelloLambda
+<span>{</span>
+    static async Task Main(string[] args)
+    <span>{</span>
+        var lambdaClient = new AmazonLambdaClient();
+
+        Console.WriteLine("Hello AWS Lambda");
+        Console.WriteLine("Let's get started with AWS Lambda by listing your existing Lambda functions:");
+
+        var response = await lambdaClient.ListFunctionsAsync();
+        response.Functions.ForEach(function =&gt;
+        <span>{</span>
+            Console.WriteLine($"<span>{</span>function.FunctionName}\t<span>{</span>function.Description}");
+        });
+    }
+}
+
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/goto/DotNetSDKV3/lambda-2015-03-31/ListFunctions">ListFunctions</a>
+                        in <em>AWS SDK for .NET API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>C++</dt><dd tab-id="c++">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for C++</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/cpp/example_code/lambda/hello_lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p>Code for the CMakeLists.txt CMake file.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cpp "># Set the minimum required version of CMake for this project.
+cmake_minimum_required(VERSION 3.13)
+
+# Set the AWS service components used by this project.
+set(SERVICE_COMPONENTS lambda)
+
+# Set this project's name.
+project("hello_lambda")
+
+# Set the C++ standard to use to build this target.
+# At least C++ 11 is required for the AWS SDK for C++.
+set(CMAKE_CXX_STANDARD 11)
+
+# Use the MSVC variable to determine if this is a Windows build.
+set(WINDOWS_BUILD $<span>{</span>MSVC})
+
+if (WINDOWS_BUILD) # Set the location where CMake can find the installed libraries for the AWS SDK.
+    string(REPLACE ";" "/aws-cpp-sdk-all;" SYSTEM_MODULE_PATH "$<span>{</span>CMAKE_SYSTEM_PREFIX_PATH}/aws-cpp-sdk-all")
+    list(APPEND CMAKE_PREFIX_PATH $<span>{</span>SYSTEM_MODULE_PATH})
+endif ()
+
+# Find the AWS SDK for C++ package.
+find_package(AWSSDK REQUIRED COMPONENTS $<span>{</span>SERVICE_COMPONENTS})
+
+if (WINDOWS_BUILD) 
+     # Copy relevant AWS SDK for C++ libraries into the current binary directory for running and debugging.
+
+     # set(BIN_SUB_DIR "/Debug") # if you are building from the command line you may need to uncomment this 
+                                    # and set the proper subdirectory to the executables' location.
+
+     AWSSDK_CPY_DYN_LIBS(SERVICE_COMPONENTS "" $<span>{</span>CMAKE_CURRENT_BINARY_DIR}$<span>{</span>BIN_SUB_DIR})
+endif ()
+
+add_executable($<span>{</span>PROJECT_NAME}
+        hello_lambda.cpp)
+
+target_link_libraries($<span>{</span>PROJECT_NAME}
+        $<span>{</span>AWSSDK_LINK_LIBRARIES})
+
+</code></pre>
+             
+             
+                <p>Code for the hello_lambda.cpp source file.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cpp ">#include &lt;aws/core/Aws.h&gt;
+#include &lt;aws/lambda/LambdaClient.h&gt;
+#include &lt;aws/lambda/model/ListFunctionsRequest.h&gt;
+#include &lt;iostream&gt;
+
+/*
+ *  A "Hello Lambda" starter application which initializes an AWS Lambda (Lambda) client and lists the Lambda functions.
+ *
+ *  main function
+ *
+ *  Usage: 'hello_lambda'
+ *
+ */
+
+int main(int argc, char **argv) <span>{</span>
+    Aws::SDKOptions options;
+    // Optionally change the log level for debugging.
+//   options.loggingOptions.logLevel = Utils::Logging::LogLevel::Debug;
+    Aws::InitAPI(options); // Should only be called once.
+    int result = 0;
+    <span>{</span>
+        Aws::Client::ClientConfiguration clientConfig;
+        // Optional: Set to the AWS Region (overrides config file).
+        // clientConfig.region = "us-east-1";
+
+        Aws::Lambda::LambdaClient lambdaClient(clientConfig);
+        std::vector&lt;Aws::String&gt; functions;
+        Aws::String marker; // Used for pagination.
+
+        do <span>{</span>
+            Aws::Lambda::Model::ListFunctionsRequest request;
+            if (!marker.empty()) <span>{</span>
+                request.SetMarker(marker);
+            }
+
+            Aws::Lambda::Model::ListFunctionsOutcome outcome = lambdaClient.ListFunctions(
+                    request);
+
+            if (outcome.IsSuccess()) <span>{</span>
+                const Aws::Lambda::Model::ListFunctionsResult &amp;listFunctionsResult = outcome.GetResult();
+                std::cout &lt;&lt; listFunctionsResult.GetFunctions().size()
+                          &lt;&lt; " lambda functions were retrieved." &lt;&lt; std::endl;
+
+                for (const Aws::Lambda::Model::FunctionConfiguration &amp;functionConfiguration: listFunctionsResult.GetFunctions()) <span>{</span>
+                    functions.push_back(functionConfiguration.GetFunctionName());
+                    std::cout &lt;&lt; functions.size() &lt;&lt; "  "
+                              &lt;&lt; functionConfiguration.GetDescription() &lt;&lt; std::endl;
+                    std::cout &lt;&lt; "   "
+                              &lt;&lt; Aws::Lambda::Model::RuntimeMapper::GetNameForRuntime(
+                                      functionConfiguration.GetRuntime()) &lt;&lt; ": "
+                              &lt;&lt; functionConfiguration.GetHandler()
+                              &lt;&lt; std::endl;
+                }
+                marker = listFunctionsResult.GetNextMarker();
+            } else <span>{</span>
+                std::cerr &lt;&lt; "Error with Lambda::ListFunctions. "
+                          &lt;&lt; outcome.GetError().GetMessage()
+                          &lt;&lt; std::endl;
+                result = 1;
+                break;
+            }
+        } while (!marker.empty());
+    }
+
+
+    Aws::ShutdownAPI(options); // Should only be called once.
+    return result;
+}
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/goto/SdkForCpp/lambda-2015-03-31/ListFunctions">ListFunctions</a>
+                        in <em>AWS SDK for C++ API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Go</dt><dd tab-id="go">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Go V2</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="go ">
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/lambda"
+)
+
+// main uses the AWS SDK for Go (v2) to create an AWS Lambda client and list up to 10
+// functions in your account.
+// This example uses the default settings specified in your shared credentials
+// and config files.
+func main() <span>{</span>
+	sdkConfig, err := config.LoadDefaultConfig(context.TODO())
+	if err != nil <span>{</span>
+		fmt.Println("Couldn't load default configuration. Have you set up your AWS account?")
+		fmt.Println(err)
+		return
+	}
+	lambdaClient := lambda.NewFromConfig(sdkConfig)
+
+	maxItems := 10
+	fmt.Printf("Let's list up to %v functions for your account.\n", maxItems)
+	result, err := lambdaClient.ListFunctions(context.TODO(), &amp;lambda.ListFunctionsInput<span>{</span>
+		MaxItems: aws.Int32(int32(maxItems)),
+	})
+	if err != nil <span>{</span>
+		fmt.Printf("Couldn't list functions for your account. Here's why: %v\n", err)
+		return
+	}
+	if len(result.Functions) == 0 <span>{</span>
+		fmt.Println("You don't have any functions!")
+	} else <span>{</span>
+		for _, function := range result.Functions <span>{</span>
+			fmt.Printf("\t%v\n", *function.FunctionName)
+		}
+	}
+}
+
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/lambda#Client.ListFunctions" rel="noopener noreferrer" target="_blank"><span>ListFunctions</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                        in <em>AWS SDK for Go API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>JavaScript</dt><dd tab-id="javascript">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for JavaScript (v3)</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">import <span>{</span> LambdaClient, paginateListFunctions } from "@aws-sdk/client-lambda";
+
+const client = new LambdaClient(<span>{</span>});
+
+export const helloLambda = async () =&gt; <span>{</span>
+  const paginator = paginateListFunctions(<span>{</span> client }, <span>{</span>});
+  const functions = [];
+
+  for await (const page of paginator) <span>{</span>
+    const funcNames = page.Functions.map((f) =&gt; f.FunctionName);
+    functions.push(...funcNames);
+  }
+
+  console.log("Functions:");
+  console.log(functions.join("\n"));
+  return functions;
+};
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/lambda/command/ListFunctionsCommand">ListFunctions</a>
+                        in <em>AWS SDK for JavaScript API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs></awsui-expandable-section></div>
+<div class="highlights"><h6>Code examples</h6><ul><li><a href="./service_code_examples_actions.html">Actions</a><ul><li><a href="./example_lambda_CreateFunction_section.html">Create a function</a></li><li><a href="./example_lambda_DeleteFunction_section.html">Delete a function</a></li><li><a href="./example_lambda_GetFunction_section.html">Get a function</a></li><li><a href="./example_lambda_Invoke_section.html">Invoke a function</a></li><li><a href="./example_lambda_ListFunctions_section.html">List functions</a></li><li><a href="./example_lambda_UpdateFunctionCode_section.html">Update function code</a></li><li><a href="./example_lambda_UpdateFunctionConfiguration_section.html">Update function configuration</a></li></ul></li><li><a href="./service_code_examples_scenarios.html">Scenarios</a><ul><li><a href="./example_lambda_Scenario_GettingStartedFunctions_section.html">Get started with functions</a></li></ul></li><li><a href="./service_code_examples_serverless_examples.html">Serverless examples</a><ul><li><a href="./example_serverless_Kinesis_Lambda_section.html">Invoke a Lambda function from a Kinesis trigger</a></li><li><a href="./example_serverless_S3_Lambda_section.html">Invoke a Lambda function from an Amazon S3 trigger</a></li><li><a href="./example_serverless_SNS_Lambda_section.html">Invoke a Lambda function from an Amazon SNS trigger</a></li><li><a href="./example_serverless_SQS_Lambda_section.html">Invoke a Lambda function from an Amazon SQS trigger</a></li><li><a href="./example_serverless_Kinesis_Lambda_batch_item_failures_section.html">Reporting batch item failures for Lambda functions with a Kinesis trigger</a></li><li><a href="./example_serverless_SQS_Lambda_batch_item_failures_section.html">Reporting batch item failures for Lambda functions with an Amazon SQS trigger</a></li></ul></li><li><a href="./service_code_examples_cross-service_examples.html">Cross-service examples</a><ul><li><a href="./example_cross_ApiGatewayDataTracker_section.html">Create a REST API to track COVID-19 data</a></li><li><a href="./example_cross_AuroraRestLendingLibrary_section.html">Create a lending library REST API</a></li><li><a href="./example_cross_StepFunctionsMessenger_section.html">Create a messenger application</a></li><li><a href="./example_cross_PAM_section.html">Create a serverless application to manage photos</a></li><li><a href="./example_cross_ApiGatewayWebsocketChat_section.html">Create a websocket chat application</a></li><li><a href="./example_cross_FSA_section.html">Create an application to analyze customer feedback</a></li><li><a href="./example_cross_LambdaForBrowser_section.html">Invoke a Lambda function from a browser</a></li><li><a href="./example_cross_LambdaAPIGateway_section.html">Use API Gateway to invoke a Lambda function</a></li><li><a href="./example_cross_ServerlessWorkflows_section.html">Use Step Functions to invoke Lambda functions</a></li><li><a href="./example_cross_LambdaScheduledEvents_section.html">Use scheduled events to invoke a Lambda function</a></li></ul></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./sdk-general-information-section.html">Working with AWS SDKs</div><div id="next" class="next-link" accesskey="n" href="./service_code_examples_actions.html">Actions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/service_code_examples.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/service_code_examples.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

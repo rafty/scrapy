@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Creating and deleting layers in Lambda - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="creating-deleting-layers" /><meta name="default_state" content="creating-deleting-layers" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/creating-deleting-layers.html" /><meta name="description" content="Learn how to properly create and delete a Lambda layer." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/creating-deleting-layers.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/creating-deleting-layers.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/creating-deleting-layers.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/creating-deleting-layers.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/creating-deleting-layers.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/creating-deleting-layers.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/creating-deleting-layers.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/creating-deleting-layers.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/creating-deleting-layers.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/creating-deleting-layers.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/creating-deleting-layers.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/creating-deleting-layers.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/creating-deleting-layers.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/creating-deleting-layers.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/creating-deleting-layers.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/creating-deleting-layers.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/creating-deleting-layers.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/creating-deleting-layers.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/creating-deleting-layers.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/creating-deleting-layers.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/creating-deleting-layers.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/creating-deleting-layers.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Creating and deleting layers in Lambda" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Creating and deleting layers in Lambda - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#creating-deleting-layers" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/creating-deleting-layers.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/creating-deleting-layers.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/creating-deleting-layers.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Lambda layers,Lambda layer versions,Adding Lambda layers,Creating Lambda layers,how to create Lambda layers,Deleting Lambda layers,how to delete Lambda layers" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Working with Lambda layers",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Creating and deleting layers in Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#creating-deleting-layers" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#layers-create">Creating a layer</a><a href="#layers-delete">Deleting a layer version</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="creating-deleting-layers">Creating and deleting layers in Lambda</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>A Lambda layer is a .zip file archive that contains supplementary code or data.
+  Layers usually contain library dependencies, a <a href="./runtimes-custom.html">custom runtime</a>,
+  or configuration files. </p><p>This section explains how to create and delete layers in Lambda. For more conceptual
+    information about layers and why you might consider using them, see
+    <a href="./chapter-layers.html">Working with Lambda layers</a>.</p><p>After you’ve <a href="./packaging-layers.html">packaged your layer content</a>, the
+    next step is to create the layer in Lambda. This section demonstrates how to create and
+    delete layers using the Lambda console or the Lambda API only. To create a layer using
+    AWS CloudFormation, see <a href="./layers-cfn.html">Using AWS CloudFormation with layers</a>. To create a layer using the
+    AWS Serverless Application Model (AWS SAM), see <a href="./layers-sam.html">Using AWS SAM with layers</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#layers-create">Creating a layer</a></li><li><a href="#layers-delete">Deleting a layer version</a></li></ul></div>
+    <h2 id="layers-create">Creating a layer</h2>
+    <p>To create a layer, you can either upload the .zip file archive from your local
+      machine or from Amazon Simple Storage Service (Amazon S3). Lambda extracts the layer contents into the
+      <code class="code">/opt</code> directory when setting up the execution environment for the function.</p>
+    <p>Layers can have one or more <a href="./chapter-layers.html#lambda-layer-versions">layer versions</a>.
+      When you create a layer, Lambda sets the layer version to version 1. You can change the
+      permissions on an existing layer version at any time. However, to update the code or make
+      other configuration changes, you must create a new version of the layer.</p>
+    <div class="procedure"><h6>To create a layer (console)</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/layers" rel="noopener noreferrer" target="_blank"><span>Layers page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+          of the Lambda console.</p>
+      </li><li>
+        <p>Choose <b>Create layer</b>.</p>
+      </li><li>
+        <p>Under <b>Layer configuration</b>, for <b>Name</b>,
+          enter a name for your layer.</p>
+      </li><li>
+        <p>(Optional) For <b>Description</b>, enter a description for
+          your layer.</p>
+      </li><li>
+        <p>To upload your layer code, do one of the following:</p>
+        <ul>
+          <li>
+            <p>To upload a .zip file from your computer, choose <b>Upload a
+              .zip file</b>. Then, choose <b>Upload</b> to select
+              your local .zip file.</p>
+          </li>
+          <li>
+            <p>To upload a file from Amazon S3, choose <b>Upload a file from
+              Amazon S3</b>. Then, for <b>Amazon S3 link URL</b>,
+              enter a link to the file.</p>
+          </li>
+        </ul>
+      </li><li>
+        <p>(Optional) For <b>Compatible architectures</b>, choose one
+          value or both values. For more information, see <a href="./foundation-arch.html">Lambda instruction set architectures (ARM/x86)</a>.</p>
+      </li><li>
+        <p>(Optional) For <b>Compatible runtimes</b>, choose the
+          runtimes that your layer is compatible with.</p>
+      </li><li>
+        <p>(Optional) For <b>License</b>, enter any necessary
+          license information.</p>
+      </li><li>
+        <p>Choose <b>Create</b>.</p>
+      </li></ol></div>
+    <p>Alternatively, you can also use the <a href="./API_PublishLayerVersion.html">PublishLayerVersion</a> API to create a layer.
+      For example, you can use the <code class="code">publish-layer-version</code> AWS Command Line Interface (CLI) command
+      with a name, description, and .zip file archive specified. The license info, compatible
+      runtimes, and compatible architecture parameters are optional.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda publish-layer-version --layer-name my-layer \
+    --description "My layer" \
+    --license-info "MIT" \
+    --zip-file fileb://layer.zip \
+    --compatible-runtimes python3.7 python3.8 \
+    --compatible-architectures "arm64" "x86_64"</code></pre>
+    <p>You should see output similar to the following:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Content": <span>{</span>
+        "Location": "https://awslambda-us-east-2-layers.s3.us-east-2.amazonaws.com/snapshots/123456789012/my-layer-4aaa2fbb-ff77-4b0a-ad92-5b78a716a96a?versionId=27iWyA73cCAYqyH...",
+        "CodeSha256": "tv9jJO+rPbXUUXuRKi7CwHzKtLDkDRJLB3cC3Z/ouXo=",
+        "CodeSize": 169
+    },
+    "LayerArn": "arn:aws:lambda:us-east-2:123456789012:layer:my-layer",
+    "LayerVersionArn": "arn:aws:lambda:us-east-2:123456789012:layer:my-layer:1",
+    "Description": "My layer",
+    "CreatedDate": "2018-11-14T23:03:52.894+0000",
+    "Version": 1,
+    "CompatibleArchitectures": [
+        "arm64",
+        "x86_64"
+     ],
+    "LicenseInfo": "MIT",
+    "CompatibleRuntimes": [
+        "python3.7",
+        "python3.8"
+    ]
+}</code></pre>
+    <p>Each time you call <code class="code">publish-layer-version</code>, you create a new version
+      of the layer.</p>
+   
+    <h2 id="layers-delete">Deleting a layer version</h2>
+    <p>To delete a layer version, use the <a href="./API_DeleteLayerVersion.html">DeleteLayerVersion</a> API. For example,
+      you can use the <code class="code">delete-layer-version</code> CLI command with the layer name
+      and layer version specified.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda delete-layer-version --layer-name my-layer --version-number 1</code></pre>
+    <p>When you delete a layer version, you can no longer configure a Lambda function
+      to use it. However, any function that already uses the version continues to have
+      access to it. Also, Lambda never reuses version numbers for a layer name.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./packaging-layers.html">Packaging layers</div><div id="next" class="next-link" accesskey="n" href="./adding-layers.html">Adding layers</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/creating-deleting-layers.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/creating-deleting-layers.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

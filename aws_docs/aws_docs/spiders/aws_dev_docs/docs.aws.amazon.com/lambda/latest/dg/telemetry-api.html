@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda Telemetry API - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="telemetry-api" /><meta name="default_state" content="telemetry-api" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-api.html" /><meta name="description" content="Learn how to use the Lambda Telemetry API to subscribe extensions to telemetry streams." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-api.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/telemetry-api.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/telemetry-api.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/telemetry-api.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/telemetry-api.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-api.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-api.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/telemetry-api.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/telemetry-api.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/telemetry-api.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/telemetry-api.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/telemetry-api.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/telemetry-api.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/telemetry-api.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/telemetry-api.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/telemetry-api.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/telemetry-api.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/telemetry-api.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/telemetry-api.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/telemetry-api.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/telemetry-api.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-api.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda Telemetry API" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda Telemetry API - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#telemetry-api" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-api.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-api.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-api.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Lambda extensions,Lambda function monitoring,Lambda extensions partners,Lambda external extensions,Lambda internal extensions,Telemetry API,Lambda telemetry API,Lambda extensions telemetry,Lambda runtime telemetry,Lambda telemetry subscribe" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Lambda extensions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda Telemetry API",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#telemetry-api" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#telemetry-api-creating-extensions">Creating extensions using the Telemetry API</a><a href="#telemetry-api-registration">Registering your extension</a><a href="#telemetry-api-listener">Creating a telemetry listener</a><a href="#telemetry-api-destination">Specifying a destination protocol</a><a href="#telemetry-api-buffering">Configuring memory usage and buffering</a><a href="#telemetry-api-subscription">Sending a subscription request to the Telemetry API</a><a href="#telemetry-api-messages">Inbound Telemetry API messages</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="telemetry-api">Lambda Telemetry API</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Using the Lambda Telemetry API, your extensions can directly receive telemetry data from Lambda. During function
+    initialization and invocation, Lambda automatically captures telemetry, such as logs, platform metrics, and platform
+    traces. With Telemetry API, extensions can get this telemetry data directly from Lambda in near real time.</p><p>You can subscribe your Lambda extensions to telemetry streams directly from within the Lambda execution
+    environment. After subscribing, Lambda automatically streams all telemetry data to your extensions. You can then
+    process, filter, and deliver that data to your preferred destination, such as an Amazon Simple Storage Service (Amazon S3) bucket or a
+    third-party observability tools provider.</p><p>The following diagram shows how the Extensions API and Telemetry API connect extensions to Lambda from within the
+    execution environment. The Runtime API also connects your runtime and function to Lambda.</p><div class="mediaobject">
+     
+      <img src="/images/lambda/latest/dg/images/telemetry-api-concept-diagram.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      The Extensions, Telemetry, and Runtime APIs connecting Lambda to processes in the execution&#xA;        environment.&#xA;    " style="max-width:100%" />
+     
+     
+  </div><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>The Lambda Telemetry API supersedes the Lambda Logs API. <b>While the Logs API
+    remains fully functional, we recommend using only the Telemetry API going forward.</b> You can subscribe
+    your extension to a telemetry stream using either the Telemetry API or the Logs API. After subscribing using one
+    of these APIs, any attempt to subscribe using the other API returns an error.</p></div></div><p>Extensions can use the Telemetry API to subscribe to three different telemetry streams:</p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><b>Platform telemetry</b> – Logs, metrics, and traces, which describe
+        events and errors related to the execution environment runtime lifecycle, extension lifecycle, and function
+        invocations.</p>
+    </li><li class="listitem">
+      <p><b>Function logs</b> – Custom logs that the Lambda function code
+        generates.</p>
+    </li><li class="listitem">
+      <p><b>Extension logs</b> – Custom logs that the Lambda extension code
+        generates.</p>
+    </li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Lambda sends logs and metrics to CloudWatch, and traces to X-Ray (if you've activated tracing), even if an extension
+      subscribes to telemetry streams.</p></div></div><div class="highlights"><h6>Sections</h6><ul><li><a href="#telemetry-api-creating-extensions">Creating extensions using the Telemetry API</a></li><li><a href="#telemetry-api-registration">Registering your extension</a></li><li><a href="#telemetry-api-listener">Creating a telemetry listener</a></li><li><a href="#telemetry-api-destination">Specifying a destination protocol</a></li><li><a href="#telemetry-api-buffering">Configuring memory usage and buffering</a></li><li><a href="#telemetry-api-subscription">Sending a subscription request to the Telemetry API</a></li><li><a href="#telemetry-api-messages">Inbound Telemetry API messages</a></li><li><a href="./telemetry-api-reference.html">Lambda Telemetry API reference</a></li><li><a href="./telemetry-schema-reference.html">Lambda Telemetry API Event schema reference</a></li><li><a href="./telemetry-otel-spans.html">Converting Lambda Telemetry API Event objects to OpenTelemetry
+      Spans</a></li><li><a href="./runtimes-logs-api.html">Lambda Logs API</a></li></ul></div>
+    <h2 id="telemetry-api-creating-extensions">Creating extensions using the Telemetry API</h2>
+    <p>Lambda extensions run as independent processes in the execution environment, and can continue to run after the
+      function invocation completes. Because extensions are separate processes, you can write them in a language
+      different from the function code. We recommend implementing extensions using a compiled language such as Golang or
+      Rust. This way, the extension is a self-contained binary that can be compatible with any supported runtime.</p>
+    <p>The following diagram illustrates a four-step process to create an extension that receives and processes
+      telemetry data using the Telemetry API.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/telemetry-api-creation-steps.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Register your extension, create a listener, subscribe to a stream, and then get telemetry.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Here is each step in more detail:</p>
+    <div class="orderedlist">
+       
+       
+       
+       
+    <ol><li>
+        <p>Register your extension using the <a href="./runtimes-extensions-api.html">Lambda Extensions API</a>. This provides you with a
+            <code class="code">Lambda-Extension-Identifier</code>, which you'll need in the following steps. For more information
+          about how to register your extension, see <a href="#telemetry-api-registration">Registering your extension</a>.</p>
+      </li><li>
+        <p>Create a telemetry listener. This can be a basic HTTP or TCP server. Lambda uses the URI of the telemetry
+          listener to send telemetry data to your extension. For more information, see <a href="#telemetry-api-listener">Creating a telemetry listener</a>.</p>
+      </li><li>
+        <p>Using the Subscribe API in the Telemetry API, subscribe your extension to your desired telemetry streams.
+          You'll need the URI of your telemetry listener for this step. For more information, see <a href="#telemetry-api-subscription">Sending a subscription request to the Telemetry API</a>.</p>
+      </li><li>
+        <p>Get telemetry data from Lambda via the telemetry listener. You can do any custom processing of this data,
+          such as dispatching the data to Amazon S3 or to an external observability service.</p>
+      </li></ol></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>A Lambda function's execution environment can start and stop multiple times as part of its <a href="./runtimes-extensions-api.html#runtimes-extensions-api-lifecycle">lifecycle</a>. In general, your extension code runs during
+        function invocations, and also up to 2 seconds during the shutdown phase. We recommend batching the telemetry as
+        it arrives to your listener, and using the <code class="code">Invoke</code> and <code class="code">Shutdown</code> lifecycle events to
+        dispatch each batch to their desired destinations.</p></div></div>
+   
+    <h2 id="telemetry-api-registration">Registering your extension</h2>
+    <p>Before you can subscribe to receive telemetry data, you must register your Lambda extension. Registration
+      occurs during the <a href="./runtimes-extensions-api.html#runtimes-extensions-api-reg">extension initialization phase</a>. The following
+      example shows an HTTP request to register an extension.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">POST http://$<span>{</span>AWS_LAMBDA_RUNTIME_API}/2020-01-01/extension/register
+ Lambda-Extension-Name: lambda_extension_name
+<span>{</span>
+    'events': [ 'INVOKE', 'SHUTDOWN']
+}</code></pre>
+    <p>If the request succeeds, the subscriber receives an HTTP 200 success response. The response header contains
+      the <code class="code">Lambda-Extension-Identifier</code>. The response body contains other properties of the function.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">HTTP/1.1 200 OK
+Lambda-Extension-Identifier: a1b2c3d4-5678-90ab-cdef-EXAMPLE11111
+<span>{</span>
+    "functionName": "lambda_function",
+    "functionVersion": "$LATEST",
+    "handler": "lambda_handler",
+    "accountId": "123456789012"
+}</code></pre>
+    <p>For more information, see the <a href="./runtimes-extensions-api.html#runtimes-extensions-registration-api">Extensions API reference</a>.</p>
+   
+    <h2 id="telemetry-api-listener">Creating a telemetry listener</h2>
+    <p>Your Lambda extension must have a listener that handles incoming requests from the Telemetry API. The following
+      code shows an example telemetry listener implementation in Golang:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">// Starts the server in a goroutine where the log events will be sent
+func (s *TelemetryApiListener) Start() (string, error) <span>{</span>
+	address := listenOnAddress()
+	l.Info("[listener:Start] Starting on address", address)
+	s.httpServer = &amp;http.Server<span>{</span>Addr: address}
+	http.HandleFunc("/", s.http_handler)
+	go func() <span>{</span>
+		err := s.httpServer.ListenAndServe()
+		if err != http.ErrServerClosed <span>{</span>
+			l.Error("[listener:goroutine] Unexpected stop on Http Server:", err)
+			s.Shutdown()
+		} else <span>{</span>
+			l.Info("[listener:goroutine] Http Server closed:", err)
+		}
+	}()
+	return fmt.Sprintf("http://%s/", address), nil
+}
+
+// http_handler handles the requests coming from the Telemetry API.
+// Everytime Telemetry API sends log events, this function will read them from the response body
+// and put into a synchronous queue to be dispatched later.
+// Logging or printing besides the error cases below is not recommended if you have subscribed to
+// receive extension logs. Otherwise, logging here will cause Telemetry API to send new logs for
+// the printed lines which may create an infinite loop.
+func (s *TelemetryApiListener) http_handler(w http.ResponseWriter, r *http.Request) <span>{</span>
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil <span>{</span>
+		l.Error("[listener:http_handler] Error reading body:", err)
+		return
+	}
+
+	// Parse and put the log messages into the queue
+	var slice []interface<span>{</span>}
+	_ = json.Unmarshal(body, &amp;slice)
+
+	for _, el := range slice <span>{</span>
+		s.LogEventsQueue.Put(el)
+	}
+
+	l.Info("[listener:http_handler] logEvents received:", len(slice), " LogEventsQueue length:", s.LogEventsQueue.Len())
+	slice = nil
+}</code></pre>
+   
+    <h2 id="telemetry-api-destination">Specifying a destination protocol</h2>
+    <p>When you subscribe to receive telemetry using the Telemetry API, you can specify a destination protocol in
+      addition to the destination URI:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "destination": <span>{</span>
+        "protocol": "HTTP",
+        "URI": "http://sandbox.localdomain:8080"
+    }
+}</code></pre>
+    <p>Lambda accepts two protocols for receiving telemetry:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>HTTP (recommended)</b> – Lambda delivers telemetry to a local HTTP
+          endpoint (<code class="code">http://sandbox.localdomain:$<span>{</span>PORT}/$<span>{</span>PATH}</code>) as an array of records in JSON format. The
+            <code class="code">$PATH</code> parameter is optional. Lambda supports only HTTP, not HTTPS. Lambda delivers telemetry
+          through POST requests.</p>
+      </li><li class="listitem">
+        <p><b>TCP</b> – Lambda delivers telemetry to a TCP port in <a href="https://github.com/ndjson/ndjson-spec" rel="noopener noreferrer" target="_blank"><span>Newline delimited JSON (NDJSON) format</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li></ul></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>We strongly recommend using HTTP rather than TCP. With TCP, the Lambda platform cannot acknowledge when it
+        delivers telemetry to the application layer. Therefore, if your extension crashes, you might lose telemetry.
+        HTTP does not have this limitation.</p></div></div>
+    <p>Before subscribing to receive telemetry, set up the local HTTP listener or TCP port. During setup, note the
+      following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Lambda sends telemetry only to destinations that are inside the execution environment.</p>
+      </li><li class="listitem">
+        <p>Lambda retries the attempt to send telemetry (with backoff) if there is no listener, or if the POST request
+          results in an error. If the telemetry listener crashes, then it continues to receive telemetry after Lambda
+          restarts the execution environment.</p>
+      </li><li class="listitem">
+        <p>Lambda reserves port 9001. There are no other port number restrictions or recommendations.</p>
+      </li></ul></div>
+   
+    <h2 id="telemetry-api-buffering">Configuring memory usage and buffering</h2>
+    <p>An execution environment's memory usage increases linearly as the number of subscribers increases.
+      Subscriptions consume memory resources because each subscription opens a new memory buffer to store telemetry
+      data. Buffer memory usage counts towards overall memory consumption in the execution environment.</p>
+    <p>When you subscribe to receive telemetry using the Telemetry API, you can buffer telemetry data and deliver it
+      to subscribers in batches. To help optimize memory usage, you can specify a buffering configuration:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "buffering": <span>{</span>
+        "maxBytes": 256*1024,
+        "maxItems": 1000,
+        "timeoutMs": 100
+    }
+}</code></pre>
+    <div class="table-container"><div class="table-contents"><table id="w917aad105c45c29b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Buffering configuration settings</div></th></tr>
+          <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+            <th>Defaults and limits</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">maxBytes</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>The maximum volume of telemetry (in bytes) to buffer in memory.</p>
+            </td>
+            <td tabindex="-1">
+              <p>Default: 262,144</p>
+              <p>Minimum: 262,144</p>
+              <p>Maximum: 1,048,576</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">maxItems</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>The maximum number of events to buffer in memory.</p>
+            </td>
+            <td tabindex="-1">
+              <p>Default: 10,000</p>
+              <p>Minimum: 1,000</p>
+              <p>Maximum: 10,000</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">timeoutMs</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>The maximum time (in milliseconds) to buffer a batch.</p>
+            </td>
+            <td tabindex="-1">
+              <p>Default: 1,000</p>
+              <p>Minimum: 25</p>
+              <p>Maximum: 30,000</p>
+            </td>
+          </tr>
+        </table></div></div>
+    <p>When configuring buffering, note the following points:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>If any of the input streams are closed, then Lambda flushes the logs. This can happen if, for example, the
+          runtime crashes.</p>
+      </li><li class="listitem">
+        <p>Each subscriber can specify a different buffering configuration in their subscription request.</p>
+      </li><li class="listitem">
+        <p>Consider the buffer size that you need for reading the data. Expect to receive payloads as large as
+            <code class="code">2 * maxBytes + metadataBytes</code>, where <code class="code">maxBytes</code> is part of your buffering
+          configuration. To get an idea of how much <code class="code">metadataBytes</code> you should account for, review the
+          following metadata. Lambda adds metadata similar to this to each record:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+   "time": "2022-08-20T12:31:32.123Z",
+   "type": "function",
+   "record": "Hello World"
+}</code></pre>
+      </li><li class="listitem">
+        <p>If the subscriber cannot process incoming telemetry fast enough, or if your function code generates
+          very high log volume, Lambda might drop records to keep memory utilization bounded. When this occurs,
+          Lambda sends a <code class="code">platform.logsDropped</code> event.</p>
+      </li></ul></div>
+   
+    <h2 id="telemetry-api-subscription">Sending a subscription request to the Telemetry API</h2>
+    <p>Lambda extensions can subscribe to receive telemetry data by sending a subscription request to the Telemetry
+      API. The subscription request should contain information about the types of events that you want the extension to
+      subscribe to. In addition, the request can contain <a href="#telemetry-api-destination">delivery destination
+        information</a> and a <a href="#telemetry-api-buffering">buffering configuration</a>.</p>
+    <p>Before sending a subscription request, you must have an extension ID
+      (<code class="code">Lambda-Extension-Identifier</code>). When you <a href="#telemetry-api-registration">register your
+        extension with the Extensions API</a>, you obtain an extension ID from the API response.</p>
+    <p>Subscription occurs during the <a href="./runtimes-extensions-api.html#runtimes-extensions-api-reg">extension initialization
+        phase</a>. The following example shows an HTTP request to subscribe to all three telemetry streams: platform
+      telemetry, function logs, and extension logs.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">PUT http://$<span>{</span>AWS_LAMBDA_RUNTIME_API}/2022-07-01/telemetry HTTP/1.1
+<span>{</span>
+   "schemaVersion": "2022-07-01",
+   "types": [
+        "platform",
+        "function",
+        "extension"
+   ],
+   "buffering": <span>{</span>
+        "maxItems": 1000,
+        "maxBytes": 256*1024,
+        "timeoutMs": 100
+   },
+   "destination": <span>{</span>
+        "protocol": "HTTP",
+        "URI": "http://sandbox.localdomain:8080"
+   }
+}</code></pre>
+    <p>If the request succeeds, then the subscriber receives an HTTP 200 success response.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">HTTP/1.1 200 OK
+"OK"</code></pre>
+   
+    <h2 id="telemetry-api-messages">Inbound Telemetry API messages</h2>
+    <p>After subscribing using the Telemetry API, an extension automatically starts to receive telemetry from Lambda
+      via POST requests to the telemetry listener. Each POST request body contains an array of <code class="code">Event</code>
+      objects. <code class="code">Event</code> is a JSON object with the following schema:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+   time: String,
+   type: String,
+   record: Object
+}</code></pre>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The <code class="code">time</code> property defines when the Lambda platform generated the event. This isn't the same as
+          when the event actually occurred. The string value of <code class="code">time</code> is a timestamp in ISO 8601
+          format.</p>
+      </li><li class="listitem">
+        <p>The <code class="code">type</code> property defines the event type. The following table describes all possible
+          values.</p>
+      </li><li class="listitem">
+        <p>The <code class="code">record</code> property defines a JSON object that contains the telemetry data. The schema of
+          this JSON object depends on the <code class="code">type</code>.</p>
+      </li></ul></div>
+    <p>The following table summarizes all types of <code class="code">Event</code> objects, and links to the <a href="./telemetry-schema-reference.html">Telemetry API Event schema reference</a> for each event
+      type.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aad105c45c33c11"><thead><tr><th class="table-header" colspan="100"><div class="title">Telemetry API message types</div></th></tr>
+          <tr>
+            <th>Category</th>
+            <th>Event type</th>
+            <th>Description</th>
+            <th>Event record schema</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.initStart</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Function initialization started.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-initStart">platform.initStart</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.initRuntimeDone</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Function initialization completed.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-initRuntimeDone">platform.initRuntimeDone</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.initReport</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>A report of function initialization.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-initReport">platform.initReport</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.start</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Function invocation started.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-start">platform.start</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.runtimeDone</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>The runtime finished processing an event with either success or failure.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-runtimeDone">platform.runtimeDone</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.report</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>A report of function invocation.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-report">platform.report</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.restoreStart</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Runtime restore started.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-restoreStart">platform.restoreStart</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.restoreRuntimeDone</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Runtime restore completed.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-restoreRuntimeDone">platform.restoreRuntimeDone</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.restoreReport</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Report of runtime restore.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-restoreReport">platform.restoreReport</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.telemetrySubscription</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>The extension subscribed to the Telemetry API.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-telemetrySubscription">platform.telemetrySubscription</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Platform event</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">platform.logsDropped</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda dropped log entries.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#platform-logsDropped">platform.logsDropped</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Function logs</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">function</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>A log line from function code.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#telemetry-api-function">function</a> schema</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Extension logs</p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">extension</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>A log line from extension code.</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./telemetry-schema-reference.html#telemetry-api-extension">extension</a> schema</p>
+            </td>
+          </tr>
+        </table></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./runtimes-extensions-api.html">Extensions API</div><div id="next" class="next-link" accesskey="n" href="./telemetry-api-reference.html">API reference</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-api.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-api.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

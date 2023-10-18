@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Using AWS Lambda with Amazon Simple Notification Service - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-sns-example" /><meta name="default_state" content="with-sns-example" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html" /><meta name="description" content="In this tutorial, you use a Lambda function in one AWS account to subscribe to an Amazon Simple Notification Service (Amazon SNS) topic in a separate AWS account. When you publish messages to your Amazon SNS topic, your Lambda function reads the contents of the message and outputs it to Amazon CloudWatch Logs. To complete this tutorial, you use the AWS Command Line Interface (AWS CLI)." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-sns-example.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-sns-example.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-sns-example.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-sns-example.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-sns-example.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-sns-example.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-sns-example.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-sns-example.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-sns-example.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-sns-example.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sns-example.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sns-example.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-sns-example.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-sns-example.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-sns-example.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-sns-example.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-sns-example.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-sns-example.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sns-example.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Using AWS Lambda with Amazon Simple Notification Service" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Using AWS Lambda with Amazon Simple Notification Service - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-sns-example" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sns-example.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sns-example.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sns-example.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using AWS Lambda with Amazon SNS",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-sns.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Using AWS Lambda with Amazon Simple Notification Service",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-sns.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-sns-example" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#with-sns-prereqs">Prerequisites</a><a href="#with-sns-create-topic">Create an Amazon SNS topic (account A)</a><a href="#with-sns-example-create-iam-role">Create a function execution role (account B)</a><a href="#with-sns-example-create-test-function">Create a Lambda function (account B)</a><a href="#with-sns-create-function-permissions">Add permissions to function (account B)</a><a href="#with-sns-subscription-grant-permission">Grant cross-account permission for Amazon SNS subscription (account A)</a><a href="#with-sns-create-subscription">Create a subscription (account B)</a><a href="#with-sns-publish-message">Publish messages to topic (account A and account B)</a><a href="#cleanup">Clean up your resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-sns-example">Tutorial: Using AWS Lambda with Amazon Simple Notification Service</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you use a Lambda function in one AWS account to subscribe to an Amazon Simple Notification Service (Amazon SNS) topic in a separate AWS account. When 
+    you publish messages to your Amazon SNS topic, your Lambda function reads the contents of the message and outputs it to Amazon CloudWatch Logs. To complete this 
+    tutorial, you use the AWS Command Line Interface (AWS CLI).</p><div class="mediaobject">
+     
+      <img src="/images/lambda/latest/dg/images/services-sns-tutorial/sns_tut_resources.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Diagram showing the services used in this tutorial: an Amazon SNS topic connected to a Lambda function connected to a CloudWatch Logs log group.&#xA;    " style="max-width:100%" /> 
+     
+     
+  </div><p>To complete this tutorial, you perform the following steps:</p><div class="itemizedlist">
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>In <b>account A</b>, create an Amazon SNS topic.</p>
+    </li><li class="listitem">
+      <p>In <b>account B</b>, create a Lambda function that will read messages from the topic.</p>
+    </li><li class="listitem">
+      <p>In <b>account B</b>, create a subscription to the topic.</p>
+    </li><li class="listitem">
+      <p>Publish messages to the Amazon SNS topic in <b>account A</b> and confirm that the Lambda function in 
+        <b>account B</b> outputs them to CloudWatch Logs.</p>
+    </li></ul></div><p>By completing these steps, you will learn how to configure an Amazon SNS topic to invoke a Lambda function. You will also learn how to create an 
+   AWS Identity and Access Management (IAM) policy that gives permission for a resource in another AWS account to invoke Lambda.</p><p>In the tutorial, you use two separate AWS accounts. The AWS CLI commands illustrate this by using two named profiles called <code class="code">accountA</code> 
+    and <code class="code">accountB</code>, each configured for use with a different AWS account. To learn how to configure the AWS CLI to use different profiles, 
+    see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html">Configuration and credential file settings</a> in the 
+    <em>AWS Command Line Interface User Guide for Version 2</em>. Be sure to configure the same default AWS Region for both profiles.</p><p>If the AWS CLI profiles you create for the two AWS accounts use different names, or if you use the default profile and one named profile, 
+    modify the AWS CLI commands in the following steps as needed.</p>
+    <h2 id="with-sns-prereqs">Prerequisites</h2>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Sign up for an AWS account" id="sign-up-for-aws" expanded="false"><p>If you do not have an AWS account, complete the following steps to create one.</p><div class="procedure"><h6>To sign up for an AWS account</h6><ol><li><p>Open <a href="https://portal.aws.amazon.com/billing/signup" rel="noopener noreferrer" target="_blank"><span>https://portal.aws.amazon.com/billing/signup</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li><p>Follow the online instructions.</p>
+  <p>Part of the sign-up procedure involves receiving a phone call and entering 
+  a verification code on the phone keypad.</p>
+  <p>When you sign up for an AWS account, an <em>AWS account root user</em> is created. The root user has access to all AWS services
+  and resources in the account. As a security best practice, <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">assign administrative access to an administrative user</a>, and use only the root user to perform <a href="https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html">tasks that require root user access</a>.</p>
+  </li></ol></div><p>AWS sends you a confirmation email after the sign-up process is
+complete. At any time, you can view your current account activity and manage your account by
+going to <a href="https://aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>https://aws.amazon.com/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and choosing <b>My
+  Account</b>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="Create an administrative user" id="create-an-admin" expanded="false"><p>After you sign up for an AWS account, create an administrative user so that you 
+don't use the root user for everyday tasks.</p><div class="procedure"><h6>Secure your AWS account root user</h6><ol><li>
+ 
+
+<p> Sign in to the <a href="https://console.aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>AWS Management Console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> as the account owner by choosing <b>Root user</b> and entering your AWS account email address. On the next page, enter your password.</p>
+ 
+ <p>For help signing in by using root user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial">Signing in as the root user</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li><li>
+ <p>Turn on multi-factor authentication (MFA) for your root user.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root">Enable a virtual MFA device for your AWS account root user (console)</a> in the <em>IAM User Guide</em>.</p> 
+</li></ol></div><div class="procedure"><h6>Create an administrative user</h6><ul><li>
+ <p>For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM Identity Center.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">Getting started</a> in the <em>AWS IAM Identity Center User Guide</em>.</p>
+</li></ul></div><div class="procedure"><h6>Sign in as the administrative user</h6><ul><li>
+
+<p>To sign in with your IAM Identity Center user, use the sign-in URL that was sent to your email address when you created the IAM Identity Center user.</p>
+
+<p>For help signing in using an IAM Identity Center user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html">Signing in to the AWS access portal</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Install the AWS Command Line Interface" id="install_aws_cli" expanded="false"><p>If you have not yet installed the AWS Command Line Interface, follow the steps at  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Installing or updating the latest version of the AWS CLI</a> 
+          to install it.</p><p>The tutorial requires a command line terminal or shell to run commands. In Linux and macOS, use your preferred shell and package manager.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+            To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+          </p></div></div></awsui-expandable-section></div>
+   
+    <h2 id="with-sns-create-topic">Create an Amazon SNS topic (account A)</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-sns-tutorial/sns_tut_steps_1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the Amazon SNS topic step creating the topic&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <div class="procedure"><h6>To create the topic</h6><ul><li>
+        <p>In <b>account A</b>, create an Amazon SNS standard topic using the following AWS CLI command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws sns create-topic --name sns-topic-for-lambda --profile accountA</code></code></pre>
+        <p>You should see output similar to the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><span>{</span>
+    "TopicArn": "arn:aws:sns:us-west-2:123456789012:sns-topic-for-lambda"
+}</code></pre>
+        <p>Make a note of the Amazon Resource Name (ARN) of your topic. You’ll need it later in the tutorial when you add permissions to your 
+          Lambda function to subscribe to the topic.</p>
+      </li></ul></div>
+   
+    <h2 id="with-sns-example-create-iam-role">Create a function execution role (account B)</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-sns-tutorial/sns_tut_steps_2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the function step creating the execution role&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>An execution role is an IAM role that grants a Lambda function permission to access AWS services and resources. Before you create your 
+      function in <b>account B</b>, you create a role that gives the function basic permissions to write logs to 
+      CloudWatch Logs. We’ll add the permissions to read from your Amazon SNS topic in a later step.</p>
+    <div class="procedure"><h6>To create an execution role</h6><ol><li>
+        <p>In <b>account B</b> open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the 
+          IAM console.</p>
+      </li><li>
+        <p>Choose <b>Create role</b>.</p>
+      </li><li>
+        <p>For <b>Trusted entity type</b>, choose <b>AWS service</b>.</p>
+      </li><li>
+        <p>For <b>Use case</b>, choose <b>Lambda</b>.</p>
+      </li><li>
+        <p>Choose <b>Next</b>.</p>
+      </li><li>
+        <p>Add a basic permissions policy to the role by doing the following:</p>
+        <ol><li>
+            <p>In the <b>Permissions policies</b> search box, enter <code class="userinput">AWSLambdaBasicExecutionRole</code>.</p>
+          </li><li>
+            <p>Choose <b>Next</b>.</p>
+          </li></ol>
+      </li><li>
+        <p>Finalize the role creation by doing the following:</p>
+        <ol><li>
+            <p>Under <b>Role details</b>, enter <code class="userinput">lambda-sns-role</code> for <b>Role name</b>.</p>
+          </li><li>
+            <p>Choose <b>Create role</b>.</p>
+          </li></ol>
+      </li></ol></div>
+   
+    <h2 id="with-sns-example-create-test-function">Create a Lambda function (account B)</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-sns-tutorial/sns_tut_steps_3.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the function step creating the function&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Create a Lambda function that processes your Amazon SNS messages. The function code logs the message
+      contents of each record to Amazon CloudWatch Logs.</p>
+    <p>This tutorial uses the Node.js 18.x runtime, but we've also provided example code in other
+      runtime languages. You can select the tab in the following box to see code for the runtime
+      you're interested in. The JavaScript code you'll use in this step is in the first example
+      shown in the <b>JavaScript</b> tab.</p>
+    <awsdocs-tabs><dl style="display: none">
+    <dt>.NET</dt><dd tab-id=".net">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">AWS SDK for .NET</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/tree/main/integration-sns-to-lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Consuming an SNS event with Lambda using .NET.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">using Amazon.Lambda.Core;
+using Amazon.Lambda.SNSEvents;
+
+
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+
+namespace SnsIntegration;
+
+public class Function
+<span>{</span>
+    public async Task FunctionHandler(SNSEvent evnt, ILambdaContext context)
+    <span>{</span>
+        foreach (var record in evnt.Records)
+        <span>{</span>
+            await ProcessRecordAsync(record, context);
+        }
+        context.Logger.LogInformation("done");
+    }
+
+    private async Task ProcessRecordAsync(SNSEvent.SNSRecord record, ILambdaContext context)
+    <span>{</span>
+        try
+        <span>{</span>
+            context.Logger.LogInformation($"Processed record <span>{</span>record.Sns.Message}");
+
+            // TODO: Do interesting work based on the new message
+            await Task.CompletedTask;
+        }
+        catch (Exception e)
+        <span>{</span>
+            //You can use Dead Letter Queue to handle failures. By configuring a Lambda DLQ.
+            context.Logger.LogError($"An error occurred");
+            throw;
+        }
+    }
+}
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>JavaScript</dt><dd tab-id="javascript">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for JavaScript (v2)</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/blob/main/integration-sns-to-lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Consuming an SNS event with Lambda using JavaScript.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">exports.handler = async (event, context) =&gt; <span>{</span>
+  for (const record of event.Records) <span>{</span>
+    await processMessageAsync(record);
+  }
+  console.info("done");
+};
+
+async function processMessageAsync(record) <span>{</span>
+  try <span>{</span>
+    const message = JSON.stringify(record.Sns.Message);
+    console.log(`Processed message $<span>{</span>message}`);
+    await Promise.resolve(1); //Placeholder for actual async work
+  } catch (err) <span>{</span>
+    console.error("An error occurred");
+    throw err;
+  }
+}
+
+</code></pre>
+             
+             
+                <p>Consuming an SNS event with Lambda using TypeScript.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">import <span>{</span> SNSEvent, Context, SNSHandler, SNSEventRecord } from "aws-lambda";
+
+export const functionHandler: SNSHandler = async (
+  event: SNSEvent,
+  context: Context
+): Promise&lt;void&gt; =&gt; <span>{</span>
+  for (const record of event.Records) <span>{</span>
+    await processMessageAsync(record);
+  }
+  console.info("done");
+};
+
+async function processMessageAsync(record: SNSEventRecord): Promise&lt;any&gt; <span>{</span>
+  try <span>{</span>
+    const message: string = JSON.stringify(record.Sns.Message);
+    console.log(`Processed message $<span>{</span>message}`);
+    await Promise.resolve(1); //Placeholder for actual async work
+  } catch (err) <span>{</span>
+    console.error("An error occurred");
+    throw err;
+  }
+}
+
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs>
+    <div class="procedure"><h6>To create the function</h6><ol><li>
+        <p>Create a directory for the project, and then switch to that directory.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mkdir sns-tutorial
+cd sns-tutorial</code></pre>
+      </li><li>
+        <p>Copy the sample JavaScript code into a new file named <code>index.js</code>.</p>
+      </li><li>
+        <p>Create a deployment package using the following <code class="code">zip</code> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip function.zip index.js</code></code></pre>
+      </li><li>
+        <p>Run the following AWS CLI command to create your Lambda function in <b>account B</b>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name Function-With-SNS \
+--zip-file fileb://function.zip --handler index.handler --runtime nodejs18.x \
+--role arn:aws:iam::<code class="replaceable">&lt;AccountB_ID&gt;</code>:role/lambda-sns-role  \
+--timeout 60 --profile accountB</code></code></pre>
+        <p>You should see output similar to the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "FunctionName": "Function-With-SNS",
+    "FunctionArn": "arn:aws:lambda:us-west-2:123456789012:function:Function-With-SNS",
+    "Runtime": "nodejs18.x",
+    "Role": "arn:aws:iam::123456789012:role/lambda_basic_role",
+    "Handler": "index.handler",
+    ...
+    "RuntimeVersionConfig": <span>{</span>
+        "RuntimeVersionArn": "arn:aws:lambda:us-west-2::runtime:7d5f06b69c951da8a48b926ce280a9daf2e8bb1a74fc4a2672580c787d608206"
+    }
+}</code></pre>
+      </li><li>
+        <p>Record the Amazon Resource Name (ARN) of your function. You’ll need it later in the tutorial
+          when you add permissions to allow Amazon SNS to invoke your function.</p>
+      </li></ol></div>
+   
+    <h2 id="with-sns-create-function-permissions">Add permissions to function (account B)</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-sns-tutorial/sns_tut_steps_4.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the function step adding permissions&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>For Amazon SNS to invoke your function, you need to grant it permission in a statement on a <a href="./access-control-resource-based.html">resource-based policy</a>. 
+      You add this statement using the AWS CLI <code class="code">add-permission</code> command.</p>
+    <div class="procedure"><h6>To grant Amazon SNS permission to invoke your function</h6><ul><li>
+        <p>In <b>account B</b>, run the following AWS CLI command using the ARN for your Amazon SNS topic you recorded earlier.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda add-permission --function-name Function-With-SNS \
+--source-arn arn:aws:sns:<code class="replaceable">us-east-1:&lt;AccountA_ID&gt;</code>:sns-topic-for-lambda \
+--statement-id function-with-sns --action "lambda:InvokeFunction" \
+--principal sns.amazonaws.com --profile accountB</code></code></pre>
+        <p>You should see output similar to the following.</p>
+        <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><span>{</span>
+    "Statement": "<span>{</span>\"Condition\":<span>{</span>\"ArnLike\":<span>{</span>\"AWS:SourceArn\":
+      \"arn:aws:sns:us-east-1:&lt;AccountA_ID&gt;:sns-topic-for-lambda\"}},
+      \"Action\":[\"lambda:InvokeFunction\"],
+      \"Resource\":\"arn:aws:lambda:us-east-1:&lt;AccountB_ID&gt;:function:Function-With-SNS\",
+      \"Effect\":\"Allow\",\"Principal\":<span>{</span>\"Service\":\"sns.amazonaws.com\"},
+      \"Sid\":\"function-with-sns\"}"
+}</code></pre>
+      </li></ul></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If the account with the Amazon SNS topic is hosted in an <a href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-regions.html">opt-in AWS Region</a>, 
+        you need to specify the region in the principal. For example, if you're working with an Amazon SNS topic in the Asia Pacific (Hong Kong) region, 
+        you need to specify <code class="code">sns.ap-east-1.amazonaws.com</code> instead of <code class="code">sns.amazonaws.com</code> for the principal. </p></div></div>
+   
+    <h2 id="with-sns-subscription-grant-permission">Grant cross-account permission for Amazon SNS subscription (account A)</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-sns-tutorial/sns_tut_steps_5.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the subscription step granting the permission&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>For your Lambda function in <b>account B</b> to subscribe to the Amazon SNS topic you created in <b>account A</b>, 
+      you need to grant permission for <b>account B</b> to subscribe to your topic. You grant this permission using the 
+      AWS CLI <code class="code">add-permission</code> command. </p>
+    <div class="procedure"><h6>To grant permission for account B to subscribe to the topic</h6><ul><li>
+        <p>In <b>account A</b>, run the following AWS CLI command. Use the ARN for the Amazon SNS topic you recorded earlier.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws sns add-permission --label lambda-access --aws-account-id <code class="replaceable">&lt;AccountB_ID&gt;</code> \
+--topic-arn arn:aws:sns:<code class="replaceable">us-east-1:&lt;AccountA_ID&gt;</code>:sns-topic-for-lambda \  
+--action-name Subscribe ListSubscriptionsByTopic --profile accountA</code></code></pre>
+      </li></ul></div>
+   
+  <h2 id="with-sns-create-subscription">Create a subscription (account B)</h2>
+  <div class="mediaobject">
+     
+      <img src="/images/lambda/latest/dg/images/services-sns-tutorial/sns_tut_steps_6.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Tutorial workflow diagram showing you are in the subscription step creating a subscription&#xA;    " style="max-width:100%" />
+     
+     
+  </div>
+  <p>In <b>account B</b>, you now subscribe your Lambda function to the Amazon SNS topic you created at the beginning of the 
+    tutorial in <b>account A</b>. When a message is sent to this topic (<code class="code">sns-topic-for-lambda</code>), Amazon SNS invokes 
+    your Lambda function <code class="code">Function-With-SNS</code> in <b>account B</b>. </p>
+ <div class="procedure"><h6>To create a subscription</h6><ul><li>
+     <p>In <b>account B</b>, run the following AWS CLI command. Use your default region you created your topic in and the 
+     ARNs for your topic and Lambda function.</p>
+     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws sns subscribe --protocol lambda \
+--region <code class="replaceable">us-east-1</code> \
+--topic-arn arn:aws:sns:<code class="replaceable">us-east-1:&lt;AccountA_ID&gt;</code>:sns-topic-for-lambda \
+--notification-endpoint arn:aws:lambda:<code class="replaceable">us-east-1:&lt;AccountB_ID&gt;</code>:function:Function-With-SNS \
+--profile accountB</code></code></pre>
+     <p>You should see output similar to the following.</p>
+     <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><span>{</span>
+    "SubscriptionArn": "arn:aws:sns:us-east-1:&lt;AccountA_ID&gt;:sns-topic-for-lambda:5d906xxxx-7c8x-45dx-a9dx-0484e31c98xx"
+}</code></pre>
+   </li></ul></div>
+ 
+    <h2 id="with-sns-publish-message">Publish messages to topic (account A and account B)</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-sns-tutorial/sns_tut_steps_7.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the publish step publishing a messages&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Now that your Lambda function in <b>account B</b> is subscribed to your Amazon SNS topic in <b>account A</b>, 
+      it’s time to test your setup by publishing messages to your topic. To confirm that Amazon SNS has invoked your Lambda function, you use CloudWatch Logs to view 
+      your function’s output.</p>
+    <div class="procedure"><h6>To publish a message to your topic and view your function's output</h6><ol><li>
+        <p>Enter <code class="code">Hello World</code> into a text file and save it as <code>message.txt</code>.</p>
+      </li><li>
+        <p>From the same directory you saved your text file in, run the following AWS CLI command in <b>account A</b>. 
+        Use the ARN for your own topic.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws sns publish --message file://message.txt --subject Test \
+--topic-arn arn:aws:sns:<code class="replaceable">us-east-1:&lt;AccountA_ID&gt;</code>:sns-topic-for-lambda \
+--profile accountA</code></code></pre>
+        <p>This will return a message ID with a unique identifier, indicating that Amazon SNS has accepted the message. Amazon SNS then attempts to deliver 
+          the message to the topic’s subscribers. To confirm that Amazon SNS has invoked your Lambda function, use CloudWatch Logs to view your function’s output:</p>
+      </li><li>
+        <p>In <b>account B</b>, open the <a href="https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups" rel="noopener noreferrer" target="_blank"><span>Log groups</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page of the Amazon CloudWatch console.</p>
+      </li><li>
+        <p>Choose the log group for your function (<code class="code">/aws/lambda/Function-With-SNS</code>).</p>
+      </li><li>
+        <p>Choose the most recent log stream.</p>
+      </li><li>
+        <p>If your function was correctly invoked, you’ll see output similar to the following showing the contents of the message you published to 
+          your topic.</p>
+        <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">2023-07-31T21:42:51.250Z c1cba6b8-ade9-4380-aa32-d1a225da0e48 INFO Processed message Hello World
+2023-07-31T21:42:51.250Z c1cba6b8-ade9-4380-aa32-d1a225da0e48 INFO done</code></pre>
+      </li></ol></div>
+   
+    <h2 id="cleanup">Clean up your resources</h2>
+     
+    <p>You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS resources that you're no longer using, you prevent unnecessary charges to your AWS account.</p>
+    
+    <p>In <b>Account A</b>, clean up your Amazon SNS topic.</p>
+    <div class="procedure"><h6>To delete the Amazon SNS topic</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/sns/home#topics:" rel="noopener noreferrer" target="_blank"><span>Topics page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Amazon SNS console.</p>
+  </li><li>
+    <p>Select the topic you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter <code class="userinput">delete me</code> in the text input field.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div> 
+    
+    <p>In <b>Account B</b>, clean up your execution role, Lambda function, and Amazon SNS subscription.</p>
+    <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+  </li><li>
+    <p>Select the execution role that you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the role in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the Amazon SNS subscription</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/sns/home#subscriptions:" rel="noopener noreferrer" target="_blank"><span>Subscriptions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Amazon SNS console.</p>
+  </li><li>
+    <p>Select the subscription you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>, <b>Delete</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-sns.html">SNS</div><div id="next" class="next-link" accesskey="n" href="./with-sns-create-package.html">Sample code</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sns-example.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sns-example.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

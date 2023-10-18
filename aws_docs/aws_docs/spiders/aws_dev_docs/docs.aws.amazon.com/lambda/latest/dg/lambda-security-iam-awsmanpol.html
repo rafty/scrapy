@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS managed policies for AWS Lambda - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="lambda-security-iam-awsmanpol" /><meta name="default_state" content="lambda-security-iam-awsmanpol" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-security-iam-awsmanpol.html" /><meta name="description" content="Learn about AWS managed policies for Lambda and recent changes to those policies." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-security-iam-awsmanpol.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-security-iam-awsmanpol.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AWS managed policies for AWS Lambda" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS managed policies for AWS Lambda - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-security-iam-awsmanpol" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-security-iam-awsmanpol.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-security-iam-awsmanpol.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-security-iam-awsmanpol.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Security in AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-security.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Identity and access management for Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/security-iam.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "AWS managed policies for AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/security-iam.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-security-iam-awsmanpol" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#lambda-security-iam-awsmanpol-AWSLambda_FullAccess">AWSLambda_FullAccess</a><a href="#lambda-security-iam-awsmanpol-AWSLambda_ReadOnlyAccess">AWSLambda_ReadOnlyAccess</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaBasicExecutionRole">AWSLambdaBasicExecutionRole</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaDynamoDBExecutionRole">AWSLambdaDynamoDBExecutionRole</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaENIManagementAccess">AWSLambdaENIManagementAccess</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaExecute">AWSLambdaExecute</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaInvocation-DynamoDB">AWSLambdaInvocation-DynamoDB</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaKinesisExecutionRole">AWSLambdaKinesisExecutionRole</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaMSKExecutionRole">AWSLambdaMSKExecutionRole</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaRole">AWSLambdaRole</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaSQSQueueExecutionRole">AWSLambdaSQSQueueExecutionRole</a><a href="#lambda-security-iam-awsmanpol-AWSLambdaVPCAccessExecutionRole">AWSLambdaVPCAccessExecutionRole</a><a href="#lambda-security-iam-awsmanpol-updates">Policy updates</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="lambda-security-iam-awsmanpol">AWS managed policies for AWS Lambda</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>An AWS managed policy is a standalone policy that is created and administered by AWS. AWS managed policies are designed 
+  to provide permissions for many common use cases so that you can start assigning permissions to users, groups, and roles.</p><p>Keep in mind that AWS managed policies might not grant least-privilege permissions for your specific use cases because 
+  they're available for all AWS customers to use. We recommend that you reduce permissions further by defining 
+  <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#customer-managed-policies">
+  customer managed policies</a> that are specific to your use cases.</p><p>You cannot change the permissions defined in AWS managed policies. If AWS updates the permissions defined in an AWS 
+  managed policy, the update affects all principal identities (users, groups, and roles) that the policy is attached to. AWS is 
+  most likely to update an AWS managed policy when a new AWS service is launched or new API operations become available for
+  existing services.</p><p>For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies">AWS managed policies</a> in the 
+  <em>IAM User Guide</em>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#lambda-security-iam-awsmanpol-AWSLambda_FullAccess">AWS managed policy: AWSLambda_FullAccess</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambda_ReadOnlyAccess">AWS managed policy: AWSLambda_ReadOnlyAccess</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaBasicExecutionRole">AWS managed policy: AWSLambdaBasicExecutionRole</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaDynamoDBExecutionRole">AWS managed policy: AWSLambdaDynamoDBExecutionRole</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaENIManagementAccess">AWS managed policy: AWSLambdaENIManagementAccess</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaExecute">AWS managed policy: AWSLambdaExecute</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaInvocation-DynamoDB">AWS managed policy: AWSLambdaInvocation-DynamoDB</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaKinesisExecutionRole">AWS managed policy: AWSLambdaKinesisExecutionRole</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaMSKExecutionRole">AWS managed policy: AWSLambdaMSKExecutionRole</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaRole">AWS managed policy: AWSLambdaRole</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaSQSQueueExecutionRole">AWS managed policy: AWSLambdaSQSQueueExecutionRole</a></li><li><a href="#lambda-security-iam-awsmanpol-AWSLambdaVPCAccessExecutionRole">AWS managed policy: AWSLambdaVPCAccessExecutionRole</a></li><li><a href="#lambda-security-iam-awsmanpol-updates">Lambda updates to AWS managed
+        policies</a></li></ul></div>
+        <h2 id="lambda-security-iam-awsmanpol-AWSLambda_FullAccess">AWS managed policy: AWSLambda_FullAccess</h2>
+        <p>This policy grants full access to Lambda actions. It also grants permissions to other AWS services that are used to develop and maintain Lambda resources.</p>
+        <p>You can attach the <code class="code">AWSLambda_FullAccess</code> policy to your users, groups, and roles.</p>
+          <p><b>Permissions details</b></p>
+          <p>This policy includes the following permissions:</p>
+          <div class="itemizedlist">
+           
+               
+               
+               
+         
+         
+               
+         
+               
+         
+          <ul class="itemizedlist"><li class="listitem">
+                  <p><code class="code">lambda</code> – Allows principals full access to Lambda.</p>
+              </li><li class="listitem">
+                  <p><code class="code">cloudformation</code> – Allows principals to describe AWS CloudFormation stacks and list the resources in those stacks.</p>
+              </li><li class="listitem">
+                  <p><code class="code">cloudwatch</code> – Allows principals to list Amazon CloudWatch metrics and get metric data.</p>
+              </li><li class="listitem">
+                  <p><code class="code">ec2</code> – Allows principals to describe security groups, subnets, and VPCs.</p>
+              </li><li class="listitem">
+                  <p><code class="code">iam</code> – Allows principals to get policies, policy versions, roles, role policies, attached role policies, and the list of roles. This policy also allows principals to pass roles to Lambda. The <code class="code">PassRole</code> permission is used when you assign an execution role to a function.</p>
+              </li><li class="listitem">
+                  <p><code class="code">kms</code> – Allows principals to list aliases.</p>
+              </li><li class="listitem">
+                  <p><code class="code">logs</code> – Allows principals to describe Amazon CloudWatch log groups. For log groups that are associated with a Lambda function, this policy allows the principal to describe log streams, get log events, and filter log events.</p>
+              </li><li class="listitem">
+                  <p><code class="code">states</code> – Allows principals to describe and list AWS Step Functions state machines.</p>
+              </li><li class="listitem">
+                  <p><code class="code">tag</code> – Allows principals to get resources based on their tags.</p>
+              </li><li class="listitem">
+                  <p><code class="code">xray</code> – Allows principals to get AWS X-Ray trace summaries and retrieve a list of traces specified by ID.</p>
+              </li></ul></div>
+          <p>For more information about this policy, including the JSON policy document and policy versions, see 
+              <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambda_FullAccess.html">AWSLambda_FullAccess</a> 
+              in the <em>AWS Managed Policy Reference Guide</em>.</p>
+     
+        <h2 id="lambda-security-iam-awsmanpol-AWSLambda_ReadOnlyAccess">AWS managed policy: AWSLambda_ReadOnlyAccess</h2>
+        <p>This policy grants read-only access to Lambda resources and to other AWS services that are used to develop and maintain Lambda resources.</p>
+        <p>You can attach the <code class="code">AWSLambda_ReadOnlyAccess</code> policy to your users, groups, and roles.</p>
+          <p><b>Permissions details</b></p>
+          <p>This policy includes the following permissions:</p>
+          <div class="itemizedlist">
+           
+               
+               
+               
+         
+         
+               
+         
+               
+         
+          <ul class="itemizedlist"><li class="listitem">
+                  <p><code class="code">lambda</code> – Allows principals to get and list all resources.</p>
+              </li><li class="listitem">
+                  <p><code class="code">cloudformation</code> – Allows principals to describe and list AWS CloudFormation stacks and list the resources in those stacks.</p>
+              </li><li class="listitem">
+                  <p><code class="code">cloudwatch</code> – Allows principals to list Amazon CloudWatch metrics and get metric data.</p>
+              </li><li class="listitem">
+                  <p><code class="code">ec2</code> – Allows principals to describe security groups, subnets, and VPCs.</p>
+              </li><li class="listitem">
+                  <p><code class="code">iam</code> – Allows principals to get policies, policy versions, roles, role policies, attached role policies, and the list of roles.</p>
+              </li><li class="listitem">
+                  <p><code class="code">kms</code> – Allows principals to list aliases.</p>
+              </li><li class="listitem">
+                  <p><code class="code">logs</code> – Allows principals to describe Amazon CloudWatch log groups. For log groups that are associated with a Lambda function, this policy allows the principal to describe log streams, get log events, and filter log events.</p>
+              </li><li class="listitem">
+                  <p><code class="code">states</code> – Allows principals to describe and list AWS Step Functions state machines.</p>
+              </li><li class="listitem">
+                  <p><code class="code">tag</code> – Allows principals to get resources based on their tags.</p>
+              </li><li class="listitem">
+                  <p><code class="code">xray</code> – Allows principals to get AWS X-Ray trace summaries and retrieve a list of traces specified by ID.</p>
+              </li></ul></div>
+          <p>For more information about this policy, including the JSON policy document and policy versions, see 
+              <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambda_ReadOnlyAccess.html">AWSLambda_ReadOnlyAccess</a> 
+              in the <em>AWS Managed Policy Reference Guide</em>.</p>
+     
+      <h2 id="lambda-security-iam-awsmanpol-AWSLambdaBasicExecutionRole">AWS managed policy: AWSLambdaBasicExecutionRole</h2>
+      <p>This policy grants permissions to upload logs to CloudWatch Logs.</p>
+      <p>You can attach the <code class="code">AWSLambdaBasicExecutionRole</code> policy to your users, groups, and roles.</p>
+      <p>For more information about this policy, including the JSON policy document and policy versions, see 
+            <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaBasicExecutionRole.html">AWSLambdaBasicExecutionRole</a> 
+            in the <em>AWS Managed Policy Reference Guide</em>.</p>
+   
+    <h2 id="lambda-security-iam-awsmanpol-AWSLambdaDynamoDBExecutionRole">AWS managed policy: AWSLambdaDynamoDBExecutionRole</h2>
+    <p>This policy grants permissions to read records from an Amazon DynamoDB stream and write to CloudWatch Logs.</p>
+  <p>You can attach the <code class="code">AWSLambdaDynamoDBExecutionRole</code> policy to your users, groups, and roles.</p>
+    <p>For more information about this policy, including the JSON policy document and policy versions, see 
+          <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaDynamoDBExecutionRole.html">AWSLambdaDynamoDBExecutionRole</a> 
+          in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+    <h2 id="lambda-security-iam-awsmanpol-AWSLambdaENIManagementAccess">AWS managed policy: AWSLambdaENIManagementAccess</h2>
+    <p>This policy grants permissions to create, describe, and delete elastic network interfaces used by a VPC-enabled Lambda function.</p>
+  <p>You can attach the <code class="code">AWSLambdaENIManagementAccess</code> policy to your users, groups, and roles.</p>
+    <p>For more information about this policy, including the JSON policy document and policy versions, see 
+          <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaENIManagementAccess.html">AWSLambdaENIManagementAccess</a> 
+          in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+  <h2 id="lambda-security-iam-awsmanpol-AWSLambdaExecute">AWS managed policy: AWSLambdaExecute</h2>
+  <p>This policy grants <code class="code">PUT</code> and <code class="code">GET</code> access to Amazon Simple Storage Service and full access to CloudWatch Logs.</p>
+<p>You can attach the <code class="code">AWSLambdaExecute</code> policy to your users, groups, and roles.</p>
+  <p>For more information about this policy, including the JSON policy document and policy versions, see 
+        <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaExecute.html">AWSLambdaExecute</a> 
+        in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+  <h2 id="lambda-security-iam-awsmanpol-AWSLambdaInvocation-DynamoDB">AWS managed policy: AWSLambdaInvocation-DynamoDB</h2>
+  <p>This policy grants read access to Amazon DynamoDB Streams.</p>
+<p>You can attach the <code class="code">AWSLambdaInvocation-DynamoDB</code> policy to your users, groups, and roles.</p>
+  <p>For more information about this policy, including the JSON policy document and policy versions, see 
+        <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaInvocation-DynamoDB.html">AWSLambdaInvocation-DynamoDB</a> 
+        in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+  <h2 id="lambda-security-iam-awsmanpol-AWSLambdaKinesisExecutionRole">AWS managed policy: AWSLambdaKinesisExecutionRole</h2>
+  <p>This policy grants permissions to read events from an Amazon Kinesis data stream and write to CloudWatch Logs.</p>
+<p>You can attach the <code class="code">AWSLambdaKinesisExecutionRole</code> policy to your users, groups, and roles.</p>
+  <p>For more information about this policy, including the JSON policy document and policy versions, see 
+        <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaKinesisExecutionRole.html">AWSLambdaKinesisExecutionRole</a> 
+        in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+  <h2 id="lambda-security-iam-awsmanpol-AWSLambdaMSKExecutionRole">AWS managed policy: AWSLambdaMSKExecutionRole</h2>
+  <p>This policy grants permissions to read and access records from an Amazon Managed Streaming for Apache Kafka cluster, manage elastic network interfaces, and write to CloudWatch Logs.</p>
+<p>You can attach the <code class="code">AWSLambdaMSKExecutionRole</code> policy to your users, groups, and roles.</p>
+  <p>For more information about this policy, including the JSON policy document and policy versions, see 
+        <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaMSKExecutionRole.html">AWSLambdaMSKExecutionRole</a> 
+        in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+  <h2 id="lambda-security-iam-awsmanpol-AWSLambdaRole">AWS managed policy: AWSLambdaRole</h2>
+  <p>This policy grants permissions to invoke Lambda functions.</p>
+<p>You can attach the <code class="code">AWSLambdaRole</code> policy to your users, groups, and roles.</p>
+  <p>For more information about this policy, including the JSON policy document and policy versions, see 
+        <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaRole.html">AWSLambdaRole</a> 
+        in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+  <h2 id="lambda-security-iam-awsmanpol-AWSLambdaSQSQueueExecutionRole">AWS managed policy: AWSLambdaSQSQueueExecutionRole</h2>
+  <p>This policy grants permissions to read and delete messages from an Amazon Simple Queue Service queue, and grants write permissions to CloudWatch Logs.</p>
+<p>You can attach the <code class="code">AWSLambdaSQSQueueExecutionRole</code> policy to your users, groups, and roles.</p>
+  <p>For more information about this policy, including the JSON policy document and policy versions, see 
+        <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaSQSQueueExecutionRole.html">AWSLambdaSQSQueueExecutionRole</a> 
+        in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+  <h2 id="lambda-security-iam-awsmanpol-AWSLambdaVPCAccessExecutionRole">AWS managed policy: AWSLambdaVPCAccessExecutionRole</h2>
+  <p>This policy grants permissions to manage elastic network interfaces within an Amazon Virtual Private Cloud and write to CloudWatch Logs.</p>
+<p>You can attach the <code class="code">AWSLambdaVPCAccessExecutionRole</code> policy to your users, groups, and roles.</p>
+  <p>For more information about this policy, including the JSON policy document and policy versions, see 
+        <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambdaVPCAccessExecutionRole.html">AWSLambdaVPCAccessExecutionRole</a> 
+        in the <em>AWS Managed Policy Reference Guide</em>.</p>
+ 
+  <h2 id="lambda-security-iam-awsmanpol-updates">Lambda updates to AWS managed
+        policies</h2>
+  <div class="table-container"><div class="table-contents"><table id="w917aac93c17c19c43b3"><thead>
+           <tr>
+              <th>Change</th>
+              <th>Description</th>
+              <th>Date</th>
+           </tr>
+        </thead>
+           <tr>
+              <td tabindex="-1">
+                 <p><a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AWSLambda_ReadOnlyAccess.html">AWSLambda_ReadOnlyAccess</a> – Change</p>
+              </td>
+              <td tabindex="-1">
+                 <p>Lambda updated the <code class="code">AWSLambda_ReadOnlyAccess</code> policy to allow principals to list AWS CloudFormation stacks.</p>
+              </td>
+              <td tabindex="-1">July 27, 2023</td>
+           </tr>
+           <tr>
+              <td tabindex="-1">
+                 <p>AWS Lambda started tracking changes</p>
+              </td>
+              <td tabindex="-1">
+                 <p>AWS Lambda started tracking changes for its AWS managed policies.</p>
+              </td>
+              <td tabindex="-1">July 27, 2023</td>
+           </tr>
+        </table></div></div>
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./security_iam_id-based-policy-examples.html">Identity-based policy examples</div><div id="next" class="next-link" accesskey="n" href="./security_iam_troubleshoot.html">Troubleshooting</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-security-iam-awsmanpol.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-security-iam-awsmanpol.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

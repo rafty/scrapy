@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS Lambda function logging in TypeScript - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="typescript-logging" /><meta name="default_state" content="typescript-logging" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-logging.html" /><meta name="description" content="This page describes how to view Lambda function metrics using Amazon CloudWatch for the TypeScript runtime." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-logging.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/typescript-logging.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/typescript-logging.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/typescript-logging.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/typescript-logging.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-logging.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-logging.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/typescript-logging.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/typescript-logging.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/typescript-logging.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/typescript-logging.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/typescript-logging.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/typescript-logging.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/typescript-logging.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/typescript-logging.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/typescript-logging.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/typescript-logging.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/typescript-logging.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/typescript-logging.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/typescript-logging.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/typescript-logging.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-logging.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AWS Lambda function logging in TypeScript" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS Lambda function logging in TypeScript - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#typescript-logging" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-logging.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-logging.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-logging.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,TypeScript function,TypeScript Lambda,TypeScript define function,TypeScript Lambda function,TypeScript Lambda logging,TypeScript Lambda logs" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with TypeScript",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "AWS Lambda function logging in TypeScript",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#typescript-logging" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#typescript-tools-libraries">Tools and libraries</a><a href="#typescript-logging-sam">Using Powertools for AWS Lambda (TypeScript) and AWS SAM for structured logging</a><a href="#typescript-logging-cdk">Using Powertools for AWS Lambda (TypeScript) and the AWS CDK for structured logging</a><a href="#typescript-logging-console">Using the Lambda console</a><a href="#typescript-logging-cwconsole">Using the CloudWatch console</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="typescript-logging">AWS Lambda function logging in TypeScript</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>AWS Lambda automatically monitors Lambda functions and sends log entries to Amazon CloudWatch. Your Lambda function 
+    comes with a CloudWatch Logs log group and a log stream for each instance of your function. The Lambda runtime environment 
+    sends details about each invocation and other output from your function's 
+    code to the log stream. For more information about CloudWatch Logs, see <a href="./monitoring-cloudwatchlogs.html">Accessing Amazon CloudWatch logs for AWS Lambda</a>.</p><p>To output logs from your function code, you can use methods on the <a href="https://nodejs.org/docs/latest-v18.x/api/console.html" rel="noopener noreferrer" target="_blank"><span>console object</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For more detailed logging, you can use any logging library that writes to <code class="code">stdout</code> or <code class="code">stderr</code>.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#typescript-tools-libraries">Tools and libraries</a></li><li><a href="#typescript-logging-sam">Using Powertools for AWS Lambda (TypeScript) and AWS SAM for structured logging</a></li><li><a href="#typescript-logging-cdk">Using Powertools for AWS Lambda (TypeScript) and the AWS CDK for structured logging</a></li><li><a href="#typescript-logging-console">Using the Lambda console</a></li><li><a href="#typescript-logging-cwconsole">Using the CloudWatch console</a></li></ul></div>
+    <h2 id="typescript-tools-libraries">Tools and libraries</h2>
+    
+    <p><a href="https://docs.powertools.aws.dev/lambda/typescript/latest/" rel="noopener noreferrer" target="_blank"><span>Powertools for AWS Lambda (TypeScript)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is a developer toolkit to implement Serverless best 
+      practices and increase developer velocity. The <a href="https://docs.powertools.aws.dev/lambda/typescript/latest/core/logger/" rel="noopener noreferrer" target="_blank"><span>Logger utility</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      provides a Lambda optimized logger which includes additional information about function context across all your functions with output structured as JSON. Use this 
+      utility to do the following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>Capture key fields from the Lambda context, cold start and structures logging output as JSON</p></li><li class="listitem"><p>Log Lambda invocation events when instructed (disabled by default)</p></li><li class="listitem"><p>Print all the logs only for a percentage of invocations via log sampling (disabled by default)</p></li><li class="listitem"><p>Append additional keys to structured log at any point in time</p></li><li class="listitem"><p>Use a custom log formatter (Bring Your Own Formatter) to output logs in a structure compatible with your organization’s Logging RFC</p></li></ul></div>
+   
+    <h2 id="typescript-logging-sam">Using Powertools for AWS Lambda (TypeScript) and AWS SAM for structured logging</h2>
+    <p>Follow the steps below to download, build, and deploy a sample Hello World TypeScript application with integrated <a href="https://docs.powertools.aws.dev/lambda-typescript" rel="noopener noreferrer" target="_blank"><span>Powertools for AWS Lambda (TypeScript)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> modules using the AWS SAM. This application implements a 
+      basic API backend and uses Powertools for emitting logs, metrics, and traces. It consists of an Amazon API Gateway endpoint and a Lambda function. 
+      When you send a GET request to the API Gateway endpoint, the Lambda function invokes, sends logs and metrics using Embedded Metric Format to CloudWatch, and 
+      sends traces to AWS X-Ray. The function returns a <code class="code">hello world</code> message.</p>
+		<div class="itemizedlist">
+    <h6>Prerequisites</h6>
+    <p>To complete the steps in this section, you must have the following:</p>
+     
+     
+     
+<ul class="itemizedlist"><li class="listitem">
+      <p>Node.js 18.x or later</p>
+    </li><li class="listitem">
+      <p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI version 2</a></p>
+    </li><li class="listitem">
+      <p><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">AWS SAM CLI version 1.75 or later</a>. If you have an older version of the AWS SAM CLI, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/manage-sam-cli-versions.html#manage-sam-cli-versions-upgrade">Upgrading the AWS SAM CLI</a>.</p>
+    </li></ul></div>
+        <div class="procedure"><h6>Deploy a sample AWS SAM application</h6><ol><li>
+              <p>Initialize the application using the Hello World TypeScript template.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">sam init --app-template hello-world-powertools-typescript --name sam-app --package-type Zip --runtime nodejs18.x</code></pre>
+            </li><li>
+              <p>Build the app.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">cd sam-app &amp;&amp; sam build</code></pre>
+            </li><li>
+              <p>Deploy the app.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam deploy --guided</code></pre>
+            </li><li>
+              <p>Follow the on-screen prompts. To accept the default options provided in the interactive experience, press <code class="code">Enter</code>.</p>
+              <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For <b>HelloWorldFunction may not have authorization defined, Is this okay?</b>, make sure to enter <code class="code">y</code>.</p></div></div>
+            </li><li>
+              <p>Get the URL of the deployed application:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws cloudformation describe-stacks --stack-name sam-app --query 'Stacks[0].Outputs[?OutputKey==`HelloWorldApi`].OutputValue' --output text</code></pre>
+            </li><li>
+            <p>Invoke the API endpoint:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl <code class="replaceable">&lt;URL_FROM_PREVIOUS_STEP&gt;</code></code></pre>
+              <p>If successful, you'll see this response:</p>
+              <pre class="programlisting"><div class="code-btn-container"></div><code class=""><span>{</span>"message":"hello world"}</code></pre>
+          </li><li>
+            <p>To get the logs for the function, run <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-logs.html">sam logs</a>. For more information, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html">Working with logs</a> in the <em>AWS Serverless Application Model Developer Guide</em>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam logs --stack-name sam-app</code></pre> 
+            <p>The log output looks like this:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c 2022-08-31T09:33:10.552000 START RequestId: 70693159-7e94-4102-a2af-98a6343fb8fb Version: $LATEST
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c 2022-08-31T09:33:10.594000 2022-08-31T09:33:10.557Z 70693159-7e94-4102-a2af-98a6343fb8fb INFO <span>{</span>"_aws":<span>{</span>"Timestamp":1661938390556,"CloudWatchMetrics":[<span>{</span>"Namespace":"sam-app","Dimensions":[["service"]],"Metrics":[<span>{</span>"Name":"ColdStart","Unit":"Count"}]}]},"service":"helloWorld","ColdStart":1}
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c 2022-08-31T09:33:10.595000 2022-08-31T09:33:10.595Z 70693159-7e94-4102-a2af-98a6343fb8fb INFO <span>{</span>"level":"INFO","message":"This is an INFO log - sending HTTP 200 - hello world response","service":"helloWorld","timestamp":"2022-08-31T09:33:10.594Z"}
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c 2022-08-31T09:33:10.655000 2022-08-31T09:33:10.655Z 70693159-7e94-4102-a2af-98a6343fb8fb INFO <span>{</span>"_aws":<span>{</span>"Timestamp":1661938390655,"CloudWatchMetrics":[<span>{</span>"Namespace":"sam-app","Dimensions":[["service"]],"Metrics":[]}]},"service":"helloWorld"}
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c 2022-08-31T09:33:10.754000 END RequestId: 70693159-7e94-4102-a2af-98a6343fb8fb
+2023/01/31/[$LATEST]4d53e8d279824834a1ccd35511a4949c 2022-08-31T09:33:10.754000 REPORT RequestId: 70693159-7e94-4102-a2af-98a6343fb8fb Duration: 201.55 ms Billed Duration: 202 ms Memory Size: 128 MB Max Memory Used: 66 MB Init Duration: 252.42 ms
+XRAY TraceId: 1-630f2ad5-1de22b6d29a658a466e7ecf5 SegmentId: 567c116658fbf11a Sampled: true</code></pre>
+          </li><li>
+            <p>This is a public API endpoint that is accessible over the internet. We recommend that you delete the endpoint after testing.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam delete</code></pre> 
+          </li></ol></div>
+	 
+    <h3 id="typescript-log-retention">Managing log retention</h3>
+	<p>Log groups aren't deleted automatically when you delete a function. To avoid storing logs indefinitely, delete
+    the log group, or configure a retention period after which CloudWatch automatically deletes the logs. To set up log retention, add the following to your AWS SAM template:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+    # Omitting other properties
+  
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/$<span>{</span>HelloWorldFunction}"
+      RetentionInDays: 7</code></pre>
+	 
+ 
+            <h2 id="typescript-logging-cdk">Using Powertools for AWS Lambda (TypeScript) and the AWS CDK for structured logging</h2>
+            <p>Follow the steps below to download, build, and deploy a sample Hello World TypeScript application with integrated <a href="https://docs.powertools.aws.dev/lambda-typescript" rel="noopener noreferrer" target="_blank"><span>Powertools for AWS Lambda (TypeScript)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> modules using the AWS CDK. This application implements a 
+              basic API backend and uses Powertools for emitting logs, metrics, and traces. It consists of an Amazon API Gateway endpoint and a Lambda function. 
+              When you send a GET request to the API Gateway endpoint, the Lambda function invokes, sends logs and metrics using Embedded Metric Format to CloudWatch, and 
+              sends traces to AWS X-Ray. The function returns a <code class="code">hello world</code> message.</p>
+			     <div class="itemizedlist">
+      <h6>Prerequisites</h6>
+      <p>To complete the steps in this section, you must have the following:</p>
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+          <p>Node.js 18.x or later</p>
+      </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI version 2</a></p>
+      </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_prerequisites">AWS CDK version 2</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">AWS SAM CLI version 1.75 or later</a>. If you have an older version of the AWS SAM CLI, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/manage-sam-cli-versions.html#manage-sam-cli-versions-upgrade">Upgrading the AWS SAM CLI</a>.</p>
+      </li></ul></div>
+            <div class="procedure"><h6>Deploy a sample AWS CDK application</h6><ol><li>
+                <p>Create a project directory for your new application.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mkdir hello-world
+cd hello-world</code></pre>
+              </li><li>
+                <p>Initialize the app.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">cdk init app --language typescript</code></pre>
+              </li><li>
+                <p>Add the <a href="https://www.npmjs.com/package/@types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>@types/aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package as a development dependency.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">npm install -D @types/aws-lambda</code></pre>
+              </li><li>
+                <p>Install the Powertools <a href="https://docs.powertools.aws.dev/lambda-typescript/latest/core/logger/" rel="noopener noreferrer" target="_blank"><span>Logger utility</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">npm install @aws-lambda-powertools/logger</code></pre>
+              </li><li>
+                <p>Open the <b>lib</b> directory. You should see a file called <b>hello-world-stack.ts</b>. Create new two new files in this directory: <b>hello-world.function.ts</b> and <b>hello-world.ts</b>.</p>
+              </li><li>
+                <p>Open <b>hello-world.function.ts</b> and add the following code to the file. This is the code for the Lambda function.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import <span>{</span> APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
+import <span>{</span> Logger } from '@aws-lambda-powertools/logger';
+const logger = new Logger();
+  
+export const handler = async (event: APIGatewayEvent, context: Context): Promise&lt;APIGatewayProxyResult&gt; =&gt; <span>{</span>
+  logger.info('This is an INFO log - sending HTTP 200 - hello world response');
+  return <span>{</span>
+    statusCode: 200,
+    body: JSON.stringify(<span>{</span>
+      message: 'hello world',
+    }),
+  };
+};</code></pre>
+              </li><li>
+                <p>Open <b>hello-world.ts</b> and add the following code to the file. This contains the <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda_nodejs-readme.html">NodejsFunction construct</a>, which creates the Lambda function, configures environment variables for Powertools, and sets log retention to one week. It also includes the <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_apigateway.LambdaRestApi.html">LambdaRestApi construct</a>, which creates the REST API.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import <span>{</span> Construct } from 'constructs';
+import <span>{</span> NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import <span>{</span> LambdaRestApi } from 'aws-cdk-lib/aws-apigateway';
+import <span>{</span> RetentionDays } from 'aws-cdk-lib/aws-logs';
+import <span>{</span> CfnOutput } from 'aws-cdk-lib';
+  
+export class HelloWorld extends Construct <span>{</span>
+  constructor(scope: Construct, id: string) <span>{</span>
+    super(scope, id);
+    const helloFunction = new NodejsFunction(this, 'function', <span>{</span>
+      environment: <span>{</span>
+        Powertools_SERVICE_NAME: 'helloWorld',
+        LOG_LEVEL: 'INFO',
+      },
+      logRetention: RetentionDays.ONE_WEEK,
+    });
+    const api = new LambdaRestApi(this, 'apigw', <span>{</span>
+      handler: helloFunction,
+    });
+    new CfnOutput(this, 'apiUrl', <span>{</span>
+      exportName: 'apiUrl',
+      value: api.url,
+    });
+  }
+}</code></pre>
+            </li><li>
+            <p>Open <b>hello-world-stack.ts</b>. This is the code that defines your <a href="https://docs.aws.amazon.com/cdk/v2/guide/stacks.html">AWS CDK stack</a>. Replace the code with the following:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import <span>{</span> Stack, StackProps } from 'aws-cdk-lib';
+import <span>{</span> Construct } from 'constructs';
+import <span>{</span> HelloWorld } from './hello-world';
+    
+export class HelloWorldStack extends Stack <span>{</span>
+  constructor(scope: Construct, id: string, props?: StackProps) <span>{</span>
+    super(scope, id, props);
+    new HelloWorld(this, 'hello-world');
+  }
+}</code></pre>
+              </li><li>
+                <p>Go back to the project directory.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">cd hello-world</code></pre>
+              </li><li>
+                <p>Deploy your application.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">cdk deploy</code></pre>
+              </li><li>
+                <p>Get the URL of the deployed application:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws cloudformation describe-stacks --stack-name HelloWorldStack --query 'Stacks[0].Outputs[?ExportName==`apiUrl`].OutputValue' --output text</code></pre>
+              </li><li>
+                <p>Invoke the API endpoint:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl <code class="replaceable">&lt;URL_FROM_PREVIOUS_STEP&gt;</code></code></pre>
+                <p>If successful, you'll see this response:</p>
+                <pre class="programlisting"><div class="code-btn-container"></div><code class=""><span>{</span>"message":"hello world"}</code></pre>
+              </li><li>
+                <p>To get the logs for the function, run <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-logs.html">sam logs</a>. For more information, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html">Working with logs</a> in the <em>AWS Serverless Application Model Developer Guide</em>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam logs --stack-name HelloWorldStack</code></pre> 
+                <p>The log output looks like this:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">2023/01/31/[$LATEST]2ca67f180dcd4d3e88b5d68576740c8e 2022-08-31T14:48:37.047000 START RequestId: 19ad1007-ff67-40ce-9afe-0af0a9eb512c Version: $LATEST
+2023/01/31/[$LATEST]2ca67f180dcd4d3e88b5d68576740c8e 2022-08-31T14:48:37.050000 <span>{</span>
+"level": "INFO",
+"message": "This is an INFO log - sending HTTP 200 - hello world response",
+"service": "helloWorld",
+"timestamp": "2022-08-31T14:48:37.048Z",
+"xray_trace_id": "1-630f74c4-2b080cf77680a04f2362bcf2"
+}
+2023/01/31/[$LATEST]2ca67f180dcd4d3e88b5d68576740c8e 2022-08-31T14:48:37.082000 END RequestId: 19ad1007-ff67-40ce-9afe-0af0a9eb512c
+2023/01/31/[$LATEST]2ca67f180dcd4d3e88b5d68576740c8e 2022-08-31T14:48:37.082000 REPORT RequestId: 19ad1007-ff67-40ce-9afe-0af0a9eb512c Duration: 34.60 ms Billed Duration: 35 ms Memory Size: 128 MB Max Memory Used: 57 MB Init Duration: 173.48 ms</code></pre> 
+              </li><li>
+                <p>This is a public API endpoint that is accessible over the internet. We recommend that you delete the endpoint after testing.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">cdk destroy</code></pre> 
+              </li></ol></div>
+         
+    <h2 id="typescript-logging-console">Using the Lambda console</h2>
+       
+      
+  <p>You can use the Lambda console to view log output after you invoke a Lambda function.</p>
+  <p>If your code can be tested from the embedded <b>Code</b> editor, you will find logs in the <b>execution results</b>. When you use the console test feature to invoke a function, you'll find <b>Log output</b> in the <b>Details</b> section.</p>
+
+   
+    <h2 id="typescript-logging-cwconsole">Using the CloudWatch console</h2>
+     
+    
+    <p>You can use the Amazon CloudWatch console to view logs for all Lambda function invocations.</p>
+    <div class="procedure"><h6>To view logs on the CloudWatch console</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/cloudwatch/home?#logs:" rel="noopener noreferrer" target="_blank"><span>Log groups page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the CloudWatch console.</p>
+      </li><li>
+        <p>Choose the log group for your function (<b>/aws/lambda/<code class="replaceable">your-function-name</code></b>).</p>
+      </li><li>
+        <p>Choose a log stream.</p>
+      </li></ol></div>
+    <p>Each log stream corresponds to an <a href="./lambda-runtime-environment.html">instance of your function</a>. A log stream appears when you update your Lambda function, and when additional instances are created to handle multiple concurrent invocations. To find logs for a specific invocation, we recommend instrumenting your function with AWS X-Ray. X-Ray records details about the request and the log stream in the trace.</p>
+    <p>To use a sample application that correlates logs and traces with X-Ray, see <a href="./samples-errorprocessor.html">Error processor sample application for AWS Lambda</a>.</p>
+
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./typescript-context.html">Context</div><div id="next" class="next-link" accesskey="n" href="./typescript-testing.html">Testing</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-logging.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-logging.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

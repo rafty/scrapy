@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Using Lambda with API Gateway - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="services-apigateway-tutorial" /><meta name="default_state" content="services-apigateway-tutorial" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html" /><meta name="description" content="Learn how to create an API Gateway REST API with a backend Lambda function." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Using Lambda with API Gateway" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Using Lambda with API Gateway - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-apigateway-tutorial" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-apigateway-tutorial.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-apigateway-tutorial.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-apigateway-tutorial.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,lambda api gateway,create lambda function endpoint,Lambda function endpoint example,API Gateway,DynamoDB,tutorial" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using AWS Lambda with Amazon API Gateway",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Using Lambda with API Gateway",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-apigateway-tutorial" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#services-apigateway-tutorial-prereqs">Prerequisites</a><a href="#services-apigateway-tutorial-policy">Create a permissions policy</a><a href="#services-apigateway-tutorial-role">Create an execution role</a><a href="#services-apigateway-tutorial-function">Create the function</a><a href="#services-apigateway-tutorial-invoke-cli">Invoke the function using the AWS CLI</a><a href="#services-apigateway-tutorial-api">Create a REST API using API Gateway</a><a href="#services-apigateway-tutorial-resource">Create a resource on your REST API</a><a href="#services-apigateway-tutorial-method">Create an HTTP POST method</a><a href="#services-apigateway-tutorial-table">Create a DynamoDB table</a><a href="#services-apigateway-tutorial-test-setup">Test the integration of API Gateway, Lambda, and DynamoDB</a><a href="#services-apigateway-tutorial-deploy-api">Deploy the API</a><a href="#services-apigateway-tutorial-invoke-function">Use curl to invoke your function using HTTP requests</a><a href="#cleanup">Clean up your resources (optional)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="services-apigateway-tutorial">Tutorial: Using Lambda with API Gateway</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you create a REST API through which you invoke a Lambda function using an HTTP request. 
+  Your Lambda function will perform create, read, update, and delete (CRUD) operations on a DynamoDB table. 
+  This function is provided here for demonstration, but you will learn to configure an API Gateway REST API that can 
+  invoke any Lambda function.</p><div class="mediaobject">
+     
+      <img src="/images/lambda/latest/dg/images/APIG_tut_resources.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Services and resources used in this tutorial&#xA;    " style="max-width:100%" /> 
+     
+     
+  </div><p>Using API Gateway provides users with a secure HTTP endpoint to invoke your Lambda function and can help manage 
+  large volumes of calls to your function by throttling traffic and automatically validating and authorizing API 
+  calls. API Gateway also provides flexible security controls using AWS Identity and Access Management (IAM) and Amazon Cognito. This is useful for use cases where 
+  advance authorization is required for calls to your application.</p><p>To complete this tutorial, you will go through the following stages:</p><div class="orderedlist">
+     
+     
+     
+     
+  <ol><li>
+      <p>Create and configure a Lambda function in Python or Node.js to perform operations on a DynamoDB table.</p>
+    </li><li>
+      <p>Create a REST API in API Gateway to connect to your Lambda function.</p>
+    </li><li>
+      <p>Create a DynamoDB table and test it with your Lambda function in the console.</p>
+    </li><li>
+      <p>Deploy your API and test the full setup using curl in a terminal.</p>
+    </li></ol></div><p>By completing these stages, you will learn how to use API Gateway to create an HTTP endpoint that can securely invoke 
+  a Lambda function at any scale. You will also learn how to deploy your API, and how to test it in the console and by sending 
+  an HTTP request using a terminal.</p><p>A sample AWS Serverless Application Model (AWS SAM) template for the Lambda application you create in this tutorial is also available. See 
+    <a href="./services-apigateway-template.html">AWS SAM template for an API Gateway application</a>.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#services-apigateway-tutorial-prereqs">Prerequisites</a></li><li><a href="#services-apigateway-tutorial-policy">Create a permissions policy</a></li><li><a href="#services-apigateway-tutorial-role">Create an execution role</a></li><li><a href="#services-apigateway-tutorial-function">Create the function</a></li><li><a href="#services-apigateway-tutorial-invoke-cli">Invoke the function using the AWS CLI</a></li><li><a href="#services-apigateway-tutorial-api">Create a REST API using API Gateway</a></li><li><a href="#services-apigateway-tutorial-resource">Create a resource on your REST API</a></li><li><a href="#services-apigateway-tutorial-method">Create an HTTP POST method</a></li><li><a href="#services-apigateway-tutorial-table">Create a DynamoDB table</a></li><li><a href="#services-apigateway-tutorial-test-setup">Test the integration of API Gateway, Lambda, and DynamoDB</a></li><li><a href="#services-apigateway-tutorial-deploy-api">Deploy the API</a></li><li><a href="#services-apigateway-tutorial-invoke-function">Use curl to invoke your function using HTTP requests</a></li><li><a href="#cleanup">Clean up your resources (optional)</a></li></ul></div>
+    <h2 id="services-apigateway-tutorial-prereqs">Prerequisites</h2>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Sign up for an AWS account" id="sign-up-for-aws" expanded="false"><p>If you do not have an AWS account, complete the following steps to create one.</p><div class="procedure"><h6>To sign up for an AWS account</h6><ol><li><p>Open <a href="https://portal.aws.amazon.com/billing/signup" rel="noopener noreferrer" target="_blank"><span>https://portal.aws.amazon.com/billing/signup</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li><p>Follow the online instructions.</p>
+  <p>Part of the sign-up procedure involves receiving a phone call and entering 
+  a verification code on the phone keypad.</p>
+  <p>When you sign up for an AWS account, an <em>AWS account root user</em> is created. The root user has access to all AWS services
+  and resources in the account. As a security best practice, <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">assign administrative access to an administrative user</a>, and use only the root user to perform <a href="https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html">tasks that require root user access</a>.</p>
+  </li></ol></div><p>AWS sends you a confirmation email after the sign-up process is
+complete. At any time, you can view your current account activity and manage your account by
+going to <a href="https://aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>https://aws.amazon.com/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and choosing <b>My
+  Account</b>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="Create an administrative user" id="create-an-admin" expanded="false"><p>After you sign up for an AWS account, create an administrative user so that you 
+don't use the root user for everyday tasks.</p><div class="procedure"><h6>Secure your AWS account root user</h6><ol><li>
+ 
+
+<p> Sign in to the <a href="https://console.aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>AWS Management Console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> as the account owner by choosing <b>Root user</b> and entering your AWS account email address. On the next page, enter your password.</p>
+ 
+ <p>For help signing in by using root user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial">Signing in as the root user</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li><li>
+ <p>Turn on multi-factor authentication (MFA) for your root user.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root">Enable a virtual MFA device for your AWS account root user (console)</a> in the <em>IAM User Guide</em>.</p> 
+</li></ol></div><div class="procedure"><h6>Create an administrative user</h6><ul><li>
+ <p>For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM Identity Center.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">Getting started</a> in the <em>AWS IAM Identity Center User Guide</em>.</p>
+</li></ul></div><div class="procedure"><h6>Sign in as the administrative user</h6><ul><li>
+
+<p>To sign in with your IAM Identity Center user, use the sign-in URL that was sent to your email address when you created the IAM Identity Center user.</p>
+
+<p>For help signing in using an IAM Identity Center user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html">Signing in to the AWS access portal</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Install the AWS Command Line Interface" id="install_aws_cli" expanded="false"><p>If you have not yet installed the AWS Command Line Interface, follow the steps at  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Installing or updating the latest version of the AWS CLI</a> 
+          to install it.</p><p>The tutorial requires a command line terminal or shell to run commands. In Linux and macOS, use your preferred shell and package manager.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+            To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+          </p></div></div></awsui-expandable-section></div>
+   
+    <h2 id="services-apigateway-tutorial-policy">Create a permissions policy</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 1 create a permissions policy&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Before you can create an <a href="./lambda-intro-execution-role.html">execution role</a> for your Lambda function, you first 
+      need to create a permissions policy to give your function permission to access the required AWS resources. For this tutorial, 
+      the policy allows Lambda to perform CRUD operations on a DynamoDB table and write to Amazon CloudWatch Logs.</p>
+    <div class="procedure"><h6>To create the policy</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/policies" rel="noopener noreferrer" target="_blank"><span>Policies page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+      </li><li>
+        <p>Choose <b>Create Policy</b>.</p>
+      </li><li>
+        <p>Choose the <b>JSON</b> tab, and then paste the following custom policy into the JSON
+          editor.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Sid": "Stmt1428341300017",
+      "Action": [
+        "dynamodb:DeleteItem",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    <span>{</span>
+      "Sid": "",
+      "Resource": "*",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Effect": "Allow"
+    }
+  ]
+}</code></pre>
+      </li><li>
+        <p>Choose <b>Next: Tags</b>.</p>
+      </li><li>
+        <p>Choose <b>Next: Review</b>.</p>
+      </li><li>
+        <p>Under <b>Review policy</b>, for the policy <b>Name</b>, enter
+            <code class="userinput">lambda-apigateway-policy</code>.</p>
+      </li><li>
+        <p>Choose <b>Create policy</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="services-apigateway-tutorial-role">Create an execution role</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 2 create an execution role&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>An <a href="./lambda-intro-execution-role.html">execution role</a> is an AWS Identity and Access Management (IAM) role that grants a Lambda function permission to access AWS services and resources. To enable your function to perform operations on a DynamoDB table, you attach the permissions policy you created in the previous step.</p>
+    <div class="procedure"><h6>To create an execution role and attach your custom permissions policy</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+      </li><li>
+        <p>Choose <b>Create role</b>.</p>
+      </li><li>
+        <p>For the type of trusted entity, choose <b>AWS service</b>, then for the use case, choose <b>Lambda</b>.</p>
+      </li><li>
+        <p>Choose <b>Next</b>.</p>
+      </li><li>
+        <p>In the policy search box, enter <code class="userinput">lambda-apigateway-policy</code>.</p>
+      </li><li>
+        <p>In the search results, select the policy that you created (<code class="code">lambda-apigateway-policy</code>), and
+          then choose <b>Next</b>.</p>
+      </li><li>
+        <p>Under <b>Role details</b>, for the <b>Role name</b>, enter
+            <code class="userinput">lambda-apigateway-role</code>, then choose <b>Create role</b>.</p>
+      </li></ol></div>
+  <p>Later in the tutorial, you need the Amazon Resource Name (ARN) of the role you just created. On the <b>Roles</b> 
+    page of the IAM console, choose the name of your role (<code class="code">lambda-apigateway-role</code>) and copy the <b>Role ARN</b> displayed 
+    on the <b>Summary</b> page.</p>
+   
+    <h2 id="services-apigateway-tutorial-function">Create the function</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_3.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 3 create the function&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+        <p>The following code example receives an event input from API Gateway specifying an operation to perform on the DynamoDB table 
+      you will create and some payload data. If the parameters the function receives are valid, it performs the requested operation on the table.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Node.js</dt><dd tab-id="node.js">
+          <div class="example"><h6>Example index.mjs</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nodejs ">console.log('Loading function');
+
+import <span>{</span> DynamoDBDocumentClient, PutCommand, GetCommand, 
+         UpdateCommand, DeleteCommand} from "@aws-sdk/lib-dynamodb";
+import <span>{</span> DynamoDBClient } from "@aws-sdk/client-dynamodb";
+
+const ddbClient = new DynamoDBClient(<span>{</span> region: "us-west-2" });
+const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
+
+// Define the name of the DDB table to perform the CRUD operations on
+const tablename = "lambda-apigateway";
+
+/**
+ * Provide an event that contains the following keys:
+ *
+ *   - operation: one of 'create,' 'read,' 'update,' 'delete,' or 'echo'
+ *   - payload: a JSON object containing the parameters for the table item
+ *              to perform the operation on
+ */
+export const handler = async (event, context) =&gt; <span>{</span>
+   
+     const operation = event.operation;
+   
+     if (operation == 'echo')<span>{</span>
+          return(event.payload);
+     }
+     
+    else <span>{</span> 
+        event.payload.TableName = tablename;
+        
+        switch (operation) <span>{</span>
+          case 'create':
+               await ddbDocClient.send(new PutCommand(event.payload));
+               break;
+          case 'read':
+               var table_item = await ddbDocClient.send(new GetCommand(event.payload));
+               console.log(table_item);
+               break;
+          case 'update':
+               await ddbDocClient.send(new UpdateCommand(event.payload));
+               break;
+          case 'delete':
+               await ddbDocClient.send(new DeleteCommand(event.payload));
+               break;
+          default:
+            return ('Unknown operation: $<span>{</span>operation}');
+          }
+    }
+};</code></pre></div></div>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In this example, the name of the DynamoDB table is defined as a variable in your function code. In a real application, 
+              best practice is to pass this parameter as an environment variable and to avoid hardcoding the table name. For more information see 
+              <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html">Using AWS Lambda environment variables</a>.</p></div></div>
+          <div class="procedure"><h6>To create the function</h6><ol><li>
+              <p>Save the code example as a file named <code>index.mjs</code> and, if necessary, edit the AWS region specified in the code. 
+                The region specified in the code must be the same as the region in which you create your DynamoDB table later in the tutorial.</p>
+            </li><li>
+              <p>Create a deployment package using the following <code class="code">zip</code> command.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip function.zip index.mjs</code></code></pre>
+            </li><li>
+              <p>Create a Lambda function using the <code class="code">create-function</code> AWS CLI command. For the
+                  <code class="code">role</code> parameter, enter the execution role's Amazon Resource Name (ARN) that you copied
+                earlier.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name LambdaFunctionOverHttps \
+--zip-file fileb://function.zip --handler index.handler --runtime nodejs18.x \
+--role <code class="replaceable">arn:aws:iam::123456789012:role/service-role/lambda-apigateway-role</code></code></code></pre>
+            </li></ol></div>
+        </dd>
+      <dt>Python 3</dt><dd tab-id="python-3">
+          <div class="example"><h6>Example LambdaFunctionOverHttps.py</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import boto3
+import json
+
+# define the DynamoDB table that Lambda will connect to
+tableName = "lambda-apigateway"
+
+# create the DynamoDB resource
+dynamo = boto3.resource('dynamodb').Table(tableName)
+
+print('Loading function')
+
+def handler(event, context):
+    '''Provide an event that contains the following keys:
+
+      - operation: one of the operations in the operations dict below
+      - payload: a JSON object containing parameters to pass to the 
+                 operation being performed
+    '''
+    
+    # define the functions used to perform the CRUD operations
+    def ddb_create(x):
+        dynamo.put_item(**x)
+
+    def ddb_read(x):
+        dynamo.get_item(**x)
+
+    def ddb_update(x):
+        dynamo.update_item(**x)
+        
+    def ddb_delete(x):
+        dynamo.delete_item(**x)
+
+    def echo(x):
+        return x
+
+    operation = event['operation']
+
+    operations = <span>{</span>
+        'create': ddb_create,
+        'read': ddb_read,
+        'update': ddb_update,
+        'delete': ddb_delete,
+        'echo': echo,
+    }
+
+    if operation in operations:
+        return operations[operation](event.get('payload'))
+    else:
+        raise ValueError('Unrecognized operation "<span>{</span>}"'.format(operation))</code></pre></div></div>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In this example, the name of the DynamoDB table is defined as a variable in your function code. In a real application, 
+              best practice is to pass this parameter as an environment variable and to avoid hardcoding the table name. For more information see 
+              <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html">Using AWS Lambda environment variables</a>.</p></div></div>
+          <div class="procedure"><h6>To create the function</h6><ol><li>
+              <p>Save the code example as a file named <code>LambdaFunctionOverHttps.py</code>.</p>
+            </li><li>
+              <p>Create a deployment package using the following <code class="code">zip</code> command.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip function.zip LambdaFunctionOverHttps.py</code></code></pre>
+            </li><li>
+              <p>Create a Lambda function using the <code class="code">create-function</code> AWS CLI command. For the
+                  <code class="code">role</code> parameter, enter the execution role's Amazon Resource Name (ARN) that you copied
+                earlier.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name LambdaFunctionOverHttps \
+--zip-file fileb://function.zip --handler LambdaFunctionOverHttps.handler --runtime python3.9 \
+--role <code class="replaceable">arn:aws:iam::123456789012:role/service-role/lambda-apigateway-role</code></code></code></pre>
+            </li></ol></div>
+        </dd>
+    </dl></awsdocs-tabs>
+   
+    <h2 id="services-apigateway-tutorial-invoke-cli">Invoke the function using the AWS CLI</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_4.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 4 invoke the function using the AWS CLI&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Before integrating your function with API Gateway, confirm that you have deployed the function successfully. Create 
+      a test event containing the parameters your API Gateway API will send to Lambda and use the AWS CLI <code class="code">invoke</code> command 
+      to run your function.</p>
+    <div class="procedure"><h6>To invoke the Lambda function with the AWS CLI</h6><ol><li>
+        <p>Save the following JSON as a file named <code>input.txt</code>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "operation": "echo",
+    "payload": <span>{</span>
+        "somekey1": "somevalue1",
+        "somekey2": "somevalue2"
+    }
+}</code></pre>
+      </li><li>
+        <p>Run the following <code class="code">invoke</code> AWS CLI command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda invoke --function-name LambdaFunctionOverHttps \
+--payload file://input.txt outputfile.txt --cli-binary-format raw-in-base64-out</code></code></pre>
+        <p>The <b>cli-binary-format</b> option is required if you're using AWS CLI version 2. To make this the default setting, run <code class="code">aws configure set cli-binary-format raw-in-base64-out</code>. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html#cli-configure-options-list">AWS CLI supported global command line options</a>.</p>
+        <p>You should see the following response:</p>
+        <pre class="programlisting"><div class="code-btn-container"></div><code class=""><span>{</span>
+"StatusCode": 200,
+"ExecutedVersion": "LATEST"
+}
+</code></pre>
+      </li><li>
+        <p>Confirm that your function performed the <code class="code">echo</code> operation you specified in the JSON test event. 
+          Inspect the <code>outputfile.txt</code> file and verify it contains the following:</p>
+        <pre class="programlisting"><div class="code-btn-container"></div><code class=""><span>{</span>"somekey1": "somevalue1", "somekey2": "somevalue2"}</code></pre>
+      </li></ol></div>
+   
+    <h2 id="services-apigateway-tutorial-api">Create a REST API using API Gateway</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_5.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 5 create the API&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>In this step, you create the API Gateway REST API you will use to invoke your Lambda function.</p>
+      <div class="procedure"><h6>To create the API</h6><ol><li>
+          <p>Open the <a href="https://console.aws.amazon.com/apigateway" rel="noopener noreferrer" target="_blank"><span>API Gateway console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        </li><li>
+          <p>Choose <b>Create API</b>.</p>
+        </li><li>
+          <p>In the <b>REST API</b> box, choose <b>Build</b>.</p>
+        </li><li>
+          <p>Under <b>API details</b>, leave <b>New API</b> selected, and for <b>API Name</b>, enter 
+            <code class="userinput">DynamoDBOperations</code>.</p>
+        </li><li>
+          <p>Choose <b>Create API</b>.</p>
+        </li></ol></div>
+   
+    <h2 id="services-apigateway-tutorial-resource">Create a resource on your REST API</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_6.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 6 create the API resource&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>To add an HTTP method to your API, you first need to create a resource for that method to operate on. Here you create 
+    the resource to manage your DynamoDB table.</p>
+      <div class="procedure"><h6>To create the resource</h6><ol><li>
+          <p>In the <a href="https://console.aws.amazon.com/apigateway" rel="noopener noreferrer" target="_blank"><span>API Gateway console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, on the
+              <b>Resources</b> page for your API, choose <b>Create Resource</b>.</p>
+        </li><li>
+         <p>In <b>Resource details</b>, for <b>Resource name</b> enter <code class="userinput">DynamoDBManager</code>.</p>
+        </li><li>
+          <p>Choose <b>Create Resource</b>.</p>
+        </li></ol></div>
+   
+    <h2 id="services-apigateway-tutorial-method">Create an HTTP POST method</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_7.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 7 create the HTTP POST method&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>In this step, you create a method (<code class="code">POST</code>) for your <code class="code">DynamoDBManager</code> resource. You link 
+    this <code class="code">POST</code> method to your Lambda function so that when the method receives an HTTP request, API Gateway invokes 
+    your Lambda function.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+      For the purpose of this tutorial, one HTTP method (<code class="code">POST</code>) is used to invoke a single Lambda function which 
+        carries out all of the operations on your DynamoDB table. In a real application, best practice is to use a different Lambda 
+        function and HTTP method for each operation. For more information, see
+        <a href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/monolith" rel="noopener noreferrer" target="_blank"><span>The Lambda monolith</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+        in Serverless Land.
+    </p></div></div>
+      <div class="procedure"><h6>To create the POST method</h6><ol><li>
+          <p>On the <b>Resources</b> page for your API, ensure that the <code class="code">/DynamoDBManager</code> resource is highlighted. 
+          Then, in the <b>Methods</b> pane, choose <b>Create Method</b>.</p>
+        </li><li>
+          <p>For <b>Method type</b>, choose <b>POST</b>.</p>
+        </li><li>
+          <p>For <b>Integration type</b>, leave <b>Lambda function</b> selected.</p>
+        </li><li>
+          <p>For <b>Lambda function</b>, choose the Amazon Resource Name (ARN) for your function (<code class="code">LambdaFunctionOverHttps</code>).</p>
+        </li><li>
+          <p>Choose <b>Create method</b>.</p>
+        </li></ol></div>
+   
+    <h2 id="services-apigateway-tutorial-table">Create a DynamoDB table</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_8.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 8 create a DynamoDB table&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Create an empty DynamoDB table that your Lambda function will perform CRUD operations on.</p>
+    <div class="procedure"><h6>To create the DynamoDB table</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/dynamodbv2#tables" rel="noopener noreferrer" target="_blank"><span>Tables page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the DynamoDB console.</p>
+      </li><li>
+        <p>Choose <b>Create table</b>.</p>
+      </li><li>
+        <p>Under <b>Table details</b>, do the following:</p>
+        <div class="orderedlist">
+           
+           
+        <ol><li>
+            <p>For <b>Table name</b>, enter <code class="userinput">lambda-apigateway</code>.</p>
+          </li><li>
+            <p>For <b>Partition key</b>, enter <code class="userinput">id</code>, and keep the data type set as
+                <b>String</b>.</p>
+          </li></ol></div>
+      </li><li>
+        <p>Under <b>Table settings</b>, keep the <b>Default settings</b>.</p>
+      </li><li>
+        <p>Choose <b>Create table</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="services-apigateway-tutorial-test-setup">Test the integration of API Gateway, Lambda, and DynamoDB</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_9.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 9 test the integration of API Gateway, Lambda, and DynamoDB&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>You're now ready to test the integration of your API Gateway API method with your Lambda function and your DynamoDB table. Using the 
+      API Gateway console, you send requests directly to your <code class="code">POST</code> method using the console's test function. 
+      In this step, you first use a <code class="code">create</code> operation to add a new item to your DynamoDB table, then you 
+      use an <code class="code">update</code> operation to modify the item.</p>
+    <div class="procedure"><h6>Test 1: To create a new item in your DynamoDB table</h6><ol><li>
+        <p>In the <a href="https://console.aws.amazon.com/apigateway" rel="noopener noreferrer" target="_blank"><span>API Gateway console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, choose your API
+            (<code class="code">DynamoDBOperations</code>) and open the <b>Resources</b> page.</p>
+      </li><li>
+        <p>Choose the <b>Test</b> tab.</p>      
+      </li><li>
+        <p>Under <b>Test method</b>, leave <b>Query strings</b> and <b>Headers</b> empty. 
+        For <b>Request body</b>, paste the following JSON:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "operation": "create",
+  "payload": <span>{</span>
+    "Item": <span>{</span>
+      "id": "1234ABCD",
+      "number": 5
+    }
+  }
+}</code></pre>
+      </li><li>
+        <p>Choose <b>Test</b>.</p>
+        <p>The results that are displayed when the test completes should show status <code class="code">200</code>. This status code indicates that the 
+        <code class="code">create</code> operation was successful.</p>
+        <p> To confirm, check that your DynamoDB table now contains the new item.</p>
+      </li><li>
+        <p>Open the <a href="https://console.aws.amazon.com/dynamodbv2#tables" rel="noopener noreferrer" target="_blank"><span>Tables page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the DynamoDB console and 
+        choose the <code class="code">lambda-apigateway</code> table.</p>
+      </li><li>
+        <p>Chose <b>Explore table items</b>. In the <b>Items returned</b> pane, you 
+        should see one item with the <b>id</b> <code class="code">1234ABCD</code> and the <b>number</b> <code class="code">5</code>.</p>
+      </li></ol></div>
+    <div class="procedure"><h6>Test 2: To update the item in your DynamoDB table</h6><ol><li>
+        <p>In the <a href="https://console.aws.amazon.com/apigateway" rel="noopener noreferrer" target="_blank"><span>API Gateway console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, return to your POST method's
+            <b>Test</b> tab.</p>
+      </li><li>
+        <p>Under <b>Test method</b>, leave <b>Query strings</b> and <b>Headers</b>empty. 
+          For <b>Request body</b>, paste the following JSON:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "operation": "update",
+    "payload": <span>{</span>
+        "Key": <span>{</span>
+            "id": "1234ABCD"
+        },
+        "AttributeUpdates": <span>{</span>
+            "number": <span>{</span>
+                "Value": 10
+            }
+        }
+    }
+}</code></pre>
+      </li><li>
+        <p>Choose <b>Test</b>.</p>
+        <p>The results which are displayed when the test completes should show status <code class="code">200</code>. This status code indicates that 
+        the <code class="code">update</code> operation was successful.</p>
+        <p> To confirm, check that the item in yout DynamoDB table has been modified.</p>
+      </li><li>
+          <p>Open the <a href="https://console.aws.amazon.com/dynamodbv2#tables" rel="noopener noreferrer" target="_blank"><span>Tables page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the DynamoDB console and 
+            choose the <code class="code">lambda-apigateway</code> table.</p>
+      </li><li>
+      <p>Chose <b>Explore table items</b>. In the <b>Items returned</b> pane, you 
+        should see one item with the <b>id</b> <code class="code">1234ABCD</code> and the <b>number</b> <code class="code">10</code>.</p>
+      </li></ol></div>
+   
+    <h2 id="services-apigateway-tutorial-deploy-api">Deploy the API</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_10.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 10 deploy the API&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>For a client to call the API, you must create a deployment and an associated stage. A stage represents a snapshot 
+    of your API including its methods and integrations.</p>
+    <div class="procedure"><h6>To deploy the API</h6><ol><li>
+        <p>Open the <b>APIs</b> page of the <a href="https://console.aws.amazon.com/apigateway" rel="noopener noreferrer" target="_blank"><span>API Gateway console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and choose the 
+        <code class="code">DynamoDBOperations</code> API.</p>
+      </li><li>
+        <p>On the <b>Resources</b> page for your API choose <b>Deploy API</b>.</p>
+      </li><li>
+        <p>For <b>Stage</b>, choose <b>*New stage*</b>, then for <b>Stage name</b>, 
+        enter <code class="userinput">test</code>.</p>
+      </li><li>
+        <p>Choose <b>Deploy</b>.</p>
+      </li><li>
+        <p>In the <b>Stage details</b> pane, copy the <b>Invoke URL</b>. You will use this in the 
+          next step to invoke your function using an HTTP request.</p>
+      </li></ol></div>
+   
+    <h2 id="services-apigateway-tutorial-invoke-function">Use curl to invoke your function using HTTP requests</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/APIG_tut_steps_11.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 11 invoke the function with an HTTP request&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>You can now invoke your Lambda function by issuing an HTTP request to your API. In this step, you will create a 
+    new item in your DynamoDB table and then delete it.</p>
+    <div class="procedure"><h6>To invoke the Lambda function using curl</h6><ol><li>
+        <p>Run the following <code class="code">curl</code> command using the invoke URL you copied in the previous step. When you use curl with the <code class="code">-d</code> (data) 
+        option, it automatically uses the HTTP POST method.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">curl https://<code class="replaceable">l8togsqxd8.execute-api.us-west-2.amazonaws.com/test</code>/DynamoDBManager \
+-d '<span>{</span>"operation": "create", "payload": <span>{</span>"Item": <span>{</span>"id": "5678EFGH", "number": 15}}}'</code></code></pre>
+      </li><li>
+        <p>To verify that the create operation was successful, do the following:</p>
+        <div class="orderedlist">
+           
+           
+        <ol><li>
+            <p>Open the <a href="https://console.aws.amazon.com/dynamodbv2#tables" rel="noopener noreferrer" target="_blank"><span>Tables page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the DynamoDB console and choose 
+              the <code class="code">lambda-apigateway</code> table.</p>
+          </li><li>
+            <p>Choose <b>Explore table items</b>. In the <b>Items returned</b> pane, you 
+              should see an item with the <b>id</b> <code class="code">5678EFGH</code> and the <b>number</b> <code class="code">15</code>.</p>
+          </li></ol></div>
+      </li><li>
+        <p>Run the following <code class="code">curl</code> command to delete the item you just created. Use your own invoke URL.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">curl https://<code class="replaceable">l8togsqxd8.execute-api.us-west-2.amazonaws.com/test</code>/DynamoDBManager \
+-d '<span>{</span>"operation": "delete", "payload": <span>{</span>"Key": <span>{</span>"id": "5678EFGH"}}}'</code></code></pre>
+      </li><li><p>Confirm that the delete operation was successful. In the <b>Items returned</b> pane of the DynamoDB console 
+      <b>Explore items</b> page, verify that the item with <b>id</b> <code class="code">5678EFGH</code> is no longer in the table.</p>
+      </li></ol></div>
+   
+    <h2 id="cleanup">Clean up your resources (optional)</h2>
+    
+    <p>You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS resources that you're no longer using, you prevent unnecessary charges to your AWS account.</p>
+    
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+  </li><li>
+    <p>Select the execution role that you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the role in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the API</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/apigateway/main/apis" rel="noopener noreferrer" target="_blank"><span>APIs page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the API Gateway console.</p>
+  </li><li>
+    <p>Select the API you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the DynamoDB table</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/dynamodb/home#tables:" rel="noopener noreferrer" target="_blank"><span>Tables page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the DynamoDB console.</p>
+  </li><li>
+    <p>Select the table you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter <code class="userinput">delete</code> in the text box.</p>
+  </li><li>
+    <p>Choose <b>Delete table</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./services-apigateway.html">API Gateway</div><div id="next" class="next-link" accesskey="n" href="./services-apigateway-template.html">Sample template</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-apigateway-tutorial.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-apigateway-tutorial.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

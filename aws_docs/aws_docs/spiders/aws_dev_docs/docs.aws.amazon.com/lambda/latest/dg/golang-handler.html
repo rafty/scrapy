@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS Lambda function handler in Go - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="golang-handler" /><meta name="default_state" content="golang-handler" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html" /><meta name="description" content="The Lambda function handler is the method in your function code that processes events. A Lambda function written in SDK for Go is authored as a Go executable." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/golang-handler.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/golang-handler.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/golang-handler.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/golang-handler.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/golang-handler.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/golang-handler.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/golang-handler.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/golang-handler.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/golang-handler.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/golang-handler.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/golang-handler.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/golang-handler.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/golang-handler.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/golang-handler.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/golang-handler.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/golang-handler.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/golang-handler.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/golang-handler.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AWS Lambda function handler in Go" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS Lambda function handler in Go - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#golang-handler" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-handler.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-handler.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-handler.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with Go",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "AWS Lambda function handler in Go",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#golang-handler" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#golang-handler-naming">Naming</a><a href="#golang-handler-structs">Lambda function handler using structured types</a><a href="#golang-handler-state">Using global state</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="golang-handler">AWS Lambda function handler in Go</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The Lambda function <em>handler</em> is the method in your function code that processes events. When your function is
+  invoked, Lambda runs the handler method. Your function runs until the handler returns a response, exits, or times out.</p><p>A Lambda function written in <a href="https://golang.org/" rel="noopener noreferrer" target="_blank"><span>Go</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is authored as a Go executable. In your
+    Lambda function code, you need to include the <a href="https://github.com/aws/aws-lambda-go/tree/master/lambda" rel="noopener noreferrer" target="_blank"><span>github.com/aws/aws-lambda-go/lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package, which implements the Lambda programming model for Go. In
+    addition, you need to implement handler function code and a <code class="code">main()</code> function. </p><div class="example"><h6>Example  Go Lambda function</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="go ">package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/aws/aws-lambda-go/lambda"
+)
+
+type MyEvent struct <span>{</span>
+	Name string `json:"name"`
+}
+
+func HandleRequest(ctx context.Context, event *MyEvent) (*string, error) <span>{</span>
+	if event == nil <span>{</span>
+		return nil, fmt.Errorf("received nil event")
+	}
+	message := fmt.Sprintf("Hello %s!", event.Name)
+	return &amp;message, nil
+}
+
+func main() <span>{</span>
+	lambda.Start(HandleRequest)
+}</code></pre></div></div><p>Here is a sample input for this function:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+  "name": "Jane"
+}</code></pre><p>Note the following:</p><div class="itemizedlist">
+     
+
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><b>package main</b>: In Go, the package containing <code class="code">func main()</code> must
+        always be named <code class="code">main</code>.</p>
+    </li><li class="listitem">
+      <p><b>import</b>: Use this to include the libraries your Lambda function requires. In
+        this instance, it includes:</p>
+
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>context: </b><a href="./golang-context.html">AWS Lambda context object in Go</a>.</p>
+        </li><li class="listitem">
+          <p><b>fmt:</b> The Go <a href="https://golang.org/pkg/fmt/" rel="noopener noreferrer" target="_blank"><span>Formatting</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+            object used to format the return value of your function.</p>
+        </li><li class="listitem">
+          <p><b>github.com/aws/aws-lambda-go/lambda:</b> As mentioned previously,
+            implements the Lambda programming model for Go.</p>
+        </li></ul></div>
+    </li><li class="listitem">
+      <p><b>func HandleRequest(ctx context.Context, event *MyEvent) (*string, error)</b>: This is the signature of your Lambda handler. It's the entry point for your Lambda function and contains the logic that is executed when your function is invoked. In addition, the parameters
+        included denote the following:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>ctx context.Context</b>: Provides runtime information for your Lambda
+            function invocation. <code class="code">ctx</code> is the variable you declare to leverage the information available via
+              <a href="./golang-context.html">AWS Lambda context object in Go</a>.</p>
+        </li><li class="listitem">
+          <p><b>event *MyEvent</b>: This is a parameter named <code class="code">event</code> that points to <code class="code">MyEvent</code>. It represents the input to the Lambda function.</p>
+        </li><li class="listitem">
+          <p><b>*string, error</b>: The handler returns two values. The first is a pointer to a string which contains the result of the Lambda function. The second is an error type, which is <code class="code">nil</code> if there's no error and contains standard <a href="https://golang.org/pkg/builtin/#error" rel="noopener noreferrer" target="_blank"><span>error</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> information if something goes wrong. For more information on
+            custom error handling, see <a href="./golang-exceptions.html">AWS Lambda function errors in Go</a>.</p>
+        </li><li class="listitem">
+          <p><b>return &amp;message, nil</b>: Returns two values. The first is a pointer to a string message, which is a greeting constructed using the <code class="code">Name</code> field from the input event. The second value, <code class="code">nil</code>, indicates that the function didn't encounter any errors.</p>
+        </li></ul></div>
+    </li><li class="listitem">
+      <p><b>func main()</b>: The entry point that runs your Lambda function code. This
+        is required.</p>
+      <p>By adding <code class="code">lambda.Start(HandleRequest)</code> between <code class="code">func main()<span>{</span>}</code> code brackets, your
+        Lambda function will be executed. Per Go language standards, the opening bracket, <code class="code"><span>{</span></code> must be placed
+        directly at the end of the <code class="code">main</code> function signature.</p>
+    </li></ul></div>
+    <h2 id="golang-handler-naming">Naming</h2>
+    <div class="variablelist">
+       
+       
+  <dl>
+          <dt><b><span class="term">provided.al2 runtime</span></b></dt>
+          <dd>
+              <p>For Go functions that use the <code class="code">provided.al2</code> runtime in a <a href="./golang-package.html">.zip deployment package</a>, the executable file that contains your function code must be named <code class="code">bootstrap</code>. For Go functions that use the <code class="code">provided.al2</code> runtime in a <a href="./go-image.html#go-image-al2">container image</a>, you can use any name for the executable file.</p>
+              <p>You can use any name for the handler. To reference the handler value in your code, you can use the <code class="code">_HANDLER</code> environment variable.</p>
+          </dd>
+      
+          <dt><b><span class="term">go1.x runtime</span></b></dt>
+          <dd>
+              <p>For Go functions that use the <code class="code">go1.x</code> runtime, the executable file and the handler can share any name. For example, 
+        if you set the value of the handler to <code class="code">Handler</code>, Lambda will call the <code class="code">main()</code> function in the 
+        <code class="code">Handler</code> executable file.</p>
+          </dd>
+      </dl></div>
+    <p>To change the function handler name in the Lambda console, on the <b>Runtime settings</b> pane, choose <b>Edit</b>.</p>
+   
+    <h2 id="golang-handler-structs">Lambda function handler using structured types</h2>
+    <p>In the example above, the input type was a simple string. But you can also pass in structured events to your
+      function handler:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="go ">package main
+
+import (
+	"fmt"
+	"github.com/aws/aws-lambda-go/lambda"
+)
+
+type MyEvent struct <span>{</span>
+	Name string `json:"What is your name?"`
+	Age  int    `json:"How old are you?"`
+}
+
+type MyResponse struct <span>{</span>
+	Message string `json:"Answer"`
+}
+
+func HandleLambdaEvent(event *MyEvent) (*MyResponse, error) <span>{</span>
+	if event == nil <span>{</span>
+		return nil, fmt.Errorf("received nil event")
+	}
+	return &amp;MyResponse<span>{</span>Message: fmt.Sprintf("%s is %d years old!", event.Name, event.Age)}, nil
+}
+
+func main() <span>{</span>
+	lambda.Start(HandleLambdaEvent)
+}</code></pre>
+    <p>Here is a sample input for this function:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "What is your name?": "Jim",
+    "How old are you?": 33
+}</code></pre>
+    <p>The response looks like this:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Answer": "Jim is 33 years old!"
+}</code></pre>
+    <p>To be exported, field names in the event struct must be capitalized. For more information on handling events
+      from AWS event sources, see <a href="https://github.com/aws/aws-lambda-go/tree/master/events" rel="noopener noreferrer" target="_blank"><span>aws-lambda-go/events</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+
+     
+      <h3 id="golang-handler-signatures">Valid handler signatures </h3>
+      <p>You have several options when building a Lambda function handler in Go, but you must adhere to the following
+        rules:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>The handler must be a function.</p>
+        </li><li class="listitem">
+          <p>The handler may take between 0 and 2 arguments. If there are two arguments, the first argument must
+            implement <code class="code">context.Context</code>.</p>
+        </li><li class="listitem">
+          <p>The handler may return between 0 and 2 arguments. If there is a single return value, it must implement
+              <code class="code">error</code>. If there are two return values, the second value must implement <code class="code">error</code>.
+            For more information on implementing error-handling information, see <a href="./golang-exceptions.html">AWS Lambda function errors in Go</a>.</p>
+        </li></ul></div>
+      <p>The following lists valid handler signatures. <code class="code">TIn</code> and <code class="code">TOut</code> represent types
+        compatible with the <em>encoding/json</em> standard library. For more information, see
+          <a href="https://golang.org/pkg/encoding/json/#Unmarshal" rel="noopener noreferrer" target="_blank"><span>func Unmarshal</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to learn how these types
+        are deserialized.</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <pre class="screen">func ()</pre>
+        </li><li class="listitem">
+          <pre class="screen">func () error</pre>
+        </li><li class="listitem">
+          <pre class="screen">func (TIn) error</pre>
+        </li><li class="listitem">
+          <pre class="screen">func () (TOut, error)</pre>
+        </li><li class="listitem">
+          <pre class="screen">func (context.Context) error</pre>
+        </li><li class="listitem">
+          <pre class="screen">func (context.Context, TIn) error</pre>
+        </li><li class="listitem">
+          <pre class="screen">func (context.Context) (TOut, error)</pre>
+        </li><li class="listitem">
+          <pre class="screen">func (context.Context, TIn) (TOut, error)</pre>
+        </li></ul></div>
+     
+   
+    <h2 id="golang-handler-state">Using global state</h2>
+    <p>You can declare and modify global variables that are independent of your Lambda function's handler code. In
+      addition, your handler may declare an <code class="code">init</code> function that is executed when your handler is loaded.
+      This behaves the same in AWS Lambda as it does in standard Go programs. A single instance of your Lambda function
+      will never handle multiple events simultaneously.</p>
+      <div class="example"><h6>Example  Go function with global variables</h6><div class="example-contents"><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This code uses the AWS SDK for Go V2. For more information, see <a href="https://aws.github.io/aws-sdk-go-v2/docs/getting-started/" rel="noopener noreferrer" target="_blank"><span>Getting Started with the AWS SDK for Go V2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="go ">package main
+
+import (
+	"context"
+	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/aws/aws-sdk-go-v2/service/s3/types"
+	"log"
+)
+
+var invokeCount int
+var myObjects []types.Object
+
+func init() <span>{</span>
+	// Load the SDK configuration
+	cfg, err := config.LoadDefaultConfig(context.TODO())
+	if err != nil <span>{</span>
+		log.Fatalf("Unable to load SDK config: %v", err)
+	}
+
+	// Initialize an S3 client
+	svc := s3.NewFromConfig(cfg)
+
+	// Define the bucket name as a variable so we can take its address
+	bucketName := "examplebucket"
+	input := &amp;s3.ListObjectsV2Input<span>{</span>
+		Bucket: &amp;bucketName,
+	}
+
+	// List objects in the bucket
+	result, err := svc.ListObjectsV2(context.TODO(), input)
+	if err != nil <span>{</span>
+		log.Fatalf("Failed to list objects: %v", err)
+	}
+	myObjects = result.Contents
+}
+
+func LambdaHandler(ctx context.Context) (int, error) <span>{</span>
+	invokeCount++
+	for i, obj := range myObjects <span>{</span>
+		log.Printf("object[%d] size: %d key: %s", i, obj.Size, *obj.Key)
+	}
+	return invokeCount, nil
+}
+
+func main() <span>{</span>
+	lambda.Start(LambdaHandler)
+}</code></pre></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-golang.html">Building with Go</div><div id="next" class="next-link" accesskey="n" href="./golang-context.html">Context</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-handler.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-handler.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

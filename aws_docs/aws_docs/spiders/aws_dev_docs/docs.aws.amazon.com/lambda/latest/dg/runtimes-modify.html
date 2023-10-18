@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Modifying the runtime environment - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="runtimes-modify" /><meta name="default_state" content="runtimes-modify" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-modify.html" /><meta name="description" content="Learn how to use internal extensions to modify the runtime process and wrapper scripts to customize the runtime startup behavior." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-modify.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/runtimes-modify.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/runtimes-modify.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/runtimes-modify.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/runtimes-modify.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-modify.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-modify.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/runtimes-modify.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/runtimes-modify.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/runtimes-modify.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/runtimes-modify.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/runtimes-modify.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/runtimes-modify.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/runtimes-modify.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/runtimes-modify.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/runtimes-modify.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/runtimes-modify.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/runtimes-modify.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/runtimes-modify.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/runtimes-modify.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/runtimes-modify.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-modify.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Modifying the runtime environment" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Modifying the runtime environment - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#runtimes-modify" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-modify.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-modify.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-modify.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,languages,runtime,supported languages,linux distribution,linux environment" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Lambda runtimes",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Modifying the runtime environment",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#runtimes-modify" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#runtimes-envvars">Language-specific environment variables</a><a href="#runtime-wrapper">Wrapper scripts</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="runtimes-modify">Modifying the runtime environment</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use <a href="./lambda-extensions.html">internal extensions</a> to modify the runtime process. Internal
+    extensions are not separate processes—they run as part of the runtime process.</p><p>Lambda provides language-specific <a href="./configuration-envvars.html">environment variables</a> that you can
+    set to add options and tools to the runtime. Lambda also provides <a href="#runtime-wrapper">wrapper
+      scripts</a>, which allow Lambda to delegate the runtime startup to your script. You can create a wrapper script
+    to customize the runtime startup behavior.</p>
+    <h2 id="runtimes-envvars">Language-specific environment variables</h2>
+    <p>Lambda supports configuration-only ways to enable code to be pre-loaded during function initialization through
+      the following language-specific environment variables:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">JAVA_TOOL_OPTIONS</code> – On Java, Lambda supports this
+          environment variable to set additional command-line variables in Lambda. This environment variable allows you
+          to specify the initialization of tools, specifically the launching of native or Java programming language
+          agents using the <code class="code">agentlib</code> or <code class="code">javaagent</code> options. For more information, see
+          <a href="https://docs.aws.amazon.com/lambda/latest/dg/java-customization.html#java-tool-options"><code class="code">JAVA_TOOL_OPTIONS</code> environment variable</a>.</p>
+      </li><li class="listitem">
+        <p><code class="code">NODE_OPTIONS</code> – On Node.js 10x and above, Lambda supports this environment
+          variable.</p>
+      </li><li class="listitem">
+        <p><code class="code">DOTNET_STARTUP_HOOKS</code> – On .NET Core 3.1 and above, this environment variable specifies
+          a path to an assembly (dll) that Lambda can use.</p>
+      </li></ul></div>
+    <p>Using language-specific environment variables is the preferred way to set startup properties.</p>
+   
+    <h2 id="runtime-wrapper">Wrapper scripts</h2>
+    <p>You can create a <em>wrapper script</em> to customize the runtime startup behavior of your Lambda
+      function. A wrapper script enables you to set configuration parameters that cannot be set through
+      language-specific environment variables.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Invocations may fail if the wrapper script does not successfully start the runtime process.</p></div></div>
+    <p>Wrapper scripts are supported on all native <a href="./lambda-runtimes.html">Lambda runtimes</a> which use the Amazon Linux 2 operating system. 
+    The custom <code class="code">provided.al2</code> runtime does not support wrapper scripts.</p>
+    
+    <p>When you use a wrapper script for your function, Lambda starts the runtime using your script. Lambda sends to
+      your script the path to the interpreter and all of the original arguments for the standard runtime startup. Your
+      script can extend or transform the startup behavior of the program. For example, the script can inject and alter
+      arguments, set environment variables, or capture metrics, errors, and other diagnostic information.</p>
+    <p>You specify the script by setting the value of the <code class="code">AWS_LAMBDA_EXEC_WRAPPER</code> environment variable
+      as the file system path of an executable binary or script.</p>
+     
+      <h3 id="runtime-wrapper-example">Example: Create and use a wrapper script with Python 3.8</h3>
+      <p>In the following example, you create a wrapper script to start the Python interpreter with the <code class="code">-X
+          importtime</code> option. When you run the function, Lambda generates a log entry to show the duration of the
+        import time for each import.</p>
+      <div class="procedure"><h6>To create and use a wrapper script with Python 3.8</h6><ol><li>
+          <p>To create the wrapper script, paste the following code into a file named
+            <code class="code">importtime_wrapper</code>:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="bash ">
+  #!/bin/bash
+
+  # the path to the interpreter and all of the originally intended arguments
+  args=("$@")
+
+  # the extra options to pass to the interpreter
+  extra_args=("-X" "importtime")
+
+  # insert the extra options
+  args=("$<span>{</span>args[@]:0:$#-1}" "$<span>{</span>extra_args[@]}" "$<span>{</span>args[@]: -1}")
+
+  # start the runtime with the extra options
+  exec "$<span>{</span>args[@]}"
+          </code></pre>
+        </li><li>
+          <p>To give the script executable permissions, enter <code class="code">chmod +x importtime_wrapper</code> from the
+            command line.</p>
+        </li><li>
+          <p>Deploy the script as a <a href="./chapter-layers.html">Lambda layer</a>.</p>
+        </li><li>
+          <p>Create a function using the Lambda console.</p>
+          <ol><li>
+              <p>Open the <a href="https://console.aws.amazon.com/lambda/home" rel="noopener noreferrer" target="_blank"><span>Lambda console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+              <p>Choose <b>Create function</b>.</p>
+            </li><li>
+              <p>Under <b>Basic information</b>, for <b>Function name</b>, enter
+                  <code class="userinput">wrapper-test-function</code>.</p>
+            </li><li>
+              <p>For <b>Runtime</b>, choose <b>Python 3.8</b>.</p>
+            </li><li>
+              <p>Choose <b>Create function</b>.</p>
+            </li></ol>
+        </li><li>
+          <p>Add the layer to your function.</p>
+          <ol><li>
+              <p>Choose your function, and then choose <b>Code</b> if it is not already selected.</p>
+            </li><li>
+              <p>Choose <b>Add a layer</b>.</p>
+            </li><li>
+              <p>Under <b>Choose a layer</b>, choose the <b>Name</b> and
+                  <b>Version</b> of the compatible layer that you created earlier.</p>
+            </li><li>
+              <p>Choose <b>Add</b>.</p>
+            </li></ol>
+        </li><li>
+          <p>Add the code and the environment variable to your function.</p>
+          <ol><li>
+              <p>In the function <a href="./foundation-console.html#code-editor">code editor</a>, paste the following function
+                code:</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import json
+
+  def lambda_handler(event, context):
+      # TODO implement
+      return <span>{</span>
+          'statusCode': 200,
+          'body': json.dumps('Hello from Lambda!')
+      }
+              </code></pre>
+            </li><li>
+              <p>Choose <b>Save</b>.</p>
+            </li><li>
+              <p>Under <b>Environment variables</b>, choose <b>Edit</b>.</p>
+            </li><li>
+              <p>Choose <b>Add environment variable</b>.</p>
+            </li><li>
+              <p>For <b>Key</b>, enter <code class="code">AWS_LAMBDA_EXEC_WRAPPER</code>.</p>
+            </li><li>
+              <p>For <b>Value</b>, enter <code class="code">/opt/importtime_wrapper</code>.</p>
+            </li><li>
+              <p>Choose <b>Save</b>.</p>
+            </li></ol>
+        </li><li>
+          <p>To run the function, choose <b>Test</b>.</p>
+          <p>Because your wrapper script started the Python interpreter with the <code class="code">-X importtime</code> option,
+            the logs show the time required for each import. For example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">
+  ...
+  2020-06-30T18:48:46.780+01:00 import time: 213 | 213 | simplejson
+  2020-06-30T18:48:46.780+01:00 import time: 50 | 263 | simplejson.raw_json
+  ...
+          </code></pre>
+        </li></ol></div>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./runtimes-update.html">Runtime updates</div><div id="next" class="next-link" accesskey="n" href="./runtimes-api.html">Runtime API</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-modify.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-modify.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

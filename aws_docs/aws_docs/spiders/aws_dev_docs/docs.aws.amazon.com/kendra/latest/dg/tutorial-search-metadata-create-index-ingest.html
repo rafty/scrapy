@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Step 4: Creating an Amazon Kendra index and ingesting the metadata - Amazon Kendra</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="tutorial-search-metadata-create-index-ingest" /><meta name="default_state" content="tutorial-search-metadata-create-index-ingest" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" /><meta name="description" content="Creating an Amazon Kendra index and ingesting the metadata for this tutorial." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Kendra" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Provides a conceptual overview of Amazon Kendra. Learn about Amazon Kendra features and get started indexing your documents using the console, CLI, and API." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" hreflang="x-default" /><meta name="feedback-item" content="Kendra" /><meta name="this_doc_product" content="Amazon Kendra" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'kendra'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Step 4: Creating an Amazon Kendra index and ingesting the metadata" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Step 4: Creating an Amazon Kendra index and ingesting the metadata - Amazon Kendra</title><meta name="pdf" content="/pdfs/kendra/latest/dg/kendra-dg.pdf#tutorial-search-metadata-create-index-ingest" /><meta name="rss" content="amazon-kendra-release-notes.rss" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html" /><meta name="keywords" content="Kendra,Amazon Kendra,search,intelligent search,natural language,index,question,keyword,data source,connector,FAQ,frequently asked question,Amazon Comprehend,Comprehend,entities,metadata,natural language search" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Tutorial: Building a metadata-enriched, intelligent search solution with Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Step 4: Creating an Amazon Kendra index and ingesting the metadata",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/kendra/latest/dg/kendra-dg.pdf#tutorial-search-metadata-create-index-ingest" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/kendra/index.html">Amazon Kendra</a><a href="what-is-kendra.html">Developer Guide</a></div><div id="page-toc-src"><a href="#tutorial-search-metadata-create-index">Creating an Amazon Kendra index</a><a href="#tutorial-search-metadata-create-index-update-IAM">Updating the IAM role
+          for Amazon S3 access</a><a href="#tutorial-search-metadata-create-index-custom-fields">Creating Amazon Kendra custom
+          search index fields</a><a href="#tutorial-search-metadata-create-index-connect-data">Adding the Amazon S3 bucket
+          as a data source for the index</a><a href="#tutorial-search-metadata-create-index-sync">Syncing the Amazon Kendra index</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="tutorial-search-metadata-create-index-ingest">Step 4: Creating an Amazon Kendra index
+        and ingesting the metadata</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To implement your intelligent search solution, you create an Amazon Kendra index and ingest your
+      S3 data and metadata into it.</p><p>Before you add metadata to your Amazon Kendra index, you create custom index fields corresponding
+      to custom document attributes, which in turn correspond to the Amazon Comprehend entity types. Amazon Kendra uses
+      the index fields and custom document attributes you create to search and filter your
+      documents.</p><p>For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/hiw-index.html">Index</a> and <a href="https://docs.aws.amazon.com/kendra/latest/dg/custom-attributes.html">Creating custom
+        document attributes</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#tutorial-search-metadata-create-index">Creating an Amazon Kendra index</a></li><li><a href="#tutorial-search-metadata-create-index-update-IAM">Updating the IAM role
+          for Amazon S3 access</a></li><li><a href="#tutorial-search-metadata-create-index-custom-fields">Creating Amazon Kendra custom
+          search index fields</a></li><li><a href="#tutorial-search-metadata-create-index-connect-data">Adding the Amazon S3 bucket
+          as a data source for the index</a></li><li><a href="#tutorial-search-metadata-create-index-sync">Syncing the Amazon Kendra index</a></li></ul></div>
+      <h2 id="tutorial-search-metadata-create-index">Creating an Amazon Kendra index</h2>
+      <p>To query your source documents, you create an Amazon Kendra index.</p>
+      <p>If you are using the AWS CLI in this step, you create and attach an AWS IAM role and
+        policy that allows Amazon Kendra to access your CloudWatch logs before creating an index. For more
+        information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/gs-prerequisites.html">Prerequisites</a>.</p>
+
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="To create an Amazon Kendra index&#xA;              (Console)" id="tutorial-search-metadata-create-index-console" expanded="false"><div class="procedure"><ol><li>
+              <p>Open the Amazon Kendra console at <a href="https://console.aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kendra/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+              <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Ensure that you are in the same region in which you created your Amazon Comprehend
+                  entities analysis job and your Amazon S3 bucket. If you are in another region, choose
+                  the AWS region where you created your Amazon S3 bucket from the <b>Region
+                    selector</b> in the top navigation bar.</p></div></div>
+            </li><li>
+              <p>Choose <b>Create an index</b>.</p>
+            </li><li>
+              <p>For <b>Index details</b> on the <b>Specify index
+                  details</b> page, do the following:</p>
+              <ol><li>
+                  <p>For <b>Index name</b>, enter
+                      <code class="userinput">kendra-index</code>.</p>
+                </li><li>
+                  <p>Keep the <b>Description</b> field blank.</p>
+                </li><li>
+                  <p>For <b>IAM role</b>, choose <b>Create a new
+                      role</b>. This role provides access to your Amazon S3 bucket.</p>
+                </li><li>
+                  <p>For <b>Role name</b>, enter
+                    <code class="userinput">kendra-role</code>. The IAM role will have the prefix
+                      <code class="code">AmazonKendra-</code>.</p>
+                </li><li>
+                  <p>Keep default settings for <b>Encryption</b> and
+                      <b>Tags</b> and choose <b>Next</b>.</p>
+                </li></ol>
+            </li><li>
+              <p>For <b>Access control settings</b> on the <b>Configure user
+                  access control</b> page, choose <b>No</b> and then choose
+                  <b>Next</b>.</p>
+            </li><li>
+              <p>For <b>Provisioning editions</b> on the <b>Provisioning
+                  details</b> page, choose <b>Developer edition</b> and choose
+                  <b>Create</b>.</p>
+            </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="To create an Amazon Kendra index&#xA;              (AWS CLI)" id="tutorial-search-metadata-create-index-cli" expanded="false"><div class="procedure"><ol><li>
+              <p>To create and attach an IAM role for Amazon Kendra that recognizes it as a trusted
+                entity, do the following:</p>
+              <ol><li>
+                  <p>Save the following trust policy as a JSON file called
+                      <code>kendra-trust-policy.json</code> in a text editor on your local
+                    device.</p>
+                  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": <span>{</span>
+        "Effect": "Allow",
+        "Principal": <span>{</span>
+            "Service": "kendra.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
+    }
+}</code></pre>
+                </li><li>
+                  <p>To create an IAM role called <code class="code">kendra-role</code> and attach your
+                    saved <code>kendra-trust-policy.json</code> file to it, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iam/create-role.html" rel="noopener noreferrer" target="_blank"><span>create-role</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+                  <awsdocs-tabs><dl style="display: none">
+                    <dt>Linux</dt><dd tab-id="linux">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-role \
+          --role-name kendra-role \
+          --assume-role-policy-document file://<code class="replaceable">path/</code>kendra-trust-policy.json</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">path/</code> is the filepath to
+                                <code>kendra-trust-policy.json</code> on your local
+                              device.</p>
+                          </li></ul></div>
+                      </dd>
+                    <dt>macOS</dt><dd tab-id="macos">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-role \
+          --role-name kendra-role \
+          --assume-role-policy-document file://<code class="replaceable">path/</code>kendra-trust-policy.json</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">path/</code> is the filepath to
+                                <code>kendra-trust-policy.json</code> on your local
+                              device.</p>
+                          </li></ul></div>
+                      </dd>
+                    <dt>Windows</dt><dd tab-id="windows">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-role ^
+          --role-name kendra-role ^
+          --assume-role-policy-document file://<code class="replaceable">path/</code>kendra-trust-policy.json</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">path/</code> is the filepath to
+                                <code>kendra-trust-policy.json</code> on your local
+                              device.</p>
+                          </li></ul></div>
+                      </dd>
+                  </dl></awsdocs-tabs>
+                </li><li>
+                  <p>Copy the Amazon Resource Name (ARN) to your text editor and save it locally
+                    as <code class="code">kendra-role-arn</code>.</p>
+                  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The ARN has a format similar to
+                        <code class="replaceable">arn:aws:iam::123456789012:role/kendra-role</code>. You
+                      need the ARN you saved as <code class="code">kendra-role-arn</code> to run Amazon Kendra
+                      jobs.</p></div></div>
+                </li></ol>
+            </li><li>
+              <p>Before you create an index, you must provide your <code class="code">kendra-role</code> the
+                permission to write to CloudWatch Logs. To do this, complete the following steps:</p>
+              <ol><li>
+                  <p>Save the following trust policy as a JSON file called
+                      <code>kendra-cloudwatch-policy.json</code> in a text editor on your
+                    local device.</p>
+                  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+   "Version":"2012-10-17",
+   "Statement":[
+      <span>{</span>
+         "Effect":"Allow",
+         "Action":"cloudwatch:PutMetricData",
+         "Resource":"*",
+         "Condition":<span>{</span>
+            "StringEquals":<span>{</span>
+               "cloudwatch:namespace":"Kendra"
+            }
+         }
+      },
+      <span>{</span>
+         "Effect":"Allow",
+         "Action":"logs:DescribeLogGroups",
+         "Resource":"*"
+      },
+      <span>{</span>
+         "Effect":"Allow",
+         "Action":"logs:CreateLogGroup",
+         "Resource":"arn:aws:logs:<code class="replaceable">aws-region</code>:<code class="replaceable">aws-account-id</code>:log-group:/aws/kendra/*"
+      },
+      <span>{</span>
+         "Effect":"Allow",
+         "Action":[
+            "logs:DescribeLogStreams",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+         ],
+         "Resource":"arn:aws:logs:<code class="replaceable">aws-region</code>:<code class="replaceable">aws-account-id</code>:log-group:/aws/kendra/*:log-stream:*"
+      }
+   ]
+}</code></pre>
+                  <p>Replace <code class="replaceable">aws-region</code> with your AWS region, and
+                      <code class="replaceable">aws-account-id</code> with your 12-digit AWS account
+                    ID.</p>
+                </li><li>
+                  <p>To create an IAM policy to access CloudWatch Logs, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iam/create-policy.html" rel="noopener noreferrer" target="_blank"><span>create-policy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+                  <awsdocs-tabs><dl style="display: none">
+                    <dt>Linux</dt><dd tab-id="linux">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-policy \
+          --policy-name kendra-cloudwatch-policy \
+          --policy-document file://<code class="replaceable">path/</code>kendra-cloudwatch-policy.json</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">path/</code> is the filepath to
+                                <code>kendra-cloudwatch-policy.json</code> on your local
+                              device.</p>
+                          </li></ul></div>
+                      </dd>
+                    <dt>macOS</dt><dd tab-id="macos">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-policy \
+          --policy-name kendra-cloudwatch-policy \
+          --policy-document file://<code class="replaceable">path/</code>kendra-cloudwatch-policy.json</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">path/</code> is the filepath to
+                                <code>kendra-cloudwatch-policy.json</code> on your local
+                              device.</p>
+                          </li></ul></div>
+                      </dd>
+                    <dt>Windows</dt><dd tab-id="windows">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-policy ^
+          --policy-name kendra-cloudwatch-policy ^
+          --policy-document file://<code class="replaceable">path/</code>kendra-cloudwatch-policy.json</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">path/</code> is the filepath to
+                                <code>kendra-cloudwatch-policy.json</code> on your local
+                              device.</p>
+                          </li></ul></div>
+                      </dd>
+                  </dl></awsdocs-tabs>
+                </li><li>
+                  <p>Copy the Amazon Resource Name (ARN) to your text editor and save it locally
+                    as <code class="code">kendra-cloudwatch-arn</code>.</p>
+                  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The ARN has a format similar to
+                        <code class="replaceable">arn:aws:iam::123456789012:role/kendra-cloudwatch-policy</code>.
+                      You need the ARN you saved as <code class="code">kendra-cloudwatch-arn</code> to attach the
+                        <code class="code">kendra-cloudwatch-policy</code> to your IAM role.</p></div></div>
+                </li><li>
+                  <p>To attach the <code class="code">kendra-cloudwatch-policy</code> to your IAM role, use
+                    the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iam/attach-role-policy.html" rel="noopener noreferrer" target="_blank"><span>attach-role-policy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+                  <awsdocs-tabs><dl style="display: none">
+                    <dt>Linux</dt><dd tab-id="linux">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam attach-role-policy \
+          --policy-arn <code class="replaceable">policy-arn</code> \
+          --role-name kendra-role</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">policy-arn</code> is your saved
+                                <code class="code">kendra-cloudwatch-arn</code>.</p>
+                          </li></ul></div>
+                      </dd>
+                    <dt>macOS</dt><dd tab-id="macos">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam attach-role-policy \
+          --policy-arn <code class="replaceable">policy-arn</code> \
+          --role-name kendra-role</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">policy-arn</code> is your saved
+                                <code class="code">kendra-cloudwatch-arn</code>.</p>
+                          </li></ul></div>
+                      </dd>
+                    <dt>Windows</dt><dd tab-id="windows">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam attach-role-policy ^
+          --policy-arn <code class="replaceable">policy-arn</code> ^
+          --role-name kendra-role</code></pre>
+                        <p>Where:</p>
+                        <div class="itemizedlist">
+                           
+                        <ul class="itemizedlist"><li class="listitem">
+                            <p><code class="replaceable">policy-arn</code> is your saved
+                                <code class="code">kendra-cloudwatch-arn</code>.</p>
+                          </li></ul></div>
+                      </dd>
+                  </dl></awsdocs-tabs>
+                </li></ol>
+            </li><li>
+              <p>To create an index, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/create-index.html" rel="noopener noreferrer" target="_blank"><span>create-index</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra create-index \
+        --name kendra-index \
+        --edition DEVELOPER_EDITION \
+        --role-arn <code class="replaceable">role-arn</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">role-arn</code> is your saved
+                            <code class="code">kendra-role-arn</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra create-index \
+        --name kendra-index \
+        --edition DEVELOPER_EDITION \
+        --role-arn <code class="replaceable">role-arn</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">role-arn</code> is your saved
+                            <code class="code">kendra-role-arn</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra create-index ^
+        --name kendra-index ^
+        --edition DEVELOPER_EDITION ^
+        --role-arn <code class="replaceable">role-arn</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">role-arn</code> is your saved
+                            <code class="code">kendra-role-arn</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li><li>
+              <p>Copy the index <code class="code">Id</code> and save it in a text editor as
+                  <code class="code">kendra-index-id</code>. The <code class="code">Id</code> helps you track the status of
+                your index creation.</p>
+            </li><li>
+              <p>To track the progress of your index creation job, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/describe-index.html" rel="noopener noreferrer" target="_blank"><span>describe-index</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-index \
+        --id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-index \
+        --id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-index ^
+        --id <code class="replaceable">kendra-index-id</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li></ol></div></awsui-expandable-section></div>
+      <p>The index creation process on average takes 15 minutes, but can take longer. When the
+        status of the index is active, your index is ready to use. While your index is being
+        created, you can start the next step.</p>
+      <p>If you are using the AWS CLI in this step, you create and attach an IAM policy to your
+        Amazon Kendra IAM role that gives your index permissions to access your S3 bucket.</p>
+     
+      <h2 id="tutorial-search-metadata-create-index-update-IAM">Updating the IAM role
+          for Amazon S3 access</h2>
+      <p>While the index is being created, you update your Amazon Kendra IAM role to allow the index
+        you created to read data from your Amazon S3 bucket. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">IAM access roles for
+          Amazon Kendra</a>.</p>
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="To update your IAM role&#xA;              (Console)" id="tutorial-search-metadata-update-role-console" expanded="false"><div class="procedure"><ol><li><p>Open the IAM console at
+         <a href="https://console.aws.amazon.com/iam/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/iam/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+              <p>In the left navigation pane, choose <b>Roles</b> and enter
+                  <code class="userinput">kendra-role</code> in the <b>Search</b> box above
+                  <b>Role name</b>.</p>
+            </li><li>
+              <p>From the suggested options, click on <code class="code">kendra-role</code>.</p>
+            </li><li>
+              <p>In <b>Summary</b>, choose <b>Attach
+                policies</b>.</p>
+            </li><li>
+              <p>In <b>Attach permissions</b>, in the <b>Search</b>
+                box, enter <code class="userinput">S3</code> and select the checkbox next to the
+                  <b>AmazonS3ReadOnlyAccess</b> policy from the suggested
+                options.</p>
+            </li><li>
+              <p>Choose <b>Attach policy</b>. On the <b>Summary</b>
+                page, you will now see two policies attached to the IAM role.</p>
+            </li><li>
+              <p>Return to the Amazon Kendra console at <a href="https://console.aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kendra/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and wait for the status of your
+                index to change from <b>Creating</b> to <b>Active</b>
+                before continuing to the next step.</p>
+            </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="To update your IAM role&#xA;              (AWS CLI)" id="tutorial-search-metadata-update-role-cli" expanded="false"><div class="procedure"><ol><li>
+              <p>Save the following text in a JSON file called
+                  <code>kendra-S3-access-policy.json</code> in a text editor on your local
+                device.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+   "Version":"2012-10-17",
+   "Statement":[
+      <span>{</span>
+         "Action":[
+            "s3:GetObject"
+         ],
+         "Resource":[
+            "arn:aws:s3:::<code class="replaceable">DOC-EXAMPLE-BUCKET</code>/*"
+         ],
+         "Effect":"Allow"
+      },
+      <span>{</span>
+         "Action":[
+            "s3:ListBucket"
+         ],
+         "Resource":[
+            "arn:aws:s3:::<code class="replaceable">DOC-EXAMPLE-BUCKET</code>"
+         ],
+         "Effect":"Allow"
+      },
+      <span>{</span>
+         "Effect":"Allow",
+         "Action":[
+            "kendra:BatchPutDocument",
+            "kendra:BatchDeleteDocument",
+            "kendra:ListDataSourceSyncJobs"
+         ],
+         "Resource":[
+            "arn:aws:kendra:<code class="replaceable">aws-region</code>:<code class="replaceable">aws-account-id</code>:index/<code class="replaceable">kendra-index-id</code>"
+         ]
+      }
+   ]
+}</code></pre>
+              <p>Replace <code class="replaceable">DOC-EXAMPLE-BUCKET</code> with your S3 bucket name, <code class="replaceable">aws-region</code> with your
+                AWS region, <code class="replaceable">aws-account-id</code> with your 12-digit AWS
+                account ID, and <code class="replaceable">kendra-index-id</code> with your saved
+                  <code class="code">kendra-index-id</code>.</p>
+            </li><li>
+              <p>To create an IAM policy to access your S3 bucket, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iam/create-policy.html" rel="noopener noreferrer" target="_blank"><span>create-policy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-policy \
+          --policy-name kendra-S3-access-policy \
+          --policy-document file://<code class="replaceable">path/</code>kendra-S3-access-policy.json</code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>kendra-S3-access-policy.json</code> on your local
+                          device.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-policy \
+          --policy-name kendra-S3-access-policy \
+          --policy-document file://<code class="replaceable">path/</code>kendra-S3-access-policy.json</code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>kendra-S3-access-policy.json</code> on your local
+                          device.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam create-policy ^
+          --policy-name kendra-S3-access-policy ^
+          --policy-document file://<code class="replaceable">path/</code>kendra-S3-access-policy.json</code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>kendra-S3-access-policy.json</code> on your local
+                          device.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li><li>
+              <p>Copy the Amazon Resource Name (ARN) to your text editor and save it locally as
+                  <code class="code">kendra-S3-access-arn</code>.</p>
+              <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The ARN has a format similar to
+                    <code class="replaceable">arn:aws:iam::123456789012:role/kendra-S3-access-policy</code>.
+                  You need the ARN you saved as <code class="code">kendra-S3-access-arn</code> to attach the
+                    <code class="code">kendra-S3-access-policy</code> to your IAM role.</p></div></div>
+            </li><li>
+              <p>To attach the <code class="code">kendra-S3-access-policy</code> to your Amazon Kendra IAM role, use
+                the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iam/attach-role-policy.html" rel="noopener noreferrer" target="_blank"><span>attach-role-policy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam attach-role-policy \
+          --policy-arn <code class="replaceable">policy-arn</code> \
+          --role-name kendra-role</code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">policy-arn</code> is your saved
+                            <code class="code">kendra-S3-access-arn</code>.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam attach-role-policy \
+          --policy-arn <code class="replaceable">policy-arn</code> \
+          --role-name kendra-role</code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">policy-arn</code> is your saved
+                            <code class="code">kendra-S3-access-arn</code>.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws iam attach-role-policy ^
+          --policy-arn <code class="replaceable">policy-arn</code> ^
+          --role-name kendra-role</code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">policy-arn</code> is your saved
+                            <code class="code">kendra-S3-access-arn</code>.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li></ol></div></awsui-expandable-section></div>
+     
+      <h2 id="tutorial-search-metadata-create-index-custom-fields">Creating Amazon Kendra custom
+          search index fields</h2>
+      <p>To prepare Amazon Kendra to recognize your metadata as custom document attributes, you create
+        custom fields corresponding to Amazon Comprehend entity types. You input the following nine Amazon Comprehend entity
+        types as custom fields:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>COMMERCIAL_ITEM</p>
+        </li><li class="listitem">
+          <p>DATE</p>
+        </li><li class="listitem">
+          <p>EVENT</p>
+        </li><li class="listitem">
+          <p>LOCATION</p>
+        </li><li class="listitem">
+          <p>ORGANIZATION</p>
+        </li><li class="listitem">
+          <p>OTHER</p>
+        </li><li class="listitem">
+          <p>PERSON</p>
+        </li><li class="listitem">
+          <p>QUANTITY</p>
+        </li><li class="listitem">
+          <p>TITLE</p>
+        </li></ul></div>
+      <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Misspelled entity types will not be recognized by the index.</p></div></div>
+
+
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="To create custom&#xA;              fields for your Amazon Kendra index (Console)" id="tutorial-search-metadata-create-attributes-console" expanded="false"><div class="procedure"><ol><li>
+              <p>Open the Amazon Kendra console at <a href="https://console.aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kendra/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+              <p>From the <b>Indexes</b> list, click on
+                <code class="code">kendra-index</code>.</p>
+            </li><li>
+              <p>From the left navigation panel, under <b>Data management</b>,
+                choose <b>Facet definition</b>.</p>
+            </li><li>
+              <p>From the <b>Index fields</b> menu, choose <b>Add
+                  field</b>.</p>
+            </li><li>
+              <p>In the <b>Add index field</b> dialog box, do the following:</p>
+              <ol><li>
+                  <p>In <b>Field name</b>, enter
+                      <code class="userinput">COMMERCIAL_ITEM</code>.</p>
+                </li><li>
+                  <p>In <b>Data type</b>, choose <b>String
+                    list</b>.</p>
+                </li><li>
+                  <p>In <b>Usage types</b>, select <b>Facetable</b>,
+                      <b>Searchable</b>, and <b>Displayable</b>, and
+                    then choose <b>Add</b>.</p>
+                </li><li>
+                  <p>Repeat steps a to c for each Amazon Comprehend entity type: COMMERCIAL_ITEM, DATE,
+                    EVENT, LOCATION, ORGANIZATION, OTHER, PERSON, QUANTITY, TITLE.</p>
+                </li></ol>
+            </li></ol></div><p>The console displays successful field addition messages. You can choose to close
+            them before you proceed with the next step.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="To create custom fields&#xA;              for your Amazon Kendra index (AWS CLI)" id="tutorial-search-metadata-create-attributes-cli" expanded="false"><div class="procedure"><ol><li>
+              <p>Save the following text as a JSON file called
+                  <code>custom-attributes.json</code> in a text editor on your local
+                device.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json ">[
+   <span>{</span>
+       "Name": "COMMERCIAL_ITEM",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   },
+   <span>{</span>
+       "Name": "DATE",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   },
+   <span>{</span>
+       "Name": "EVENT",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   },
+   <span>{</span>
+       "Name": "LOCATION",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   },
+   <span>{</span>
+       "Name": "ORGANIZATION",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   },
+   <span>{</span>
+       "Name": "OTHER",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   },
+   <span>{</span>
+       "Name": "PERSON",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   },
+   <span>{</span>
+       "Name": "QUANTITY",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   },
+   <span>{</span>
+       "Name": "TITLE",
+       "Type": "STRING_LIST_VALUE",
+       "Search": <span>{</span>
+           "Facetable": true,
+           "Searchable": true,
+           "Displayable": true
+       }
+   }
+]</code></pre>
+            </li><li>
+              <p>To create custom fields in your index, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/update-index.html" rel="noopener noreferrer" target="_blank"><span>update-index</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra update-index \
+        --id <code class="replaceable">kendra-index-id</code> \
+        --document-metadata-configuration-updates file://<code class="replaceable">path/</code>custom-attributes.json \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>custom-attributes.json</code> on your local device,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra update-index \
+        --id <code class="replaceable">kendra-index-id</code> \
+        --document-metadata-configuration-updates file://<code class="replaceable">path/</code>custom-attributes.json \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>custom-attributes.json</code> on your local device,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra update-index ^
+        --id <code class="replaceable">kendra-index-id</code> ^
+        --document-metadata-configuration-updates file://<code class="replaceable">path/</code>custom-attributes.json ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>custom-attributes.json</code> on your local device,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li><li>
+              <p>To verify that the custom attributes have been added to your index, use the
+                  <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/describe-index.html" rel="noopener noreferrer" target="_blank"><span>describe-index</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-index \
+        --id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-index \
+        --id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-index ^
+        --id <code class="replaceable">kendra-index-id</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li></ol></div></awsui-expandable-section></div>
+     
+      <h2 id="tutorial-search-metadata-create-index-connect-data">Adding the Amazon S3 bucket
+          as a data source for the index</h2>
+      <p>Before you can sync your index, you must connect your S3 data source to it.</p>
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="To connect an S3 bucket to&#xA;              your Amazon Kendra index (Console)" id="tutorial-search-metadata-connect-s3-console" expanded="false"><div class="procedure"><ol><li>
+              <p>Open the Amazon Kendra console at <a href="https://console.aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kendra/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+              <p>From the <b>Indexes</b> list, click on
+                <code class="code">kendra-index</code>.</p>
+            </li><li>
+              <p>From the left navigation menu, under <b>Data management</b>,
+                choose <b>Data sources</b>.</p>
+            </li><li>
+              <p>Under the <b>Select data source connector type</b> section,
+                navigate to <b>Amazon S3</b>, and choose <b>Add
+                connector</b>.</p>
+            </li><li>
+              <p>In the <b>Specify data source details</b> page, do the
+                following:</p>
+              <ol><li>
+                  <p>Under <b>Name and description</b>, for <b>Data source
+                      name</b>, enter <code class="userinput">S3-data-source</code>.</p>
+                </li><li>
+                  <p>Keep the <b>Description</b> section blank.</p>
+                </li><li>
+                  <p>Keep the default settings for <b>Tags</b>.</p>
+                </li><li>
+                  <p>Choose <b>Next</b>.</p>
+                </li></ol>
+            </li><li>
+              <p>On the <b>Configure sync settings</b> page, in the <b>Sync
+                  scope</b> section, do the following:</p>
+              <ol><li>
+                  <p>In <b>Enter the data source location</b>, choose
+                      <b>Browse S3</b>.</p>
+                </li><li>
+                  <p>In <b>Choose resources</b>, select your S3 bucket and then
+                    choose <b>Choose</b>.</p>
+                </li><li>
+                  <p>In <b>Metadata files prefix folder location</b>, choose
+                      <b>Browse S3</b>.</p>
+                </li><li>
+                  <p>In <b>Choose resources</b>, click on the name of your bucket
+                    from the list of buckets.</p>
+                </li><li>
+                  <p>For <b>Objects</b>, select the option box for
+                      <code>metadata</code> and choose <b>Choose</b>. The
+                    location field should now say <code>metadata/</code>.</p>
+                </li><li>
+                  <p>Keep the default settings for <b>Access control list configuration
+                      file location</b>, <b>Select decryption key</b>, and
+                      <b>Additional configuration</b>.</p>
+                </li></ol>
+            </li><li>
+              <p>For <b>IAM role</b>, on the <b>Configure sync
+                  settings</b> page, choose <code class="code">kendra-role</code>.</p>
+            </li><li>
+              <p>On the <b>Configure sync settings</b> page, under <b>Sync
+                  run schedule</b>, for <b>Frequency</b>, choose <b>Run
+                  on demand</b> and then choose <b>Next</b>.</p>
+            </li><li>
+              <p>On the <b>Review and create</b> page, review your choices for the
+                data source details and choose <b>Add data source</b>.</p>
+            </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="To connect an S3 bucket to&#xA;              your Amazon Kendra index (AWS CLI)" id="tutorial-search-metadata-connect-s3-cli" expanded="false"><div class="procedure"><ol><li>
+              <p>Save the following text as a JSON file called
+                  <code>S3-data-connector.json</code> in a text editor on your local
+                device.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+   "S3Configuration":<span>{</span>
+      "BucketName":"<code class="replaceable">DOC-EXAMPLE-BUCKET</code>",
+      "DocumentsMetadataConfiguration":<span>{</span>
+         "S3Prefix":"metadata"
+      }
+   }
+}</code></pre>
+              <p>Replace <code class="replaceable">DOC-EXAMPLE-BUCKET</code> with the name of your S3 bucket.</p>
+
+            </li><li>
+              <p>To connect your S3 bucket to your index, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/create-data-source.html" rel="noopener noreferrer" target="_blank"><span>create-data-source</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra create-data-source \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --name S3-data-source \
+        --type S3 \
+        --configuration file://<code class="replaceable">path/</code>S3-data-connector.json \
+        --role-arn <code class="replaceable">role-arn</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>S3-data-connector.json</code> on your local device,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">role-arn</code> is your saved
+                            <code class="code">kendra-role-arn</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra create-data-source \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --name S3-data-source \
+        --type S3 \
+        --configuration file://<code class="replaceable">path/</code>S3-data-connector.json \
+        --role-arn <code class="replaceable">role-arn</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>S3-data-connector.json</code> on your local device,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">role-arn</code> is your saved
+                            <code class="code">kendra-role-arn</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra create-data-source ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --name S3-data-source ^
+        --type S3 ^
+        --configuration file://<code class="replaceable">path/</code>S3-data-connector.json ^
+        --role-arn <code class="replaceable">role-arn</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">path/</code> is the filepath to
+                            <code>S3-data-connector.json</code> on your local device,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">role-arn</code> is your saved
+                            <code class="code">kendra-role-arn</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li><li>
+              <p>Copy the connector <code class="code">Id</code> and save it in a text editor as
+                  <code class="code">S3-connector-id</code>. The <code class="code">Id</code> helps you track the status of
+                the data-connection process.</p>
+            </li><li>
+              <p>To ensure that your S3 data source was connected successfully, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/describe-data-source.html" rel="noopener noreferrer" target="_blank"><span>describe-data-source</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-data-source \
+        --id <code class="replaceable">S3-connector-id</code> \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-data-source \
+        --id <code class="replaceable">S3-connector-id</code> \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra describe-data-source ^
+        --id <code class="replaceable">S3-connector-id</code> ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li></ol></div></awsui-expandable-section></div>
+      <p>At the end of this step, your Amazon S3 data source is connected to the index.</p>
+     
+      <h2 id="tutorial-search-metadata-create-index-sync">Syncing the Amazon Kendra index</h2>
+      <p>With the Amazon S3 data source added, you now sync your Amazon Kendra index to it.</p>
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="To sync your Amazon Kendra index&#xA;              (Console)" id="tutorial-search-metadata-sync-index-console" expanded="false"><div class="procedure"><ol><li>
+              <p>Open the Amazon Kendra console at <a href="https://console.aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kendra/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+              <p>From the <b>Indexes</b> list, click on
+                <code class="code">kendra-index</code>.</p>
+            </li><li>
+              <p>From the left navigation menu, choose <b>Data sources</b>.</p>
+            </li><li>
+              <p>From <b>Data sources</b>, select
+                <code class="code">S3-data-source</code>.</p>
+            </li><li>
+              <p>From the top navigation bar, choose <b>Sync now</b>.</p>
+            </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="To sync your Amazon Kendra index&#xA;              (AWS CLI)" id="tutorial-search-metadata-sync-index-cli" expanded="false"><div class="procedure"><ol><li>
+              <p>To sync your index, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/start-data-source-sync-job.html" rel="noopener noreferrer" target="_blank"><span>start-data-source-sync-job</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra start-data-source-sync-job \
+        --id <code class="replaceable">S3-connector-id</code> \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra start-data-source-sync-job \
+        --id <code class="replaceable">S3-connector-id</code> \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra start-data-source-sync-job ^
+        --id <code class="replaceable">S3-connector-id</code> ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li><li>
+              <p>To check the status of the index sync, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/list-data-source-sync-jobs.html" rel="noopener noreferrer" target="_blank"><span>list-data-source-sync-jobs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra list-data-source-sync-jobs \
+        --id <code class="replaceable">S3-connector-id</code> \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra list-data-source-sync-jobs \
+        --id <code class="replaceable">S3-connector-id</code> \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra list-data-source-sync-jobs ^
+        --id <code class="replaceable">S3-connector-id</code> ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">S3-connector-id</code> is your saved
+                            <code class="code">S3-connector-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+            </li></ol></div></awsui-expandable-section></div>
+
+      <p>At the end of this step, you have created a searchable and filterable Amazon Kendra index for
+        your dataset.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./tutorial-search-metadata-format-output.html">Step 3: Formatting the metadata</div><div id="next" class="next-link" accesskey="n" href="./tutorial-search-metadata-query-kendra.html">Step 5: Querying the index</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-create-index-ingest.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda instruction set architectures (ARM/x86) - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="foundation-arch" /><meta name="default_state" content="foundation-arch" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html" /><meta name="description" content="Learn about the Lambda instruction set architectures." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/foundation-arch.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/foundation-arch.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/foundation-arch.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/foundation-arch.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/foundation-arch.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/foundation-arch.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/foundation-arch.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/foundation-arch.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/foundation-arch.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/foundation-arch.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/foundation-arch.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/foundation-arch.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/foundation-arch.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/foundation-arch.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/foundation-arch.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/foundation-arch.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/foundation-arch.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/foundation-arch.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda instruction set architectures (ARM/x86)" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda instruction set architectures (ARM/x86) - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#foundation-arch" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-arch.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-arch.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-arch.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,function architecture,instruction set architecture" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda foundations",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda instruction set architectures (ARM/x86)",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#foundation-arch" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#foundation-arch-adv">Advantages of using arm64 architecture</a><a href="#foundation-arch-consider">Requirements for migration to arm64 architecture</a><a href="#foundation-arch-considerations">Function code compatibility with arm64 architecture</a><a href="#foundation-arch-steps">How to migrate to arm64 architecture </a><a href="#foundation-arch-config">Configuring the instruction set architecture</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="foundation-arch">Lambda instruction set architectures (ARM/x86)</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p> The <em>instruction set architecture</em> of a Lambda function determines the type of computer
+    processor that Lambda uses to run the function. Lambda provides a choice of instruction set architectures:</p><div class="itemizedlist">
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>arm64 – 64-bit ARM architecture, for the AWS Graviton2 processor.</p>
+    </li><li class="listitem">
+      <p>x86_64 – 64-bit x86 architecture, for x86-based processors.</p>
+    </li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The arm64 architecture is available in most AWS Regions. For more information, see <a href="http://aws.amazon.com/lambda/pricing/#aws-element-9ccd9262-b656-4d9c-8a72-34ee6b662135" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. In the memory prices table, choose the <b>Arm Price</b> tab, and then open the <b>Region</b> dropdown list to see which AWS Regions support arm64 with Lambda.</p><p>For an example of how to create a function with arm64 architecture, see <a href="http://aws.amazon.com/blogs/aws/aws-lambda-functions-powered-by-aws-graviton2-processor-run-your-functions-on-arm-and-get-up-to-34-better-price-performance/" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Functions Powered by AWS Graviton2 Processor</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#foundation-arch-adv">Advantages of using arm64 architecture</a></li><li><a href="#foundation-arch-consider">Requirements for migration to arm64 architecture</a></li><li><a href="#foundation-arch-considerations">Function code compatibility with arm64 architecture</a></li><li><a href="#foundation-arch-steps">How to migrate to arm64 architecture </a></li><li><a href="#foundation-arch-config">Configuring the instruction set architecture</a></li></ul></div>
+    <h2 id="foundation-arch-adv">Advantages of using arm64 architecture</h2>
+    <p>Lambda functions that use arm64 architecture (AWS Graviton2 processor) can achieve significantly better price
+      and performance than the equivalent function running on x86_64 architecture. Consider using arm64 for
+      compute-intensive applications such as high-performance computing, video encoding, and simulation
+      workloads.</p>
+    <p>The Graviton2 CPU uses the Neoverse N1 core and supports Armv8.2 (including CRC and crypto extensions) plus
+      several other architectural extensions.</p>
+    <p>Graviton2 reduces memory read time by providing a larger L2 cache per vCPU, which improves the latency
+      performance of web and mobile backends, microservices, and data processing systems. Graviton2 also provides
+      improved encryption performance and supports instruction sets that improve the latency of CPU-based machine
+      learning inference.</p>
+    <p>For more information about AWS Graviton2, see <a href="http://aws.amazon.com/ec2/graviton" rel="noopener noreferrer" target="_blank"><span>AWS Graviton
+        Processor</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+   
+    <h2 id="foundation-arch-consider">Requirements for migration to arm64 architecture</h2>
+    <p>When you select a Lambda function to migrate to arm64 architecture, to ensure a smooth migration, make sure
+      that your function meets the following requirements:</p>
+    <div class="itemizedlist">
+       
+       
+            
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The function currently uses a Lambda Amazon Linux 2 runtime.</p>
+      </li><li class="listitem">
+        <p>The deployment package contains only open-source components and source code that you control, so that you
+          can make any necessary updates for the migration.</p>
+      </li><li class="listitem">
+        <p>If the function code includes third-party dependencies, each library or package provides an arm64
+          version.</p>
+      </li></ul></div>  
+   
+    <h2 id="foundation-arch-considerations">Function code compatibility with arm64 architecture</h2>
+    <p>Your Lambda function code must be compatible with the instruction set architecture of the function. Before you
+      migrate a function to arm64 architecture, note the following points about the current function code:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+    <p>If you added your function code using the embedded code editor, your code probably runs on either architecture
+          without modification.</p>     
+      </li><li class="listitem">
+    <p>If you uploaded your function code, you must upload new code that is compatible with your target
+          architecture.</p>    
+      </li><li class="listitem">
+        <p>If your function uses layers, you must <a href="./adding-layers.html#finding-layer-information">check each
+            layer</a> to ensure that it is compatible with the new architecture. If a layer is not compatible, edit
+          the function to replace the current layer version with a compatible layer version.</p>
+      </li><li class="listitem">
+        <p>If your function uses Lambda extensions, you must check each extension to ensure that it is compatible with
+          the new architecture.</p>
+      </li><li class="listitem">
+        <p>If your function uses a container image deployment package type, you must create a new container image
+          that is compatible with the architecture of the function.</p>
+      </li></ul></div>
+   
+    <h2 id="foundation-arch-steps">How to migrate to arm64 architecture </h2>
+    <p></p>
+    <p>To migrate a Lambda function to the arm64 architecture, we recommend following these steps:</p>
+    <div class="orderedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+    <ol><li>
+        <p>Build the list of dependencies for your application or workload. Common dependencies include:</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>All the libraries and packages that the function uses.</p>
+          </li><li class="listitem">
+            <p>The tools that you use to build, deploy, and test the function, such as compilers, test suites,
+              continuous integration and continuous delivery (CI/CD) pipelines, provisioning tools, and scripts.</p>
+          </li><li class="listitem">
+            <p>The Lambda extensions and third-party tools that you use to monitor the function in production.</p>
+          </li></ul></div>
+      </li><li>
+        <p>For each of the dependencies, check the version, and then check whether arm64 versions are
+          available.</p>
+      </li><li>
+        <p>Build an environment to migrate your application.</p>
+      </li><li>
+        <p>Bootstrap the application.</p>
+      </li><li>
+        <p>Test and debug the application.</p>
+      </li><li>
+        <p>Test the performance of the arm64 function. Compare the performance with the x86_64 version.</p>
+      </li><li>
+        <p>Update your infrastructure pipeline to support arm64 Lambda functions.</p>
+      </li><li>
+        <p>Stage your deployment to production.</p>
+        <p>For example, use <a href="./configuration-aliases.html#configuring-alias-routing">alias routing configuration</a> to split
+          traffic between the x86 and arm64 versions of the function, and compare the performance and latency.</p>
+      </li></ol></div>
+    <p>For more information about how to create a code environment for arm64 architecture, including
+      language-specific information for Java, Go, .NET, and Python, see the <a href="https://github.com/aws/aws-graviton-getting-started" rel="noopener noreferrer" target="_blank"><span>Getting started with AWS Graviton</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> GitHub
+      repository.</p>
+   
+      <h2 id="foundation-arch-config">Configuring the instruction set architecture</h2>
+    <p>You can configure the instruction set architecture for new and existing Lambda functions using the Lambda console, AWS
+      SDKs, AWS Command Line Interface (AWS CLI), or AWS CloudFormation. Follow these steps to change the instruction set architecture for an existing Lambda
+      function from the console.</p>
+    <div class="procedure"><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+      </li><li>
+        <p>Choose the name of the function that you want to configure the instruction set architecture for.</p>
+      </li><li>
+        <p>On the main <b>Code</b> tab, for the <b>Runtime settings</b> section, choose
+          <b>Edit</b>.</p>
+      </li><li>
+        <p>Under <b>Architecture</b>, choose the instruction set architecture you want your function
+          to use.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>All Amazon Linux 2 <a href="./lambda-runtimes.html">runtimes</a> support <b>both</b> x86_64 and ARM CPU architectures.
+    </p><p>Runtimes that do <b>not</b> use Amazon Linux 2, such as Go 1.x, do not support the arm64 architecture. To use arm64 architecture with Go 1.x, you can run your function in a provided.al2 runtime. For more information, see the deployment instructions for <a href="./golang-package.html">.zip packages</a> and <a href="./go-image.html">container images</a>.</p></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./foundation-console.html">Lambda console</div><div id="next" class="next-link" accesskey="n" href="./gettingstarted-features.html">Additional features</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-arch.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-arch.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

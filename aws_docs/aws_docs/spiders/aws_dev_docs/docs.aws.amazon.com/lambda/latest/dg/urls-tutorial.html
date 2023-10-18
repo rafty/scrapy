@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Creating a Lambda function with a function URL - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="urls-tutorial" /><meta name="default_state" content="urls-tutorial" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-tutorial.html" /><meta name="description" content="Create a Lambda function with an HTTP(S) endpoint using a .zip file archive." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-tutorial.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/urls-tutorial.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/urls-tutorial.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/urls-tutorial.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/urls-tutorial.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-tutorial.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-tutorial.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/urls-tutorial.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/urls-tutorial.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/urls-tutorial.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/urls-tutorial.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/urls-tutorial.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/urls-tutorial.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/urls-tutorial.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/urls-tutorial.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/urls-tutorial.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/urls-tutorial.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/urls-tutorial.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/urls-tutorial.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/urls-tutorial.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/urls-tutorial.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-tutorial.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Creating a Lambda function with a function URL" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Creating a Lambda function with a function URL - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#urls-tutorial" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-tutorial.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-tutorial.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-tutorial.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,invoke,trigger,kick off function,start function,send request to function,event source mapping,function URL,Lambda function HTTP,Lambda function endpoint,configure function URL,configure endpoint,function URL tutorial,Node.js" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Invoking Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda function URLs",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Creating a Lambda function with a function URL",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#urls-tutorial" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#lambda-url-prepare">Prerequisites</a><a href="#lambda-url-create-iam-role">Create an execution role</a><a href="#lambda-url-tutorial-create-function">Create a Lambda function with a
+        function URL (.zip file archive)</a><a href="#lambda-url-tutorial-test">Test the function URL endpoint</a><a href="#lambda-url-tutorial-cfn">Create a Lambda function with a function URL
+        (CloudFormation)</a><a href="#lambda-url-tutorial-sam">Create a Lambda function with a function URL
+        (AWS SAM)</a><a href="#cleanup">Clean up your resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="urls-tutorial">Tutorial: Creating a Lambda function with a function URL</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you create a Lambda function defined as a .zip file archive with a
+    <b>public</b> function URL endpoint that returns the product of
+    two numbers. For more information about configuring function URLs, see
+    <a href="./urls-configuration.html">Creating and managing function URLs</a>.</p>
+    <h2 id="lambda-url-prepare">Prerequisites</h2>
+     <p>This tutorial assumes that you have some knowledge of basic Lambda operations and the Lambda console. If you
+      haven't already, follow the instructions in <a href="./getting-started.html#getting-started-create-function">Create a Lambda function with the console</a> to create your first Lambda function.</p>
+     <p>To complete the following steps, you need the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a>. Commands and the expected output are listed in separate blocks:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><code class="userinput">aws --version</code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="">aws-cli/2.0.57 Python/3.7.4 Darwin/19.6.0 exe/x86_64</code></pre>
+    <p>For long commands, an escape character (<code class="code">\</code>) is used to split a command over multiple lines.</p>
+    <p>On Linux and macOS, use your preferred shell and package manager.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+    To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+     Example CLI commands in this guide use Linux formatting. Commands which include inline JSON documents must be reformatted if you are using the Windows CLI.
+    </p></div></div>
+   
+    <h2 id="lambda-url-create-iam-role">Create an execution role</h2>
+    <p>Create the <a href="./lambda-intro-execution-role.html">execution role</a> that gives your Lambda function permission to access
+      AWS resources.</p>
+    <div class="procedure"><h6>To create an execution role</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+          of the AWS Identity and Access Management (IAM) console.</p>
+      </li><li>
+        <p>Choose <b>Create role</b>.</p>
+      </li><li>
+        <p>Create a role with the following properties.</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Trusted entity</b> – <b>AWS Lambda</b>.</p>
+          </li><li class="listitem">
+            <p><b>Permissions</b> – <b>AWSLambdaBasicExecutionRole</b>.</p>
+          </li><li class="listitem">
+            <p><b>Role name</b> – <code class="userinput">lambda-url-role</code>.</p>
+          </li></ul></div>
+      </li></ol></div>
+    <p>The <b>AWSLambdaBasicExecutionRole</b> policy has the permissions that
+      the function needs to write logs to Amazon CloudWatch Logs.</p>
+   
+    <h2 id="lambda-url-tutorial-create-function">Create a Lambda function with a
+        function URL (.zip file archive)</h2>
+    <p>Create a Lambda function with a function URL endpoint using a .zip file archive.</p>
+    <div class="procedure"><h6>To create the function</h6><ol><li>
+        <p>Copy the following code example into a file named
+          <code>index.js</code>.</p>
+        <div class="example"><h6>Example index.js</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nodejs ">exports.handler = async (event) =&gt; <span>{</span>
+    let body = JSON.parse(event.body)
+    const product = body.num1 * body.num2;
+    const response = <span>{</span>
+        statusCode: 200,
+        body: "The product of " + body.num1 + " and " + body.num2 + " is " + product,
+    };
+    return response;
+};</code></pre></div></div>
+      </li><li>
+        <p>Create a deployment package.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip function.zip index.js</code></code></pre>
+      </li><li>
+        <p>Create a Lambda function with the <code class="code">create-function</code> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function \
+    --function-name my-url-function \
+    --runtime nodejs14.x \
+    --zip-file fileb://function.zip \
+    --handler index.handler \
+    --role <code class="replaceable">arn:aws:iam::123456789012:role/lambda-url-role</code></code></code></pre>
+      </li><li>
+        <p>Add a resource-based policy to your function granting permissions to allow public access to your
+          function URL.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda add-permission \
+    --function-name my-url-function \
+    --action lambda:InvokeFunctionUrl \
+    --principal "*" \
+    --function-url-auth-type "NONE" \
+    --statement-id url</code></code></pre>
+      </li><li>
+        <p>Create a URL endpoint for the function with the <code class="code">create-function-url-config</code> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function-url-config \
+    --function-name my-url-function \
+    --auth-type NONE</code></code></pre>
+      </li></ol></div>
+   
+    <h2 id="lambda-url-tutorial-test">Test the function URL endpoint</h2>
+    <p>Invoke your Lambda function by calling your function URL endpoint using an HTTP client
+      such as curl or Postman.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">curl <code class="replaceable">'https://abcdefg.lambda-url.us-east-1.on.aws/'</code> \
+-H 'Content-Type: application/json' \
+-d '<span>{</span>"num1": "10", "num2": "10"}'</code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">The product of 10 and 10 is 100</code></pre>
+   
+    <h2 id="lambda-url-tutorial-cfn">Create a Lambda function with a function URL
+        (CloudFormation)</h2>
+    <p>You can also create a Lambda function with a function URL endpoint using the AWS CloudFormation type
+        <code class="code">AWS::Lambda::Url</code>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Resources:
+  MyUrlFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs14.x
+      Role: arn:aws:iam::123456789012:role/lambda-url-role
+      Code:
+        ZipFile: |
+          exports.handler = async (event) =&gt; <span>{</span>
+              let body = JSON.parse(event.body)
+              const product = body.num1 * body.num2;
+              const response = <span>{</span>
+                  statusCode: 200,
+                  body: "The product of " + body.num1 + " and " + body.num2 + " is " + product,
+              };
+              return response;
+          };
+      Description: Create a function with a URL.
+  MyUrlFunctionPermissions:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref MyUrlFunction
+      Action: lambda:InvokeFunctionUrl
+      Principal: "*"
+      FunctionUrlAuthType: NONE
+  MyFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !Ref MyUrlFunction
+      AuthType: NONE
+</code></pre>
+   
+    <h2 id="lambda-url-tutorial-sam">Create a Lambda function with a function URL
+        (AWS SAM)</h2>
+    <p>You can also create a Lambda function configured with a function URL using AWS Serverless Application Model (AWS SAM).</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">ProductFunction:
+  Type: AWS::Serverless::Function
+  Properties:
+    CodeUri: function/.
+    Handler: index.handler
+    Runtime: nodejs14.x
+    AutoPublishAlias: live
+    FunctionUrlConfig:
+      AuthType: NONE
+</code></pre>
+   
+    <h2 id="cleanup">Clean up your resources</h2>
+     
+    <p>You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS resources that you're no longer using, you prevent unnecessary charges to your AWS account.</p>
+    
+    <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+  </li><li>
+    <p>Select the execution role that you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the role in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./urls-monitoring.html">Monitoring function URLs</div><div id="next" class="next-link" accesskey="n" href="./lambda-managing.html">Managing functions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-tutorial.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-tutorial.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

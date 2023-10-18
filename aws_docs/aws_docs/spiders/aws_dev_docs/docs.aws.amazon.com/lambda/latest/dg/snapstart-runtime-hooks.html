@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Runtime hooks for Lambda SnapStart - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="snapstart-runtime-hooks" /><meta name="default_state" content="snapstart-runtime-hooks" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html" /><meta name="description" content="Use runtime hooks to implement code before creating a Lambda function snapshot or after restoring a snapshot." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Runtime hooks for Lambda SnapStart" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Runtime hooks for Lambda SnapStart - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#snapstart-runtime-hooks" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-runtime-hooks.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-runtime-hooks.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-runtime-hooks.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,cold start,java initialization,Lambda function startup time,Lambda Java performance optimization,Lambda Java function cold start,run code after snapshot,run code before snapshotting,runtime hooks SnapStart" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Improving startup performance with Lambda SnapStart",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Runtime hooks for Lambda SnapStart",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#snapstart-runtime-hooks" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#snapstart-update-build">Step 1: Update the build configuration</a><a href="#snapstart-update-handler">Step 2: Update the Lambda handler</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="snapstart-runtime-hooks">Runtime hooks for Lambda SnapStart</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use runtime hooks to implement code before Lambda creates a snapshot or after Lambda resumes a function
+    from a snapshot. Runtime hooks are available as part of the open-source Coordinated Restore at Checkpoint (CRaC)
+    project. CRaC is in development for the <a href="https://wiki.openjdk.org/display/crac" rel="noopener noreferrer" target="_blank"><span>Open Java Development Kit
+      (OpenJDK)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For an example of how to use CRaC with a reference application, see the <a href="https://github.com/CRaC/docs/blob/master/STEP-BY-STEP.md" rel="noopener noreferrer" target="_blank"><span>CRaC</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository on GitHub. CRaC uses three
+    main elements:</p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><code class="code">Resource</code> – An interface with two methods, <code class="code">beforeCheckpoint()</code> and
+          <code class="code">afterRestore()</code>. Use these methods to implement the code that you want to run before a snapshot
+        and after a restore.</p>
+    </li><li class="listitem">
+      <p><code class="code">Context &lt;R extends Resource&gt;</code> – To receive notifications for checkpoints and
+        restores, a <code class="code">Resource</code> must be registered with a <code class="code">Context</code>.</p>
+    </li><li class="listitem">
+      <p><code class="code">Core</code> – The coordination service, which provides the default global <code class="code">Context</code>
+        via the static method <code class="code">Core.getGlobalContext()</code>.</p>
+    </li></ul></div><p>For more information about <code class="code">Context</code> and <code class="code">Resource</code>, see <a href="https://javadoc.io/doc/io.github.crac/org-crac/latest/index.html" rel="noopener noreferrer" target="_blank"><span>Package org.crac</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the CRaC
+    documentation.</p><p>Use the following steps to implement runtime hooks with the <a href="https://github.com/CRaC/org.crac" rel="noopener noreferrer" target="_blank"><span>org.crac package</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. The Lambda runtime contains a customized CRaC context implementation that calls your
+    runtime hooks before checkpointing and after restoring.</p>
+    <h2 id="snapstart-update-build">Step 1: Update the build configuration</h2>
+    <p>Add the <code class="code">org.crac</code> dependency to the build configuration. The following example uses Gradle. For
+      examples for other build systems, see the <a href="https://search.maven.org/artifact/io.github.crac/org-crac/0.1.3/jar" rel="noopener noreferrer" target="_blank"><span>Apache Maven
+      documentation</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="java ">dependencies <span>{</span>
+    compile group: 'com.amazonaws', name: 'aws-lambda-java-core', version: '1.2.1'
+    # All other project dependecies go here:
+    # ...
+    # Then, add the org.crac dependency:
+ implementation group: 'io.github.crac', name: 'org-crac', version: '0.1.3'
+}</code></pre>
+   
+    <h2 id="snapstart-update-handler">Step 2: Update the Lambda handler</h2>
+    <p>The Lambda function <em>handler</em> is the method in your function code that processes events. When your function is
+  invoked, Lambda runs the handler method. Your function runs until the handler returns a response, exits, or times out.</p>
+    <p>For more information, see <a href="./java-handler.html">AWS Lambda function handler in Java</a>.</p>
+    <p>The following example handler shows how to run code before checkpointing (<code class="code">beforeCheckpoint()</code>) and
+      after restoring (<code class="code">afterRestore()</code>). This handler also registers the <code class="code">Resource</code> to the
+      runtime-managed global <code class="code">Context</code>.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When Lambda creates a snapshot, your initialization code can run for up to 15 minutes. The time limit is 130 seconds or the <a href="./configuration-function-common.html#configuration-timeout-console">configured function timeout</a> (maximum 900 seconds), whichever is higher. Your <code class="code">beforeCheckpoint()</code> runtime hooks count towards the initialization code time limit. When Lambda restores a snapshot, the runtime (JVM) must load and <code class="code">afterRestore()</code> runtime hooks must complete within the timeout limit (10 seconds). Otherwise, you'll get a SnapStartTimeoutException.</p></div></div>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="java ">...
+  import org.crac.Resource;
+  import org.crac.Core;
+  ... 
+public class CRaCDemo implements RequestStreamHandler, Resource <span>{</span>
+    public CRaCDemo() <span>{</span>
+      Core.getGlobalContext().register(this);
+    }
+    public String handleRequest(String name, Context context) throws IOException <span>{</span>
+      System.out.println("Handler execution");
+      return "Hello " + name;
+    }
+    @Override
+    public void <code class="userinput">beforeCheckpoint</code>(org.crac.Context&lt;? extends Resource&gt; context)
+        throws Exception <span>{</span>
+      System.out.println("Before checkpoint");
+    }
+    @Override
+    public void <code class="userinput">afterRestore</code>(org.crac.Context&lt;? extends Resource&gt; context)
+        throws Exception <span>{</span>
+      System.out.println("After restore");</code></pre>
+    <p><code class="code">Context</code> maintains only a <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/ref/WeakReference.html" rel="noopener noreferrer" target="_blank"><span><code class="code">WeakReference</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+      to the registered object. If a <a href="https://javadoc.io/static/io.github.crac/org-crac/0.1.3/org/crac/Resource.html" rel="noopener noreferrer" target="_blank"><span><code class="code">Resource</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+      is garbage collected, runtime hooks do not run. Your code must maintain a strong reference to the
+        <code class="code">Resource</code> to guarantee that the runtime hook runs.</p>
+    <p>Here are two examples of patterns to avoid:</p>
+    <div class="example"><h6>Example  – Object without a strong reference</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Core.getGlobalContext().register( new MyResource() );</code></pre></div></div>
+    <div class="example"><h6>Example  – Objects of anonymous classes</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Core.getGlobalContext().register( new Resource() <span>{</span>
+   
+   @Override
+   public void afterRestore(Context&lt;? extends Resource&gt; context) throws Exception <span>{</span>
+    // ...
+   }
+   
+   @Override
+   public void beforeCheckpoint(Context&lt;? extends Resource&gt; context) throws Exception <span>{</span>
+    // ...
+   }
+
+} );</code></pre></div></div>
+    <p>Instead, maintain a strong reference. In the following example, the registered resource isn't garbage
+      collected and runtime hooks run consistently.</p>
+    <div class="example"><h6>Example  – Object with a strong reference</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">Resource myResource = new MyResource(); <code class="replaceable">// This reference must be maintained to prevent the registered resource from being garbage collected</code>
+Core.getGlobalContext().register( myResource );</code></pre></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./snapstart-uniqueness.html">Handling uniqueness</div><div id="next" class="next-link" accesskey="n" href="./snapstart-monitoring.html">Monitoring</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-runtime-hooks.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-runtime-hooks.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

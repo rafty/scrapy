@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda deployment packages - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="gettingstarted-package" /><meta name="default_state" content="gettingstarted-package" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html" /><meta name="description" content="Use a deployment package to deploy your Lambda function code. Lambda supports two types of deployment packages: container images and .zip file archives." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-package.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-package.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-package.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-package.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-package.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-package.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-package.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-package.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-package.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-package.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-package.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-package.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-package.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-package.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-package.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-package.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/gettingstarted-package.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/gettingstarted-package.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda deployment packages" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda deployment packages - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-package" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-package.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-package.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-package.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,deployment,zip file,container,container image,docker image,package,deployment package" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda foundations",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda deployment packages",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-package" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#gettingstarted-package-images">Container images</a><a href="#gettingstarted-package-zip">.zip file archives</a><a href="#gettingstarted-package-layers">Layers</a><a href="#gettingstarted-package-awsother">Using other AWS services</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="gettingstarted-package">Lambda deployment packages</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Your AWS Lambda function's code consists of scripts or compiled programs and their dependencies. 
+You use a <em>deployment package</em> to deploy your function code to Lambda. Lambda supports two types of deployment packages: 
+container images and .zip file archives. </p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#gettingstarted-package-images">Container images</a></li><li><a href="#gettingstarted-package-zip">.zip file archives</a></li><li><a href="#gettingstarted-package-layers">Layers</a></li><li><a href="#gettingstarted-package-awsother">Using other AWS services to build a deployment package</a></li></ul></div>
+    <h2 id="gettingstarted-package-images">Container images</h2>
+    
+    <p>A container image includes the base operating system, the runtime, Lambda extensions, your application code and
+      its dependencies. You can also add static data, such as machine learning models, into the image. </p>
+    <p>Lambda provides a set of open-source base images that you can use to build your container image. To create and
+      test container images, you can use the AWS Serverless Application Model (AWS SAM) command line interface (CLI) or native container tools
+      such as the Docker CLI.</p>
+    <p>You upload your container images to Amazon Elastic Container Registry (Amazon ECR), a managed AWS container image registry service. To
+      deploy the image to your function, you specify the Amazon ECR image URL using the Lambda console, the Lambda API, command
+      line tools, or the AWS SDKs.</p>
+    <p>For more information about Lambda container images, see <a href="./images-create.html">Working with Lambda container images</a>.</p>
+   
+    <h2 id="gettingstarted-package-zip">.zip file archives</h2>
+    
+    <p>A .zip file archive includes your application code and its dependencies. When you author functions using the
+      Lambda console or a toolkit, Lambda automatically creates a .zip file archive of your code.</p>
+    <p>When you create functions with the Lambda API, command line tools, or the AWS SDKs, you must create a
+      deployment package. You also must create a deployment package if your function uses a compiled language, or to add
+      dependencies to your function. To deploy your function's code, you upload the deployment package from Amazon Simple Storage Service
+      (Amazon S3) or your local machine.</p>
+      <p>You can upload a .zip file as your deployment package using the Lambda console, AWS Command Line Interface (AWS CLI), or to an Amazon Simple Storage Service (Amazon S3) bucket.</p>
+       
+        <h3 id="gettingstarted-package-zip-console">Using the Lambda console</h3>
+        <p>The following steps demonstrate how to upload a .zip file as your deployment package using the Lambda console.</p>
+        <div class="procedure"><h6>To upload a .zip file on the Lambda console</h6><ol><li>
+            <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Lambda console.</p>
+          </li><li>
+            <p>Select a function.</p>
+          </li><li><p>In the <b>Code Source</b> pane, choose <b>Upload from</b> and then <b>.zip
+              file</b>.</p></li><li><p>Choose <b>Upload</b> to select your local .zip file.</p></li><li><p>Choose <b>Save</b>.</p></li></ol></div>
+       
+       
+        <h3 id="gettingstarted-package-zip-cli">Using the AWS CLI</h3>
+        <p>You can upload a .zip file as your deployment package using the AWS Command Line Interface (AWS CLI). For language-specific instructions, see the following topics.</p>
+        <awsdocs-tabs><dl style="display: none">
+  <dt>Node.js</dt><dd tab-id="node.js">
+      <p><a href="./nodejs-package.html">Deploy Node.js Lambda functions with .zip file archives</a> </p>
+    </dd>
+  
+  <dt>Python</dt><dd tab-id="python">
+    <p>
+      <a href="./python-package.html">Working with .zip file archives for Python Lambda functions</a>
+    </p></dd>
+  
+  <dt>Ruby</dt><dd tab-id="ruby">
+    <p>
+      <a href="./ruby-package.html">Working with .zip file archives for Ruby Lambda functions</a>
+    </p>
+    </dd>
+  
+  <dt>Java</dt><dd tab-id="java">
+    <p>
+      <a href="./java-package.html">Deploy Java Lambda functions with .zip or JAR file archives</a>
+    </p>
+    </dd>
+  
+  <dt>Go</dt><dd tab-id="go">
+    <p>
+      <a href="./golang-package.html">Deploy Go Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+  
+  <dt>C#</dt><dd tab-id="c#">
+    <p>
+      <a href="./csharp-package.html">Build and deploy C# Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+  
+  <dt>PowerShell</dt><dd tab-id="powershell">
+    <p>
+      <a href="./powershell-package.html">Deploy PowerShell Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+</dl></awsdocs-tabs>
+       
+       
+        <h3 id="gettingstarted-package-zip-cli">Using Amazon S3</h3>
+        <p>You can upload a .zip file as your deployment package using Amazon Simple Storage Service (Amazon S3). For more information, see <a href="#gettingstarted-package-awsother">Using other AWS services to build a deployment package</a>.</p>
+       
+     
+    <h2 id="gettingstarted-package-layers">Layers</h2>
+    <p>If you deploy your function code using a .zip file archive, you can use Lambda layers as a distribution
+      mechanism for libraries, custom runtimes, and other function dependencies. Layers enable you to manage your
+      in-development function code independently from the unchanging code and resources that it uses. You can configure
+      your function to use layers that you create, layers that AWS provides, or layers from other AWS
+      customers.</p>
+    <p>You do not use layers with container images. Instead, you package your preferred runtime, libraries, and other
+      dependencies into the container image when you build the image.</p>
+    <p>For more information about layers, see <a href="./chapter-layers.html">Working with Lambda layers</a>.</p>
+   
+    <h2 id="gettingstarted-package-awsother">Using other AWS services to build a deployment package</h2>
+    <p>The following section describes other AWS services you can use to package dependencies for your Lambda function.</p>
+     
+      <h3 id="gettingstarted-package-sam">Deployment packages with C or C++ libraries</h3>
+    <p>If your deployment package contains native libraries, you can build the deployment package with AWS Serverless Application Model (AWS SAM). 
+You can use the AWS SAM CLI <code class="code">sam build</code> command with the <code class="code">--use-container</code> to create your deployment package. 
+This option builds a deployment package inside a Docker image that is compatible with the Lambda execution environment. </p>
+<p>For more information, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-build.html">sam build</a> 
+in the <em>AWS Serverless Application Model Developer Guide</em>.</p>
+     
+     
+      <h3 id="gettingstarted-package-s3">Deployment packages over 50 MB</h3>
+      <p>If your deployment package is larger than 50 MB, upload your function code and dependencies to an Amazon S3 bucket.</p>
+<p>You can create a deployment package and upload the .zip file to your Amazon S3 bucket in the AWS Region where you want to create a Lambda function. When you create your Lambda function, specify the S3 bucket name and object key name on the Lambda console, or using the AWS CLI.</p>
+<p>To create a bucket using the Amazon S3 console, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html">How do I create an S3 Bucket?</a> in the <em>Amazon Simple Storage Service Console User Guide</em>.</p>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-runtime-environment.html">Execution environment</div><div id="next" class="next-link" accesskey="n" href="./foundation-networking.html">Private networking</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-package.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-package.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

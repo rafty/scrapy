@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Deleting a data source - Amazon Kendra</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="delete-data-source" /><meta name="default_state" content="delete-data-source" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html" /><meta name="description" content="How to delete a data source from an Amazon Kendra index." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Kendra" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Provides a conceptual overview of Amazon Kendra. Learn about Amazon Kendra features and get started indexing your documents using the console, CLI, and API." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/delete-data-source.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/delete-data-source.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/delete-data-source.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/delete-data-source.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/delete-data-source.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/delete-data-source.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/delete-data-source.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/delete-data-source.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/delete-data-source.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/delete-data-source.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/delete-data-source.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/delete-data-source.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/delete-data-source.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/delete-data-source.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/delete-data-source.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/delete-data-source.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/kendra/latest/dg/delete-data-source.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/kendra/latest/dg/delete-data-source.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html" hreflang="x-default" /><meta name="feedback-item" content="Kendra" /><meta name="this_doc_product" content="Amazon Kendra" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'kendra'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Deleting a data source" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Deleting a data source - Amazon Kendra</title><meta name="pdf" content="/pdfs/kendra/latest/dg/kendra-dg.pdf#delete-data-source" /><meta name="rss" content="amazon-kendra-release-notes.rss" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/delete-data-source.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/delete-data-source.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/delete-data-source.html" /><meta name="keywords" content="Kendra,Amazon Kendra,search,intelligent search,natural language,index,question,keyword,data source,connector,FAQ,frequently asked question" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deleting an index, data source, or batch uploaded documents",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/delete-index-datasource-batchdocs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Deleting a data source",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/delete-index-datasource-batchdocs.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/kendra/latest/dg/kendra-dg.pdf#delete-data-source" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/kendra/index.html">Amazon Kendra</a><a href="what-is-kendra.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="delete-data-source">Deleting a data source</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You delete a data source when you want to remove the information contained in the data
+            source from your Amazon Kendra index. For example, delete a data source
+            when:</p><div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>A data source is incorrectly configured. Delete the data source, wait for the
+                    data source to finish deleting, and then recreate it.</p>
+            </li><li class="listitem">
+                <p>You migrated documents from one data source to another. Delete the original
+                    data source and recreate it in the new location.</p>
+            </li><li class="listitem">
+                <p>You have reached the limit of data sources for an index. Delete one of the
+                    existing data sources and add a new one. For more information about the number
+                    of data sources that you can create, see <a href="./quotas.html#quota-details">Quotas</a>.</p>
+            </li></ul></div><p>To delete a data source, use the console, the AWS Command Line Interface (AWS CLI), the <code class="code">DeleteDataSource</code> API, or a AWS CloudFormation script. Deleting a
+            data source removes all of the information about the data source from the index. If you
+            only want to stop synching the data source, change the synchronization schedule for the
+            data source to "run on demand".</p><p>Deleting a data source is an asynchronous operation. When you start deleting a data
+            source, the data source status changes to <code class="code">DELETING</code>. It remains in the
+            <code class="code">DELETING</code> state until the information related to the data source is
+            removed. After the data source is deleted, it no longer appears in the results of a call
+            to the <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_ListDataSources.html">ListDataSources</a> API. If you call the <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_DescribeDataSource.html">DescribeDataSource</a> 
+            API with the deleted data source's identifier, you receive a <code class="code">ResourceNotFound</code>
+            exception.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Deleting an entire data source or re-syncing your index after deleting specific documents 
+                from a data source could take up to an hour or more, depending on the number of documents you 
+                want to delete.</p></div></div><div class="procedure"><h6>To delete a data source (console)</h6><ol><li>
+                <p>Sign in to the AWS Management Console and open the Amazon Kendra console
+                    at <a href="https://console.aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kendra/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+                <p>In the navigation pane, choose <b>Indexes</b>, and then choose
+                    the index that contains the data source to delete.</p>
+            </li><li>
+                <p>In the navigation pane, choose <b>Data sources</b>.</p>
+            </li><li>
+                <p>Choose the data source to remove.</p>
+            </li><li>
+                <p>Choose <b>Delete</b> to delete the data source.</p>
+            </li></ol></div><div class="procedure"><h6>To delete a data source (CLI)</h6><ul><li>
+                <p>In the AWS Command Line Interface, use the following command. The command is
+                    formatted for Linux and macOS. If you are using Windows, replace the Unix line
+                    continuation character (\) with a caret (^).</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra delete-data-source \
+   --id <code class="replaceable">data-source-id</code> \
+   --index-id <code class="replaceable">index-id</code></code></pre>
+            </li></ul></div><p>When you delete a data source, Amazon Kendra removes all of the stored
+            information about the data source. Amazon Kendra removes all of the document data
+            stored in the index, and all run histories and metrics associated with the data source.
+            Deleting a data source does not remove the original documents from your storage.</p><p>Documents in the data source may be included in the document count returned by the
+                <code class="code">DescribeIndex</code> API while Amazon Kendra deletes a data source.
+            Documents from the data source may appear in search results while Amazon Kendra
+            deletes the data source.</p><p>Amazon Kendra releases the resources for a data source as soon as you call the
+                <code class="code">DeleteDataSource</code> API or choose to delete the data source in the
+            console. If you are deleting the data source to reduce the number of data sources below
+            your limit, you can create a new data source right away.</p><p>If you are deleting a data source and then creating another data source to the
+            document data, wait for the first data source to be deleted before you sync the new data
+            source.</p><p>You can delete a data source that is in the process of syncing with Amazon Kendra. The sync is stopped and the data source is removed. If you attempt to start a sync
+            when the data source is being deleted, you get a <code class="code">ConflictException</code>
+            exception.</p><p>You can't delete a data source if the associated index is in the <code class="code">DELETING</code>
+            state. Deleting an index deletes all of the data sources for the index. You can start
+            deleting an index while a data source for that index is in the <code class="code">DELETING</code>
+            state.</p><p>If you have two data sources pointing to the same documents, such as two data sources
+            pointing to the same Amazon S3 bucket, documents in the index might be
+            inconsistent when one of the data sources is deleted. When two data sources reference
+            the same documents, only one copy of the document data is stored in the index. Removing
+            one data source removes the index data for the documents. The other data source is not
+            aware that the documents have been removed, so Amazon Kendra won't correctly
+            re-index the documents the next time it syncs. When you have two data sources pointing
+            to the same document location, you should delete both data sources and then recreate
+            one.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./delete-index.html">Deleting an index</div><div id="next" class="next-link" accesskey="n" href="./delete-batch-documents.html">Deleting batch uploaded documents</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/delete-data-source.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/delete-data-source.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

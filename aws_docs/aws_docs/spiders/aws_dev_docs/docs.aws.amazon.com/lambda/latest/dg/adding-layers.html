@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Adding layers to functions - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="adding-layers" /><meta name="default_state" content="adding-layers" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/adding-layers.html" /><meta name="description" content="Learn how to add a Lambda layer to a function." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/adding-layers.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/adding-layers.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/adding-layers.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/adding-layers.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/adding-layers.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/adding-layers.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/adding-layers.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/adding-layers.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/adding-layers.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/adding-layers.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/adding-layers.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/adding-layers.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/adding-layers.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/adding-layers.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/adding-layers.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/adding-layers.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/adding-layers.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/adding-layers.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/adding-layers.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/adding-layers.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/adding-layers.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/adding-layers.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Adding layers to functions" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Adding layers to functions - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#adding-layers" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/adding-layers.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/adding-layers.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/adding-layers.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Lambda layers,Lambda layer versions,Adding Lambda layers,Update Lambda layers,Update Lambda layer version,Lambda layer merge order,Finding Lambda layers" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Working with Lambda layers",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Adding layers to functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#adding-layers" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#accessing-layer-content">Accessing layer content from your function</a><a href="#finding-layer-information">Finding layer information</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="adding-layers">Adding layers to functions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>A Lambda layer is a .zip file archive that contains supplementary code or data.
+  Layers usually contain library dependencies, a <a href="./runtimes-custom.html">custom runtime</a>,
+  or configuration files. </p><p>This section explains how to add a layer to a Lambda function. For more conceptual
+    information about layers and why you might consider using them, see
+    <a href="./chapter-layers.html">Working with Lambda layers</a>.</p><p>Before you can configure a Lambda function to use a layer, you must:</p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="./packaging-layers.html">Package your layer content</a></p>
+    </li><li class="listitem">
+      <p><a href="./creating-deleting-layers.html">Create a layer in Lambda</a></p>
+    </li><li class="listitem">
+      <p>Make sure that you have permission to call the <a href="./API_GetLayerVersion.html">GetLayerVersion</a> API on the
+        layer version. For functions in your AWS account, you must have this permission in
+        your <a href="./access-control-identity-based.html">user policy</a>. To use a layer
+        in another account, the owner of that account must grant your account permission in a
+        <a href="./access-control-resource-based.html">resource-based policy</a>. For
+        examples, see <a href="./access-control-resource-based.html#permissions-resource-xaccountlayer">Granting layer access to other accounts</a>.</p>
+    </li></ul></div><p>You can add up to five layers to a Lambda function. The total unzipped size of the
+    function and all layers cannot exceed the unzipped deployment package size quota of 250 MB.
+    For more information, see <a href="./gettingstarted-limits.html">Lambda quotas</a>.</p><p>Your functions can continue to use any layer version that you’ve already added, even
+    after that layer version has been deleted, or after your permission to access the layer
+    is revoked. However, you cannot create a new function that uses a deleted layer version.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Make sure that the layers you add to a function are compatible with the runtime
+    and instruction set architecture of the function.</p></div></div><div class="procedure"><h6>To add a layer to a function (console)</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+      <p>Choose the function to configure.</p>
+    </li><li>
+      <p>Under <b>Layers</b>, choose <b>Add a layer</b></p>
+    </li><li>
+      <p>Under <b>Choose a layer</b>, choose a layer source:</p>
+      <ol><li>
+          <p>For the <b>AWS layers</b> or <b>Custom layers</b>
+          layer sources, choose a layer from the pull-down menu. Under <b>Version</b>,
+          choose a layer version from the pull-down menu.</p>
+        </li><li>
+          <p>For the <b>Specify an ARN</b> layer source, enter an ARN in the
+            text box and choose <b>Verify</b>. Then, choose <b>Add</b>.</p>
+        </li></ol>
+    </li></ol></div><p>The order in which you add the layers is the order in which Lambda merges the layer content
+    into the execution environment. You can change the layer merge order using the console.</p><div class="procedure"><h6>To update layer merge order for your function (console)</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+      <p>Choose the function to configure.</p>
+    </li><li>
+      <p>Under <b>Layers</b>, choose <b>Edit</b></p>
+    </li><li>
+      <p>Choose one of the layers.</p>
+    </li><li>
+      <p>Choose <b>Merge earlier</b> or <b>Merge later</b> to adjust the order of the layers.</p>
+    </li><li>
+      <p>Choose <b>Save</b>.</p>
+    </li></ol></div><p>Layers are versioned. The content of each layer version is immutable. The owner of a
+    layer can release new layer versions to provide updated content. You can use the console
+    to update the layer version attached to your functions.</p><div class="procedure"><h6>To update layer versions for your function (console)</h6><ol><li>
+      <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/layers" rel="noopener noreferrer" target="_blank"><span>Layers page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+        of the Lambda console.</p>
+    </li><li>
+      <p>Choose the layer you want to update the version for.</p>
+    </li><li>
+      <p>Choose the <b>Functions using this version</b> tab.</p>
+    </li><li>
+      <p>Choose the functions you want to modify, then choose <b>Edit</b>.</p>
+    </li><li>
+      <p>For <b>Layer version</b>, choose the layer version to change to.</p>
+    </li><li>
+      <p>Choose <b>Update functions</b>.</p>
+    </li></ol></div><p>You cannot update function layer versions across AWS accounts.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#accessing-layer-content">Accessing layer content from your function</a></li><li><a href="#finding-layer-information">Finding layer information</a></li></ul></div>
+    <h2 id="accessing-layer-content">Accessing layer content from your function</h2>
+    <p>If your Lambda function includes layers, Lambda extracts the layer contents into the
+      <code class="code">/opt</code> directory in the function execution environment. Lambda extracts the layers
+      in the order (low to high) listed by the function. Lambda merges folders with the same name.
+      If the same file appears in multiple layers, the function uses the version in the last
+      extracted layer.</p>
+    <p>Each Lambda runtime adds specific <code class="code">/opt</code> directory folders to the
+      <code class="code">PATH</code> variable. Your function code can access the layer content without having
+      to specify the path. For more information about path settings in the Lambda execution
+      environment, see <a href="./configuration-envvars.html#configuration-envvars-runtime">Defined runtime environment variables</a>.</p>
+    <p>Refer to <a href="./packaging-layers.html#packaging-layers-paths">Layer paths for each Lambda runtime</a> to learn where to include your
+      libraries when creating a layer.</p>
+    <p>If you’re using a Node.js or Python runtime, you can use the built-in code editor
+      in the Lambda console. You should be able to import any library that you’ve added as
+      a layer to the current function.</p>
+   
+    <h2 id="finding-layer-information">Finding layer information</h2>
+    <p>To find layers in your account that are compatible with your function’s runtime,
+      use the <a href="./API_ListLayers.html">ListLayers</a> API. For example, you can use the following <code class="code">list-layers</code>
+      AWS Command Line Interface (CLI) command:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda list-layers --compatible-runtime python3.9</code></pre>
+    <p>You should see output similar to the following:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Layers": [
+        <span>{</span>
+            "LayerName": "my-layer",
+            "LayerArn": "arn:aws:lambda:us-east-2:123456789012:layer:my-layer",
+            "LatestMatchingVersion": <span>{</span>
+                "LayerVersionArn": "arn:aws:lambda:us-east-2:123456789012:layer:my-layer:2",
+                "Version": 2,
+                "Description": "My layer",
+                "CreatedDate": "2018-11-15T00:37:46.592+0000",
+                "CompatibleRuntimes": [
+                    "python3.7",
+                    "python3.8",
+                    "python3.9",
+                ]
+            }
+        }
+    ]
+}</code></pre>
+    <p>To list all layers in your account, omit the <code class="code">--compatible-runtime</code> option.
+      The response details show the latest version of each layer.</p>
+    <p>You can also get the latest version of a layer using the <a href="./API_ListLayerVersions.html">ListLayerVersions</a> API.
+      For example, you can use the following <code class="code">list-layer-versions</code> CLI command:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda list-layer-versions --layer-name my-layer</code></pre>
+    <p>You should see output similar to the following:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "LayerVersions": [
+        <span>{</span>
+            "LayerVersionArn": "arn:aws:lambda:us-east-2:123456789012:layer:my-layer:2",
+            "Version": 2,
+            "Description": "My layer",
+            "CreatedDate": "2018-11-15T00:37:46.592+0000",
+            "CompatibleRuntimes": [
+                "java11"
+            ]
+        },
+        <span>{</span>
+            "LayerVersionArn": "arn:aws:lambda:us-east-2:123456789012:layer:my-layer:1",
+            "Version": 1,
+            "Description": "My layer",
+            "CreatedDate": "2018-11-15T00:27:46.592+0000",
+            "CompatibleRuntimes": [
+                "java11"
+            ]
+        }
+    ]
+}</code></pre>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./creating-deleting-layers.html">Creating and deleting layers</div><div id="next" class="next-link" accesskey="n" href="./layers-cfn.html">Layers with AWS CloudFormation</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/adding-layers.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/adding-layers.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Building a metadata-enriched, intelligent search solution with Amazon Kendra - Amazon Kendra</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="tutorial-search-metadata" /><meta name="default_state" content="tutorial-search-metadata" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html" /><meta name="description" content="Learn how to integrate Amazon Comprehend entities analysis to enrich Amazon Kendra search results." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Kendra" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Provides a conceptual overview of Amazon Kendra. Learn about Amazon Kendra features and get started indexing your documents using the console, CLI, and API." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/tutorial-search-metadata.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/tutorial-search-metadata.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/tutorial-search-metadata.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/tutorial-search-metadata.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/tutorial-search-metadata.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/tutorial-search-metadata.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/tutorial-search-metadata.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/tutorial-search-metadata.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/tutorial-search-metadata.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/tutorial-search-metadata.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/tutorial-search-metadata.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/tutorial-search-metadata.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/tutorial-search-metadata.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/tutorial-search-metadata.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/tutorial-search-metadata.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/tutorial-search-metadata.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/kendra/latest/dg/tutorial-search-metadata.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/kendra/latest/dg/tutorial-search-metadata.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html" hreflang="x-default" /><meta name="feedback-item" content="Kendra" /><meta name="this_doc_product" content="Amazon Kendra" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'kendra'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Building a metadata-enriched, intelligent search solution with Amazon Kendra" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Building a metadata-enriched, intelligent search solution with Amazon Kendra - Amazon Kendra</title><meta name="pdf" content="/pdfs/kendra/latest/dg/kendra-dg.pdf#tutorial-search-metadata" /><meta name="rss" content="amazon-kendra-release-notes.rss" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata.html" /><meta name="keywords" content="Kendra,Amazon Kendra,search,intelligent search,natural language,index,question,keyword,data source,connector,FAQ,frequently asked question,Amazon Comprehend,Comprehend,entities,metadata,natural language search" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Tutorial: Building a metadata-enriched, intelligent search solution with Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/kendra/latest/dg/kendra-dg.pdf#tutorial-search-metadata" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/kendra/index.html">Amazon Kendra</a><a href="what-is-kendra.html">Developer Guide</a></div><div id="page-toc-src"><a href="#tutorial-search-metadata-prereqs">Prerequisites</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="tutorial-search-metadata">Tutorial: Building a metadata-enriched, intelligent
+      search solution with Amazon Kendra</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This tutorial shows you how to build a metadata-enriched, natural language based,
+    intelligent search solution for your enterprise data using <a href="https://aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>Amazon Kendra</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://aws.amazon.com/comprehend/" rel="noopener noreferrer" target="_blank"><span>Amazon Comprehend</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://aws.amazon.com/s3/" rel="noopener noreferrer" target="_blank"><span>Amazon Simple Storage Service</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> (S3), and <a href="https://aws.amazon.com/cloudshell/" rel="noopener noreferrer" target="_blank"><span>AWS CloudShell</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>Amazon Kendra is an intelligent search service that can build a search index for your unstructured,
+    natural language data repositories. To make it easier for your customers to find and filter
+    relevant answers, you can use Amazon Comprehend to extract metadata from your data and ingest it into your
+    Amazon Kendra search index.</p><p>Amazon Comprehend is a natural language processing (NLP) service that can identify entities. Entities
+    are references to people, places, locations, organizations, and objects in your data.</p><p>This tutorial uses a sample dataset of news articles to extract entities, convert them to
+    metadata, and ingest them into your Amazon Kendra index to run searches on. The added metadata lets you
+    filter your search results using any subset of these entities, and improves search accuracy. By
+    following this tutorial, you will learn how to create a search solution for your enterprise data
+    without any specialized machine learning knowledge.</p><p><b>This tutorial shows you how to build your search solution using the
+      following steps:</b></p><div class="orderedlist">
+     
+     
+     
+     
+     
+  <ol><li>
+      <p>Storing a sample dataset of news articles in Amazon S3.</p>
+    </li><li>
+      <p>Using Amazon Comprehend to extract entities from your data.</p>
+    </li><li>
+      <p>Running a Python 3 script to convert the entities into Amazon Kendra index metadata format and
+        storing this metadata in S3.</p>
+    </li><li>
+      <p>Creating an Amazon Kendra search index and ingesting the data and the metadata.</p>
+    </li><li>
+      <p>Querying the search index.</p>
+    </li></ol></div><p><b>The following diagram shows the workflow:</b></p><div class="mediaobject">
+     
+      <img src="/images/kendra/latest/dg/images/tutorial-workflow.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Workflow diagram of the procedures in the tutorial.&#xA;    " style="max-width:100%" />
+     
+     
+  </div><p><b>Estimated time to complete this tutorial:</b> 1 hour</p><p><b>Estimated cost:</b> Some of the actions in this tutorial incur
+    charges on your AWS account. For more information on the cost of each service, see the price
+    pages for <a href="https://aws.amazon.com/s3/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon S3</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://aws.amazon.com/comprehend/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon Comprehend</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://aws.amazon.com/cloudshell/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS CloudShell</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and <a href="https://aws.amazon.com/kendra/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon Kendra</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="#tutorial-search-metadata-prereqs">Prerequisites</a></li><li><a href="./tutorial-search-metadata-add-documents.html">Step 1: Adding documents to
+        Amazon S3</a></li><li><a href="./tutorial-search-metadata-entities-analysis.html">Step 2: Running an entities
+        analysis job on Amazon Comprehend</a></li><li><a href="./tutorial-search-metadata-format-output.html">Step 3: Formatting the entities
+        analysis output as Amazon Kendra metadata</a></li><li><a href="./tutorial-search-metadata-create-index-ingest.html">Step 4: Creating an Amazon Kendra index
+        and ingesting the metadata</a></li><li><a href="./tutorial-search-metadata-query-kendra.html">Step 5: Querying the Amazon Kendra
+        index</a></li><li><a href="./tutorial-search-metadata-cleanup.html">Step 6: Cleaning up</a></li></ul></div>
+    <h2 id="tutorial-search-metadata-prereqs">Prerequisites</h2>
+    <p>To complete this tutorial, you need the following resources:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>An AWS account. If you do not have an AWS account, follow the steps in <a href="https://docs.aws.amazon.com/kendra/latest/dg/setup.html#aws-kendra-set-up-aws-account">Setting up Amazon Kendra</a> to set up your AWS account.</p>
+      </li><li class="listitem">
+        <p>A development computer running Windows, macOS, or Linux, to access the AWS
+          Management Console. For more information, see <a href="https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/working-with-console.html">Configuring the AWS Management Console</a>.</p>
+      </li><li class="listitem">
+        <p>An <a href="https://aws.amazon.com/iam/" rel="noopener noreferrer" target="_blank"><span>AWS Identity and Access Management</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> (IAM) user. To learn
+          how to set up an IAM user and group for your account, see the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html">Getting
+            Started</a> section in the <em>IAM User Guide</em>.</p>
+        <p>If you are using the AWS Command Line Interface, you also need to attach the following policy to your
+          IAM user to grant it the basic permissions required to complete this tutorial.</p>
+        <p></p>
+        <p></p>
+         
+          <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="(AWS CLI only) IAM permissions policy" id="permissions-policy" expanded="false"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetUserPolicy",
+        "iam:DeletePolicy",
+        "iam:CreateRole",
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:AttachUserPolicy",
+        "iam:DeleteRole",
+        "iam:CreatePolicy",
+        "iam:GetRolePolicy",
+        "s3:CreateBucket",
+        "s3:ListBucket",
+        "s3:DeleteObject",
+        "s3:DeleteBucket",
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListAllMyBuckets",
+        "comprehend:StartEntitiesDetectionJob",
+        "comprehend:BatchDetectEntities",
+        "comprehend:ListEntitiesDetectionJobs",
+        "comprehend:DescribeEntitiesDetectionJob",
+        "comprehend:StopEntitiesDetectionJob",
+        "comprehend:DetectEntities",
+        "kendra:Query",
+        "kendra:StopDataSourceSyncJob",
+        "kendra:CreateDataSource",
+        "kendra:BatchPutDocument",
+        "kendra:DeleteIndex",
+        "kendra:StartDataSourceSyncJob",
+        "kendra:CreateIndex",
+        "kendra:ListDataSources",
+        "kendra:UpdateIndex",
+        "kendra:DescribeIndex",
+        "kendra:DeleteDataSource",
+        "kendra:ListIndices",
+        "kendra:ListDataSourceSyncJobs",
+        "kendra:DescribeDataSource",
+        "kendra:BatchDeleteDocument"
+      ],
+      "Resource": "*"
+    },
+    <span>{</span>
+      "Sid": "iamPassRole",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "*",
+      "Condition": <span>{</span>
+        "StringEquals": <span>{</span>
+          "iam:PassedToService": [
+            "s3.amazonaws.com",
+            "comprehend.amazonaws.com",
+            "kendra.amazonaws.com"
+          ]
+        }
+      }
+    }
+  ]
+}</code></pre></awsui-expandable-section></div>
+         
+        <p>For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html">Creating IAM policies</a> and <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html">Adding and removing IAM identity permissions.</a></p>
+      </li><li class="listitem">
+        <p>The <a href="https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/" rel="noopener noreferrer" target="_blank"><span>AWS Regional Services List</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. To reduce latency, you should choose the AWS
+          region closest to your geographic location that is supported by both Amazon Comprehend and
+          Amazon Kendra.</p>
+      </li><li class="listitem">
+        <p>(Optional) An <a href="https://docs.aws.amazon.com/kms/latest/developerguide/overview.html">AWS Key Management Service</a>. While this tutorial does not use encryption, you might want to use
+          encryption best practices for your specific use case.</p>
+      </li><li class="listitem">
+        <p>(Optional) An <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">Amazon Virtual Private Cloud</a>. While this tutorial does not use a VPC, you might want to use VPC
+          best practices to ensure data security for your specific use case.</p>
+      </li></ul></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./index-synonyms-enabling-synonyms-in-results.html">Highlights in search
+        results</div><div id="next" class="next-link" accesskey="n" href="./tutorial-search-metadata-add-documents.html">Step 1: Adding documents</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

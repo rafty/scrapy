@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda runtime updates - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="runtimes-update" /><meta name="default_state" content="runtimes-update" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html" /><meta name="description" content="Learn how Lambda updates the runtime version of your function, and how you can configure these updates." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/runtimes-update.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/runtimes-update.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/runtimes-update.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/runtimes-update.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/runtimes-update.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/runtimes-update.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/runtimes-update.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/runtimes-update.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/runtimes-update.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/runtimes-update.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/runtimes-update.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/runtimes-update.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/runtimes-update.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/runtimes-update.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/runtimes-update.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/runtimes-update.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/runtimes-update.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/runtimes-update.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda runtime updates" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda runtime updates - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#runtimes-update" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-update.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-update.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-update.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,languages,runtime,supported languages,linux distribution,linux environment,update runtime,runtime version,runtime configuration,runtime management,INIT_START" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Lambda runtimes",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda runtime updates",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#runtimes-update" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#runtime-management-controls">Runtime management controls</a><a href="#runtime-management-two-phase">Two-phase runtime version rollout</a><a href="#runtime-management-rollback">Roll back a runtime version</a><a href="#runtime-management-identify">Identifying runtime version changes</a><a href="#runtime-management-configure-settings">Configure runtime management settings</a><a href="#runtime-management-shared">Shared responsibility model</a><a href="#runtime-management-hc-applications">High-compliance applications</a><a href="#runtime-management-supported-regions">Supported Regions</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="runtimes-update">Lambda runtime updates</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Lambda keeps each managed runtime up to date with security updates, bug fixes, new features,
+    performance enhancements, and support for minor version releases. These runtime updates are
+    published as <em>runtime versions</em>. Lambda applies runtime updates to functions
+    by migrating the function from an earlier runtime version to a new runtime version.</p><p>By default, for functions using managed runtimes, Lambda applies runtime updates automatically. 
+    With automatic runtime updates, Lambda takes on the operational burden of patching the
+    runtime versions. For most customers, automatic updates are the right choice. For more
+    information, see <a href="#runtime-management-controls">Runtime management controls</a>.</p><p>Lambda also publishes each new runtime version as a container image. To update runtime
+    versions for container-based functions, you must <a href="./images-create.html">create a new
+      container image</a> from the updated base image and redeploy your function.</p><p>Each runtime version is associated with a version number and an ARN (Amazon Resource Name).
+    Runtime version numbers use a numbering scheme that Lambda defines, independent of the version
+    numbers that the programming language uses. The runtime version ARN is a unique identifier for
+    each runtime version.</p><p>You can view the ARN of your function's current runtime version in the
+      <code class="code">INIT_START</code> line of your function logs and <a href="#runtime-management-configure-settings">in the Lambda console</a>.</p><p>Runtime versions should not be confused with runtime identifiers. Each runtime has a unique <em>runtime identifier</em>, such as <code class="code">python3.9</code> or 
+    <code class="code">nodejs18.x</code>. These correspond to each major programming language release. Runtime versions describe the patch version of an individual runtime.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The ARN for the same runtime version number can vary between AWS Regions and CPU
+      architectures.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#runtime-management-controls">Runtime management controls</a></li><li><a href="#runtime-management-two-phase">Two-phase runtime version rollout</a></li><li><a href="#runtime-management-rollback">Roll back a runtime version</a></li><li><a href="#runtime-management-identify">Identifying runtime version changes</a></li><li><a href="#runtime-management-configure-settings">Configure runtime management settings</a></li><li><a href="#runtime-management-shared">Shared responsibility model</a></li><li><a href="#runtime-management-hc-applications">High-compliance applications</a></li><li><a href="#runtime-management-supported-regions">Supported Regions</a></li></ul></div>
+    <h2 id="runtime-management-controls">Runtime management controls</h2>
+    <p>Lambda strives to provide runtime updates that are backward compatible with existing
+      functions. However, as with software patching, there are rare cases in which a runtime update
+      can negatively impact an existing function. For example, security patches can expose an
+      underlying issue with an existing function that depends on the previous, insecure behavior.
+      Lambda runtime management controls help reduce the risk of impact to your workloads in the rare
+      event of a runtime version incompatibility. For each <a href="./configuration-versions.html">function version</a> (<code class="code">$LATEST</code> or published version), you can choose one of
+      the following runtime update modes:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p><span class="topcom">Auto (default)</span> – Automatically update to the most recent
+          and secure runtime version using <a href="#runtime-management-two-phase">Two-phase runtime version rollout</a>. We recommend this mode for most
+          customers so that you always benefit from runtime updates.</p></li><li class="listitem"><p><span class="topcom">Function update</span> – Update to the most recent and secure runtime version when you update your function. When you update your function, Lambda
+          updates the runtime of your function to the most recent and secure runtime version. This
+          approach synchronizes runtime updates with function deployments, giving you control over
+          when Lambda applies runtime updates. With this mode, you can detect and mitigate rare
+          runtime update incompatibilities early. When using this mode, you must regularly update
+          your functions to keep their runtime up to date.</p></li><li class="listitem"><p><span class="topcom">Manual</span> – Manually update your runtime version. You specify a runtime version in your function
+          configuration. The function uses this runtime version indefinitely. In the rare case in
+          which a new runtime version is incompatible with an existing function, you can use this
+          mode to roll back your function to an earlier runtime version. We recommend against using
+        <b>Manual</b> mode to try to achieve runtime consistency across
+        deployments. For more information, see
+            <a href="#runtime-management-rollback">Roll back a runtime version</a>.</p></li></ul></div>
+    <p>Responsibility for applying runtime updates to your functions varies according to which runtime update mode you choose. For more information, see 
+      <a href="#runtime-management-shared">Shared responsibility model</a>.</p>
+   
+    <h2 id="runtime-management-two-phase">Two-phase runtime version rollout</h2>
+    <p>Lambda introduces new runtime versions in the following order:</p>
+      <div class="orderedlist">
+         
+         
+      <ol><li><p>In the first
+          phase, Lambda applies the new runtime version whenever you create or update a function. A function gets updated when you call the 
+          <a href="./API_UpdateFunctionCode.html">UpdateFunctionCode</a> or 
+          <a href="./API_UpdateFunctionConfiguration.html">UpdateFunctionConfiguration</a> API operations.</p></li><li><p>In the second phase, Lambda updates any function that uses the <b>Auto</b> runtime update mode and that hasn't already
+          been updated to the new runtime version. </p></li></ol></div>
+    <p>The overall duration of the rollout process varies
+      according to multiple factors, including the severity of any security patches included in the
+      runtime update.</p>
+    <p>If you're actively developing and deploying your functions, you will most likely pick up
+      new runtime versions during the first phase. This synchronizes runtime updates with function
+      updates. In the rare event that the latest runtime version negatively impacts your
+      application, this approach lets you take prompt corrective action. Functions that aren't
+      in active development still receive the operational benefit of automatic runtime updates
+      during the second phase.</p>
+    <p>This approach doesn't affect functions set to <b>Function update</b> or
+        <b>Manual</b> mode. Functions using <b>Function update</b> mode
+      receive the latest runtime updates only when you create or update them. Functions using
+        <b>Manual</b> mode don't receive runtime updates.</p>
+    <p>Lambda publishes new runtime versions in a gradual, rolling fashion across AWS Regions.
+      If your functions are set to <b>Auto</b> or <b>Function update</b>
+      modes, it's possible that functions deployed at the same time to different Regions, or at
+      different times in the same Region, will pick up different runtime versions. Customers who
+      require guaranteed runtime version consistency across their environments should <a href="./images-create.html">use container images to deploy their Lambda functions</a>.
+      The <b>Manual</b> mode is designed as a temporary mitigation to enable runtime version 
+      rollback in the rare event that a runtime version is incompatible with your function.</p>
+   
+    <h2 id="runtime-management-rollback">Roll back a runtime version</h2>
+    <p>In the rare event that a new runtime version is incompatible with your existing function,
+      you can roll back its runtime version to an earlier one. This keeps your application working
+      and minimizes disruption, providing time to remedy the incompatibility before returning to the
+      latest runtime version.</p>
+    <p>Lambda doesn't impose a time limit on how long you can use any particular runtime version.
+      However, we strongly recommend updating to the latest runtime version as soon as possible to
+      benefit from the latest security patches, performance improvements, and features. Lambda
+      provides the option to roll back to an earlier runtime version only as a temporary mitigation
+      in the rare event of a runtime update compatibility issue. Functions using an earlier runtime
+      version for an extended period may eventually experience degraded performance or issues, such
+      as a certificate expiry, which can cause them to stop working properly.</p>
+    <p>You can roll back a runtime version in the following ways:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p><a href="#runtime-management-rollback-manual">Using the Manual
+            runtime update mode</a></p></li><li class="listitem"><p><a href="#runtime-management-rollback-published">Using published function
+          versions</a></p></li></ul></div>
+    <p>For more information, see <a href="http://aws.amazon.com/blogs/compute/introducing-aws-lambda-runtime-management-controls/" rel="noopener noreferrer" target="_blank"><span>Introducing AWS Lambda
+        runtime management controls</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the AWS Compute Blog.</p>
+     
+      <h3 id="runtime-management-rollback-manual">Roll back a runtime version using
+            <b>Manual</b> runtime update mode</h3>
+      <p>If you're using the <b>Auto</b> runtime version update mode, or you're
+        using the <code class="code">$LATEST</code> runtime version, you can roll back your runtime version using
+        the <b>Manual</b> mode. For the <a href="./configuration-versions.html">function version</a> you want to roll back, change the runtime version update mode to
+          <b>Manual</b> and specify the ARN of the previous runtime version. For more
+        information about finding the ARN of the previous runtime version, see <a href="#runtime-management-identify">Identifying runtime version changes</a>.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If the <code class="code">$LATEST</code> version of your function is configured to use
+            <b>Manual</b> mode, then you can't change the CPU architecture or runtime
+          version that your function uses. To make these changes, you must change to
+            <b>Auto</b> or <b>Function update</b> mode.</p></div></div>
+     
+     
+      <h3 id="runtime-management-rollback-published">Roll back a runtime version using published function versions</h3>
+      <p>Published <a href="./configuration-versions.html">function versions</a> are an
+        immutable snapshot of the <code class="code">$LATEST</code> function code and configuration at the time
+        that you created them. In <b>Auto</b> mode, Lambda automatically updates the
+        runtime version of published function versions during phase two of the runtime version
+        rollout. In <b>Function update</b> mode, Lambda doesn't update the runtime
+        version of published function versions.</p>
+      <p>Published function versions using <b>Function update</b> mode therefore
+        create a static snapshot of the function code, configuration, and runtime version. By using
+          <b>Function update</b> mode with function versions, you can synchronize
+        runtime updates with your deployments. You can also coordinate rollback of code,
+        configuration, and runtime versions by redirecting traffic to an earlier published function
+        version. You can integrate this approach into your continuous integration and continuous
+        delivery (CI/CD) for fully automatic rollback in the rare event of runtime update
+        incompatibility. When using this approach, you must update your function regularly and
+        publish new function versions to pick up the latest runtime updates. For more information,
+        see <a href="#runtime-management-shared">Shared responsibility model</a>.</p>
+     
+   
+    <h2 id="runtime-management-identify">Identifying runtime version changes</h2>
+    <p>The runtime version number and ARN are logged in the <code class="code">INIT_START</code> log line,
+      which Lambda emits to CloudWatch Logs each time that it creates a new <a href="./gettingstarted-concepts.html#gettingstarted-concepts-ee">execution environment</a>. Because the execution environment uses the same runtime
+      version for all function invocations, Lambda emits the <code class="code">INIT_START</code> log line only
+      when Lambda executes the init phase. Lambda doesn't emit this log line for each function
+      invocation. Lambda emits the log line to CloudWatch Logs, but it is not visible in the console. </p>
+    <div class="example"><h6>Example INIT_START log line</h6><div class="example-contents"><pre class="screen">INIT_START Runtime Version: python:3.9.v14    Runtime Version ARN: arn:aws:lambda:eu-south-1::runtime:7b620fc2e66107a1046b140b9d320295811af3ad5d4c6a011fad1fa65127e9e6I</pre></div></div>
+    <p>Rather than working directly with the logs, you can use <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContributorInsights.html">Amazon CloudWatch Contributor
+        Insights</a> to identify transitions between runtime versions. The following rule counts
+      the distinct runtime versions from each <code class="code">INIT_START</code> log line. To use the rule,
+      replace the example log group name <code class="code">/aws/lambda/*</code> with the appropriate prefix for
+      your function or group of functions.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput"><span>{</span>
+  "Schema": <span>{</span>
+    "Name": "CloudWatchLogRule",
+    "Version": 1
+  },
+  "AggregateOn": "Count",
+  "Contribution": <span>{</span>
+    "Filters": [
+      <span>{</span>
+        "Match": "eventType",
+        "In": [
+          "INIT_START"
+        ]
+      }
+    ],
+    "Keys": [
+      "runtimeVersion",
+      "runtimeVersionArn"
+    ]
+  },
+  "LogFormat": "CLF",
+  "LogGroupNames": [
+    "<code class="replaceable">/aws/lambda/*</code>"
+  ],
+  "Fields": <span>{</span>
+    "1": "eventType",
+    "4": "runtimeVersion",
+    "8": "runtimeVersionArn"
+  }
+}</code></code></pre>
+    <p>The following CloudWatch Contributor Insights report shows an example of a runtime version
+      transition as captured by the preceding rule. The orange line shows execution environment
+      initialization for the earlier runtime version (<b>python:3.9.v12</b>), and the
+      blue line shows execution environment initialization for the new runtime version
+        (<b>python:3.9.v14</b>).</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/runtime_version_graph.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Graph showing the transition from one runtime version to another.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+ 
+    <h2 id="runtime-management-configure-settings">Configure runtime management settings</h2>
+    <p>You can configure runtime management settings using the Lambda console or the AWS Command Line Interface
+      (AWS CLI).</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can configure runtime management settings separately for each <a href="./configuration-versions.html">function version</a>.</p></div></div>
+    <div class="procedure"><h6>To configure how Lambda updates your runtime version (console)</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of a function.</p>
+      </li><li>
+        <p>On the <b>Code</b> tab, under <b>Runtime settings</b>,
+          choose <b>Edit runtime management configuration</b>.</p>
+      </li><li>
+        <p>Under <b>Runtime management configuration</b>, choose one of the
+          following:</p>
+          <div class="itemizedlist">
+             
+             
+             
+          <ul class="itemizedlist"><li class="listitem"><p>To have your function update to the latest runtime version automatically, choose
+                <b>Auto</b>.</p></li><li class="listitem"><p>To have your function update to the latest runtime version when you change the function,
+              choose <b>Function update</b>.</p></li><li class="listitem"><p>To have your function update to the latest runtime version only when you change the runtime
+              version ARN, choose <b>Manual</b>.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can find the runtime version ARN under <b>Runtime management
+                  configuration</b>. You can also find the ARN in the <code class="code">INIT_START</code>
+                line of your function logs.</p></div></div>
+            </li></ul></div>
+      </li><li><p>Choose <b>Save</b>.</p></li></ol></div>
+      <p><b>To configure how Lambda updates your runtime version
+        (AWS CLI)</b></p>
+      <p>To configure runtime management for a function, you can use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/put-runtime-management-config.html" rel="noopener noreferrer" target="_blank"><span><code class="code">put-runtime-management-config</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> AWS CLI command, together with the
+      runtime update mode. When using <code class="code">Manual</code> mode, you must also provide the runtime
+      version ARN.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda put-runtime-management-config --function-name <code class="replaceable">arn:aws:lambda:eu-west-1:069549076217:function:myfunction</code> --update-runtime-on Manual --runtime-version-arn <code class="replaceable">arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1</code></code></code></pre>
+      <p>You should see output similar to the following:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "UpdateRuntimeOn": "Manual",
+  "FunctionArn": "arn:aws:lambda:eu-west-1:069549076217:function:myfunction",
+  "RuntimeVersionArn": "arn:aws:lambda:eu-west-1::runtime:8eeff65f6809a3ce81507fe733fe09b835899b99481ba22fd75b5a7338290ec1"
+}</code></pre>
+   
+    <h2 id="runtime-management-shared">Shared responsibility model</h2>
+    <p>Lambda is responsible for curating and publishing security updates for all supported
+      managed runtimes and container images. Responsibility for updating existing functions to use
+      the latest runtime version varies depending on which runtime update mode you use.</p>
+    <p>Lambda is responsible for applying runtime updates to all functions configured to use the
+        <b>Auto</b> runtime update mode.</p>
+    <p>For functions configured with the <b>Function update</b> runtime update
+      mode, you're responsible for regularly updating your function. Lambda is responsible for
+      applying runtime updates when you make those updates. If you don't update your function, then
+      Lambda doesn't update the runtime. If you don't regularly update your function, then we
+      strongly recommend configuring it for automatic runtime updates so that it continues to
+      receive security updates.</p>
+    <p>For functions configured to use the <b>Manual</b> runtime update mode,
+      you're responsible for updating your function to use the latest runtime version. We strongly
+      recommend that you use this mode only to roll back the runtime version as a temporary
+      mitigation in the rare event of runtime update incompatibility. We also recommend that you
+      change to <b>Auto</b> mode as quickly as possible to minimize the time in which
+      your functions aren't patched.</p>
+    <p>If you're <a href="./images-create.html">using container images to deploy your
+        functions</a>, then Lambda is responsible for publishing updated base images. In this
+      case, you're responsible for rebuilding your function's container image from the latest base
+      image and redeploying the container image.</p>
+    <p>This is summarized in the following table:</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac19c39c29c15"><thead>
+          <tr>
+            <th>Deployment mode</th>
+            <th>Lambda's responsibility</th>
+            <th>Customer's responsibility</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">Managed runtime, <b>Auto</b> mode</td>
+            <td tabindex="-1">
+              <p>Publish new runtime versions containing the latest patches.</p>
+              <p>Apply runtime patches to existing functions.</p>
+            </td>
+            <td tabindex="-1">Roll back to a previous runtime version in the rare event of a runtime update
+              compatibility issue.</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Managed runtime, <b>Function update</b> mode</td>
+            <td tabindex="-1">Publish new runtime versions containing the latest patches.</td>
+            <td tabindex="-1">
+              <p>Update functions regularly to pick up the latest runtime version.</p>
+              <p>Switch a function to <b>Auto</b> mode when you're not regularly
+                updating the function.</p>
+              <p>Roll back to a previous runtime version in the rare event of a runtime update
+                compatibility issue.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Managed runtime, <b>Manual</b> mode</td>
+            <td tabindex="-1">Publish new runtime versions containing the latest patches.</td>
+            <td tabindex="-1">
+              <p>Use this mode only for temporary runtime rollback in the rare event of a runtime
+                update compatibility issue.</p>
+              <p>Switch functions to <b>Auto</b> or <b>Function
+                  update</b> mode and the latest runtime version as soon as possible.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Container image</td>
+            <td tabindex="-1">Publish new container images containing the latest patches.</td>
+            <td tabindex="-1">Redeploy functions regularly using the latest container base image to pick up the
+              latest patches.</td>
+          </tr>
+        </table></div></div>
+    <p>For more information about shared responsibility with AWS, see <a href="http://aws.amazon.com/compliance/shared-responsibility-model/" rel="noopener noreferrer" target="_blank"><span>Shared Responsibility Model</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the
+      AWS Cloud Security site.</p>
+   
+    <h2 id="runtime-management-hc-applications">High-compliance applications</h2>
+    <p>To meet patching requirements, Lambda customers typically rely on automatic runtime
+      updates. If your application is subject to strict patching freshness requirements, you may
+      want to limit use of earlier runtime versions. You can restrict Lambda's runtime management
+      controls by using AWS Identity and Access Management (IAM) to deny users in your AWS account access to the <a href="./API_PutRuntimeManagementConfig.html">PutRuntimeManagementConfig</a> API operation.
+      This operation is used to choose the runtime update mode for a function. Denying access to
+      this operation causes all functions to default to the <b>Auto</b> mode. You can
+      apply this restriction across your organization by using a <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html">service control policies
+        (SCP)</a>. In the event that you must roll back a function to an earlier runtime
+      version, you can grant a policy exception on a case-by-case basis.</p>
+   
+    <h2 id="runtime-management-supported-regions">Supported Regions</h2>
+    <p>Lambda supports runtime version numbers, runtime management controls, the
+        <code class="code">INIT_START</code> log line, and two-phase version rollout in the following
+      AWS Regions:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>US East (N. Virginia)</p></li><li class="listitem"><p>US East (Ohio)</p></li><li class="listitem"><p>US West (N. California)</p></li><li class="listitem"><p>US West (Oregon)</p></li><li class="listitem"><p>Europe (Ireland)</p></li><li class="listitem"><p>Europe (London)</p></li><li class="listitem"><p>Europe (Paris)</p></li><li class="listitem"><p>Europe (Stockholm)</p></li><li class="listitem"><p>Europe (Frankfurt)</p></li><li class="listitem"><p>Europe (Milan)</p></li><li class="listitem"><p>Asia Pacific (Hong Kong)</p></li><li class="listitem"><p>Asia Pacific (Tokyo)</p></li><li class="listitem"><p>Asia Pacific (Seoul)</p></li><li class="listitem"><p>Asia Pacific (Osaka)</p></li><li class="listitem"><p>Asia Pacific (Mumbai)</p></li><li class="listitem"><p>Asia Pacific (Singapore)</p></li><li class="listitem"><p>Asia Pacific (Sydney)</p></li><li class="listitem"><p>Asia Pacific (Jakarta)</p></li><li class="listitem"><p>Canada (Central)</p></li><li class="listitem"><p>South America (São Paulo)</p></li><li class="listitem"><p>Africa (Cape Town)</p></li><li class="listitem"><p>Middle East (Bahrain)</p></li></ul></div>
+    <p>In other Regions, Lambda automatically applies runtime updates to all functions in a
+      Region-by-Region deployment sequence.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-runtimes.html">Lambda runtimes</div><div id="next" class="next-link" accesskey="n" href="./runtimes-modify.html">Runtime modifications</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-update.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/runtimes-update.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

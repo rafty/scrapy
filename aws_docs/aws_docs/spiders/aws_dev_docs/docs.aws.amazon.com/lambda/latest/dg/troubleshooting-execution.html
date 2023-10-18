@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Troubleshoot execution issues in Lambda - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="troubleshooting-execution" /><meta name="default_state" content="troubleshooting-execution" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-execution.html" /><meta name="description" content="Learn how to troubleshoot common execution issues in Lambda" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-execution.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/troubleshooting-execution.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/troubleshooting-execution.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/troubleshooting-execution.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/troubleshooting-execution.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-execution.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-execution.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/troubleshooting-execution.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/troubleshooting-execution.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/troubleshooting-execution.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/troubleshooting-execution.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/troubleshooting-execution.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/troubleshooting-execution.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/troubleshooting-execution.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/troubleshooting-execution.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/troubleshooting-execution.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/troubleshooting-execution.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/troubleshooting-execution.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/troubleshooting-execution.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/troubleshooting-execution.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/troubleshooting-execution.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-execution.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Troubleshoot execution issues in Lambda" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Troubleshoot execution issues in Lambda - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#troubleshooting-execution" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-execution.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-execution.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-execution.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Troubleshooting issues in Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-troubleshooting.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Troubleshoot execution issues in Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-troubleshooting.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#troubleshooting-execution" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#troubleshooting-execution-toolong">Lambda: Execution takes too long</a><a href="#troubleshooting-execution-logstraces">Lambda: Logs or traces don't appear</a><a href="#troubleshooting-execution-unfinished">Lambda: The function returns before execution finishes</a><a href="#troubleshooting-execution-versions">AWS SDK: Versions and updates</a><a href="#troubleshooting-execution-libraries">Python: Libraries load incorrectly</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="troubleshooting-execution">Troubleshoot execution issues in Lambda</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When the Lambda runtime runs your function code, the event might be processed on an instance of the function
+    that's been processing events for some time, or it might require a new instance to be initialized. Errors can occur
+    during function initialization, when your handler code processes the event, or when your function returns (or
+    fails to return) a response.</p><p>Function execution errors can be caused by issues with your code, function configuration, downstream resources,
+    or permissions. If you invoke your function directly, you see function errors in the response from Lambda. If you
+    invoke your function asynchronously, with an event source mapping, or through another service, you might find errors
+    in logs, a dead-letter queue, or an on-failure destination. Error handling options and retry behavior vary depending
+    on how you invoke your function and on the type of error.</p><p>When your function code or the Lambda runtime return an error, the status code in the response from Lambda is 200
+    OK. The presence of an error in the response is indicated by a header named <code class="code">X-Amz-Function-Error</code>. 400
+    and 500-series status codes are reserved for <a href="./troubleshooting-invocation.html">invocation
+      errors</a>.</p>
+    <h2 id="troubleshooting-execution-toolong">Lambda: Execution takes too long</h2>
+    
+    
+    <p><b>Issue:</b>
+      <em>Function execution takes too long.</em></p>
+    
+    <p>If your code takes much longer to run in Lambda than on your local machine, it may be constrained by the memory
+      or processing power available to the function. <a href="./configuration-function-common.html">Configure the function with
+        additional memory</a> to increase both memory and CPU.</p>
+   
+    <h2 id="troubleshooting-execution-logstraces">Lambda: Logs or traces don't appear</h2> 
+    
+    
+    <p><b>Issue:</b>
+      <em>Logs don't appear in CloudWatch Logs.</em></p>
+    <p><b>Issue:</b>
+      <em>Traces don't appear in AWS X-Ray.</em></p>
+    
+    <p>Your function needs permission to call CloudWatch Logs and X-Ray. Update its <a href="./lambda-intro-execution-role.html">execution role</a> to grant it permission. Add the following managed policies to enable logs and
+      tracing.</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>AWSLambdaBasicExecutionRole</b></p>
+      </li><li class="listitem">
+        <p><b>AWSXRayDaemonWriteAccess</b></p>
+      </li></ul></div>
+     <p>When you add permissions to your function, update its code or configuration as well. This forces
+    running instances of your function, which have outdated credentials, to stop and be replaced.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>It may take 5 to 10 minutes for logs to show up after a function invocation.</p></div></div>
+   
+    <h2 id="troubleshooting-execution-unfinished">Lambda: The function returns before execution finishes</h2> 
+    
+    
+    <p><b>Issue: (Node.js)</b>
+      <em>Function returns before code finishes executing</em></p>
+    
+    <p>Many libraries, including the AWS SDK, operate asynchronously. When you make a network call or perform another
+      operation that requires waiting for a response, libraries return an object called a promise that tracks the progress
+      of the operation in the background.</p>
+    <p>To wait for the promise to resolve into a response, use the <code class="code">await</code> keyword. This blocks your handler
+      code from executing until the promise is resolved into an object that contains the response. If you don't need to
+      use the data from the response in your code, you can return the promise directly to the runtime.</p>
+    <p>Some libraries don't return promises but can be wrapped in code that does. For more information, see <a href="./nodejs-handler.html">AWS Lambda function handler in Node.js</a>.</p>
+    
+   
+    <h2 id="troubleshooting-execution-versions">AWS SDK: Versions and updates</h2> 
+    
+    
+    <p><b>Issue:</b>
+      <em>The AWS SDK included on the runtime is not the latest version</em></p>
+    <p><b>Issue:</b>
+      <em>The AWS SDK included on the runtime updates automatically</em></p>
+    
+    <p>Runtimes for scripting languages include the AWS SDK and are periodically updated to the latest version. The
+      current version for each runtime is listed on <a href="./lambda-runtimes.html">runtimes page</a>. To use a newer
+      version of the AWS SDK, or to lock your functions to a specific version, you can bundle the library with your
+      function code, or <a href="./chapter-layers.html">create a Lambda layer</a>. For details on creating a
+      deployment package with dependencies, see the following topics:</p>
+    <awsdocs-tabs><dl style="display: none">
+  <dt>Node.js</dt><dd tab-id="node.js">
+      <p><a href="./nodejs-package.html">Deploy Node.js Lambda functions with .zip file archives</a> </p>
+    </dd>
+  
+  <dt>Python</dt><dd tab-id="python">
+    <p>
+      <a href="./python-package.html">Working with .zip file archives for Python Lambda functions</a>
+    </p></dd>
+  
+  <dt>Ruby</dt><dd tab-id="ruby">
+    <p>
+      <a href="./ruby-package.html">Working with .zip file archives for Ruby Lambda functions</a>
+    </p>
+    </dd>
+  
+  <dt>Java</dt><dd tab-id="java">
+    <p>
+      <a href="./java-package.html">Deploy Java Lambda functions with .zip or JAR file archives</a>
+    </p>
+    </dd>
+  
+  <dt>Go</dt><dd tab-id="go">
+    <p>
+      <a href="./golang-package.html">Deploy Go Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+  
+  <dt>C#</dt><dd tab-id="c#">
+    <p>
+      <a href="./csharp-package.html">Build and deploy C# Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+  
+  <dt>PowerShell</dt><dd tab-id="powershell">
+    <p>
+      <a href="./powershell-package.html">Deploy PowerShell Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+</dl></awsdocs-tabs>
+   
+    <h2 id="troubleshooting-execution-libraries">Python: Libraries load incorrectly</h2> 
+    
+    <p><b>Issue:</b> (Python) <em>Some libraries don't load correctly from the
+      deployment package</em></p>
+    
+    <p>Libraries with extension modules written in C or C++ must be compiled in an environment with the same processor
+      architecture as Lambda (Amazon Linux). For more information, see <a href="./python-package.html">Working with .zip file archives for Python Lambda functions</a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./troubleshooting-invocation.html">Invocation</div><div id="next" class="next-link" accesskey="n" href="./troubleshooting-networking.html">Networking</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-execution.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-execution.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

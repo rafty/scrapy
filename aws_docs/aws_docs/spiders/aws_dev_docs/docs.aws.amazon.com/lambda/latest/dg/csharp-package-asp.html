@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Deploy ASP.NET applications - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="csharp-package-asp" /><meta name="default_state" content="csharp-package-asp" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-asp.html" /><meta name="description" content="Learn how to use AWS tooling to deploy existing ASP.NET applications to Lambda" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-asp.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/csharp-package-asp.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/csharp-package-asp.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/csharp-package-asp.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/csharp-package-asp.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-asp.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-asp.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/csharp-package-asp.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/csharp-package-asp.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/csharp-package-asp.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/csharp-package-asp.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/csharp-package-asp.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/csharp-package-asp.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/csharp-package-asp.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/csharp-package-asp.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/csharp-package-asp.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/csharp-package-asp.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/csharp-package-asp.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/csharp-package-asp.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/csharp-package-asp.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/csharp-package-asp.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-asp.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Deploy ASP.NET applications" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Deploy ASP.NET applications - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#csharp-package-asp" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-asp.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-asp.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-asp.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,.zip,deploy,deployment package,C#,.NET,Lambda layers with .NET,Lambda layers with C#,ASP.NET,dotnet" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with C#",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Build and deploy C# Lambda functions with .zip file archives",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/csharp-package.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Deploy ASP.NET applications",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/csharp-package.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#csharp-package-asp" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#csharp-package-asp-prerequisites">Prerequisites</a><a href="#csharp-package-asp-deploy-api">Deploying an ASP.NET Web API to Lambda</a><a href="#csharp-package-asp-deploy-minimal">Deploying ASP.NET minimal APIs to Lambda</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="csharp-package-asp">Deploy ASP.NET applications</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>As well as hosting event-driven functions, you can also use .NET with Lambda to host lightweight ASP.NET applications. You can build and 
+    deploy ASP.NET applications using the <code class="code">Amazon.Lambda.AspNetCoreServer</code> NuGet package. In this section, you learn how to deploy an 
+    ASP.NET web API to Lambda using the .NET Lambda CLI tooling.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#csharp-package-asp-prerequisites">Prerequisites</a></li><li><a href="#csharp-package-asp-deploy-api">Deploying an ASP.NET Web API to Lambda</a></li><li><a href="#csharp-package-asp-deploy-minimal">Deploying ASP.NET minimal APIs to Lambda</a></li></ul></div>
+      <h2 id="csharp-package-asp-prerequisites">Prerequisites</h2>
+      <div class="variablelist">
+         
+         
+         
+      <dl>
+          <dt><b><span class="term">.NET 6 SDK</span></b></dt>
+          <dd>
+            <p>Install the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0" rel="noopener noreferrer" target="_blank"><span>.NET 6</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> SDK and 
+            ASP.NET Core Runtime.</p>
+          </dd>
+        
+          <dt><b><span class="term">Amazon.Lambda.Tools</span></b></dt>
+          <dd>
+            <p>To create your Lambda functions, you use the <a href="https://www.nuget.org/packages/Amazon.Lambda.Tools" rel="noopener noreferrer" target="_blank"><span>Amazon.Lambda.Tools</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+              <a href="https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/" rel="noopener noreferrer" target="_blank"><span>.NET Global
+                Tools extension</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. To install Amazon.Lambda.Tools, run the following command:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">dotnet tool install -g Amazon.Lambda.Tools</code></pre>
+            <p>For more information about the Amazon.Lambda.Tools .NET CLI extension, see the <a href="https://github.com/aws/aws-extensions-for-dotnet-cli" rel="noopener noreferrer" target="_blank"><span>AWS Extensions for .NET CLI</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+              repository on GitHub.</p>
+          </dd>
+        
+          <dt><b><span class="term">Amazon.Lambda.Templates</span></b></dt>
+          <dd>
+            <p>To generate your Lambda function code, use the <a href="https://www.nuget.org/packages/Amazon.Lambda.Templates" rel="noopener noreferrer" target="_blank"><span>Amazon.Lambda.Templates</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+              NuGet package. To install this template package, run the following command:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">dotnet new install Amazon.Lambda.Templates</code></pre>
+          </dd>
+        </dl></div>
+     
+      <h2 id="csharp-package-asp-deploy-api">Deploying an ASP.NET Web API to Lambda</h2>
+    <p>To deploy a web API using ASP.NET, you can use the .NET Lambda templates to create a new web API project. 
+      Use the following command to initialize a new ASP.NET web API project. In the example command, we name the project 
+    <code class="code">AspNetOnLambda</code>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">dotnet new serverless.AspNetCoreWebAPI -n AspNetOnLambda</code></code></pre>
+      <p>This command creates the following files and directories in your project directory.</p>
+      <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">.
+└── AspNetOnLambda
+    ├── src
+    │   └── AspNetOnLambda
+    │       ├── AspNetOnLambda.csproj
+    │       ├── Controllers
+    │       │   └── ValuesController.cs
+    │       ├── LambdaEntryPoint.cs
+    │       ├── LocalEntryPoint.cs
+    │       ├── Readme.md
+    │       ├── Startup.cs
+    │       ├── appsettings.Development.json
+    │       ├── appsettings.json
+    │       ├── aws-lambda-tools-defaults.json
+    │       └── serverless.template
+    └── test
+        └── AspNetOnLambda.Tests
+            ├── AspNetOnLambda.Tests.csproj
+            ├── SampleRequests
+            │   └── ValuesController-Get.json
+            ├── ValuesControllerTests.cs
+            └── appsettings.json</code></pre>
+      <p>When Lambda invokes your function, the entry point it uses is the <code>LambdaEntryPoint.cs</code> file. The file created 
+      by the .NET Lambda template contains the following code.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">namespace AspNetOnLambda;
+
+public class LambdaEntryPoint : Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction
+<span>{</span>
+    protected override void Init(IWebHostBuilder builder)
+    <span>{</span>
+        builder
+            .UseStartup≪Startup≫();
+    }
+
+    protected override void Init(IHostBuilder builder)
+    <span>{</span>
+    }
+}</code></pre>
+      <p>The entry point used by Lambda must inherit from one of the three base classes in the <code class="code">Amazon.Lambda.AspNetCoreServer</code> 
+      package. These three base classes are:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">APIGatewayProxyFunction</code></p>
+        </li><li class="listitem">
+          <p><code class="code">APIGatewayHttpApiV2ProxyFunction</code></p>
+        </li><li class="listitem">
+          <p><code class="code">ApplicationLoadBalancerFunction</code></p>
+        </li></ul></div>
+      <p>The default class used when you create your <code>LambdaEntryPoint.cs</code> file using the provided .NET Lambda template is 
+        <code class="code">APIGatewayProxyFunction</code>. The base class you use in your function depends on which API layer sits in front of your Lambda 
+      function.</p>
+      <p>Each of the three base classes contains a public method named <code class="code">FunctionHandlerAsync</code>. The name of this method will form part 
+        of the <a href="./csharp-handler.html#csharp-handler-class-library">handler string</a> Lambda uses to invoke your function. The  
+        <code class="code">FunctionHandlerAsync</code> method transforms the inbound event payload into the correct ASP.NET format and the ASP.NET response back 
+        to a Lambda response payload. For the example <code class="code">AspNetOnLambda</code> project shown, the handler string would be as follows.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">AspNetOnLambda::AspNetOnLambda.LambdaEntryPoint::FunctionHandlerAsync</code></pre>
+      <p>To deploy the API to Lambda, run the following commands to navigate into the directory containing your source code file and deploy 
+        your function using AWS CloudFormation.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">cd AspNetOnLambda/src/AspNetOnLambda
+dotnet lambda deploy-serverless</code></code></pre>
+     
+      <h2 id="csharp-package-asp-deploy-minimal">Deploying ASP.NET minimal APIs to Lambda</h2>
+      <p>To deploy an ASP.NET minimal API to Lambda, you can use the .NET Lambda templates to create a new minimal API project. Use the following 
+       command to initialize a new minimal API project. In this example, we name the project <code class="code">MinimalApiOnLambda</code>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">dotnet new serverless.AspNetCoreMinimalAPI -n MinimalApiOnLambda</code></code></pre>
+          <p>The command creates the following files and directories in your project directory.</p>
+          <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">└── MinimalApiOnLambda
+    └── src
+        └── MinimalApiOnLambda
+            ├── Controllers
+            │   └── CalculatorController.cs
+            ├── MinimalApiOnLambda.csproj
+            ├── Program.cs
+            ├── Readme.md
+            ├── appsettings.Development.json
+            ├── appsettings.json
+            ├── aws-lambda-tools-defaults.json
+            └── serverless.template</code></pre>
+        
+          <p>The <code>Program.cs</code> file contains the following code.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllers();
+
+// Add AWS Lambda support. When application is run in Lambda Kestrel is swapped out as the web server with Amazon.Lambda.AspNetCoreServer. This
+// package will act as the webserver translating request and responses between the Lambda event source and ASP.NET Core.
+builder.Services.AddAWSLambdaHosting<code class="replaceable">(LambdaEventSource.RestApi)</code>;
+
+var app = builder.Build();
+
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+
+app.MapGet("/", () =&gt; "Welcome to running ASP.NET Core Minimal API on AWS Lambda");
+
+app.Run();</code></pre>
+        <p>To configure your minimal API to run on Lambda, you may need to edit this code so that requests and responses between Lambda and 
+        ASP.NET Core are properly translated. By default, the function is configured for a REST API event source. For an HTTP API or application 
+        load balancer, replace <code class="code">(LambdaEventSource.RestApi)</code> with one of the following options:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">(LambdaEventSource.HttpAPi)</code></p>
+        </li><li class="listitem">
+          <p><code class="code">(LambdaEventSource.ApplicationLoadBalancer)</code></p>
+        </li></ul></div>
+      <p>To deploy your minimal API to Lambda, run the following commands to navigate into the directory containing your source code file and 
+      deploy your function using AWS CloudFormation.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">cd MinimalApiOnLambda/src/MinimalApiOnLambda
+dotnet lambda deploy-serverless</code></code></pre>
+
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./csharp-package-cdk.html">Using the AWS Cloud Development Kit (AWS CDK)</div><div id="next" class="next-link" accesskey="n" href="./csharp-image.html">Deploy container images</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-asp.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-asp.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

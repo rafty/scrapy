@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Building Lambda functions with Java - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="lambda-java" /><meta name="default_state" content="lambda-java" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html" /><meta name="description" content="Run Java code in Lambda. Your code runs in an Amazon Linux environment that includes AWS credentials from an AWS Identity and Access Management (IAM) role that you manage." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-java.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-java.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-java.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-java.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-java.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-java.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-java.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-java.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-java.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-java.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-java.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-java.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-java.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-java.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-java.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-java.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/lambda-java.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/lambda-java.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Building Lambda functions with Java" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Building Lambda functions with Java - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-java" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-java.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-java.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-java.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,java runtimes,java lambda,java Lambda function" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with Java",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-java" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="lambda-java">Building Lambda functions with Java</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can run Java code in AWS Lambda. Lambda provides <a href="./lambda-runtimes.html">runtimes</a> for
+    Java that run your code to process events. Your code runs in an Amazon Linux environment that includes AWS credentials from an AWS Identity and Access Management
+    (IAM) role that you manage.</p><p>Lambda supports the following Java runtimes.</p><div class="table-container"><div class="table-contents"><table id="w917aac61c11"><thead><tr><th class="table-header" colspan="100"><div class="title">Java</div></th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Identifier</th>
+        <th>Operating system</th>
+        <th>Architectures</th>
+        <th>Deprecation (Phase 1)</th>
+      </tr>
+    </thead>
+      <tr>
+        <td tabindex="-1">
+          <p>Java 17</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">java17</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+
+        <td tabindex="-1">
+          <p></p>
+        </td>
+
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Java 11</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">java11</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+
+        <td tabindex="-1">
+          <p></p>
+        </td>
+
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Java 8</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">java8.al2</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+
+        <td tabindex="-1">
+          <p></p>
+        </td>
+
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Java 8</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">java8</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64</p>
+        </td>
+
+        <td tabindex="-1">
+          <p>Dec 31, 2023</p>
+        </td>
+
+      </tr>
+    </table></div></div><p>Lambda provides the following libraries for Java functions:</p><div class="itemizedlist">
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-java-libs/tree/master/aws-lambda-java-core" rel="noopener noreferrer" target="_blank"><span>com.amazonaws:aws-lambda-java-core</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+        (required) – Defines handler method interfaces and the context object that the runtime passes to the
+        handler. If you define your own input types, this is the only library that you need.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-java-libs/tree/master/aws-lambda-java-events" rel="noopener noreferrer" target="_blank"><span>com.amazonaws:aws-lambda-java-events</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Input types for events from services that invoke Lambda
+        functions.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-java-libs/tree/master/aws-lambda-java-log4j2" rel="noopener noreferrer" target="_blank"><span>com.amazonaws:aws-lambda-java-log4j2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – An appender library for Apache Log4j 2 that you can use
+        to add the request ID for the current invocation to your <a href="./java-logging.html">function
+          logs</a>.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-sdk-java-v2" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Java 2.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – The official AWS SDK for the Java programming language.</p>
+    </li></ul></div><div class="procedure"><h6>To create a Java function</h6><ol><li>
+      <p>Open the <a href="https://console.aws.amazon.com/lambda" rel="noopener noreferrer" target="_blank"><span>Lambda console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    </li><li>
+      <p>Choose <b>Create function</b>.</p>
+    </li><li>
+      <p>Configure the following settings:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>Function name</b>: Enter a name for the function.</p>
+        </li><li class="listitem">
+          <p><b>Runtime</b>: Choose <b>Java 17</b>.</p>
+        </li></ul></div>
+    </li><li>
+      <p>Choose <b>Create function</b>.</p>
+    </li><li>
+      <p>To configure a test event, choose <b>Test</b>.</p>
+    </li><li>
+      <p>For <b>Event name</b>, enter <code class="userinput">test</code>.</p>
+    </li><li>
+      <p>Choose <b>Save changes</b>.</p>
+    </li><li>
+      <p>To invoke the function, choose <b>Test</b>.</p>
+    </li></ol></div><p>The console creates a Lambda function with a handler class named <code class="code">Hello</code>.
+    Since Java is a compiled language, you can't view or edit the source code in the Lambda console, but you can modify its
+    configuration, invoke it, and configure triggers.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To get started with application development in your local environment, deploy one of the <a href="./java-samples.html">sample applications</a> available in this guide's GitHub repository.</p></div></div><p>The <code class="code">Hello</code> class has a function named <code class="code">handleRequest</code> that takes an event object and
+    a context object. This is the <a href="./java-handler.html">handler function</a> that Lambda calls when the
+    function is invoked. The Java function runtime gets invocation events from Lambda and passes them to the
+    handler. In the function configuration, the handler value is <code class="code">example.Hello::handleRequest</code>.</p><p>To update the function's code, you create a deployment
+    package, which is a .zip file archive that contains your function code. As your function development progresses, you will
+    want to store your function code in source control, add libraries, and automate deployments. Start by <a href="./java-package.html">creating a deployment package</a> and updating your code at the command
+    line.</p><p>The function runtime passes a context object to the handler, in addition to the invocation event. The <a href="./java-context.html">context object</a> contains additional information about the invocation, the
+    function, and the execution environment. More information is available from environment variables.</p><p>Your Lambda function comes with a CloudWatch Logs log group. The function runtime sends details about each invocation to
+    CloudWatch Logs. It relays any <a href="./java-logging.html">logs that your function outputs</a> during invocation. If
+    your function <a href="./java-exceptions.html">returns an error</a>, Lambda formats the error and returns it to the
+    invoker.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="./java-handler.html">AWS Lambda function handler in Java</a></li><li><a href="./java-package.html">Deploy Java Lambda functions with .zip or JAR file archives</a></li><li><a href="./java-image.html">Deploy Java Lambda functions with container images</a></li><li><a href="./java-customization.html">Java Lambda function customization settings</a></li><li><a href="./java-context.html">AWS Lambda context object in Java</a></li><li><a href="./java-logging.html">AWS Lambda function logging in Java</a></li><li><a href="./java-exceptions.html">AWS Lambda function errors in Java</a></li><li><a href="./java-tracing.html">Instrumenting Java code in AWS Lambda</a></li><li><a href="./java-package-eclipse.html">Creating a deployment package using Eclipse</a></li><li><a href="./java-samples.html">Java sample applications for AWS Lambda</a></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./ruby-tracing.html">Tracing</div><div id="next" class="next-link" accesskey="n" href="./java-handler.html">Handler</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-java.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-java.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

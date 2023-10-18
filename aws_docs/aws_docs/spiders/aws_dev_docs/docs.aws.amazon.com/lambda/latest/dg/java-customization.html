@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Java Lambda function customization settings - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="java-customization" /><meta name="default_state" content="java-customization" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/java-customization.html" /><meta name="description" content="This page describes settings specific to Java functions in AWS Lambda. You can use these settings to customize Java runtime startup behavior. This can reduce overall function latency and improve overall function performance, without having to modify any code." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/java-customization.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/java-customization.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/java-customization.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/java-customization.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/java-customization.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/java-customization.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/java-customization.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/java-customization.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/java-customization.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/java-customization.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/java-customization.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/java-customization.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/java-customization.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/java-customization.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/java-customization.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/java-customization.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/java-customization.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/java-customization.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/java-customization.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/java-customization.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/java-customization.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/java-customization.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Java Lambda function customization settings" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Java Lambda function customization settings - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#java-customization" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/java-customization.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/java-customization.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/java-customization.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,java runtimes,java lambda,java Lambda function" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with Java",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Java Lambda function customization settings",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-java.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#java-customization" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#java-tool-options">JAVA_TOOL_OPTIONS environment variable</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="java-customization">Java Lambda function customization settings</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This page describes settings specific to Java functions in AWS Lambda. You can use these
+    settings to customize Java runtime startup behavior. This can reduce overall function latency
+    and improve overall function performance, without having to modify any code.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#java-tool-options">JAVA_TOOL_OPTIONS environment variable</a></li></ul></div>
+    <h2 id="java-tool-options"><code class="code">JAVA_TOOL_OPTIONS</code> environment variable</h2>
+    <p>In Java, Lambda supports the <code class="code">JAVA_TOOL_OPTIONS</code> environment variable
+      to set additional command-line variables in Lambda. You can use this environment variable
+      in various ways, such as to customize tiered-compilation settings. The next example
+      demonstrates how to use the <code class="code">JAVA_TOOL_OPTIONS</code> environment variable for this
+      use case.</p>
+     
+      <h3 id="tiered-compliation">Example: Customize tiered compilation settings</h3>
+      <p>Tiered compliation is a feature of the Java virtual machine (JVM). You can use
+        specific tiered compliation settings to make best use of the JVM's just-in-time (JIT)
+        compilers. Typically, the C1 compiler is optimized for fast start-up time. The C2
+        compiler is optimized for best overall performance, but it also uses more memory and
+        takes a longer time to achieve it.</p>
+      <p>There are 5 different levels of tiered compilation. At Level 0, the JVM interprets
+        Java byte code. At Level 4, the JVM uses the C2 compiler to analyze profiling data
+        collected during application startup. Over time, it monitors code usage to identify
+        the best optimizations.</p>
+      <p>Customizing the tiered compilation level can help you reduce Java function
+        cold start latency. For example, set the tiered compliation level to 1 to have
+        the JVM use the C1 compiler. This compiler quickly produces optimized native code
+        but it doesn't generate any profiling data and never uses the C2 compiler.</p>
+      <p>In the Java 17 runtime, the JVM flag for tiered compilation is set to stop at
+        level 1 by default. For the Java 11 runtime and below, you can set the tiered
+        compilation level to 1 by doing the following steps:</p>
+      <div class="procedure"><h6>To customize tiered compilation settings (console)</h6><ol><li>
+          <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Lambda console.</p>
+        </li><li>
+          <p>Choose a Java function that you want to customize tiered compilation for.</p>
+        </li><li>
+          <p>Choose the <b>Configuration</b> tab, then choose
+            <b>Environment variables</b> in the left menu.</p>
+        </li><li>
+          <p>Choose <b>Edit</b>.</p>
+        </li><li>
+          <p>Choose <b>Add environment variable</b>.</p>
+        </li><li>
+          <p>
+            For the key, enter <code class="code">JAVA_TOOL_OPTIONS</code>. For the value, enter
+            <code class="code">-XX:+TieredCompilation -XX:TieredStopAtLevel=1</code>.
+          </p>
+          <div class="mediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/java-tool-options-tiered-compilation.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;              A screenshot of the Lambda console demonstrating how to add tiered&#xA;                compilation settings using the JAVA_TOOL_OPTIONS environment&#xA;                variable.&#xA;            " style="max-width:100%" />
+             
+             
+          </div>
+        </li><li>
+          <p>Choose <b>Save</b>.</p>
+        </li></ol></div>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can also use Lambda SnapStart to mitigate cold start issues. SnapStart
+          uses cached snapshots of your execution environment to significantly improve
+          start-up performance. For more information about SnapStart features, limitations,
+          and supported regions, see <a href="./snapstart.html">Improving startup performance with Lambda SnapStart</a>.</p></div></div>
+     
+     
+      <h3 id="gc-behavior">Example: Customizing GC behavior using JAVA_TOOL_OPTIONS</h3>
+      <p>Java 11 runtimes use the
+        <a href="https://docs.oracle.com/en/java/javase/18/gctuning/available-collectors.html#GUID-45794DA6-AB96-4856-A96D-FDE5F7DEE498" rel="noopener noreferrer" target="_blank"><span>
+        Serial</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> garbage collector (GC) for garbage collection. By default, Java 17 runtimes
+        also use the Serial GC. However, with Java 17 you can also use the
+        <code class="code">JAVA_TOOL_OPTIONS</code> environment variable to change the default GC. You can
+        choose between the Parallel GC and <a href="https://wiki.openjdk.org/display/shenandoah/Main" rel="noopener noreferrer" target="_blank"><span>
+        Shenandoah GC</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <p>For example, if your workload uses more memory and multiple CPUs, consider using the
+        Parallel GC for better performance. You can do this by appending the following to the
+        value of your <code class="code">JAVA_TOOL_OPTIONS</code> environment variable:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">-XX:+UseParallelGC</code></pre>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./java-image.html">Deploy container images</div><div id="next" class="next-link" accesskey="n" href="./java-context.html">Context</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/java-customization.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/java-customization.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

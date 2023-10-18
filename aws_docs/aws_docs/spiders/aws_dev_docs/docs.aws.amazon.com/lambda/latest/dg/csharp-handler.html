@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda function handler in C# - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="csharp-handler" /><meta name="default_state" content="csharp-handler" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-handler.html" /><meta name="description" content="Learn how to define a Lambda function handler for C# functions." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-handler.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/csharp-handler.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/csharp-handler.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/csharp-handler.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/csharp-handler.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-handler.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-handler.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/csharp-handler.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/csharp-handler.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/csharp-handler.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/csharp-handler.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/csharp-handler.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/csharp-handler.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/csharp-handler.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/csharp-handler.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/csharp-handler.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/csharp-handler.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/csharp-handler.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/csharp-handler.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/csharp-handler.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/csharp-handler.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-handler.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda function handler in C#" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda function handler in C# - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#csharp-handler" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-handler.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-handler.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-handler.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,handler,.NET,C#,method" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with C#",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda function handler in C#",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#csharp-handler" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#csharp-handler-execution">.NET execution models for Lambda</a><a href="#csharp-handler-class-library">Class library handlers</a><a href="#csharp-handler-executable">Executable assembly handlers</a><a href="#csharp-handler-serializer">Serialization in Lambda functions</a><a href="#csharp-handler-annotations">Simplify function code with the Lambda Annotations framework</a><a href="#csharp-handler-restrictions">Lambda function handler restrictions</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="csharp-handler">Lambda function handler in C#</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The Lambda function <em>handler</em> is the method in your function code that processes events. When your function is
+  invoked, Lambda runs the handler method. Your function runs until the handler returns a response, exits, or times out.</p><p>When your function is invoked and Lambda runs your function's handler method, it passes two arguments to your function. The first argument is 
+    the <code class="code">event</code> object. When another AWS service invokes your function, the <code class="code">event</code> object contains data about the event that 
+    caused your function to be invoked. For example, an <code class="code">event</code> object from API Gateway contains information about the path, HTTP method, and 
+    HTTP headers. The exact event structure varies according to the AWS service invoking your function. See <a href="./lambda-services.html">Using AWS Lambda with other services</a> for 
+    more information about event formats for individual services.</p><p>Lambda also passes a <code class="code">context</code> object to your function. This object contains information about the invocation, function, and 
+    execution environment. For more information, see <a href="./csharp-context.html">AWS Lambda context object in C#</a>.</p><p>The native format for all Lambda events is streams of bytes representing the JSON formatted event. Unless your function input and output 
+    parameters are of type <code class="code">System.IO.Stream</code>, you must serialize them. Specify the serializer you want to use by setting the 
+    <code class="code">LambdaSerializer</code> assembly attribute. For more information, see <a href="#csharp-handler-serializer">Serialization in Lambda functions</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#csharp-handler-execution">.NET execution models for Lambda</a></li><li><a href="#csharp-handler-class-library">Class library handlers</a></li><li><a href="#csharp-handler-executable">Executable assembly handlers</a></li><li><a href="#csharp-handler-serializer">Serialization in Lambda functions</a></li><li><a href="#csharp-handler-annotations">Simplify function code with the Lambda Annotations framework</a></li><li><a href="#csharp-handler-restrictions">Lambda function handler restrictions</a></li></ul></div>
+    <h2 id="csharp-handler-execution">.NET execution models for Lambda</h2>
+  <p>There are two different execution models for running Lambda functions in .NET: the <b>class library</b> approach 
+  and the <b>executable assembly</b> approach.</p>
+  <p>In the <b>class library</b> approach, you provide Lambda with a string indicating the <code class="code">AssemblyName</code>, 
+    <code class="code">ClassName</code>, and <code class="code">Method</code> of the function to be invoked. For more information about the format of this string, see 
+    <a href="#csharp-handler-class-library">Class library handlers</a>. During the function's initialization phase, your function's  class is initialized, and any code in the 
+    constructor is run.</p>
+  <p>In the <b>executable assembly</b> approach, you use C# 9's <a href="https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/tutorials/top-level-statements" rel="noopener noreferrer" target="_blank"><span>top-level statements</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+    feature. This approach generates an executable assembly which Lambda runs whenever it receives an invoke command for your function. You provide 
+  Lambda only with the name of the executable assembly to run.</p>
+  <p>The following sections give example function code for these two approaches.</p>
+   
+    <h2 id="csharp-handler-class-library">Class library handlers</h2>
+    <p>The following Lambda function code shows an example of a handler method (<code class="code">FunctionHandler</code>) for a Lambda function which uses the 
+      class library approach. In this example funtion, Lambda receives an event from API Gateway that invokes the function. The function reads a record 
+      from a database and returns the record as part of the API Gateway response.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+
+namespace GetProductHandler;
+
+public class Function
+<span>{</span>
+    private readonly IDatabaseRepository _repo;
+    
+    public Function()
+    <span>{</span>
+        this._repo = new DatabaseRepository();
+    }
+    
+    public async Task&lt;APIGatewayProxyResponse&gt; FunctionHandler(APIGatewayProxyRequest request)
+    <span>{</span>
+        var id = request.PathParameters["id"];
+        
+        var databaseRecord = await this._repo.GetById(id);
+        
+        return new APIGatewayProxyResponse 
+        <span>{</span>
+            StatusCode = (int)HttpStatusCode.OK,
+            Body = JsonSerializer.Serialize(databaseRecord)
+        };
+    }
+}</code></pre>
+    <p>When you create a Lambda function, you need to provide Lambda with information about your function's handler in the form of a 
+      <em>handler string</em>. This tells Lambda which method in your code to run when your function is invoked. In C#, the 
+      format of the handler string when using the class library approach is as follows:</p>
+    <p><code class="code">ASSEMBLY::TYPE::METHOD</code>, where:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">ASSEMBLY</code> is the name of the .NET assembly file for your application. If you use the <code class="code">Amazon.Lambda.Tools</code> CLI 
+          to build your application and you don't set the assembly name using the <code class="code">AssemblyName</code> property in the .csproj file, then  
+          <code class="code">ASSEMBLY</code> is simply the name of your .csproj file. For more information, see TBD. </p>
+      </li><li class="listitem">
+        <p><code class="code">TYPE</code> is the full name of the handler type, which consists of the <code class="code">Namespace</code> and the <code class="code">ClassName</code>.</p>
+      </li><li class="listitem">
+        <p><code class="code">METHOD</code> is the name of the function handler method in your code.</p>
+      </li></ul></div>
+    <p>For the example code shown, if the assembly is named <code class="code">GetProductHandler</code>, then the handler string would be 
+      <code class="code">GetProductHandler::GetProductHandler.Function::FunctionHandler</code>.</p>
+   
+    <h2 id="csharp-handler-executable">Executable assembly handlers</h2>
+    <p>In the following example, the Lambda function is defined as an executable assembly. The handler method in this code is named <code class="code">Handler</code>. 
+      When using executable assemblies, the Lambda runtime must be bootstrapped. To do this, you use the <code class="code">LambdaBootstrapBuilder.Create</code> 
+      method. This method takes as inputs the method your function uses as the handler and the Lambda serializer to use.</p>
+    <p>For more information about using top-level statements, see <a href="http://aws.amazon.com/blogs/compute/introducing-the-net-6-runtime-for-aws-lambda/" rel="noopener noreferrer" target="_blank"><span>Introducing the .NET 6 runtime for AWS Lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on 
+      the AWS compute blog.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">namespace GetProductHandler;
+
+IDatabaseRepository repo = new DatabaseRepository();
+
+await LambdaBootstrapBuilder.Create&lt;APIGatewayProxyRequest&gt;(Handler, new DefaultLambdaJsonSerializer())
+    .Build()
+    .RunAsync();
+
+async Task&lt;APIGatewayProxyResponse&gt; Handler(APIGatewayProxyRequest apigProxyEvent, ILambdaContext context)
+<span>{</span>
+    var id = input.PathParameters["id"];
+        
+    var databaseRecord = await this.repo.GetById(id);
+    
+    return new APIGatewayProxyResponse 
+    <span>{</span>
+        StatusCode = (int)HttpStatusCode.OK,
+        Body = JsonSerializer.Serialize(databaseRecord)
+    };
+};</code></pre>
+    <p>When using executable assemblies, the handler string that tells Lambda how to run your code is the name of the assembly. In this example, 
+    that would be <code class="code">GetProductHandler</code>.</p>
+   
+    <h2 id="csharp-handler-serializer">Serialization in Lambda functions</h2>
+    <p>If your Lambda function uses input or output types other than a <code class="code">Stream</code> object, you must add a serialization library to your 
+      application. You can implement serialization either using the standard reflection based serialization provided by <code class="code">System.Text.Json</code> 
+      and <code class="code">Newtonsoft.Json</code>, or by using <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation" rel="noopener noreferrer" target="_blank"><span>source generated serialization</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+   
+    <h3 id="csharp-handler-serializer-sourcegen">Using source generated serialization</h3>
+    <p>Source generated serialization is a feature of .NET 6 that allows serialization code to be generated at compile time. It removes the 
+      need for reflection and can improve the performance of your function. To use source generated serialization in your function, do the following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Create a new partial class that inherits from <code class="code">JsonSerializerContext</code>, adding <code class="code">JsonSerializable</code> attributes for 
+          all types that require serialization or deserialization.</p>
+      </li><li class="listitem">
+        <p>Configure the <code class="code">LambdaSerializer</code> to use a <code class="code">SourceGeneratorLambdaJsonSerializer&lt;T&gt;</code>.</p>
+      </li><li class="listitem">
+        <p>Update any manual serialization or deserialization in your application code to use the newly created class.</p>
+      </li></ul></div>
+    <p>An example function using source generated serialization is shown in the following code.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">[assembly: LambdaSerializer(typeof(SourceGeneratorLambdaJsonSerializer&lt;CustomSerializer&gt;))]
+
+public class Function
+<span>{</span>
+    private readonly IDatabaseRepository _repo;
+    
+    public Function()
+    <span>{</span>
+        this._repo = new DatabaseRepository();
+    }
+    
+    public async Task&lt;APIGatewayProxyResponse&gt; FunctionHandler(APIGatewayProxyRequest request)
+    <span>{</span>
+        var id = request.PathParameters["id"];
+        
+        var databaseRecord = await this._repo.GetById(id);
+        
+        return new APIGatewayProxyResponse 
+        <span>{</span>
+            StatusCode = (int)HttpStatusCode.OK,
+            Body = JsonSerializer.Serialize(databaseRecord, CustomSerializer.Default.Product)
+        };
+    }
+}
+
+[JsonSerializable(typeof(APIGatewayProxyRequest))]
+[JsonSerializable(typeof(APIGatewayProxyResponse))]
+[JsonSerializable(typeof(Product))]
+public partial class CustomSerializer : JsonSerializerContext
+<span>{</span>
+    
+}</code></pre>
+    
+<div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you want to use native ahead of time compilation (AOT) with Lambda, you must use source generated serialization.</p></div></div>
+   
+  
+     
+      <h3 id="csharp-handler-serializer-reflection">Using reflection-based serialization</h3>
+      <p>AWS provides pre-built libraries to let you quickly add serialization to your application. You configure this using either the 
+        <code class="code">Amazon.Lambda.Serialization.SystemTextJson</code> or <code class="code">Amazon.Lambda.Serialization.Json</code> NuGet packages. 
+        Behind the scenes, <code class="code">Amazon.Lambda.Serialization.SystemTextJson</code> uses <code class="code">System.Text.Json</code> to perform serialization tasks, 
+        and <code class="code">Amazon.Lambda.Serialization.Json</code> uses the <code class="code">Newtonsoft.Json</code> package.</p>
+      <p>You can also create your own serialization library by implementing the <code class="code">ILambdaSerializer</code> interface, which is available as 
+        part of the <code class="code">Amazon.Lambda.Core</code> library. This interface defines two methods:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">T Deserialize&lt;T&gt;(Stream requestStream);</code></p>
+          <p>You implement this method to deserialize the request payload from the <code class="code">Invoke</code> API into the object that is passed to your Lambda function 
+            handler.</p>
+        </li><li class="listitem">
+          <p><code class="code">T Serialize&lt;T&gt;(T response, Stream responseStream);</code></p>
+          <p>You implement this method to serialize the result returned from your Lambda function handler into the response payload that the 
+            <code class="code">Invoke</code> API operation returns.</p>
+        </li></ul></div>
+     
+   
+    <h2 id="csharp-handler-annotations">Simplify function code with the Lambda Annotations framework</h2>
+    <p>Lambda Annotations is a framework for .NET 6 which simplifies writing Lambda functions using C#. With the Annotations framework, you can 
+    replace much of the code in a Lambda function written using the regular programming model. Code written using the framework uses simpler 
+    expressions that allow you to focus on your business logic.</p>
+    <p>The following example code shows how using the annotations framework can simplify writing Lambda functions. The first example shows code 
+    written using the regular Lambda program model, and the second shows the equivalent using the Annotations framework.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">public APIGatewayHttpApiV2ProxyResponse LambdaMathAdd(APIGatewayHttpApiV2ProxyRequest request, ILambdaContext context)
+<span>{</span>
+    if (!request.PathParameters.TryGetValue("x", out var xs))
+    <span>{</span>
+        return new APIGatewayHttpApiV2ProxyResponse
+        <span>{</span>
+            StatusCode = (int)HttpStatusCode.BadRequest
+        };
+    }
+    if (!request.PathParameters.TryGetValue("y", out var ys))
+    <span>{</span>
+        return new APIGatewayHttpApiV2ProxyResponse
+        <span>{</span>
+            StatusCode = (int)HttpStatusCode.BadRequest
+        };
+    }
+    var x = int.Parse(xs);
+    var y = int.Parse(ys);
+    return new APIGatewayHttpApiV2ProxyResponse
+    <span>{</span>
+        StatusCode = (int)HttpStatusCode.OK,
+        Body = (x + y).ToString(),
+        Headers = new Dictionary≪string, string&gt; <span>{</span> <span>{</span> "Content-Type", "text/plain" } }
+    };
+}</code></pre>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">[LambdaFunction]
+[HttpApi(LambdaHttpMethod.Get, "/add/<span>{</span>x}/<span>{</span>y}")]
+public int Add(int x, int y)
+<span>{</span>
+    return x + y;
+}</code></pre>
+
+    <p>For another example of how using Lambda Annotations can simplify your code, see this <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/cross-service/PhotoAssetManager" rel="noopener noreferrer" target="_blank"><span>cross-service example application</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      in the <code class="code">awsdocs/aws-doc-sdk-examples</code> GitHub repository. The folder <code>PamApiAnnotations</code> uses Lambda Annotations in 
+      the main <code>function.cs</code> file. For comparison, the <code>PamApi</code> folder has equivalent files written using the 
+    regular Lambda programming model.</p>
+   
+    <p>The Annotations framework uses <a href="https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview" rel="noopener noreferrer" target="_blank"><span>source generators</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+    to generate code that translates from the Lambda programming model to the code seen in the second example.</p>
+    <p>For more information about how to use Lambda Annotations for .NET, see the following resources:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The <a href="https://github.com/aws/aws-lambda-dotnet/blob/master/Libraries/src/Amazon.Lambda.Annotations/README.md" rel="noopener noreferrer" target="_blank"><span><code class="code">aws/aws-lambda-dotnet</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+        GitHub repository.</p>
+      </li><li class="listitem">
+        <p><a href="http://aws.amazon.com/blogs/developer/introducing-net-annotations-lambda-framework-preview/" rel="noopener noreferrer" target="_blank"><span>Introducing .NET Annotations Lambda Framework (Preview)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+        on the AWS Developer Tools Blog.</p>
+      </li><li class="listitem">
+        <p>The <a href="https://www.nuget.org/packages/Amazon.Lambda.Annotations" rel="noopener noreferrer" target="_blank"><span><code class="code">Amazon.Lambda.Annotations</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> NuGet package.</p>
+      </li></ul></div>
+     
+      <h3 id="csharp-handler-annotations-injection">Dependency injection with Lambda Annotations framework</h3>
+      <p>You can also use the Lambda Annotations framework to add dependency injection to your Lambda functions using syntax you are familiar with. 
+        When you add a <code class="code">[LambdaStartup]</code> attribute to a <code>Startup.cs</code> file, the Lambda Annotations framework will 
+        generate the required code at compile time.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">[LambdaStartup]
+public class Startup
+<span>{</span>
+    public void ConfigureServices(IServiceCollection services)
+    <span>{</span>
+        services.AddSingleton&lt;IDatabaseRepository, DatabaseRepository&gt;();
+    }
+}</code></pre>
+      <p>Your Lambda function can inject services using either constructor injection or by injecting into individual methods using the 
+        <code class="code">[FromServices]</code> attribute.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+
+namespace GetProductHandler;
+
+public class Function
+<span>{</span>
+    private readonly IDatabaseRepository _repo;
+    
+    public Function(IDatabaseRepository repo)
+    <span>{</span>
+        this._repo = repo;
+    }
+    
+    [LambdaFunction]
+    [HttpApi(LambdaHttpMethod.Get, "/product/<span>{</span>id}")]
+    public async Task&lt;Product&gt; FunctionHandler([FromServices] IDatabaseRepository repository, string id)
+    <span>{</span>
+        return await this._repo.GetById(id);
+    }
+}</code></pre>
+     
+    
+   
+    <h2 id="csharp-handler-restrictions">Lambda function handler restrictions</h2>
+    <p>Note that there are some restrictions on the handler signature.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>It may not be <code class="code">unsafe</code> and use pointer types in the handler signature, though you can use
+          <code class="code">unsafe</code> context inside the handler method and its dependencies. For more information, see <a href="https://msdn.microsoft.com/en-us/library/chfa2zb8.aspx" rel="noopener noreferrer" target="_blank"><span>unsafe (C# Reference)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Microsoft
+          Docs website.</p>
+      </li><li class="listitem">
+        <p>It may not pass a variable number of parameters using the <code class="code">params</code> keyword, or use
+          <code class="code">ArgIterator</code> as an input or a return parameter, which is used to support a variable number of
+          parameters.</p>
+      </li><li class="listitem">
+        <p>The handler may not be a generic method, for example, IList&lt;T&gt; Sort&lt;T&gt;(IList&lt;T&gt;
+          input).</p>
+      </li><li class="listitem">
+        <p>Async handlers with signature <code class="code">async void</code> are not supported.</p>
+      </li></ul></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./csharp-dev-env.html">Development environment</div><div id="next" class="next-link" accesskey="n" href="./csharp-package.html">Deployment package</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-handler.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-handler.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

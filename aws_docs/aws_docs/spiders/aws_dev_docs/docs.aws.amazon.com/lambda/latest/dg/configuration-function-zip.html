@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Deploying Lambda functions as .zip file archives - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="configuration-function-zip" /><meta name="default_state" content="configuration-function-zip" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-zip.html" /><meta name="description" content="Learn how to use the Lambda console and the Lambda API to create and configure a function defined with a .zip file archive." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-zip.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-function-zip.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-function-zip.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-function-zip.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-function-zip.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-zip.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-zip.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-function-zip.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-function-zip.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-function-zip.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-function-zip.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-function-zip.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-function-zip.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-function-zip.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-function-zip.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-function-zip.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-function-zip.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-function-zip.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-function-zip.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/configuration-function-zip.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/configuration-function-zip.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-zip.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Deploying Lambda functions as .zip file archives" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Deploying Lambda functions as .zip file archives - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-function-zip" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-zip.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-zip.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-zip.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,create function,create .zip function,create functions from console" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploying Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-deploy-functions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Deploying Lambda functions as .zip file archives",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-deploy-functions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-function-zip" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#configuration-function-create">Creating the function</a><a href="#configuration-functions-console-update">Using the console code editor</a><a href="#configuration-function-update">Updating function code</a><a href="#configuration-function-runtime">Changing the runtime</a><a href="#configuration-function-arch">Changing the architecture</a><a href="#configuration-function-api">Using the Lambda API</a><a href="#configuration-function-cloudformation">AWS CloudFormation</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="configuration-function-zip">Deploying Lambda functions as .zip file archives</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you create a Lambda function, you package your function code into a deployment package. Lambda supports two
+    types of deployment packages: <a href="./gettingstarted-package.html#gettingstarted-package-images">container images</a> and <a href="./gettingstarted-package.html#gettingstarted-package-zip">.zip file archives</a>. The workflow to create a function depends on the
+    deployment package type. To configure a function defined as a container image, see <a href="./images-create.html">Working with Lambda container images</a>.</p><p>You can use the Lambda console and the Lambda API to create a function defined with a .zip file archive. You can
+    also upload an updated .zip file to change the function code.
+  </p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You cannot convert an existing <a href="./images-create.html">container image function</a> to use a .zip file archive. You must create a new
+      function.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#configuration-function-create">Creating the function</a></li><li><a href="#configuration-functions-console-update">Using the console code editor</a></li><li><a href="#configuration-function-update">Updating function code</a></li><li><a href="#configuration-function-runtime">Changing the runtime</a></li><li><a href="#configuration-function-arch">Changing the architecture</a></li><li><a href="#configuration-function-api">Using the Lambda API</a></li><li><a href="#configuration-function-cloudformation">AWS CloudFormation</a></li></ul></div>
+    <h2 id="configuration-function-create">Creating the function</h2>
+    <p>When you create a function defined with a .zip file archive, you choose a code template, the language version,
+      and the execution role for the function. You add your function code after Lambda creates the function.</p>
+    <div class="procedure"><h6>To create the function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose <b>Create function</b>.</p>
+      </li><li>
+        <p>Choose <b>Author from scratch</b> or <b>Use a blueprint</b> to create your
+          function.  </p>
+      </li><li>
+        <p>Under <b>Basic information</b>, do the following:</p>
+        <ol><li>
+            <p>For <b>Function name</b>, enter the function name. Function names are limited to 64 characters in length.</p>
+          </li><li>
+            <p>For <b>Runtime</b>, choose the language version to use for your function.</p>
+          </li><li>
+            <p>(Optional) For <b>Architecture</b>, choose the instruction set architecture to use for
+              your function. The default architecture is x86_64. When you build the deployment package for your
+              function, make sure that it is compatible with this <a href="./foundation-arch.html">instruction set
+                architecture</a>.</p>
+          </li></ol>
+      </li><li>
+        <p>(Optional) Under <b>Permissions</b>, expand <b>Change default execution
+            role</b>. You can create a new <b>Execution role</b> or use an existing role.</p>
+      </li><li>
+        <p>(Optional) Expand <b>Advanced settings</b>. You can choose a <b>Code signing
+            configuration</b> for the function. You can also configure an (Amazon VPC) for the function to
+          access.</p>
+      </li><li>
+        <p>Choose <b>Create function</b>.</p>
+      </li></ol></div>
+    <p>Lambda creates the new function. You can now use the console to add the function code and configure other function parameters and features. 
+      For code deployment instructions, see the handler page for the runtime your function uses.
+    </p>
+    <awsdocs-tabs><dl style="display: none">
+  <dt>Node.js</dt><dd tab-id="node.js">
+      <p><a href="./nodejs-package.html">Deploy Node.js Lambda functions with .zip file archives</a> </p>
+    </dd>
+  
+  <dt>Python</dt><dd tab-id="python">
+    <p>
+      <a href="./python-package.html">Working with .zip file archives for Python Lambda functions</a>
+    </p></dd>
+  
+  <dt>Ruby</dt><dd tab-id="ruby">
+    <p>
+      <a href="./ruby-package.html">Working with .zip file archives for Ruby Lambda functions</a>
+    </p>
+    </dd>
+  
+  <dt>Java</dt><dd tab-id="java">
+    <p>
+      <a href="./java-package.html">Deploy Java Lambda functions with .zip or JAR file archives</a>
+    </p>
+    </dd>
+  
+  <dt>Go</dt><dd tab-id="go">
+    <p>
+      <a href="./golang-package.html">Deploy Go Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+  
+  <dt>C#</dt><dd tab-id="c#">
+    <p>
+      <a href="./csharp-package.html">Build and deploy C# Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+  
+  <dt>PowerShell</dt><dd tab-id="powershell">
+    <p>
+      <a href="./powershell-package.html">Deploy PowerShell Lambda functions with .zip file archives</a>
+    </p>
+    </dd>
+</dl></awsdocs-tabs>
+   
+    <h2 id="configuration-functions-console-update">Using the console code editor</h2>
+    <p>The console creates a Lambda function with a single source file. For scripting languages, you can edit
+      this file and add more files using the built-in <a href="./foundation-console.html#code-editor">code editor</a>.
+      To save your changes, choose <b>Save</b>.
+      Then, to run your code, choose <b>Test</b>.</p>
+     <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The Lambda console uses AWS Cloud9 to provide an integrated development environment in the browser. You can also
+      use AWS Cloud9 to develop Lambda functions in your own environment. For more information, see <a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/lambda-toolkit.html">Working with AWS Lambda functions using the AWS Toolkit</a> in the AWS Cloud9 user guide.</p></div></div>
+    
+     <p>When you save your function code, the Lambda console creates a .zip file archive deployment package. 
+   When you develop your function code outside of the console (using an IDE) you need to <a href="./nodejs-package.html">create a
+      deployment package</a> to upload your code to the Lambda function.</p>
+   
+    <h2 id="configuration-function-update">Updating function code</h2>
+    <p>For scripting languages (Node.js, Python, and Ruby), you can edit your function code in the embedded code
+        <a href="./foundation-console.html#code-editor">editor</a>. If the code is larger than 3MB, or if you need to add libraries, or
+      for languages that the editor doesn't support (Java, Go, C#), you must upload your function code as a .zip
+      archive. If the .zip file archive is smaller than 50 MB, you can upload the .zip file archive from your local
+      machine. If the file is larger than 50 MB, upload the file to the function from an Amazon S3 bucket.</p>
+    <div class="procedure"><h6>To upload function code as a .zip archive </h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the function to update and choose the  <b>Code</b> tab.</p>
+      </li><li>
+        <p>Under <b>Code source</b>, choose <b>Upload from</b>.</p>
+      </li><li>
+        <p>Choose <b>.zip file</b>, and then choose <b>Upload</b>. </p>
+        <ol><li><p>In the file chooser, select the new image version, choose <b>Open</b>, and then choose
+                <b>Save</b>.</p></li></ol>
+      </li><li>
+        <p>(Alternative to step 4) Choose <b>Amazon S3 location</b>.</p>
+        <ol><li>
+            <p>In the text box, enter the S3 link URL of the .zip file archive, then choose <b>Save</b>.</p>
+          </li></ol>
+      </li></ol></div>
+   
+    <h2 id="configuration-function-runtime">Changing the runtime</h2>
+    <p>If you update the function configuration to use a new runtime, you may need to update the function
+      code to be compatible with the new runtime. If you update the function configuration to use a different runtime,
+      you <b>must</b> provide new function code that is compatible with the runtime and
+      architecture. For instructions on how to create a deployment package for the function code, see the handler page
+      for the runtime that the function uses.</p>
+    <div class="procedure"><h6>To change the runtime</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the function to update and choose the <b>Code</b> tab.</p>
+      </li><li>
+        <p>Scroll down to the <b>Runtime settings</b> section, which is under the code editor.</p>
+      </li><li>
+        <p>Choose <b>Edit</b>.</p>
+        <ol><li>
+            <p>For <b>Runtime</b>, select the runtime identifier.</p>
+          </li><li>
+            <p>For <b>Handler</b>, specify file name and handler for your function.</p>
+          </li><li>
+            <p>For <b>Architecture</b>, choose the instruction set architecture to use for your
+              function.</p>
+          </li></ol>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="configuration-function-arch">Changing the architecture</h2>
+    <p>Before you can change the instruction set architecture, you need to ensure that your function's code is
+      compatible with the target architecture. </p>
+    <p>If you use Node.js, Python, or Ruby and you edit your function code in the embedded <a href="./foundation-console.html#code-editor">editor</a>, the existing code may run without modification.</p>
+    <p>However, if you provide your function code using a .zip file archive deployment package, you must prepare a
+      new .zip file archive that is compiled and built correctly for the target runtime and instruction-set
+      architecture. For instructions, see the handler page for your function runtime.</p>
+    <div class="procedure"><h6>To change the instruction set architecture</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the function to update and choose the <b>Code</b> tab.</p>
+      </li><li>
+        <p>Under <b>Runtime settings</b>, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>For <b>Architecture</b>, choose the instruction set architecture to use for your
+          function.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="configuration-function-api">Using the Lambda API</h2>
+    <p>To create and configure a function that uses a .zip file archive, use the following API operations: </p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="./API_CreateFunction.html">CreateFunction</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateFunctionCode.html">UpdateFunctionCode</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateFunctionConfiguration.html">UpdateFunctionConfiguration</a></p>
+      </li></ul></div>
+
+   
+    <h2 id="configuration-function-cloudformation">AWS CloudFormation</h2>
+    
+    <p>You can use AWS CloudFormation to create a Lambda function that uses a .zip file archive. In your AWS CloudFormation template, the
+      <code class="code">AWS::Lambda::Function</code> resource specifies the Lambda function. For descriptions of the properties in
+      the <code class="code">AWS::Lambda::Function</code> resource, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">AWS::Lambda::Function</a> in the
+      <em>AWS CloudFormation User Guide</em>.</p>
+    <p>In the <code class="code">AWS::Lambda::Function</code> resource, set the following properties to create a function defined
+      as a .zip file archive:</p>
+    <div class="itemizedlist">
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>AWS::Lambda::Function</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem"><p>PackageType – Set to <code class="code">Zip</code>.</p></li><li class="listitem"><p>Code – Enter the Amazon S3 bucket name and .zip file name in the <code class="code">S3Bucket</code> and
+              <code class="code">S3Key</code>fields. For Node.js or Python, you can provide inline source code of your Lambda
+              function.</p> </li><li class="listitem">
+            <p>Runtime – Set the runtime value.</p>
+          </li><li class="listitem">
+            <p>Architecture – Set the architecture value to <code class="code">arm64</code> to use the AWS Graviton2
+              processor. By default, the architecture value is <code class="code">x86_64</code>.</p>
+          </li></ul></div>
+      </li></ul></div>
+
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-deploy-functions.html">Deploying functions</div><div id="next" class="next-link" accesskey="n" href="./images-create.html">Container images</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-zip.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-function-zip.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

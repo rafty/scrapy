@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Working with Lambda container images - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="images-create" /><meta name="default_state" content="images-create" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html" /><meta name="description" content="Create a container image for a Lambda function by using an AWS provided base image or an alternative base image." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/images-create.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/images-create.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/images-create.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/images-create.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/images-create.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/images-create.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/images-create.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/images-create.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/images-create.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/images-create.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/images-create.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/images-create.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/images-create.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/images-create.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/images-create.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/images-create.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/images-create.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/images-create.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Working with Lambda container images" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Working with Lambda container images - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#images-create" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/images-create.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/images-create.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/images-create.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,create docker image,create container,supported container types,supported containers,make container compatible" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploying Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-deploy-functions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Working with Lambda container images",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-deploy-functions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#images-create" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#images-reqs">Requirements</a><a href="#runtimes-images-lp">Using an AWS base image</a><a href="#runtimes-images-custom">Using an AWS base image for custom runtimes</a><a href="#images-types">Using a non-AWS base image</a><a href="#images-ric">Runtime interface clients</a><a href="#gettingstarted-images-permissions">Amazon ECR permissions</a><a href="#images-parms">Container image settings</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="images-create">Working with Lambda container images</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Your AWS Lambda function's code consists of scripts or compiled programs and their dependencies. 
+You use a <em>deployment package</em> to deploy your function code to Lambda. Lambda supports two types of deployment packages: 
+container images and .zip file archives. </p><p>There are three ways to build a container image for a Lambda function:</p><div class="itemizedlist">
+     
+	 
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="#runtimes-images-lp">Using an AWS base image for Lambda</a></p>
+      <p>The <a href="#runtimes-images-lp">AWS base images</a> are preloaded with a language runtime, a runtime interface client to manage the interaction between Lambda and your function code, and a runtime interface emulator for local testing.</p>
+    </li><li class="listitem">
+      <p><a href="#runtimes-images-custom">Using an AWS base image for custom runtimes</a></p>
+      <p>AWS <a href="https://gallery.ecr.aws/lambda/provided" rel="noopener noreferrer" target="_blank"><span>provides base images</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> that contain the Amazon Linux or Amazon Linux 2 operating system and the <a href="./images-test.html">runtime interface emulator</a>. You can <a href="./runtimes-custom.html">add your preferred runtime</a>, dependencies, and code to these images. To make the image compatible with Lambda, you must include a <a href="#images-ric">runtime interface client</a> for your language in the image.</p>
+    </li><li class="listitem">
+      <p><a href="#images-types">Using a non-AWS base image</a></p>
+      <p>You can use an alternative base image from another container registry, such as Alpine Linux or Debian. You can also use a custom image created by your organization. To make the image compatible with Lambda, you must include a <a href="#images-ric">runtime interface client</a> for your language in the image.</p>
+    </li></ul></div><div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>To reduce the time it takes for Lambda container functions to become active, see <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#use-multi-stage-builds" rel="noopener noreferrer" target="_blank"><span>Use multi-stage builds</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Docker documentation. To build efficient container images, follow the <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/" rel="noopener noreferrer" target="_blank"><span>Best practices for writing Dockerfiles</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div><p>To create a Lambda function from a container image, build your image locally and upload it to an Amazon Elastic Container Registry (Amazon ECR) repository. Then, specify the repository URI when you create the function. The Amazon ECR repository must be in the same AWS Region as the Lambda function. You can create a function using an image in a different AWS account, as long as the image is in the same Region as the Lambda function. For more information, see <a href="#configuration-images-xaccount-permissions"> Amazon ECR cross-account permissions</a>.</p><p>This page explains the base image types and requirements for creating Lambda-compatible container images.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#images-reqs">Requirements</a></li><li><a href="#runtimes-images-lp">Using an AWS base image for Lambda</a></li><li><a href="#runtimes-images-custom">Using an AWS base image for custom runtimes</a></li><li><a href="#images-types">Using a non-AWS base image</a></li><li><a href="#images-ric">Runtime interface clients</a></li><li><a href="#gettingstarted-images-permissions">Amazon ECR permissions</a></li><li><a href="#images-parms">Container image settings</a></li></ul></div>
+    <h2 id="images-reqs">Requirements</h2>
+    <p>Install the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a> and the <a href="https://docs.docker.com/get-docker" rel="noopener noreferrer" target="_blank"><span>Docker CLI</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. 
+      Additionally, note the following requirements:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The container image must implement the <a href="./runtimes-api.html">Lambda runtime API</a>. The AWS
+          open-source <a href="#images-ric">runtime interface clients</a> implement the API. You can
+          add a runtime interface client to your preferred base image to make it compatible with Lambda.</p>
+      </li><li class="listitem">
+        <p>The container image must be able to run on a read-only file system. Your function code can access a
+          writable <code class="code">/tmp</code> directory with between 512 MB and 10,240 MB, in 1-MB increments, of storage.  </p>
+      </li><li class="listitem">
+        <p>The default Lambda user must be able to read all the files required to run your function code. Lambda
+          follows security best practices by defining a default Linux user with least-privileged permissions. Verify
+          that your application code does not rely on files that other Linux users are restricted from running.</p>
+      </li><li class="listitem">
+        <p>Lambda supports only Linux-based container images.</p>
+      </li><li class="listitem">
+        <p>Lambda provides multi-architecture base images. However, the image you build for your function must target
+          only one of the architectures. Lambda does not support functions that use multi-architecture container
+          images.</p>
+      </li></ul></div>
+   
+    <h2 id="runtimes-images-lp">Using an AWS base image for Lambda</h2>
+    <p>You can use one of the <a href="https://gallery.ecr.aws/lambda/" rel="noopener noreferrer" target="_blank"><span>AWS base images</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> for Lambda to build the container image for your
+      function code. The base images are preloaded with a language runtime and other components
+      required to run a container image on Lambda. You add your function code and dependencies to the
+      base image and then package it as a container image.</p>
+    <p>AWS periodically provides updates to the AWS base images for Lambda. If your Dockerfile includes the
+      image name in the FROM property, your Docker client pulls the latest version of the image from the <a href="https://gallery.ecr.aws/lambda/" rel="noopener noreferrer" target="_blank"><span>Amazon ECR repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. To
+      use the updated base image, you must rebuild your container image and <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-code.html" rel="noopener noreferrer" target="_blank"><span>update the function code</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>To build a container image using an AWS base image, choose the instructions for your preferred language:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="./nodejs-image.html#nodejs-image-instructions">Node.js</a></p>
+      </li><li class="listitem">
+        <p><a href="./typescript-image.html#base-image-typescript">TypeScript</a> (uses a Node.js base image)</p> 
+      </li><li class="listitem">
+        <p><a href="./python-image.html#python-image-instructions">Python</a></p>
+      </li><li class="listitem">
+        <p><a href="./java-image.html#java-image-instructions">Java</a> </p>
+      </li><li class="listitem">
+        <p><a href="./go-image.html#go-image-v1">Go</a></p>
+      </li><li class="listitem">
+        <p><a href="./csharp-image.html#csharp-image-instructions">.NET</a></p>
+      </li><li class="listitem">
+        <p><a href="./ruby-image.html#ruby-image-instructions">Ruby</a></p>
+      </li></ul></div>
+   
+    <h2 id="runtimes-images-custom">Using an AWS base image for custom runtimes</h2>
+    <p>AWS <a href="https://gallery.ecr.aws/lambda/provided" rel="noopener noreferrer" target="_blank"><span>provides base images</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> that contain the Amazon Linux or Amazon Linux 2 operating system and the <a href="./images-test.html">runtime interface emulator</a>. You can <a href="./runtimes-custom.html">add your preferred runtime</a>, dependencies, and code to these images. To make the image compatible with Lambda, you must include a <a href="#images-ric">runtime interface client</a> for your language in the image.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac27c21c21b5"><thead>
+          <tr>
+            <th>Tags</th>
+            <th>Runtime</th>
+            <th>Operating system</th>
+            <th>Dockerfile</th>
+            <th>Deprecation</th>
+          </tr>
+        </thead>
+      <tr>
+            <td tabindex="-1"><p>al2</p></td>
+            <td tabindex="-1">Custom Runtime</td>
+            <td tabindex="-1">Amazon Linux 2</td>
+            <td tabindex="-1"><a href="https://github.com/aws/aws-lambda-base-images/blob/provided.al2/Dockerfile.provided.al2" rel="noopener noreferrer" target="_blank"><span>Dockerfile
+                for Custom Runtime on GitHub</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            <td tabindex="-1">
+              <p></p>
+            </td>  
+          </tr>
+      <tr>
+            <td tabindex="-1"><p>alami</p></td>
+            <td tabindex="-1">Custom Runtime</td>
+            <td tabindex="-1">Amazon Linux</td>
+            <td tabindex="-1"><a href="https://github.com/aws/aws-lambda-base-images/blob/provided/Dockerfile.provided" rel="noopener noreferrer" target="_blank"><span>Dockerfile
+                for Custom Runtime on GitHub</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            <td tabindex="-1">
+              <p>Dec 31, 2023</p>
+            </td>  
+          </tr>
+    </table></div></div>
+    <p>Amazon Elastic Container Registry Public Gallery: <a href="https://gallery.ecr.aws/lambda/provided" rel="noopener noreferrer" target="_blank"><span>gallery.ecr.aws/lambda/provided</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+     
+    <h2 id="images-types">Using a non-AWS base image</h2>
+    <p>Lambda
+      supports any image that conforms to one of the following image manifest formats:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>Docker image manifest V2, schema 2 (used with Docker version 1.10 and newer)</p></li><li class="listitem"><p>Open Container Initiative (OCI) Specifications (v1.0.0 and up)</p></li></ul></div>
+    <p>Lambda supports a maximum uncompressed image size of 10 GB, including all layers.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To make the image compatible with Lambda, you must include a <a href="#images-ric">runtime interface client</a> for your language in the image.</p></div></div>
+   
+    <h2 id="images-ric">Runtime interface clients</h2>
+    <p>If you use a <a href="#runtimes-images-custom">base image for custom runtimes</a> or an alternative base image, you must include a runtime interface client in your image. The runtime interface client must extend the <a href="./runtimes-api.html">Lambda runtime API</a>, which manages the interaction between Lambda and your function code. AWS provides open-source runtime interface clients for the following languages:</p>
+    <div class="itemizedlist">
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+  
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p>
+      <a href="./nodejs-image.html#nodejs-image-clients">Node.js</a>
+    </p>
+  </li><li class="listitem">
+    <p>
+      <a href="./python-image.html#python-image-clients">Python</a>
+    </p>
+  </li><li class="listitem">
+    <p>
+      <a href="./java-image.html#java-image-clients">Java</a>
+    </p>
+  </li><li class="listitem">
+    <p>
+      <a href="./csharp-image.html#csharp-image-clients">.NET</a>
+    </p>
+  </li><li class="listitem">
+    <p>
+      <a href="./go-image.html#go-image-clients">Go</a>
+    </p>
+  </li><li class="listitem">
+    <p>
+      <a href="./ruby-image.html#ruby-image-clients">Ruby</a>
+    </p>
+  </li></ul></div>
+    <p>If you're using a language that doesn't have an AWS-provided runtime interface client, you must create your own.</p>
+   
+    <h2 id="gettingstarted-images-permissions">Amazon ECR permissions</h2>
+    <p>Before you create a Lambda function from a container image, you must build the image locally and upload it to an Amazon ECR repository. When you create the function, specify the Amazon ECR repository URI.</p>
+    <p>Make sure that the permissions for the user or role that creates the function contain the AWS
+      managed policies <code class="code">GetRepositoryPolicy</code> and <code class="code">SetRepositoryPolicy</code>.</p>
+    <p>For example, use the IAM console to create a role with the following policy:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:SetRepositoryPolicy",
+        "ecr:GetRepositoryPolicy"
+      ],
+      "Resource": "arn:aws:ecr:<code class="replaceable">us-east-1</code><code class="replaceable">:111122223333</code>:repository/<code class="replaceable">hello-world</code>"
+    }
+  ]
+}</code></pre>
+     
+      <h3 id="configuration-images-permissions">Amazon ECR repository policies</h3>
+      <p>For a function in the same account as the container image in Amazon ECR, you can add <code class="code">ecr:BatchGetImage</code>
+        and <code class="code">ecr:GetDownloadUrlForLayer</code> permissions to your Amazon ECR repository policy. The following example shows the
+        minimum policy:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+        "Sid": "LambdaECRImageRetrievalPolicy",
+        "Effect": "Allow",
+        "Principal": <span>{</span>
+          "Service": "lambda.amazonaws.com"
+        },
+        "Action": [
+          "ecr:BatchGetImage",
+          "ecr:GetDownloadUrlForLayer"
+        ]
+    }   </code></pre>
+      <p>For more information about Amazon ECR
+        repository permissions, see <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html">Private repository policies</a> in the
+        <em>Amazon Elastic Container Registry User Guide</em>.</p>
+      <p>If the Amazon ECR repository does not include these permissions, Lambda adds <code class="code">ecr:BatchGetImage</code> and
+          <code class="code">ecr:GetDownloadUrlForLayer</code> to the container image repository permissions. Lambda can add these
+        permissions only if the principal calling Lambda has <code class="code">ecr:getRepositoryPolicy</code> and
+          <code class="code">ecr:setRepositoryPolicy</code> permissions. </p>
+      <p>To view or edit your Amazon ECR repository permissions, follow the directions in <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/set-repository-policy.html">Setting a private repository policy statement</a> in the
+          <em>Amazon Elastic Container Registry User Guide</em>.</p>
+       
+        <h4 id="configuration-images-xaccount-permissions"> Amazon ECR cross-account permissions</h4>
+        <p>A different account in the same region can create a function that uses a container image owned by your
+          account. In the following example, your <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/set-repository-policy.html">Amazon ECR repository permissions policy</a> needs the following statements to
+          grant access to account number 123456789012.</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem"><p><b>CrossAccountPermission</b> – Allows account 123456789012 to create and update Lambda
+              functions that use images from this ECR repository.</p></li><li class="listitem"><p><b>LambdaECRImageCrossAccountRetrievalPolicy</b> – Lambda will eventually set a
+              function's state to inactive if it is not invoked for an extended period. This statement is required so that
+              Lambda can retrieve the container image for optimization and caching on behalf of the function owned by
+              123456789012. </p></li></ul></div> 
+        <div class="example"><h6>Example — Add cross-account permission to your repository</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Sid": "CrossAccountPermission",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
+      ],
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::<code class="replaceable">123456789012</code>:root"
+      }
+    },
+    <span>{</span>
+      "Sid": "LambdaECRImageCrossAccountRetrievalPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
+      ],
+      "Principal": <span>{</span>
+        "Service": "lambda.amazonaws.com"
+      },
+      "Condition": <span>{</span>
+        "StringLike": <span>{</span>
+          "aws:sourceARN": "arn:aws:lambda:<code class="replaceable">us-east-1</code>:<code class="replaceable">123456789012</code>:function:*"
+        }
+      }
+    }
+  ]
+}</code></pre></div></div>
+        <p>To give access to multiple accounts, you add the account IDs to the Principal list in the
+            <code class="code">CrossAccountPermission</code> policy and to the Condition evaluation list in the
+            <code class="code">LambdaECRImageCrossAccountRetrievalPolicy</code>.</p>
+        <p>If you are working with multiple accounts in an AWS Organization, we recommend that you enumerate each
+          account ID in the ECR permissions policy. This approach aligns with the AWS security best practice of setting
+          narrow permissions in IAM policies.</p>
+        
+       
+     
+   
+    <h2 id="images-parms">Container image settings</h2>
+    <p>The following are common container image settings. If you use these settings in your Dockerfile, note how Lambda interprets and processes these settings:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>ENTRYPOINT – Specifies the absolute path to the entry point of the application.</p>
+      </li><li class="listitem">
+        <p>CMD – Specifies parameters that you want to pass in with ENTRYPOINT.</p>
+      </li><li class="listitem">
+        <p>WORKDIR – Specifies the absolute path to the working directory.</p>
+      </li><li class="listitem">
+        <p>ENV – Specifies an environment variable for the Lambda function.</p>
+      </li></ul></div>
+    <p>For more information about how Docker uses the container image settings, see <a href="https://docs.docker.com/engine/reference/builder/#entrypoint" rel="noopener noreferrer" target="_blank"><span>ENTRYPOINT</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Dockerfile
+      reference on the Docker Docs website. For more information about using ENTRYPOINT and CMD, see <a href="http://aws.amazon.com/blogs/opensource/demystifying-entrypoint-cmd-docker/" rel="noopener noreferrer" target="_blank"><span>Demystifying ENTRYPOINT and CMD in Docker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the
+      AWS Open Source Blog.</p>
+    <p>You can specify the container image settings in the Dockerfile when you build your image. You can also
+      override these configurations using the Lambda console or Lambda API. This allows you to deploy multiple functions
+      that deploy the same container image but with different runtime configurations.</p>
+    <div class="awsdocs-note awsdocs-warning"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Warning</h6></div><div class="awsdocs-note-text"><p>When you specify ENTRYPOINT or CMD in the Dockerfile or as an override, make sure that you enter the
+        absolute path. Also, do not use symlinks as the entry point to the container.</p></div></div>
+    <div class="procedure"><h6>To override the configuration values in the container image</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the function to update.</p>
+      </li><li>
+        <p>Under <b>Image configuration</b>, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>Enter new values for any of the override settings, and then choose <b>Save</b>.</p>
+      </li><li>
+        <p>(Optional) To add or override environment variables, under <b>Environment variables</b>,
+          choose <b>Edit</b>.</p>
+      </li></ol></div>
+    <p>For more information, see <a href="./configuration-envvars.html">Using Lambda environment variables</a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./configuration-function-zip.html">.zip file archives</div><div id="next" class="next-link" accesskey="n" href="./images-test.html">Testing images</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/images-create.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/images-create.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

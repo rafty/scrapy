@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Troubleshoot invocation issues in Lambda - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="troubleshooting-invocation" /><meta name="default_state" content="troubleshooting-invocation" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-invocation.html" /><meta name="description" content="Learn how to troubleshoot common invocation issues in Lambda" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-invocation.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/troubleshooting-invocation.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/troubleshooting-invocation.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/troubleshooting-invocation.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/troubleshooting-invocation.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-invocation.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-invocation.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/troubleshooting-invocation.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/troubleshooting-invocation.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/troubleshooting-invocation.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/troubleshooting-invocation.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/troubleshooting-invocation.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/troubleshooting-invocation.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/troubleshooting-invocation.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/troubleshooting-invocation.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/troubleshooting-invocation.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/troubleshooting-invocation.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/troubleshooting-invocation.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/troubleshooting-invocation.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/troubleshooting-invocation.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/troubleshooting-invocation.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/troubleshooting-invocation.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Troubleshoot invocation issues in Lambda" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Troubleshoot invocation issues in Lambda - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#troubleshooting-invocation" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-invocation.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-invocation.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-invocation.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Troubleshooting issues in Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-troubleshooting.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Troubleshoot invocation issues in Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-troubleshooting.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#troubleshooting-invocation" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#troubleshooting-invocation-noauth">IAM: lambda:InvokeFunction not authorized</a><a href="#troubleshooting-invocation-ResourceConflictException">Lambda: Operation cannot be performed ResourceConflictException</a><a href="#troubleshooting-invocation-pending">Lambda: Function is stuck in Pending</a><a href="#troubleshooting-invocation-allconcurrency">Lambda: One function is using all concurrency</a><a href="#troubleshooting-invocation-cannotinvoke">General: Cannot invoke function with other accounts or services</a><a href="#troubleshooting-invocation-loop">General: Function invocation is looping</a><a href="#troubleshooting-invocation-alias">Lambda: Alias routing with provisioned concurrency</a><a href="#troubleshooting-invocation-coldstart">Lambda: Cold starts with provisioned concurrency</a><a href="#troubleshooting-invocation-newversion">Lambda: Cold starts with new versions</a><a href="#troubleshooting-invocation-efsmount">EFS: Function could not mount the EFS file system</a><a href="#troubleshooting-invocation-efsconnect">EFS: Function could not connect to the EFS file system</a><a href="#troubleshooting-invocation-efstimeout">EFS: Function could not mount the EFS file system due to timeout</a><a href="#troubleshooting-invocation-ioprocess">Lambda: Lambda detected an IO process that was taking too long</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="troubleshooting-invocation">Troubleshoot invocation issues in Lambda</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When you invoke a Lambda function, Lambda validates the request and checks for scaling capacity before sending the
+    event to your function or, for asynchronous invocation, to the event queue. Invocation errors can be caused by
+    issues with request parameters, event structure, function settings, user permissions, resource permissions, or
+    limits.</p><p>If you invoke your function directly, you see any invocation errors in the response from Lambda. If you invoke
+    your function asynchronously with an event source mapping or through another service, you might find errors in logs,
+    a dead-letter queue, or a failed-event destination. Error handling options and retry behavior vary depending on how
+    you invoke your function and on the type of error.</p><p>For a list of error types that the <code class="code">Invoke</code> operation can return, see <a href="./API_Invoke.html">Invoke</a>.</p>
+    <h2 id="troubleshooting-invocation-noauth">IAM: lambda:InvokeFunction not authorized</h2>
+    
+    <p>
+      <b>Error:</b>
+      <em>User: arn:aws:iam::123456789012:user/developer is not authorized to perform: lambda:InvokeFunction on
+        resource: my-function</em>
+    </p>
+    
+    <p>Your user, or the role that you assume, must have permission to invoke a function. This
+      requirement also applies to Lambda functions and other compute resources that invoke functions. Add the AWS managed
+      policy <b>AWSLambdaRole</b> to your user, or add a custom policy that allows the
+      <code class="code">lambda:InvokeFunction</code> action on the target function.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The name of the IAM action (<code class="code">lambda:InvokeFunction</code>) refers to the <code class="code">Invoke</code>
+        Lambda API operation.</p></div></div>
+    <p>For more information, see <a href="./lambda-permissions.html">Lambda resource access permissions</a>
+.</p>
+   
+    <h2 id="troubleshooting-invocation-ResourceConflictException">Lambda: Operation cannot be performed ResourceConflictException</h2>
+    
+    <p>
+      <b>Error:</b>
+      <em>ResourceConflictException: The operation cannot be performed at this time. The function is currently in
+        the following state: Pending</em>
+    </p>
+    
+    <p>When you connect a function to a virtual private cloud (VPC) at the time of creation, the function enters a
+      <code class="code">Pending</code> state while Lambda creates elastic network interfaces. During this time, you can't invoke or
+      modify your function. If you connect your function to a VPC after creation, you can invoke it while the update is
+      pending, but you can't modify its code or configuration.</p>
+    <p>For more information, see <a href="./functions-states.html">Lambda function states</a>
+.</p>
+   
+    <h2 id="troubleshooting-invocation-pending">Lambda: Function is stuck in Pending</h2>
+    
+    
+    <p>
+      <b>Error:</b>
+      <em>A function is stuck in the <code class="code">Pending</code> state for several minutes.</em>
+    </p>
+    
+    <p>If a function is stuck in the <code class="code">Pending</code> state for more than six minutes, call one of the following
+      API operations to unblock it:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="./API_UpdateFunctionCode.html">UpdateFunctionCode</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateFunctionConfiguration.html">UpdateFunctionConfiguration</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_PublishVersion.html">PublishVersion</a></p>
+      </li></ul></div>
+    <p>Lambda cancels the pending operation and puts the function into the <code class="code">Failed</code> state. You can then
+      attempt another update.</p>
+   
+    <h2 id="troubleshooting-invocation-allconcurrency">Lambda: One function is using all concurrency</h2>
+    
+    <p>
+      <b>Issue:</b>
+      <em>One function is using all of the available concurrency, causing other functions to be
+        throttled.</em>
+    </p>
+    
+    <p>To divide your AWS account's available concurrency in an AWS Region into pools, use <a href="./configuration-concurrency.html">reserved concurrency</a>. Reserved concurrency ensures that a function can
+      always scale to its assigned concurrency, and that it doesn't scale beyond its assigned concurrency.</p>
+   
+    <h2 id="troubleshooting-invocation-cannotinvoke">General: Cannot invoke function with other accounts or services</h2>
+    
+    <p>
+      <b>Issue:</b>
+      <em>You can invoke your function directly, but it doesn't run when another service or account invokes
+        it.</em>
+    </p>
+    
+    <p>You grant <a href="./lambda-services.html">other services</a> and accounts permission to invoke a function in
+      the function's <a href="./access-control-resource-based.html">resource-based policy</a>. If the invoker is in
+      another account, that user must also have <a href="./access-control-identity-based.html">permission to invoke
+        functions</a>.
+    </p>
+   
+    <h2 id="troubleshooting-invocation-loop">General: Function invocation is looping</h2>
+    
+    <p>
+      <b>Issue:</b>
+      <em>Function is invoked continuously in a loop.</em>
+    </p>
+    
+    <p>This typically occurs when your function manages resources in the same AWS service that triggers it. For
+      example, it's possible to create a function that stores an object in an Amazon Simple Storage Service (Amazon S3) bucket that's configured
+      with a <a href="./with-s3.html">notification that invokes the function again</a>. To stop the function from
+      running, on the <a href="./configuration-function-common.html">function configuration page</a>, choose
+      <b>Throttle</b>. Then, identify the code path or configuration error that caused the recursive
+      invocation. Lambda automatically detects and stops recursive loops for some AWS services and SDKs. See
+      <a href="./invocation-recursion.html">Lambda recursive loop detection</a> for more details.</p>
+   
+    <h2 id="troubleshooting-invocation-alias">Lambda: Alias routing with provisioned concurrency</h2>
+    
+    <p>
+      <b>Issue:</b>
+      <em>Provisioned concurrency spillover invocations during alias routing.</em>
+    </p>
+    
+    <p>Lambda uses a simple probabilistic model to distribute the traffic between the two function versions. At low
+      traffic levels, you might see a high variance between the configured and actual percentage of traffic on each
+      version. If your function uses provisioned concurrency, you can avoid <a href="./monitoring-metrics.html#monitoring-metrics-invocation">spillover invocations</a> by configuring a higher number of
+      provisioned concurrency instances during the time that alias routing is active. </p>
+   
+    <h2 id="troubleshooting-invocation-coldstart">Lambda: Cold starts with provisioned concurrency</h2>
+    
+    <p>
+      <b>Issue:</b>
+      <em>You see cold starts after enabling provisioned concurrency.</em>
+    </p>
+    
+    <p>When the number of concurrent executions on a function is less than or equal to the <a href="./provisioned-concurrency.html">configured level of provisioned concurrency</a>, there
+      shouldn't be any cold starts. To help you confirm if provisioned concurrency is operating normally, do the
+      following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+
+    <ul class="itemizedlist"><li class="listitem">
+        <p>
+          <a href="./provisioned-concurrency.html">Check that provisioned concurrency is enabled</a> on the function version or alias.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Provisioned concurrency is not configurable on the unpublished <a href="./configuration-versions.html">version of the function</a> ($LATEST).</p></div></div>
+      </li><li class="listitem">
+        <p>Ensure that your triggers invoke the correct function version or alias. For example, if you're using
+          Amazon API Gateway, check that API Gateway invokes the function version or alias with provisioned concurrency, not $LATEST. To
+          confirm that provisioned concurrency is being used, you can check the <a href="./monitoring-concurrency.html#provisioned-concurrency-metrics">ProvisionedConcurrencyInvocations Amazon CloudWatch metric</a>. A non-zero
+          value indicates that the function is processing invocations on initialized execution environments.</p>
+      </li><li class="listitem">
+        <p>Determine whether your function concurrency exceeds the configured level of provisioned concurrency by
+          checking the <a href="./monitoring-concurrency.html#provisioned-concurrency-metrics">ProvisionedConcurrencySpilloverInvocations CloudWatch
+            metric</a>. A non-zero value indicates that all provisioned concurrency is in use and some invocation
+          occurred with a cold start.</p>
+      </li><li class="listitem">
+        <p>Check your <a href="./gettingstarted-limits.html#api-requests">invocation frequency</a> (requests per second).
+          Functions with provisioned concurrency have a maximum rate of 10 requests per second per provisioned
+          concurrency. For example, a function configured with 100 provisioned concurrency can handle 1,000 requests per
+          second. If the invocation rate exceeds 1,000 requests per second, some cold starts can occur.</p>
+      </li></ul></div>
+   
+    <h2 id="troubleshooting-invocation-newversion">Lambda: Cold starts with new versions</h2>
+    
+    <p>
+      <b>Issue:</b>
+      <em>You see cold starts while deploying new versions of your function.</em>
+    </p>
+    
+    <p>When you update a function alias, Lambda automatically shifts provisioned concurrency to the new version based
+      on the weights configured on the alias.</p>
+    <p>
+      <b>Error:</b>
+      <em>KMSDisabledException: Lambda was unable to decrypt the environment variables because the KMS key used is
+        disabled. Please check the function's KMS key settings.</em>
+    </p>
+    
+    <p>This error can occur if your AWS Key Management Service (AWS KMS) key is disabled, or if the grant that allows Lambda to use the key
+      is revoked. If the grant is missing, configure the function to use a different key. Then, reassign the custom key to
+      recreate the grant.</p>
+   
+    <h2 id="troubleshooting-invocation-efsmount">EFS: Function could not mount the EFS file system</h2>
+    
+    <p>
+      <b>Error:</b>
+      <em>EFSMountFailureException: The function could not mount the EFS file system with access point
+        arn:aws:elasticfilesystem:us-east-2:123456789012:access-point/fsap-015cxmplb72b405fd.</em>
+    </p>
+    
+    <p>The mount request to the function's <a href="./configuration-filesystem.html">file system</a> was rejected.
+      Check the function's permissions, and confirm that its file system and access point exist and are ready for
+      use.</p>
+   
+    <h2 id="troubleshooting-invocation-efsconnect">EFS: Function could not connect to the EFS file system</h2>
+    
+    <p>
+      <b>Error:</b>
+      <em>EFSMountConnectivityException: The function couldn't connect to the Amazon EFS file system with access point
+        arn:aws:elasticfilesystem:us-east-2:123456789012:access-point/fsap-015cxmplb72b405fd. Check your network
+        configuration and try again.</em>
+    </p>
+    
+    <p>The function couldn't establish a connection to the function's <a href="./configuration-filesystem.html">file
+      system</a> with the NFS protocol (TCP port 2049). Check the <a href="https://docs.aws.amazon.com/efs/latest/ug/network-access.html">security group and routing configuration</a> for the VPC's subnets.</p>
+   
+    <h2 id="troubleshooting-invocation-efstimeout">EFS: Function could not mount the EFS file system due to timeout</h2>
+    
+    <p>
+      <b>Error:</b>
+      <em>EFSMountTimeoutException: The function could not mount the EFS file system with access point
+        <span>{</span>arn:aws:elasticfilesystem:us-east-2:123456789012:access-point/fsap-015cxmplb72b405fd} due to mount time
+        out.</em>
+    </p>
+    
+    <p>The function could connect to the function's <a href="./configuration-filesystem.html">file system</a>, but
+      the mount operation timed out. Try again after a short time and consider limiting the function's <a href="./configuration-concurrency.html">concurrency</a> to reduce load on the file system.</p>
+   
+    <h2 id="troubleshooting-invocation-ioprocess">Lambda: Lambda detected an IO process that was taking too long</h2>
+    
+    <p>
+      <em>EFSIOException: This function instance was stopped because Lambda detected an IO process that was taking
+      too long.</em>
+    </p>
+    
+    <p>A previous invocation timed out and Lambda couldn't terminate the function handler. This issue can occur when an
+      attached file system runs out of burst credits and the baseline throughput is insufficient. To increase throughput,
+      you can increase the size of the file system or use provisioned throughput. For more information, see <a href="./services-efs.html#services-efs-throughput">Throughput</a>
+.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./troubleshooting-deployment.html">Deployment</div><div id="next" class="next-link" accesskey="n" href="./troubleshooting-execution.html">Execution</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-invocation.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/troubleshooting-invocation.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

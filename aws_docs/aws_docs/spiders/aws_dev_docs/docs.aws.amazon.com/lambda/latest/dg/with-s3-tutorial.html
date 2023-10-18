@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Using an Amazon S3 trigger to create thumbnail images - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-s3-tutorial" /><meta name="default_state" content="with-s3-tutorial" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html" /><meta name="description" content="In this tutorial, you create and configure a Lambda function that resizes images added to an Amazon Simple Storage Service (Amazon S3) bucket. When you add an image file to your bucket, Amazon S3 invokes your Lambda function. The function then creates a thumbnail version of the image and outputs it to a different Amazon S3 bucket." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-s3-tutorial.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-s3-tutorial.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-s3-tutorial.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-s3-tutorial.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-s3-tutorial.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-s3-tutorial.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-s3-tutorial.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-s3-tutorial.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-s3-tutorial.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-s3-tutorial.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-s3-tutorial.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-s3-tutorial.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-s3-tutorial.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-s3-tutorial.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-s3-tutorial.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-s3-tutorial.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-s3-tutorial.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-s3-tutorial.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Using an Amazon S3 trigger to create thumbnail images" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Using an Amazon S3 trigger to create thumbnail images - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-s3-tutorial" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-s3-tutorial.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-s3-tutorial.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-s3-tutorial.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,lambda function s3 trigger,lambda s3 event,Lambda function s3 trigger example,Lambda s3 tutorial,invoke Lambda with s3 trigger" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using AWS Lambda with Amazon S3",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Using an Amazon S3 trigger to create thumbnail images",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-s3-tutorial" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#with-s3-example-prereqs">Prerequisites</a><a href="#with-s3-tutorial-prepare-create-buckets">Create two Amazon S3 buckets</a><a href="#with-s3-tutorial-test-image">Upload a test image to your source bucket</a><a href="#with-s3-tutorial-create-policy">Create a permissions policy</a><a href="#with-s3-tutorial-create-execution-role">Create an execution role</a><a href="#with-s3-tutorial-create-function-package">Create the function deployment package</a><a href="#with-s3-tutorial-create-function-createfunction">Create the Lambda function</a><a href="#with-s3-tutorial-configure-s3-trigger">Configure Amazon S3 to invoke the function</a><a href="#with-s3-tutorial-dummy-test">Test your Lambda function with a dummy event</a><a href="#with-s3-tutorial-test-s3">Test your function using the Amazon S3 trigger</a><a href="#s3-tutorial-cleanup">Clean up your resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-s3-tutorial">Tutorial: Using an Amazon S3 trigger to create thumbnail images</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you create and configure a Lambda function that resizes images added to an Amazon Simple Storage Service (Amazon S3) bucket. When you add an image 
+    file to your bucket, Amazon S3 invokes your Lambda function. The function then creates a thumbnail version of the image and outputs it to a different 
+    Amazon S3 bucket.</p><div class="mediaobject">
+     
+      <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_resources.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;      Diagram showing flow of data between an Amazon S3 bucket, a Lambda function and another Amazon S3 bucket&#xA;    " style="max-width:100%" /> 
+     
+     
+  </div><p>To complete this tutorial, you carry out the following steps:</p><div class="orderedlist">
+     
+     
+     
+     
+  <ol><li>
+      <p>Create source and destination Amazon S3 buckets and upload a sample image.</p>
+    </li><li>
+      <p>Create a Lambda function that resizes an image and outputs a thumbnail to an Amazon S3 bucket.</p>
+    </li><li>
+      <p>Configure a Lambda trigger that invokes your function when objects are uploaded to your source bucket.</p>
+    </li><li>
+      <p>Test your function, first with a dummy event, and then by uploading an image to your source bucket.</p>
+    </li></ol></div><p>By completing these steps, you’ll learn how to use Lambda to carry out a file processing task on objects added to an Amazon S3 bucket. You can 
+    complete this tutorial using the AWS Command Line Interface (AWS CLI) or the AWS Management Console.</p><p>If you're looking for a simpler example to learn how to configure an Amazon S3 trigger for Lambda, you can try <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html">Tutorial: Using an Amazon S3 trigger to invoke a Lambda function</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#with-s3-example-prereqs">Prerequisites</a></li><li><a href="#with-s3-tutorial-prepare-create-buckets">Create two Amazon S3 buckets</a></li><li><a href="#with-s3-tutorial-test-image">Upload a test image to your source bucket</a></li><li><a href="#with-s3-tutorial-create-policy">Create a permissions policy</a></li><li><a href="#with-s3-tutorial-create-execution-role">Create an execution role</a></li><li><a href="#with-s3-tutorial-create-function-package">Create the function deployment package</a></li><li><a href="#with-s3-tutorial-create-function-createfunction">Create the Lambda function</a></li><li><a href="#with-s3-tutorial-configure-s3-trigger">Configure Amazon S3 to invoke the function</a></li><li><a href="#with-s3-tutorial-dummy-test">Test your Lambda function with a dummy event</a></li><li><a href="#with-s3-tutorial-test-s3">Test your function using the Amazon S3 trigger</a></li><li><a href="#s3-tutorial-cleanup">Clean up your resources</a></li></ul></div>
+    <h2 id="with-s3-example-prereqs">Prerequisites</h2>
+    
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Sign up for an AWS account" id="sign-up-for-aws" expanded="false"><p>If you do not have an AWS account, complete the following steps to create one.</p><div class="procedure"><h6>To sign up for an AWS account</h6><ol><li><p>Open <a href="https://portal.aws.amazon.com/billing/signup" rel="noopener noreferrer" target="_blank"><span>https://portal.aws.amazon.com/billing/signup</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li><p>Follow the online instructions.</p>
+  <p>Part of the sign-up procedure involves receiving a phone call and entering 
+  a verification code on the phone keypad.</p>
+  <p>When you sign up for an AWS account, an <em>AWS account root user</em> is created. The root user has access to all AWS services
+  and resources in the account. As a security best practice, <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">assign administrative access to an administrative user</a>, and use only the root user to perform <a href="https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html">tasks that require root user access</a>.</p>
+  </li></ol></div><p>AWS sends you a confirmation email after the sign-up process is
+complete. At any time, you can view your current account activity and manage your account by
+going to <a href="https://aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>https://aws.amazon.com/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and choosing <b>My
+  Account</b>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="Create an administrative user" id="create-an-admin" expanded="false"><p>After you sign up for an AWS account, create an administrative user so that you 
+don't use the root user for everyday tasks.</p><div class="procedure"><h6>Secure your AWS account root user</h6><ol><li>
+ 
+
+<p> Sign in to the <a href="https://console.aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>AWS Management Console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> as the account owner by choosing <b>Root user</b> and entering your AWS account email address. On the next page, enter your password.</p>
+ 
+ <p>For help signing in by using root user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial">Signing in as the root user</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li><li>
+ <p>Turn on multi-factor authentication (MFA) for your root user.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root">Enable a virtual MFA device for your AWS account root user (console)</a> in the <em>IAM User Guide</em>.</p> 
+</li></ol></div><div class="procedure"><h6>Create an administrative user</h6><ul><li>
+ <p>For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM Identity Center.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">Getting started</a> in the <em>AWS IAM Identity Center User Guide</em>.</p>
+</li></ul></div><div class="procedure"><h6>Sign in as the administrative user</h6><ul><li>
+
+<p>To sign in with your IAM Identity Center user, use the sign-in URL that was sent to your email address when you created the IAM Identity Center user.</p>
+
+<p>For help signing in using an IAM Identity Center user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html">Signing in to the AWS access portal</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li></ul></div></awsui-expandable-section></div>
+    <p>If you want to use the AWS CLI to complete the tutorial, install the <a href="" rel="noopener noreferrer" target="_blank">latest version of the AWS Command Line Interface</a>.</p>
+    <p>For your Lambda function code, you can use Python, Node.js or Java. Install the language support tools and a package manager for the 
+      language that you want to use. For Java, the example commands to create your deployment package use the <a href="https://maven.apache.org/" rel="noopener noreferrer" target="_blank"><span>Apache Maven</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+    build automation tool.</p>
+   
+    <h2 id="with-s3-tutorial-prepare-create-buckets">Create two Amazon S3 buckets</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the Amazon S3 bucket step creating the bucket&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>First create two Amazon S3 buckets. The first bucket is the source bucket you will upload your images to. The second bucket is used by 
+    Lambda to save the resized thumbnail when you invoke your function.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>AWS Management Console</dt><dd tab-id="aws-management-console">
+          <div class="procedure"><h6>To create the Amazon S3 buckets (console)</h6><ol><li>
+              <p>Open the <a href="https://console.aws.amazon.com/s3/buckets" rel="noopener noreferrer" target="_blank"><span>Buckets</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page of the Amazon S3 console.</p>
+            </li><li>
+              <p>Choose <b>Create bucket</b>.</p>
+            </li><li>
+              <p>Under <b>General configuration</b>, do the following:</p>
+              <ol><li>
+                  <p>For <b>Bucket name</b>, enter a globally unique name that meets the Amazon S3 <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Bucket naming rules</a>. 
+                    Bucket names can contain only lower case letters, numbers, dots (.), and hyphens (-). </p>
+                </li><li>
+                  <p>For <b>AWS Region</b>, choose the <a href="https://docs.aws.amazon.com/general/latest/gr/lambda-service.html">AWS Region</a> 
+                    closest to your geographical location. Later in the tutorial, you must create your Lambda function in the same AWS Region, so 
+                    make a note of the region you chose.</p>
+                </li></ol>
+            </li><li>
+              <p>Leave all other options set to their default values and choose <b>Create bucket</b>.</p>
+            </li><li>
+              <p>Repeat steps 1 to 4 to create your destination bucket. For <b>Bucket name</b>, enter <code class="code"><code class="userinput">SOURCEBUCKET-resized</code></code>, 
+                where <code class="code"><code class="userinput">SOURCEBUCKET</code></code> is the name of the source bucket you just created.</p>
+            </li></ol></div>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <div class="procedure"><h6>To create the Amazon S3 buckets (AWS CLI)</h6><ol><li>
+              <p>Run the following CLI command to create your source bucket. The name you choose for your bucket must be globally unique and 
+                follow the Amazon S3 <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Bucket naming rules</a>. 
+                Names can only contain lower case letters, numbers, dots (.), and hyphens (-). For <code class="code">region</code> and <code class="code">LocationConstraint</code>, 
+                choose the <a href="https://docs.aws.amazon.com/general/latest/gr/lambda-service.html">AWS Region</a> closest to your geographical 
+                location.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws s3api create-bucket --bucket <code class="replaceable">SOURCEBUCKET</code> --region <code class="replaceable">us-west-2</code> \
+--create-bucket-configuration LocationConstraint=<code class="replaceable">us-west-2</code></code></code></pre>
+              <p>Later in the tutorial, you must create your Lambda function in the same AWS Region as your source bucket, so make a note of the 
+                region you chose.</p>
+            </li><li>
+              <p>Run the following command to create your destination bucket. For the bucket name, you must use <code class="code"><code class="userinput">SOURCEBUCKET-resized</code></code>, 
+                where <code class="code"><code class="userinput">SOURCEBUCKET</code></code> is the name of the source bucket you created in step 1. For <code class="code">region</code> 
+                and <code class="code">LocationConstraint</code>, choose the same AWS Region you used to create your source bucket.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws s3api create-bucket --bucket <code class="replaceable">SOURCEBUCKET-resized</code> --region <code class="replaceable">us-west-2</code> \
+--create-bucket-configuration LocationConstraint=<code class="replaceable">us-west-2</code></code></code></pre>
+            </li></ol></div>
+        </dd>
+    </dl></awsdocs-tabs>
+   
+    <h2 id="with-s3-tutorial-test-image">Upload a test image to your source bucket</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the Amazon S3 bucket step uploading a test object&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Later in the tutorial, you’ll test your Lambda function by invoking it using the AWS CLI or the Lambda console. To confirm that your function 
+      is operating correctly, your source bucket needs to contain a test image. This image can be any JPG or PNG file you choose.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>AWS Management Console</dt><dd tab-id="aws-management-console">
+          <div class="procedure"><h6>To upload a test image to your source bucket (console)</h6><ol><li>
+              <p>Open the <a href="https://console.aws.amazon.com/s3/buckets" rel="noopener noreferrer" target="_blank"><span>Buckets</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page of the Amazon S3 console.</p>
+            </li><li>
+              <p>Choose <b>Upload</b>.</p>
+            </li><li>
+              <p>Choose <b>Add file</b> and use the file selector to choose the object you want to upload.</p>
+            </li><li>
+              <p>Choose <b>Open</b>, then choose <b>Upload</b>.</p>
+            </li></ol></div>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <div class="procedure"><h6>To upload a test image to your source bucket (AWS CLI)</h6><ul><li>
+              <p>From the directory containing the image you want to upload, run the following CLI command. Replace the <code class="code">--bucket</code> 
+                parameter with the name of your source bucket. For the <code class="code">--key</code> and <code class="code">--body</code> parameters, use the filename of 
+                your test image.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws s3api put-object --bucket <code class="replaceable">SOURCEBUCKET</code> --key <code class="replaceable">HappyFace.jpg</code> --body <code class="replaceable">./HappyFace.jpg</code></code></code></pre>
+            </li></ul></div>
+        </dd>
+    </dl></awsdocs-tabs>
+   
+    <h2 id="with-s3-tutorial-create-policy">Create a permissions policy</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps3.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the Lambda function step creating a permissions policy&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>The first step in creating your Lambda function is to create a permissions policy. This policy gives your function the permissions it needs 
+      to access other AWS resources. For this tutorial, the policy gives Lambda read and write permissions for Amazon S3 buckets and allows it to write 
+      to Amazon CloudWatch Logs logs.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>AWS Management Console</dt><dd tab-id="aws-management-console">
+          <div class="procedure"><h6>To create the policy (console)</h6><ol><li>
+              <p>Open the <a href="https://console.aws.amazon.com/iamv2/home#policies" rel="noopener noreferrer" target="_blank"><span>Policies</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page of the AWS Identity and Access Management (IAM) console.</p>
+            </li><li>
+              <p>Choose <b>Create policy</b>.</p>
+            </li><li>
+              <p>Choose the <b>JSON</b> tab, and then paste the following custom policy into the JSON editor.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::*/*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::*/*"
+        }
+    ]
+}</code></pre>
+            </li><li>
+              <p>Choose <b>Next: Tags</b>.</p>
+            </li><li>
+              <p>Choose <b>Next: Review</b>.</p>
+            </li><li>
+              <p>Under <b>Review policy</b>, for <b>Name</b>, enter <code class="code"><code class="userinput">LambdaS3Policy</code></code>.</p>
+            </li><li>
+              <p>Choose <b>Create policy</b>.</p>
+            </li></ol></div>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <div class="procedure"><h6>To create the policy (AWS CLI)</h6><ol><li>
+              <p>Save the following JSON in a file named <code class="code">policy.json</code>.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::*/*"
+        },
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::*/*"
+        }
+    ]
+}</code></pre>
+            </li><li>
+              <p>From the directory you saved the JSON policy document in, run the following CLI command.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws iam create-policy --policy-name LambdaS3Policy --policy-document file://policy.json</code></code></pre>
+            </li></ol></div>
+        </dd>
+    </dl></awsdocs-tabs>
+   
+    <h2 id="with-s3-tutorial-create-execution-role">Create an execution role</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps4.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the Lambda function step creating an execution role&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>An execution role is an IAM role that grants a Lambda function permission to access AWS services and resources. To give your function 
+      read and write access to an Amazon S3 bucket, you attach the permissions policy you created in the previous step.</p>
+   <awsdocs-tabs><dl style="display: none">
+     <dt>AWS Management Console</dt><dd tab-id="aws-management-console">
+         <div class="procedure"><h6>To create an execution role and attach your permissions policy (console)</h6><ol><li>
+             <p>Open the <a href="https://console.aws.amazon.com/iamv2/home#roles" rel="noopener noreferrer" target="_blank"><span>Roles</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page of the (IAM) console.</p>
+           </li><li>
+             <p>Choose <b>Create role</b>.</p>
+           </li><li>
+             <p>For <b>Trusted entity type</b>, select <b>AWS service</b>, and for <b>Use case</b>, 
+             select <b>Lambda</b>.</p>
+           </li><li>
+             <p>Choose <b>Next</b>.</p>
+           </li><li>
+             <p>Add the permissions policy you created in the previous step by doing the following:</p>
+             <ol><li>
+                 <p>In the policy search box, enter <code class="code"><code class="userinput">LambdaS3Policy</code></code>.</p>
+               </li><li>
+                 <p>In the search results, select the check box for <code class="code">LambdaS3Policy</code>.</p>
+               </li><li>
+                 <p>Choose <b>Next</b>.</p>
+               </li></ol>
+           </li><li>
+             <p>Under <b>Role details</b>, for the <b>Role name</b> enter <code class="code"><code class="userinput">LambdaS3Role</code></code>.</p>
+           </li><li>
+             <p>Choose <b>Create role</b>.</p>
+           </li></ol></div>
+       </dd>
+     <dt>AWS CLI</dt><dd tab-id="aws-cli">
+         <div class="procedure"><h6>To create an execution role and attach your permissions policy (AWS CLI)</h6><ol><li>
+             <p>Save the following JSON in a file named <code class="code">trust-policy.json</code>. This trust policy allows Lambda to use the role’s 
+               permissions by giving the service principal <code class="code">lambda.amazonaws.com</code> permission to call the AWS Security Token Service (AWS STS) <code class="code">AssumeRole</code> 
+               action.</p>
+             <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}</code></pre>
+           </li><li>
+             <p>From the directory you saved the JSON trust policy document in, run the following CLI command to create the execution role.</p>
+             <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws iam create-role --role-name LambdaS3Role --assume-role-policy-document file://trust-policy.json</code></code></pre>
+           </li><li>
+             <p>To attach the permissions policy you created in the previous step, run the following CLI command. Replace the AWS account number 
+               in the policy’s ARN with your own account number.</p>
+             <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws iam attach-role-policy --role-name LambdaS3Role --policy-arn arn:aws:iam::<code class="replaceable">123456789012</code>:policy/LambdaS3Policy</code></code></pre>
+           </li></ol></div>
+       </dd>
+   </dl></awsdocs-tabs>
+   
+    <h2 id="with-s3-tutorial-create-function-package">Create the function deployment package</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps5.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the Lambda function step creating the deployment package&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>To create your function, you create a <em>deployment package</em> containing your function code and its dependencies. For this 
+      <code class="code">CreateThumbnail</code> function, your function code uses a separate library for the image resizing. Follow the instructions for your 
+      chosen language to create a deployment package containing the required library.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Node.js</dt><dd tab-id="node.js">
+          <div class="procedure"><h6>To create the deployment package (Node.js)</h6><ol><li>
+              <p>Create a directory named <code class="code">lambda-s3</code> for your function code and dependencies and navigate into it.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">mkdir lambda-s3
+cd lambda-s3</code></code></pre>
+            </li><li>
+              <p>Save the following function code in a file named <code class="code">index.mjs</code>.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JavaScript ">// dependencies
+import <span>{</span> S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+
+import <span>{</span> Readable } from 'stream';
+
+import sharp from 'sharp';
+import util from 'util';
+
+
+// create S3 client
+const s3 = new S3Client(<span>{</span>region: 'us-west-2'});
+
+// define the handler function
+export const handler = async (event, context) =&gt; <span>{</span>
+
+// Read options from the event parameter and get the source bucket
+console.log("Reading options from event:\n", util.inspect(event, <span>{</span>depth: 5}));
+  const srcBucket = event.Records[0].s3.bucket.name;
+  
+// Object key may have spaces or unicode non-ASCII characters
+const srcKey    = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
+const dstBucket = srcBucket + "-resized";
+const dstKey    = "resized-" + srcKey;
+
+// Infer the image type from the file suffix
+const typeMatch = srcKey.match(/\.([^.]*)$/);
+if (!typeMatch) <span>{</span>
+  console.log("Could not determine the image type.");
+  return;
+}
+
+// Check that the image type is supported
+const imageType = typeMatch[1].toLowerCase();
+if (imageType != "jpg" &amp;&amp; imageType != "png") <span>{</span>
+  console.log(`Unsupported image type: $<span>{</span>imageType}`);
+  return;
+}
+
+// Get the image from the source bucket. GetObjectCommand returns a stream.
+try <span>{</span>
+  const params = <span>{</span>
+    Bucket: srcBucket,
+    Key: srcKey
+  };
+  var response = await s3.send(new GetObjectCommand(params));
+  var stream = response.Body;
+  
+// Convert stream to buffer to pass to sharp resize function.
+  if (stream instanceof Readable) <span>{</span>
+    var content_buffer = Buffer.concat(await stream.toArray());
+    
+  } else <span>{</span>
+    throw new Error('Unknown object stream type');
+  }
+
+
+} catch (error) <span>{</span>
+  console.log(error);
+  return;
+}
+
+  
+// set thumbnail width. Resize will set the height automatically to maintain aspect ratio.
+const width  = 200;
+
+// Use the sharp module to resize the image and save in a buffer.
+try <span>{</span>    
+  var output_buffer = await sharp(content_buffer).resize(width).toBuffer();
+
+} catch (error) <span>{</span>
+  console.log(error);
+  return;
+}
+
+// Upload the thumbnail image to the destination bucket
+try <span>{</span>
+  const destparams = <span>{</span>
+    Bucket: dstBucket,
+    Key: dstKey,
+    Body: output_buffer,
+    ContentType: "image"
+  };
+
+  const putResult = await s3.send(new PutObjectCommand(destparams));
+
+  } catch (error) <span>{</span>
+    console.log(error);
+    return;
+  }
+
+  console.log('Successfully resized ' + srcBucket + '/' + srcKey +
+    ' and uploaded to ' + dstBucket + '/' + dstKey);
+  };</code></pre>
+            </li><li>
+              <p>In your <code class="code">lambda-s3</code> directory, install the sharp library using npm.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">npm install sharp</code></code></pre>
+              <p>The npm <code class="code">install</code> command creates a <code class="code">node_modules</code> directory for your modules. After this step, your 
+                directory structure should look like the following.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">lambda-s3
+|- index.mjs
+|- node_modules
+|  |- base64js
+|  |- bl
+|  |- buffer
+...
+|- package-lock.json
+|- package.json</code></pre>
+            </li><li>
+              <p>Create a .zip deployment package containing your function code and its dependencies. In MacOS and Linux, run the following 
+                command.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip -r function.zip .</code></code></pre>
+              <p>In Windows, use your preferred zip utility to create a .zip file. Ensure that your <code class="code">index.mjs</code>, 
+                <code class="code">package.json</code>, and <code class="code">package-lock.json</code> files and your <code class="code">node_modules</code> directory are all at the root 
+                of your .zip file.</p>
+            </li></ol></div>
+        </dd>
+      <dt>Python</dt><dd tab-id="python">
+          <div class="procedure"><h6>To create the deployment package (Python)</h6><ol><li>
+        <p>Save the example code as a file named
+          <code>lambda_function.py</code>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import boto3
+import os
+import sys
+import uuid
+from urllib.parse import unquote_plus
+from PIL import Image
+import PIL.Image
+            
+s3_client = boto3.client('s3')
+            
+def resize_image(image_path, resized_path):
+  with Image.open(image_path) as image:
+    image.thumbnail(tuple(x / 2 for x in image.size))
+    image.save(resized_path)
+            
+def lambda_handler(event, context):
+  for record in event['Records']:
+    bucket = record['s3']['bucket']['name']
+    key = unquote_plus(record['s3']['object']['key'])
+    tmpkey = key.replace('/', '')
+    download_path = '/tmp/<span>{</span>}<span>{</span>}'.format(uuid.uuid4(), tmpkey)
+    upload_path = '/tmp/resized-<span>{</span>}'.format(tmpkey)
+    s3_client.download_file(bucket, key, download_path)
+    resize_image(download_path, upload_path)
+    s3_client.upload_file(upload_path, '<span>{</span>}-resized'.format(bucket), 'resized-<span>{</span>}'.format(key))</code></pre>
+      </li><li>
+        <p>In the same directory in which you created your <code>lambda_function.py</code> file, create a new directory named 
+          <code>package</code> and install the <a href="https://pypi.org/project/Pillow/" rel="noopener noreferrer" target="_blank"><span>Pillow (PIL)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> library and the 
+          AWS SDK for Python (Boto3). Although the Lambda Python runtime includes a version of the Boto3 SDK, we recommend that you add all of your function's 
+          dependencies to your deployment package, even if they are included in the runtime. For more information, see 
+          <a href="https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-dependencies">Runtime dependencies in Python</a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">mkdir package
+pip install \
+--platform manylinux2014_x86_64 \
+--target=package \
+--implementation cp \
+--python-version 3.9 \
+--only-binary=:all: --upgrade \
+pillow boto3</code></code></pre>
+        <p>The Pillow library contains C/C++ code. By using the <code class="code">--platform manylinux_2014_x86_64</code> and <code class="code">--only-binary=:all:</code> 
+          options, pip will download and install a version of Pillow that contains pre-compiled binaries compatible with the Amazon Linux 2 operating 
+          system. This ensures that your deployment package will work in the Lambda execution environment, regardless of the operating system and 
+          architecture of your local build machine.</p>
+      </li><li>
+        <p>Create a .zip file containing your application code and the Pillow and Boto3 libraries. In Linux or MacOS, run the following commands from your 
+          command line interface.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">cd package
+zip -r ../lambda_function.zip .
+cd ..
+zip lambda_function.zip lambda_function.py</code></pre>
+        <p> In Windows, use your preferred zip tool to create the <code>lambda_function.zip</code> file. Make sure that your 
+        <code class="code">lambda_function.py</code> file and the folders containing your dependencies are all at the root of the .zip file.</p>
+      </li></ol></div>
+          <p>You can also create your deployment package using a Python virtual environment. See <a href="./python-package.html">Working with .zip file archives for Python Lambda functions</a></p>
+        </dd>
+      <dt>Java</dt><dd tab-id="java">
+         
+            <h6>Prerequisites</h6>
+            <p>Make sure that Java 11 and Apache Maven are installed in your development environment.</p>
+         
+            <div class="itemizedlist">
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>For Java, use <a href="https://www.oracle.com/java/technologies/javase-downloads.html" rel="noopener noreferrer" target="_blank"><span>Oracle Java SE Development Kit</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://aws.amazon.com/corretto" rel="noopener noreferrer" target="_blank"><span>Amazon Corretto</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://developers.redhat.com/products/openjdk" rel="noopener noreferrer" target="_blank"><span>Red Hat OpenJDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, or <a href="https://adoptopenjdk.net/" rel="noopener noreferrer" target="_blank"><span>AdoptOpenJDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+              </li><li class="listitem">
+                <p>For Maven, go to <a href="https://maven.apache.org/" rel="noopener noreferrer" target="_blank"><span>https://maven.apache.org/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+              </li></ul></div>
+          <div class="procedure"><h6>To create the deployment package (Java)</h6><ol><li>
+              <p>Use the following command to create a new directory called <code class="code">create-thumbnail</code> with a project configuration file (<code class="code">pom.xml</code>) and a basic Java class.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mvn -B archetype:generate \
+ -DarchetypeGroupId=org.apache.maven.archetypes \
+ -DgroupId=com.example.CreateThumbnail \
+ -DartifactId=create-thumbnail</code></pre></li><li>
+              <p>In the <code class="code">create-thumbnail</code> directory that you created in the previous step,open the <code class="code">pom.xml</code>. Replace its contents with the following code, and then save your changes.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+&lt;groupId&gt;com.example.CreateThumbnail&lt;/groupId&gt;
+&lt;artifactId&gt;create-thumbnail&lt;/artifactId&gt;
+&lt;packaging&gt;jar&lt;/packaging&gt;
+&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;name&gt;create-thumbnail-function&lt;/name&gt;
+&lt;properties&gt;
+  &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+  &lt;maven.compiler.release&gt;11&lt;/maven.compiler.release&gt;
+&lt;/properties&gt;
+&lt;dependencyManagement&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;software.amazon.awssdk&lt;/groupId&gt;
+      &lt;artifactId&gt;bom&lt;/artifactId&gt;
+      &lt;version&gt;2.17.201&lt;/version&gt;
+      &lt;type&gt;pom&lt;/type&gt;
+      &lt;scope&gt;import&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+&lt;dependencies&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;software.amazon.awssdk&lt;/groupId&gt;
+    &lt;artifactId&gt;s3&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.amazonaws&lt;/groupId&gt;
+    &lt;artifactId&gt;aws-lambda-java-core&lt;/artifactId&gt;
+    &lt;version&gt;1.2.2&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.amazonaws&lt;/groupId&gt;
+    &lt;artifactId&gt;aws-lambda-java-events&lt;/artifactId&gt;
+    &lt;version&gt;3.11.0&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+    &lt;artifactId&gt;gson&lt;/artifactId&gt;
+    &lt;version&gt;[2.8.9,)&lt;/version&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;
+
+&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+      &lt;version&gt;2.22.2&lt;/version&gt;
+    &lt;/plugin&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.3.0&lt;/version&gt;
+      &lt;configuration&gt;
+        &lt;createDependencyReducedPom&gt;false&lt;/createDependencyReducedPom&gt;
+      &lt;/configuration&gt;
+      &lt;executions&gt;
+        &lt;execution&gt;
+          &lt;phase&gt;package&lt;/phase&gt;
+          &lt;goals&gt;
+            &lt;goal&gt;shade&lt;/goal&gt;
+          &lt;/goals&gt;
+          &lt;configuration&gt;
+            &lt;filters&gt;
+              &lt;filter&gt;
+                 &lt;artifact&gt;*&lt;/artifact&gt;
+                 &lt;excludes&gt;
+                    &lt;exclude&gt;META-INF/*&lt;/exclude&gt;
+                    &lt;exclude&gt;**/module-info.class&lt;/exclude&gt;
+                 &lt;/excludes&gt;
+              &lt;/filter&gt;
+           &lt;/filters&gt;
+          &lt;/configuration&gt;
+        &lt;/execution&gt;
+      &lt;/executions&gt;
+    &lt;/plugin&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.8.1&lt;/version&gt;
+      &lt;configuration&gt;
+         &lt;source&gt;11&lt;/source&gt;
+         &lt;target&gt;11&lt;/target&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+            <div class="itemizedlist">
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>The <code class="code">dependencyManagement</code> section contains a dependency to the AWS SDK for Java.</p>
+              </li><li class="listitem">
+                <p>The <code class="code">dependencies</code> section has a dependency for Amazon S3.</p>
+              </li><li class="listitem">
+                <p>The <code class="code">build</code> section includes the <a href="https://maven.apache.org/plugins/maven-shade-plugin/" rel="noopener noreferrer" target="_blank"><span>Maven Shade plugin</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This plugin creates a JAR file that contains the compiled function code and all of its dependencies. The Apache Maven Compiler Plugin is configured to use Java 11.</p>
+              </li></ul></div>
+            </li><li>
+              <p>In the <code>/create-thumbnail/src/main/java/com/example/CreateThumbnail</code> directory, change the name of the <code>App.java</code> file to <code>Handler.java</code>.</p>
+            </li><li>
+              <p>Open <code>Handler.java</code> and replace its contents with the following code and save the file.</p>
+                      <div class="example"><h6>Example Handler.java</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="java ">package com.example.CreateThumbnail;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.imageio.ImageIO;
+
+import software.amazon.awssdk.awscore.exception.AwsServiceException;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import software.amazon.awssdk.services.s3.S3Client;
+
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.LambdaLogger;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.S3Event;
+import com.amazonaws.services.lambda.runtime.events.models.s3.S3EventNotification.S3EventNotificationRecord;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+// Handler value: com.example.CreateThumbnail.Handler
+public class Handler implements RequestHandler&lt;S3Event, String&gt; <span>{</span>
+  Gson gson = new GsonBuilder().setPrettyPrinting().create();
+  private static final float MAX_DIMENSION = 100;
+  private final String REGEX = ".*\\.([^\\.]*)";
+  private final String JPG_TYPE = "jpg";
+  private final String JPG_MIME = "image/jpeg";
+  private final String PNG_TYPE = "png";
+  private final String PNG_MIME = "image/png";
+  @Override
+  public String handleRequest(S3Event s3event, Context context) <span>{</span>
+    final LambdaLogger logger = context.getLogger();
+    try <span>{</span>
+      logger.log("EVENT: " + gson.toJson(s3event));
+      S3EventNotificationRecord record = s3event.getRecords().get(0);
+      
+      String srcBucket = record.getS3().getBucket().getName();
+
+      // Object key may have spaces or unicode non-ASCII characters.
+      String srcKey = record.getS3().getObject().getUrlDecodedKey();
+
+      String dstBucket = srcBucket + "-resized";
+      String dstKey = "resized-" + srcKey;
+
+      // Infer the image type.
+      Matcher matcher = Pattern.compile(REGEX).matcher(srcKey);
+      if (!matcher.matches()) <span>{</span>
+          logger.log("Unable to infer image type for key " + srcKey);
+          return "";
+      }
+      String imageType = matcher.group(1);
+      if (!(JPG_TYPE.equals(imageType)) &amp;&amp; !(PNG_TYPE.equals(imageType))) <span>{</span>
+          logger.log("Skipping non-image " + srcKey);
+          return "";
+      }
+
+      // Download the image from S3 into a stream
+      S3Client s3Client = S3Client.builder().build();
+      InputStream s3Object = getObject(s3Client, srcBucket, srcKey);
+
+      // Read the source image and resize it
+      BufferedImage srcImage = ImageIO.read(s3Object);
+      BufferedImage newImage = resizeImage(srcImage);
+
+      // Re-encode image to target format
+      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+      ImageIO.write(newImage, imageType, outputStream);
+
+      // Upload new image to S3
+      putObject(s3Client, outputStream, dstBucket, dstKey, imageType, logger);
+
+      logger.log("Successfully resized " + srcBucket + "/"
+              + srcKey + " and uploaded to " + dstBucket + "/" + dstKey);
+      return "Ok";
+    } catch (IOException e) <span>{</span>
+      throw new RuntimeException(e);
+    }
+  }
+
+  private InputStream getObject(S3Client s3Client, String bucket, String key) <span>{</span>
+    GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+      .bucket(bucket)
+      .key(key)
+      .build();
+    return s3Client.getObject(getObjectRequest);
+  }
+
+  private void putObject(S3Client s3Client, ByteArrayOutputStream outputStream,
+    String bucket, String key, String imageType, LambdaLogger logger) <span>{</span>
+      Map&lt;String, String&gt; metadata = new HashMap&lt;&gt;();
+      metadata.put("Content-Length", Integer.toString(outputStream.size()));
+      if (JPG_TYPE.equals(imageType)) <span>{</span>
+        metadata.put("Content-Type", JPG_MIME);
+      } else if (PNG_TYPE.equals(imageType)) <span>{</span>
+        metadata.put("Content-Type", PNG_MIME);
+      }
+
+      PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+        .bucket(bucket)
+        .key(key)
+        .metadata(metadata)
+        .build();
+
+      // Uploading to S3 destination bucket
+      logger.log("Writing to: " + bucket + "/" + key);
+      try <span>{</span>
+        s3Client.putObject(putObjectRequest,
+          RequestBody.fromBytes(outputStream.toByteArray()));
+      }
+      catch(AwsServiceException e)
+      <span>{</span>
+        logger.log(e.awsErrorDetails().errorMessage());
+        System.exit(1);
+      }
+  }
+
+  /**
+   * Resizes (shrinks) an image into a small, thumbnail-sized image.
+   * 
+   * The new image is scaled down proportionally based on the source
+   * image. The scaling factor is determined based on the value of
+   * MAX_DIMENSION. The resulting new image has max(height, width)
+   * = MAX_DIMENSION.
+   * 
+   * @param srcImage BufferedImage to resize.
+   * @return New BufferedImage that is scaled down to thumbnail size.
+   */
+  private BufferedImage resizeImage(BufferedImage srcImage) <span>{</span>
+    int srcHeight = srcImage.getHeight();
+    int srcWidth = srcImage.getWidth();
+    // Infer scaling factor to avoid stretching image unnaturally
+    float scalingFactor = Math.min(
+      MAX_DIMENSION / srcWidth, MAX_DIMENSION / srcHeight);
+    int width = (int) (scalingFactor * srcWidth);
+    int height = (int) (scalingFactor * srcHeight);
+
+    BufferedImage resizedImage = new BufferedImage(width, height,
+            BufferedImage.TYPE_INT_RGB);
+    Graphics2D graphics = resizedImage.createGraphics();
+    // Fill with white before applying semi-transparent (alpha) images
+    graphics.setPaint(Color.white);
+    graphics.fillRect(0, 0, width, height);
+    // Simple bilinear resize
+    graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+            RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+    graphics.drawImage(srcImage, 0, 0, width, height, null);
+    graphics.dispose();
+    return resizedImage;
+  }
+}
+</code></pre></div></div></li><li>
+          <p>The <code class="code">mvn -B archetype:generate</code> command from step 1 also generated a dummy
+            test case in the <code class="code">src/test</code> directory. For the purposes of this tutorial, skip over
+            running tests by deleting this entire generated <code class="code">/test</code> directory.</p>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>As a best practice, always thoroughly test your code. For a working example of how
+            you might unit test this application, see
+            <a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/74ec19d2159be673ecb2d61530c2d12b08f4e16f/sample-apps/s3-java" rel="noopener noreferrer" target="_blank"><span>
+              the s3-java example on GitHub.</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></div></div>
+        </li><li>
+          <p>Use the following command to build your project.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mvn package</code></pre>
+          <p>This command generates a JAR file in the <code>target</code> directory.</p>
+        </li></ol></div>
+        </dd>
+    </dl></awsdocs-tabs>
+   
+    <h2 id="with-s3-tutorial-create-function-createfunction">Create the Lambda function</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps6.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the Lambda function step creating the function&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>You can create your Lambda function using either the AWS CLI or the Lambda console. Follow the instructions for your chosen language to create 
+      the function.</p>
+<awsdocs-tabs><dl style="display: none">
+  <dt>AWS Management Console</dt><dd tab-id="aws-management-console">
+      <div class="procedure"><h6>To create the function (console)</h6><p>To create your Lambda function using the console, you first create a basic function containing some ‘Hello world’ code. You then 
+          replace this code with your own function code by uploading the.zip or JAR file you created in the previous step.</p><ol><li>
+          <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+        </li><li>
+          <p>Make sure you're working in the same AWS Region you created your Amazon S3 bucket in. You can change your region using the drop-down 
+            list at the top of the screen.</p>
+          <div class="mediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/console_region_select.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;              Image showing drop down region menu in Lambda console&#xA;            " style="max-width:100%" />
+             
+             
+          </div>
+        </li><li>
+          <p>Choose <b>Create function</b>.</p>
+        </li><li>
+          <p>Choose <b>Author from scratch</b>.</p>
+        </li><li>
+          <p>Under <b>Basic information</b>, do the following:</p>
+          <ol><li>
+              <p>For <b>Function name</b>, enter <code class="code"><code class="userinput">CreateThumbnail</code></code>.</p>
+            </li><li>
+              <p>For <b>Runtime</b>choose either <b>Node.js 18.x</b>, <b>Python 3.9</b>, or
+              <b>Java 11</b> according to the language you chose for your function.</p>
+            </li><li>
+              <p>For <b>Architecture</b>, choose <b>x86_64</b>.</p>
+            </li></ol>
+        </li><li>
+          <p>In the <b>Change default execution role</b> tab, do the following:</p>
+          <ol><li>
+              <p>Expand the tab, then choose <b>Use an existing role</b>.</p>
+            </li><li>
+              <p>Select the <code class="code">LambdaS3Role</code> you created earlier.</p>
+            </li></ol>
+        </li><li>
+          <p>Choose <b>Create function</b>.</p>
+        </li></ol></div>
+      <div class="procedure"><h6>To upload the function code (console)</h6><ol><li>
+          <p>In the <b>Code source</b> pane, choose <b>Upload from</b>.</p>
+        </li><li>
+          <p>For the Python and Node.js runtimes, choose <b>.zip file</b>. For the Java runtime, choose 
+            <b>.zip or .jar file</b>.</p>
+        </li><li>
+          <p>Choose <b>Upload</b>.</p>
+        </li><li>
+          <p>In the file selector, select your .zip or JAR file and choose <b>Open</b>.</p>
+        </li><li>
+          <p>Choose <b>Save</b>.</p>
+        </li></ol></div>
+    </dd>
+  <dt>AWS CLI</dt><dd tab-id="aws-cli">
+      <div class="procedure"><h6>To create the function (AWS CLI)</h6><ul><li>
+          <p>Run the CLI command for the language you chose. For the <code class="code">role</code> parameter, make sure to replace <code class="code">123456789012</code> 
+            with your own AWS account ID. For the <code class="code">region</code> parameter, replace <code class="code">us-west-2</code> with the region you created your 
+            Amazon S3 buckets in.</p>
+          <div class="itemizedlist">
+             
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+              <p>For <b>Node.js</b>, run the following command from the directory containing your <code class="code">function.zip</code> 
+              file.</p>
+             <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name CreateThumbnail \
+--zip-file fileb://function.zip --handler index.handler --runtime nodejs18.x \
+--timeout 10 --memory-size 1024 \
+--role arn:aws:iam::<code class="replaceable">123456789012</code>:role/LambdaS3Role --region <code class="replaceable">us-west-2</code></code></code></pre>
+            </li><li class="listitem">
+              <p>For <b>Python</b>, run the following command from the directory containing your <code class="code">lambda_function.zip</code> 
+                file.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name CreateThumbnail \
+--zip-file fileb://lambda_function.zip --handler lambda_function.lambda_handler \
+--runtime python3.9 --timeout 10 --memory-size 1024 \
+--role arn:aws:iam::<code class="replaceable">123456789012</code>:role/LambdaS3Role --region <code class="replaceable">us-west-2</code></code></code></pre>
+            </li><li class="listitem">
+              <p>For <b>Java</b>, run the following command from the <code class="code">target</code> directory of your project.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name CreateThumbnail \
+--zip-file fileb://create-thumbnail-1.0-SNAPSHOT.jar \
+--handler com.example.CreateThumbnail.Handler \
+--runtime java11 --timeout 10 --memory-size 1024 \
+--role arn:aws:iam::<code class="replaceable">123456789012</code>:role/LambdaS3Role --region <code class="replaceable">us-west-2</code></code></code></pre>
+            </li></ul></div>
+        </li></ul></div>
+    </dd>
+</dl></awsdocs-tabs>
+   
+    <h2 id="with-s3-tutorial-configure-s3-trigger">Configure Amazon S3 to invoke the function</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps7.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the trigger step creating the Amazon S3 trigger&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>For your Lambda function to run when you upload an image to your source bucket, you need to configure a trigger for your function. You can 
+    configure the Amazon S3 trigger using either the console or the AWS CLI.</p>
+    <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>This procedure configures the Amazon S3 bucket to invoke your function every time that an object is created in the bucket. Be sure to 
+      configure this only on the source bucket. If your Lambda function creates objects in the same bucket that invokes it, your function can be 
+        <a href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/recursive-runaway" rel="noopener noreferrer" target="_blank"><span>invoked continuously in a loop</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This can result 
+        in un expected charges being billed to your AWS account.</p></div></div>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>AWS Management Console</dt><dd tab-id="aws-management-console">
+          <div class="procedure"><h6>To configure the Amazon S3 trigger (console)</h6><ol><li>
+              <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console and choose your function (<code class="code">CreateThumbnail</code>).</p>
+            </li><li>
+              <p>Choose <b>Add trigger</b>.</p>
+            </li><li>
+              <p>Select <b>S3</b>.</p>
+            </li><li>
+              <p>Under <b>Bucket</b>, select your source bucket.</p>
+            </li><li>
+              <p>Under <b>Event types</b>, select <b>All object create events</b>.</p>
+            </li><li>
+              <p>Under <b>Recursive invocation</b>, select the check box to acknowledge that using the same Amazon S3 bucket for input 
+                and output is not recommended. You can learn more about recursive invocation patterns in Lambda by reading
+                <a href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/recursive-runaway" rel="noopener noreferrer" target="_blank"><span>Recursive patterns that cause run-away Lambda functions</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                in Serverless Land.</p>
+            </li><li>
+              <p>Choose <b>Add</b>.</p>
+              <p>When you create a trigger using the Lambda console, Lambda automatically creates a <a href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource based policy</a> 
+                to give the service you select permission to invoke your function. </p>
+            </li></ol></div>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <div class="procedure"><h6>To configure the Amazon S3 trigger (AWS CLI)</h6><ol><li>
+              <p>For your Amazon S3 source bucket to invoke your function when you add an image file, you first need to configure permissions for your 
+                function using a <a href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">resource based policy</a>. 
+                A resource-based policy statement gives other AWS services permission to invoke your function. To give Amazon S3 permission to invoke 
+                your function, run the following CLI command. Be sure to replace the <code class="code">source-account</code> parameter with your own AWS account ID and to 
+                use your own source bucket name.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda add-permission --function-name CreateThumbnail \
+--principal s3.amazonaws.com --statement-id s3invoke --action "lambda:InvokeFunction" \
+--source-arn arn:aws:s3:::<code class="replaceable">SOURCEBUCKET</code> \
+--source-account <code class="replaceable">123456789012</code></code></code></pre>
+              <p>The policy you define with this command allows Amazon S3 to invoke your function only when an action takes place on your source bucket.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Although Amazon S3 bucket names are globally unique, when using resource-based policies it is best practice to specify that the 
+                bucket must belong to your account.  This is because if you delete a bucket, it is possible for another AWS account to create a 
+                bucket with the same Amazon Resource Name (ARN).</p></div></div>
+            </li><li>
+              <p>Save the following JSON in a file named <code>notification.json</code>. When applied to your source bucket, this JSON 
+                configures the bucket to send a notification to your Lambda function every time a new object is added. Replace the AWS account 
+              number and AWS Region in the Lambda function ARN with your own account number and region.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+"LambdaFunctionConfigurations": [
+    <span>{</span>
+      "Id": "CreateThumbnailEventConfiguration",
+      "LambdaFunctionArn": "arn:aws:lambda:<code class="replaceable">us-west-2:123456789012</code>:function:CreateThumbnail",
+      "Events": [ "s3:ObjectCreated:Put" ]
+    }
+  ]
+}</code></pre>
+            </li><li>
+              <p>Run the following CLI command to apply the notification settings in the JSON file you created to your source bucket. Replace 
+                <code class="code">SOURCEBUCKET</code> with the name of your own source bucket.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws s3api put-bucket-notification-configuration --bucket <code class="replaceable">SOURCEBUCKET</code> \
+--notification-configuration file://notification.json</code></code></pre>
+              <p>To learn more about the <code class="code">put-bucket-notification-configuration</code> command and the 
+                <code class="code">notification-configuration</code> option, see <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-notification-configuration.html" rel="noopener noreferrer" target="_blank"><span>put-bucket-notification-configuration</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+                in the <em>AWS CLI Command Reference</em>.</p>
+            </li></ol></div>
+        </dd>
+    </dl></awsdocs-tabs>   
+   
+    <h2 id="with-s3-tutorial-dummy-test">Test your Lambda function with a dummy event</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps8.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the test step testing using a dummy event&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Before you test your whole setup by adding an image file to your Amazon S3 source bucket, you test that your Lambda function is working 
+      correctly by invoking it with a dummy event. An event in Lambda is a JSON-formatted document that contains data for your function to process. 
+      When your function is invoked by Amazon S3, the event sent to your function contains information such as the bucket name, bucket ARN, and object 
+      key.</p>
+   <awsdocs-tabs><dl style="display: none">
+     <dt>AWS Management Console</dt><dd tab-id="aws-management-console">
+         <div class="procedure"><h6>To test your Lambda function with a dummy event (console)</h6><ol><li>
+             <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console and choose your 
+             function (<code class="code">CreateThumbnail</code>).</p>
+           </li><li>
+             <p>Choose the <b>Test</b> tab.</p>
+           </li><li>
+             <p>To create your test event, in the <b>Test event</b> pane, do the following:</p>
+             <ol><li>
+                 <p>Under <b>Test event action</b>, select <b>Create new event</b>.</p>
+               </li><li>
+                 <p>For <b>Event name</b>, enter <code class="userinput">myTestEvent</code>.</p>
+               </li><li>
+                 <p>For <b>Template</b>, select <b>S3 Put</b>.</p>
+               </li><li>
+                 <p>Replace the values for the following parameters with your own values.</p>
+                 <div class="itemizedlist">
+                    
+                    
+                    
+                 <ul class="itemizedlist"><li class="listitem">
+                     <p>For <code class="code">awsRegion</code>, replace <code class="code">us-east-1</code> with the AWS Region you created your Amazon S3 buckets in.</p>
+                   </li><li class="listitem">
+                     <p>For <code class="code">name</code>, replace <code class="code">example-bucket</code> with the name of your own Amazon S3 source bucket.</p>
+                   </li><li class="listitem">
+                     <p>For <code class="code">key</code>, replace <code class="code">test%2Fkey</code> with the filename of the test object you uploaded to your source 
+                       bucket in the step <a href="#with-s3-tutorial-test-image">Upload a test image to your source bucket</a>.</p>
+                   </li></ul></div>
+                 <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Records": [
+    <span>{</span>
+      "eventVersion": "2.0",
+      "eventSource": "aws:s3",
+      "awsRegion": <code class="replaceable">"us-east-1"</code>,
+      "eventTime": "1970-01-01T00:00:00.000Z",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": <span>{</span>
+        "principalId": "EXAMPLE"
+      },
+      "requestParameters": <span>{</span>
+        "sourceIPAddress": "127.0.0.1"
+      },
+      "responseElements": <span>{</span>
+        "x-amz-request-id": "EXAMPLE123456789",
+        "x-amz-id-2": "EXAMPLE123/5678abcdefghijklambdaisawesome/mnopqrstuvwxyzABCDEFGH"
+      },
+      "s3": <span>{</span>
+        "s3SchemaVersion": "1.0",
+        "configurationId": "testConfigRule",
+        "bucket": <span>{</span>
+          "name": <code class="replaceable">"example-bucket"</code>,
+          "ownerIdentity": <span>{</span>
+            "principalId": "EXAMPLE"
+          },
+          "arn": "arn:aws:s3:::example-bucket"
+        },
+        "object": <span>{</span>
+          "key": <code class="replaceable">"test%2Fkey"</code>,
+          "size": 1024,
+          "eTag": "0123456789abcdef0123456789abcdef",
+          "sequencer": "0A1B2C3D4E5F678901"
+        }
+      }
+    }
+  ]
+}</code></pre>
+               </li><li>
+                 <p>Choose <b>Save</b>.</p>
+               </li></ol>
+           </li><li>
+             <p>In the <b>Test event</b> pane, choose <b>Test</b>.</p>
+           </li><li>
+             <p>To check the your function has created a resized verison of your image and stored it in your target Amazon S3 bucket, do the following:</p>
+             <ol><li>
+                 <p>Open the <a href="https://console.aws.amazon.com/s3/buckets" rel="noopener noreferrer" target="_blank"><span>Buckets page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Amazon S3 console.</p>
+               </li><li>
+                 <p>Choose your target bucket and confirm that your resized file is listed in the <b>Objects</b> pane.</p>
+               </li></ol>
+           </li></ol></div>
+       </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <div class="procedure"><h6>To test your Lambda function with a dummy event (AWS CLI)</h6><ol><li>
+              <p>Save the following JSON in a file named <code>dummyS3Event.json</code>. Replace the values for the following parameters 
+                with your own values:</p>
+              <div class="orderedlist">
+                 
+                 
+                 
+              <ol><li>
+                  <p>For <code class="code">awsRegion</code>, replace <code class="code">us-west-2</code> with the AWS Region you created your Amazon S3 buckets in.</p>
+                </li><li>
+                  <p>For <code class="code">name</code>, replace <code class="code">SOURCEBUCKET</code> with the name of your own Amazon S3 source bucket.</p>
+                </li><li>
+                  <p>For <code class="code">key</code>, replace <code class="code">HappyFace.jpg</code> with the filename of the test object you uploaded to your source 
+                    bucket in the step <a href="#with-s3-tutorial-test-image">Upload a test image to your source bucket</a>.</p>
+                </li></ol></div>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+  "Records":[
+    <span>{</span>
+      "eventVersion":"2.0",
+      "eventSource":"aws:s3",
+      "awsRegion":<code class="replaceable">"us-west-2"</code>,
+      "eventTime":"1970-01-01T00:00:00.000Z",
+      "eventName":"ObjectCreated:Put",
+      "userIdentity":<span>{</span>
+        "principalId":"AIDAJDPLRKLG7UEXAMPLE"
+      },
+      "requestParameters":<span>{</span>
+        "sourceIPAddress":"127.0.0.1"
+      },
+      "responseElements":<span>{</span>
+        "x-amz-request-id":"C3D13FE58DE4C810",
+        "x-amz-id-2":"FMyUVURIY8/IgAtTv8xRjskZQpcIZ9KG4V5Wp6S7S/JRWeUWerMUE5JgHvANOjpD"
+      },
+      "s3":<span>{</span>
+        "s3SchemaVersion":"1.0",
+        "configurationId":"testConfigRule",
+        "bucket":<span>{</span>
+          "name":<code class="replaceable">"SOURCEBUCKET"</code>,
+          "ownerIdentity":<span>{</span>
+            "principalId":"A3NL1KOZZKExample"
+          },
+          "arn":"arn:aws:s3:::SOURCEBUCKET"
+        },
+        "object":<span>{</span>
+          "key":<code class="replaceable">"HappyFace.jpg"</code>,
+          "size":1024,
+          "eTag":"d41d8cd98f00b204e9800998ecf8427e",
+          "versionId":"096fKKXTRTtl3on89fVO.nfljtsv6qko"
+        }
+      }
+    }
+  ]
+}</code></pre>
+            </li><li>
+              <p>From the directory you saved your <code>dummyS3Event.json</code> file in, invoke the function by running the following 
+                CLI command. This command invokes your Lambda function synchronously by specifying <code class="code">RequestResponse</code> as the value of the 
+                invocation-type parameter. To learn more about synchronous and asynchronous invocation, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html">Invoking Lambda functions</a>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda invoke --function-name CreateThumbnail \
+--invocation-type RequestResponse --cli-binary-format raw-in-base64-out \
+--payload file://dummyS3Event.json outputfile.txt</code></code></pre>
+              <p>The cli-binary-format option is required if you are using version 2 of the AWS CLI. To make this the default setting, run 
+                <code class="code">aws configure set cli-binary-format raw-in-base64-out</code>. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html#cli-configure-options-list">AWS CLI supported global command line options</a>.</p>
+            </li><li>
+              <p>Verify that your function has created a thumbnail version of your image and saved it to your target Amazon S3 bucket. Run the 
+                following CLI command, replacing <code class="code">SOURCEBUCKET-resized</code> with the name of your own destination bucket.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws s3api list-objects-v2 --bucket <code class="replaceable">SOURCEBUCKET-resized</code></code></code></pre>
+              <p>You should see output similar to the following. The <code class="code">Key</code> parameter shows the filename of your resized image file.</p>
+            <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><span>{</span>
+    "Contents": [
+        <span>{</span>
+            "Key": "resized-HappyFace.jpg",
+            "LastModified": "2023-06-06T21:40:07+00:00",
+            "ETag": "\"d8ca652ffe83ba6b721ffc20d9d7174a\"",
+            "Size": 2633,
+            "StorageClass": "STANDARD"
+        }
+    ]
+}</code></pre>
+            </li></ol></div>
+        </dd>
+    </dl></awsdocs-tabs>
+   
+    <h2 id="with-s3-tutorial-test-s3">Test your function using the Amazon S3 trigger</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-s3-tutorial/s3thumb_tut_steps9.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Tutorial workflow diagram showing you are in the test step testing by uploading a file to Amazon S3&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Now that you’ve confirmed your Lambda function is operating correctly, you’re ready to test your complete setup by adding an image file to 
+      your Amazon S3 source bucket. When you add your image to the source bucket, your Lambda function should be automatically invoked. Your function 
+      creates a resized version of the file and stores it in your target bucket.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>AWS Management Console</dt><dd tab-id="aws-management-console">
+          <div class="procedure"><h6>To test your Lambda function using the Amazon S3 trigger (console)</h6><ol><li>
+              <p>To upload an image to your Amazon S3 bucket, do the following:</p>
+              <ol><li>
+                  <p>Open the <a href="https://console.aws.amazon.com/s3/buckets" rel="noopener noreferrer" target="_blank"><span>Buckets</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page of the Amazon S3 console and choose your source bucket.</p>
+                </li><li>
+                  <p>Choose <b>Upload</b>.</p>
+                </li><li>
+                  <p>Choose <b>Add files</b> and use the file selector to choose the image file you want to upload. Your image 
+                  object can be any .jpg or .png file.</p>
+                </li><li>
+                  <p>Choose <b>Open</b>, then choose <b>Upload</b>.</p>
+                </li></ol>
+            </li><li>
+              <p>Verify that Lambda has saved a resized version of your image file in your target bucket by doing the following:</p>
+              <ol><li>
+                  <p>Navigate back to the <a href="https://console.aws.amazon.com/s3/buckets" rel="noopener noreferrer" target="_blank"><span>Buckets</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page of the Amazon S3 console and choose your destination bucket.</p>
+                </li><li>
+                  <p>In the <b>Objects</b> pane, you should now see two resized image files, one from each test of your Lambda function.
+                  To download your resized image, select the file, then choose <b>Download</b>.</p>
+                </li></ol>
+            </li></ol></div>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <div class="procedure"><h6>To test your Lambda function using the Amazon S3 trigger (AWS CLI)</h6><ol><li>
+              <p>From the directory containing the image you want to upload, run the following CLI command. Replace the <code class="code">--bucket</code> 
+                parameter with the name of your source bucket. For the <code class="code">--key</code> and <code class="code">--body</code> parameters, use the filename of 
+                your test image. Your test image can be any .jpg or .png file.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws s3api put-object --bucket <code class="replaceable">SOURCEBUCKET</code> --key <code class="replaceable">SmileyFace.jpg</code> --body <code class="replaceable">./SmileyFace.jpg</code></code></code></pre>
+            </li><li>
+              <p>Verify that your function has created a thumbnail version of your image and saved it to your target Amazon S3 bucket. Run the 
+                following CLI command, replacing <code class="code">SOURCEBUCKET-resized</code> with the name of your own destination bucket.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws s3api list-objects-v2 --bucket <code class="replaceable">SOURCEBUCKET-resized</code></code></code></pre>
+              <p>If your function runs successfully, you’ll see output similar to the following. Your target bucket should now contain two resized files.</p>
+            <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><span>{</span>
+    "Contents": [
+        <span>{</span>
+            "Key": "resized-HappyFace.jpg",
+            "LastModified": "2023-06-07T00:15:50+00:00",
+            "ETag": "\"7781a43e765a8301713f533d70968a1e\"",
+            "Size": 2763,
+            "StorageClass": "STANDARD"
+        },
+        <span>{</span>
+            "Key": "resized-SmileyFace.jpg",
+            "LastModified": "2023-06-07T00:13:18+00:00",
+            "ETag": "\"ca536e5a1b9e32b22cd549e18792cdbc\"",
+            "Size": 1245,
+            "StorageClass": "STANDARD"
+        }
+    ]
+}</code></pre>
+            </li></ol></div>
+        </dd>
+    </dl></awsdocs-tabs>
+   
+    <h2 id="s3-tutorial-cleanup">Clean up your resources</h2>
+    
+    <p>You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS resources that you're no longer using, you prevent unnecessary charges to your AWS account.</p>
+    
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    <div class="procedure"><h6>To delete the policy that you created</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/policies" rel="noopener noreferrer" target="_blank"><span>Policies page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+      </li><li>
+        <p>Select the policy that you created (<b>AWSLambdaS3Policy</b>).</p>
+      </li><li>
+        <p>Choose <b>Policy actions</b>, <b>Delete</b>.</p>
+      </li><li>
+        <p>Choose <b>Delete</b>.</p>
+      </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+  </li><li>
+    <p>Select the execution role that you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the role in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the S3 bucket</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/s3/home#" rel="noopener noreferrer" target="_blank"><span>Amazon S3 console.</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+  </li><li>
+    <p>Select the bucket you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the bucket in the text input field.</p>
+  </li><li>
+    <p>Choose <b>Delete bucket</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-s3-example.html">Tutorial: Use an S3 trigger</div><div id="next" class="next-link" accesskey="n" href="./services-s3-batch.html">S3 Batch</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-s3-tutorial.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-s3-tutorial.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

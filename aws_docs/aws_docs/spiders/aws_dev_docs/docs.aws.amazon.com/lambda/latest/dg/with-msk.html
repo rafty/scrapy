@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using Lambda with Amazon MSK - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-msk" /><meta name="default_state" content="with-msk" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html" /><meta name="description" content="Use a Lambda function with Amazon MSK to process records in an Apache Kafka topic." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-msk.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-msk.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-msk.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-msk.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-msk.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-msk.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-msk.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-msk.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-msk.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-msk.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-msk.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-msk.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-msk.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-msk.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-msk.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-msk.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-msk.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-msk.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using Lambda with Amazon MSK" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using Lambda with Amazon MSK - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-msk" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-msk.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-msk.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-msk.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,MSK,Kafka,trigger,configure" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Lambda with Amazon MSK",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-msk" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#msk-sample-event"> Example event</a><a href="#msk-cluster-permissions">MSK cluster authentication</a><a href="#msk-permissions">Managing API access and permissions</a><a href="#msk-permissions-errors">Authentication and authorization errors</a><a href="#services-msk-vpc-config">Network configuration</a><a href="#services-msk-topic-add">Adding Amazon MSK as an event source</a><a href="#services-msk-ops-scaling">Auto scaling of the Amazon MSK event source</a><a href="#services-msk-stream-poll">Polling and stream starting positions</a><a href="#services-msk-metrics">Amazon CloudWatch metrics</a><a href="#services-msk-parms">Amazon MSK configuration parameters</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-msk">Using Lambda with Amazon MSK</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you want to send data to a target other than a Lambda function or enrich the data before sending it, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html">
+    Amazon EventBridge Pipes</a>.</p></div></div><p><a href="https://docs.aws.amazon.com/msk/latest/developerguide/what-is-msk.html">Amazon Managed Streaming for Apache Kafka (Amazon MSK)</a> is a
+    fully managed service that you can use to build and run applications that use Apache Kafka to process streaming data.
+    Amazon MSK simplifies the setup, scaling, and management of clusters running Kafka. Amazon MSK also makes it easier to
+    configure your application for multiple Availability Zones and for security with AWS Identity and Access Management (IAM). Amazon MSK supports
+    multiple open-source versions of Kafka.</p><p>Amazon MSK as an event source operates similarly to using Amazon Simple Queue Service (Amazon SQS) or Amazon Kinesis. Lambda internally polls for
+    new messages from the event source and then synchronously invokes the target Lambda function. Lambda reads the
+    messages in batches and provides these to your function as an event payload. The maximum batch size is configurable
+    (the default is 100 messages). For more information, see
+    <a href="./invocation-eventsourcemapping.html#invocation-eventsourcemapping-batching">Batching behavior</a>.</p><p></p><p>Lambda reads the messages sequentially for each partition. A single Lambda payload can contain messages
+    from multiple partitions. After Lambda processes each batch, it commits the offsets of the messages in that batch.
+    If your function returns an error for any of the messages in a batch, Lambda retries the whole batch of messages
+    until processing succeeds or the messages expire.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>While Lambda functions typically have a maximum timeout limit of 15 minutes,
+      event source mappings for Amazon MSK, self-managed Apache Kafka, Amazon DocumentDB, and Amazon MQ for ActiveMQ and RabbitMQ only support functions with
+      maximum timeout limits of 14 minutes. This constraint ensures that the event source mapping can properly
+      handle function errors and retries.</p></div></div><p>Lambda doesn't currently support consuming messages from
+    <a href="https://docs.aws.amazon.com/msk/latest/developerguide/aws-access-mult-vpc.html">multi-VPC serverless-type
+      MSK clusters</a>.</p><p>For an example of how to configure Amazon MSK as an event source, see <a href="http://aws.amazon.com/blogs/compute/using-amazon-msk-as-an-event-source-for-aws-lambda/" rel="noopener noreferrer" target="_blank"><span>Using Amazon MSK as an event source for
+    AWS Lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the AWS Compute Blog. For a complete tutorial, see <a href="https://amazonmsk-labs.workshop.aws/en/msklambda.html" rel="noopener noreferrer" target="_blank"><span> Amazon MSK Lambda Integration</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Amazon MSK
+    Labs.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#msk-sample-event"> Example event</a></li><li><a href="#msk-cluster-permissions">MSK cluster authentication</a></li><li><a href="#msk-permissions">Managing API access and permissions</a></li><li><a href="#msk-permissions-errors">Authentication and authorization errors</a></li><li><a href="#services-msk-vpc-config">Network configuration</a></li><li><a href="#services-msk-topic-add">Adding Amazon MSK as an event source</a></li><li><a href="#services-msk-ops-scaling">Auto scaling of the Amazon MSK event source</a></li><li><a href="#services-msk-stream-poll">Polling and stream starting positions</a></li><li><a href="#services-msk-metrics">Amazon CloudWatch metrics</a></li><li><a href="#services-msk-parms">Amazon MSK configuration parameters</a></li></ul></div>
+    <h2 id="msk-sample-event"> Example event</h2>
+    <p>Lambda sends the batch of messages in the event parameter when it invokes your function. The event payload
+      contains an array of messages. Each array item contains details of the Amazon MSK topic and partition identifier,
+      together with a timestamp and a base64-encoded message.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+   "eventSource":"aws:kafka",
+   "eventSourceArn":"arn:aws:kafka:sa-east-1:123456789012:cluster/vpc-2priv-2pub/751d2973-a626-431c-9d4e-d7975eb44dd7-2",
+   "bootstrapServers":"b-2.demo-cluster-1.a1bcde.c1.kafka.us-east-1.amazonaws.com:9092,b-1.demo-cluster-1.a1bcde.c1.kafka.us-east-1.amazonaws.com:9092",
+   "records":<span>{</span>
+      "mytopic-0":[
+         <span>{</span>
+            "topic":"mytopic",
+            "partition":0,
+            "offset":15,
+            "timestamp":1545084650987,
+            "timestampType":"CREATE_TIME",
+            "key":"abcDEFghiJKLmnoPQRstuVWXyz1234==",
+            "value":"SGVsbG8sIHRoaXMgaXMgYSB0ZXN0Lg==",
+            "headers":[
+               <span>{</span>
+                  "headerKey":[
+                     104,
+                     101,
+                     97,
+                     100,
+                     101,
+                     114,
+                     86,
+                     97,
+                     108,
+                     117,
+                     101
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+}</code></pre>
+   
+    <h2 id="msk-cluster-permissions">MSK cluster authentication</h2>
+    <p>Lambda needs permission to access the Amazon MSK cluster, retrieve records, and perform other tasks. Amazon MSK supports
+      several options for controlling client access to the MSK cluster.</p>
+    <div class="highlights" id="inline-topiclist"><h6>Cluster access options</h6><ul><li><a href="#msk-permissions-none">Unauthenticated access</a></li><li><a href="#msk-permissions-add-secret">SASL/SCRAM authentication</a></li><li><a href="#msk-permissions-iam-policy"> IAM role-based authentication</a></li><li><a href="#msk-permissions-mTLS">Mutual TLS authentication</a></li><li><a href="#smaa-auth-secret">Configuring the mTLS secret</a></li><li><a href="#msk-bootstrap-brokers">How Lambda chooses a bootstrap broker</a></li></ul></div>
+     
+      <h3 id="msk-permissions-none">Unauthenticated access</h3>
+      <p>If no clients access the cluster over the internet, you can use unauthenticated access.</p>
+     
+    
+     
+      <h3 id="msk-permissions-add-secret">SASL/SCRAM authentication</h3>
+      <p>Amazon MSK supports Simple Authentication and Security Layer/Salted Challenge Response Authentication Mechanism
+        (SASL/SCRAM) authentication with Transport Layer Security (TLS) encryption. For Lambda to connect to the cluster,
+        you store the authentication credentials (user name and password) in an AWS Secrets Manager secret.</p>
+      <p>For more information about using Secrets Manager, see <a href="https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html">User name and password authentication with AWS Secrets Manager</a>
+        in the <em>Amazon Managed Streaming for Apache Kafka Developer Guide</em>.</p>
+      <p>Amazon MSK doesn't support SASL/PLAIN authentication.</p>
+     
+    
+     
+      <h3 id="msk-permissions-iam-policy"> IAM role-based authentication</h3>
+      <p>You can use IAM to authenticate the identity of clients that connect to the MSK cluster. If IAM auth is
+        active on your MSK cluster, and you don't provide a secret for auth, Lambda automatically defaults to using IAM auth.
+        To create and deploy user or role-based policies, use the IAM console or API. For more information, see <a href="https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html">IAM access control</a> in
+        the <em>Amazon Managed Streaming for Apache Kafka Developer Guide</em>.</p>
+      <p>To allow Lambda to connect to the MSK cluster, read records, and perform other required actions, add the
+        following permissions to your function's <a href="./lambda-intro-execution-role.html">execution role</a>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Action": [
+                "kafka-cluster:Connect",
+                "kafka-cluster:DescribeGroup",
+                "kafka-cluster:AlterGroup",
+                "kafka-cluster:DescribeTopic",
+                "kafka-cluster:ReadData",
+                "kafka-cluster:DescribeClusterDynamicConfiguration"
+            ],
+            "Resource": [
+                "arn:aws:kafka:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:cluster/<code class="replaceable">cluster-name</code>/<code class="replaceable">cluster-uuid</code>",
+                "arn:aws:kafka:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:topic/<code class="replaceable">cluster-name</code>/<code class="replaceable">cluster-uuid</code>/<code class="replaceable">topic-name</code>",
+                "arn:aws:kafka:<code class="replaceable">region</code>:<code class="replaceable">account-id</code>:group/<code class="replaceable">cluster-name</code>/<code class="replaceable">cluster-uuid</code>/<code class="replaceable">consumer-group-id</code>"
+            ]
+        }
+    ]
+}       </code></pre> 
+      <p>You can scope these permissions to a specific cluster, topic, and group. For more information, see the
+          <a href="https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html#kafka-actions">Amazon MSK Kafka
+          actions</a> in the <em>Amazon Managed Streaming for Apache Kafka Developer Guide</em>.</p>  
+     
+    
+     
+      <h3 id="msk-permissions-mTLS">Mutual TLS authentication</h3>
+      <p>Mutual TLS (mTLS) provides two-way authentication between the client and server. The client sends a
+        certificate to the server for the server to verify the client, and the server sends a certificate to the client
+        for the client to verify the server. </p>
+      <p>For Amazon MSK, Lambda acts as the client. You configure a client certificate (as a secret in Secrets Manager) to
+        authenticate Lambda with the brokers in your MSK cluster. The client certificate must be signed by a CA in the
+        server's trust store. The MSK cluster sends a server certificate to Lambda to authenticate the brokers with
+        Lambda. The server certificate must be signed by a certificate authority (CA) that's in the AWS trust store. </p>
+      <p>For instructions on how to generate a client certificate, see <a href="http://aws.amazon.com/blogs/compute/introducing-mutual-tls-authentication-for-amazon-msk-as-an-event-source" rel="noopener noreferrer" target="_blank"><span>
+        Introducing mutual TLS authentication for Amazon MSK as an event source</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>   
+      <p>Amazon MSK doesn't support self-signed server certificates, because all brokers in Amazon MSK use <a href="https://docs.aws.amazon.com/msk/latest/developerguide/msk-encryption.html">public certificates</a> signed by
+          <a href="https://www.amazontrust.com/repository/" rel="noopener noreferrer" target="_blank"><span>Amazon Trust Services CAs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, which Lambda trusts by
+        default.</p>
+      <p></p>       
+      <p>For more information about mTLS for Amazon MSK, see <a href="https://docs.aws.amazon.com/msk/latest/developerguide/msk-authentication.html">Mutual TLS Authentication</a> in the
+          <em>Amazon Managed Streaming for Apache Kafka Developer Guide</em>.</p>
+     
+     
+      <h3 id="smaa-auth-secret">Configuring the mTLS secret</h3> 
+      <p>The CLIENT_CERTIFICATE_TLS_AUTH secret requires a certificate field and a private key field. For an
+        encrypted private key, the secret requires a private key password. Both the certificate and private key must be
+        in PEM format.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Lambda supports the <a href="https://datatracker.ietf.org/doc/html/rfc2898/#section-6.1" rel="noopener noreferrer" target="_blank"><span>PBES1</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> (but not
+          PBES2) private key encryption algorithms.</p></div></div>  
+      <p>The certificate field must contain a list of certificates, beginning with the client certificate, followed
+        by any intermediate certificates, and ending with the root certificate. Each certificate must start on a new
+        line with the following structure:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">-----BEGIN CERTIFICATE-----  
+        &lt;certificate contents&gt;
+-----END CERTIFICATE-----      </code></pre> 
+      <p>Secrets Manager supports secrets up to 65,536 bytes, which is enough space for long certificate chains.</p>
+      <p>The private key must be in <a href="https://datatracker.ietf.org/doc/html/rfc5208" rel="noopener noreferrer" target="_blank"><span>PKCS #8</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+        format, with the following structure:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">-----BEGIN PRIVATE KEY-----  
+         &lt;private key contents&gt;
+-----END PRIVATE KEY-----            </code></pre> 
+      <p>For an encrypted private key, use the following structure:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">-----BEGIN ENCRYPTED PRIVATE KEY-----  
+          &lt;private key contents&gt;
+-----END ENCRYPTED PRIVATE KEY-----           </code></pre>
+      <p>The following example shows the contents of a secret for mTLS authentication using an encrypted private key.
+        For an encrypted private key, you include the private key password in the secret.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+ "privateKeyPassword": "testpassword",
+ "certificate": "-----BEGIN CERTIFICATE-----
+MIIE5DCCAsygAwIBAgIRAPJdwaFaNRrytHBto0j5BA0wDQYJKoZIhvcNAQELBQAw
+...
+j0Lh4/+1HfgyE2KlmII36dg4IMzNjAFEBZiCRoPimO40s1cRqtFHXoal0QQbIlxk
+cmUuiAii9R0=
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIFgjCCA2qgAwIBAgIQdjNZd6uFf9hbNC5RdfmHrzANBgkqhkiG9w0BAQsFADBb
+...
+rQoiowbbk5wXCheYSANQIfTZ6weQTgiCHCCbuuMKNVS95FkXm0vqVD/YpXKwA/no
+c8PH3PSoAaRwMMgOSA2ALJvbRz8mpg==
+-----END CERTIFICATE-----",
+ "privateKey": "-----BEGIN ENCRYPTED PRIVATE KEY-----
+MIIFKzBVBgkqhkiG9w0BBQ0wSDAnBgkqhkiG9w0BBQwwGgQUiAFcK5hT/X7Kjmgp
+...
+QrSekqF+kWzmB6nAfSzgO9IaoAaytLvNgGTckWeUkWn/V0Ck+LdGUXzAC4RxZnoQ
+zp2mwJn2NYB7AZ7+imp0azDZb+8YG2aUCiyqb6PnnA==
+-----END ENCRYPTED PRIVATE KEY-----"
+} </code></pre>
+ 
+     
+     
+      <h3 id="msk-bootstrap-brokers">How Lambda chooses a bootstrap broker</h3>
+      <p>Lambda chooses a <a href="https://docs.aws.amazon.com/msk/latest/developerguide/msk-get-bootstrap-brokers.html">
+        bootstrap broker</a> based on the authentication methods available on your cluster, and whether you provide a secret
+        for authentication. If you provide a secret for mTLS or SASL/SCRAM, Lambda automatically chooses that auth method.
+        If you don't provide a secret, Lambda selects the strongest auth method that's active on your cluster. The following is
+        the order of priority in which Lambda selects a broker, from strongest to weakest auth:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem"><p>mTLS (secret provided for mTLS)</p></li><li class="listitem"><p>SASL/SCRAM (secret provided for SASL/SCRAM)</p></li><li class="listitem"><p>SASL IAM (no secret provided, and IAM auth active)</p></li><li class="listitem"><p>Unauthenticated TLS (no secret provided, and IAM auth not active)</p></li><li class="listitem"><p>Plaintext (no secret provided, and both IAM auth and unauthenticated TLS are not active)</p></li></ul></div>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If Lambda can't connect to the most secure broker type, Lambda doesn't attempt to connect to a different (weaker)
+        broker type. If you want Lambda to choose a weaker broker type, deactivate all stronger auth methods on your cluster.</p></div></div>
+     
+   
+      <h2 id="msk-permissions">Managing API access and permissions</h2>
+    <p>In addition to accessing the Amazon MSK cluster, your function needs permissions to perform various Amazon MSK API
+      actions. You add these permissions to the function's execution role. If your users need access to any of the Amazon MSK
+      API actions, add the required permissions to the identity policy for the user or role.</p>
+    <p>You can add each of the following permissions to your execution role manually. Alternatively, you can attach the
+      AWS managed policy <code class="code">AWSLambdaMSKExecutionRole</code> to your execution role. The
+      <code class="code">AWSLambdaMSKExecutionRole</code> policy contains all required API actions and VPC permissions listed below.</p>
+    
+     
+      <h3 id="msk-api-actions">Required Lambda function execution role permissions</h3>
+      
+      <p>To create and store logs in a log group in Amazon CloudWatch Logs, your Lambda function must have the following
+        permissions in its execution role:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateLogGroup.html">logs:CreateLogGroup</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_CreateLogStream.html">logs:CreateLogStream</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html">logs:PutLogEvents</a></p>
+        </li></ul></div>
+      <p>For Lambda to access your Amazon MSK cluster on your behalf, your Lambda function must have the following
+        permissions in its execution role:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn.html#clusters-clusterarnget">kafka:DescribeCluster</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/MSK/2.0/APIReference/v2-clusters-clusterarn.html#v2-clusters-clusterarnget">kafka:DescribeClusterV2</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-bootstrap-brokers.html#clusters-clusterarn-bootstrap-brokersget">kafka:GetBootstrapBrokers</a></p>
+        </li></ul></div>
+      <p>You only need to add one of either <code class="code">kafka:DescribeCluster</code> or <code class="code">kafka:DescribeClusterV2</code>. For provisioned MSK
+        clusters, either permission works. For serverless MSK clusters, you must use <code class="code">kafka:DescribeClusterV2</code>.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Lambda eventually plans to remove the <code class="code">kafka:DescribeCluster</code> permission from the
+        associated <code class="code">AWSLambdaMSKExecutionRole</code> managed policy. If you use this policy, you should
+        migrate any applications using <code class="code">kafka:DescribeCluster</code> to use
+        <code class="code">kafka:DescribeClusterV2</code> instead.</p></div></div>
+     
+    
+     
+      <h3 id="msk-api-actions-vpc">VPC permissions</h3>
+      <p>If only users within a VPC can access your Amazon MSK cluster, your Lambda function must have permission to
+        access your Amazon VPC resources. These resources include your VPC, subnets, security groups, and network
+        interfaces. To access these resources, your function's execution role must have the following
+        permissions:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html">ec2:CreateNetworkInterface</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeNetworkInterfaces.html">ec2:DescribeNetworkInterfaces</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpcs.html">ec2:DescribeVpcs</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteNetworkInterface.html">ec2:DeleteNetworkInterface</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSubnets.html">ec2:DescribeSubnets</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html">ec2:DescribeSecurityGroups</a></p>
+        </li></ul></div>
+     
+    
+     
+      <h3 id="msk-api-actions-optional">Optional Lambda function permissions</h3>
+      <p>Your Lambda function might also need permissions to:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Access your SCRAM secret, if using SASL/SCRAM authentication.</p>
+        </li><li class="listitem">
+          <p>Describe your Secrets Manager secret.</p>
+        </li><li class="listitem">
+          <p>Access your AWS Key Management Service (AWS KMS) customer managed key.</p>
+        </li></ul></div>
+      
+       
+        <h4 id="msk-api-actions-secrets">Secrets Manager and AWS KMS permissions</h4>
+        <p>Depending on the type of access control that you're configuring for your Amazon MSK brokers, your Lambda function
+          might need permission to access your SCRAM secret (if using SASL/SCRAM authentcation), or Secrets Manager secret to
+          decrypt your AWS KMS customer managed key. To access these resources, your function's execution role must have the
+          following permissions:</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-scram-secrets.html#ListScramSecrets">
+              kafka:ListScramSecrets</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html">secretsmanager:GetSecretValue</a></p>
+          </li><li class="listitem">
+            <p><a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html">kms:Decrypt</a></p>
+          </li></ul></div>
+       
+     
+    
+     
+      <h3 id="msk-permissions-add-policy">Adding permissions to your execution role</h3>
+      <p>Follow these steps to add the AWS managed policy <code class="code">AWSLambdaMSKExecutionRole</code> to your execution role using the IAM console.</p>
+      <div class="procedure"><h6>To add an AWS managed policy</h6><ol><li>
+          <p>Open the <a href="https://console.aws.amazon.com/iam/home#/policies" rel="noopener noreferrer" target="_blank"><span>Policies page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM
+            console.</p>
+        </li><li>
+          <p>In the search box, enter the policy name (<code class="code">AWSLambdaMSKExecutionRole</code>).</p>
+        </li><li>
+          <p>Select the policy from the list, and then choose <b>Policy actions</b>, <b>Attach</b>.</p>
+        </li><li>
+          <p>On the <b>Attach policy</b> page, select your execution role from the list, and then
+            choose <b>Attach policy</b>.</p>
+        </li></ol></div>
+     
+     
+      <h3 id="msk-permissions-identity-policy">Granting users access with an IAM policy</h3>
+      <p>By default, users and roles don't have permission to perform Amazon MSK API operations. To grant access to
+        users in your organization or account, you can add or update an identity-based policy. For more information, see
+          <a href="https://docs.aws.amazon.com/msk/latest/developerguide/security_iam_id-based-policy-examples.html">Amazon MSK
+          Identity-Based Policy Examples</a> in the <em>Amazon Managed Streaming for Apache Kafka Developer Guide</em>.</p>
+     
+    
+     
+      <h3 id="msk-permissions-add-secret">Using SASL/SCRAM authentication</h3>
+      <p>Amazon MSK supports Simple Authentication and Security Layer/Salted Challenge Response Authentication Mechanism (SASL/SCRAM) authentication with TLS encryption. You can control access to your Amazon MSK clusters by setting up
+        user name and password authentication using an AWS Secrets Manager secret. For more information, see <a href="https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html">Username and password authentication
+          with AWS Secrets Manager</a> in the <em>Amazon Managed Streaming for Apache Kafka Developer Guide</em>. For more information about SASL/SCRAM
+        authentication, see <a href="https://tools.ietf.org/html/rfc5802" rel="noopener noreferrer" target="_blank"><span>RFC 5802</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <p>Note that Amazon MSK does not support SASL/PLAIN authentication.</p>
+     
+   
+    <h2 id="msk-permissions-errors">Authentication and authorization errors</h2>
+    <p>If any of the permissions required to consume data from the Amazon MSK cluster are missing, Lambda displays one of
+      the following error messages in the event source mapping under <b>LastProcessingResult</b>.</p>
+    <div class="highlights" id="inline-topiclist"><h6>Error messages</h6><ul><li><a href="#msk-authorize-errors">Cluster failed to authorize Lambda</a></li><li><a href="#msk-sasl-errors">SASL authentication failed</a></li><li><a href="#msk-mtls-errors">Server failed to authenticate Lambda</a></li><li><a href="#msk-key-errors">Provided certificate or private key is invalid</a></li></ul></div>
+     
+      <h3 id="msk-authorize-errors">Cluster failed to authorize Lambda</h3>
+      <p>For SASL/SCRAM or mTLS, this error indicates that the provided user doesn't have all of the following
+        required Kafka access control list (ACL) permissions:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem"><p>DescribeConfigs Cluster</p></li><li class="listitem"><p>Describe Group</p></li><li class="listitem"><p>Read Group</p></li><li class="listitem"><p>Describe Topic</p></li><li class="listitem"><p>Read Topic</p></li></ul></div>
+      <p>For IAM access control, your function's execution role is missing one or more of the permissions required
+        to access the group or topic. Review the list of required permissions in <a href="#msk-permissions-iam-policy"> IAM role-based authentication</a>.</p>
+      <p>When you create either Kafka ACLs or an IAM policy with the required Kafka cluster permissions, specify
+        the topic and group as resources. The topic name must match the topic in the event source mapping. The group
+        name must match the event source mapping's UUID.</p>
+      <p>After you add the required permissions to the execution role, it might take several minutes for the changes
+        to take effect.</p>
+     
+     
+      <h3 id="msk-sasl-errors">SASL authentication failed</h3>
+        <p>For SASL/SCRAM, this error indicates that the provided user name and password aren't valid.</p>
+        <p>For IAM access control, the execution role is missing the <code class="code">kafka-cluster:Connect</code> permission
+        for the MSK cluster. Add this permission to the role and specify the cluster's Amazon Resource Name (ARN) as a
+        resource.</p>
+        <p>You might see this error occurring intermittently. The cluster rejects connections after the number of TCP
+        connections exceeds the <a href="https://docs.aws.amazon.com/msk/latest/developerguide/limits.html">Amazon MSK service
+          quota</a>. Lambda backs off and retries until a connection is successful. After Lambda connects to the
+        cluster and polls for records, the last processing result changes to <code class="code">OK</code>.</p>
+     
+     
+        <h3 id="msk-mtls-errors">Server failed to authenticate Lambda</h3>
+        <p>This error indicates that the Amazon MSK Kafka brokers failed to authenticate with Lambda. This can occur for
+        any of the following reasons:</p>  
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem"><p>You didn't provide a client certificate for mTLS authentication.</p></li><li class="listitem"><p>You provided a client certificate, but the brokers aren't configured to use mTLS.</p></li><li class="listitem"><p>A client certificate isn't trusted by the brokers.</p></li></ul></div>
+     
+     
+        <h3 id="msk-key-errors">Provided certificate or private key is invalid</h3>
+          <p>This error indicates that the Amazon MSK consumer couldn't use the provided certificate or private key. Make
+        sure that the certificate and key use PEM format, and that the private key encryption uses a PBES1
+        algorithm.</p>
+     
+   
+    <h2 id="services-msk-vpc-config">Network configuration</h2>
+    <p>Lambda must have access to the Amazon Virtual Private Cloud (Amazon VPC) resources associated with your Amazon MSK cluster. We recommend that you deploy <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/aws-services-privatelink-support.html">AWS PrivateLink VPC endpoints</a> for Lambda and AWS Security Token Service (AWS STS). The poller needs access to AWS STS to assume the execution role associated with the Lambda function. Lambda must have access to the Lambda VPC endpoint to invoke the function. If you configured a secret in Secrets Manager to authenticate Lambda with the brokers, also <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html">deploy a VPC endpoint for Secrets Manager</a>.</p>
+        <p>Alternatively, ensure that the VPC associated with your MSK cluster includes one NAT gateway per public
+      subnet. For more information, see <a href="./configuration-vpc.html#vpc-internet">Internet and service access for VPC-connected functions</a>.</p>
+    <p>Configure your Amazon VPC security groups with the following rules (at minimum):</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Inbound rules – Allow all traffic on the Amazon MSK broker port (9092 for plaintext, 9094 for TLS, 9096
+          for SASL, 9098 for IAM) for the security groups specified for your event source.</p>
+      </li><li class="listitem">
+        <p>Outbound rules – Allow all traffic on port 443 for all destinations. Allow all traffic on the Amazon MSK
+          broker port (9092 for plaintext, 9094 for TLS, 9096 for SASL, 9098 for IAM) for the security groups
+          specified for your event source.</p>
+      </li><li class="listitem">
+        <p>If you are using VPC endpoints instead of a NAT gateway, the security groups associated with the VPC
+          endpoints must allow all inbound traffic on port 443 from the event source's security groups.</p>
+      </li></ul></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Your Amazon VPC configuration is discoverable through the <a href="https://docs.aws.amazon.com/msk/1.0/apireference/resources.html">Amazon MSK API</a>. You don't need to configure it during setup using
+        the <b>create-event-source-mapping</b> command.</p></div></div>
+    <p>For more information about configuring the network, see <a href="http://aws.amazon.com/blogs/compute/setting-up-aws-lambda-with-an-apache-kafka-cluster-within-a-vpc/" rel="noopener noreferrer" target="_blank"><span>Setting up AWS Lambda with an
+        Apache Kafka cluster within a VPC</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the AWS Compute Blog.</p>
+   
+    <h2 id="services-msk-topic-add">Adding Amazon MSK as an event source</h2>
+    <p>To create an <a href="./invocation-eventsourcemapping.html">event source mapping</a>, add Amazon MSK as a Lambda
+      function <a href="./gettingstarted-concepts.html#gettingstarted-concepts-trigger">trigger</a> using the Lambda console, an <a href="http://aws.amazon.com/getting-started/tools-sdks/" rel="noopener noreferrer" target="_blank"><span>AWS SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, or the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI)</a>. Note that when you add Amazon MSK
+        as a trigger, Lambda assumes the VPC settings of the Amazon MSK cluster, not the Lambda function's VPC settings.</p>
+    <p>This section describes how to create an event source mapping using the Lambda console and the AWS CLI.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When you update, disable, or delete an event source mapping for Amazon MSK, it can take up to 15 minutes for your changes to take effect. 
+        Before this period has elapsed, your event source mapping may continue to process events and invoke your function using your previous 
+        settings. This is true even when the status of the event source mapping displayed in the console indicates that your changes have been applied.</p></div></div>
+
+    
+     
+      <h3 id="services-msk-prereqs">Prerequisites</h3>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>An  Amazon MSK cluster and a Kafka topic. For more information, see <a href="https://docs.aws.amazon.com/msk/latest/developerguide/getting-started.html">Getting Started Using Amazon MSK</a> in the
+              <em>Amazon Managed Streaming for Apache Kafka Developer Guide</em>.</p>
+        </li><li class="listitem">
+          <p>An <a href="./lambda-intro-execution-role.html">execution role</a> with permission to access the AWS resources that your MSK cluster uses.</p>
+        </li></ul></div>
+     
+    
+    
+     
+      <h3 id="services-msk-consumer-group-id">Customizable consumer group ID</h3>
+      <p>When setting up Kafka as an event source, you can specify a consumer group ID. This consumer group ID is an
+    existing identifier for the Kafka consumer group that you want your Lambda function to join. You can use this feature to seamlessly migrate any
+    ongoing Kafka record processing setups from other consumers to Lambda.</p>
+    <p>If you specify a consumer group ID and there are other active pollers within that consumer group, Kafka distributes messages across
+      all consumers. In other words, Lambda doesn't receive all message for the Kafka topic. If you want Lambda to handle all messages in the
+      topic, turn off any other pollers in that consumer group.</p>
+    <p>Additionally, if you specify a consumer group ID, and Kafka finds a valid existing consumer group with the same ID, Lambda ignores the
+      <code class="code">StartingPosition</code> parameter for your event source mapping. Instead, Lambda begins processing records according to the committed
+      offset of the consumer group. If you specify a consumer group ID, and Kafka cannot find an existing consumer group, then Lambda configures your
+      event source with the specified <code class="code">StartingPosition</code>.</p>
+    <p>The consumer group ID that you specify must be unique among all your Kafka event sources. After creating a Kafka event source mapping
+      with the consumer group ID specified, you cannot update this value.</p>
+     
+
+    
+     
+      <h3 id="services-msk-trigger">Adding an Amazon MSK trigger (console)</h3>
+      <p>Follow these steps to add your Amazon MSK cluster and a Kafka topic as a trigger for your Lambda function.</p>
+      <div class="procedure"><h6>To add an Amazon MSK trigger to your Lambda function (console)</h6><ol><li>
+          <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda
+            console.</p>
+        </li><li>
+          <p>Choose the name of your Lambda function.</p>
+        </li><li>
+          <p>Under <b>Function overview</b>, choose <b>Add trigger</b>.</p>
+        </li><li>
+          <p>Under <b>Trigger configuration</b>, do the following:</p>
+          <ol><li>
+              <p>Choose the <b>MSK</b> trigger type.</p>
+            </li><li>
+              <p>For <b>MSK cluster</b>, select your cluster.</p>
+            </li><li>
+              <p>For <b>Batch size</b>, enter the maximum number of messages to receive in a single
+                batch.</p>
+            </li><li>
+              <p>For <b>Batch window</b>, enter the maximum amount of seconds that Lambda spends
+                gathering records before invoking the function.</p>
+            </li><li>
+              <p>For <b>Topic name</b>, enter the name of a Kafka topic.</p>
+            </li><li>
+              <p>(Optional) For <b>Consumer group ID</b>, enter the ID of a Kafka consumer group to join.</p>
+            </li><li>
+              <p>(Optional) For <b>Starting position</b>, choose <b>Latest</b> to start
+                reading the stream from the latest record, <b>Trim horizon</b> to start at the
+                earliest available record, or <b>At timestamp</b> to specify a timestamp to start
+                reading from.</p>
+            </li><li>
+              <p>(Optional) For <b>Authentication</b>, choose the secret key for authenticating with
+                the brokers in your MSK cluster.</p>
+            </li><li>
+              <p>To create the trigger in a disabled state for testing (recommended), clear <b>Enable
+                  trigger</b>. Or, to enable the trigger immediately, select <b>Enable
+                trigger</b>.</p>
+            </li></ol>
+        </li><li>
+          <p>To create the trigger, choose <b>Add</b>.</p>
+        </li></ol></div>
+     
+    
+     
+      <h3 id="services-msk-aws-cli">Adding an Amazon MSK trigger (AWS CLI)</h3>
+      <p>Use the following example AWS CLI commands to create and view an Amazon MSK trigger for your Lambda function.</p>
+      
+       
+        <h4 id="services-msk-aws-cli-create">Creating a trigger using the AWS CLI</h4>
+        <p>The following example uses the <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/create-event-source-mapping.html"><code class="code">create-event-source-mapping</code></a> 
+AWS CLI command to map a Lambda function named <code class="code">my-kafka-function</code> to a Kafka topic named <code class="code">AWSKafkaTopic</code>. The topic's starting position is set to <code class="code">LATEST</code>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-event-source-mapping \
+  --event-source-arn <code class="replaceable">arn:aws:kafka:us-west-2:111111111111:cluster/my-cluster/fc2f5bdf-fd1b-45ad-85dd-15b4a5a6247e-2</code> \
+  --topics <code class="replaceable">AWSKafkaTopic</code> \
+  --starting-position <code class="replaceable">LATEST</code> \
+  --function-name <code class="replaceable">my-kafka-function</code></code></code></pre>
+        <p>For more information, see the <a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a> API reference documentation.</p>
+       
+      
+       
+        <h4 id="services-msk-aws-cli-view">Viewing the status using the AWS CLI</h4>
+        <p>The following example uses the <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/get-event-source-mapping.html"><code class="code">get-event-source-mapping</code></a> 
+AWS CLI command to describe the status of the event source mapping that you created.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda get-event-source-mapping \
+  --uuid <code class="replaceable">6d9bce8e-836b-442c-8070-74e77903c815</code></code></code></pre>
+       
+     
+   
+    <h2 id="services-msk-ops-scaling">Auto scaling of the Amazon MSK event source</h2>
+    <p>When you initially create an Amazon MSK event source, Lambda allocates one consumer to process all partitions in the
+      Kafka topic. Each consumer has multiple processors running in parallel to handle increased workloads. Additionally, Lambda automatically scales up or down the number of consumers, based on workload. To preserve message
+      ordering in each partition, the maximum number of consumers is one consumer per partition in the topic.</p>
+    <p>In one-minute intervals, Lambda evaluates the consumer offset lag of all the partitions in the topic. If the lag is
+      too high, the partition is receiving messages faster than Lambda can process them. If necessary, Lambda adds or
+      removes consumers from the topic. The scaling process of adding or removing consumers occurs within three minutes of evaluation.</p>
+    <p>If your target Lambda function is throttled, Lambda reduces the number of consumers. This action reduces the
+      workload on the function by reducing the number of messages that consumers can retrieve and send to the
+      function.</p>
+    <p>To monitor the throughput of your Kafka topic, view the <a href="#services-msk-metrics">Offset lag metric</a> Lambda emits while
+    your function processes records.</p>
+    <p>To check how many function invocations occur in parallel, you can also monitor the <a href="./monitoring-metrics.html#monitoring-metrics-concurrency">concurrency metrics</a> for your function.</p>
+   
+    <h2 id="services-msk-stream-poll">Polling and stream starting positions</h2>
+    <p>Be aware that stream polling during event source mapping creation and updates is eventually consistent.</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>During event source mapping creation, it may take several minutes to start polling events from the stream.</p>
+      </li><li class="listitem">
+        <p>During event source mapping updates, it may take several minutes to stop and restart polling events from the stream.</p>
+      </li></ul></div>
+    <p>This behavior means that if you specify <code class="code">LATEST</code> as the starting position for the stream, the event source mapping could 
+    miss events during creation or updates. To ensure that no events are missed, specify the stream starting position as <code class="code">TRIM_HORIZON</code> 
+    or <code class="code">AT_TIMESTAMP</code>.</p>
+   
+    <h2 id="services-msk-metrics">Amazon CloudWatch metrics</h2>
+    <p>Lambda emits the <code class="code">OffsetLag</code> metric while your function processes records. The value of this metric
+      is the difference in offset between the last record written to the Kafka event source topic and the last record that your function's 
+      consumer group processed. You can use <code class="code">OffsetLag</code> to estimate the latency between when a record is added and when
+      your consumer group processes it.</p>
+    <p>An increasing trend in <code class="code">OffsetLag</code> can indicate issues with pollers in your function's consumer group. For more information, see
+      <a href="./monitoring-metrics.html">Working with Lambda function metrics</a>.</p>
+   
+    <h2 id="services-msk-parms">Amazon MSK configuration parameters</h2>
+    <p>All Lambda event source types share the same <a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a> and <a href="./API_UpdateEventSourceMapping.html">UpdateEventSourceMapping</a>
+      API operations. However, only some of the parameters apply to Amazon MSK.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac81d199c49b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Event source parameters that apply to Amazon MSK</div></th></tr>
+          <tr>
+            <th>Parameter</th>
+            <th>Required</th>
+            <th>Default</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>AmazonManagedKafkaEventSourceConfig</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>Contains the ConsumerGroupId field, which defaults to a unique value.</p>
+            </td>
+            <td tabindex="-1">
+              <p>Can set only on Create</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>BatchSize</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>100</p>
+            </td>
+            <td tabindex="-1">
+              <p>Maximum: 10,000</p>
+            </td>
+          </tr> 
+          <tr>
+            <td tabindex="-1">
+              <p>Enabled</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>Enabled</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>EventSourceArn</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1"></td>
+            <td tabindex="-1">
+              <p>Can set only on Create</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>FunctionName</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>FilterCriteria</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./invocation-eventfiltering.html">Lambda event filtering</a></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>MaximumBatchingWindowInSeconds</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>500 ms</p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./invocation-eventsourcemapping.html#invocation-eventsourcemapping-batching">Batching behavior</a></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>SourceAccessConfigurations</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>No credentials</p>
+            </td>
+            <td tabindex="-1">
+              <p>SASL/SCRAM or CLIENT_CERTIFICATE_TLS_AUTH (MutualTLS) authentication credentials for your event source</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>StartingPosition</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+            <td tabindex="-1">
+              <p>AT_TIMESTAMP, TRIM_HORIZON, or LATEST</p>
+              <p>Can set only on Create</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>StartingPositionTimestamp</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+            <td tabindex="-1">
+              <p>Required if StartingPosition is set to AT_TIMESTAMP</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Topics</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+            <td tabindex="-1">
+              <p>Kafka topic name</p>
+              <p>Can set only on Create</p>
+            </td>
+          </tr>
+        </table></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-mq.html">MQ</div><div id="next" class="next-link" accesskey="n" href="./services-rds.html">RDS</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-msk.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-msk.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

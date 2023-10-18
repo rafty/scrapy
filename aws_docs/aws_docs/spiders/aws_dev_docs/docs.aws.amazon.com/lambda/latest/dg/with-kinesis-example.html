@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Using AWS Lambda with Amazon Kinesis - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-kinesis-example" /><meta name="default_state" content="with-kinesis-example" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis-example.html" /><meta name="description" content="In this tutorial, you create a Lambda function to consume events from a Kinesis stream." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis-example.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-kinesis-example.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-kinesis-example.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-kinesis-example.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-kinesis-example.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis-example.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis-example.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-kinesis-example.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-kinesis-example.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-kinesis-example.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-kinesis-example.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-kinesis-example.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-kinesis-example.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-kinesis-example.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-kinesis-example.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-kinesis-example.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-kinesis-example.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-kinesis-example.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-kinesis-example.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-kinesis-example.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-kinesis-example.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis-example.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Using AWS Lambda with Amazon Kinesis" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Using AWS Lambda with Amazon Kinesis - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-kinesis-example" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-kinesis-example.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-kinesis-example.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-kinesis-example.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,Lambda kinesis stream,Lambda function kinesis trigger" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using AWS Lambda with Amazon Kinesis",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Using AWS Lambda with Amazon Kinesis",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-kinesis-example" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#with-kinesis-prepare">Prerequisites</a><a href="#with-kinesis-example-create-iam-role">Create the execution role</a><a href="#with-kinesis-example-create-function">Create the function</a><a href="#walkthrough-kinesis-events-adminuser-create-test-function-upload-zip-test-manual-invoke">Test the
+        Lambda function</a><a href="#with-kinesis-example-configure-event-source-create">Create a Kinesis stream</a><a href="#with-kinesis-example-configure-event-source-add-event-source">Add an event source in
+        AWS Lambda</a><a href="#with-kinesis-example-configure-event-source-test-end-to-end">Test the setup</a><a href="#cleanup">Clean up your resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-kinesis-example">Tutorial: Using AWS Lambda with Amazon Kinesis</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you create a Lambda function to consume events from a Kinesis stream. </p><div class="orderedlist">
+     
+     
+     
+  <ol><li>
+      <p>Custom app writes records to the stream.</p>
+    </li><li>
+      <p>AWS Lambda polls the stream and, when it detects new records in the stream, invokes your Lambda
+        function.</p>
+    </li><li>
+      <p>AWS Lambda runs the Lambda function by assuming the execution role you specified at the time you created
+        the Lambda function.</p>
+    </li></ol></div>
+    <h2 id="with-kinesis-prepare">Prerequisites</h2>
+     <p>This tutorial assumes that you have some knowledge of basic Lambda operations and the Lambda console. If you
+      haven't already, follow the instructions in <a href="./getting-started.html#getting-started-create-function">Create a Lambda function with the console</a> to create your first Lambda function.</p>
+     <p>To complete the following steps, you need the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a>. Commands and the expected output are listed in separate blocks:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><code class="userinput">aws --version</code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="">aws-cli/2.0.57 Python/3.7.4 Darwin/19.6.0 exe/x86_64</code></pre>
+    <p>For long commands, an escape character (<code class="code">\</code>) is used to split a command over multiple lines.</p>
+    <p>On Linux and macOS, use your preferred shell and package manager.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+    To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+     Example CLI commands in this guide use Linux formatting. Commands which include inline JSON documents must be reformatted if you are using the Windows CLI.
+    </p></div></div>
+    
+   
+    <h2 id="with-kinesis-example-create-iam-role">Create the execution role</h2>
+    <p>Create the <a href="./lambda-intro-execution-role.html">execution role</a> that gives your function
+      permission to access AWS resources.</p>
+    <div class="procedure"><h6>To create an execution role</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the IAM console.</p>
+      </li><li>
+        <p>Choose <b>Create role</b>.</p>
+      </li><li>
+        <p>Create a role with the following properties.</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Trusted entity</b> – <b>AWS Lambda</b>.</p>
+          </li><li class="listitem">
+            <p><b>Permissions</b> – <b>AWSLambdaKinesisExecutionRole</b>.</p>
+          </li><li class="listitem">
+            <p><b>Role name</b> – <code class="userinput">lambda-kinesis-role</code>.</p>
+          </li></ul></div>
+      </li></ol></div>
+    <p>The <b>AWSLambdaKinesisExecutionRole</b> policy has the permissions that the function needs to
+      read items from Kinesis and write logs to CloudWatch Logs.</p>
+   
+    <h2 id="with-kinesis-example-create-function">Create the function</h2>
+    <p>Create a Lambda function that processes your Kinesis messages. The function code logs the event ID
+      and event data of the Kinesis record to CloudWatch Logs.</p>
+    <p>This tutorial uses the Node.js 18.x runtime, but we've also provided example code in other runtime
+      languages. You can select the tab in the following box to see code for the runtime you're interested in.
+      The JavaScript code you'll use in this step is in the first example shown in the
+      <b>JavaScript</b> tab.</p>
+    <awsdocs-tabs><dl style="display: none">
+    <dt>.NET</dt><dd tab-id=".net">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">AWS SDK for .NET</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/tree/main/integration-kinesis-to-lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Consuming a Kinesis event with Lambda using .NET.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">using System.Text;
+using Amazon.Lambda.Core;
+using Amazon.Lambda.KinesisEvents;
+using AWS.Lambda.Powertools.Logging;
+
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+
+namespace KinesisIntegrationSampleCode;
+
+public class Function
+<span>{</span>
+    // Powertools Logger requires an environment variables against your function
+    // POWERTOOLS_SERVICE_NAME
+    [Logging(LogEvent = true)]
+    public async Task FunctionHandler(KinesisEvent evnt, ILambdaContext context)
+    <span>{</span>
+        if (evnt.Records.Count == 0)
+        <span>{</span>
+            Logger.LogInformation("Empty Kinesis Event received");
+            return;
+        }
+
+        foreach (var record in evnt.Records)
+        <span>{</span>
+            try
+            <span>{</span>
+                Logger.LogInformation($"Processed Event with EventId: <span>{</span>record.EventId}");
+                string data = await GetRecordDataAsync(record.Kinesis, context);
+                Logger.LogInformation($"Data: <span>{</span>data}");
+                // TODO: Do interesting work based on the new data
+            }
+            catch (Exception ex)
+            <span>{</span>
+                Logger.LogError($"An error occurred <span>{</span>ex.Message}");
+                throw;
+            }
+        }
+        Logger.LogInformation($"Successfully processed <span>{</span>evnt.Records.Count} records.");
+    }
+
+    private async Task&lt;string&gt; GetRecordDataAsync(KinesisEvent.Record record, ILambdaContext context)
+    <span>{</span>
+        byte[] bytes = record.Data.ToArray();
+        string data = Encoding.UTF8.GetString(bytes);
+        await Task.CompletedTask; //Placeholder for actual async work
+        return data;
+    }
+}
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>JavaScript</dt><dd tab-id="javascript">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for JavaScript (v2)</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/blob/main/integration-kinesis-to-lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Consuming a Kinesis event with Lambda using JavaScript.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">exports.handler = async (event, context) =&gt; <span>{</span>
+  for (const record of event.Records) <span>{</span>
+    try <span>{</span>
+      console.log(`Processed Kinesis Event - EventID: $<span>{</span>record.eventID}`);
+      const recordData = await getRecordDataAsync(record.kinesis);
+      console.log(`Record Data: $<span>{</span>recordData}`);
+      // TODO: Do interesting work based on the new data
+    } catch (err) <span>{</span>
+      console.error(`An error occurred $<span>{</span>err}`);
+      throw err;
+    }
+  }
+  console.log(`Successfully processed $<span>{</span>event.Records.length} records.`);
+};
+
+async function getRecordDataAsync(payload) <span>{</span>
+  var data = Buffer.from(payload.data, "base64").toString("utf-8");
+  await Promise.resolve(1); //Placeholder for actual async work
+  return data;
+}
+
+</code></pre>
+             
+             
+                <p>Consuming a Kinesis event with Lambda using TypeScript.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">import <span>{</span>
+  KinesisStreamEvent,
+  Context,
+  KinesisStreamHandler,
+  KinesisStreamRecordPayload,
+} from "aws-lambda";
+import <span>{</span> Buffer } from "buffer";
+import <span>{</span> Logger } from "@aws-lambda-powertools/logger";
+
+const logger = new Logger(<span>{</span>
+  logLevel: "INFO",
+  serviceName: "kinesis-stream-handler-sample",
+});
+
+export const functionHandler: KinesisStreamHandler = async (
+  event: KinesisStreamEvent,
+  context: Context
+): Promise&lt;void&gt; =&gt; <span>{</span>
+  for (const record of event.Records) <span>{</span>
+    try <span>{</span>
+      logger.info(`Processed Kinesis Event - EventID: $<span>{</span>record.eventID}`);
+      const recordData = await getRecordDataAsync(record.kinesis);
+      logger.info(`Record Data: $<span>{</span>recordData}`);
+      // TODO: Do interesting work based on the new data
+    } catch (err) <span>{</span>
+      logger.error(`An error occurred $<span>{</span>err}`);
+      throw err;
+    }
+    logger.info(`Successfully processed $<span>{</span>event.Records.length} records.`);
+  }
+};
+
+async function getRecordDataAsync(
+  payload: KinesisStreamRecordPayload
+): Promise&lt;string&gt; <span>{</span>
+  var data = Buffer.from(payload.data, "base64").toString("utf-8");
+  await Promise.resolve(1); //Placeholder for actual async work
+  return data;
+}
+
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs>
+    
+    <div class="procedure"><h6>To create the function</h6><ol><li>
+        <p>Create a directory for the project, and then switch to that directory.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mkdir kinesis-tutorial
+cd kinesis-tutorial</code></pre>
+      </li><li>
+        <p>Copy the sample JavaScript code into a new file named <code>index.js</code>.</p>
+      </li><li>
+        <p>Create a deployment package.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip function.zip index.js</code></code></pre>
+      </li><li>
+        <p>Create a Lambda function with the <code class="code">create-function</code> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name ProcessKinesisRecords \
+--zip-file fileb://function.zip --handler index.handler --runtime nodejs18.x \
+--role arn:aws:iam::<code class="replaceable">111122223333</code>:role/lambda-kinesis-role</code></code></pre>
+      </li></ol></div>
+   
+    <h2 id="walkthrough-kinesis-events-adminuser-create-test-function-upload-zip-test-manual-invoke">Test the
+        Lambda function</h2>
+    
+    <p>Invoke your Lambda function manually using the <code class="code">invoke</code> AWS Lambda CLI command and a sample Kinesis
+      event.</p>
+    <div class="procedure"><h6>To test the Lambda function</h6><ol><li>
+        <p>Copy the following JSON into a file and save it as <code>input.txt</code>. </p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Records": [
+        <span>{</span>
+            "kinesis": <span>{</span>
+                "kinesisSchemaVersion": "1.0",
+                "partitionKey": "1",
+                "sequenceNumber": "49590338271490256608559692538361571095921575989136588898",
+                "data": "SGVsbG8sIHRoaXMgaXMgYSB0ZXN0Lg==",
+                "approximateArrivalTimestamp": 1545084650.987
+            },
+            "eventSource": "aws:kinesis",
+            "eventVersion": "1.0",
+            "eventID": "shardId-000000000006:49590338271490256608559692538361571095921575989136588898",
+            "eventName": "aws:kinesis:record",
+            "invokeIdentityArn": "arn:aws:iam::111122223333:role/lambda-kinesis-role",
+            "awsRegion": "us-east-2",
+            "eventSourceARN": "arn:aws:kinesis:us-east-2:111122223333:stream/lambda-stream"
+        }
+    ]
+}</code></pre>
+      </li><li>
+        <p>Use the <code class="code">invoke</code> command to send the event to the function.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda invoke --function-name ProcessKinesisRecords \
+--cli-binary-format raw-in-base64-out \
+--payload file://input.txt outputfile.txt</code></code></pre>
+        <p>The <b>cli-binary-format</b> option is required if you're using AWS CLI version 2. To make this the default setting, run <code class="code">aws configure set cli-binary-format raw-in-base64-out</code>. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html#cli-configure-options-list">AWS CLI supported global command line options</a>.</p>
+        <p>The response is saved to <code>out.txt</code>.</p>
+      </li></ol></div>
+   
+    <h2 id="with-kinesis-example-configure-event-source-create">Create a Kinesis stream</h2>
+    <p>Use the <code class="code">create-stream </code> command to create a stream.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws kinesis create-stream --stream-name lambda-stream --shard-count 1</code></code></pre>
+    <p>Run the following <code class="code">describe-stream</code> command to get the stream ARN.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws kinesis describe-stream --stream-name lambda-stream</code></code></pre>
+    <p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "StreamDescription": <span>{</span>
+        "Shards": [
+            <span>{</span>
+                "ShardId": "shardId-000000000000",
+                "HashKeyRange": <span>{</span>
+                    "StartingHashKey": "0",
+                    "EndingHashKey": "340282366920746074317682119384634633455"
+                },
+                "SequenceNumberRange": <span>{</span>
+                    "StartingSequenceNumber": "49591073947768692513481539594623130411957558361251844610"
+                }
+            }
+        ],
+        "StreamARN": "arn:aws:kinesis:us-east-1:111122223333:stream/lambda-stream",
+        "StreamName": "lambda-stream",
+        "StreamStatus": "ACTIVE",
+        "RetentionPeriodHours": 24,
+        "EnhancedMonitoring": [
+            <span>{</span>
+                "ShardLevelMetrics": []
+            }
+        ],
+        "EncryptionType": "NONE",
+        "KeyId": null,
+        "StreamCreationTimestamp": 1544828156.0
+    }
+}</code></pre>
+    <p>You use the stream ARN in the next step to associate the stream with your Lambda function.</p>
+   
+    <h2 id="with-kinesis-example-configure-event-source-add-event-source">Add an event source in
+        AWS Lambda</h2>
+    <p>Run the following AWS CLI <code class="code">add-event-source</code> command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-event-source-mapping --function-name ProcessKinesisRecords \
+--event-source  arn:aws:kinesis:us-east-1:111122223333:stream/lambda-stream \
+--batch-size 100 --starting-position LATEST</code></code></pre>
+    <p>Note the mapping ID for later use. You can get a list of event source mappings by running the
+        <code class="code">list-event-source-mappings</code> command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda list-event-source-mappings --function-name ProcessKinesisRecords \
+--event-source arn:aws:kinesis:us-east-1:111122223333:stream/lambda-stream</code></code></pre>
+    <p>In the response, you can verify the status value is <code class="code">enabled</code>. Event source mappings can be
+      disabled to pause polling temporarily without losing any records.</p>
+   
+    <h2 id="with-kinesis-example-configure-event-source-test-end-to-end">Test the setup</h2>
+    <p>To test the event source mapping, add event records to your Kinesis stream. The <code class="code">--data</code> value is a
+      string that the CLI encodes to base64 prior to sending it to Kinesis. You can run the same command more than once to
+      add multiple records to the stream.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws kinesis put-record --stream-name lambda-stream --partition-key 1 \
+--data "Hello, this is a test."</code></code></pre>
+    <p>Lambda uses the execution role to read records from the stream. Then it invokes your Lambda function, passing in
+      batches of records. The function decodes data from each record and logs it, sending the output to CloudWatch Logs. View the
+      logs in the <a href="https://console.aws.amazon.com/cloudwatch" rel="noopener noreferrer" target="_blank"><span>CloudWatch console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+   
+    <h2 id="cleanup">Clean up your resources</h2>
+     
+    <p>You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS resources that you're no longer using, you prevent unnecessary charges to your AWS account.</p>
+    
+    <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+  </li><li>
+    <p>Select the execution role that you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the role in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the Kinesis stream</h6><ol><li>
+    <p>Sign in to the AWS Management Console and open the Kinesis console at
+         <a href="https://console.aws.amazon.com/kinesis" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kinesis</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li>
+    <p>Select the stream you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter <code class="userinput">delete</code> in the text input field.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-kinesis.html">Kinesis Streams</div><div id="next" class="next-link" accesskey="n" href="./with-kinesis-create-package.html">Sample code</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-kinesis-example.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-kinesis-example.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

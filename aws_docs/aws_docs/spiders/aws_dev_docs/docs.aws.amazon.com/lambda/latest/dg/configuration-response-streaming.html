@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring a Lambda function to stream responses - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="configuration-response-streaming" /><meta name="default_state" content="configuration-response-streaming" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html" /><meta name="description" content="Create a Lambda function that streams responses." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-response-streaming.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-response-streaming.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-response-streaming.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-response-streaming.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-response-streaming.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-response-streaming.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-response-streaming.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-response-streaming.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-response-streaming.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-response-streaming.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-response-streaming.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-response-streaming.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-response-streaming.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-response-streaming.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-response-streaming.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-response-streaming.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/configuration-response-streaming.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/configuration-response-streaming.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configuring a Lambda function to stream responses" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configuring a Lambda function to stream responses - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-response-streaming" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-response-streaming.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-response-streaming.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-response-streaming.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda function,create Lambda function,response streaming,response streaming functions,stream responses" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configuring AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Configuring a Lambda function to stream responses",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-response-streaming" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#config-rs-write-functions">Writing response streaming-enabled
+        functions</a><a href="#config-rs-invoke-furls">Invoking a response streaming enabled function using
+        Lambda function URLs</a><a href="#config-rs-bandwidth-cap">Bandwidth limits for response streaming</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="configuration-response-streaming">Configuring a Lambda function to stream
+      responses</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can configure your Lambda function URLs to stream response payloads back to clients. Response
+    streaming can benefit latency sensitive applications by improving time to first byte (TTFB)
+    performance. This is because you can send partial responses back to the client as they become
+    available. Additionally, you can use response streaming to build functions that return larger
+    payloads. Response stream payloads have a soft limit of 20 MB as compared to the 6 MB limit for
+    buffered responses. Streaming a response also means that your function doesn’t need to fit the entire 
+    response in memory. For very large responses, this can reduce the amount of memory you need to 
+    configure for your function. </p><p>The speed at which Lambda streams your responses depends on the response size. The streaming rate for 
+    the first 6MB of your function’s response is uncapped. For responses larger than 6MB, the remainder of the response 
+    is subject to a bandwidth cap. For more information on streaming bandwidth, see <a href="#config-rs-bandwidth-cap">Bandwidth limits for response streaming</a>.</p><p>Streaming responses incurs a cost. For more information, see <a href="http://aws.amazon.com/lambda/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>Currently, Lambda supports response streaming only on <code class="code">Node.js 14.x</code>,
+      <code class="code">Node.js 16.x</code>, and <code class="code">Node.js 18.x</code> managed runtimes. You can also use a
+    custom runtime with a custom Runtime API integration to stream responses or use the <a href="https://github.com/awslabs/aws-lambda-web-adapter" rel="noopener noreferrer" target="_blank"><span>Lambda Web Adapter</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. 
+    You can stream responses through Lambda <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html">Function URLs</a>, the AWS SDK, 
+    or using the Lambda <a href="https://docs.aws.amazon.com/lambda/latest/dg/API_InvokeWithResponseStream.html">InvokeWithResponseStream</a> 
+    API.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When testing your function through the Lambda console, you'll always see responses as buffered.</p></div></div>
+    <h2 id="config-rs-write-functions">Writing response streaming-enabled
+        functions</h2>
+    <p>Writing the handler for response streaming functions is different than typical handler
+      patterns. When writing streaming functions, be sure to do the following:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>Wrap your function with the <code class="code">awslambda.streamifyResponse()</code> decorator that the
+          native Node.js runtimes provide.</p></li><li class="listitem"><p>End the stream gracefully to ensure that all data processing is complete.</p></li></ul></div>
+     
+      <h3 id="config-rs-write-functions-handler">Configuring a handler function to stream responses</h3>
+      <p>To indicate to the runtime that Lambda should stream your function's responses, you must
+        wrap your function with the <code class="code">streamifyResponse()</code> decorator. This tells the
+        runtime to use the proper logic path for streaming responses and enables the function to
+        stream responses.</p>
+      <p>The <code class="code">streamifyResponse()</code> decorator accepts a function that accepts the following parameters:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem"><p><code class="code">event</code> – Provides information about the function URL's invocation event,
+            such as the HTTP method, query parameters, and the request body.</p></li><li class="listitem"><p><code class="code">responseStream</code> – Provides a writable stream.</p></li><li class="listitem"><p><code class="code">context</code> – Provides methods and properties with information about the
+            invocation, function, and execution environment.</p></li></ul></div>
+      <p>The <code class="code">responseStream</code> object is a <a href="https://nodesource.com/blog/understanding-streams-in-nodejs/" rel="noopener noreferrer" target="_blank"><span>Node.js <code class="code">writableStream</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+        As with any such stream, you should use the <code class="code">pipeline()</code> method.</p>
+      <div class="example"><h6>Example response streaming-enabled handler</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">const pipeline = require("util").promisify(require("stream").pipeline);
+const <span>{</span> Readable } = require('stream');
+
+exports.echo = awslambda.streamifyResponse(async (event, responseStream, _context) =&gt; <span>{</span>
+  // As an example, convert event to a readable stream.
+  const requestStream = Readable.from(Buffer.from(JSON.stringify(event)));
+
+  await pipeline(requestStream, responseStream);
+});</code></pre></div></div>
+      <p>While <code class="code">responseStream</code> offers the <code class="code">write()</code> method to write to the
+        stream, we recommend that you use <a href="https://nodejs.org/api/stream.html#streampipelinesource-transforms-destination-callback" rel="noopener noreferrer" target="_blank"><span><code class="code">pipeline()</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> wherever possible. Using <code class="code">pipeline()</code>
+        ensures that the writable stream is not overwhelmed by a faster readable stream.</p>
+     
+     
+      <h3 id="config-rs-write-functions-end">Ending the stream</h3>
+      <p>Make sure that you properly end the stream before the handler returns. The
+          <code class="code">pipeline()</code> method handles this automatically.</p>
+      <p>For other use cases, call the <code class="code">responseStream.end()</code> method to properly end a
+        stream. This method signals that no more data should be written to the stream. This method
+        isn't required if you write to the stream with <code class="code">pipeline()</code> or
+          <code class="code">pipe()</code>.</p>
+      <div class="example"><h6>Example ending a stream with pipeline()</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">const pipeline = require("util").promisify(require("stream").pipeline);
+
+exports.handler = awslambda.streamifyResponse(async (event, responseStream, _context) =&gt; <span>{</span>
+  await pipeline(requestStream, responseStream);
+});</code></pre></div></div>
+      <div class="example"><h6>Example ending a stream without pipeline()</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">exports.handler = awslambda.streamifyResponse(async (event, responseStream, _context) =&gt; <span>{</span>
+  responseStream.write("Hello ");
+  responseStream.write("world ");
+  responseStream.write("from ");
+  responseStream.write("Lambda!");
+  responseStream.end();
+});</code></pre></div></div>
+     
+   
+    <h2 id="config-rs-invoke-furls">Invoking a response streaming enabled function using
+        Lambda function URLs</h2>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You must invoke your function using a function URL to stream the responses.</p></div></div>
+    <p>You can invoke response streaming enabled functions by changing the invoke mode of your
+      function's URL. The invoke mode determines which API operation Lambda uses to invoke your
+      function. The available invoke modes are:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">BUFFERED</code> – This is the default option. Lambda invokes your function
+          using the <code class="code">Invoke</code> API operation. Invocation results are available when the
+          payload is complete. The maximum payload size is 6 MB.</p>
+      </li><li class="listitem">
+        <p><code class="code">RESPONSE_STREAM</code> – Enables your function to stream payload results
+          as they become available. Lambda invokes your function using the
+            <code class="code">InvokeWithResponseStream</code> API operation. The maximum response payload size
+          is 20 MB. However, you can <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">request a quota
+            increase</a>.</p>
+      </li></ul></div>
+    <p>You can still invoke your function without response streaming by directly calling the
+        <code class="code">Invoke</code> API operation. However, Lambda streams all response payloads for
+      invocations that come through the function's URL until you change the invoke mode to
+        <code class="code">BUFFERED</code>.</p>
+    <div class="procedure"><h6>To set the invoke mode of a function URL (console)</h6><ol><li>
+        <p></p>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+      </li><li>
+        <p>Choose the name of the function that you want to set the invoke mode for.</p>
+      </li><li>
+        <p>Choose the <b>Configuration</b> tab, and then choose <b>Function
+            URL</b>.</p>
+      </li><li>
+        <p>Choose <b>Edit</b>, then choose <b>Additional
+          settings</b>.</p>
+      </li><li>
+        <p>Under <b>Invoke mode</b>, choose your desired invoke mode.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>To set the invoke mode of a function's URL (AWS CLI)</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-function-url-config --function-name <code class="userinput">my-function</code> --invoke-mode RESPONSE_STREAM</code></pre>
+    <p>To set the invoke mode of a function's URL (AWS CloudFormation)</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">MyFunctionUrl:
+  Type: AWS::Lambda::Url
+  Properties:
+    AuthType: AWS_IAM
+    InvokeMode: RESPONSE_STREAM</code></pre>
+    <p>For more information about configuring function URLs, see <a href="./lambda-urls.html">Lambda function URLs</a>.</p>
+   
+    <h2 id="config-rs-bandwidth-cap">Bandwidth limits for response streaming</h2>
+    <p>The first 6MB of your function’s response payload has uncapped bandwidth. After this initial burst, Lambda streams your response at a 
+      maximum rate of  2MBps. If your function responses never exceed 6MB, then this bandwidth limit never applies. </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Bandwidth limits only apply to your function’s response payload, and not to network access by your function.</p></div></div>
+    <p>The rate of uncapped bandwidth varies depending on a number of factors, including your function’s processing speed.  You can normally 
+      expect a rate higher than 2MBps for the first 6MB of your function’s response. If your function is streaming a response to a destination 
+      outside of AWS, the streaming rate also depends on the speed of the external internet connection.
+    </p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./configuration-versions.html">Versions</div><div id="next" class="next-link" accesskey="n" href="./response-streaming-tutorial.html">Tutorial: Creating a response
+      streaming function with a function URL</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-response-streaming.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-response-streaming.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

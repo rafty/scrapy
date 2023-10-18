@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create a Lambda function using an AWS SDK - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="example_lambda_CreateFunction_section" /><meta name="default_state" content="example_lambda_CreateFunction_section" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/example_lambda_CreateFunction_section.html" /><meta name="description" content="Create a Lambda function using an AWS SDK" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/example_lambda_CreateFunction_section.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/example_lambda_CreateFunction_section.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Create a Lambda function using an AWS SDK" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create a Lambda function using an AWS SDK - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#example_lambda_CreateFunction_section" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/example_lambda_CreateFunction_section.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/example_lambda_CreateFunction_section.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/example_lambda_CreateFunction_section.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,code example,AWS SDK,Create a Lambda function using an AWS SDK" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Code examples for Lambda using AWS SDKs",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Actions for Lambda using AWS SDKs",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples_actions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create a Lambda function using an AWS SDK",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/service_code_examples_actions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#example_lambda_CreateFunction_section" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="example_lambda_CreateFunction_section">Create a Lambda function using an AWS SDK</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The following code examples show how to create a Lambda function.</p><p>Action examples are code excerpts from larger programs and must be run in context. You can see this action in
+            context in the following code example:
+            </p><div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        <a href="./example_lambda_Scenario_GettingStartedFunctions_section.html">Get started with functions</a>
+                    </p>
+                </li></ul></div><awsdocs-tabs><dl style="display: none">
+    <dt>.NET</dt><dd tab-id=".net">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">AWS SDK for .NET</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">    /// &lt;summary&gt;
+    /// Creates a new Lambda function.
+    /// &lt;/summary&gt;
+    /// &lt;param name="functionName"&gt;The name of the function.&lt;/param&gt;
+    /// &lt;param name="s3Bucket"&gt;The Amazon Simple Storage Service (Amazon S3)
+    /// bucket where the zip file containing the code is located.&lt;/param&gt;
+    /// &lt;param name="s3Key"&gt;The Amazon S3 key of the zip file.&lt;/param&gt;
+    /// &lt;param name="role"&gt;The Amazon Resource Name (ARN) of a role with the
+    /// appropriate Lambda permissions.&lt;/param&gt;
+    /// &lt;param name="handler"&gt;The name of the handler function.&lt;/param&gt;
+    /// &lt;returns&gt;The Amazon Resource Name (ARN) of the newly created
+    /// Lambda function.&lt;/returns&gt;
+    public async Task&lt;string&gt; CreateLambdaFunctionAsync(
+        string functionName,
+        string s3Bucket,
+        string s3Key,
+        string role,
+        string handler)
+    <span>{</span>
+        // Defines the location for the function code.
+        // S3Bucket - The S3 bucket where the file containing
+        //            the source code is stored.
+        // S3Key    - The name of the file containing the code.
+        var functionCode = new FunctionCode
+        <span>{</span>
+            S3Bucket = s3Bucket,
+            S3Key = s3Key,
+        };
+
+        var createFunctionRequest = new CreateFunctionRequest
+        <span>{</span>
+            FunctionName = functionName,
+            Description = "Created by the Lambda .NET API",
+            Code = functionCode,
+            Handler = handler,
+            Runtime = Runtime.Dotnet6,
+            Role = role,
+        };
+
+        var reponse = await _lambdaService.CreateFunctionAsync(createFunctionRequest);
+        return reponse.FunctionArn;
+    }
+
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/goto/DotNetSDKV3/lambda-2015-03-31/CreateFunction">CreateFunction</a>
+                        in <em>AWS SDK for .NET API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>C++</dt><dd tab-id="c++">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for C++</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/cpp/example_code/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="cpp ">        Aws::Client::ClientConfiguration clientConfig;
+        // Optional: Set to the AWS Region in which the bucket was created (overrides config file).
+        // clientConfig.region = "us-east-1";
+
+    Aws::Lambda::LambdaClient client(clientConfig);
+
+        Aws::Lambda::Model::CreateFunctionRequest request;
+        request.SetFunctionName(LAMBDA_NAME);
+        request.SetDescription(LAMBDA_DESCRIPTION); // Optional.
+#if USE_CPP_LAMBDA_FUNCTION
+        request.SetRuntime(Aws::Lambda::Model::Runtime::provided_al2);
+        request.SetTimeout(15);
+        request.SetMemorySize(128);
+
+        // Assume the AWS Lambda function was built in Docker with same architecture
+        // as this code.
+#if  defined(__x86_64__)
+        request.SetArchitectures(<span>{</span>Aws::Lambda::Model::Architecture::x86_64});
+#elif defined(__aarch64__)
+        request.SetArchitectures(<span>{</span>Aws::Lambda::Model::Architecture::arm64});
+#else
+#error "Unimplemented architecture"
+#endif // defined(architecture)
+#else
+        request.SetRuntime(Aws::Lambda::Model::Runtime::python3_8);
+#endif
+        request.SetRole(roleArn);
+        request.SetHandler(LAMBDA_HANDLER_NAME);
+        request.SetPublish(true);
+        Aws::Lambda::Model::FunctionCode code;
+        std::ifstream ifstream(INCREMENT_LAMBDA_CODE.c_str(),
+                               std::ios_base::in | std::ios_base::binary);
+        if (!ifstream.is_open()) <span>{</span>
+            std::cerr &lt;&lt; "Error opening file " &lt;&lt; INCREMENT_LAMBDA_CODE &lt;&lt; "." &lt;&lt; std::endl;
+
+#if USE_CPP_LAMBDA_FUNCTION
+            std::cerr
+                    &lt;&lt; "The cpp Lambda function must be built following the instructions in the cpp_lambda/README.md file. "
+                    &lt;&lt; std::endl;
+#endif
+            deleteIamRole(clientConfig);
+            return false;
+        }
+
+        Aws::StringStream buffer;
+        buffer &lt;&lt; ifstream.rdbuf();
+
+        code.SetZipFile(Aws::Utils::ByteBuffer((unsigned char *) buffer.str().c_str(),
+                                               buffer.str().length()));
+        request.SetCode(code);
+
+        Aws::Lambda::Model::CreateFunctionOutcome outcome = client.CreateFunction(
+                request);
+
+        if (outcome.IsSuccess()) <span>{</span>
+            std::cout &lt;&lt; "The lambda function was successfully created. " &lt;&lt; seconds
+                      &lt;&lt; " seconds elapsed." &lt;&lt; std::endl;
+            break;
+        }
+
+        else <span>{</span>
+            std::cerr &lt;&lt; "Error with CreateFunction. "
+                      &lt;&lt; outcome.GetError().GetMessage()
+                      &lt;&lt; std::endl;
+            deleteIamRole(clientConfig);
+            return false;
+        }
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/goto/SdkForCpp/lambda-2015-03-31/CreateFunction">CreateFunction</a>
+                        in <em>AWS SDK for C++ API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Go</dt><dd tab-id="go">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Go V2</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="go ">
+// FunctionWrapper encapsulates function actions used in the examples.
+// It contains an AWS Lambda service client that is used to perform user actions.
+type FunctionWrapper struct <span>{</span>
+	LambdaClient *lambda.Client
+}
+
+
+
+// CreateFunction creates a new Lambda function from code contained in the zipPackage
+// buffer. The specified handlerName must match the name of the file and function
+// contained in the uploaded code. The role specified by iamRoleArn is assumed by
+// Lambda and grants specific permissions.
+// When the function already exists, types.StateActive is returned.
+// When the function is created, a lambda.FunctionActiveV2Waiter is used to wait until the
+// function is active.
+func (wrapper FunctionWrapper) CreateFunction(functionName string, handlerName string,
+	iamRoleArn *string, zipPackage *bytes.Buffer) types.State <span>{</span>
+	var state types.State
+	_, err := wrapper.LambdaClient.CreateFunction(context.TODO(), &amp;lambda.CreateFunctionInput<span>{</span>
+		Code:         &amp;types.FunctionCode<span>{</span>ZipFile: zipPackage.Bytes()},
+		FunctionName: aws.String(functionName),
+		Role:         iamRoleArn,
+		Handler:      aws.String(handlerName),
+		Publish:      true,
+		Runtime:      types.RuntimePython38,
+	})
+	if err != nil <span>{</span>
+		var resConflict *types.ResourceConflictException
+		if errors.As(err, &amp;resConflict) <span>{</span>
+			log.Printf("Function %v already exists.\n", functionName)
+			state = types.StateActive
+		} else <span>{</span>
+			log.Panicf("Couldn't create function %v. Here's why: %v\n", functionName, err)
+		}
+	} else <span>{</span>
+		waiter := lambda.NewFunctionActiveV2Waiter(wrapper.LambdaClient)
+		funcOutput, err := waiter.WaitForOutput(context.TODO(), &amp;lambda.GetFunctionInput<span>{</span>
+			FunctionName: aws.String(functionName)}, 1*time.Minute)
+		if err != nil <span>{</span>
+			log.Panicf("Couldn't wait for function %v to be active. Here's why: %v\n", functionName, err)
+		} else <span>{</span>
+			state = funcOutput.Configuration.State
+		}
+	}
+	return state
+}
+
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/lambda#Client.CreateFunction" rel="noopener noreferrer" target="_blank"><span>CreateFunction</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                        in <em>AWS SDK for Go API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Java</dt><dd tab-id="java">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Java 2.x</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/lambda#readme" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="java ">    public static void createLambdaFunction(LambdaClient awsLambda,
+                                            String functionName,
+                                            String filePath,
+                                            String role,
+                                            String handler) <span>{</span>
+
+        try <span>{</span>
+            LambdaWaiter waiter = awsLambda.waiter();
+            InputStream is = new FileInputStream(filePath);
+            SdkBytes fileToUpload = SdkBytes.fromInputStream(is);
+
+            FunctionCode code = FunctionCode.builder()
+                .zipFile(fileToUpload)
+                .build();
+
+            CreateFunctionRequest functionRequest = CreateFunctionRequest.builder()
+                .functionName(functionName)
+                .description("Created by the Lambda Java API")
+                .code(code)
+                .handler(handler)
+                .runtime(Runtime.JAVA8)
+                .role(role)
+                .build();
+
+            // Create a Lambda function using a waiter.
+            CreateFunctionResponse functionResponse = awsLambda.createFunction(functionRequest);
+            GetFunctionRequest getFunctionRequest = GetFunctionRequest.builder()
+                .functionName(functionName)
+                .build();
+            WaiterResponse&lt;GetFunctionResponse&gt; waiterResponse = waiter.waitUntilFunctionExists(getFunctionRequest);
+            waiterResponse.matched().response().ifPresent(System.out::println);
+            System.out.println("The function ARN is " + functionResponse.functionArn());
+
+        } catch(LambdaException | FileNotFoundException e) <span>{</span>
+            System.err.println(e.getMessage());
+            System.exit(1);
+        }
+    }
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/goto/SdkForJavaV2/lambda-2015-03-31/CreateFunction">CreateFunction</a>
+                        in <em>AWS SDK for Java 2.x API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>JavaScript</dt><dd tab-id="javascript">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for JavaScript (v3)</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">const createFunction = async (funcName, roleArn) =&gt; <span>{</span>
+  const client = new LambdaClient(<span>{</span>});
+  const code = await readFile(`$<span>{</span>dirname}../functions/$<span>{</span>funcName}.zip`);
+
+  const command = new CreateFunctionCommand(<span>{</span>
+    Code: <span>{</span> ZipFile: code },
+    FunctionName: funcName,
+    Role: roleArn,
+    Architectures: [Architecture.arm64],
+    Handler: "index.handler", // Required when sending a .zip file
+    PackageType: PackageType.Zip, // Required when sending a .zip file
+    Runtime: Runtime.nodejs16x, // Required when sending a .zip file
+  });
+
+  return client.send(command);
+};
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/lambda/command/CreateFunctionCommand">CreateFunction</a>
+                        in <em>AWS SDK for JavaScript API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Kotlin</dt><dd tab-id="kotlin">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Kotlin</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This is prerelease documentation for a feature in preview release. It is subject to change.</p></div></div>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="kotlin ">suspend fun createNewFunction(
+    myFunctionName: String,
+    s3BucketName: String,
+    myS3Key: String,
+    myHandler: String,
+    myRole: String
+): String? <span>{</span>
+
+    val functionCode = FunctionCode <span>{</span>
+        s3Bucket = s3BucketName
+        s3Key = myS3Key
+    }
+
+    val request = CreateFunctionRequest <span>{</span>
+        functionName = myFunctionName
+        code = functionCode
+        description = "Created by the Lambda Kotlin API"
+        handler = myHandler
+        role = myRole
+        runtime = Runtime.Java8
+    }
+
+    LambdaClient <span>{</span> region = "us-west-2" }.use <span>{</span> awsLambda -&gt;
+        val functionResponse = awsLambda.createFunction(request)
+        awsLambda.waitUntilFunctionActive <span>{</span>
+            functionName = myFunctionName
+        }
+        return functionResponse.functionArn
+    }
+}
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation" rel="noopener noreferrer" target="_blank"><span>CreateFunction</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                        in <em>AWS SDK for Kotlin API reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>PHP</dt><dd tab-id="php">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for PHP</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/php/example_code/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="php ">    public function createFunction($functionName, $role, $bucketName, $handler)
+    <span>{</span>
+        //This assumes the Lambda function is in an S3 bucket.
+        return $this-&gt;customWaiter(function () use ($functionName, $role, $bucketName, $handler) <span>{</span>
+            return $this-&gt;lambdaClient-&gt;createFunction([
+                'Code' =&gt; [
+                    'S3Bucket' =&gt; $bucketName,
+                    'S3Key' =&gt; $functionName,
+                ],
+                'FunctionName' =&gt; $functionName,
+                'Role' =&gt; $role['Arn'],
+                'Runtime' =&gt; 'python3.9',
+                'Handler' =&gt; "$handler.lambda_handler",
+            ]);
+        });
+    }
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/goto/SdkForPHPV3/lambda-2015-03-31/CreateFunction">CreateFunction</a>
+                        in <em>AWS SDK for PHP API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Python</dt><dd tab-id="python">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Python (Boto3)</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">class LambdaWrapper:
+    def __init__(self, lambda_client, iam_resource):
+        self.lambda_client = lambda_client
+        self.iam_resource = iam_resource
+
+    def create_function(self, function_name, handler_name, iam_role, deployment_package):
+        """
+        Deploys a Lambda function.
+
+        :param function_name: The name of the Lambda function.
+        :param handler_name: The fully qualified name of the handler function. This
+                             must include the file name and the function name.
+        :param iam_role: The IAM role to use for the function.
+        :param deployment_package: The deployment package that contains the function
+                                   code in .zip format.
+        :return: The Amazon Resource Name (ARN) of the newly created function.
+        """
+        try:
+            response = self.lambda_client.create_function(
+                FunctionName=function_name,
+                Description="AWS Lambda doc example",
+                Runtime='python3.8',
+                Role=iam_role.arn,
+                Handler=handler_name,
+                Code=<span>{</span>'ZipFile': deployment_package},
+                Publish=True)
+            function_arn = response['FunctionArn']
+            waiter = self.lambda_client.get_waiter('function_active_v2')
+            waiter.wait(FunctionName=function_name)
+            logger.info("Created function '%s' with ARN: '%s'.",
+                        function_name, response['FunctionArn'])
+        except ClientError:
+            logger.error("Couldn't create function %s.", function_name)
+            raise
+        else:
+            return function_arn
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/goto/boto3/lambda-2015-03-31/CreateFunction">CreateFunction</a>
+                        in <em>AWS SDK for Python (Boto3) API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Ruby</dt><dd tab-id="ruby">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Ruby</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/ruby/example_code/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="ruby ">class LambdaWrapper
+  attr_accessor :lambda_client
+
+  def initialize
+    @lambda_client = Aws::Lambda::Client.new
+    @logger = Logger.new($stdout)
+    @logger.level = Logger::WARN
+  end
+
+  # Deploys a Lambda function.
+  #
+  # @param function_name: The name of the Lambda function.
+  # @param handler_name: The fully qualified name of the handler function. This
+  #                      must include the file name and the function name.
+  # @param role_arn: The IAM role to use for the function.
+  # @param deployment_package: The deployment package that contains the function
+  #                            code in .zip format.
+  # @return: The Amazon Resource Name (ARN) of the newly created function.
+  def create_function(function_name, handler_name, role_arn, deployment_package)
+    response = @lambda_client.create_function(<span>{</span>
+                                                role: role_arn.to_s,
+                                                function_name: function_name,
+                                                handler: handler_name,
+                                                runtime: "ruby2.7",
+                                                code: <span>{</span>
+                                                  zip_file: deployment_package
+                                                },
+                                                environment: <span>{</span>
+                                                  variables: <span>{</span>
+                                                    "LOG_LEVEL" =&gt; "info"
+                                                  }
+                                                }
+                                              })
+    @lambda_client.wait_until(:function_active_v2, <span>{</span> function_name: function_name}) do |w|
+      w.max_attempts = 5
+      w.delay = 5
+    end
+    response
+  rescue Aws::Lambda::Errors::ServiceException =&gt; e
+    @logger.error("There was an error creating #<span>{</span>function_name}:\n #<span>{</span>e.message}")
+  rescue Aws::Waiters::Errors::WaiterFailed =&gt; e
+    @logger.error("Failed waiting for #<span>{</span>function_name} to activate:\n #<span>{</span>e.message}")
+  end
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/goto/SdkForRubyV3/lambda-2015-03-31/CreateFunction">CreateFunction</a>
+                        in <em>AWS SDK for Ruby API Reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Rust</dt><dd tab-id="rust">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Rust</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This documentation is for an SDK in preview release. The SDK is subject to change and should not be used in production.</p></div></div>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/rust_dev_preview/examples/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="rust ">    /**
+     * Create a function, uploading from a zip file.
+     */
+    pub async fn create_function(&amp;self, zip_file: PathBuf) -&gt; Result&lt;String, anyhow::Error&gt; <span>{</span>
+        let code = self.prepare_function(zip_file, None).await?;
+
+        let key = code.s3_key().unwrap().to_string();
+
+        self.create_role().await;
+
+        let role = self
+            .iam_client
+            .create_role()
+            .role_name(self.role_name.clone())
+            .assume_role_policy_document(ROLE_POLICY_DOCUMENT)
+            .send()
+            .await?;
+
+        info!("Created iam role, waiting 15s for it to become active");
+        tokio::time::sleep(Duration::from_secs(15)).await;
+
+        info!("Creating lambda function <span>{</span>}", self.lambda_name);
+        let _ = self
+            .lambda_client
+            .create_function()
+            .function_name(self.lambda_name.clone())
+            .code(code)
+            .role(role.role().map(|r| r.arn()).unwrap_or_default())
+            .runtime(aws_sdk_lambda::types::Runtime::Providedal2)
+            .handler("_unused")
+            .send()
+            .await
+            .map_err(anyhow::Error::from)?;
+
+        self.wait_for_function_ready().await?;
+
+        self.lambda_client
+            .publish_version()
+            .function_name(self.lambda_name.clone())
+            .send()
+            .await?;
+
+        Ok(key)
+    }
+
+    /**
+     * Upload function code from a path to a zip file.
+     * The zip file must have an AL2 Linux-compatible binary called `bootstrap`.
+     * The easiest way to create such a zip is to use `cargo lambda build --output-format Zip`.
+     */
+    async fn prepare_function(
+        &amp;self,
+        zip_file: PathBuf,
+        key: Option&lt;String&gt;,
+    ) -&gt; Result&lt;FunctionCode, anyhow::Error&gt; <span>{</span>
+        let body = ByteStream::read_from().path(zip_file).build().await?;
+
+        let key = key.unwrap_or_else(|| format!("<span>{</span>}_code", self.lambda_name));
+
+        info!("Uploading function code to s3://<span>{</span>}/<span>{</span>}", self.bucket, key);
+        let _ = self
+            .s3_client
+            .put_object()
+            .bucket(self.bucket.clone())
+            .key(key.clone())
+            .body(body)
+            .send()
+            .await?;
+
+        Ok(FunctionCode::builder()
+            .s3_bucket(self.bucket.clone())
+            .s3_key(key)
+            .build())
+    }
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.rs/releases/search?query=aws-sdk" rel="noopener noreferrer" target="_blank"><span>CreateFunction</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+                        in <em>AWS SDK for Rust API reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>SAP ABAP</dt><dd tab-id="sap-abap">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for SAP ABAP</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/sap-abap/services/lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>AWS Code Examples Repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+                </p></div></div>
+             
+                <p></p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="sap-abap ">    TRY.
+        lo_lmd-&gt;createfunction(
+            iv_functionname = iv_function_name
+            iv_runtime = `python3.9`
+            iv_role = iv_role_arn
+            iv_handler = iv_handler
+            io_code = io_zip_file
+            iv_description = 'AWS Lambda code example'
+        ).
+        MESSAGE 'Lambda function created.' TYPE 'I'.
+      CATCH /aws1/cx_lmdcodesigningcfgno00.
+        MESSAGE 'Code signing configuration does not exist.' TYPE 'E'.
+      CATCH /aws1/cx_lmdcodestorageexcdex.
+        MESSAGE 'Maximum total code size per account exceeded.' TYPE 'E'.
+      CATCH /aws1/cx_lmdcodeverification00.
+        MESSAGE 'Code signature failed one or more validation checks for signature mismatch or expiration.' TYPE 'E'.
+      CATCH /aws1/cx_lmdinvalidcodesigex.
+        MESSAGE 'Code signature failed the integrity check.' TYPE 'E'.
+      CATCH /aws1/cx_lmdinvparamvalueex.
+        MESSAGE 'The request contains a non-valid parameter.' TYPE 'E'.
+      CATCH /aws1/cx_lmdresourceconflictex.
+        MESSAGE 'Resource already exists or another operation is in progress.' TYPE 'E'.
+      CATCH /aws1/cx_lmdresourcenotfoundex.
+        MESSAGE 'The requested resource does not exist.' TYPE 'E'.
+      CATCH /aws1/cx_lmdserviceexception.
+        MESSAGE 'An internal problem was encountered by the AWS Lambda service.' TYPE 'E'.
+      CATCH /aws1/cx_lmdtoomanyrequestsex.
+        MESSAGE 'The maximum request throughput was reached.' TYPE 'E'.
+    ENDTRY.
+
+</code></pre>
+             
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        For API details, see
+                        <a href="https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html">CreateFunction</a>
+                        in <em>AWS SDK for SAP ABAP API reference</em>.
+                    </p>
+                </li></ul></div>
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs><p>For a complete list of AWS SDK developer guides and code examples, see
+    <a href="./sdk-general-information-section.html">Using Lambda with an AWS SDK</a>.
+    This topic also includes information about getting started and details about previous SDK versions.</p><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./service_code_examples_actions.html">Actions</div><div id="next" class="next-link" accesskey="n" href="./example_lambda_DeleteFunction_section.html">Delete a function</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/example_lambda_CreateFunction_section.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/example_lambda_CreateFunction_section.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using AWS Lambda with Amazon RDS - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="services-rds" /><meta name="default_state" content="services-rds" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-rds.html" /><meta name="description" content="Use an AWS Lambda function to process messages from an Amazon RDS database." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-rds.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-rds.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-rds.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-rds.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-rds.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-rds.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-rds.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-rds.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-rds.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-rds.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-rds.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-rds.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-rds.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-rds.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-rds.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-rds.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-rds.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-rds.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-rds.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/services-rds.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/services-rds.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-rds.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using AWS Lambda with Amazon RDS" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using AWS Lambda with Amazon RDS - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-rds" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-rds.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-rds.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-rds.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,relational database system" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using AWS Lambda with Amazon RDS",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-rds" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#rds-configuration">Configuring your function</a><a href="#rds-configuration-database-auth">Using the function's permissions for authentication</a><a href="#rds-events">Process event notifications from Amazon RDS</a><a href="#rds-database-samples">Tutorial and sample applications</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="services-rds">Using AWS Lambda with Amazon RDS</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can connect to an Amazon RDS database through Amazon RDS Proxy. A database proxy manages a pool of shared database connections which enables your function to reach high concurrency levels without exhausting database connections.</p><p>We recommend using Amazon RDS Proxy for Lambda functions that make frequent short database connections or open and close large numbers of database connections and do not have built-in connection pooling mechanisms.</p>
+  <h2 id="rds-configuration">Configuring your function</h2>
+
+    <p>You can create and configure a database proxy from the Amazon RDS console or from your Lambda function configuration.</p>
+
+  <div class="itemizedlist">
+     
+     
+     
+           
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>You can use the Lambda console to create an Amazon RDS proxy to an Amazon RDS database in the function <b>Configuration</b>.</p>
+    </li><li class="listitem">
+      <p>To connect to a database, you must first connect your function to the same Amazon VPC where your database runs.</p>
+    </li><li class="listitem">
+      <p>You can use Amazon RDS databases with MySQL, MariaDB, PostgreSQL, or Microsoft SQL Server engines. You can also use Aurora DB clusters with MySQL or PostgreSQL engines.</p>
+    </li><li class="listitem">
+      <p>You need to provide a Secrets Manager secret with the database user name and password.</p>
+    </li><li class="listitem">
+      <p>An IAM role must provide permission to use the secret, and a trust policy that allows Amazon RDS to assume the role.
+      </p>
+    </li><li class="listitem">
+      <p>You can connect your function to the proxy with a username and password secret, or your function can get credentials from the execution role. To generate a connection token with the role's credentials, use the Amazon RDS signer from the AWS SDK (described in the following section).</p>
+    </li></ul></div>
+
+  <p>Proxy creation takes a few minutes. When the proxy is available, configure your function to connect to the proxy
+    endpoint instead of the database endpoint.</p>
+
+  <p>For more information on connections, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html">Using Amazon RDS Proxy</a> in
+    the Amazon RDS User Guide.</p>
+
+
+  <p>If too many function instances run concurrently, one or more instances may fail to obtain a database connection.</p>
+  <p>You can use reserved concurrency to limit the maximum concurrency of the function. Set the reserved concurrency to be less than the number of database connections. Reserved concurrency also reserves those instances for this function, which may not be ideal. If you are invoking the Lambda functions from your application, we recommend you write code that limits the number of concurrent instances.</p>
+
+  <p>For concurrency settings, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html">Managing concurrency for a Lambda function</a>.
+    </p>
+        
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Pricing</h6></div><div class="awsdocs-note-text"><p>Amazon RDS charges a hourly price for proxies that is determined by the instance size of your database. For
+        details, see <a href="https://aws.amazon.com/rds/proxy/pricing/" rel="noopener noreferrer" target="_blank"><span>RDS Proxy pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+
+   
+    <h2 id="rds-configuration-database-auth">Using the function's permissions for authentication</h2>
+    
+    <p>By default, your function can connect to a proxy with the same username and password for the
+      database. The only difference in your function code is the database endpoint. The
+      drawback of this method is that you must expose the password to your function code, either by configuring it in a
+      secure environment variable or by retrieving it from Secrets Manager.</p>
+    
+    <p>Alternatively, a database proxy can use the function's IAM credentials for authentication and
+      authorization instead of a password. To use the function's permissions to connect to the proxy, set
+      <b>Authentication</b> to <b>Execution role</b>.</p>
+    
+    <p>The Lambda console adds the required permission (<code class="code">rds-db:connect</code>) to the execution role. You can
+      then use the AWS SDK to generate a token that allows it to connect to the proxy. The following example shows how
+      to configure a database connection with the <code class="code">mysql2</code> library in Node.js.</p>
+    <div class="example"><h6>Example <a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/rds-mysql/dbadmin/index-iam.js" rel="noopener noreferrer" target="_blank"><span>dbadmin/index-iam.js</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – AWS SDK
+        signer</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript "><code class="userinput">const signer = new AWS.RDS.Signer(<span>{</span>
+  region: region,
+  hostname: host,
+  port: sqlport,
+  username: username
+})</code>
+
+exports.handler = async (event) =&gt; <span>{</span>
+  let connectionConfig = <span>{</span>
+    host     : host,
+    user     : username,
+    database : database,
+    ssl: 'Amazon RDS',
+    <code class="userinput">authPlugins: <span>{</span> mysql_clear_password: () =&gt; () =&gt; signer.getAuthToken() }</code>
+  }
+  var connection = mysql.createConnection(connectionConfig)
+  var query = event.query
+  var result
+  connection.connect()
+}</code></pre></div></div>
+    
+    <p>For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html">IAM database
+      authentication</a> in the Amazon RDS User Guide.</p>
+   
+    <h2 id="rds-events">Process event notifications from Amazon RDS</h2>
+    
+    <p>You can use Lambda to process event notifications from an Amazon Relational Database Service (Amazon RDS) database. Amazon RDS sends notifications to an Amazon Simple Notification Service (Amazon SNS) topic, which you can configure to invoke a Lambda function. Amazon SNS wraps the message from Amazon RDS in its own event document and sends it to your function.</p>
+
+    
+      <div class="example"><h6>Example Amazon RDS message in an Amazon SNS event</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+        "Records": [
+          <span>{</span>
+            "EventVersion": "1.0",
+            "EventSubscriptionArn": "arn:aws:sns:us-east-2:123456789012:rds-lambda:21be56ed-a058-49f5-8c98-aedd2564c486",
+            "EventSource": "aws:sns",
+            "Sns": <span>{</span>
+              "SignatureVersion": "1",
+              "Timestamp": "2019-01-02T12:45:07.000Z",
+              "Signature": "tcc6faL2yUC6dgZdmrwh1Y4cGa/ebXEkAi6RibDsvpi+tE/1+82j...65r==",
+              "SigningCertUrl": "https://sns.us-east-2.amazonaws.com/SimpleNotificationService-ac565b8b1a6c5d002d285f9598aa1d9b.pem",
+              "MessageId": "95df01b4-ee98-5cb9-9903-4c221d41eb5e",
+              "Message": <code class="userinput">"<span>{</span>\"Event Source\":\"db-instance\",\"Event Time\":\"2019-01-02 12:45:06.000\",\"Identifier Link\":\"https://console.aws.amazon.com/rds/home?region=eu-west-1#dbinstance:id=dbinstanceid\",\"Source ID\":\"dbinstanceid\",\"Event ID\":\"http://docs.amazonwebservices.com/AmazonRDS/latest/UserGuide/USER_Events.html#RDS-EVENT-0002\",\"Event Message\":\"Finished DB Instance backup\"}",</code>
+              "MessageAttributes": <span>{</span>},
+              "Type": "Notification",
+              "UnsubscribeUrl": "https://sns.us-east-2.amazonaws.com/?Action=Unsubscribe&amp;amp;SubscriptionArn=arn:aws:sns:us-east-2:123456789012:test-lambda:21be56ed-a058-49f5-8c98-aedd2564c486",
+              "TopicArn":"arn:aws:sns:us-east-2:123456789012:sns-lambda",
+              "Subject": "RDS Notification Message"
+            }
+          }
+        ]
+      }</code></pre></div></div>
+
+      <p>For more information about configuring an Amazon RDS database to send notifications, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html">Using Amazon RDS event notifications</a>.
+      </p>
+   
+    <h2 id="rds-database-samples">Tutorial and sample applications</h2>
+    
+    <p>The tutorial in the Amazon RDS guide shows in detail how to automatically configure and connect Lambda via Amazon VPC to an Amazon RDS instance. Also listed are two older sample applications from this guide's GitHub repository which use Lambda with an Amazon RDS database:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p><strong>Tutorial: </strong>
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-lambda-tutorial.html">Using a Lambda function to access Amazon RDS in an Amazon VPC</a> – Use a Lambda function to write data to an Amazon RDS database through an Amazon RDS Proxy. Your Lambda function reads records from an Amazon SQS queue and writes a new item to a table in your database whenever a message is added.</p>
+      </li><li class="listitem">
+        <p><a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/rds-mysql" rel="noopener noreferrer" target="_blank"><span>RDS MySQL</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Sets up a MySQL database in a private VPC with a Lambda function that proxies queries to it. The function and database templates both use Secrets Manager to access database credentials.</p>
+      </li><li class="listitem">
+        <p><a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/list-manager" rel="noopener noreferrer" target="_blank"><span>List Manager</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Creates a processor function that reads events
+          from a Kinesis stream, uses data from the events to update DynamoDB tables, and stores a copy of the event
+          in a MySQL database.</p>
+      </li></ul></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-msk.html">MSK</div><div id="next" class="next-link" accesskey="n" href="./with-s3.html">S3</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-rds.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-rds.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

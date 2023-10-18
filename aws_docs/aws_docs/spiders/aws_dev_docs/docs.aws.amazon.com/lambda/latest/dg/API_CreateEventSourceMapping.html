@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>CreateEventSourceMapping - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="API_CreateEventSourceMapping" /><meta name="default_state" content="API_CreateEventSourceMapping" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html" /><meta name="description" content="Creates a mapping between an event source and an AWS Lambda function. Lambda reads items from the event source and invokes the function." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="CreateEventSourceMapping" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>CreateEventSourceMapping - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#API_CreateEventSourceMapping" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_CreateEventSourceMapping.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_CreateEventSourceMapping.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_CreateEventSourceMapping.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,API,requests,CreateEventSourceMapping" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "API reference",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Reference.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Actions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Operations.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "CreateEventSourceMapping",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Operations.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#API_CreateEventSourceMapping" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#API_CreateEventSourceMapping_RequestSyntax">Request Syntax</a><a href="#API_CreateEventSourceMapping_RequestParameters">URI Request Parameters</a><a href="#API_CreateEventSourceMapping_RequestBody">Request Body</a><a href="#API_CreateEventSourceMapping_ResponseSyntax">Response Syntax</a><a href="#API_CreateEventSourceMapping_ResponseElements">Response Elements</a><a href="#API_CreateEventSourceMapping_Errors">Errors</a><a href="#API_CreateEventSourceMapping_SeeAlso">See Also</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="API_CreateEventSourceMapping">CreateEventSourceMapping</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Creates a mapping between an event source and an AWS Lambda function. Lambda reads items from the event source and invokes the function.</p><p>For details about how to configure different event sources, see the following topics. </p><div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+   <ul class="itemizedlist"><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping">
+            Amazon DynamoDB Streams</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping">
+            Amazon Kinesis</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource">
+            Amazon SQS</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping">
+            Amazon MQ and RabbitMQ</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html">
+            Amazon MSK</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html">
+            Apache Kafka</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html">
+            Amazon DocumentDB</a>
+         </p>
+      </li></ul></div><p>The following error handling options are available only for stream sources (DynamoDB and Kinesis):</p><div class="itemizedlist">
+       
+       
+       
+       
+       
+   <ul class="itemizedlist"><li class="listitem">
+         <p>
+            <code class="code">BisectBatchOnFunctionError</code> – If the function returns an error, split the batch in two and retry.</p>
+      </li><li class="listitem">
+         <p>
+            <code class="code">DestinationConfig</code> – Send discarded records to an Amazon SQS queue or Amazon SNS topic.</p>
+      </li><li class="listitem">
+         <p>
+            <code class="code">MaximumRecordAgeInSeconds</code> – Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires</p>
+      </li><li class="listitem">
+         <p>
+            <code class="code">MaximumRetryAttempts</code> – Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.</p>
+      </li><li class="listitem">
+         <p>
+            <code class="code">ParallelizationFactor</code> – Process multiple batches from each shard concurrently.</p>
+      </li></ul></div><p>For information about which configuration parameters apply to each event source, see the following topics.</p><div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+   <ul class="itemizedlist"><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params">
+          Amazon DynamoDB Streams</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params">
+          Amazon Kinesis</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params">
+          Amazon SQS</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params">
+          Amazon MQ and RabbitMQ</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms">
+          Amazon MSK</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms">
+          Apache Kafka</a>
+         </p>
+      </li><li class="listitem">
+         <p>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-documentdb.html#docdb-configuration">
+          Amazon DocumentDB</a>
+         </p>
+      </li></ul></div>
+      <h2 id="API_CreateEventSourceMapping_RequestSyntax">Request Syntax</h2>
+      <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">POST /2015-03-31/event-source-mappings/ HTTP/1.1
+Content-type: application/json
+
+<span>{</span>
+   "<a href="#SSS-CreateEventSourceMapping-request-AmazonManagedKafkaEventSourceConfig">AmazonManagedKafkaEventSourceConfig</a>": <span>{</span> 
+      "<a href="./API_AmazonManagedKafkaEventSourceConfig.html#SSS-Type-AmazonManagedKafkaEventSourceConfig-ConsumerGroupId">ConsumerGroupId</a>": "<code class="replaceable">string</code>"
+   },
+   "<a href="#SSS-CreateEventSourceMapping-request-BatchSize">BatchSize</a>": <code class="replaceable">number</code>,
+   "<a href="#SSS-CreateEventSourceMapping-request-BisectBatchOnFunctionError">BisectBatchOnFunctionError</a>": <code class="replaceable">boolean</code>,
+   "<a href="#SSS-CreateEventSourceMapping-request-DestinationConfig">DestinationConfig</a>": <span>{</span> 
+      "<a href="./API_DestinationConfig.html#SSS-Type-DestinationConfig-OnFailure">OnFailure</a>": <span>{</span> 
+         "<a href="./API_OnFailure.html#SSS-Type-OnFailure-Destination">Destination</a>": "<code class="replaceable">string</code>"
+      },
+      "<a href="./API_DestinationConfig.html#SSS-Type-DestinationConfig-OnSuccess">OnSuccess</a>": <span>{</span> 
+         "<a href="./API_OnSuccess.html#SSS-Type-OnSuccess-Destination">Destination</a>": "<code class="replaceable">string</code>"
+      }
+   },
+   "<a href="#SSS-CreateEventSourceMapping-request-DocumentDBEventSourceConfig">DocumentDBEventSourceConfig</a>": <span>{</span> 
+      "<a href="./API_DocumentDBEventSourceConfig.html#SSS-Type-DocumentDBEventSourceConfig-CollectionName">CollectionName</a>": "<code class="replaceable">string</code>",
+      "<a href="./API_DocumentDBEventSourceConfig.html#SSS-Type-DocumentDBEventSourceConfig-DatabaseName">DatabaseName</a>": "<code class="replaceable">string</code>",
+      "<a href="./API_DocumentDBEventSourceConfig.html#SSS-Type-DocumentDBEventSourceConfig-FullDocument">FullDocument</a>": "<code class="replaceable">string</code>"
+   },
+   "<a href="#SSS-CreateEventSourceMapping-request-Enabled">Enabled</a>": <code class="replaceable">boolean</code>,
+   "<a href="#SSS-CreateEventSourceMapping-request-EventSourceArn">EventSourceArn</a>": "<code class="replaceable">string</code>",
+   "<a href="#SSS-CreateEventSourceMapping-request-FilterCriteria">FilterCriteria</a>": <span>{</span> 
+      "<a href="./API_FilterCriteria.html#SSS-Type-FilterCriteria-Filters">Filters</a>": [ 
+         <span>{</span> 
+            "<a href="./API_Filter.html#SSS-Type-Filter-Pattern">Pattern</a>": "<code class="replaceable">string</code>"
+         }
+      ]
+   },
+   "<a href="#SSS-CreateEventSourceMapping-request-FunctionName">FunctionName</a>": "<code class="replaceable">string</code>",
+   "<a href="#SSS-CreateEventSourceMapping-request-FunctionResponseTypes">FunctionResponseTypes</a>": [ "<code class="replaceable">string</code>" ],
+   "<a href="#SSS-CreateEventSourceMapping-request-MaximumBatchingWindowInSeconds">MaximumBatchingWindowInSeconds</a>": <code class="replaceable">number</code>,
+   "<a href="#SSS-CreateEventSourceMapping-request-MaximumRecordAgeInSeconds">MaximumRecordAgeInSeconds</a>": <code class="replaceable">number</code>,
+   "<a href="#SSS-CreateEventSourceMapping-request-MaximumRetryAttempts">MaximumRetryAttempts</a>": <code class="replaceable">number</code>,
+   "<a href="#SSS-CreateEventSourceMapping-request-ParallelizationFactor">ParallelizationFactor</a>": <code class="replaceable">number</code>,
+   "<a href="#SSS-CreateEventSourceMapping-request-Queues">Queues</a>": [ "<code class="replaceable">string</code>" ],
+   "<a href="#SSS-CreateEventSourceMapping-request-ScalingConfig">ScalingConfig</a>": <span>{</span> 
+      "<a href="./API_ScalingConfig.html#SSS-Type-ScalingConfig-MaximumConcurrency">MaximumConcurrency</a>": <code class="replaceable">number</code>
+   },
+   "<a href="#SSS-CreateEventSourceMapping-request-SelfManagedEventSource">SelfManagedEventSource</a>": <span>{</span> 
+      "<a href="./API_SelfManagedEventSource.html#SSS-Type-SelfManagedEventSource-Endpoints">Endpoints</a>": <span>{</span> 
+         "<code class="replaceable">string</code>" : [ "<code class="replaceable">string</code>" ]
+      }
+   },
+   "<a href="#SSS-CreateEventSourceMapping-request-SelfManagedKafkaEventSourceConfig">SelfManagedKafkaEventSourceConfig</a>": <span>{</span> 
+      "<a href="./API_SelfManagedKafkaEventSourceConfig.html#SSS-Type-SelfManagedKafkaEventSourceConfig-ConsumerGroupId">ConsumerGroupId</a>": "<code class="replaceable">string</code>"
+   },
+   "<a href="#SSS-CreateEventSourceMapping-request-SourceAccessConfigurations">SourceAccessConfigurations</a>": [ 
+      <span>{</span> 
+         "<a href="./API_SourceAccessConfiguration.html#SSS-Type-SourceAccessConfiguration-Type">Type</a>": "<code class="replaceable">string</code>",
+         "<a href="./API_SourceAccessConfiguration.html#SSS-Type-SourceAccessConfiguration-URI">URI</a>": "<code class="replaceable">string</code>"
+      }
+   ],
+   "<a href="#SSS-CreateEventSourceMapping-request-StartingPosition">StartingPosition</a>": "<code class="replaceable">string</code>",
+   "<a href="#SSS-CreateEventSourceMapping-request-StartingPositionTimestamp">StartingPositionTimestamp</a>": <code class="replaceable">number</code>,
+   "<a href="#SSS-CreateEventSourceMapping-request-Topics">Topics</a>": [ "<code class="replaceable">string</code>" ],
+   "<a href="#SSS-CreateEventSourceMapping-request-TumblingWindowInSeconds">TumblingWindowInSeconds</a>": <code class="replaceable">number</code>
+}</code></pre>
+    
+      <h2 id="API_CreateEventSourceMapping_RequestParameters">URI Request Parameters</h2>
+      <p>The request does not use any URI parameters.</p>
+    
+      <h2 id="API_CreateEventSourceMapping_RequestBody">Request Body</h2>
+      <p>The request accepts the following data in JSON format.</p>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      <dl>
+            <dt id="SSS-CreateEventSourceMapping-request-AmazonManagedKafkaEventSourceConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">AmazonManagedKafkaEventSourceConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source.</p>
+               <p>Type: <a href="./API_AmazonManagedKafkaEventSourceConfig.html">AmazonManagedKafkaEventSourceConfig</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-BatchSize"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">BatchSize</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation
+  (6 MB).</p>
+               <div class="itemizedlist">
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+               <ul class="itemizedlist"><li class="listitem">
+                     <p>
+                        <b>Amazon Kinesis</b> – Default 100. Max 10,000.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon DynamoDB Streams</b> – Default 100. Max 10,000.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon Simple Queue Service</b> – Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon Managed Streaming for Apache Kafka</b> – Default 100. Max 10,000.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Self-managed Apache Kafka</b> – Default 100. Max 10,000.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon MQ (ActiveMQ and RabbitMQ)</b> – Default 100. Max 10,000.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>DocumentDB</b> – Default 100. Max 10,000.</p>
+                  </li></ul></div>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 1. Maximum value of 10000.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-BisectBatchOnFunctionError"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">BisectBatchOnFunctionError</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry.</p>
+               <p>Type: Boolean</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-DestinationConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">DestinationConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) A standard Amazon SQS queue or standard Amazon SNS topic destination for discarded records.</p>
+               <p>Type: <a href="./API_DestinationConfig.html">DestinationConfig</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-DocumentDBEventSourceConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">DocumentDBEventSourceConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Specific configuration settings for a DocumentDB event source.</p>
+               <p>Type: <a href="./API_DocumentDBEventSourceConfig.html">DocumentDBEventSourceConfig</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-Enabled"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">Enabled</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>When true, the event source mapping is active. When false, Lambda pauses polling and invocation.</p>
+               <p>Default: True</p>
+               <p>Type: Boolean</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-EventSourceArn"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">EventSourceArn</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The Amazon Resource Name (ARN) of the event source.</p>
+               <div class="itemizedlist">
+                   
+                   
+                   
+                   
+                   
+                   
+               <ul class="itemizedlist"><li class="listitem">
+                     <p>
+                        <b>Amazon Kinesis</b> – The ARN of the data stream or a stream consumer.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon DynamoDB Streams</b> – The ARN of the stream.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon Simple Queue Service</b> – The ARN of the queue.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon Managed Streaming for Apache Kafka</b> – The ARN of the cluster.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon MQ</b> – The ARN of the broker.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Amazon DocumentDB</b> – The ARN of the DocumentDB change stream.</p>
+                  </li></ul></div>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1})?:(\d<span>{</span>12})?:(.*)</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-FilterCriteria"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">FilterCriteria</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>An object that defines the filter criteria that
+    determine whether Lambda should process an event. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">Lambda event filtering</a>.</p>
+               <p>Type: <a href="./API_FilterCriteria.html">FilterCriteria</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-FunctionName"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">FunctionName</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The name of the Lambda function.</p>
+               <div class="itemizedlist">
+                  <h6>Name formats</h6>
+                   
+                   
+                   
+                   
+               <ul class="itemizedlist"><li class="listitem">
+                     <p>
+                        <b>Function name</b> – <code class="code">MyFunction</code>.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Function ARN</b> – <code class="code">arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Version or Alias ARN</b> – <code class="code">arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</code>.</p>
+                  </li><li class="listitem">
+                     <p>
+                        <b>Partial ARN</b> – <code class="code">123456789012:function:MyFunction</code>.</p>
+                  </li></ul></div>
+               <p>The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64
+      characters in length.</p>
+               <p>Type: String</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 140.</p>
+               <p>Pattern: <code class="code">(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1}:)?(\d<span>{</span>12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?</code>
+               </p>
+               <p>Required: Yes</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-FunctionResponseTypes"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">FunctionResponseTypes</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping.</p>
+               <p>Type: Array of strings</p>
+               <p>Array Members: Minimum number of 0 items. Maximum number of 1 item.</p>
+               <p>Valid Values: <code class="code">ReportBatchItemFailures</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-MaximumBatchingWindowInSeconds"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">MaximumBatchingWindowInSeconds</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function.
+  You can configure <code class="code">MaximumBatchingWindowInSeconds</code> to any value from 0 seconds to 300 seconds in increments of seconds.</p>
+               <p>For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default
+  batching window is 500 ms. Note that because you can only change <code class="code">MaximumBatchingWindowInSeconds</code> in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it.
+  To restore the default batching window, you must create a new event source mapping.</p>
+               <p>Related setting: For streams and Amazon SQS event sources, when you set <code class="code">BatchSize</code> to a value greater than 10, you must set <code class="code">MaximumBatchingWindowInSeconds</code> to at least 1.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 0. Maximum value of 300.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-MaximumRecordAgeInSeconds"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">MaximumRecordAgeInSeconds</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) Discard records older than the specified age. The default value is infinite (-1).</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of -1. Maximum value of 604800.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-MaximumRetryAttempts"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">MaximumRetryAttempts</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of -1. Maximum value of 10000.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-ParallelizationFactor"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">ParallelizationFactor</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) The number of batches to process from each shard concurrently.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 1. Maximum value of 10.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-Queues"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">Queues</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p> (MQ) The name of the Amazon MQ broker destination queue to consume. </p>
+               <p>Type: Array of strings</p>
+               <p>Array Members: Fixed number of 1 item.</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 1000.</p>
+               <p>Pattern: <code class="code">[\s\S]*</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-ScalingConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">ScalingConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Amazon SQS only) The scaling configuration for the event source. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency">Configuring maximum concurrency for Amazon SQS event sources</a>.</p>
+               <p>Type: <a href="./API_ScalingConfig.html">ScalingConfig</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-SelfManagedEventSource"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">SelfManagedEventSource</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The self-managed Apache Kafka cluster to receive records from.</p>
+               <p>Type: <a href="./API_SelfManagedEventSource.html">SelfManagedEventSource</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-SelfManagedKafkaEventSourceConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">SelfManagedKafkaEventSourceConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Specific configuration settings for a self-managed Apache Kafka event source.</p>
+               <p>Type: <a href="./API_SelfManagedKafkaEventSourceConfig.html">SelfManagedKafkaEventSourceConfig</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-SourceAccessConfigurations"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">SourceAccessConfigurations</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>An array of authentication protocols or VPC components required to secure your event source.</p>
+               <p>Type: Array of <a href="./API_SourceAccessConfiguration.html">SourceAccessConfiguration</a> objects</p>
+               <p>Array Members: Minimum number of 0 items. Maximum number of 22 items.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-StartingPosition"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">StartingPosition</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The position in a stream from which to start reading. Required for Amazon Kinesis and
+      Amazon DynamoDB Stream event sources. <code class="code">AT_TIMESTAMP</code> is supported only for
+      Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">TRIM_HORIZON | LATEST | AT_TIMESTAMP</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-StartingPositionTimestamp"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">StartingPositionTimestamp</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>With <code class="code">StartingPosition</code> set to <code class="code">AT_TIMESTAMP</code>, the time from which to start
+      reading, in Unix time seconds. <code class="code">StartingPositionTimestamp</code> cannot be in the future.</p>
+               <p>Type: Timestamp</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-Topics"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">Topics</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The name of the Kafka topic.</p>
+               <p>Type: Array of strings</p>
+               <p>Array Members: Fixed number of 1 item.</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 249.</p>
+               <p>Pattern: <code class="code">^[^.]([a-zA-Z0-9\-_.]+)</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-request-TumblingWindowInSeconds"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_RequestSyntax">TumblingWindowInSeconds</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 0. Maximum value of 900.</p>
+               <p>Required: No</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_CreateEventSourceMapping_ResponseSyntax">Response Syntax</h2>
+      <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">HTTP/1.1 202
+Content-type: application/json
+
+<span>{</span>
+   "<a href="#SSS-CreateEventSourceMapping-response-AmazonManagedKafkaEventSourceConfig">AmazonManagedKafkaEventSourceConfig</a>": <span>{</span> 
+      "<a href="./API_AmazonManagedKafkaEventSourceConfig.html#SSS-Type-AmazonManagedKafkaEventSourceConfig-ConsumerGroupId">ConsumerGroupId</a>": "<b><em>string</em></b>"
+   },
+   "<a href="#SSS-CreateEventSourceMapping-response-BatchSize">BatchSize</a>": <b><em>number</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-BisectBatchOnFunctionError">BisectBatchOnFunctionError</a>": <b><em>boolean</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-DestinationConfig">DestinationConfig</a>": <span>{</span> 
+      "<a href="./API_DestinationConfig.html#SSS-Type-DestinationConfig-OnFailure">OnFailure</a>": <span>{</span> 
+         "<a href="./API_OnFailure.html#SSS-Type-OnFailure-Destination">Destination</a>": "<b><em>string</em></b>"
+      },
+      "<a href="./API_DestinationConfig.html#SSS-Type-DestinationConfig-OnSuccess">OnSuccess</a>": <span>{</span> 
+         "<a href="./API_OnSuccess.html#SSS-Type-OnSuccess-Destination">Destination</a>": "<b><em>string</em></b>"
+      }
+   },
+   "<a href="#SSS-CreateEventSourceMapping-response-DocumentDBEventSourceConfig">DocumentDBEventSourceConfig</a>": <span>{</span> 
+      "<a href="./API_DocumentDBEventSourceConfig.html#SSS-Type-DocumentDBEventSourceConfig-CollectionName">CollectionName</a>": "<b><em>string</em></b>",
+      "<a href="./API_DocumentDBEventSourceConfig.html#SSS-Type-DocumentDBEventSourceConfig-DatabaseName">DatabaseName</a>": "<b><em>string</em></b>",
+      "<a href="./API_DocumentDBEventSourceConfig.html#SSS-Type-DocumentDBEventSourceConfig-FullDocument">FullDocument</a>": "<b><em>string</em></b>"
+   },
+   "<a href="#SSS-CreateEventSourceMapping-response-EventSourceArn">EventSourceArn</a>": "<b><em>string</em></b>",
+   "<a href="#SSS-CreateEventSourceMapping-response-FilterCriteria">FilterCriteria</a>": <span>{</span> 
+      "<a href="./API_FilterCriteria.html#SSS-Type-FilterCriteria-Filters">Filters</a>": [ 
+         <span>{</span> 
+            "<a href="./API_Filter.html#SSS-Type-Filter-Pattern">Pattern</a>": "<b><em>string</em></b>"
+         }
+      ]
+   },
+   "<a href="#SSS-CreateEventSourceMapping-response-FunctionArn">FunctionArn</a>": "<b><em>string</em></b>",
+   "<a href="#SSS-CreateEventSourceMapping-response-FunctionResponseTypes">FunctionResponseTypes</a>": [ "<b><em>string</em></b>" ],
+   "<a href="#SSS-CreateEventSourceMapping-response-LastModified">LastModified</a>": <b><em>number</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-LastProcessingResult">LastProcessingResult</a>": "<b><em>string</em></b>",
+   "<a href="#SSS-CreateEventSourceMapping-response-MaximumBatchingWindowInSeconds">MaximumBatchingWindowInSeconds</a>": <b><em>number</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-MaximumRecordAgeInSeconds">MaximumRecordAgeInSeconds</a>": <b><em>number</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-MaximumRetryAttempts">MaximumRetryAttempts</a>": <b><em>number</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-ParallelizationFactor">ParallelizationFactor</a>": <b><em>number</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-Queues">Queues</a>": [ "<b><em>string</em></b>" ],
+   "<a href="#SSS-CreateEventSourceMapping-response-ScalingConfig">ScalingConfig</a>": <span>{</span> 
+      "<a href="./API_ScalingConfig.html#SSS-Type-ScalingConfig-MaximumConcurrency">MaximumConcurrency</a>": <b><em>number</em></b>
+   },
+   "<a href="#SSS-CreateEventSourceMapping-response-SelfManagedEventSource">SelfManagedEventSource</a>": <span>{</span> 
+      "<a href="./API_SelfManagedEventSource.html#SSS-Type-SelfManagedEventSource-Endpoints">Endpoints</a>": <span>{</span> 
+         "<b><em>string</em></b>" : [ "<b><em>string</em></b>" ]
+      }
+   },
+   "<a href="#SSS-CreateEventSourceMapping-response-SelfManagedKafkaEventSourceConfig">SelfManagedKafkaEventSourceConfig</a>": <span>{</span> 
+      "<a href="./API_SelfManagedKafkaEventSourceConfig.html#SSS-Type-SelfManagedKafkaEventSourceConfig-ConsumerGroupId">ConsumerGroupId</a>": "<b><em>string</em></b>"
+   },
+   "<a href="#SSS-CreateEventSourceMapping-response-SourceAccessConfigurations">SourceAccessConfigurations</a>": [ 
+      <span>{</span> 
+         "<a href="./API_SourceAccessConfiguration.html#SSS-Type-SourceAccessConfiguration-Type">Type</a>": "<b><em>string</em></b>",
+         "<a href="./API_SourceAccessConfiguration.html#SSS-Type-SourceAccessConfiguration-URI">URI</a>": "<b><em>string</em></b>"
+      }
+   ],
+   "<a href="#SSS-CreateEventSourceMapping-response-StartingPosition">StartingPosition</a>": "<b><em>string</em></b>",
+   "<a href="#SSS-CreateEventSourceMapping-response-StartingPositionTimestamp">StartingPositionTimestamp</a>": <b><em>number</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-State">State</a>": "<b><em>string</em></b>",
+   "<a href="#SSS-CreateEventSourceMapping-response-StateTransitionReason">StateTransitionReason</a>": "<b><em>string</em></b>",
+   "<a href="#SSS-CreateEventSourceMapping-response-Topics">Topics</a>": [ "<b><em>string</em></b>" ],
+   "<a href="#SSS-CreateEventSourceMapping-response-TumblingWindowInSeconds">TumblingWindowInSeconds</a>": <b><em>number</em></b>,
+   "<a href="#SSS-CreateEventSourceMapping-response-UUID">UUID</a>": "<b><em>string</em></b>"
+}</code></pre>
+    
+      <h2 id="API_CreateEventSourceMapping_ResponseElements">Response Elements</h2>
+      <p>If the action is successful, the service sends back an HTTP 202 response.</p>
+      <p>The following data is returned in JSON format by the service.</p>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      <dl>
+            <dt id="SSS-CreateEventSourceMapping-response-AmazonManagedKafkaEventSourceConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">AmazonManagedKafkaEventSourceConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source.</p>
+               <p>Type: <a href="./API_AmazonManagedKafkaEventSourceConfig.html">AmazonManagedKafkaEventSourceConfig</a> object</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-BatchSize"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">BatchSize</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB).</p>
+               <p>Default value: Varies by service. For Amazon SQS, the default is 10. For all other services, the default is 100.</p>
+               <p>Related setting: When you set <code class="code">BatchSize</code> to a value greater than 10, you must set <code class="code">MaximumBatchingWindowInSeconds</code> to at least 1.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 1. Maximum value of 10000.</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-BisectBatchOnFunctionError"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">BisectBatchOnFunctionError</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) If the function returns an error, split the batch in two and retry. The default value is false.</p>
+               <p>Type: Boolean</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-DestinationConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">DestinationConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) An Amazon SQS queue or Amazon SNS topic destination for discarded records.</p>
+               <p>Type: <a href="./API_DestinationConfig.html">DestinationConfig</a> object</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-DocumentDBEventSourceConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">DocumentDBEventSourceConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Specific configuration settings for a DocumentDB event source.</p>
+               <p>Type: <a href="./API_DocumentDBEventSourceConfig.html">DocumentDBEventSourceConfig</a> object</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-EventSourceArn"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">EventSourceArn</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The Amazon Resource Name (ARN) of the event source.</p>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1})?:(\d<span>{</span>12})?:(.*)</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-FilterCriteria"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">FilterCriteria</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>An object that defines the filter criteria that
+    determine whether Lambda should process an event. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">Lambda event filtering</a>.</p>
+               <p>Type: <a href="./API_FilterCriteria.html">FilterCriteria</a> object</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-FunctionArn"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">FunctionArn</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The ARN of the Lambda function.</p>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">arn:(aws[a-zA-Z-]*)?:lambda:[a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1}:\d<span>{</span>12}:function:[a-zA-Z0-9-_]+(:(\$LATEST|[a-zA-Z0-9-_]+))?</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-FunctionResponseTypes"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">FunctionResponseTypes</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis, DynamoDB Streams, and Amazon SQS) A list of current response type enums applied to the event source mapping.</p>
+               <p>Type: Array of strings</p>
+               <p>Array Members: Minimum number of 0 items. Maximum number of 1 item.</p>
+               <p>Valid Values: <code class="code">ReportBatchItemFailures</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-LastModified"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">LastModified</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The date that the event source mapping was last updated or that its state changed, in Unix time seconds.</p>
+               <p>Type: Timestamp</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-LastProcessingResult"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">LastProcessingResult</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The result of the last Lambda invocation of your function.</p>
+               <p>Type: String</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-MaximumBatchingWindowInSeconds"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">MaximumBatchingWindowInSeconds</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function.
+  You can configure <code class="code">MaximumBatchingWindowInSeconds</code> to any value from 0 seconds to 300 seconds in increments of seconds.</p>
+               <p>For streams and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default
+  batching window is 500 ms. Note that because you can only change <code class="code">MaximumBatchingWindowInSeconds</code> in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it.
+  To restore the default batching window, you must create a new event source mapping.</p>
+               <p>Related setting: For streams and Amazon SQS event sources, when you set <code class="code">BatchSize</code> to a value greater than 10, you must set <code class="code">MaximumBatchingWindowInSeconds</code> to at least 1.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 0. Maximum value of 300.</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-MaximumRecordAgeInSeconds"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">MaximumRecordAgeInSeconds</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) Discard records older than the specified age. The default value is -1,
+which sets the maximum age to infinite. When the value is set to infinite, Lambda never discards old records.</p>
+               <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The minimum valid value for maximum record age is 60s. Although values less than 60 and greater than -1 fall within the parameter's absolute range, they are not allowed</p></div></div>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of -1. Maximum value of 604800.</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-MaximumRetryAttempts"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">MaximumRetryAttempts</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) Discard records after the specified number of retries. The default value is -1,
+which sets the maximum number of retries to infinite. When MaximumRetryAttempts is infinite, Lambda retries failed records until the record expires in the event source.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of -1. Maximum value of 10000.</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-ParallelizationFactor"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">ParallelizationFactor</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) The number of batches to process concurrently from each shard. The default value is 1.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 1. Maximum value of 10.</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-Queues"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">Queues</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p> (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.</p>
+               <p>Type: Array of strings</p>
+               <p>Array Members: Fixed number of 1 item.</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 1000.</p>
+               <p>Pattern: <code class="code">[\s\S]*</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-ScalingConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">ScalingConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Amazon SQS only) The scaling configuration for the event source. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-max-concurrency">Configuring maximum concurrency for Amazon SQS event sources</a>.</p>
+               <p>Type: <a href="./API_ScalingConfig.html">ScalingConfig</a> object</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-SelfManagedEventSource"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">SelfManagedEventSource</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The self-managed Apache Kafka cluster for your event source.</p>
+               <p>Type: <a href="./API_SelfManagedEventSource.html">SelfManagedEventSource</a> object</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-SelfManagedKafkaEventSourceConfig"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">SelfManagedKafkaEventSourceConfig</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Specific configuration settings for a self-managed Apache Kafka event source.</p>
+               <p>Type: <a href="./API_SelfManagedKafkaEventSourceConfig.html">SelfManagedKafkaEventSourceConfig</a> object</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-SourceAccessConfigurations"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">SourceAccessConfigurations</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>An array of the authentication protocol, VPC components, or virtual host to secure and define your event source.</p>
+               <p>Type: Array of <a href="./API_SourceAccessConfiguration.html">SourceAccessConfiguration</a> objects</p>
+               <p>Array Members: Minimum number of 0 items. Maximum number of 22 items.</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-StartingPosition"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">StartingPosition</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The position in a stream from which to start reading. Required for Amazon Kinesis and
+      Amazon DynamoDB Stream event sources. <code class="code">AT_TIMESTAMP</code> is supported only for
+      Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">TRIM_HORIZON | LATEST | AT_TIMESTAMP</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-StartingPositionTimestamp"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">StartingPositionTimestamp</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>With <code class="code">StartingPosition</code> set to <code class="code">AT_TIMESTAMP</code>, the time from which to start
+      reading, in Unix time seconds. <code class="code">StartingPositionTimestamp</code> cannot be in the future.</p>
+               <p>Type: Timestamp</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-State"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">State</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The state of the event source mapping. It can be one of the following: <code class="code">Creating</code>,
+        <code class="code">Enabling</code>, <code class="code">Enabled</code>, <code class="code">Disabling</code>, <code class="code">Disabled</code>,
+        <code class="code">Updating</code>, or <code class="code">Deleting</code>.</p>
+               <p>Type: String</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-StateTransitionReason"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">StateTransitionReason</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>Indicates whether a user or Lambda made the last change to the event source mapping.</p>
+               <p>Type: String</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-Topics"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">Topics</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The name of the Kafka topic.</p>
+               <p>Type: Array of strings</p>
+               <p>Array Members: Fixed number of 1 item.</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 249.</p>
+               <p>Pattern: <code class="code">^[^.]([a-zA-Z0-9\-_.]+)</code>
+               </p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-TumblingWindowInSeconds"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">TumblingWindowInSeconds</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>(Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 0. Maximum value of 900.</p>
+            </dd>
+          
+            <dt id="SSS-CreateEventSourceMapping-response-UUID"><span class="term">
+               <b>
+                  <a href="#API_CreateEventSourceMapping_ResponseSyntax">UUID</a>
+               </b>
+            </span></dt>
+            <dd>
+               <p>The identifier of the event source mapping.</p>
+               <p>Type: String</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_CreateEventSourceMapping_Errors">Errors</h2>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+      <dl>
+            <dt><span class="term">
+               <b>
+                  InvalidParameterValueException
+               </b>
+            </span></dt>
+            <dd>
+               <p>One of the parameters in the request is not valid.</p>
+               <p>HTTP Status Code: 400</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  ResourceConflictException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The resource already exists, or another operation is in progress.</p>
+               <p>HTTP Status Code: 409</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  ResourceNotFoundException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The resource specified in the request does not exist.</p>
+               <p>HTTP Status Code: 404</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  ServiceException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The AWS Lambda service encountered an internal error.</p>
+               <p>HTTP Status Code: 500</p>
+            </dd>
+          
+            <dt><span class="term">
+               <b>
+                  TooManyRequestsException
+               </b>
+            </span></dt>
+            <dd>
+               <p>The request throughput limit was exceeded. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda quotas</a>.</p>
+               <p>HTTP Status Code: 429</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_CreateEventSourceMapping_SeeAlso">See Also</h2>
+      <p>For more information about using this API in one of the language-specific AWS SDKs, see the following:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/aws-cli/lambda-2015-03-31/CreateEventSourceMapping">AWS Command Line Interface</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/DotNetSDKV3/lambda-2015-03-31/CreateEventSourceMapping">AWS SDK for .NET</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForCpp/lambda-2015-03-31/CreateEventSourceMapping">AWS SDK for C++</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForGoV1/lambda-2015-03-31/CreateEventSourceMapping">AWS SDK for Go</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForJavaV2/lambda-2015-03-31/CreateEventSourceMapping">AWS SDK for Java V2</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/lambda-2015-03-31/CreateEventSourceMapping">AWS SDK for JavaScript</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForPHPV3/lambda-2015-03-31/CreateEventSourceMapping">AWS SDK for PHP V3</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/boto3/lambda-2015-03-31/CreateEventSourceMapping">AWS SDK for Python</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForRubyV3/lambda-2015-03-31/CreateEventSourceMapping">AWS SDK for Ruby V3</a>
+            </p>
+         </li></ul></div>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./API_CreateCodeSigningConfig.html">CreateCodeSigningConfig</div><div id="next" class="next-link" accesskey="n" href="./API_CreateFunction.html">CreateFunction</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/API_CreateEventSourceMapping.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/API_CreateEventSourceMapping.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

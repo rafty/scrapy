@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda quotas - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="gettingstarted-limits" /><meta name="default_state" content="gettingstarted-limits" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html" /><meta name="description" content="Maximum sizes, limits, and quotas for Lambda functions and API requests." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-limits.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-limits.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-limits.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-limits.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-limits.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-limits.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-limits.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-limits.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-limits.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-limits.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-limits.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-limits.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-limits.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-limits.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-limits.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-limits.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/gettingstarted-limits.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/gettingstarted-limits.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda quotas" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda quotas - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-limits" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-limits.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-limits.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-limits.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,max,maximum,limits,quota" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Lambda quotas",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-limits" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#compute-and-storage">Compute and storage</a><a href="#function-configuration-deployment-and-execution">Function configuration, deployment,
+        and execution</a><a href="#api-requests">Lambda API requests</a><a href="#quotas-other-services">Other services</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="gettingstarted-limits">Lambda quotas</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>New AWS accounts have reduced concurrency and memory quotas. AWS raises these quotas automatically based on your usage.</p></div></div>
+    <h2 id="compute-and-storage">Compute and storage</h2>
+    <p>Lambda sets quotas for the amount of compute and storage resources that you can use to run and store functions.
+     Quotas for concurrent executions and storage apply per AWS Region. Elastic network interface (ENI) quotas apply per virtual private cloud 
+      (VPC), regardless of region. The following quotas can be increased from their default values. For more information, see <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">Requesting a quota
+        increase</a> in the <em>Service Quotas User Guide</em>.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aad137b7b5"><thead>
+          <tr>
+            <th>Resource</th>
+            <th>Default quota</th>
+            <th>Can be increased up to</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Concurrent executions</p>
+            </td>
+            <td tabindex="-1">
+              <p>1,000</p>
+            </td>
+            <td tabindex="-1">
+              <p>Tens of thousands</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Storage for uploaded functions (.zip file archives) and layers. Each function version and layer
+                version consumes storage.</p>
+              <p> For best practices on managing your code storage, see <a href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/code-storage" rel="noopener noreferrer" target="_blank"><span>
+                Monitoring Lambda code storage</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in Serverless Land.</p>
+            </td>
+            <td tabindex="-1">
+              <p>75 GB</p>
+            </td>
+            <td tabindex="-1">
+              <p>Terabytes</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Storage for functions defined as container images. These images are stored in Amazon ECR.</p>
+            </td>
+            <td tabindex="-1">
+              <p>See <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html">Amazon ECR service
+                  quotas</a>.</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="./configuration-vpc.html">Elastic network interfaces per virtual private cloud
+                (VPC)</a></p>
+              <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This quota is shared with other services, such as Amazon Elastic File System (Amazon EFS). See <a href="https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html">Amazon VPC quotas</a>.</p></div></div>
+            </td>
+            <td tabindex="-1">
+              <p>250</p>
+            </td>
+            <td tabindex="-1">
+              <p>Thousands</p>
+            </td>
+          </tr>
+        </table></div></div>
+    <p>For details on concurrency and how Lambda scales your function concurrency in response to traffic, see <a href="./lambda-concurrency.html">Lambda function scaling</a>.</p>
+   
+    <h2 id="function-configuration-deployment-and-execution">Function configuration, deployment, and
+        execution</h2>
+    
+    <p>The following quotas apply to function configuration, deployment, and execution. Except as noted, they can't be changed.</p>
+    
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The Lambda documentation, log messages, and console use the abbreviation MB (rather than MiB) to refer to
+        1024 KB.</p></div></div>
+    <div class="table-container"><div class="table-contents"><table id="w917aad137b9b9"><thead>
+          <tr>
+            <th>Resource</th>
+            <th>Quota</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Function <a href="./configuration-function-common.html">memory allocation</a></p>
+            </td>
+            <td tabindex="-1">
+              <p>128 MB to 10,240 MB, in 1-MB increments.</p>
+              <p><b>Note:</b> Lambda allocates CPU power in proportion to the amount of memory configured. You can increase or decrease the memory and CPU power allocated to your function using the <b>Memory (MB)</b> setting. At 1,769 MB, a function has the equivalent of one vCPU.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Function timeout</p>
+            </td>
+            <td tabindex="-1">
+              <p>900 seconds (15 minutes)</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Function <a href="./configuration-envvars.html">environment variables</a></p>
+            </td>
+            <td tabindex="-1">
+              <p>4 KB, for all environment variables associated with the function, in aggregate</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Function <a href="./access-control-resource-based.html">resource-based policy</a></p>
+            </td>
+            <td tabindex="-1">
+              <p>20 KB</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Function <a href="./chapter-layers.html">layers</a></p>
+            </td>
+            <td tabindex="-1">
+              <p>five layers</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Function <a href="./burst-concurrency.html">burst concurrency</a></p>
+            </td>
+            <td tabindex="-1">
+              <p>500 - 3000 (varies per Region)</p>
+              <p>Can be increased from default values. Service Quotas do not support changes in burst limits at this time. Contact AWS Support to inquire further.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="./lambda-invocation.html">Invocation payload</a> (request and response)</p>
+            </td>
+            <td tabindex="-1">
+              <p>6 MB each for request and response (synchronous)</p>
+              <p>20 MB for each <a href="./configuration-response-streaming.html">streamed response</a> (Synchronous. The payload size for streamed responses can be increased from default values. Contact AWS Support to inquire further.)</p>
+              <p>256 KB (asynchronous)</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Bandwidth for <a href="./configuration-response-streaming.html">streamed responses</a></p>
+            </td>
+            <td tabindex="-1">
+              <p>Uncapped for the first 6 MB of your function's response</p>
+              <p>For responses larger than 6 MB, 2MBps for the remainder of the response</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="./gettingstarted-package.html">Deployment package (.zip file archive)</a> size</p>
+            </td>
+            <td tabindex="-1">
+              <p>50 MB (zipped, for direct upload)</p>
+              <p>250 MB (unzipped)</p>
+              <p>This quota applies to all the files you upload, including layers and custom runtimes.</p>
+              <p>3 MB (console editor)</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="./images-create.html#images-parms">Container image settings</a> size</p>
+            </td>
+            <td tabindex="-1">
+              <p>16 KB</p>
+            </td>
+          </tr>         
+          <tr>
+            <td tabindex="-1">
+              <p><a href="./images-create.html">Container image</a> code package size</p>
+            </td>
+            <td tabindex="-1">
+              <p>10 GB (maximum uncompressed image size, including all layers)</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Test events (console editor)</p>
+            </td>
+            <td tabindex="-1">
+              <p>10</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code>/tmp</code> directory storage</p>
+            </td>
+            <td tabindex="-1">
+              <p>Between 512 MB and 10,240 MB, in 1-MB increments</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>File descriptors</p>
+            </td>
+            <td tabindex="-1">
+              <p>1,024</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Execution processes/threads</p>
+            </td>
+            <td tabindex="-1">
+              <p>1,024</p>
+            </td>
+          </tr>
+        </table></div></div>
+   
+    <h2 id="api-requests">Lambda API requests</h2>
+    
+    <p>The following quotas are associated with Lambda API requests.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aad137c11b7"><thead>
+          <tr>
+            <th>Resource</th>
+            <th>Quota</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Invocation requests per function per Region (synchronous)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Each instance of your execution environment can serve up to 10 requests per second.
+                In other words, the total invocation limit is 10 times your concurrency limit. See
+                <a href="./lambda-concurrency.html">Lambda function scaling</a>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Invocation requests per function per Region (asynchronous)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Each instance of your execution environment can serve an unlimited number of requests.
+                In other words, the total invocation limit is based only on concurrency available to your
+                function. See <a href="./lambda-concurrency.html">Lambda function scaling</a>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Invocation requests per function version or alias (requests per second)</p>
+            </td>
+            <td tabindex="-1">
+              <p>10 x allocated <a href="./configuration-concurrency.html">provisioned concurrency</a></p>
+              <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This quota applies only to functions that use provisioned concurrency.</p></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="./API_GetFunction.html">GetFunction</a> API requests</p>
+            </td>
+            <td tabindex="-1">
+              <p>100 requests per second</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="./API_GetPolicy.html">GetPolicy</a> API requests</p>
+            </td>
+            <td tabindex="-1">
+              <p>15 requests per second</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Remainder of the control plane API requests (excludes invocation, GetFunction, and GetPolicy
+                requests)</p>
+            </td>
+            <td tabindex="-1">
+              <p>15 requests per second</p>
+            </td>
+          </tr>
+        </table></div></div>
+   
+    <h2 id="quotas-other-services">Other services</h2>
+    
+    <p>Quotas for other services, such as AWS Identity and Access Management (IAM), Amazon CloudFront (Lambda@Edge), and Amazon Virtual Private Cloud (Amazon VPC), can
+      impact your Lambda functions. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS
+        service quotas</a> in the <em>Amazon Web Services General Reference</em>, and <a href="./lambda-services.html">Using AWS Lambda with other services</a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./example_cross_LambdaScheduledEvents_section.html">Use scheduled events to invoke a Lambda function</div><div id="next" class="next-link" accesskey="n" href="./glossary.html">AWS glossary</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-limits.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-limits.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

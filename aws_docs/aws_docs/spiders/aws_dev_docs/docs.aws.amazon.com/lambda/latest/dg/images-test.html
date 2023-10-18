@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Testing Lambda container images locally - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="images-test" /><meta name="default_state" content="images-test" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/images-test.html" /><meta name="description" content="Test the container image for your AWS Lambda function locally using the runtime interface emulator." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/images-test.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/images-test.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/images-test.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/images-test.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/images-test.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/images-test.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/images-test.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/images-test.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/images-test.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/images-test.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/images-test.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/images-test.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/images-test.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/images-test.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/images-test.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/images-test.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/images-test.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/images-test.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/images-test.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/images-test.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/images-test.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/images-test.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Testing Lambda container images locally" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Testing Lambda container images locally - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#images-test" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/images-test.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/images-test.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/images-test.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Deploying Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-deploy-functions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Testing Lambda container images locally",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-deploy-functions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#images-test" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#images-test-limitations">Guidelines</a><a href="#images-test-env">Environment variables</a><a href="#images-test-AWSbase">Testing AWS base images</a><a href="#images-test-provided">Testing provided.al2 base images</a><a href="#images-test-alt">Testing non-AWS images</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="images-test">Testing Lambda container images locally</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use the Lambda runtime interface emulator to locally
+    test a container image function before uploading it to Amazon Elastic Container Registry (Amazon ECR) and deploying it to Lambda. The emulator is a proxy for the <a href="./runtimes-api.html">Lambda runtime API</a>. It's a lightweight web server that converts HTTP
+    requests into JSON events to pass to the Lambda function in the container image.</p><p>The <a href="./images-create.html#runtimes-images-lp">AWS base images</a> and <a href="./images-create.html#runtimes-images-custom">base images for custom runtimes</a> include the runtime interface emulator. If you use an alternative base image, such as an Alpine Linux or Debian image, you can <a href="#images-rie-build">build the emulator into your image</a> or <a href="#images-test-add">install it on your local machine</a>.</p><p>The runtime interface emulator is available on the <a href="https://github.com/aws/aws-lambda-runtime-interface-emulator/" rel="noopener noreferrer" target="_blank"><span>AWS GitHub repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. There are separate packages for the
+    x86-64 and arm64 architectures.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#images-test-limitations">Guidelines for using the runtime interface emulator</a></li><li><a href="#images-test-env">Environment variables</a></li><li><a href="#images-test-AWSbase">Testing images built from AWS base images</a></li><li><a href="#images-test-provided">Testing images built from the provided.al2 base image</a></li><li><a href="#images-test-alt">Testing images built from alternative base images</a></li></ul></div>
+    <h2 id="images-test-limitations">Guidelines for using the runtime interface emulator</h2>
+    <p>Note the following guidelines when using the runtime interface emulator:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The RIE does not emulate Lambda security and authentication configurations, or Lambda orchestration.</p>
+      </li><li class="listitem"><p>Lambda provides an emulator for each of the instruction set architectures.</p></li><li class="listitem"><p>The emulator does not support AWS X-Ray tracing or other Lambda integrations.</p></li></ul></div>
+   
+    <h2 id="images-test-env">Environment variables</h2>
+    <p>The runtime interface emulator supports a subset of <a href="./configuration-envvars.html">environment
+      variables</a> for the Lambda function in the local running image.</p>
+    <p>If your function uses security credentials, you can configure the credentials by setting the following
+      environment variables:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p><code class="code">AWS_ACCESS_KEY_ID</code></p></li><li class="listitem"><p><code class="code">AWS_SECRET_ACCESS_KEY</code></p></li><li class="listitem"><p><code class="code">AWS_SESSION_TOKEN</code></p></li><li class="listitem"><p><code class="code">AWS_DEFAULT_REGION</code></p></li></ul></div>
+    <p>To set the function timeout, configure <code class="code">AWS_LAMBDA_FUNCTION_TIMEOUT</code>. Enter the maximum number of
+      seconds that you want to allow the function to run.</p>
+    <p>The emulator does not populate the following Lambda environment variables. However, you can set them to match
+      the values that you expect when the function runs in the Lambda service:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p><code class="code">AWS_LAMBDA_FUNCTION_VERSION</code></p></li><li class="listitem"><p><code class="code">AWS_LAMBDA_FUNCTION_NAME</code></p></li><li class="listitem"><p><code class="code">AWS_LAMBDA_FUNCTION_MEMORY_SIZE</code></p></li></ul></div>
+   
+    <h2 id="images-test-AWSbase">Testing images built from AWS base images</h2>
+    
+    <p>The <a href="./images-create.html#runtimes-images-lp">AWS base images for Lambda</a> include the runtime interface emulator. After building your Docker image, follow these steps to test it locally.</p>
+    <div class="procedure"><ol><li>
+          <p>Start the Docker image with the <b>docker run</b> command. In this example,
+              <code class="code">docker-image</code> is the image name and <code class="code">test</code> is the tag.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -p 9000:8080 <code class="replaceable">docker-image</code>:<code class="replaceable">test</code></code></pre>
+          <p>This command runs the image as a container and creates a local endpoint at
+            <code class="code">localhost:9000/2015-03-31/functions/function/invocations</code>.</p>
+        </li><li>
+          <p>From a new terminal window, post an event to the following endpoint using a <b>curl</b>
+            command:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<span>{</span>}'</code></pre>
+          <p>This command invokes the function with an empty event and returns a response. If you're using your own function code rather than the sample function code, you might want to invoke the function with a JSON payload. Example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<code class="replaceable"><span>{</span>"payload":"hello world!"}</code>'</code></pre>
+        </li><li>
+          <p>Get the container ID.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">docker ps</code></pre>
+        </li><li>
+          <p>Use the <a href="https://docs.docker.com/engine/reference/commandline/kill/" rel="noopener noreferrer" target="_blank"><span>docker kill</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to stop the container. In this command, replace <code class="code">3766c4ab331c</code> with the container ID from the previous step.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker kill <code class="replaceable">3766c4ab331c</code></code></pre>
+        </li></ol></div>
+   
+    <h2 id="images-test-provided">Testing images built from the provided.al2 base image</h2>
+    
+    <p>The <a href="./images-create.html#runtimes-images-custom">base images for custom runtimes</a> include the runtime interface emulator. After building your Docker image, follow these steps to test it locally.</p>
+  <div class="procedure"><ol><li>
+      <p>Start the Docker image with the <b>docker run</b> command.</p>
+          <awsdocs-tabs><dl style="display: none">
+  <dt>Node.js</dt><dd tab-id="node.js">
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -d -v ~/.aws-lambda-rie:/aws-lambda -p 9000:8080 \
+  --entrypoint /aws-lambda/aws-lambda-rie \
+  <code class="replaceable">docker-image:test</code> \
+    <code class="replaceable">/usr/local/bin/npx aws-lambda-ric index.handler</code></code></pre>
+  <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">/usr/local/bin/npx aws-lambda-ric</code>: The <code class="code">npx</code> command to start the Node.js runtime interface client</p>
+      </li><li class="listitem">
+        <p><code class="code">index.handler</code>: The Lambda function handler (usually the <code class="code">CMD</code> in your Dockerfile)</p>
+      </li></ul></div>
+  </dd>
+  <dt>Python</dt><dd tab-id="python">
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -d -v ~/.aws-lambda-rie:/aws-lambda -p 9000:8080 \
+  --entrypoint /aws-lambda/aws-lambda-rie \
+  <code class="replaceable">docker-image:test</code> \
+    <code class="replaceable">/usr/local/bin/python -m awslambdaric app.handler</code></code></pre>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">usr/local/bin/python -m awslambdaric</code>: The Python interpreter command to run the Python runtime interface client as a script</p>
+      </li><li class="listitem">
+        <p><code class="code">app.handler</code>: The Lambda function handler (usually the <code class="code">CMD</code> in your Dockerfile)</p>
+      </li></ul></div>
+    </dd>
+  <dt>Java</dt><dd tab-id="java">
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -d -v ~/.aws-lambda-rie:/aws-lambda -p 9000:8080 \
+  --entrypoint /aws-lambda/aws-lambda-rie \
+  <code class="replaceable">docker-image:test</code> \
+    <code class="replaceable">/usr/bin/java -cp './*' com.amazonaws.services.lambda.runtime.api.client.AWSLambda example.App::sayHello</code></code></pre>
+  <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">/usr/bin/java -cp './*' com.amazonaws.services.lambda.runtime.api.client.AWSLambda</code>: Sets the classpath to the Java runtime interface client</p>
+      </li><li class="listitem">
+        <p><code class="code">app.handlerexample.App::sayHello</code>: The Lambda function handler (usually the <code class="code">CMD</code> in your Dockerfile)</p>
+      </li></ul></div>
+    </dd>
+  <dt>Go</dt><dd tab-id="go">
+  <p>In the following example, <code class="code">/main</code> is the binary that is compiled during the Docker build.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -d -v ~/.aws-lambda-rie:/aws-lambda -p 9000:8080 \
+  --entrypoint /aws-lambda/aws-lambda-rie \
+  <code class="replaceable">docker-image:test</code> \
+    <code class="replaceable">/main</code></code></pre>
+    </dd>
+  <dt>Ruby</dt><dd tab-id="ruby">
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -d -v ~/.aws-lambda-rie:/aws-lambda -p 9000:8080 \
+  --entrypoint /aws-lambda/aws-lambda-rie \
+  <code class="replaceable">docker-image:test</code> \
+    <code class="replaceable">aws_lambda_ric index.LambdaFunction::Handler.process</code></code></pre>
+  <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">aws_lambda_ric</code>: The Ruby runtime interface client</p>
+      </li><li class="listitem">
+        <p><code class="code">index.LambdaFunction::Handler.process</code>: The Lambda function handler (usually the <code class="code">CMD</code> in your Dockerfile)</p>
+      </li></ul></div>
+    </dd>
+  </dl></awsdocs-tabs>
+      <p>This command runs the image as a container and creates a local endpoint at
+        <code class="code">localhost:9000/2015-03-31/functions/function/invocations</code>.</p>
+    </li><li>
+      <p>Post an event to the following endpoint using a <b>curl</b>
+        command:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<span>{</span>}'</code></pre>
+      <p>This command invokes the function with an empty event and returns a response. Some functions might require a JSON payload. Example:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<code class="replaceable"><span>{</span>"payload":"hello world!"}</code>'</code></pre>
+    </li><li>
+      <p>Get the container ID.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">docker ps</code></pre>
+    </li><li>
+      <p>Use the <a href="https://docs.docker.com/engine/reference/commandline/kill/" rel="noopener noreferrer" target="_blank"><span>docker kill</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to stop the container. In this command, replace <code class="code">3766c4ab331c</code> with the container ID from the previous step.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker kill <code class="replaceable">3766c4ab331c</code></code></pre>
+    </li></ol></div>
+   
+  <h2 id="images-test-alt">Testing images built from alternative base images</h2>
+  
+  <p>If you use an alternative base image, such as an Alpine Linux or Debian image, you can <a href="#images-rie-build">build the emulator into your image</a> or <a href="#images-test-add">install it on your local machine</a>.</p>
+   
+    <h3 id="images-rie-build">Building the runtime interface emulator into an image</h3>
+    <div class="procedure"><h6>To build the emulator into your image</h6><ol><li>
+        <p>Create a script and save it in your project directory. Set execution permissions for the script
+          file.</p>
+        <p>The script checks for the presence of the <code class="code">AWS_LAMBDA_RUNTIME_API</code> environment variable, which
+          indicates the presence of the runtime API. If the runtime API is present, the script runs the <a href="./images-create.html#images-ric">runtime interface client</a>. Otherwise, the script runs the runtime
+          interface emulator.</p>
+        <p>Choose your language to see an example script:</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Node.js</dt><dd tab-id="node.js">
+		<p>In the following example, <code class="code">/usr/local/bin/npx aws-lambda-ric</code> is the <code class="code">npx</code> command to start the Node.js runtime interface client.</p>
+      <div class="example"><h6>Example  entry_script.sh</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/sh
+if [ -z "$<span>{</span>AWS_LAMBDA_RUNTIME_API}" ]; then
+  exec /usr/local/bin/aws-lambda-rie <code class="replaceable">/usr/local/bin/npx aws-lambda-ric</code> $@
+else
+  exec <code class="replaceable">/usr/local/bin/npx aws-lambda-ric</code> $@
+fi</code></pre></div></div>
+		</dd>
+      <dt>Python</dt><dd tab-id="python">
+		<p>In the following example, <code class="code">/usr/local/bin/python -m awslambdaric</code> is the Python interpreter command to run the Python runtime interface client as a script.</p>
+      <div class="example"><h6>Example  entry_script.sh</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/sh
+if [ -z "$<span>{</span>AWS_LAMBDA_RUNTIME_API}" ]; then
+  exec /usr/local/bin/aws-lambda-rie <code class="replaceable">/usr/local/bin/python -m awslambdaric</code> $@
+else
+  exec <code class="replaceable">/usr/local/bin/python -m awslambdaric</code> $@
+fi</code></pre></div></div>
+        </dd>
+      <dt>Java</dt><dd tab-id="java">
+		<p>In the following example, <code class="code">/usr/bin/java -cp './*' com.amazonaws.services.lambda.runtime.api.client.AWSLambda</code> sets the classpath to the Java runtime interface client.</p>
+      <div class="example"><h6>Example  entry_script.sh</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/sh
+if [ -z "$<span>{</span>AWS_LAMBDA_RUNTIME_API}" ]; then
+  exec /usr/local/bin/aws-lambda-rie <code class="replaceable">/usr/bin/java -cp './*' com.amazonaws.services.lambda.runtime.api.client.AWSLambda</code> $@
+else
+  exec <code class="replaceable">/usr/bin/java -cp './*' com.amazonaws.services.lambda.runtime.api.client.AWSLambda</code> $@
+fi</code></pre></div></div>
+        </dd>
+      <dt>Go</dt><dd tab-id="go">
+		<p>In the following example, <code class="code">/main</code> is the binary that is compiled during the Docker build.</p>
+      <div class="example"><h6>Example  entry_script.sh</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/sh
+if [ -z "$<span>{</span>AWS_LAMBDA_RUNTIME_API}" ]; then
+  exec /usr/local/bin/aws-lambda-rie <code class="replaceable">/main</code> $@
+else
+  exec <code class="replaceable">/main</code> $@
+fi</code></pre></div></div>
+        </dd>
+      <dt>Ruby</dt><dd tab-id="ruby">
+		<p>In the following example, <code class="code">aws_lambda_ric</code> is the Ruby runtime interface client.</p>
+      <div class="example"><h6>Example  entry_script.sh</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/sh
+if [ -z "$<span>{</span>AWS_LAMBDA_RUNTIME_API}" ]; then
+  exec /usr/local/bin/aws-lambda-rie <code class="replaceable">aws_lambda_ric</code> $@
+else
+  exec <code class="replaceable">aws_lambda_ric</code> $@
+fi</code></pre></div></div>
+        </dd>
+    </dl></awsdocs-tabs>
+      </li><li>
+        <p>Download the runtime interface emulator for your target architecture from GitHub into your project
+          directory. Lambda provides an emulator for each of the instruction set architectures.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">curl -Lo aws-lambda-rie https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie \
+&amp;&amp; chmod +x aws-lambda-rie
+</code></pre>
+        <p>To install the arm64 emulator, replace the GitHub repository URL in the previous command with the following:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie-arm64</code></pre>
+      </li><li>
+        <p>Add the following lines to your Dockerfile. The <code class="code">ENTRYPOINT</code> includes the script that you created in step 1 and your function handler.</p>
+        <div class="example"><h6>Example  lines to add to Dockerfile</h6><div class="example-contents"><p>In the following example, replace <code class="code">lambda_function.handler</code> with your function handler.</p></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="dockerfile ">COPY ./entry_script.sh /entry_script.sh
+RUN chmod +x /entry_script.sh
+ADD aws-lambda-rie /usr/local/bin/aws-lambda-rie
+ENTRYPOINT [ "/entry_script.sh","<code class="replaceable">lambda_function.handler</code>" ]</code></pre>
+      </li><li>
+        <p>Build the Docker image with the <a href="https://docs.docker.com/engine/reference/commandline/build/" rel="noopener noreferrer" target="_blank"><span>docker build</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command. The
+          following example names the image <code class="code">docker-image</code> and gives it the <code class="code">test</code> <a href="https://docs.docker.com/engine/reference/commandline/build/#tag" rel="noopener noreferrer" target="_blank"><span>tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker build --platform linux/amd64 -t <code class="replaceable">docker-image</code>:<code class="replaceable">test</code> .</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The command specifies the <code class="code">--platform linux/amd64</code> option to ensure that your container is compatible with the Lambda execution environment regardless of the  
+       architecture of your build machine. If you intend to create a Lambda function using the ARM64 instruction set architecture, be sure to change the command to use the <code class="code">--platform linux/arm64</code> 
+       option instead.</p></div></div>
+      </li><li>
+          <p>Start the Docker image with the <b>docker run</b> command. In this example,
+              <code class="code">docker-image</code> is the image name and <code class="code">test</code> is the tag.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -p 9000:8080 <code class="replaceable">docker-image</code>:<code class="replaceable">test</code></code></pre>
+          <p>This command runs the image as a container and creates a local endpoint at
+            <code class="code">localhost:9000/2015-03-31/functions/function/invocations</code>.</p>
+        </li><li>
+          <p>From a new terminal window, post an event to the following endpoint using a <b>curl</b>
+            command:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<span>{</span>}'</code></pre>
+          <p>This command invokes the function with an empty event and returns a response. If you're using your own function code rather than the sample function code, you might want to invoke the function with a JSON payload. Example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<code class="replaceable"><span>{</span>"payload":"hello world!"}</code>'</code></pre>
+        </li><li>
+          <p>Get the container ID.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">docker ps</code></pre>
+        </li><li>
+          <p>Use the <a href="https://docs.docker.com/engine/reference/commandline/kill/" rel="noopener noreferrer" target="_blank"><span>docker kill</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to stop the container. In this command, replace <code class="code">3766c4ab331c</code> with the container ID from the previous step.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker kill <code class="replaceable">3766c4ab331c</code></code></pre>
+        </li></ol></div>
+   
+   
+    <h3 id="images-test-add">Install the runtime interface emulator locally</h3>
+    <p>To install the runtime interface emulator on your local machine, download the package for your preferred architecture from GitHub. Then, use the <b>docker run</b> command to start the container image and set
+      the <code class="code">--entrypoint</code> to the emulator. For more information, choose the instructions for your preferred language:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="./nodejs-image.html#nodejs-alt-test">Node.js</a></p>
+      </li><li class="listitem">
+        <p><a href="./python-image.html#python-alt-test">Python</a></p>
+      </li><li class="listitem">
+        <p><a href="./java-image.html#java-alt-test">Java</a></p>
+      </li><li class="listitem">
+        <p><a href="./go-image.html#go-alt-test">Go</a></p>
+      </li><li class="listitem">
+        <p><a href="./ruby-image.html#ruby-alt-test">Ruby</a></p>
+      </li></ul></div>
+   
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./images-create.html">Container images</div><div id="next" class="next-link" accesskey="n" href="./lambda-invocation.html">Invoking functions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/images-test.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/images-test.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

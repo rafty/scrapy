@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Testing Lambda functions in the console - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="testing-functions" /><meta name="default_state" content="testing-functions" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/testing-functions.html" /><meta name="description" content="Create shareable or private test events in the Lambda console to test your Lambda function's invocation results." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/testing-functions.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/testing-functions.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/testing-functions.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/testing-functions.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/testing-functions.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/testing-functions.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/testing-functions.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/testing-functions.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/testing-functions.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/testing-functions.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/testing-functions.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/testing-functions.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/testing-functions.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/testing-functions.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/testing-functions.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/testing-functions.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/testing-functions.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/testing-functions.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/testing-functions.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/testing-functions.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/testing-functions.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/testing-functions.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Testing Lambda functions in the console" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Testing Lambda functions in the console - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#testing-functions" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/testing-functions.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/testing-functions.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/testing-functions.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,invoke,trigger,kick off function,start function,send request to function,event source mapping,function testing,Lambda test events,shareable test events,private events" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Invoking Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Testing Lambda functions in the console",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#testing-functions" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#invoke-with-event">Invoking functions with test events</a><a href="#creating-private-events">Private test events</a><a href="#creating-shareable-events">Shareable test events</a><a href="#deleting-test-schemas">Deleting shareable test event schemas</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="testing-functions">Testing Lambda functions in the console</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can test your Lambda function in the console by invoking your function with a test event.
+    A <em>test event</em> is a JSON input to your function. If your function doesn't
+    require input, the event can be an empty document <code class="code">(<span>{</span>})</code>.</p>
+    <h2 id="invoke-with-event">Invoking functions with test events</h2>
+    <p>When you run a test event in the console, Lambda synchronously invokes your function with
+      the test event. The function runtime converts the JSON document into an object and passes it
+      to your code's handler method for processing.</p>
+    <div class="procedure"><h6>To test a function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of the function that you want to test.</p>
+      </li><li>
+        <p>Choose the <b>Test</b> tab.</p>
+      </li><li>
+        <p>Under <b>Test event</b>, choose <b>Saved event</b>, and
+          then choose the saved event that you want to use.</p>
+      </li><li>
+        <p>Choose <b>Test</b>.</p>
+      </li><li>
+        <p>To review the test results, under <b>Execution result</b>, expand
+            <b>Details</b>.</p>
+      </li></ol></div>
+    <p>To invoke your function without saving your test event, choose <b>Test</b>
+      before saving. This creates an unsaved test event that Lambda preserves for the duration of the
+      session.</p>
+    <p>You can also access your saved and unsaved test events on the <b>Code</b>
+      tab. From there, choose <b>Test</b>, and then choose your test event.</p>
+   
+    <h2 id="creating-private-events">Private test events</h2>
+    <p>Private test events are available only to the event creator, and they require no
+      additional permissions to use. You can create and save up to 10 private test events per function.</p>
+    <div class="procedure"><h6>To create a private test event</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of the function that you want to test.</p>
+      </li><li>
+        <p>Choose the <b>Test</b> tab.</p>
+      </li><li>
+        <p>Under <b>Test event</b>, do the following:</p>
+        <ol><li>
+            <p>Choose a <b>Template</b>.</p>
+          </li><li>
+            <p>Enter a <b>Name</b> for the test.</p>
+          </li><li>
+            <p>In the text entry box, enter the JSON test event.</p>
+          </li><li>
+            <p>Under <b>Event sharing settings</b>, choose
+              <b>Private</b>.</p>
+          </li></ol>
+      </li><li>
+        <p>Choose <b>Save changes</b>.</p>
+      </li></ol></div>
+    <p>You can also create new test events on the <b>Code</b> tab. From there,
+      choose <b>Test</b>, <b>Configure test event</b>.</p>
+   
+    <h2 id="creating-shareable-events">Shareable test events</h2>
+    <p>Shareable test events are test events that you can share with other users in the same AWS account. 
+      You can edit other users' shareable test events and invoke your function with them.</p>
+    <p>Lambda saves shareable test events as schemas in an <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-schema-registry.html">Amazon EventBridge (CloudWatch Events)
+      schema registry</a> named <code class="code">lambda-testevent-schemas</code>. As Lambda utilizes this registry
+      to store and call shareable test events you create, we recommend that you do not edit this registry or create a registry
+      using the <code class="code">lambda-testevent-schemas</code> name.</p>
+    <p>To see, share, and edit shareable test events, you must have permissions for all of the
+      following <a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/operations.html">EventBridge (CloudWatch Events) schema registry API operations</a>:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname.html#CreateRegistry"><code class="code">schemas.CreateRegistry</code></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-name-schemaname.html#CreateSchema"><code class="code">schemas.CreateSchema</code></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-name-schemaname.html#DeleteSchema"><code class="code">schemas.DeleteSchema</code></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-name-schemaname-version-schemaversion.html#DeleteSchemaVersion"><code class="code">schemas.DeleteSchemaVersion</code></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname.html#DescribeRegistry"><code class="code">schemas.DescribeRegistry</code></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-name-schemaname.html#DescribeSchema"><code class="code">schemas.DescribeSchema</code></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-discover.html#GetDiscoveredSchema"><code class="code">schemas.GetDiscoveredSchema</code></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-name-schemaname-versions.html#ListSchemaVersions"><code class="code">schemas.ListSchemaVersions</code></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-name-schemaname.html#UpdateSchema"><code class="code">schemas.UpdateSchema</code></a></p>
+      </li></ul></div>
+    <p>Note that saving edits made to a shareable test event overwrites that event.</p>
+    <p>If you cannot create, edit, or see shareable test events, check that your account has the
+      required permissions for these operations. If you have the required permissions but still
+      cannot access shareable test events, check for any <a href="./access-control-resource-based.html">resource-based policies</a> that might limit
+      access to the EventBridge (CloudWatch Events) registry.</p>
+    <div class="procedure"><h6>To create a shareable test event</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of the function that you want to test.</p>
+      </li><li>
+        <p>Choose the <b>Test</b> tab.</p>
+      </li><li>
+        <p>Under <b>Test event</b>, do the following:</p>
+        <ol><li>
+            <p>Choose a <b>Template</b>.</p>
+          </li><li>
+            <p>Enter a <b>Name</b> for the test.</p>
+          </li><li>
+            <p>In the text entry box, enter the JSON test event.</p>
+          </li><li>
+            <p>Under <b>Event sharing settings</b>, choose
+              <b>Shareable</b>.</p>
+          </li></ol>
+      </li><li>
+        <p>Choose <b>Save changes</b>.</p>
+      </li></ol></div>
+   
+    <h2 id="deleting-test-schemas">Deleting shareable test event schemas</h2>
+    <p>When you delete shareable test events, Lambda removes
+      them from the <code class="code">lambda-testevent-schemas</code> registry. If you remove the last shareable test event from the registry, Lambda
+      deletes the registry.</p>
+    <p>If you delete the function, Lambda does not delete any associated shareable test event schemas. You must clean
+      up these resources manually from the <a href="https://console.aws.amazon.com/events" rel="noopener noreferrer" target="_blank"><span>EventBridge (CloudWatch Events) console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-invocation.html">Invoking functions</div><div id="next" class="next-link" accesskey="n" href="./invocation-sync.html">Synchronous invocation</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/testing-functions.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/testing-functions.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

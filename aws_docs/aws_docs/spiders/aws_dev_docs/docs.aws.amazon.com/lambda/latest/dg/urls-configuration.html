@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Creating and managing Lambda function URLs - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="urls-configuration" /><meta name="default_state" content="urls-configuration" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html" /><meta name="description" content="Configure a Lambda function URL to assign an HTTP(S) endpoint to your Lambda function without having to integrate with other AWS services." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/urls-configuration.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/urls-configuration.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/urls-configuration.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/urls-configuration.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/urls-configuration.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/urls-configuration.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/urls-configuration.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/urls-configuration.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/urls-configuration.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/urls-configuration.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/urls-configuration.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/urls-configuration.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/urls-configuration.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/urls-configuration.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/urls-configuration.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/urls-configuration.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/urls-configuration.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/urls-configuration.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Creating and managing Lambda function URLs" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Creating and managing Lambda function URLs - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#urls-configuration" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-configuration.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-configuration.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-configuration.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,invoke,trigger,kick off function,start function,send request to function,event source mapping,function URL,Lambda function HTTP,Lambda function endpoint,creating function URLs,managing function URLs,configuring function URLs,function URL configuration,Lambda HTTP endpoint" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Invoking Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda function URLs",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Creating and managing Lambda function URLs",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#urls-configuration" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#create-url-console">Creating a function URL (console)</a><a href="#create-url-cli">Creating a function URL (AWS CLI)</a><a href="#urls-cfn">Adding a function URL to a CloudFormation template</a><a href="#urls-cors">Cross-origin resource sharing (CORS)</a><a href="#urls-throttling">Throttling function URLs</a><a href="#urls-deactivating">Deactivating function URLs</a><a href="#w157aac31c97c23c41">Deleting function URLs</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="urls-configuration">Creating and managing Lambda function URLs</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>A function URL is a dedicated HTTP(S) endpoint for your Lambda function. You can create and configure a function URL through the Lambda console or the Lambda API. When you create a function URL, Lambda automatically generates a unique URL endpoint for you. Once you create a function URL, its URL endpoint never changes. Function
+      URL endpoints have the following format:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">https://<code class="userinput">&lt;url-id&gt;</code>.lambda-url.&lt;region&gt;.on.aws</code></pre><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Function URLs are not supported in the following regions: Asia Pacific (Hyderabad) (<code class="code">ap-south-2</code>),  Asia Pacific (Melbourne) (<code class="code">ap-southeast-4</code>), Europe (Spain) (<code class="code">eu-south-2</code>), Europe (Zurich) (<code class="code">eu-central-2</code>), Israel (Tel Aviv) (<code class="code">il-central-1</code>), and Middle East (UAE) (<code class="code">me-central-1</code>).</p></div></div><p>The following section show how to create and manage a function URL using the Lambda console, AWS CLI, and AWS CloudFormation template</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#create-url-console">Creating a function URL (console)</a></li><li><a href="#create-url-cli">Creating a function URL (AWS CLI)</a></li><li><a href="#urls-cfn">Adding a function URL to a CloudFormation template</a></li><li><a href="#urls-cors">Cross-origin resource sharing (CORS)</a></li><li><a href="#urls-throttling">Throttling function URLs</a></li><li><a href="#urls-deactivating">Deactivating function URLs</a></li><li><a href="#w157aac31c97c23c41">Deleting function URLs</a></li></ul></div>
+    <h2 id="create-url-console">Creating a function URL (console)</h2>
+    <p>Follow these steps to create a function URL using the console.</p>
+    <div class="collapsible"><awsui-expandable-section variant="container" header="To create a function URL for an existing function (console)" id="create-url-existing-function" expanded="true"><div class="procedure"><ol><li>
+            <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+          </li><li>
+            <p>Choose the name of the function that you want to create the function URL for.</p>
+          </li><li>
+            <p>Choose the <b>Configuration</b> tab, and then choose <b>Function
+              URL</b>.</p>
+          </li><li>
+            <p>Choose <b>Create function URL</b>.</p>
+          </li><li>
+            <p>For <b>Auth type</b>, choose <b>AWS_IAM</b> or
+                <b>NONE</b>. For more information about function URL authentication, see <a href="./urls-auth.html">Security and auth model</a>.</p>
+          </li><li>
+            <p>(Optional) Select <b>Configure cross-origin resource sharing (CORS)</b>, and then configure
+              the CORS settings for your function URL. For more information about CORS, see <a href="#urls-cors">Cross-origin resource sharing (CORS)</a>.</p>
+          </li><li>
+            <p>Choose <b>Save</b>.</p>
+          </li></ol></div><p>This creates a function URL for the <code class="code">$LATEST</code> unpublished version of your function. The function URL
+          appears in the <b>Function overview</b> section of the console.</p></awsui-expandable-section></div>
+    <div class="collapsible"><awsui-expandable-section variant="container" header="To create a function URL for an existing alias (console)" id="create-url-existing-alias" expanded="true"><div class="procedure"><ol><li>
+            <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+          </li><li>
+            <p>Choose the name of the function with the alias that you want to create the function URL for.</p>
+          </li><li>
+            <p>Choose the <b>Aliases</b> tab, and then choose the name of the alias that you want to create
+              the function URL for.</p>
+          </li><li>
+            <p>Choose the <b>Configuration</b> tab, and then choose <b>Function
+              URL</b>.</p>
+          </li><li>
+            <p>Choose <b>Create function URL</b>.</p>
+          </li><li>
+            <p>For <b>Auth type</b>, choose <b>AWS_IAM</b> or <b>NONE</b>.
+              For more information about function URL authentication, see <a href="./urls-auth.html">Security and auth model</a>.</p>
+          </li><li>
+            <p>(Optional) Select <b>Configure cross-origin resource sharing (CORS)</b>, and then configure
+              the CORS settings for your function URL. For more information about CORS, see <a href="#urls-cors">Cross-origin resource sharing (CORS)</a>.</p>
+          </li><li>
+            <p>Choose <b>Save</b>.</p>
+          </li></ol></div><p>This creates a function URL for your function alias. The function URL appears in the console's <b>Function
+          overview</b> section for your alias.</p></awsui-expandable-section></div>
+    <div class="collapsible"><awsui-expandable-section variant="container" header="To create a new function with a function URL (console)" id="create-url-new-function" expanded="true"><div class="procedure"><h6>To create a new function with a function URL (console)</h6><ol><li>
+            <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+          </li><li>
+            <p>Choose <b>Create function</b>.</p>
+          </li><li>
+            <p>Under <b>Basic information</b>, do the following:</p>
+            <ol><li>
+                <p>For <b>Function name</b>, enter a name for your function, such as
+                    <code class="userinput">my-function</code>.</p>
+              </li><li>
+                <p>For <b>Runtime</b>, choose the language runtime that you prefer, such as
+                    <b>Node.js 18.x</b>.</p>
+              </li><li>
+                <p>For <b>Architecture</b>, choose either <b>x86_64</b> or
+                    <b>arm64</b>.</p>
+              </li><li>
+                <p>Expand <b>Permissions</b>, then choose whether to create a new execution role or use
+                  an existing one.</p>
+              </li></ol>
+          </li><li>
+            <p>Expand <b>Advanced settings</b>, and then select <b>Function URL</b>.</p>
+          </li><li>
+            <p>For <b>Auth type</b>, choose <b>AWS_IAM</b> or <b>NONE</b>.
+              For more information about function URL authentication, see <a href="./urls-auth.html">Security and auth model</a>.</p>
+          </li><li>
+            <p>(Optional) Select <b>Configure cross-origin resource sharing (CORS)</b>. By selecting this
+              option during function creation, your function URL allows requests from all origins by default. You can edit
+              the CORS settings for your function URL after creating the function. For more information about CORS, see
+              <a href="#urls-cors">Cross-origin resource sharing (CORS)</a>.</p>
+          </li><li>
+            <p>Choose <b>Create function</b>.</p>
+          </li></ol></div><p>This creates a new function with a function URL for the <code class="code">$LATEST</code>
+          unpublished version of the function. The function URL appears in the <b>Function
+            overview</b> section of the console.</p></awsui-expandable-section></div>
+   
+    <h2 id="create-url-cli">Creating a function URL (AWS CLI)</h2>
+    <p>To create a function URL for an existing Lambda function using the AWS Command Line Interface (AWS CLI), run the following
+      command:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-function-url-config \
+    --function-name <code class="replaceable">my-function</code> \
+    --qualifier <code class="replaceable">prod</code> \ // optional
+    --auth-type <code class="replaceable">AWS_IAM</code>
+    --cors-config <code class="replaceable"><span>{</span>AllowOrigins="https://example.com"}</code> // optional</code></pre>
+    <p>This adds a function URL to the <code class="userinput">prod</code> qualifier for the function
+        <code class="userinput">my-function</code>. For more information about these configuration parameters, see
+      <a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html">CreateFunctionUrlConfig</a> in the API reference.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To create a function URL via the AWS CLI, the function must already exist.</p></div></div>
+   
+    <h2 id="urls-cfn">Adding a function URL to a CloudFormation template</h2>
+    <p>To add an <code class="code">AWS::Lambda::Url</code> resource to your AWS CloudFormation template, use the following syntax:</p>
+     
+      <h3 id="urls-cfn-json">JSON</h3>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "Type" : "AWS::Lambda::Url",
+  "Properties" : <span>{</span>
+      "AuthType" : String,
+      "Cors" : Cors,
+      "Qualifier" : String,
+      "TargetFunctionArn" : String
+    }
+}</code></pre>
+     
+     
+      <h3 id="urls-cfn-yaml">YAML</h3>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Type: AWS::Lambda::Url
+Properties: 
+  AuthType: String
+  Cors: 
+    Cors
+  Qualifier: String
+  TargetFunctionArn: String</code></pre>
+     
+     
+      <h3 id="urls-cfn-params">Parameters</h3>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem"><p>(Required) <code class="code">AuthType</code> – Defines the type of authentication for your function URL. Possible
+            values are either <code class="code">AWS_IAM</code> or <code class="code">NONE</code>. To restrict access to authenticated users
+            only, set to <code class="code">AWS_IAM</code>. To bypass IAM authentication and allow any user to make requests to
+            your function, set to <code class="code">NONE</code>.</p></li><li class="listitem">
+          <p>(Optional) <code class="code">Cors</code> – Defines the <a href="#urls-cors">CORS settings</a> for
+            your function URL. To add <code class="code">Cors</code> to your <code class="code">AWS::Lambda::Url</code> resource in CloudFormation,
+            use the following syntax.</p>
+          <p></p>
+          <div class="example"><h6>Example AWS::Lambda::Url.Cors (JSON)</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "AllowCredentials" : Boolean,
+  "AllowHeaders" : [ String, ... ],
+  "AllowMethods" : [ String, ... ],
+  "AllowOrigins" : [ String, ... ],
+  "ExposeHeaders" : [ String, ... ],
+  "MaxAge" : Integer
+}</code></pre></div></div>
+          <div class="example"><h6>Example AWS::Lambda::Url.Cors (YAML)</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">  AllowCredentials: Boolean
+  AllowHeaders: 
+    - String
+  AllowMethods: 
+    - String
+  AllowOrigins: 
+    - String
+  ExposeHeaders: 
+    - String
+  MaxAge: Integer</code></pre></div></div>
+        </li><li class="listitem"><p>(Optional) <code class="code">Qualifier</code> – The alias name.</p></li><li class="listitem"><p>(Required) <code class="code">TargetFunctionArn</code> – The name or Amazon Resource Name (ARN) of the Lambda function.
+          Valid name formats include the following:</p>
+          <div class="itemizedlist">
+             
+             
+             
+          <ul class="itemizedlist"><li class="listitem"><p><b>Function name</b> – <code class="code">my-function</code></p></li><li class="listitem"><p><b>Function ARN</b> –
+              <code class="code">arn:aws:lambda:us-west-2:123456789012:function:my-function</code></p></li><li class="listitem"><p><b>Partial ARN</b> – <code class="code">123456789012:function:my-function</code></p></li></ul></div>
+        </li></ul></div>
+     
+   
+    <h2 id="urls-cors">Cross-origin resource sharing (CORS)</h2>
+    <p>To define how different origins can access your function URL, use <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" rel="noopener noreferrer" target="_blank"><span>cross-origin resource sharing (CORS)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. We
+      recommend configuring CORS if you intend to call your function URL from a different domain. Lambda supports the
+      following CORS headers for function URLs.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac31c97c23c29b5"><thead>
+          <tr>
+            <th>CORS header</th>
+            <th>CORS configuration property</th>
+            <th>Example values</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin" rel="noopener noreferrer" target="_blank"><span>
+                Access-Control-Allow-Origin</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">AllowOrigins</code></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">*</code> (allow all origins)</p>
+              <p><code class="code">https://www.example.com</code></p>
+              <p><code class="code">http://localhost:60905</code></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods" rel="noopener noreferrer" target="_blank"><span>
+                Access-Control-Allow-Methods</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">AllowMethods</code></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">GET</code>, <code class="code">POST</code>, <code class="code">DELETE</code>, <code class="code">*</code></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers" rel="noopener noreferrer" target="_blank"><span>
+                Access-Control-Allow-Headers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">AllowHeaders</code></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">Date</code>, <code class="code">Keep-Alive</code>, <code class="code">X-Custom-Header</code></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers" rel="noopener noreferrer" target="_blank"><span>
+                Access-Control-Expose-Headers</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">ExposeHeaders</code></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">Date</code>, <code class="code">Keep-Alive</code>, <code class="code">X-Custom-Header</code></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials" rel="noopener noreferrer" target="_blank"><span>
+                Access-Control-Allow-Credentials</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">AllowCredentials</code></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">TRUE</code></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age" rel="noopener noreferrer" target="_blank"><span>
+                Access-Control-Max-Age</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">MaxAge</code></p>
+            </td>
+            <td tabindex="-1">
+              <p><code class="code">5</code> (default), <code class="code">300</code></p>
+            </td>
+          </tr>
+        </table></div></div>
+    <p>When you configure CORS for a function URL using the Lambda console or the AWS CLI, Lambda automatically adds the
+      CORS headers to all responses through the function URL. Alternatively, you can manually add CORS headers to your
+      function response. If there are conflicting headers, the configured CORS headers on the function URL take
+      precedence.</p>
+   
+    <h2 id="urls-throttling">Throttling function URLs</h2>
+    <p>Throttling limits the rate at which your function processes requests. This is useful in many situations, such
+      as preventing your function from overloading downstream resources, or handling a sudden surge in requests.</p>
+    <p>You can throttle the rate of requests that your Lambda function processes through a function URL by configuring
+      reserved concurrency. Reserved concurrency limits the number of maximum concurrent invocations
+      for your function. Your function's maximum request rate per second (RPS) is equivalent to 10 times the configured
+      reserved concurrency. For example, if you configure your function with a reserved concurrency of 100, then the
+      maximum RPS is 1,000.</p>
+    <p>Whenever your function concurrency exceeds the reserved concurrency, your function URL returns an HTTP
+      <code class="code">429</code> status code. If your function receives a request that exceeds the 10x RPS maximum based on your
+      configured reserved concurrency, you also receive an HTTP <code class="code">429</code> error. For more information about
+      reserved concurrency, see <a href="./configuration-concurrency.html">Configuring reserved concurrency</a>.</p>
+   
+    <h2 id="urls-deactivating">Deactivating function URLs</h2>
+    <p>In an emergency, you might want to reject all traffic to your function URL. To deactivate your function URL,
+      set the reserved concurrency to zero. This throttles all requests to your function URL, resulting in HTTP
+      <code class="code">429</code> status responses. To reactivate your function URL, delete the reserved concurrency
+      configuration, or set the configuration to an amount greater than zero.</p>
+   
+    <h2 id="w157aac31c97c23c41">Deleting function URLs</h2>
+    <p>When you delete a function URL, you can’t recover it. Creating a new function URL will result in a different URL address.</p>
+    <div class="procedure"><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+      </li><li>
+        <p>Choose the name of the function.</p>
+      </li><li>
+        <p>Choose the <b>Configuration</b> tab, and then choose <b>Function
+          URL</b>.</p>
+      </li><li>
+        <p>Choose <b>Delete</b>.</p>
+      </li><li>
+        <p>Enter the word <em>delete</em> into the field to confirm the deletion.</p>
+      </li><li>
+        <p>Choose <b>Delete</b>.</p>
+      </li></ol></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you delete a function URL with auth type <code class="code">NONE</code>, Lambda doesn't automatically delete the
+        associated resource-based policy. If you want to delete this policy, you must manually do so.</p></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-urls.html">Function URLs</div><div id="next" class="next-link" accesskey="n" href="./urls-auth.html">Security and auth model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-configuration.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-configuration.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

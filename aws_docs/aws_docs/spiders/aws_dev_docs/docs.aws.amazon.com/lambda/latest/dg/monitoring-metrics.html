@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Working with Lambda function metrics - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="monitoring-metrics" /><meta name="default_state" content="monitoring-metrics" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html" /><meta name="description" content="Learn about Lambda function invocation, performance, and concurrency metrics available on the Lambda and CloudWatch consoles." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/monitoring-metrics.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/monitoring-metrics.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/monitoring-metrics.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/monitoring-metrics.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/monitoring-metrics.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/monitoring-metrics.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/monitoring-metrics.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/monitoring-metrics.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/monitoring-metrics.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/monitoring-metrics.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/monitoring-metrics.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/monitoring-metrics.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/monitoring-metrics.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/monitoring-metrics.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/monitoring-metrics.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/monitoring-metrics.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/monitoring-metrics.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/monitoring-metrics.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Working with Lambda function metrics" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Working with Lambda function metrics - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#monitoring-metrics" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-metrics.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-metrics.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-metrics.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Lambda statistics,Lambda metrics,monitor Lambda,monitor Lambda functions" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Monitoring and troubleshooting Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Working with Lambda function metrics",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#monitoring-metrics" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#monitoring-metrics-console">Viewing metrics on the CloudWatch console</a><a href="#monitoring-metrics-types">Types of metrics</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="monitoring-metrics">Working with Lambda function metrics</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>When your AWS Lambda function finishes processing an event, Lambda sends metrics about the invocation to Amazon CloudWatch. There is no charge for these metrics.</p><p>On the CloudWatch console, you can build graphs and dashboards with these metrics. You can set
+    alarms to respond to changes in utilization, performance, or error rates. Lambda sends metric
+    data to CloudWatch in 1-minute intervals. For more immediate insight into your Lambda function, you can
+    create high-resolution <a href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/custom-metrics" rel="noopener noreferrer" target="_blank"><span>
+    custom metrics</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> as described in Serverless Land. Charges apply for custom metrics and CloudWatch
+    alarms. For more information, see <a href="http://aws.amazon.com/cloudwatch/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon CloudWatch
+      Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>This page describes the Lambda function invocation, performance, and concurrency metrics available on the CloudWatch console.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#monitoring-metrics-console">Viewing metrics on the CloudWatch console</a></li><li><a href="#monitoring-metrics-types">Types of metrics</a></li></ul></div>
+      <h2 id="monitoring-metrics-console">Viewing metrics on the CloudWatch console</h2>
+      <p>You can use the CloudWatch console to filter and sort function metrics by function name, alias, or version.</p>
+      <div class="procedure"><h6>To view metrics on the CloudWatch console</h6><ol><li>
+          <p>Open the <a href="https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#metricsV2:graph=~();namespace=~'AWS*2fLambda" rel="noopener noreferrer" target="_blank"><span>Metrics page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+            (<code class="code">AWS/Lambda</code> namespace) of the CloudWatch console.</p>
+        </li><li>
+          <p>On the <b>Browse</b> tab, under <b>Metrics</b>, choose
+          any of the following dimensions:</p>
+          <div class="itemizedlist">
+             
+             
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+              <p><b>By Function Name</b> (<code class="code">FunctionName</code>) – View aggregate metrics
+              for all versions and aliases of a function.</p>
+            </li><li class="listitem">
+              <p><b>By Resource</b> (<code class="code">Resource</code>) – View metrics for a version or
+              alias of a function.</p>
+            </li><li class="listitem">
+              <p><b>By Executed Version</b> (<code class="code">ExecutedVersion</code>) – View metrics for a
+              combination of alias and version. Use the <code class="code">ExecutedVersion</code> dimension to compare error rates
+              for two versions of a function that are both targets of a <a href="./configuration-aliases.html">weighted
+                alias</a>.</p>
+            </li><li class="listitem">
+              <p><b>Across All Functions</b> (none) – View aggregate metrics
+              for all functions in the current AWS Region.</p>
+            </li></ul></div>
+        </li><li>
+          <p>Choose a metric, then choose <b>Add to graph</b> or another graphing
+          option.</p>
+        </li></ol></div>
+      <p>By default, graphs use the <code class="code">Sum</code> statistic for all metrics. To choose a different statistic and
+        customize the graph, use the options on the <b>Graphed metrics</b> tab.</p>
+      
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The timestamp on a metric reflects when the function was invoked. Depending on the duration of
+        the invocation, this can be several minutes before the metric is emitted. For example, if
+        your function has a 10-minute timeout, then look more than 10 minutes in the past for
+        accurate metrics.</p></div></div>
+      <p>For more information about CloudWatch, see the <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html"><em>Amazon CloudWatch User Guide</em></a>.</p>
+       
+    <h2 id="monitoring-metrics-types">Types of metrics</h2>
+    <p>The following section describes the types of Lambda metrics available on the CloudWatch
+      console.</p>
+     
+      <h3 id="monitoring-metrics-invocation">Invocation metrics</h3>
+      
+      <p>Invocation metrics are binary indicators of the outcome of a Lambda function invocation.
+        For example, if the function returns an error, then Lambda sends the <code class="code">Errors</code>
+        metric with a value of 1. To get a count of the number of function errors that occurred each
+        minute, view the <code class="code">Sum</code> of the <code class="code">Errors</code> metric with a period of 1
+        minute.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>View the following invocation metrics with the <code class="code">Sum</code> statistic.</p></div></div>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">Invocations</code> – The number of times that your function code is
+            invoked, including successful invocations and invocations that result in a function
+            error. Invocations aren't recorded if the invocation request is throttled or otherwise
+            results in an invocation error. The value of <code class="code">Invocations</code> equals the number
+            of requests billed.</p>
+        </li><li class="listitem">
+          <p><code class="code">Errors</code> – The number of invocations that result in a function
+            error. Function errors include exceptions that your code throws and exceptions that the
+            Lambda runtime throws. The runtime returns errors for issues such as timeouts and
+            configuration errors. To calculate the error rate, divide the value of
+              <code class="code">Errors</code> by the value of <code class="code">Invocations</code>. Note that the timestamp
+            on an error metric reflects when the function was invoked, not when the error
+            occurred.</p>
+        </li><li class="listitem">
+          <p><code class="code">DeadLetterErrors</code> – For <a href="./invocation-async.html">asynchronous invocation</a>, the number of times that Lambda attempts to send an
+            event to a dead-letter queue (DLQ) but fails. Dead-letter errors can occur due to
+            misconfigured resources or size limits.</p>
+        </li><li class="listitem">
+          <p><code class="code">DestinationDeliveryFailures</code> – For asynchronous invocation and supported <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html">event source mappings</a>, the
+            number of times that Lambda attempts to send an event to a <a href="./gettingstarted-features.html#gettingstarted-features-destinations">destination</a> but fails. For event source mappings, 
+            Lambda supports destinations for stream sources (DynamoDB and Kinesis). Delivery errors can occur due to permissions errors, misconfigured resources, or size
+            limits. Errors can also occur if the destination you have configured is an unsupported type such as an Amazon SQS FIFO queue or an Amazon SNS FIFO topic.</p>
+        </li><li class="listitem">
+          <p><code class="code">Throttles</code> – The number of invocation requests that are
+            throttled. When all function instances are processing requests and no concurrency is
+            available to scale up, Lambda rejects additional requests with a
+              <code class="code">TooManyRequestsException</code> error. Throttled requests and other invocation
+            errors don't count as either <code class="code">Invocations</code> or <code class="code">Errors</code>.</p>
+        </li><li class="listitem">
+          <p><code class="code">OversizedRecordCount</code> – For Amazon DocumentDB event sources, the number
+            of events your function receives from your change stream that are over 6 MB in size.
+            Lambda drops the message and emits this metric.</p>
+        </li><li class="listitem">
+          <p><code class="code">ProvisionedConcurrencyInvocations</code> – The number of times that
+            your function code is invoked using <a href="./provisioned-concurrency.html">provisioned
+              concurrency</a>.</p>
+        </li><li class="listitem">
+          <p><code class="code">ProvisionedConcurrencySpilloverInvocations</code> – The number of times
+            that your function code is invoked using standard concurrency when all provisioned
+            concurrency is in use.</p>
+        </li><li class="listitem">
+          <p><code class="code">RecursiveInvocationsDropped</code> – The number of times that Lambda has stopped invocation of your function because
+            it's detected that your function is part of an infinite recursive loop. <a href="./invocation-recursion.html">Lambda recursive loop detection</a> monitors 
+          how many times a function is invoked as part of a chain of requests by tracking metadata added by supported AWS SDKs. If your function is 
+          invoked as part of a chain of requests more than 16 times, Lambda drops the next invocation.</p>
+        </li></ul></div>
+     
+     
+      <h3 id="monitoring-metrics-performance">Performance metrics</h3>
+      
+      <p>Performance metrics provide performance details about a single function invocation. For
+        example, the <code class="code">Duration</code> metric indicates the amount of time in milliseconds that
+        your function spends processing an event. To get a sense of how fast your function processes
+        events, view these metrics with the <code class="code">Average</code> or <code class="code">Max</code>
+        statistic.</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">Duration</code> – The amount of time that your function code spends
+            processing an event. The billed duration for an invocation is the value of
+              <code class="code">Duration</code> rounded up to the nearest millisecond. <code class="code">Duration</code> does not 
+            include cold start time.</p>
+        </li><li class="listitem">
+          <p><code class="code">PostRuntimeExtensionsDuration</code> – The cumulative amount of time
+            that the runtime spends running code for extensions after the function code has
+            completed.</p>
+        </li><li class="listitem">
+          <p><code class="code">IteratorAge</code> – For DynamoDB, Kinesis, and Amazon DocumentDB event sources, the
+            age of the last record in the event. This metric measures the time between when a
+            stream receives the record and when the event source mapping sends the event to the
+            function.</p>
+        </li><li class="listitem">
+          <p><code class="code">OffsetLag</code> – For self-managed Apache Kafka and Amazon Managed Streaming for Apache Kafka (Amazon MSK) event sources, the
+            difference in offset between the last record written to a topic and the last record that
+            your function's consumer group processed. Though a Kafka topic can have multiple
+            partitions, this metric measures the offset lag at the topic level.</p>
+        </li></ul></div>
+      
+      <p><code class="code">Duration</code> also supports percentile (<code class="code">p</code>) statistics. Use
+        percentiles to exclude outlier values that skew <code class="code">Average</code> and
+          <code class="code">Maximum</code> statistics. For example, the <code class="code">p95</code> statistic shows the
+        maximum duration of 95 percent of invocations, excluding the slowest 5 percent. For more
+        information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Percentiles">Percentiles</a> in the <em>Amazon CloudWatch User Guide</em>.</p>
+     
+     
+      <h3 id="monitoring-metrics-concurrency">Concurrency metrics</h3>
+      
+      <p>Lambda reports concurrency metrics as an aggregate count of the number of instances
+        processing events across a function, version, alias, or AWS Region. To see how close you
+        are to hitting <a href="./lambda-concurrency.html#concurrency-quotas">concurrency limits</a>, view these
+        metrics with the <code class="code">Max</code> statistic.</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">ConcurrentExecutions</code> – The number of function instances that are
+            processing events. If this number reaches your <a href="./gettingstarted-limits.html#compute-and-storage">concurrent executions quota</a> for the Region, or the <a href="./configuration-concurrency.html">reserved concurrency</a> limit on the function,
+            then Lambda throttles additional invocation requests.</p>
+        </li><li class="listitem">
+          <p><code class="code">ProvisionedConcurrentExecutions</code> – The number of function
+            instances that are processing events using <a href="./provisioned-concurrency.html">provisioned concurrency</a>. For each invocation of an alias or version with
+            provisioned concurrency, Lambda emits the current count.</p>
+        </li><li class="listitem">
+          <p><code class="code">ProvisionedConcurrencyUtilization</code> – For a version or alias, the
+            value of <code class="code">ProvisionedConcurrentExecutions</code> divided by the total amount of
+            provisioned concurrency allocated. For example, <code class="code">.5</code> indicates that 50
+            percent of allocated provisioned concurrency is in use.</p>
+        </li><li class="listitem">
+          <p><code class="code">UnreservedConcurrentExecutions</code> – For a Region, the number of
+            events that functions without reserved concurrency are processing.</p>
+        </li></ul></div>
+     
+     
+      <h3 id="monitoring-metrics-async">Asynchronous invocation metrics</h3>
+      <p>Asynchronous invocation metrics provide details about asynchronous invocations from
+        event sources and direct invocations. You can set thresholds and alarms to notify you of
+        certain changes. For example, when there's an undesired increase in the number of events
+        queued for processing (<code class="code">AsyncEventsReceived</code>). Or, when an event has been waiting
+        a long time to be processed (<code class="code">AsyncEventAge</code>).</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">AsyncEventsReceived</code> – The number of events that Lambda
+            successfully queues for processing. This metric provides insight into the number of
+            events that a Lambda function receives. Monitor this metric and set alarms for thresholds
+            to check for issues. For example, to detect an undesirable number of events sent to
+            Lambda, and to quickly diagnose issues resulting from incorrect trigger or function
+            configurations. Mismatches between <code class="code">AsyncEventsReceived</code> and
+              <code class="code">Invocations</code> can indicate a disparity in processing, events being dropped,
+            or a potential queue backlog.</p>
+        </li><li class="listitem">
+          <p><code class="code">AsyncEventAge</code> – The time between when Lambda successfully queues
+            the event and when the function is invoked. The value of this metric increases when
+            events are being retried due to invocation failures or throttling. Monitor this metric
+            and set alarms for thresholds on different statistics for when a queue buildup occurs.
+            To troubleshoot an increase in this metric, look at the <code class="code">Errors</code> metric to
+            identify function errors and the <code class="code">Throttles</code> metric to identify concurrency
+            issues.</p>
+        </li><li class="listitem">
+          <p><code class="code">AsyncEventsDropped</code> – The number of events that are dropped
+            without successfully executing the function. If you configure a dead-letter queue (DLQ)
+            or <code class="code">OnFailure</code> destination, then events are sent there before they're
+            dropped. Events are dropped for various reasons. For example, events can exceed the
+            maximum event age or exhaust the maximum retry attempts, or reserved concurrency might
+            be set to 0. To troubleshoot why events are dropped, look at the <code class="code">Errors</code>
+            metric to identify function errors and the <code class="code">Throttles</code> metric to identify
+            concurrency issues.</p>
+        </li></ul></div>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./monitoring-functions-access-metrics.html">Monitoring console</div><div id="next" class="next-link" accesskey="n" href="./monitoring-cloudwatchlogs.html">Function logs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-metrics.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-metrics.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

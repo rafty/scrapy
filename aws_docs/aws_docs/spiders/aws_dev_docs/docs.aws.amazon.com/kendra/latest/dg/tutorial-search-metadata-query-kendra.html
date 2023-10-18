@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Step 5: Querying the Amazon Kendra index - Amazon Kendra</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="tutorial-search-metadata-query-kendra" /><meta name="default_state" content="tutorial-search-metadata-query-kendra" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" /><meta name="description" content="Querying the Amazon Kendra index with example queries for this tutorial." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Kendra" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Provides a conceptual overview of Amazon Kendra. Learn about Amazon Kendra features and get started indexing your documents using the console, CLI, and API." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" hreflang="x-default" /><meta name="feedback-item" content="Kendra" /><meta name="this_doc_product" content="Amazon Kendra" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'kendra'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Step 5: Querying the Amazon Kendra index" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Step 5: Querying the Amazon Kendra index - Amazon Kendra</title><meta name="pdf" content="/pdfs/kendra/latest/dg/kendra-dg.pdf#tutorial-search-metadata-query-kendra" /><meta name="rss" content="amazon-kendra-release-notes.rss" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-query-kendra.html" /><meta name="keywords" content="Kendra,Amazon Kendra,search,intelligent search,natural language,index,question,keyword,data source,connector,FAQ,frequently asked question,Amazon Comprehend,Comprehend,entities,metadata,natural language search,filtering" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Tutorial: Building a metadata-enriched, intelligent search solution with Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Step 5: Querying the Amazon Kendra index",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/tutorial-search-metadata.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/kendra/latest/dg/kendra-dg.pdf#tutorial-search-metadata-query-kendra" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/kendra/index.html">Amazon Kendra</a><a href="what-is-kendra.html">Developer Guide</a></div><div id="page-toc-src"><a href="#tutorial-search-metadata-query-kendra-basic">Querying your Amazon Kendra
+          index</a><a href="#tutorial-search-metadata-query-kendra-filters">Filtering your search
+          results</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="tutorial-search-metadata-query-kendra">Step 5: Querying the Amazon Kendra
+        index</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Your Amazon Kendra index is now ready for natural language queries. When you search your index,
+      Amazon Kendra uses all the data and metadata you provided to return the most accurate answers to your
+      search query.</p><p>There are three kinds of queries that Amazon Kendra can answer:</p><div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Factoid queries ("who", "what", "when", or "where" questions)</p>
+      </li><li class="listitem">
+        <p>Descriptive queries ("how" questions)</p>
+      </li><li class="listitem">
+        <p>Keyword searches (questions whose intent and scope are not clear)</p>
+      </li></ul></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#tutorial-search-metadata-query-kendra-basic">Querying your Amazon Kendra
+          index</a></li><li><a href="#tutorial-search-metadata-query-kendra-filters">Filtering your search
+          results</a></li></ul></div>
+      <h2 id="tutorial-search-metadata-query-kendra-basic">Querying your Amazon Kendra
+          index</h2>
+      <p>You can query your Amazon Kendra index using questions that correspond to the three kinds of
+        queries that Amazon Kendra supports. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/searching-example.html">Queries</a>.</p>
+      <p>The example questions in this section have been chosen based on the sample
+        dataset.</p>
+
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="To query your Amazon Kendra index&#xA;              (Console)" id="tutorial-search-metadata-query-index-console" expanded="false"><div class="procedure"><ol><li>
+              <p>Open the Amazon Kendra console at <a href="https://console.aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kendra/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+              <p>From the <b>Indexes</b> list, click on
+                <code class="code">kendra-index</code>.</p>
+            </li><li>
+              <p>From the left navigation menu, choose the option to search your index.</p>
+            </li><li>
+              <p>To run a sample factoid query, enter <code class="userinput">Who is Lewis
+                  Hamilton?</code> in the search box and press enter.</p>
+              <p>The first returned result is the Amazon Kendra suggested answer, together with the data
+                file containing the answer. The rest of the results form the set of recommended
+                documents.</p>
+              <p></p>
+              <p></p>
+              <div class="mediaobject">
+                 
+                  <img src="/images/kendra/latest/dg/images/tutorial-query1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                 
+              </div>
+            </li><li>
+              <p>To run a descriptive query, enter <code class="userinput">How does Formula One
+                  work?</code> in the search box and press enter.</p>
+              <p>You will see another result returned by the Amazon Kendra console, this time with the
+                relevant phrase highlighted.</p>
+              <p></p>
+              <p></p>
+              <div class="mediaobject">
+                 
+                  <img src="/images/kendra/latest/dg/images/tutorial-query2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                 
+              </div>
+            </li><li>
+              <p>To run a keyword search, enter <code class="userinput">Formula One</code> in the search
+                box and press enter.</p>
+              <p>You will see another result returned by the Amazon Kendra console, followed by the
+                results for all other mentions of the phrase in the dataset.</p>
+              <p></p>
+              <p></p>
+              <div class="mediaobject">
+                 
+                  <img src="/images/kendra/latest/dg/images/tutorial-query3.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                 
+              </div>
+            </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="To query your Amazon Kendra index&#xA;              (AWS CLI)" id="tutorial-search-metadata-query-index-cli" expanded="false"><div class="procedure"><ol><li>
+              <p>To run a sample factoid query, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/query.html" rel="noopener noreferrer" target="_blank"><span>query</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"Who is Lewis Hamilton?"</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"Who is Lewis Hamilton?"</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --query-text <code class="userinput">"Who is Lewis Hamilton?"</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+              <p>The AWS CLI displays the results of your query.</p>
+            </li><li>
+              <p>To run a sample descriptive query, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/query.html" rel="noopener noreferrer" target="_blank"><span>query</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"How does Formula One work?"</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"How does Formula One work?"</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --query-text <code class="userinput">"How does Formula One work?"</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+              <p>The AWS CLI displays the results to your query.</p>
+            </li><li>
+              <p>To run a sample keyword search, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/query.html" rel="noopener noreferrer" target="_blank"><span>query</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"Formula One"</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"Formula One"</code> \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --query-text <code class="userinput">"Formula One"</code> ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+              <p>The AWS CLI displays the returned answers to your query.</p>
+            </li></ol></div></awsui-expandable-section></div>
+     
+      <h2 id="tutorial-search-metadata-query-kendra-filters">Filtering your search
+          results</h2>
+      <p>You can filter and sort your search results using custom document attributes in the
+        Amazon Kendra console. For more information on how Amazon Kendra processes queries, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/filtering.html">Filtering
+          queries</a>.</p>
+
+      <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="To filter your search&#xA;              results (Console)" id="tutorial-search-metadata-filter-index-console" expanded="false"><div class="procedure"><ol><li>
+              <p>Open the Amazon Kendra console at <a href="https://console.aws.amazon.com/kendra/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/kendra/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li>
+              <p>From the <b>Indexes</b> list, click on
+                <code class="code">kendra-index</code>.</p>
+            </li><li>
+              <p>From the left navigation menu, choose the option to search your index.</p>
+            </li><li>
+              <p>In the search box, enter <code class="userinput">Soccer matches</code> as a query and
+                press enter.</p>
+            </li><li>
+              <p>From the left navigation menu, choose <b>Filter search results</b>
+                to see a list of facets you can use to filter your search.</p>
+            </li><li>
+              <p>Select the check box for "Champions League" under the <b>EVENT</b>
+                subheading, to see your search results filtered only by the results containing
+                "Champions League".</p>
+              <p></p>
+              <p></p>
+              <div class="mediaobject">
+                 
+                  <img src="/images/kendra/latest/dg/images/tutorial-filter.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:80%" />
+                 
+              </div>
+            </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="To filter your search&#xA;              results (AWS CLI)" id="tutorial-search-metadata-filter-index-cli" expanded="false"><div class="procedure"><ol><li>
+              <p>To see the entities of a specific type (such as <code class="code">EVENT</code>) that are
+                available for a search, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/query.html" rel="noopener noreferrer" target="_blank"><span>query</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"Soccer matches"</code> \
+        --facets '[<span>{</span>"DocumentAttributeKey":"EVENT"}]' \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"Soccer matches"</code> \
+        --facets '[<span>{</span>"DocumentAttributeKey":"EVENT"}]' \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --query-text <code class="userinput">"Soccer matches"</code> ^
+        --facets '[<span>{</span>"DocumentAttributeKey":"EVENT"}]' ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+              <p>The AWS CLI displays the search results. To get a list of facets of type
+                  <code class="code">EVENT</code>, navigate to the "FacetResults" section of the AWS CLI output to
+                see a list of filterable facets with their counts. For example, one of the facets is
+                "Champions League".</p>
+              <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Instead of <code class="code">EVENT</code>, you can choose any of the index fields you
+                  created in <a href="./tutorial-search-metadata-create-index-ingest.html#tutorial-search-metadata-create-index">Creating an Amazon Kendra index</a> for the
+                    <code class="code">DocumentAttributeKey</code> value.</p></div></div>
+            </li><li>
+              <p>To run the same search but filter only by the results containing "Champions
+                League", use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/kendra/query.html" rel="noopener noreferrer" target="_blank"><span>query</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command:</p>
+              <awsdocs-tabs><dl style="display: none">
+                <dt>Linux</dt><dd tab-id="linux">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"Soccer matches"</code> \
+        --attribute-filter '<span>{</span>"ContainsAny":<span>{</span>"Key":"EVENT","Value":<span>{</span>"StringListValue":["Champions League"]}}}' \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>macOS</dt><dd tab-id="macos">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query \
+        --index-id <code class="replaceable">kendra-index-id</code> \
+        --query-text <code class="userinput">"Soccer matches"</code> \
+        --attribute-filter '<span>{</span>"ContainsAny":<span>{</span>"Key":"EVENT","Value":<span>{</span>"StringListValue":["Champions League"]}}}' \
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+                <dt>Windows</dt><dd tab-id="windows">
+                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws kendra query ^
+        --index-id <code class="replaceable">kendra-index-id</code> ^
+        --query-text <code class="userinput">"Soccer matches"</code> ^
+        --attribute-filter '<span>{</span>"ContainsAny":<span>{</span>"Key":"EVENT","Value":<span>{</span>"StringListValue":["Champions League"]}}}' ^
+        --region <code class="replaceable">aws-region</code></code></pre>
+                    <p>Where:</p>
+                    <div class="itemizedlist">
+                       
+                       
+                    <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="replaceable">kendra-index-id</code> is your saved
+                            <code class="code">kendra-index-id</code>,</p>
+                      </li><li class="listitem">
+                        <p><code class="replaceable">aws-region</code> is your AWS region.</p>
+                      </li></ul></div>
+                  </dd>
+              </dl></awsdocs-tabs>
+              <p>The AWS CLI displays the filtered search results.</p>
+            </li></ol></div></awsui-expandable-section></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./tutorial-search-metadata-create-index-ingest.html">Step 4: Creating an index and ingesting the metadata</div><div id="next" class="next-link" accesskey="n" href="./tutorial-search-metadata-cleanup.html">Step 6: Cleaning up</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-query-kendra.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/tutorial-search-metadata-query-kendra.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

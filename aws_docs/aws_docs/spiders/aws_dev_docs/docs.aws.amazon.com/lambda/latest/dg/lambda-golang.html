@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Building Lambda functions with Go - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="lambda-golang" /><meta name="default_state" content="lambda-golang" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html" /><meta name="description" content="Go is implemented differently than other managed runtimes. Because Go compiles to native code, Lambda treats Go as a custom runtime. We recommend that you use the provided.al2 runtime to deploy Go functions to Lambda." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-golang.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-golang.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-golang.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-golang.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-golang.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-golang.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-golang.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-golang.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-golang.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-golang.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-golang.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-golang.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-golang.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-golang.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-golang.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-golang.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/lambda-golang.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/lambda-golang.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Building Lambda functions with Go" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Building Lambda functions with Go - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-golang" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-golang.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-golang.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-golang.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with Go",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-golang" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#golang-al1">Go runtime support</a><a href="#golang-libraries">Tools and libraries</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="lambda-golang">Building Lambda functions with Go</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Go is implemented differently than other managed runtimes. Because Go compiles to native code, Lambda treats Go as a custom runtime. We recommend that you use the <code class="code">provided.al2</code> runtime to deploy Go functions to Lambda.</p>
+  <h2 id="golang-al1">Go runtime support</h2>
+  <p>The Go 1.x managed runtime for Lambda is based on the Amazon Linux AMI (AL1). Lambda will continue to support the Go 1.x managed runtime until maintenance support for the Amazon Linux AMI ends on December 31, 2023. If you're using the Go 1.x runtime, you must migrate your functions to <code class="code">provided.al2</code>. No code changes are required for this migration. The only required changes relate to how you build your deployment package and which runtime you use to create your function. For more information, see the deployment instructions for <a href="./golang-package.html">.zip packages</a> and <a href="./go-image.html">container images</a>.</p>
+  <div class="table-container"><div class="table-contents"><table id="w917aac65b5b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Go</div></th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Identifier</th>
+        <th>Operating system</th>
+        <th>Architectures</th>
+        <th>Deprecation (Phase 1)</th>
+      </tr>
+    </thead>
+      <tr>
+        <td tabindex="-1">
+          <p>Go 1.x</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">go1.x</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64</p>
+        </td>
+
+        <td tabindex="-1">
+          <p>Dec 31, 2023</p>
+        </td>
+
+      </tr>
+    </table></div></div>  
+  <p>The <code class="code">provided.al2</code> runtime offers several advantages over <code class="code">go1.x</code>, including support for the arm64 architecture (AWS Graviton2 processors), smaller binaries, and slightly faster invoke times.</p>
+  <div class="table-container"><div class="table-contents"><table id="w917aac65b5b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Custom</div></th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Identifier</th>
+        <th>Operating system</th>
+        <th>Architectures</th>
+        <th>Deprecation (Phase 1)</th>
+      </tr>
+    </thead>
+      <tr>
+        <td tabindex="-1">
+          <p>Custom Runtime</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">provided.al2</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+
+        <td tabindex="-1">
+          <p></p>
+        </td>
+
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Custom Runtime</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">provided</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64</p>
+        </td>
+
+        <td tabindex="-1">
+          <p>Dec 31, 2023</p>
+        </td>
+
+      </tr>
+    </table></div></div>
+   
+  <h2 id="golang-libraries">Tools and libraries</h2>
+  
+    <p>Lambda provides the following tools and libraries for the Go runtime:</p>
+  <div class="itemizedlist">
+     
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://github.com/aws/aws-sdk-go" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Go</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>: the official AWS SDK for the Go programming language.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-go/tree/master/lambda" rel="noopener noreferrer" target="_blank"><span>github.com/aws/aws-lambda-go/lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>: The implementation of the Lambda
+        programming model for Go. This package is used by AWS Lambda to invoke your <a href="./golang-handler.html">handler</a>.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-go/tree/master/lambdacontext" rel="noopener noreferrer" target="_blank"><span>github.com/aws/aws-lambda-go/lambdacontext</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>: Helpers for accessing context information from the <a href="./golang-context.html">context object</a>.</p>
+    </li><li class="listitem">
+      <p><a href="https://github.com/aws/aws-lambda-go/tree/master/events" rel="noopener noreferrer" target="_blank"><span>github.com/aws/aws-lambda-go/events</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>: This library provides type definitions for common event source integrations.</p>
+    </li><li class="listitem">
+        <p><a href="https://github.com/aws/aws-lambda-go/tree/master/cmd/build-lambda-zip" rel="noopener noreferrer" target="_blank"><span>github.com/aws/aws-lambda-go/cmd/build-lambda-zip</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>: This tool can be used to create a .zip file archive on Windows.</p>
+    </li></ul></div>
+  <p>For more information, see <a href="https://github.com/aws/aws-lambda-go" rel="noopener noreferrer" target="_blank"><span>aws-lambda-go</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on GitHub.</p>
+
+  
+  <p>Lambda provides the following sample applications for the Go runtime:</p>
+<div class="itemizedlist">
+  <h6>Sample Lambda applications in Go</h6>
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p><a href="https://github.com/aws-samples/sessions-with-aws-sam/tree/master/go-al2" rel="noopener noreferrer" target="_blank"><span>go-al2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A hello world function that returns the public IP address. This app uses the <code class="code">provided.al2</code> custom runtime.</p>
+  </li><li class="listitem">
+    <p><a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/blank-go" rel="noopener noreferrer" target="_blank"><span>blank-go</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A Go function that shows the use of Lambda's Go libraries, logging, environment variables, and the AWS SDK. This app uses the <code class="code">go1.x</code> runtime.</p>
+  </li></ul></div>
+
+  <div class="highlights"><h6>Topics</h6><ul><li><a href="./golang-handler.html">AWS Lambda function handler in Go</a></li><li><a href="./golang-context.html">AWS Lambda context object in Go</a></li><li><a href="./golang-package.html">Deploy Go Lambda functions with .zip file archives</a></li><li><a href="./go-image.html">Deploy Go Lambda functions with container images</a></li><li><a href="./golang-logging.html">AWS Lambda function logging in Go</a></li><li><a href="./golang-exceptions.html">AWS Lambda function errors in Go</a></li><li><a href="./golang-tracing.html">Instrumenting Go code in AWS Lambda</a></li><li><a href="./golang-envvars.html">Using environment variables</a></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./java-samples.html">Sample apps</div><div id="next" class="next-link" accesskey="n" href="./golang-handler.html">Handler</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-golang.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-golang.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

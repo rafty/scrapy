@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda event source mappings - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="invocation-eventsourcemapping" /><meta name="default_state" content="invocation-eventsourcemapping" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html" /><meta name="description" content="Configure a Lambda event source mapping to invoke your function from queue and stream event sources, such as Amazon SQS, Kinesis, and DynamoDB." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda event source mappings" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda event source mappings - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#invocation-eventsourcemapping" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventsourcemapping.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventsourcemapping.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventsourcemapping.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,invoke,trigger,kick off function,start function,send request to function,event source mapping,invoke Lambda from DynamoDB,invoke Lambda from Amazon SQS,Amazon MQ,Amazon MSK" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Invoking Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda event source mappings",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#invocation-eventsourcemapping" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#invocation-eventsourcemapping-batching">Batching behavior</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="invocation-eventsourcemapping">Lambda event source mappings</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you want to send data to a target other than a Lambda function or enrich the data before sending it, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html">
+    Amazon EventBridge Pipes</a>.</p></div></div><p>An event source mapping is a Lambda resource that reads from an event source and invokes a Lambda function. You
+    can use event source mappings to process items from a stream or queue in services that don't invoke Lambda functions
+    directly. This page describes the services  that Lambda provides event source mappings and how-to fine tune batching
+    behavior.</p><div class="itemizedlist">
+  <h6>Services that Lambda reads events from</h6>
+   
+   
+   
+   
+   
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p><a href="./with-ddb.html">Amazon DynamoDB</a></p>
+  </li><li class="listitem">
+    <p><a href="./with-kinesis.html">Amazon Kinesis</a></p>
+  </li><li class="listitem">
+    <p><a href="./with-mq.html">Amazon MQ</a></p>
+  </li><li class="listitem">
+    <p><a href="./with-msk.html">Amazon Managed Streaming for Apache Kafka (Amazon MSK)</a></p>
+  </li><li class="listitem">
+    <p><a href="./with-kafka.html">Self-managed Apache Kafka</a></p>
+  </li><li class="listitem">
+    <p><a href="./with-sqs.html">Amazon Simple Queue Service (Amazon SQS)</a></p>
+  </li><li class="listitem">
+    <p><a href="./with-documentdb.html">Amazon DocumentDB (with MongoDB compatibility) (Amazon DocumentDB)</a></p>
+  </li></ul></div><p>An event source mapping uses permissions in the function's <a href="./lambda-intro-execution-role.html">execution role</a> to read and manage items in the
+    event source. Permissions, event structure, settings, and polling behavior vary by event source. For more
+    information, see the linked topic for the service that you use as an event source.</p><p>To manage an event source with the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI)</a> or an <a href="http://aws.amazon.com/getting-started/tools-sdks/" rel="noopener noreferrer" target="_blank"><span>AWS SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, you can use the following API operations:</p><div class="itemizedlist">
+        
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p> <a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p> <a href="./API_ListEventSourceMappings.html">ListEventSourceMappings</a>  </p>
+      </li><li class="listitem">
+        <p> <a href="./API_GetEventSourceMapping.html">GetEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateEventSourceMapping.html">UpdateEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p><a href="./API_DeleteEventSourceMapping.html">DeleteEventSourceMapping</a>  </p>
+      </li></ul></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When you update, disable, or delete an event source mapping for Amazon MQ, Amazon MSK, self-managed Apache Kafka, or Amazon DocumentDB, it can take up to 
+      15 minutes for your changes to take effect. Before this period has elapsed, your event source mapping may continue to process events and 
+      invoke your function using your previous settings. This is true even when the status of the event source mapping displayed in the console 
+      indicates that your changes have been applied.</p></div></div><p>The following example uses the AWS CLI to map a function named <code class="code">my-function</code> to a DynamoDB stream
+      that its Amazon Resource Name (ARN) specifies, with a batch size of 500.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-event-source-mapping --function-name my-function --batch-size 500 --maximum-batching-window-in-seconds 5 --starting-position LATEST \
+--event-source-arn arn:aws:dynamodb:<code class="replaceable">us-east-2:123456789012:table/my-table/stream/2019-06-10T19:26:16.525</code></code></code></pre><p>You should see the following output:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "UUID": "14e0db71-5d35-4eb5-b481-8945cf9d10c2",
+    "BatchSize": 500,
+    "MaximumBatchingWindowInSeconds": 5,
+    "ParallelizationFactor": 1,
+    "EventSourceArn": "arn:aws:dynamodb:us-east-2:123456789012:table/my-table/stream/2019-06-10T19:26:16.525",
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+    "LastModified": 1560209851.963,
+    "LastProcessingResult": "No records processed",
+    "State": "Creating",
+    "StateTransitionReason": "User action",
+    "DestinationConfig": <span>{</span>},
+    "MaximumRecordAgeInSeconds": 604800,
+    "BisectBatchOnFunctionError": false,
+    "MaximumRetryAttempts": 10000
+}</code></pre><p>Lambda event source mappings process events at least once due to the distributed nature of its pollers. As a result,
+    your Lambda function may receive duplicate events in rare situations. Follow <a href="./best-practices.html">Best practices for working with AWS Lambda functions</a> and build idempotent functions to avoid issues related to duplicate events.</p>
+    <h2 id="invocation-eventsourcemapping-batching">Batching behavior</h2>
+    <p>Event source mappings read items from a target event source. By default, an event source mapping batches
+      records together into a single payload that Lambda sends to your function. To fine-tune batching behavior, you can
+      configure a batching window (<code class="code">MaximumBatchingWindowInSeconds</code>) and a batch size
+      (<code class="code">BatchSize</code>). A batching window is the maximum amount of time to gather records into a single payload.
+      A batch size is the maximum number of records in a single batch. Lambda invokes your function when one of the
+      following three criteria is met:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>The batching window reaches its maximum value.</b> Batching window behavior 
+          varies depending on the specific event source.</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem"><p><b>For Kinesis, DynamoDB, and Amazon SQS event sources:</b> The default batching
+            window is 0 seconds. This means that Lambda sends batches to your function as quickly as possible. If you
+            configure a <code class="code">MaximumBatchingWindowInSeconds</code>, the next batching window begins as soon as the previous
+            function invocation completes.</p></li><li class="listitem"><p><b>For Amazon MSK, self-managed Apache Kafka, Amazon MQ, and Amazon DocumentDB event sources:</b> The default batching
+            window is 500 ms. You can configure <code class="code">MaximumBatchingWindowInSeconds</code> to any value from 0 seconds to
+            300 seconds in increments of seconds. A batching window begins as soon as the first record arrives.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Because you can only change <code class="code">MaximumBatchingWindowInSeconds</code> in increments of seconds, you
+                cannot revert back to the 500 ms default batching window after you have changed it. To restore the default
+                batching window, you must create a new event source mapping.</p></div></div>
+          </li></ul></div>
+      </li><li class="listitem">
+        <p><b>The batch size is met.</b> The minimum batch size is 1. The default and
+          maximum batch size depend on the event source. For details about these values, see the <a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html#SSS-CreateEventSourceMapping-request-BatchSize"><code class="code">BatchSize</code></a> specification for the <code class="code">CreateEventSourceMapping</code> API
+          operation.</p>
+      </li><li class="listitem">
+        <p><b>The payload size reaches <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">6 MB</a>.</b> You cannot modify this limit.</p>
+      </li></ul></div>
+    <p>The following diagram illustrates these three conditions. Suppose a batching window begins at <code class="code">t = 7</code>
+      seconds. In the first scenario, the batching window reaches its 40 second maximum at <code class="code">t = 47</code> seconds after
+      accumulating 5 records. In the second scenario, the batch size reaches 10 before the batching window expires,
+      so the batching window ends early. In the third scenario, the maximum payload size is reached before the batching
+      window expires, so the batching window ends early.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/batching-window.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        A batching window expires when one of the following three criteria are met: the batching window reaches its&#xA;          maximum value, the batch size is met, or the payload size reaches 6 MB.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    
+    <p>The following example shows an event source mapping that reads from a Kinesis stream. If a batch of events fails
+      all processing attempts, the event source mapping sends details about the batch to an SQS queue.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/features-eventsourcemapping.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        An event source mapping reads from a Kinesis stream. It queues records locally before sending them to the&#xA;          function.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    
+    <p>The event batch is the event that Lambda sends to the function. It is a batch of records or messages compiled
+      from the items that the event source mapping reads up until the current batching window expires.</p>
+    
+    
+    
+    <p>For Kinesis and DynamoDB streams, an event source mapping creates an iterator for each shard in the stream and
+      processes items in each shard in order. You can configure the event source mapping to read only new items that
+      appear in the stream, or to start with older items. Processed items aren't removed from the stream, and other
+      functions or consumers can process them.</p>
+    <p>Lambda doesn't wait for any configured <a href="./lambda-extensions.html">Lambda extensions</a> to complete before sending
+      the next batch for processing. In other words, your extensions may continue to run as Lambda processes the
+      next batch of records. This can cause throttling issues if you breach any of your account's 
+      <a href="./lambda-concurrency.html">concurrency</a> settings or limits. To detect whether this is a
+      potential issue, monitor your functions and check whether you're seeing higher
+      <a href="./monitoring-concurrency.html#general-concurrency-metrics">concurrency metrics</a> than expected for your event
+      source mapping.</p>
+    
+    <p>By default, if your function returns an error, the event source mapping reprocesses the entire batch until the
+      function succeeds, or the items in the batch expire. To ensure in-order processing, the event source mapping
+      pauses processing for the affected shard until the error is resolved. You can configure the event source mapping
+      to discard old events or process multiple batches in parallel. If you process
+      multiple batches in parallel, in-order processing is still guaranteed for each partition key, but the event source
+      mapping simultaneously processes multiple partition keys in the same shard.</p>
+    <p>For stream sources (DynamoDB and Kinesis), you can configure the maximum number of times that Lambda retries when your
+    function returns an error. Service errors or throttles where the batch does not reach your function do not count toward retry
+    attempts.</p>
+    
+    <p>You can also configure the event source mapping to send an invocation record to another service when it discards
+      an event batch. Lambda supports the following <a href="./invocation-async.html#invocation-async-destinations">destinations</a> for
+      event source mappings.</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Amazon SQS</b> – An SQS queue.</p>
+      </li><li class="listitem">
+        <p><b>Amazon SNS</b> – An SNS topic.</p>
+      </li></ul></div>
+    <p>The invocation record contains details about the failed event batch in JSON format.</p>
+     <p>The following example shows an invocation record for a Kinesis stream.</p>
+<div class="example"><h6>Example invocation record</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "requestContext": <span>{</span>
+        "requestId": "c9b8fa9f-5a7f-xmpl-af9c-0c604cde93a5",
+        "functionArn": "arn:aws:lambda:us-east-2:123456789012:function:myfunction",
+        "condition": "RetryAttemptsExhausted",
+        "approximateInvokeCount": 1
+    },
+    "responseContext": <span>{</span>
+        "statusCode": 200,
+        "executedVersion": "$LATEST",
+        "functionError": "Unhandled"
+    },
+    "version": "1.0",
+    "timestamp": "2019-11-14T00:38:06.021Z",
+    "KinesisBatchInfo": <span>{</span>
+        "shardId": "shardId-000000000001",
+        "startSequenceNumber": "49601189658422359378836298521827638475320189012309704722",
+        "endSequenceNumber": "49601189658422359378836298522902373528957594348623495186",
+        "approximateArrivalOfFirstRecord": "2019-11-14T00:38:04.835Z",
+        "approximateArrivalOfLastRecord": "2019-11-14T00:38:05.580Z",
+        "batchSize": 500,
+        "streamArn": "arn:aws:kinesis:us-east-2:123456789012:stream/mystream"
+    }
+}</code></pre></div></div>
+    
+    <p>Lambda also supports in-order processing for <a href="./with-sqs.html">FIFO (first-in, first-out) queues</a>,
+      scaling up to the number of active message groups. For standard queues, items aren't necessarily processed in
+      order. Lambda scales up to process a standard queue as quickly as possible. When an error occurs, Lambda returns
+      batches to the queue as individual items and might process them in a different grouping than the original batch.
+      Occasionally, the event source mapping might receive the same item from the queue twice, even if no function error
+      occurred. Lambda deletes items from the queue after they're processed successfully. You can configure the source
+      queue to send items to a dead-letter queue if Lambda can't process them.</p>
+    
+    <p>For information about services that invoke Lambda functions directly, see <a href="./lambda-services.html">Using AWS Lambda with other services</a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./invocation-async.html">Asynchronous invocation</div><div id="next" class="next-link" accesskey="n" href="./invocation-eventfiltering.html">Event filtering</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventsourcemapping.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventsourcemapping.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

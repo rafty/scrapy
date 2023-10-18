@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Orchestration examples with Step Functions - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="services-stepfunctions" /><meta name="default_state" content="services-stepfunctions" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-stepfunctions.html" /><meta name="description" content="View examples of using Step Functions to orchestrate Lambda functions." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/services-stepfunctions.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-stepfunctions.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/services-stepfunctions.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-stepfunctions.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/services-stepfunctions.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-stepfunctions.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-stepfunctions.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-stepfunctions.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/services-stepfunctions.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-stepfunctions.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/services-stepfunctions.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-stepfunctions.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/services-stepfunctions.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-stepfunctions.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/services-stepfunctions.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-stepfunctions.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/services-stepfunctions.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-stepfunctions.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/services-stepfunctions.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/services-stepfunctions.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/services-stepfunctions.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/services-stepfunctions.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Orchestration examples with Step Functions" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Orchestration examples with Step Functions - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-stepfunctions" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-stepfunctions.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-stepfunctions.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/services-stepfunctions.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Orchestrating functions with Step Functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-stepfunctions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Orchestration examples with Step Functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-stepfunctions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#services-stepfunctions" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#services-stepfunctions-task">Configuring a Lambda function as a task</a><a href="#services-stepfunctions-setup">Configuring a state machine as an event source</a><a href="#services-stepfunctions-exceptions">Handling function and service errors</a><a href="#services-stepfunctions-cloudformation">AWS CloudFormation and AWS SAM</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="services-stepfunctions">Orchestration examples with Step Functions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>All work in your Step Functions state machine is done by <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-task-state.html"><code class="code">Tasks</code></a>. A <code class="code">Task</code> performs work by using an activity, a Lambda function, or by passing parameters to the API actions of other <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-supported-services.html">Supported AWS Service Integrations for Step Functions</a>.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#services-stepfunctions-task">Configuring a Lambda function as a task</a></li><li><a href="#services-stepfunctions-setup">Configuring a state machine as an event source</a></li><li><a href="#services-stepfunctions-exceptions">Handling function and service errors</a></li><li><a href="#services-stepfunctions-cloudformation">AWS CloudFormation and AWS SAM</a></li></ul></div>
+      <h2 id="services-stepfunctions-task">Configuring a Lambda function as a task</h2>
+  <p>Step Functions can invoke Lambda functions directly from a <code class="code">Task</code> state in an <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon States Language</a>
+      definition.</p> 
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">...
+        "MyStateName":<span>{</span>
+          "Type":"Task",         
+          "Resource":"arn:aws:lambda:us-west-2:01234567890:function:my_lambda_function",         
+          "End":true 
+      ...
+      </code></pre>
+  <p>You can create a <code class="code">Task</code> state that invokes your Lambda function with the input to the state machine or any JSON document.</p>
+  
+  <div class="example"><h6>Example <a href="https://github.com/awsdocs/aws-lambda-developer-guide/blob/master/sample-apps/error-processor/event.json" rel="noopener noreferrer" target="_blank"><span>event.json</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Input to <a href="./samples-errorprocessor.html">random-error function</a></h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "max-depth": 10,
+  "current-depth": 0,
+  "error-rate": 0.05
+}</code></pre></div></div>
+ 
+    <h2 id="services-stepfunctions-setup">Configuring a state machine as an event source</h2>
+    
+    <p>You can create a Step Functions state machine that invokes a Lambda function. The following example shows a <code class="code">Task</code> state that invokes version <code class="code">1</code> of a function named <code class="code">my-function</code> with an event payload that has three keys. When the function returns a successful response, the state machine continues to the next task.</p>
+    <div class="example"><h6>Example state machine</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">...
+"Invoke": <span>{</span>
+  "Type": "Task",
+  "Resource": "arn:aws:states:::lambda:invoke",
+  "Parameters": <span>{</span>
+    "FunctionName": "arn:aws:lambda:us-east-2:123456789012:function:my-function:1",
+    "Payload": <span>{</span>
+      "max-depth": 10,
+      "current-depth": 0,
+      "error-rate": 0.05
+    }
+  },
+  "Next": "NEXT_STATE",
+  "TimeoutSeconds": 25
+}</code></pre></div></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Permissions</h6></div><div class="awsdocs-note-text"><p>Your state machine needs permission to call the Lambda API to invoke a function. To grant it permission, add the AWS managed policy <a href="https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AWSLambdaRole" rel="noopener noreferrer" target="_blank"><span>AWSLambdaRole</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> or a function-scoped inline policy to its role. For more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/procedure-create-iam-role.html">How AWS Step Functions Works with IAM</a> in the <em>AWS Step Functions Developer Guide</em>.</p></div></div>
+    
+    <p>The <code class="code">FunctionName</code> and <code class="code">Payload</code> parameters map to parameters in the <a href="./API_Invoke.html">Invoke</a> API operation. In addition to these, you can also specify the <code class="code">InvocationType</code> and <code class="code">ClientContext</code> parameters. For example, to invoke the function asynchronously and continue to the next state without waiting for a result, you can set <code class="code">InvocationType</code> to <code class="code">Event</code>:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">"InvocationType": "Event"</code></pre>
+    
+    <p>Instead of hard-coding the event payload in the state machine definition, you can use the input from the state machine execution. The following example uses the input specified when you run the state machine as the event payload:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">"Payload.$": "$"</code></pre>
+    
+    <p>You can also invoke a function asynchronously and wait for it to make a callback with the AWS SDK. To do this, set the state's resource to <code class="code">arn:aws:states:::lambda:invoke.waitForTaskToken</code>.</p>
+    <p>For more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-lambda.html">Invoke Lambda with Step Functions</a> in the <em>AWS Step Functions Developer Guide</em>.</p>
+   
+    <h2 id="services-stepfunctions-exceptions">Handling function and service errors</h2>
+    
+    <p>When your function or the Lambda service returns an error, you can retry the invocation or continue to a different state based on the error type.</p>
+    
+    <p>The following example shows an invoke task that retries on <code class="code">5XX</code> series Lambda API exceptions (<code class="code">ServiceException</code>), throttles (<code class="code">TooManyRequestsException</code>), runtime errors (<code class="code">Lambda.Unknown</code>), and a function-defined error named <code class="code">function.MaxDepthError</code>. It also catches an error named <code class="code">function.DoublesRolledError</code> and continues to a state named <code class="code">CaughtException</code> when it occurs.</p>
+    <div class="example"><h6>Example catch and retry pattern</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">...
+"Invoke": <span>{</span>
+    "Type": "Task",
+    "Resource": "arn:aws:states:::lambda:invoke",
+    <code class="userinput">"Retry": [
+      <span>{</span>
+        "ErrorEquals": [ 
+            "function.MaxDepthError",
+            "Lambda.TooManyRequestsException",
+            "Lambda.ServiceException",
+            "Lambda.Unknown"
+          ],
+        "MaxAttempts": 5
+      }
+    ],
+    "Catch": [
+      <span>{</span>
+        "ErrorEquals": [ "function.DoublesRolledError" ],
+        "Next": "CaughtException"
+      }
+    ],</code>
+    "Parameters": <span>{</span>
+      "FunctionName": "arn:aws:lambda:us-east-2:123456789012:function:my-function:1",
+      ...</code></pre></div></div>
+    <p>To catch or retry function errors, create a custom error type. The name of the error type must match the <code class="code">errorType</code> in the formatted error response that Lambda returns when you throw an error.</p>
+    <p>For more information on error handling in Step Functions, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-handling-error-conditions.html">Handling Error Conditions Using a Step Functions State Machine</a> in the <em>AWS Step Functions Developer Guide</em>.</p>
+   
+    <h2 id="services-stepfunctions-cloudformation">AWS CloudFormation and AWS SAM</h2>
+    
+    <p>You can define state machines using a AWS CloudFormation template with AWS Serverless Application Model (AWS SAM). Using AWS SAM, you can define the state machine inline in the template or in a separate file. The following example shows a state machine that invokes a Lambda function that handles errors. It refers to a function resource defined in the same template (not shown).</p>
+    <div class="example"><h6>Example branching pattern in template.yml</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Lambda application that uses AWS Step Functions.
+Resources:
+  statemachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      DefinitionSubstitutions:
+        FunctionArn: !GetAtt function.Arn
+        Payload: |
+          <span>{</span>
+            "max-depth": 5,
+            "current-depth": 0,
+            "error-rate": 0.2
+          }
+      Definition:
+        StartAt: Invoke
+        States:
+          Invoke:
+            Type: Task
+            Resource: arn:aws:states:::lambda:invoke
+            Parameters:
+              FunctionName: "$<span>{</span>FunctionArn}"
+              Payload: "$<span>{</span>Payload}"
+              InvocationType: Event
+            Retry:
+            - ErrorEquals:
+              - function.MaxDepthError
+              - function.MaxDepthError
+              - Lambda.TooManyRequestsException
+              - Lambda.ServiceException
+              - Lambda.Unknown
+              IntervalSeconds: 1
+              MaxAttempts: 5
+            Catch:
+            - ErrorEquals:
+              - function.DoublesRolledError
+              Next: CaughtException
+            - ErrorEquals:
+              - States.ALL
+              Next: UncaughtException
+            Next: Success
+          CaughtException:
+            Type: Pass
+            Result: The function returned an error.
+            End: true
+          UncaughtException:
+            Type: Pass
+            Result: Invocation failed.
+            End: true
+          Success:
+            Type: Pass
+            Result: Invocation succeeded!
+            End: true
+      Events:
+        scheduled:
+          Type: Schedule
+          Properties:
+            Description: Run every minute
+            Schedule: rate(1 minute)
+      Type: STANDARD
+      Policies:
+        - AWSLambdaRole
+      ...</code></pre></div></div>
+    <p>This creates a state machine with the following structure:</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/services-stepfunctions-statemachine.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        State machine with branching logic.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>For more information, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html">AWS::Serverless::StateMachine</a> in the <em>AWS Serverless Application Model Developer Guide</em>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./stepfunctions-lc.html">Manage state machines</div><div id="next" class="next-link" accesskey="n" href="./snapstart.html">Lambda SnapStart</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-stepfunctions.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/services-stepfunctions.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

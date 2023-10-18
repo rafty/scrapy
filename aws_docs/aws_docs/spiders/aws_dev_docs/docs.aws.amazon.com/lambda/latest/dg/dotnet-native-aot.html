@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>.NET functions with native AOT compilation - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="dotnet-native-aot" /><meta name="default_state" content="dotnet-native-aot" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-native-aot.html" /><meta name="description" content="Learn how to create and deploy Lambda functions that use .NET 7 with native AOT compilation, which can reduce cold start times." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-native-aot.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/dotnet-native-aot.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/dotnet-native-aot.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/dotnet-native-aot.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/dotnet-native-aot.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-native-aot.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-native-aot.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/dotnet-native-aot.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/dotnet-native-aot.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/dotnet-native-aot.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/dotnet-native-aot.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/dotnet-native-aot.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/dotnet-native-aot.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/dotnet-native-aot.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/dotnet-native-aot.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/dotnet-native-aot.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/dotnet-native-aot.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/dotnet-native-aot.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/dotnet-native-aot.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/dotnet-native-aot.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/dotnet-native-aot.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-native-aot.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value=".NET functions with native AOT compilation" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>.NET functions with native AOT compilation - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#dotnet-native-aot" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-native-aot.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-native-aot.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-native-aot.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,runtime,C#,.NET,native AOT,cold start" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with C#",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : ".NET functions with native AOT compilation",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#dotnet-native-aot" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#dotnet-native-aot-runtime">Lambda runtime</a><a href="#dotnet-native-aot-prerequisites">Prerequisites</a><a href="#dotnet-native-aot-getting-started">Getting started</a><a href="#dotnet-native-aot-serialization">Serialization</a><a href="#dotnet-native-aot-trimming">Trimming</a><a href="#dotnet-native-aot-troubleshooting">Troubleshooting</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="dotnet-native-aot">.NET functions with native AOT compilation</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>.NET 7 supports native ahead-of-time (AOT) compilation. With native AOT, you can compile
+    your Lambda function code to a native runtime format, which removes the need to compile .NET code at runtime. Native
+    AOT compilation can reduce the cold start time for Lambda functions that you write in .NET. For more information, see 
+    <a href="http://aws.amazon.com/blogs/compute/building-serverless-net-applications-on-aws-lambda-using-net-7/" rel="noopener noreferrer" target="_blank"><span>Building serverless
+      .NET applications on AWS Lambda using .NET 7 </span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the AWS Compute Blog.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#dotnet-native-aot-runtime">Lambda runtime</a></li><li><a href="#dotnet-native-aot-prerequisites">Prerequisites</a></li><li><a href="#dotnet-native-aot-getting-started">Getting started</a></li><li><a href="#dotnet-native-aot-serialization">Serialization</a></li><li><a href="#dotnet-native-aot-trimming">Trimming</a></li><li><a href="#dotnet-native-aot-troubleshooting">Troubleshooting</a></li></ul></div>
+    <h2 id="dotnet-native-aot-runtime">Lambda runtime</h2>
+    <p>To deploy a Lambda function build with native AOT compilation, you use the <code class="code">provided.al2</code> custom runtime with the 
+      <code class="code">x86_64</code> architecture. When you use a managed .NET Lambda runtime, your application is
+      compiled into Intermediate Language (IL) code. At runtime, the just-in-time (JIT) compiler in the runtime takes the IL code and
+      compiles it into machine code as needed. With a Lambda function that is compiled ahead of time with native AOT, the
+      runtime environment doesn't include the .NET SDK or .NET runtime. You compile your code into machine code before
+      it runs.</p>
+    <p>One limitiation of AOT is that your application code must be compiled in an environment with the same operating system and 
+    processor architecture as the Amazon Linux 2 (AL2) runtime environment. The .NET Lambda CLI provides functionality to compile your application in 
+    a Docker container using an AL2 image.</p>
+   
+    <h2 id="dotnet-native-aot-prerequisites">Prerequisites</h2>
+    <div class="variablelist">
+       
+       
+       
+       
+    <dl>
+        <dt><b><span class="term">Docker</span></b></dt>
+        <dd>
+          <p>To use native AOT, your function code must be compiled in an environment with the same Amazon Linux 2 operating system as the <code class="code">provided.al2</code> 
+            runtime. The .NET CLI commands in the following sections use Docker to develop and build Lambda functions in an Amazon Linux 2 environment.</p>
+        </dd>
+      
+        <dt><b><span class="term">.NET 7 SDK</span></b></dt>
+        <dd>
+          <p>Native AOT compilation is a feature of .NET 7. You must install the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/7.0" rel="noopener noreferrer" target="_blank"><span>.NET 7 SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on your build machine, not only
+            the runtime.</p>
+        </dd>
+      
+        <dt><b><span class="term">Amazon.Lambda.Tools</span></b></dt>
+        <dd>
+          <p>To create your Lambda functions, you use the <a href="https://www.nuget.org/packages/Amazon.Lambda.Tools" rel="noopener noreferrer" target="_blank"><span>Amazon.Lambda.Tools</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+              <a href="https://aws.amazon.com/blogs/developer/net-core-global-tools-for-aws/" rel="noopener noreferrer" target="_blank"><span>.NET Global
+                Tools extension</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. To install Amazon.Lambda.Tools, run the following command:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">dotnet tool install -g Amazon.Lambda.Tools</code></pre>
+            <p>For more information about the Amazon.Lambda.Tools .NET CLI extension, see the <a href="https://github.com/aws/aws-extensions-for-dotnet-cli" rel="noopener noreferrer" target="_blank"><span>AWS Extensions for .NET CLI</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+              repository on GitHub.</p>
+        </dd>
+      
+        <dt><b><span class="term">Amazon.Lambda.Templates</span></b></dt>
+        <dd>
+          <p>To generate your Lambda function code, use the <a href="https://www.nuget.org/packages/Amazon.Lambda.Templates" rel="noopener noreferrer" target="_blank"><span>Amazon.Lambda.Templates</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+              NuGet package. To install this template package, run the following command:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">dotnet new install Amazon.Lambda.Templates</code></pre>
+        </dd>
+      </dl></div>
+   
+    <h2 id="dotnet-native-aot-getting-started">Getting started</h2>
+    <p>Both the .NET Global CLI and the AWS Serverless Application Model (AWS SAM) provide getting started templates for building applications using native AOT. 
+      To build your first native AOT Lambda function, carry out the steps in the following instructions.</p>
+ 
+      <div class="procedure"><h6>To initialize and deploy a native AOT compiled Lambda function</h6><ol><li>
+          <p>Initialize a new project using the native AOT template and then navigate into the directory containing the created <code class="code">.cs</code> 
+            and <code class="code">.csproj</code> files. In this example, we name our function <code class="code">NativeAotSample</code>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">dotnet new lambda.NativeAOT -n NativeAotSample
+cd ./NativeAotSample/src/NativeAotSample</code></code></pre>
+          <p>The <code>Function.cs</code> file created by the native AOT template contains the following function code.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">using Amazon.Lambda.Core;
+using Amazon.Lambda.RuntimeSupport;
+using Amazon.Lambda.Serialization.SystemTextJson;
+using System.Text.Json.Serialization;
+
+namespace NativeAotSample;
+
+public class Function
+<span>{</span>
+    private static async Task Main()
+    <span>{</span>
+        Func&lt;string, ILambdaContext, string&gt; handler = FunctionHandler;
+        await LambdaBootstrapBuilder.Create(handler, new SourceGeneratorLambdaJsonSerializer&lt;LambdaFunctionJsonSerializerContext&gt;())
+            .Build()
+            .RunAsync();
+    }
+
+    public static string FunctionHandler(string input, ILambdaContext context)
+    <span>{</span>
+        return input.ToUpper();
+    }
+}
+
+[JsonSerializable(typeof(string))]
+public partial class LambdaFunctionJsonSerializerContext : JsonSerializerContext
+<span>{</span>
+}</code></pre>
+          <p>Native AOT compiles your application into a single, native binary. The entrypoint of that binary is the <code class="code">static Main</code> 
+          method. Within <code class="code">static Main</code>, the Lambda runtime is bootstrapped and the <code class="code">FunctionHandler</code> method set up. As part 
+            of the runtime bootstrap, a source generated serializer is configured using <code class="code">new SourceGeneratorLambdaJsonSerializer&lt;LambdaFunctionJsonSerializerContext&gt;()</code></p>
+        </li><li>
+          <p>To deploy your application to Lambda, ensure that Docker is running in your local environment and run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">dotnet lambda deploy-function</code></code></pre>
+          <p>Behind the scenes, the .NET global CLI downloads an Amazon Linux 2 Docker image and compiles your application code inside a running container. 
+          The compiled binary is output back to your local filesystem before being deployed to Lambda.</p>
+        </li><li>
+          <p>Test your function by running the following command. Replace <code class="code">&lt;FUNCTION_NAME&gt;</code> with the name you chose for your function in the 
+          deployment wizard.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">dotnet lambda invoke-function &lt;FUNCTION_NAME&gt; --payload "hello world"</code></code></pre>
+          <p>The response from the CLI includes performance details for the cold start (initialization duration) and total run time for your 
+          function invocation.</p>
+        </li><li>
+          <p>To delete the AWS resources you created by following the preceding steps, run the following command. Replace <code class="code">&lt;FUNCTION_NAME&gt;</code> 
+            with the name you chose for your function in the deployment wizard. By deleting AWS resources that you're no longer using, you prevent 
+          unnecessary charges being billed to your AWS account.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">dotnet lambda delete-function &lt;FUNCTION_NAME&gt;</code></code></pre>
+        </li></ol></div>
+   
+    <h2 id="dotnet-native-aot-serialization">Serialization</h2>
+    <p>To deploy functions to Lambda using native AOT, your function code must use <a href="https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation-modes?pivots=dotnet-8-0" rel="noopener noreferrer" target="_blank"><span>source generated serialization</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. 
+    Instead of using run-time reflection to gather the metadata needed to access object properties for serialization, source generators generate C# 
+    source files that are compiled when you build your application. To configure your source generated serializer correctly, ensure that you include 
+    any input and output objects your function uses, as well as any custom types. For example, a Lambda function that receives events from an API Gateway 
+    REST API and returns a custom <code class="code">Product</code> type would include a serializer defined as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">[JsonSerializable(typeof(APIGatewayProxyRequest))]
+[JsonSerializable(typeof(APIGatewayProxyResponse))]
+[JsonSerializable(typeof(Product))]
+public partial class CustomSerializer : JsonSerializerContext
+<span>{</span>
+}</code></pre>
+   
+    <h2 id="dotnet-native-aot-trimming">Trimming</h2>
+    <p>Native AOT trims your application code as part of the compilation to ensure that the binary is as small as possible. Much of the .NET ecosystem 
+      is not yet trim friendly. This means that parts of libraries that your function relies on may be trimmed out as part of the compilation step. 
+      You can avoid this by defining <code class="code">TrimmerRootAssemblies</code> as part of your <code>.csproj</code> file.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">&lt;ItemGroup&gt;
+    &lt;TrimmerRootAssembly Include="AWSSDK.Core" /&gt;
+    &lt;TrimmerRootAssembly Include="AWSXRayRecorder.Core" /&gt;
+    &lt;TrimmerRootAssembly Include="AWSXRayRecorder.Handlers.AwsSdk" /&gt;
+    &lt;TrimmerRootAssembly Include="Amazon.Lambda.APIGatewayEvents" /&gt;
+    &lt;TrimmerRootAssembly Include="bootstrap" /&gt;
+    &lt;TrimmerRootAssembly Include="Shared" /&gt;
+&lt;/ItemGroup&gt;</code></pre>
+   
+    <h2 id="dotnet-native-aot-troubleshooting">Troubleshooting</h2>
+    <div class="variablelist">
+       
+       
+       
+    <dl>
+        <dt><b><span class="term">Error: Cross-OS native compilation is not supported.</span></b></dt>
+        <dd>
+          <p>Your version of the Amazon.Lambda.Tools .NET Core global tool is out of date. Update to
+            the latest version and try again.</p>
+        </dd>
+      
+        <dt><b><span class="term">Docker: image operating system "linux" cannot be used on this platform.</span></b></dt>
+        <dd>
+          <p>Docker on your system is configured to use Windows containers. Swap to Linux containers to run the
+            native AOT build environment.</p>
+        </dd>
+      
+        <dt><b><span class="term">Unhandled Exception: System.ApplicationException: The serializer NativeAoT.MyCustomJsonSerializerContext
+          is missing a constructor that takes in JsonSerializerOptions object</span></b></dt>
+        <dd>
+          <p>If you encounter this error when you invoke your Lambda function, add a runtime directive (<code>rd.xml</code>) file
+            to your project, and then redeploy.</p>
+        </dd>
+      </dl></div>
+    <p>For more information about common errors, see the <a href="https://github.com/awslabs/dotnet-nativeaot-labs#common-errors" rel="noopener noreferrer" target="_blank"><span>AWS NativeAOT for .NET</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository
+      on GitHub.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./csharp-image.html">Deploy container images</div><div id="next" class="next-link" accesskey="n" href="./csharp-context.html">Context</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-native-aot.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-native-aot.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

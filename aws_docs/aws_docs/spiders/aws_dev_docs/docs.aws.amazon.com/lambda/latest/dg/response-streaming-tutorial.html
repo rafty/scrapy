@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Creating a response streaming Lambda function with a function URL - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="response-streaming-tutorial" /><meta name="default_state" content="response-streaming-tutorial" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/response-streaming-tutorial.html" /><meta name="description" content="Create a Lambda function with an HTTP(S) endpoint using a .zip file archive that streams responses." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/response-streaming-tutorial.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/response-streaming-tutorial.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/response-streaming-tutorial.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/response-streaming-tutorial.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/response-streaming-tutorial.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/response-streaming-tutorial.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/response-streaming-tutorial.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/response-streaming-tutorial.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/response-streaming-tutorial.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/response-streaming-tutorial.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/response-streaming-tutorial.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/response-streaming-tutorial.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/response-streaming-tutorial.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/response-streaming-tutorial.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/response-streaming-tutorial.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/response-streaming-tutorial.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/response-streaming-tutorial.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/response-streaming-tutorial.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/response-streaming-tutorial.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/response-streaming-tutorial.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/response-streaming-tutorial.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/response-streaming-tutorial.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Creating a response streaming Lambda function with a function URL" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Creating a response streaming Lambda function with a function URL - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#response-streaming-tutorial" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/response-streaming-tutorial.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/response-streaming-tutorial.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/response-streaming-tutorial.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda function,create Lambda function,response streaming,response streaming functions,stream responses,configure function URL,configure response streaming function,function URL tutorial,Node.js" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configuring AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Configuring a Lambda function to stream responses",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Creating a response streaming Lambda function with a function URL",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/configuration-response-streaming.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#response-streaming-tutorial" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#response-streaming-prepare">Prerequisites</a><a href="#response-streaming-create-iam-role">Create an execution role</a><a href="#response-streaming-tutorial-create-function-cli">Create a response streaming
+        function (AWS CLI)</a><a href="#response-streaming-tutorial-create-function-cfn">Create a response streaming
+        function (AWS CloudFormation)</a><a href="#response-streaming-tutorial-create-function-cfn">Create a response streaming
+        function (AWS SAM)</a><a href="#response-streaming-tutorial-test">Test the function URL endpoint</a><a href="#cleanup">Clean up your resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="response-streaming-tutorial">Tutorial: Creating a response streaming Lambda
+      function with a function URL</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you create a Lambda function defined as a .zip file archive with a
+    function URL endpoint that returns a response stream. For more information about configuring
+    function URLs, see <a href="./urls-configuration.html">Creating and managing function URLs</a>.</p>
+    <h2 id="response-streaming-prepare">Prerequisites</h2>
+    
+    <p>This tutorial assumes that you have some knowledge of basic Lambda operations and the Lambda console. If you
+      haven't already, follow the instructions in <a href="./getting-started.html#getting-started-create-function">Create a Lambda function with the console</a> to create your first Lambda function.</p>
+    
+    <p>To complete the following steps, you need the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a>. Commands and the expected output are listed in separate blocks:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><code class="userinput">aws --version</code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="">aws-cli/2.0.57 Python/3.7.4 Darwin/19.6.0 exe/x86_64</code></pre>
+    <p>For long commands, an escape character (<code class="code">\</code>) is used to split a command over multiple lines.</p>
+    <p>On Linux and macOS, use your preferred shell and package manager.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+    To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+     Example CLI commands in this guide use Linux formatting. Commands which include inline JSON documents must be reformatted if you are using the Windows CLI.
+    </p></div></div>
+   
+    <h2 id="response-streaming-create-iam-role">Create an execution role</h2>
+    <p>Create the <a href="./lambda-intro-execution-role.html">execution role</a> that gives your Lambda function permission to access AWS
+      resources.</p>
+    <div class="procedure"><h6>To create an execution role</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the
+          AWS Identity and Access Management (IAM) console.</p>
+      </li><li>
+        <p>Choose <b>Create role</b>.</p>
+      </li><li>
+        <p>Create a role with the following properties:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Trusted entity type</b> – <b>AWS service</b></p>
+          </li><li class="listitem">
+            <p><b>Use case</b> – <b>Lambda</b></p>
+          </li><li class="listitem">
+            <p><b>Permissions</b> –
+                <b>AWSLambdaBasicExecutionRole</b></p>
+          </li><li class="listitem">
+            <p><b>Role name</b> –
+                <code class="userinput">response-streaming-role</code></p>
+          </li></ul></div>
+      </li></ol></div>
+    <p>The <b>AWSLambdaBasicExecutionRole</b> policy has the permissions that the
+      function needs to write logs to Amazon CloudWatch Logs. After you create the role, note down the its Amazon
+      Resource Name (ARN). You'll need it in the next step.</p>
+   
+    <h2 id="response-streaming-tutorial-create-function-cli">Create a response streaming
+        function (AWS CLI)</h2>
+    <p>Create a response streaming Lambda function with a function URL endpoint using the
+      AWS Command Line Interface (AWS CLI).</p>
+    <div class="procedure"><h6>To create a function that can stream responses</h6><ol><li>
+        <p>Copy the following code example into a file named
+          <code>index.mjs</code>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nodejs ">import util from 'util';
+import stream from 'stream';
+const <span>{</span> Readable } = stream;
+const pipeline = util.promisify(stream.pipeline);
+
+/* global awslambda */
+export const handler = awslambda.streamifyResponse(async (event, responseStream, _context) =&gt; <span>{</span>
+  const requestStream = Readable.from(Buffer.from(JSON.stringify(event)));
+  await pipeline(requestStream, responseStream);
+});</code></pre>
+      </li><li>
+        <p>Create a deployment package.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">zip function.zip index.mjs</code></pre>
+      </li><li>
+        <p>Create a Lambda function with the <code class="code">create-function</code> command. Replace the value
+          of <code class="code">--role</code> with the role ARN from the previous step.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-function \
+  --function-name <code class="replaceable">my-streaming-function</code> \
+  --runtime nodejs16.x \
+  --zip-file fileb://function.zip \
+  --handler index.handler \
+  --role <code class="replaceable">arn:aws:iam::123456789012:role/response-streaming-role</code></code></pre>
+      </li></ol></div>
+    <div class="procedure"><h6>To create a function URL</h6><ol><li>
+        <p>Add a resource-based policy to your function to allow access to your function
+          URL. Replace the value of <code class="code">--principal</code> with your AWS account ID.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda add-permission \
+  --function-name my-streaming-function \
+  --action lambda:InvokeFunctionUrl \
+  --statement-id 12345 \
+  --principal <code class="replaceable">123456789012</code> \
+  --function-url-auth-type AWS_IAM \
+  --statement-id url</code></pre>
+      </li><li>
+        <p>Create a URL endpoint for the function with the
+            <code class="code">create-function-url-config</code> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda create-function-url-config \
+  --function-name my-streaming-function \
+  --auth-type AWS_IAM \
+  --invoke-mode RESPONSE_STREAM </code></pre>
+      </li></ol></div>
+   
+    <h2 id="response-streaming-tutorial-create-function-cfn">Create a response streaming
+        function (AWS CloudFormation)</h2>
+    <p>You can also create a streaming function configured with a function URL using
+      AWS CloudFormation.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">Resources:
+  MyStreamingFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs16.x
+      Role: <code class="replaceable">arn:aws:iam::123456789012:role/response-streaming-role</code>
+      Code:
+        ZipFile: |
+            exports.handler = awslambda.streamifyResponse(
+                async (event, responseStream, _context) =&gt; <span>{</span>
+                    // Metadata is a JSON serializable JS object. Its shape is not defined here.
+                    const metadata = <span>{</span>
+                    statusCode: 200,
+                    headers: <span>{</span>
+                        "Content-Type": "application/json",
+                        "CustomHeader": "outerspace"
+                    }
+                    };
+                
+                    // Assign to the responseStream parameter to prevent accidental reuse of the non-wrapped stream.
+                    responseStream = awslambda.HttpResponseStream.from(responseStream, metadata);
+                
+                    responseStream.write("Streaming with Helper \n");
+                    await new Promise(r =&gt; setTimeout(r, 1000));
+                    responseStream.write("Hello 0 \n");
+                    await new Promise(r =&gt; setTimeout(r, 1000));
+                    responseStream.write("Hello 1 \n");
+                    await new Promise(r =&gt; setTimeout(r, 1000));
+                    responseStream.write("Hello 3 \n");
+                    await new Promise(r =&gt; setTimeout(r, 1000));
+                    responseStream.end();
+                    await responseStream.finished();
+                }
+              );
+      Description: Create a streaming function configured with a URL.
+  MyStreamingFunctionPermissions:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref MyStreamingFunction
+      Action: lambda:InvokeFunctionUrl
+      Principal: <code class="replaceable">123456789012</code>
+      FunctionUrlAuthType: AWS_IAM
+  MyStreamingFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !Ref MyUrlFunction
+      AuthType: AWS_IAM
+      InvokeMode: RESPONSE_STREAM</code></pre>
+   
+    <h2 id="response-streaming-tutorial-create-function-cfn">Create a response streaming
+        function (AWS SAM)</h2>
+    <p>You can also create a streaming function configured with a function URL using AWS Serverless Application Model
+      (AWS SAM).</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  StreamingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: "<code class="userinput">&lt;path-to-your-code&gt;</code>"
+      Handler: index.handler
+      Runtime: nodejs16.x
+      AutoPublishAlias: live
+  MyStreamingFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !Ref StreamingFunction
+      AuthType: AWS_IAM
+      InvokeMode: RESPONSE_STREAM</code></pre>
+   
+    <h2 id="response-streaming-tutorial-test">Test the function URL endpoint</h2>
+    <p>Test your integration by invoking your function. You can open your function's URL in a
+      browser, or you can use curl.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">curl --request GET "<code class="replaceable">&lt;function_url&gt;</code>" --user "<code class="replaceable">&lt;key:token&gt;</code>" --aws-sigv4 "aws:amz:us-east-1:lambda" --no-buffer</code></code></pre>
+    <p>Our function URL uses the <code class="code">IAM_AUTH</code> authentication type. This means that you
+      need to sign requests with both your AWS access key and secret key. In the previous command,
+      replace <code class="code">&lt;key:token&gt;</code> with the AWS access key ID. Enter your AWS secret
+      key when prompted. If you don't have your AWS secret key, you can <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html">use
+      temporary AWS credentials</a> instead.</p>
+   
+    <h2 id="cleanup">Clean up your resources</h2>
+    
+    <p>You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS resources that you're no longer using, you prevent unnecessary charges to your AWS account.</p>
+    
+    <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+  </li><li>
+    <p>Select the execution role that you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the role in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./configuration-response-streaming.html">Response streaming</div><div id="next" class="next-link" accesskey="n" href="./lambda-deploy-functions.html">Deploying functions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/response-streaming-tutorial.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/response-streaming-tutorial.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

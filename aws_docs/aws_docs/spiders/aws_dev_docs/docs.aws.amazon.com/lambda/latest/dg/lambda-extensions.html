@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda extensions - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="lambda-extensions" /><meta name="default_state" content="lambda-extensions" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html" /><meta name="description" content="Learn how to use extensions with your AWS Lambda function." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-extensions.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-extensions.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-extensions.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-extensions.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-extensions.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-extensions.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-extensions.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-extensions.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-extensions.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-extensions.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-extensions.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-extensions.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-extensions.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-extensions.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-extensions.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-extensions.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/lambda-extensions.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/lambda-extensions.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda extensions" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda extensions - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-extensions" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-extensions.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-extensions.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-extensions.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Lambda extensions,Lambda function monitoring,Lambda extensions partners,Lambda external extensions,Lambda internal extensions" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Lambda extensions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-extensions" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#using-extensions-env">Execution environment</a><a href="#using-extensions-reg">Impact on performance and resources </a><a href="#using-extensions-permissions">Permissions</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="lambda-extensions">Lambda extensions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use Lambda extensions to augment your Lambda functions. For example, use Lambda extensions to integrate
+    functions with your preferred monitoring, observability, security, and governance tools. You can choose from a broad
+    set of tools that <a href="http://aws.amazon.com/lambda/partners/" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Partners</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> provides, or you can
+    <a href="./runtimes-extensions-api.html">create your own Lambda extensions</a>.</p><p>Lambda supports external and internal extensions. An external extension runs as an independent process in the
+    execution environment and continues to run after the function invocation is fully processed. Because extensions run
+    as separate processes, you can write them in a different language than the function. All <a href="./lambda-runtimes.html">Lambda runtimes</a> support extensions.</p><p>An internal extension runs as part of the runtime process. Your function accesses internal extensions by using
+    wrapper scripts or in-process mechanisms such as <code class="code">JAVA_TOOL_OPTIONS</code>. For more information, see <a href="./runtimes-modify.html">Modifying the runtime environment</a>.</p><p>You can add extensions to a function using the Lambda console, the AWS Command Line Interface (AWS CLI), or infrastructure as code
+    (IaC) services and tools such as AWS CloudFormation, AWS Serverless Application Model (AWS SAM), and Terraform.</p><p>You are charged for the execution time that the extension consumes (in 1 ms increments). There is no cost to
+    install your own extensions. For more pricing information for extensions, see
+    <a href="http://aws.amazon.com/lambda/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For pricing
+    information for partner extensions, see those partners' websites. See <a href="./extensions-api-partners.html">AWS Lambda extensions partners</a>
+    for a list of official partner extensions.</p><p>For a tutorial on extensions and how to use them with your Lambda functions, see the
+    <a href="https://catalog.workshops.aws/lambdaextensions/en-US" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Extensions Workshop</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights"><h6>Topics</h6><ul><li><a href="#using-extensions-env">Execution environment</a></li><li><a href="#using-extensions-reg">Impact on performance and resources </a></li><li><a href="#using-extensions-permissions">Permissions</a></li><li><a href="./extensions-configuration.html">Configuring Lambda extensions</a></li><li><a href="./extensions-api-partners.html">AWS Lambda extensions partners</a></li><li><a href="./runtimes-extensions-api.html">Lambda Extensions API</a></li><li><a href="./telemetry-api.html">Lambda Telemetry API</a></li></ul></div>
+    <h2 id="using-extensions-env">Execution environment</h2>
+    <p>Lambda invokes your function in an <a href="./lambda-runtime-environment.html">execution environment</a>, which
+      provides a secure and isolated runtime environment. The execution environment manages the resources required to
+      run your function and provides lifecycle support for the function's runtime and extensions.</p>
+    
+<p>The lifecycle of the execution environment includes the following phases:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code"><b>Init</b></code>: In this phase, Lambda creates or
+            unfreezes an execution environment with the configured resources, downloads the code for the function and
+            all layers, initializes any extensions, initializes the runtime, and then runs the function’s initialization
+            code (the code outside the main handler). The <code class="code">Init</code> phase happens either during the first
+            invocation, or in advance of function invocations if you have enabled <a href="./provisioned-concurrency.html">provisioned concurrency</a>.</p>
+          <p>The <code class="code">Init</code> phase is split into three sub-phases: <code class="code">Extension init</code>, 
+          <code class="code">Runtime init</code>, and <code class="code">Function init</code>. These sub-phases ensure that all extensions and the runtime complete their setup tasks before the function code runs.</p>
+          <p>When <a href="./snapstart.html">Lambda SnapStart</a> is activated, the <code class="code">Init</code> phase happens when you publish a function version. Lambda saves a snapshot of the memory and disk state of the initialized execution environment, persists the encrypted snapshot, and caches it for low-latency access. If you have a <code class="code">beforeCheckpoint</code> <a href="./snapstart-runtime-hooks.html">runtime hook</a>, then the code runs at the end of <code class="code">Init</code> phase.</p>
+        </li><li class="listitem">
+        <p><code class="code"><b>Restore</b></code> (SnapStart only): When you first invoke a <a href="./snapstart.html">SnapStart</a> function and as the function scales up, Lambda resumes new execution environments from the persisted snapshot instead of initializing the function from scratch. If you have an <code class="code">afterRestore()</code> <a href="./snapstart-runtime-hooks.html">runtime hook</a>, the code runs at the end of the <code class="code">Restore</code> phase. You are charged for the duration of <code class="code">afterRestore()</code> runtime hooks. The runtime (JVM) must load and <code class="code">afterRestore()</code> runtime hooks must complete within the timeout limit (10 seconds). Otherwise, you'll get a SnapStartTimeoutException. When the <code class="code">Restore</code> phase completes, Lambda invokes the function handler (the <code class="code">Invoke</code> phase).</p>
+        </li><li class="listitem">
+          <p><code class="code"><b>Invoke</b></code>: In this phase, Lambda invokes the function handler.
+            After the function runs to completion, Lambda prepares to handle another function
+            invocation.</p>
+        </li><li class="listitem">
+          <p><code class="code"><b>Shutdown</b></code>: This phase is triggered if the Lambda function does not
+            receive any invocations for a period of time. In the <code class="code">Shutdown</code> phase, Lambda shuts down
+            the runtime, alerts the extensions to let them stop cleanly, and then removes the environment. Lambda
+            sends a <code class="code">Shutdown</code> event to each extension, which tells the extension that the environment is about
+            to be shut down.</p>
+        </li></ul></div>
+
+    <p>During the <code class="code">Init</code> phase, Lambda extracts layers containing extensions into the <code class="code">/opt</code>
+      directory in the execution environment. Lambda looks for extensions in the <code class="code">/opt/extensions/</code> directory,
+      interprets each file as an executable bootstrap for launching the extension, and starts all extensions in
+      parallel.</p>
+   
+    <h2 id="using-extensions-reg">Impact on performance and resources </h2>
+    <p>The size of your function's extensions counts towards the deployment package size limit. For a .zip file
+      archive, the total unzipped size of the function and all extensions cannot exceed the unzipped deployment package
+      size limit of 250 MB.</p>
+    <p>Extensions can impact the performance of your function because they share function resources such as CPU,
+      memory, and storage. For example, if an extension performs compute-intensive operations, you may see your
+      function's execution duration increase.</p>
+    <p>Each extension must complete its initialization before Lambda invokes the function. Therefore, an extension
+      that consumes significant initialization time can increase the latency of the function invocation.</p>
+    <p>To measure the extra time that the extension takes after the function execution, you can use the
+      <code class="code">PostRuntimeExtensionsDuration</code>
+      <a href="./monitoring-metrics.html">function metric</a>. To measure the increase in memory used, you can use the
+      <code class="code">MaxMemoryUsed</code> metric. To understand the impact of a specific extension, you can run different
+      versions of your functions side by side.</p>
+   
+    <h2 id="using-extensions-permissions">Permissions</h2>
+    <p>Extensions have access to the same resources as functions. Because extensions are executed within the same
+      environment as the function, permissions are shared between the function and the extension.</p>
+    <p>For a .zip file archive, you can create an AWS CloudFormation template to simplify the task of attaching the same extension
+      configuration—including AWS Identity and Access Management (IAM) permissions—to multiple functions.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./layers-sam.html">Layers with AWS SAM</div><div id="next" class="next-link" accesskey="n" href="./extensions-configuration.html">Configuring extensions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-extensions.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-extensions.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda runtimes - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="lambda-runtimes" /><meta name="default_state" content="lambda-runtimes" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html" /><meta name="description" content="Learn about the languages that Lambda supports through runtimes." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-runtimes.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-runtimes.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-runtimes.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-runtimes.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-runtimes.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-runtimes.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-runtimes.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-runtimes.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-runtimes.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-runtimes.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-runtimes.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-runtimes.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-runtimes.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-runtimes.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-runtimes.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-runtimes.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/lambda-runtimes.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/lambda-runtimes.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda runtimes" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda runtimes - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-runtimes" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtimes.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtimes.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtimes.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,languages,runtime,supported languages,linux distribution,linux environment" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Lambda runtimes",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-runtimes" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#runtime-support-policy">Runtime deprecation policy</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="lambda-runtimes">Lambda runtimes</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Lambda supports multiple languages through the use of <em>runtimes</em>. A runtime provides a language-specific environment that relays invocation events, context information, and responses between Lambda and the function. You can use runtimes that Lambda provides, or build your own.   
+  </p><p>Each major programming language release has a separate runtime, with a unique <em>runtime identifier</em>, such as <code class="code">python3.10</code> or <code class="code">nodejs18.x</code>. To configure a function to use a new major language version, you need to change the runtime identifier. Since AWS Lambda cannot guarantee backward compatibility between major versions, this is a customer-driven operation.</p><p>
+    For a <a href="./images-create.html">function defined as a container image</a>,
+       you choose a runtime and the Linux distribution when you create the container image.  To change the runtime, you create a new container image.</p><p>When you use a .zip file archive for the deployment package, you choose a runtime when you create the function.
+    To change the runtime, you can <a href="./configuration-function-zip.html">update your function's configuration</a>.
+    The runtime is paired with one of the Amazon Linux distributions. The underlying execution environment provides
+    additional libraries and <a href="./configuration-envvars.html">environment variables</a> that you can access from
+    your function code.</p><div class="itemizedlist">
+      <h6>Amazon Linux 2</h6>
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Image – Custom</p>
+      </li><li class="listitem">
+        <p>Linux kernel – 4.14</p>
+      </li></ul></div><div class="itemizedlist">
+    <h6>Amazon Linux</h6>
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>Image – <a href="https://console.aws.amazon.com/ec2/v2/home#Images:visibility=public-images;search=amzn-ami-hvm-2018.03.0.20220802.0-x86_64-gp2" rel="noopener noreferrer" target="_blank"><span>amzn-ami-hvm-2018.03.0.20220802.0-x86_64-gp2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+    </li><li class="listitem">
+      <p>Linux kernel – 4.14</p>
+    </li></ul></div><p>Lambda invokes your function in an <a href="./lambda-runtime-environment.html">execution environment</a>. The execution
+    environment provides a secure and isolated runtime environment that manages the resources required to run your
+    function. Lambda re-uses the execution environment from a previous invocation if one is available, or it can create a
+    new execution environment.  </p><p>To use other languages in Lambda, you can implement a <a href="./runtimes-custom.html">custom runtime</a>. The
+    Lambda execution environment provides a <a href="./runtimes-api.html">runtime interface</a> for getting invocation
+    events and sending responses. You can deploy a custom runtime alongside your function code, or in a <a href="./chapter-layers.html">layer</a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Lambda deprecation dates for a supported runtime may not align exactly with the runtime's official
+          end-of-life (EOL) announcement.</p><p>For new regions, Lambda will not support runtimes that are set to be deprecated within the next six months.</p></div></div><div class="table-container"><div class="table-contents disable-scroll"><table id="w917aac19c29"><thead><tr><th class="table-header" colspan="100"><div class="title">Supported Runtimes</div></th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Identifier</th>
+        <th>SDK</th>
+        <th>Operating system</th>
+        <th>Architectures</th>
+        <th>Deprecation (Phase 1)</th>
+      </tr>
+    </thead>
+            <tr>
+        <td tabindex="-1">
+          <p>Node.js 18</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">nodejs18.x</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>3.188.0</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Node.js 16</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">nodejs16.x</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>2.1374.0</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p>Mar 11, 2024</p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Node.js 14</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">nodejs14.x</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>2.1374.0</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p>Nov 27, 2023</p>
+        </td>
+      </tr>
+                   <tr>
+        <td tabindex="-1">
+          <p>Python 3.11</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.11</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>boto3-1.27.1 botocore-1.30.1</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Python 3.10</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.10</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>boto3-1.26.90 botocore-1.29.90</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Python 3.9</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.9</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>boto3-1.26.90 botocore-1.29.90</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Python 3.8</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.8</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>boto3-1.26.90 botocore-1.29.90</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Python 3.7</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.7</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>boto3-1.26.90 botocore-1.29.90</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64</p>
+        </td>
+        <td tabindex="-1">
+          <p>Nov 27, 2023</p>
+        </td>
+      </tr>
+                   <tr>
+        <td tabindex="-1">
+          <p>Java 17</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">java17</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Java 11</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">java11</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Java 8</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">java8.al2</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Java 8</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">java8</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64</p>
+        </td>
+        <td tabindex="-1">
+          <p>Dec 31, 2023</p>
+        </td>
+      </tr>
+                   <tr>
+        <td tabindex="-1">
+          <p>.NET 7 (container only)</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">dotnet7</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p>May 14, 2024</p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>.NET 6</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">dotnet6</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+                   <tr>
+        <td tabindex="-1">
+          <p>Go 1.x</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">go1.x</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64</p>
+        </td>
+        <td tabindex="-1">
+          <p>Dec 31, 2023</p>
+        </td>
+      </tr>
+                   <tr>
+        <td tabindex="-1">
+          <p>Ruby 3.2</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">ruby3.2</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>3.1.0</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Ruby 2.7</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">ruby2.7</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>3.1.0</p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p>Dec 7, 2023</p>
+        </td>
+      </tr>
+                   <tr>
+        <td tabindex="-1">
+          <p>Custom Runtime</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">provided.al2</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64, arm64</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+      </tr>
+            <tr>
+        <td tabindex="-1">
+          <p>Custom Runtime</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">provided</code></p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>x86_64</p>
+        </td>
+        <td tabindex="-1">
+          <p>Dec 31, 2023</p>
+        </td>
+      </tr>
+           </table></div></div><p>Lambda keeps managed runtimes up to date with patches and support for minor version releases. For more information, see 
+    <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Lambda runtime updates</a>.</p>
+    <h2 id="runtime-support-policy">Runtime deprecation policy</h2>
+    
+    <p><a href="./lambda-runtimes.html">Lambda runtimes</a> for .zip file archives are built around a
+      combination of operating system, programming language, and software libraries that are subject to maintenance and
+      security updates. When security updates are no longer available for a component of a runtime, Lambda deprecates the
+      runtime.</p>
+    
+    <p>Deprecation (end of support) for a runtime occurs in two phases.</p>
+    <p>Phase 1 - Lambda no longer applies security
+      patches or other updates to the runtime. You can no longer <b>create</b> functions that use the runtime, but you can
+      continue to update existing functions.  This includes updating the runtime, and rolling back to the previous
+      runtime. Note that functions that use a deprecated runtime are no longer eligible for technical
+      support.</p>
+    <p>Phase 2 - you can no longer <b>create or update</b> functions that use the runtime. 
+      To update a function, you need to migrate it to a supported runtime. After
+      you migrate the function to a supported runtime, you cannot rollback the function to the previous runtime. 
+      Phase 2 starts at least 30 days after the start of Phase 1.</p>
+    <p>Lambda does not block invocations of functions that use deprecated runtime. Function invocations
+      continue indefinitely after the runtime reaches end of support. However, AWS strongly recommends that you
+      migrate functions to a supported runtime so that you continue to receive security patches and remain
+      eligible for technical support.</p>
+    <p>In the table below, each phase starts at midnight (Pacific time zone) on the specified date. 
+      The following runtimes have reached end of support:</p>
+    <div class="table-container"><div class="table-contents disable-scroll"><table id="w917aac19c33c19"><thead><tr><th class="table-header" colspan="100"><div class="title">Deprecated runtimes</div></th></tr>
+      <tr>
+        <th>Name</th>
+        <th>Identifier</th>
+        <th>Operating system</th>
+        <th>Deprecation Phase 1</th>
+        <th>Deprecation Phase 2</th>
+      </tr>
+    </thead>
+      <tr>
+        <td tabindex="-1">
+          <p>.NET Core 3.1</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">dotnetcore3.1</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>Apr 3, 2023</p>
+        </td>
+        <td tabindex="-1">
+          <p>May 3, 2023</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Node.js 12</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">nodejs12.x</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>Mar 31, 2023</p>
+        </td>
+        <td tabindex="-1">
+          <p>Apr 30, 2023</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Python 3.6</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">python3.6</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>Jul 18, 2022</p>
+        </td>
+        <td tabindex="-1">
+          <p>Aug 29, 2022</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Python 2.7</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">python2.7</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>Jul 15, 2021</p>
+        </td>
+        <td tabindex="-1">
+          <p>May 30, 2022</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>.NET 5 (container only)</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">dotnet5.0</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>May 10, 2022</p>
+        </td>
+        <td tabindex="-1">
+          <p>May 10, 2022</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>.NET Core 2.1</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">dotnetcore2.1</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>Jan 5, 2022</p>
+        </td>
+        <td tabindex="-1">
+          <p>Apr 13, 2022</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Ruby 2.5</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">ruby2.5</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p>Jul 30, 2021</p>
+        </td>
+        <td tabindex="-1">
+          <p>Mar 31, 2022</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Node.js 10</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">nodejs10.x</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+        <td tabindex="-1">
+          <p>Jul 30, 2021</p>
+        </td>
+        <td tabindex="-1">
+          <p>Feb 14, 2022</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Node.js 8.10</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">nodejs8.10</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Mar 6, 2020</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Node.js 4.3</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">nodejs4.3</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Mar 5, 2020</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Node.js 6.10</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">nodejs6.10</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Aug 12, 2019</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>.NET Core 1.0</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">dotnetcore1.0</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Jul 30, 2019</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>.NET Core 2.0</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">dotnetcore2.0</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>May 30, 2019</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Node.js 4.3 edge</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">nodejs4.3-edge</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Apr 30, 2019</p>
+        </td>
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Node.js 0.10</p>
+        </td>
+        <td tabindex="-1">
+          <code class="code">nodejs</code>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux</p>
+        </td>
+        <td tabindex="-1">
+          <p></p>
+        </td>
+        <td tabindex="-1">
+          <p>Oct 31, 2016</p>
+        </td>
+      </tr>
+    </table></div></div>
+    
+    <p>In almost all cases, the end-of-life date of a language version or operating system is known well in advance.
+      The links below give end-of-life schedules for each language that Lambda supports as a managed runtime. In addition,
+      Trusted Advisor includes a check that provides
+      <a href="https://docs.aws.amazon.com/awssupport/latest/user/security-checks.html#aws-lambda-functions-deprecated-runtimes">
+        120 days' notice of upcoming Lambda runtime end of support</a>, and Lambda notifies you by email if you have
+      functions using a runtime that is scheduled for end of support in the next 60 days.</p>
+    
+    <div class="itemizedlist">
+      <h6>Language and framework support policies</h6>
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Node.js</b> – <a href="https://github.com/nodejs/Release#release-schedule" rel="noopener noreferrer" target="_blank"><span>github.com</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li><li class="listitem">
+        <p><b>Python</b> – <a href="https://devguide.python.org/versions/#versions" rel="noopener noreferrer" target="_blank"><span>devguide.python.org</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li><li class="listitem">
+        <p><b>Ruby</b> – <a href="https://www.ruby-lang.org/en/downloads/branches/" rel="noopener noreferrer" target="_blank"><span>www.ruby-lang.org</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li><li class="listitem">
+        <p><b>Java</b> – <a href="https://www.oracle.com/java/technologies/java-se-support-roadmap.html" rel="noopener noreferrer" target="_blank"><span>www.oracle.com</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="http://aws.amazon.com/corretto/faqs/" rel="noopener noreferrer" target="_blank"><span>Corretto FAQs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li><li class="listitem">
+        <p><b>Go</b> – <a href="https://golang.org/doc/devel/release.html" rel="noopener noreferrer" target="_blank"><span>golang.org</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li><li class="listitem">
+        <p><b>.NET Core</b> – <a href="https://dotnet.microsoft.com/platform/support/policy/dotnet-core" rel="noopener noreferrer" target="_blank"><span>dotnet.microsoft.com</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li></ul></div>
+    <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul></ul></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./gettingstarted-features.html">Additional features</div><div id="next" class="next-link" accesskey="n" href="./runtimes-update.html">Runtime updates</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtimes.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtimes.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

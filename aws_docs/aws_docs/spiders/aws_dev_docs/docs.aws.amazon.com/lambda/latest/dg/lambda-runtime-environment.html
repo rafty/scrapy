@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda execution environment - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="lambda-runtime-environment" /><meta name="default_state" content="lambda-runtime-environment" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html" /><meta name="description" content="Lambda invokes your function in an execution environment, which provides a secure and isolated runtime environment." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-runtime-environment.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-runtime-environment.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-runtime-environment.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-runtime-environment.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-runtime-environment.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-runtime-environment.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-runtime-environment.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-runtime-environment.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-runtime-environment.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-runtime-environment.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-runtime-environment.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-runtime-environment.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-runtime-environment.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-runtime-environment.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-runtime-environment.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-runtime-environment.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/lambda-runtime-environment.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/lambda-runtime-environment.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda execution environment" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda execution environment - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-runtime-environment" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtime-environment.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtime-environment.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtime-environment.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda foundations",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda execution environment",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-runtime-environment" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#runtimes-lifecycle">Runtime environment lifecycle</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="lambda-runtime-environment">Lambda execution environment</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>
+      Lambda invokes your function in an execution environment, which provides a secure and isolated runtime
+      environment. The execution environment manages the resources required to run your function. The execution
+      environment also provides lifecycle support for the function's runtime and any <a href="./lambda-extensions.html">external extensions</a> associated with your function.
+    </p><p>The function's runtime communicates with Lambda using the <a href="./runtimes-api.html">Runtime API</a>.
+    Extensions communicate with Lambda using the <a href="./runtimes-extensions-api.html">Extensions API</a>.
+    Extensions can also receive log messages and other telemetry from the function by using the <a href="./telemetry-api.html">Telemetry API</a>.
+    </p><p></p><div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/telemetry-api-concept-diagram.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            Architecture diagram of the execution environment.&#xA;        " style="max-width:100%" />
+         
+         
+    </div><p>When you create your Lambda function, you specify configuration information, such as the amount of memory
+    available and the maximum execution time allowed for your function. Lambda uses this information to set up the
+    execution environment.</p><p>The function's runtime and each external extension are processes that run within the execution environment.
+    Permissions, resources, credentials, and environment variables are shared between the function and the
+    extensions.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#runtimes-lifecycle">Lambda execution environment lifecycle</a></li></ul></div>
+      <h2 id="runtimes-lifecycle">Lambda execution environment lifecycle</h2>    
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/Overview-Successful-Invokes.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            The Init  phase is followed by one or more function invocations. When there are no&#xA;              invocation requests, Lambda  initiates the Shutdown phase.&#xA;          " style="max-width:100%" />
+           
+           
+        </div>
+        <p>Each phase starts with an event that Lambda sends to the runtime and to all registered extensions. The
+        runtime and each extension indicate completion by sending a <code class="code">Next</code> API request. Lambda freezes the
+        execution environment when the runtime and each extension have completed and there are no pending events.</p>
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#runtimes-lifecycle-ib">Init phase</a></li><li><a href="#runtimes-lifecycle-restore">Restore phase (Lambda SnapStart only)</a></li><li><a href="#runtimes-lifecycle-invoke">Invoke phase</a></li><li><a href="#runtimes-lifecycle-invoke-with-errors">Failures during the invoke phase</a></li><li><a href="#runtimes-lifecycle-shutdown">Shutdown phase</a></li></ul></div>
+       
+        <h3 id="runtimes-lifecycle-ib">Init phase</h3>
+        <p>In the <code class="code">Init</code> phase, Lambda performs three tasks:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Start all extensions (<code class="code">Extension init</code>)</p>
+          </li><li class="listitem">
+            <p>Bootstrap the runtime (<code class="code">Runtime init</code>)</p>
+          </li><li class="listitem">
+            <p>Run the function's static code (<code class="code">Function init</code>)</p>
+          </li><li class="listitem">
+            <p>Run any <code class="code">beforeCheckpoint</code> <a href="./snapstart-runtime-hooks.html">runtime hooks</a> (Lambda SnapStart only)</p>
+          </li></ul></div>
+        <p>The <code class="code">Init</code> phase ends when the runtime and all extensions signal that they are ready by sending a
+            <code class="code">Next</code> API request. The <code class="code">Init</code> phase is limited to 10 seconds. If all three tasks do not
+          complete within 10 seconds, Lambda retries the <code class="code">Init</code> phase at the time of the first function
+          invocation with the configured function timeout.</p>
+          <p>When <a href="./snapstart.html">Lambda SnapStart</a> is activated, the <code class="code">Init</code> phase happens when you publish a function version. Lambda saves a snapshot of the memory and disk state of the initialized execution environment, persists the encrypted snapshot, and caches it for low-latency access. If you have a <code class="code">beforeCheckpoint</code> <a href="./snapstart-runtime-hooks.html">runtime hook</a>, then the code runs at the end of <code class="code">Init</code> phase.</p>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The 10-second timeout doesn't apply to SnapStart functions. When Lambda creates a snapshot, your initialization code can run for up to 15 minutes. The time limit is 130 seconds or the <a href="./configuration-function-common.html#configuration-timeout-console">configured function timeout</a> (maximum 900 seconds), whichever is higher.</p></div></div>
+        <p>When you use <a href="https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html">provisioned concurrency</a>,
+          Lambda initializes the execution environment when you configure the PC settings for a function. Lambda also ensures that
+          initialized execution environments are always available in advance of invocations. You may see gaps between your function's
+          invocation and initialization phases. Depending on your function's runtime and memory configuration, you may also see variable
+          latency on the first invocation on an initialized execution environment.</p>
+        <p>For functions using on-demand concurrency, Lambda may occasionally initialize execution environments ahead of
+          invocation requests. When this happens, you may also observe a time gap between your function's initialization and
+          invocation phases. We recommend you to not take a dependency on this behavior.</p>
+       
+       
+        <h3 id="runtimes-lifecycle-restore">Restore phase (Lambda SnapStart only)</h3>
+        <p>When you first invoke a <a href="./snapstart.html">SnapStart</a> function and as the function scales up, Lambda resumes new execution environments from the persisted snapshot instead of initializing the function from scratch. If you have an <code class="code">afterRestore()</code> <a href="./snapstart-runtime-hooks.html">runtime hook</a>, the code runs at the end of the <code class="code">Restore</code> phase. You are charged for the duration of <code class="code">afterRestore()</code> runtime hooks. The runtime (JVM) must load and <code class="code">afterRestore()</code> runtime hooks must complete within the timeout limit (10 seconds). Otherwise, you'll get a SnapStartTimeoutException. When the <code class="code">Restore</code> phase completes, Lambda invokes the function handler (the <code class="code">Invoke</code> phase).</p>
+       
+       
+        <h3 id="runtimes-lifecycle-invoke">Invoke phase</h3>
+        <p>When a Lambda function is invoked in response to a <code class="code">Next</code> API request, Lambda sends an
+            <code class="code">Invoke</code> event to the runtime and to each extension.</p>
+        <p>The function's timeout setting limits the duration of the entire <code class="code">Invoke</code> phase. For example, if
+          you set the function timeout as 360 seconds, the function and all extensions need to complete within 360
+          seconds. Note that there is no independent post-invoke phase. The duration is the sum of all invocation time
+          (runtime + extensions) and is not calculated until the function and all extensions have finished
+          executing.</p>
+        <p>The invoke phase ends after the runtime and all extensions signal that they are done by sending a
+            <code class="code">Next</code> API request.</p>
+       
+       
+        <h3 id="runtimes-lifecycle-invoke-with-errors">Failures during the invoke phase</h3>
+        <p>If the Lambda function crashes or times out during the <code class="code">Invoke</code> phase, Lambda resets the
+          execution environment. The following diagram illustrates Lambda execution environment behavior when
+          there's an invoke failure:</p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/Overview-Invoke-with-Error.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+           
+        </div>
+        <p>In the previous diagram:</p>
+        <div class="itemizedlist">
+           
+           
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>The first phase is the <b>INIT</b> phase, which runs
+              without errors.</p>
+          </li><li class="listitem">
+            <p>The second phase is the <b>INVOKE</b> phase, which runs
+              without errors.</p>
+          </li><li class="listitem">
+            <p>At some point, suppose your function runs into an invoke failure (such as a function
+              timeout or runtime error). The third phase, labeled <b>INVOKE WITH ERROR
+              </b>, illustrates this scenario. When this happens, the Lambda service performs a
+              reset. The reset behaves like a <code class="code">Shutdown</code> event. First, Lambda shuts down the
+              runtime, then sends a <code class="code">Shutdown</code> event to each registered external extension.
+              The event includes the reason for the shutdown. If this environment is used for a new
+              invocation, Lambda re-initializes the extension and runtime together with the next
+              invocation.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The Lambda reset does not clear the <code>/tmp</code> directory content prior to the next init phase.
+                This behavior is consistent with the regular shutdown phase.</p></div></div>
+          </li><li class="listitem">
+            <p>The fourth phase represents the <b>INVOKE</b> phase
+              immediately following an invoke failure. Here, Lambda initializes the environment again
+              by re-running the <b>INIT</b> phase. This is called a
+              <em>suppressed init</em>. When suppressed inits occur, Lambda doesn't
+              explicitly report an additional <b>INIT</b> phase in CloudWatch Logs.
+              Instead, you may notice that the duration in the REPORT line includes an additional
+              <b>INIT</b> duration + the
+              <b>INVOKE</b> duration. For example, suppose you see the
+              following logs in CloudWatch:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">2022-12-20T01:00:00.000-08:00 START RequestId: XXX Version: $LATEST 
+2022-12-20T01:00:02.500-08:00 END RequestId: XXX 
+2022-12-20T01:00:02.500-08:00 REPORT RequestId: XXX Duration: 3022.91 ms 
+Billed Duration: 3000 ms Memory Size: 512 MB Max Memory Used: 157 MB</code></pre>
+            <p>In this example, the difference between the REPORT and START timestamps is 2.5 seconds.
+              This doesn't match the reported duration of 3022.91 millseconds, because it doesn't take
+              into account the extra <b>INIT</b> (suppressed init) that Lambda
+              performed. In this example, you can infer that the actual
+              <b>INVOKE</b> phase took 2.5 seconds.</p>
+            <p>For more insight into this behavior, you can use the
+              <a href="./telemetry-api.html">Lambda Telemetry API</a>. The Telemetry API emits
+              <code class="code">INIT_START</code>, <code class="code">INIT_RUNTIME_DONE</code>, and <code class="code">INIT_REPORT</code>
+              events with <code class="code">phase=invoke</code> whenever suppressed inits occur in between
+              invoke phases.</p>
+          </li><li class="listitem">
+            <p>The fifth phase represents the <b>SHUTDOWN</b> phase, which runs
+              without errors.</p>
+          </li></ul></div>
+       
+       
+        <h3 id="runtimes-lifecycle-shutdown">Shutdown phase</h3>
+        <p>When Lambda is about to shut down the runtime, it sends a <code class="code">Shutdown</code> event to
+          each registered external extension. Extensions can use this time for final cleanup tasks. The <code class="code">Shutdown</code> event
+          is a response to a <code class="code">Next</code> API request.</p>
+        <p><b>Duration</b>: The entire <code class="code">Shutdown</code> phase is capped at 2 seconds. If
+          the runtime or any extension does not respond, Lambda terminates it via a signal (<code class="code">SIGKILL</code>). </p>
+        <p>After the function and all extensions have completed, Lambda maintains the execution environment for some
+          time in anticipation of another function invocation. In effect, Lambda freezes the execution environment. When
+          the function is invoked again, Lambda thaws the environment for reuse. Reusing the execution environment has the
+          following implications: </p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Objects declared outside of the function's handler method remain initialized, providing additional
+              optimization when the function is invoked again. For example, if your Lambda function establishes a database
+              connection, instead of reestablishing the connection, the original connection is used in subsequent
+              invocations. We recommend adding logic in your code to check if a connection exists before creating a new
+              one.</p>
+          </li><li class="listitem">
+            <p>Each execution environment provides between 512 MB and 10,240 MB, in 1-MB increments, of disk space in the <code>/tmp</code>
+              directory. The directory content remains when the execution environment is frozen, providing a transient
+              cache that can be used for multiple invocations. You can add extra code to check if the cache has the data
+              that you stored. For more information on deployment size limits, see <a href="./gettingstarted-limits.html">Lambda quotas</a>.</p>
+          </li><li class="listitem">
+            <p>Background processes or callbacks that were initiated by your Lambda function and did not complete when
+              the function ended resume if Lambda reuses the execution environment. Make sure that any background processes
+              or callbacks in your code are complete before the code exits.</p>
+          </li></ul></div>
+        <p>When you write your function code, do not assume that Lambda automatically reuses the execution environment
+          for subsequent function invocations. Other factors may dictate a need for Lambda to create a new execution
+          environment, which can lead to unexpected results, such as database connection failures.</p>
+         
+      <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./foundation-progmodel.html">Programming model</div><div id="next" class="next-link" accesskey="n" href="./gettingstarted-package.html">Deployment packages</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtime-environment.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-runtime-environment.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

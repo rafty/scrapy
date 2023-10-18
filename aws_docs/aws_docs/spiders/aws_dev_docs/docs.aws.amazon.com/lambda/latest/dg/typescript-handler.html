@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS Lambda function handler in TypeScript - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="typescript-handler" /><meta name="default_state" content="typescript-handler" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-handler.html" /><meta name="description" content="The runtime passes arguments to the handler method. The first argument is the event object, which contains information from the invoker. The invoker passes this information as a JSON-formatted string when it calls Invoke , and the runtime converts it to an object. When an AWS service invokes your function, the event structure" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-handler.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/typescript-handler.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/typescript-handler.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/typescript-handler.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/typescript-handler.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-handler.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-handler.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/typescript-handler.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/typescript-handler.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/typescript-handler.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/typescript-handler.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/typescript-handler.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/typescript-handler.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/typescript-handler.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/typescript-handler.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/typescript-handler.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/typescript-handler.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/typescript-handler.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/typescript-handler.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/typescript-handler.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/typescript-handler.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-handler.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AWS Lambda function handler in TypeScript" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS Lambda function handler in TypeScript - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#typescript-handler" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-handler.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-handler.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-handler.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,TypeScript function,TypeScript Lambda,TypeScript define function,TypeScript Lambda function,async typescript function,typescript Lambda function,Lambda typescript,typescript async" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with TypeScript",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "AWS Lambda function handler in TypeScript",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#typescript-handler" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#async-typescript">Using async/await</a><a href="#typescript-handler-callback">Using callbacks</a><a href="#event-types">Using types for the event object</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="typescript-handler">AWS Lambda function handler in TypeScript</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The Lambda function <em>handler</em> is the method in your function code that processes events. When your function is
+  invoked, Lambda runs the handler method. Your function runs until the handler returns a response, exits, or times out.</p><div class="example"><h6>Example TypeScript handler</h6><div class="example-contents"><p>This example function logs the contents of the event object and returns the location of the
+        logs. Note the following:</p><div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Before using this code in a Lambda function, you must add the <a href="https://www.npmjs.com/package/@types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>@types/aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package as a development dependency. This package contains the type definitions for Lambda. When <code class="code">@types/aws-lambda</code> is installed, the <code class="code">import</code> statement (<code class="code">import ... from 'aws-lambda'</code>) imports the type definitions. It does not import the <code class="code">aws-lambda</code> NPM package, which is an unrelated third-party tool. For more information, see <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the DefinitelyTyped GitHub repository.</p>
+        </li><li class="listitem">
+          <p>The handler in this example is an ES module and must be designated as such in your <code>package.json</code> file or by using the <code class="code">.mjs</code> file extension. For more information, see  see <a href="./lambda-nodejs.html#designate-es-module">Designating a function handler as an ES module</a>.</p>
+        </li></ul></div><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">import <span>{</span> Handler } from 'aws-lambda';
+
+export const handler: Handler = async (event, context) =&gt; <span>{</span>
+    console.log('EVENT: \n' + JSON.stringify(event, null, 2));
+    return context.logStreamName;
+};</code></pre></div></div><p>The runtime passes arguments to the handler method. The first argument is the <code class="code">event</code> object,
+    which contains information from the invoker. The invoker passes this information as a JSON-formatted string when it
+    calls <a href="./API_Invoke.html">Invoke</a>, and the runtime converts it to an object. When an AWS service invokes your function, the event
+    structure <a href="./lambda-services.html">varies by service</a>. With TypeScript, we recommend using type annotations for the event object. For more information, see <a href="#event-types">Using types for the event object</a>.</p><p>The second argument is the <a href="./typescript-context.html">context object</a>, which contains information
+    about the invocation, function, and execution environment. In the preceding example, the function gets the name of
+    the <a href="./typescript-logging.html">log stream</a> from the context object and returns it to the invoker.</p><p>You can also use a callback argument, which is a function that you can call in non-async handlers to send a response. We recommend that you use async/await instead of callbacks. Async/await provides improved readability, error handling, and efficiency. For more information about the differences between async/await and callbacks, see <a href="#typescript-handler-callback">Using callbacks</a>.</p>
+    <h2 id="async-typescript">Using async/await</h2>
+    
+    <p>If your code performs an asynchronous task, use the async/await pattern to make sure that the handler finishes running. Async/await is a concise and readable way to write asynchronous code in Node.js, without the need for nested callbacks or chaining promises. With async/await, you can write code that reads like synchronous code, while still being asynchronous and non-blocking.</p>
+    <p>The <code class="code">async</code> keyword marks a function as asynchronous, and the <code class="code">await</code> keyword pauses the execution of the function until a <code class="code">Promise</code> is resolved.</p>
+    <div class="example"><h6>Example  TypeScript function – asynchronous</h6><div class="example-contents"><p>This example uses <code class="code">fetch</code>, which is available in the <code class="code">nodejs18.x</code> runtime. Note the following:</p><div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Before using this code in a Lambda function, you must add the <a href="https://www.npmjs.com/package/@types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>@types/aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package as a development dependency. This package contains the type definitions for Lambda. When <code class="code">@types/aws-lambda</code> is installed, the <code class="code">import</code> statement (<code class="code">import ... from 'aws-lambda'</code>) imports the type definitions. It does not import the <code class="code">aws-lambda</code> NPM package, which is an unrelated third-party tool. For more information, see <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the DefinitelyTyped GitHub repository.</p>
+        </li><li class="listitem">
+          <p>The handler in this example is an ES module and must be designated as such in your <code>package.json</code> file or by using the <code class="code">.mjs</code> file extension. For more information, see  see <a href="./lambda-nodejs.html#designate-es-module">Designating a function handler as an ES module</a>.</p>
+        </li></ul></div><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import <span>{</span> APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+const url = 'https://aws.amazon.com/';
+export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise&lt;APIGatewayProxyResult&gt; =&gt; <span>{</span>
+    try <span>{</span>
+        // fetch is available with Node.js 18
+        const res = await fetch(url);
+        return <span>{</span>
+            statusCode: res.status,
+            body: JSON.stringify(<span>{</span>
+                message: await res.text(),
+            }),
+        };
+    } catch (err) <span>{</span>
+        console.log(err);
+        return <span>{</span>
+            statusCode: 500,
+            body: JSON.stringify(<span>{</span>
+                message: 'some error happened',
+            }),
+        };
+    }
+};</code></pre></div></div>
+   
+    <h2 id="typescript-handler-callback">Using callbacks</h2>
+    <p>We recommend that you use <a href="#async-typescript">async/await</a> to declare the function handler instead of using callbacks. Async/await is a better choice for several reasons:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Readability:</b> Async/await code is easier to read and understand than callback code, which can quickly become difficult to follow and result in callback hell.</p>
+      </li><li class="listitem">
+        <p><b>Debugging and error handling:</b> Debugging callback-based code can be difficult. The call stack can become hard to follow and errors can easily be swallowed. With async/await, you can use try/catch blocks to handle errors.</p>
+      </li><li class="listitem">
+        <p><b>Efficiency:</b> Callbacks often require switching between different parts of the code. Async/await can reduce the number of context switches, resulting in more efficient code.</p>
+      </li></ul></div>
+    <p>When you use callbacks in your handler, the function continues to execute until the <a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/" rel="noopener noreferrer" target="_blank"><span>event loop</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is empty or the
+    function times out. The response isn't sent to the invoker until all event loop tasks are finished. If the
+    function times out, an error is returned instead. You can configure the runtime to send the response immediately
+    by setting <a href="./typescript-context.html">context.callbackWaitsForEmptyEventLoop</a> to false.</p>
+    <p>The callback function takes two
+      arguments: an <code class="code">Error</code> and a response. The response object must be compatible with
+        <code class="code">JSON.stringify</code>.</p>
+    <div class="example"><h6>Example TypeScript function with callback</h6><div class="example-contents"><p>This sample function receives an event from Amazon API Gateway, logs the event and context objects, and then returns a response to API Gateway. Note the following:</p><div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Before using this code in a Lambda function, you must add the <a href="https://www.npmjs.com/package/@types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>@types/aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package as a development dependency. This package contains the type definitions for Lambda. When <code class="code">@types/aws-lambda</code> is installed, the <code class="code">import</code> statement (<code class="code">import ... from 'aws-lambda'</code>) imports the type definitions. It does not import the <code class="code">aws-lambda</code> NPM package, which is an unrelated third-party tool. For more information, see <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the DefinitelyTyped GitHub repository.</p>
+        </li><li class="listitem">
+          <p>The handler in this example is an ES module and must be designated as such in your <code>package.json</code> file or by using the <code class="code">.mjs</code> file extension. For more information, see  see <a href="./lambda-nodejs.html#designate-es-module">Designating a function handler as an ES module</a>.</p>
+        </li></ul></div><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">import <span>{</span> Context, APIGatewayProxyCallback, APIGatewayEvent } from 'aws-lambda';
+
+export const lambdaHandler = (event: APIGatewayEvent, context: Context, callback: APIGatewayProxyCallback): void =&gt; <span>{</span>
+    console.log(`Event: $<span>{</span>JSON.stringify(event, null, 2)}`);
+    console.log(`Context: $<span>{</span>JSON.stringify(context, null, 2)}`);
+    callback(null, <span>{</span>
+        statusCode: 200,
+        body: JSON.stringify(<span>{</span>
+            message: 'hello world',
+        }),
+    });
+};</code></pre></div></div>
+   
+      <h2 id="event-types">Using types for the event object</h2>
+      <p>We recommend that you don’t use the <a href="https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html#any" rel="noopener noreferrer" target="_blank"><span>any</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> type for the handler arguments and return type because you lose the ability to check types. Instead, generate an event using the <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-generate-event.html">sam local generate-event</a> AWS Serverless Application Model CLI command, or use an open-source definition from the <a href="https://www.npmjs.com/package/@types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>@types/aws-lambda package</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <div class="procedure"><h6>Generating an event using the sam local generate-event command</h6><ol><li>
+          <p>Generate an  Amazon Simple Storage Service (Amazon S3) proxy event.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam local generate-event s3 put &gt;&gt; S3PutEvent.json</code></pre>
+        </li><li>
+          <p>Use the <a href="https://quicktype.io/typescript" rel="noopener noreferrer" target="_blank"><span>quicktype utility</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to generate type definitions from the <b>S3PutEvent.json</b> file.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">npm install -g quicktype
+quicktype S3PutEvent.json -o S3PutEvent.ts</code></pre>
+        </li><li>
+          <p>Use the generated types in your code.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">import <span>{</span> S3PutEvent } from './S3PutEvent';
+
+export const lambdaHandler = async (event: S3PutEvent): Promise&lt;void&gt; =&gt; <span>{</span>
+  event.Records.map((record) =&gt; console.log(record.s3.object.key));
+};</code></pre>
+        </li></ol></div>
+      <div class="procedure"><h6>Generating an event using an open-source definition from the @types/aws-lambda package</h6><ol><li>
+          <p>Add the <a href="https://www.npmjs.com/package/@types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>@types/aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package as a development dependency.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">npm install -D @types/aws-lambda</code></pre>
+        </li><li>
+          <p>Use the types in your code.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">import <span>{</span> S3Event } from "aws-lambda";
+
+export const lambdaHandler = async (event: S3Event): Promise&lt;void&gt; =&gt; <span>{</span>
+  event.Records.map((record) =&gt; console.log(record.s3.object.key));
+};</code></pre>
+        </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-typescript.html">Building with TypeScript</div><div id="next" class="next-link" accesskey="n" href="./typescript-package.html">Deploy .zip file archives</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-handler.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-handler.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

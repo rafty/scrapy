@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Deploy Go Lambda functions with .zip file archives - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="golang-package" /><meta name="default_state" content="golang-package" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html" /><meta name="description" content="This page describes how to create a .zip file as your deployment package for Go using the provided.al2 runtime (recommended) and the Go 1.x runtime (legacy)." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/golang-package.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/golang-package.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/golang-package.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/golang-package.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/golang-package.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/golang-package.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/golang-package.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/golang-package.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/golang-package.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/golang-package.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/golang-package.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/golang-package.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/golang-package.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/golang-package.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/golang-package.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/golang-package.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/golang-package.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/golang-package.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/golang-package.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Deploy Go Lambda functions with .zip file archives" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Deploy Go Lambda functions with .zip file archives - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#golang-package" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-package.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-package.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-package.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with Go",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Deploy Go Lambda functions with .zip file archives",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#golang-package" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#golang-package-mac-linux">Creating a .zip file on macOS and Linux</a><a href="#golang-package-windows">Creating a .zip file on Windows</a><a href="#golang-package-create-function">Creating and updating Go Lambda functions using .zip files</a><a href="#golang-package-dependencies-layers">Creating a Go layer for your dependencies</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="golang-package">Deploy Go Lambda functions with .zip file archives</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Your AWS Lambda function's code consists of scripts or compiled programs and their dependencies. 
+You use a <em>deployment package</em> to deploy your function code to Lambda. Lambda supports two types of deployment packages: 
+container images and .zip file archives. </p><p>This page describes how to create a .zip file as your deployment package for the Go runtime, and then use the .zip file to 
+    deploy your function code to AWS Lambda using the AWS Management Console, AWS Command Line Interface (AWS CLI), and AWS Serverless Application Model (AWS SAM).</p><p>Note that Lambda uses POSIX file permissions, so you may need to <a href="https://aws.amazon.com/premiumsupport/knowledge-center/lambda-deployment-package-errors/" rel="noopener noreferrer" target="_blank"><span>
+      set permissions for the deployment package folder</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> before you create the .zip file archive.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#golang-package-mac-linux">Creating a .zip file on macOS and Linux</a></li><li><a href="#golang-package-windows">Creating a .zip file on Windows</a></li><li><a href="#golang-package-create-function">Creating and updating Go Lambda functions using .zip files</a></li><li><a href="#golang-package-dependencies-layers">Creating a Go layer for your dependencies</a></li></ul></div>
+    <h2 id="golang-package-mac-linux">Creating a .zip file on macOS and Linux</h2>
+	  <p>The following steps show how to compile your executable using the <code class="code">go build</code> command and create a .zip file deployment package for Lambda. 
+      Before compiling your code, make sure you have installed the <a href="https://github.com/aws/aws-lambda-go/tree/master/lambda" rel="noopener noreferrer" target="_blank"><span>lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      package from GitHub. This module provides an implementation of the runtime interface, which manages the interaction between Lambda and your function code. To download this library, run the following command.</p>
+   <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">go get github.com/aws/aws-lambda-go/lambda</code></code></pre>
+    <p>If your function uses the AWS SDK for Go, download the standard set of SDK modules, along with any AWS service API clients required by your
+      application. To learn how to install the SDK for Go, see <a href="https://aws.github.io/aws-sdk-go-v2/docs/getting-started/" rel="noopener noreferrer" target="_blank"><span>Getting Started with the AWS SDK for Go V2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Using the provided.al2 runtime (recommended)" id="golang-package-mac-linux-al2" expanded="false"><p>Go is implemented differently than other managed runtimes. Because Go compiles to native code, Lambda treats Go as a custom runtime. We recommend that you use the <code class="code">provided.al2</code> runtime to deploy Go functions to Lambda.</p><div class="procedure"><h6>To create a .zip deployment package (macOS/Linux)</h6><ol><li>
+      <p>In the project directory that contains your application's <code class="code">main.go</code> file, compile your executable. Note the following:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>The executable must be named <code class="code">bootstrap</code>. For more information, see <a href="./golang-handler.html#golang-handler-naming">Naming</a>.</p>
+        </li><li class="listitem">
+          <p>Set your target <a href="./foundation-arch.html">instruction set architecture</a>. The <code class="code">provided.al2</code> runtime supports both arm64 and x86_64.</p>
+        </li><li class="listitem">
+          <p>You can use the optional <code class="code">lambda.norpc</code> tag to exclude the Remote Procedure Call (RPC) component of the <a href="https://github.com/aws/aws-lambda-go/tree/master/lambda" rel="noopener noreferrer" target="_blank"><span>lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      library. The RPC component is only required when using the Go 1.x runtime. Excluding the RPC reduces the size of the deployment package.</p>
+        </li></ul></div>
+      <p>For the arm64 architecture:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">GOOS=linux GOARCH=<code class="replaceable">arm64</code> go build -tags lambda.norpc -o bootstrap main.go</code></code></pre>
+      <p>For the x86_64 architecture:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">GOOS=linux GOARCH=<code class="replaceable">amd64</code> go build -tags lambda.norpc -o bootstrap main.go</code></code></pre>
+    </li><li>
+      <p>(Optional) You may need to compile packages with <code class="code">CGO_ENABLED=0</code> set on Linux:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">GOOS=linux GOARCH=<code class="replaceable">arm64</code> CGO_ENABLED=0 go build -o bootstrap -tags lambda.norpc main.go</code></code></pre>
+      <p>This command creates a stable binary package for standard C library (<code class="code">libc</code>) versions, which may be different on Lambda and other devices.</p>
+    </li><li>
+      <p>Create a deployment package by packaging the executable in a .zip file.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip myFunction.zip bootstrap</code></code></pre>
+    </li><li>
+      
+          <p>Create the function. Note the following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The binary must be named <code class="code">bootstrap</code>, but the handler name can be anything. For more information, see <a href="./golang-handler.html#golang-handler-naming">Naming</a>.</p>
+      </li><li class="listitem">
+        <p>The <code class="code">--architectures</code> option is only required if you're using arm64. The default value is x86_64.</p>
+      </li><li class="listitem">
+        <p>For <code class="code">--role</code>, specify the Amazon Resource Name (ARN) of the <a href="./lambda-intro-execution-role.html">execution role</a>.</p>
+      </li></ul></div>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name myFunction \
+--runtime provided.al2 --handler <code class="replaceable">bootstrap</code> \
+--architectures <code class="replaceable">arm64</code> \
+--role <code class="replaceable">arn:aws:iam::111122223333:role/lambda-ex</code> \
+--zip-file fileb://myFunction.zip</code></code></pre>
+  </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Using the Go 1.x runtime (legacy)" id="golang-package-mac-linux-go1x" expanded="false"><p>The Go 1.x managed runtime for Lambda is based on the Amazon Linux AMI (AL1). Lambda will continue to support the Go 1.x managed runtime until maintenance support for the Amazon Linux AMI ends on December 31, 2023. If you're using the Go 1.x runtime, you must migrate your functions to <code class="code">provided.al2</code>.</p><div class="procedure"><h6>To create a .zip deployment package (MacOS/Linux)</h6><ol><li>
+      <p>In the project directory containing your application's <code class="code">main.go</code> file, compile your executable using <code class="code">go build</code>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">GOOS=linux GOARCH=amd64 go build main.go</code></code></pre>
+    <p>Setting <code class="code">GOOS</code> to <code class="code">linux</code> and <code class="code">GOARCH</code> to <code class="code">amd64</code> ensures that the compiled executable is 
+      compatible with the <a href="./lambda-runtimes.html">Go runtime</a>, even if you compile it in a non-Linux environment or on a machine with 
+      an ARM processor.</p>
+    </li><li>
+      <p>(Optional) If your <code class="code">main</code> package consists of multiple files, use the following <a href="https://golang.org/cmd/go/" rel="noopener noreferrer" target="_blank"><span>go build</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to compile the package:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">GOOS=linux GOARCH=amd64 go build main</code></code></pre>
+    </li><li>
+      <p>(Optional) You may need to compile packages with <code class="code">CGO_ENABLED=0</code> set on Linux:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build main.go</code></code></pre>
+      <p>This command creates a stable binary package for standard C library (<code class="code">libc</code>) versions, which may be different on Lambda and other devices.</p>
+    </li><li>
+      <p>Create a deployment package by packaging the executable in a .zip file.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip myFunction.zip main</code></code></pre>
+    </li><li>
+      
+      <p>Create the function. For <code class="code">--role</code>, specify the Amazon Resource Name (ARN) of the <a href="./lambda-intro-execution-role.html">execution role</a>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name myFunction \
+--runtime go1.x --handler main \
+--role <code class="replaceable">arn:aws:iam::111122223333:role/lambda-ex</code> \
+--zip-file fileb://myFunction.zip</code></code></pre>
+    </li></ol></div></awsui-expandable-section></div>
+   
+    <h2 id="golang-package-windows">Creating a .zip file on Windows</h2>
+    <p>The following steps show how to download the <a href="https://github.com/aws/aws-lambda-go/tree/main/cmd/build-lambda-zip" rel="noopener noreferrer" target="_blank"><span>build-lambda-zip</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      tool for Windows from GitHub, compile your executable, and create a .zip deployment package.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you have not already done so, you must install <a href="https://git-scm.com/" rel="noopener noreferrer" target="_blank"><span>git</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and then add the <code class="code">git</code> executable to your Windows <code class="code">%PATH%</code> environment variable.</p></div></div>
+    <p>Before compiling your code, make sure you have installed the <a href="https://github.com/aws/aws-lambda-go/tree/master/lambda" rel="noopener noreferrer" target="_blank"><span>lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      library from GitHub. To download this library, run the following command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">go get github.com/aws/aws-lambda-go/lambda</code></code></pre>
+    <p>If your function uses the AWS SDK for Go, download the standard set of SDK modules, along with any AWS service API clients required by your
+      application. To learn how to install the SDK for Go, see <a href="https://aws.github.io/aws-sdk-go-v2/docs/getting-started/" rel="noopener noreferrer" target="_blank"><span>Getting Started with the AWS SDK for Go V2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Using the provided.al2 runtime (recommended)" id="golang-package-windows-al2" expanded="false"><p>Go is implemented differently than other managed runtimes. Because Go compiles to native code, Lambda treats Go as a custom runtime. We recommend that you use the <code class="code">provided.al2</code> runtime to deploy Go functions to Lambda.</p><div class="procedure"><h6>To create a .zip deployment package (Windows)</h6><ol><li>
+        <p>Download the <b>build-lambda-zip</b> tool from GitHub.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">go install github.com/aws/aws-lambda-go/cmd/build-lambda-zip@latest</code></code></pre>
+      </li><li>
+        <p>Use the tool from your <code class="code">GOPATH</code> to create a .zip file. If you have a default installation of Go, the tool is typically in <code class="code">%USERPROFILE%\Go\bin</code>. Otherwise, navigate to where you installed the Go runtime and do one of the
+         following:</p>
+      <awsdocs-tabs><dl style="display: none">
+        <dt>cmd.exe</dt><dd tab-id="cmd.exe">
+              <p>In cmd.exe, run one of the following, depending on your target <a href="./foundation-arch.html">instruction set architecture</a>. The <code class="code">provided.al2</code> runtime supports both arm64 and x86_64.</p>
+              
+              <p>You can use the optional <code class="code">lambda.norpc</code> tag to exclude the Remote Procedure Call (RPC) component of the <a href="https://github.com/aws/aws-lambda-go/tree/master/lambda" rel="noopener noreferrer" target="_blank"><span>lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      library. The RPC component is only required when using the Go 1.x runtime. Excluding the RPC reduces the size of the deployment package.</p>
+              <div class="example"><h6>Example  — For the x86_64 architecture</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">set GOOS=linux
+set GOARCH=amd64
+set CGO_ENABLED=0
+go build -tags lambda.norpc -o bootstrap main.go
+%USERPROFILE%\Go\bin\build-lambda-zip.exe -o myFunction.zip bootstrap</code></pre></div></div>  
+              <div class="example"><h6>Example  — For the arm64 architecture</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">set GOOS=linux
+set GOARCH=arm64
+set CGO_ENABLED=0
+go build -tags lambda.norpc -o bootstrap main.go
+%USERPROFILE%\Go\bin\build-lambda-zip.exe -o myFunction.zip bootstrap</code></pre></div></div> 
+            </dd>
+        <dt>PowerShell</dt><dd tab-id="powershell">
+            <p>In PowerShell, run one of the following, depending on your target <a href="./foundation-arch.html">instruction set architecture</a>. The <code class="code">provided.al2</code> runtime supports both arm64 and x86_64.</p>
+            
+            <p>You can use the optional <code class="code">lambda.norpc</code> tag to exclude the Remote Procedure Call (RPC) component of the <a href="https://github.com/aws/aws-lambda-go/tree/master/lambda" rel="noopener noreferrer" target="_blank"><span>lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      library. The RPC component is only required when using the Go 1.x runtime. Excluding the RPC reduces the size of the deployment package.</p>
+              <p>For the x86_64 architecture:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">$env:GOOS = "linux"
+$env:GOARCH = "amd64"
+$env:CGO_ENABLED = "0"
+go build -tags lambda.norpc -o bootstrap main.go
+~\Go\Bin\build-lambda-zip.exe -o myFunction.zip bootstrap</code></pre>   
+            <p>For the arm64 architecture:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">$env:GOOS = "linux"
+$env:GOARCH = "arm64"
+$env:CGO_ENABLED = "0"
+go build -tags lambda.norpc -o bootstrap main.go
+~\Go\Bin\build-lambda-zip.exe -o myFunction.zip bootstrap</code></pre>   
+          </dd>
+    </dl></awsdocs-tabs>
+  </li><li>
+    
+        <p>Create the function. Note the following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The binary must be named <code class="code">bootstrap</code>, but the handler name can be anything. For more information, see <a href="./golang-handler.html#golang-handler-naming">Naming</a>.</p>
+      </li><li class="listitem">
+        <p>The <code class="code">--architectures</code> option is only required if you're using arm64. The default value is x86_64.</p>
+      </li><li class="listitem">
+        <p>For <code class="code">--role</code>, specify the Amazon Resource Name (ARN) of the <a href="./lambda-intro-execution-role.html">execution role</a>.</p>
+      </li></ul></div>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name myFunction \
+--runtime provided.al2 --handler <code class="replaceable">bootstrap</code> \
+--architectures <code class="replaceable">arm64</code> \
+--role <code class="replaceable">arn:aws:iam::111122223333:role/lambda-ex</code> \
+--zip-file fileb://myFunction.zip</code></code></pre>
+  </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Using the Go 1.x runtime (legacy)" id="golang-package-windows-go1x" expanded="false"><p>The Go 1.x managed runtime for Lambda is based on the Amazon Linux AMI (AL1). Lambda will continue to support the Go 1.x managed runtime until maintenance support for the Amazon Linux AMI ends on December 31, 2023. If you're using the Go 1.x runtime, you must migrate your functions to <code class="code">provided.al2</code>.</p><div class="procedure"><h6>To create a .zip deployment package (Windows)</h6><ol><li>
+        <p>Download the <b>build-lambda-zip</b> tool from GitHub.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">go install github.com/aws/aws-lambda-go/cmd/build-lambda-zip@latest</code></code></pre>
+      </li><li>
+        <p>Use the tool from your <code class="code">GOPATH</code> to create a .zip file. If you have a default installation of Go, the tool is typically in <code class="code">%USERPROFILE%\Go\bin</code>. Otherwise, navigate to where you installed the Go runtime and do one of the
+         following:</p>
+      <awsdocs-tabs><dl style="display: none">
+        <dt>cmd.exe</dt><dd tab-id="cmd.exe">
+              <p>In cmd.exe, run the following:</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">set GOOS=linux
+set GOARCH=amd64
+set CGO_ENABLED=0
+go build main.go
+%USERPROFILE%\Go\bin\build-lambda-zip.exe -o myFunction.zip main</code></pre>     
+            </dd>
+        <dt>PowerShell</dt><dd tab-id="powershell">
+            <p>In PowerShell, run the following:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">$env:GOOS = "linux"
+$env:GOARCH = "amd64"
+$env:CGO_ENABLED = "0"
+go build main.go
+~\Go\Bin\build-lambda-zip.exe -o myFunction.zip main</code></pre>    
+          </dd>
+    </dl></awsdocs-tabs>
+  </li><li>
+    
+    <p>Create the function. For <code class="code">--role</code>, specify the Amazon Resource Name (ARN) of the <a href="./lambda-intro-execution-role.html">execution role</a>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name myFunction \
+--runtime go1.x --handler main \
+--role <code class="replaceable">arn:aws:iam::111122223333:role/lambda-ex</code> \
+--zip-file fileb://myFunction.zip</code></code></pre>
+  </li></ol></div></awsui-expandable-section></div>
+   
+    <h2 id="golang-package-create-function">Creating and updating Go Lambda functions using .zip files</h2>
+    <p>
+      Once you have created your .zip deployment package, you can use it to create a new Lambda function or update an existing one. You can deploy 
+      your .zip package using the Lambda console, the AWS Command Line Interface, and the Lambda API. You can also create and update Lambda functions using 
+      AWS Serverless Application Model (AWS SAM) and AWS CloudFormation.
+    </p>
+    <p>The maximum size for a .zip deployment package for Lambda is 250 MB (unzipped). Note that this limit applies to the combined size of all the files you upload, 
+    including any Lambda layers.</p>
+     
+      <h3 id="golang-package-create-console">Creating and updating functions with .zip files using the console</h3>
+      <p>
+        To create a new function, you must first create the function in the console, then upload your .zip archive. To update an existing function, open the page for your function, then follow the same procedure to add your updated .zip file.
+      </p>
+      <p>
+        If your .zip file is less than 50MB, you can create or update a function by uploading the file directly from your local machine. For .zip files greater than 50MB, you must upload your package to an Amazon S3 bucket first. For instructions on how to upload a file to an Amazon S3 bucket using the AWS Management Console, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html">Getting started with Amazon S3</a>. To upload files using the AWS CLI, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-move">Move objects</a> in the <em>AWS CLI User Guide</em>.
+      </p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You cannot convert an existing container image function to use a .zip archive. You must create a new function.</p></div></div>
+      <div class="procedure"><h6>To create a new function (console)</h6><ol><li>
+          <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console and choose <b>Create Function</b>.</p>
+        </li><li>
+          <p>Choose <b>Author from scratch</b>.</p>
+        </li><li>
+          <p>Under <b>Basic information</b>, do the following:</p>
+          <ol><li>
+              <p>For <b>Function name</b>, enter the name for your function.</p>
+            </li><li>
+              <p>For <b>Runtime</b>, choose one of the following, depending on which type of deployment package you created:</p>
+              <div class="itemizedlist">
+                 
+                
+              <ul class="itemizedlist"><li class="listitem">
+                  <p><b>Provide your own bootstrap on Amazon Linux 2</b> (recommended): Choose this option to create the function using the <code class="code">provided.al2</code> runtime.</p>
+                </li><li class="listitem">
+                  <p><b>Go 1.x</b> (legacy): This runtime is based on the Amazon Linux AMI (AL1). Lambda will continue to support the Go 1.x runtime until maintenance support for the Amazon Linux AMI ends on December 31, 2023. We recommend that you use the <code class="code">provided.al2</code> runtime instead.</p>
+                </li></ul></div>
+            </li></ol>
+        </li><li>
+          <p>(Optional) Under <b>Permissions</b>, expand <b>Change default execution role</b>. You can create a new <b>Execution role</b> or use an existing one.</p>
+        </li><li>
+          <p>Choose <b>Create function</b>. Lambda creates a basic 'Hello world' function using your chosen runtime.</p>
+        </li></ol></div>
+      <div class="procedure"><h6>To upload a .zip archive from your local machine (console)</h6><ol><li>
+          <p>In the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console, choose the function you want to upload the .zip file for.</p>
+        </li><li>
+          <p>Select the <b>Code</b> tab.</p>
+        </li><li>
+          <p>In the <b>Code source</b> pane, choose <b>Upload from</b>.</p>
+        </li><li>
+          <p>Choose <b>.zip file</b>.</p>
+        </li><li>
+          <p>To upload the .zip file, do the following:</p>
+          <ol><li>
+              <p>Select <b>Upload</b>, then select your .zip file in the file chooser.</p>
+            </li><li>
+              <p>Choose <b>Open</b>.</p>
+            </li><li>
+              <p>Choose <b>Save</b>.</p>
+            </li></ol>
+        </li></ol></div>
+      <div class="procedure"><h6>To upload a .zip archive from an Amazon S3 bucket (console)</h6><ol><li>
+          <p>In the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console, choose the function you want to upload a new .zip file for.</p>
+        </li><li>
+          <p>Select the <b>Code</b> tab.</p>
+        </li><li>
+          <p>In the <b>Code source</b> pane, choose <b>Upload from</b>.</p>
+        </li><li>
+          <p>Choose <b>Amazon S3 location</b>.</p>
+        </li><li>
+          <p>Paste the Amazon S3 link URL of your .zip file and choose <b>Save</b>.</p>
+        </li></ol></div>
+     
+     
+      <h3 id="golang-package-create-cli">Creating and updating functions with .zip files using the AWS CLI</h3>
+      <p>
+      You can can use the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI</a> to create a new function or to update an existing one using a .zip file. Use the <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html">create-function</a> 
+      and <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html">update-function-code</a> commands to deploy your .zip 
+      package. If your .zip file is smaller than 50MB, you can upload the .zip package from a file location on your local build machine. For larger files, 
+      you must upload your .zip package from an Amazon S3 bucket. For instructions on how to upload a file to an Amazon S3 bucket using the AWS CLI, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-move">Move objects</a> in the <em>AWS CLI User Guide</em>.
+    </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you upload your .zip file from an Amazon S3 bucket using the AWS CLI, the bucket must be located in the same AWS Region as your function.</p></div></div>
+    <p>
+      To create a new function using a .zip file with the AWS CLI, you must specify the following:
+    </p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>The name of your function (<code class="code">--function-name</code>)</p>
+      </li><li class="listitem">
+        <p>Your function’s runtime (<code class="code">--runtime</code>)</p>
+      </li><li class="listitem">
+        <p>The Amazon Resource Name (ARN) of your function’s <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html">execution role</a> (<code class="code">--role</code>)</p>
+      </li><li class="listitem">
+        <p>The name of the handler method in your function code (<code class="code">--handler</code>)</p>
+      </li></ul></div>
+    <p>
+      You must also specify the location of your .zip file. If your .zip file is located in a folder on your local build machine, use the <code class="code">--zip-file</code> option to specify the file path, as shown in the following example command.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name myFunction \
+--runtime provided.al2 --handler bootstrap \
+--role arn:aws:iam::111122223333:role/service-role/my-lambda-role \
+--zip-file fileb://myFunction.zip</code></code></pre>
+    <p>
+      To specify the location of .zip file in an Amazon S3 bucket, use the <code class="code">--code</code> option as shown in the following example command. You only 
+      need to use the <code class="code">S3ObjectVersion</code> parameter for versioned objects.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name myFunction \
+--runtime provided.al2 --handler bootstrap \
+--role arn:aws:iam::111122223333:role/service-role/my-lambda-role \
+--code S3Bucket=myBucketName,S3Key=myFileName.zip,S3ObjectVersion=myObjectVersion</code></code></pre>
+    <p>
+      To update an existing function using the CLI, you specify the the name of your function using the <code class="code">--function-name</code> parameter. You 
+      must also specify the location of the .zip file you want to use to update your function code. If your .zip file is located in a folder on your 
+      local build machine, use the <code class="code">--zip-file</code> option to specify the file path, as shown in the following example command.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-function-code --function-name myFunction \
+--zip-file fileb://myFunction.zip</code></code></pre>
+    <p>
+      To specify the location of .zip file in an Amazon S3 bucket, use the <code class="code">--s3-bucket</code> and <code class="code">--s3-key</code> options as shown in the 
+      following example command. You only need to use the <code class="code">--s3-object-version</code> parameter for versioned objects.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-function-code --function-name myFunction \
+--s3-bucket myBucketName --s3-key myFileName.zip --s3-object-version myObject Version</code></code></pre>
+     
+     
+      <h3 id="golang-package-create-api">Creating and updating functions with .zip files using the Lambda API</h3>
+      <p>
+      To create and update functions using a .zip file archive, use the following API operations:
+    </p>
+<div class="itemizedlist">
+ 
+ 
+<ul class="itemizedlist"><li class="listitem">
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html">CreateFunction</a></p>
+</li><li class="listitem">
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_UpdateFunctionCode.html">UpdateFunctionCode</a></p>
+</li></ul></div>
+     
+   
+    <h3 id="golang-package-create-sam">Creating and updating functions with .zip files using AWS SAM</h3>
+    <p>
+      The AWS Serverless Application Model (AWS SAM) is a toolkit that helps streamline the process of building and running serverless applications on AWS. You define the resources for your application in a 
+      YAML or JSON template and use the AWS SAM command line interface (AWS SAM CLI) to build, package, and deploy your applications. When you build a Lambda function from an AWS SAM template, 
+      AWS SAM automatically creates a .zip deployment package or container image with your function code and any dependencies you specify. To learn more about using AWS SAM to build and deploy 
+      Lambda functions, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html">Getting started with AWS SAM</a> in the
+      <em>AWS Serverless Application Model Developer Guide</em>.</p>
+
+      <p>You can also use AWS SAM to create a Lambda function using an existing .zip file archive. To create a Lambda function using AWS SAM, you can save your .zip file in 
+      an Amazon S3 bucket or in a local folder on your build machine. For instructions on how to upload a file to an Amazon S3 bucket using the AWS CLI, 
+      see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-move">Move objects</a> in the <em>AWS CLI User Guide</em>.
+    </p>
+<p>
+      In your AWS SAM template, the <code class="code">AWS::Serverless::Function</code> resource specifies your Lambda function. In this resource, set the following 
+  properties to create a function using a .zip file archive:
+    </p>
+<div class="itemizedlist">
+ 
+ 
+ 
+<ul class="itemizedlist"><li class="listitem">
+<p><code class="code">PackageType</code> - set to <code class="code">Zip</code></p>
+</li><li class="listitem">
+<p><code class="code">CodeUri</code> - set to the  function code's Amazon S3 URI, path to local folder, or <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-function-functioncode.html">FunctionCode</a> object</p>
+</li><li class="listitem">
+<p><code class="code">Runtime</code> - Set to your chosen runtime</p>
+</li></ul></div>
+<p>
+      With AWS SAM, if your .zip file is larger than 50MB, you don’t need to upload it to an Amazon S3 bucket first. AWS SAM can upload .zip packages up to 
+      the maximum allowed size of 250MB (unzipped) from a location on your local build machine.
+    </p>
+<p>
+      To learn more about deploying functions using .zip file in AWS SAM, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html">AWS::Serverless::Function</a> in the <em>AWS SAM Developer Guide</em>.
+    </p>
+      <div class="procedure"><h6>Example: Using AWS SAM to build a Go function with provided.al2</h6><ol><li>
+      <p>Create an AWS SAM template with the following properties:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>BuildMethod</b>: Specifies the compiler for your application. Use <code class="code">go1.x</code>.</p>
+        </li><li class="listitem">
+          <p><b>Runtime</b>: Use <code class="code">provided.al2</code>.</p>
+        </li><li class="listitem">
+          <p><b>CodeUri</b>: Enter the path to your code.</p>
+        </li><li class="listitem">
+          <p><b>Architectures</b>: Use <code class="code">[arm64]</code> for the arm64 architecture. For the x86_64 instruction set architecture, use <code class="code">[amd64]</code> or remove the <code class="code">Architectures</code> property.</p>
+        </li></ul></div>
+        <div class="example"><h6>Example template.yaml</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="yaml ">AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: <code class="replaceable">go1.x</code>
+    Properties:
+      CodeUri: <code class="replaceable">hello-world/</code> # folder where your main program resides
+      Handler: bootstrap
+      Runtime: <code class="replaceable">provided.al2</code>
+      Architectures: <code class="replaceable">[arm64]</code></code></pre></div></div>
+  </li><li>
+    <p>Use the <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-build.html">sam build</a> command to compile the executable.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam build</code></pre>
+  </li><li>
+    <p>Use the <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html">sam deploy</a> command to deploy the function to Lambda.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam deploy --guided</code></pre>
+  </li></ol></div>
+ 
+ 
+  <h3 id="golang-package-create-cfn">Creating and updating functions with .zip files using AWS CloudFormation</h3>
+  <p>
+      You can use AWS CloudFormation to create a Lambda function using a .zip file archive. To create a Lambda function from a .zip file, you must first upload 
+      your file to an Amazon S3 bucket. For instructions on how to upload a file to an Amazon S3 bucket using the AWS CLI, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-move">Move objects</a> 
+  in the <em>AWS CLI User Guide. </em></p>
+  <p>In your AWS CloudFormation template, the <code class="code">AWS::Lambda::Function</code> resource specifies your Lambda function. In this resource, set the following 
+    properties to create a function using a .zip file archive:</p>
+<div class="itemizedlist">
+ 
+ 
+ 
+<ul class="itemizedlist"><li class="listitem">
+<p><code class="code">PackageType</code> - Set to <code class="code">Zip</code></p>
+</li><li class="listitem">
+<p><code class="code">Code</code> - Enter the Amazon S3 bucket name and the .zip file name in the <code class="code">S3Bucket</code> and <code class="code">S3Key</code> fields</p>
+</li><li class="listitem">
+<p><code class="code">Runtime</code> - Set to your chosen runtime</p>
+</li></ul></div>
+<p>
+      The .zip file that AWS CloudFormation generates cannot exceed 4MB. To learn more about deploying functions using .zip file in AWS CloudFormation, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">AWS::Lambda::Function</a> 
+  in the <em>AWS CloudFormation User Guide</em>.
+    </p>
+ 
+ 
+    <h2 id="golang-package-dependencies-layers">Creating a Go layer for your dependencies</h2>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Using layers with functions in a compiled language like Go may not provide
+          the same amount of benefit as with an interpreted language like Python.
+          Since Go is a compiled language, your functions still have to manually load any
+          shared assemblies into memory during the init phase, which can increase cold start
+          times. Instead, we recommend including any shared code at compile time to take
+          advantage of any built-in compiler optimizations.</p></div></div>
+    <p>The instructions in this section show you how to include your dependencies in a layer.</p>
+    <p>Lambda automatically detects any libraries in the
+      <code class="code">/opt/lib</code> directory, and any binaries in the <code class="code">/opt/bin</code>
+      directory. To ensure that Lambda properly finds your layer content, create a layer
+      with the following structure:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">custom-layer.zip
+└ lib
+    | lib_1
+    | lib_2
+└ bin
+    | bin_1
+    | bin_2</code></pre>
+    <p>After you package your layer, see <a href="./creating-deleting-layers.html">Creating and deleting layers in Lambda</a>
+      and <a href="./adding-layers.html">Adding layers to functions</a> to complete your layer setup.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./golang-context.html">Context</div><div id="next" class="next-link" accesskey="n" href="./go-image.html">Deploy container images</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-package.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/golang-package.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

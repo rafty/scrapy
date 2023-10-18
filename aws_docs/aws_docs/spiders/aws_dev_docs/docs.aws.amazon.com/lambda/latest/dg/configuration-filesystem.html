@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring file system access for Lambda functions - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="configuration-filesystem" /><meta name="default_state" content="configuration-filesystem" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html" /><meta name="description" content="Configure your Lambda function to access a file system such as an Amazon EFS file system." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-filesystem.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-filesystem.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-filesystem.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-filesystem.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-filesystem.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-filesystem.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-filesystem.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-filesystem.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-filesystem.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-filesystem.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-filesystem.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-filesystem.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-filesystem.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-filesystem.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-filesystem.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-filesystem.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/configuration-filesystem.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/configuration-filesystem.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configuring file system access for Lambda functions" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configuring file system access for Lambda functions - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-filesystem" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-filesystem.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-filesystem.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-filesystem.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda function,create Lambda function" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Configuring AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Configuring file system access for Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-filesystem" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#configuration-filesystem-permissions">Execution role and user permissions</a><a href="#configuration-filesystem-setup">Configuring a file system and access point</a><a href="#configuration-filesystem-config">Connecting to a file system (console)</a><a href="#configuration-filesystem-api">Configuring file system access with the Lambda API</a><a href="#configuration-filesystem-cross-account">Mounting an Amazon EFS file system in another AWS account</a><a href="#configuration-filesystem-cloudformation">AWS CloudFormation and AWS SAM</a><a href="#configuration-filesystem-samples">Sample applications</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="configuration-filesystem">Configuring file system access for Lambda functions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can configure a function to mount an Amazon Elastic File System (Amazon EFS) file system to a local directory. With Amazon EFS, your
+    function code can access and modify shared resources safely and at high concurrency.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#configuration-filesystem-permissions">Execution role and user permissions</a></li><li><a href="#configuration-filesystem-setup">Configuring a file system and access point</a></li><li><a href="#configuration-filesystem-config">Connecting to a file system (console)</a></li><li><a href="#configuration-filesystem-api">Configuring file system access with the Lambda API</a></li><li><a href="#configuration-filesystem-cross-account">Mounting an Amazon EFS file system in another AWS account</a></li><li><a href="#configuration-filesystem-cloudformation">AWS CloudFormation and AWS SAM</a></li><li><a href="#configuration-filesystem-samples">Sample applications</a></li></ul></div>
+    <h2 id="configuration-filesystem-permissions">Execution role and user permissions</h2>
+    
+    <p>If the file system doesn't have a user-configured AWS Identity and Access Management (IAM) policy, EFS uses a default policy that grants full access to any client that can connect to the file system using a file system mount target. 
+      If the file system has a user-configured IAM policy, your function's
+      execution role must have the correct <code class="code">elasticfilesystem</code> permissions.</p>
+    <div class="itemizedlist">
+      <h6>Execution role permissions</h6>
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>elasticfilesystem:ClientMount</b></p>
+      </li><li class="listitem">
+        <p><b>elasticfilesystem:ClientWrite (not required for read-only
+          connections)</b></p>
+      </li></ul></div>
+    <p>These permissions are included in the <b>AmazonElasticFileSystemClientReadWriteAccess</b>
+      managed policy. Additionally, your execution role must have the <a href="./configuration-vpc.html#vpc-permissions">permissions
+      required to connect to the file system's VPC</a>.</p>
+    <p>When you configure a file system, Lambda uses your permissions to verify mount targets. To configure a function
+      to connect to a file system, your user needs the following permissions:</p>
+    <div class="itemizedlist">
+      <h6>User permissions</h6>
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>elasticfilesystem:DescribeMountTargets</b></p>
+      </li></ul></div>
+   
+    <h2 id="configuration-filesystem-setup">Configuring a file system and access point</h2>
+    
+    <p>Create a file system in Amazon EFS with a mount target in every Availability Zone that your function connects to.
+      For performance and resilience, use at least two Availability Zones. For example, in a simple configuration you
+      could have a VPC with two private subnets in separate Availability Zones. The function connects to both subnets
+      and a mount target is available in each. Ensure that NFS traffic (port 2049) is allowed by the security groups
+      used by the function and mount targets.</p>
+    
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When you create a file system, you choose a performance mode that can't be changed later. <b>General
+        purpose</b> mode has lower latency, and <b>Max I/O</b> mode supports a higher maximum
+        throughput and IOPS. For help choosing, see <a href="https://docs.aws.amazon.com/efs/latest/ug/performance.html">Amazon EFS
+          performance</a> in the <em>Amazon Elastic File System User Guide</em>.</p></div></div>
+    
+    <p>An access point connects each instance of the function to the right mount target for the Availability Zone it
+      connects to. For best performance, create an access point with a non-root path, and limit the number of files that
+      you create in each directory. The
+      following example creates a directory named <code class="code">my-function</code> on the file system and sets the owner ID to
+      1001 with standard directory permissions (755).</p>
+    <div class="example"><h6>Example access point configuration</h6><div class="example-contents"><div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>Name</b> – <code class="code">files</code></p>
+        </li><li class="listitem">
+          <p><b>User ID</b> – <code class="code">1001</code></p>
+        </li><li class="listitem">
+          <p><b>Group ID</b> – <code class="code">1001</code></p>
+        </li><li class="listitem">
+          <p><b>Path</b> – <code class="code">/my-function</code></p>
+        </li><li class="listitem">
+          <p><b>Permissions</b> – <code class="code">755</code></p>
+        </li><li class="listitem">
+          <p><b>Owner user ID</b> – <code class="code">1001</code></p>
+        </li><li class="listitem">
+          <p><b>Group user ID</b> – <code class="code">1001</code></p>
+        </li></ul></div></div></div>
+    <p>When a function uses the access point, it is given user ID 1001 and has full access to the directory.</p>
+    <p>For more information, see the following topics in the <em>Amazon Elastic File System User Guide</em>:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/efs/latest/ug/creating-using.html">Creating resources for Amazon EFS</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html">Working with users, groups, and
+          permissions</a></p>
+      </li></ul></div>
+   
+    <h2 id="configuration-filesystem-config">Connecting to a file system (console)</h2>
+    
+    <p>A function connects to a file system over the local network in a VPC. The subnets that your function connects to
+      can be the same subnets that contain mount points for your file system, or subnets in the same Availability Zone
+      that can route NFS traffic (port 2049) to the file system.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If your function is not already connected to a VPC, see <a href="./configuration-vpc.html">Connecting outbound networking to resources in a VPC</a>.</p></div></div>
+    <div class="procedure"><h6>To configure file system access</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>Choose <b>Configuration</b> and then choose <b>File systems</b>.</p>
+      </li><li>
+        <p>Under <b>File system</b>, choose <b>Add file system</b>.</p>
+      </li><li>
+        <p>Configure the following properties:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>EFS file system</b> – The access point for a file system in the same VPC.</p>
+          </li><li class="listitem">
+            <p><b>Local mount path</b> – The location where the file system is mounted on the
+              Lambda function, starting with <code class="code">/mnt/</code>.</p>
+          </li></ul></div>
+      </li></ol></div>
+    
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Pricing</h6></div><div class="awsdocs-note-text"><p>Amazon EFS charges for storage and throughput, with rates that vary by storage class. For details, see <a href="https://aws.amazon.com/efs/pricing" rel="noopener noreferrer" target="_blank"><span>Amazon EFS pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>Lambda charges for data transfer between VPCs. This only applies if your function's VPC is peered to another
+        VPC with a file system. The rates are the same as for Amazon EC2 data transfer between VPCs in the same Region. For
+        details, see <a href="https://aws.amazon.com/lambda/pricing" rel="noopener noreferrer" target="_blank"><span>Lambda pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+    
+    <p>For more information about Lambda's integration with Amazon EFS, see <a href="./services-efs.html">Using Amazon EFS with Lambda</a>.</p>
+   
+    <h2 id="configuration-filesystem-api">Configuring file system access with the Lambda API</h2>
+    <p>Use the following API operations to connect your Lambda function to a file system:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="./API_CreateFunction.html">CreateFunction</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateFunctionConfiguration.html">UpdateFunctionConfiguration</a></p>
+      </li></ul></div>
+    <p>To connect a function to a file system, use the <code class="code">update-function-configuration</code> command. The
+      following example connects a function named <code class="code">my-function</code> to a file system with ARN of an access
+      point.</p>
+    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">ARN=arn:aws:elasticfilesystem:<code class="replaceable">us-east-2</code>:<code class="replaceable">123456789012</code>:access-point/fsap-<code class="replaceable">015cxmplb72b405fd</code></code>
+<code class="userinput">aws lambda update-function-configuration --function-name my-function \
+      --file-system-configs Arn=$ARN,LocalMountPath=<code class="replaceable">/mnt/efs0</code></code></code></pre>
+    <p>You can get the ARN of a file system's access point with the <code class="code">describe-access-points</code>
+      command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws efs describe-access-points</code></code></pre>
+    <p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "AccessPoints": [
+        <span>{</span>
+            "ClientToken": "console-aa50c1fd-xmpl-48b5-91ce-57b27a3b1017",
+            "Name": "lambda-ap",
+            "Tags": [
+                <span>{</span>
+                    "Key": "Name",
+                    "Value": "lambda-ap"
+                }
+            ],
+            "AccessPointId": "fsap-015cxmplb72b405fd",
+            "AccessPointArn": "arn:aws:elasticfilesystem:us-east-2:123456789012:access-point/fsap-015cxmplb72b405fd",
+            "FileSystemId": "fs-aea3xmpl",
+            "RootDirectory": <span>{</span>
+                "Path": "/"
+            },
+            "OwnerId": "123456789012",
+            "LifeCycleState": "available"
+        }
+    ]
+}</code></pre>
+   
+    <h2 id="configuration-filesystem-cross-account">Mounting an Amazon EFS file system in another AWS account</h2>
+    <p>You can configure a function to mount an Amazon EFS file system in another AWS account. Before you mount the file system, you must ensure the 
+      following:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html">VPC peering</a> must be configured, and appropriate routes must be added to the route tables in each VPC.</p>
+      </li><li class="listitem">
+        <p>The security group for the Amazon EFS file system you want to mount must be configured to allow inbound access from the security group 
+          associated with your Lambda function.</p>
+      </li><li class="listitem">
+        <p>Subnets must be created in each VPC with matching Availability Zone (AZ) IDs.</p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support">DNS Hostnames</a> must be enabled in both VPCs.</p>
+      </li></ul></div>
+    
+    <p>For your Lambda function to access an Amazon EFS file system in another AWS account, that file system must also have a file system policy that 
+      grants permission to your funtion. To learn how to create a file system policy, see <a href="https://docs.aws.amazon.com/efs/latest/ug/create-file-system-policy.html">Creating file system policies</a> 
+    in the <em>Amazon Elastic File System User Guide</em>.</p> 
+    <p>The following shows an example policy that gives Lambda functions in a specified account permission to perform all API actions on a file system.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "Version": "2012-10-17",
+    "Id": "efs-lambda-policy",
+    "Statement": [
+        <span>{</span>
+            "Sid": "efs-lambda-statement",
+            "Effect": "Allow",
+            "Principal": <span>{</span>
+                "AWS": "arn:aws:iam::<code class="replaceable"><span>{</span>LAMBDA-ACCOUNT-ID}</code>:root"
+            },
+            "Action": "*",
+            "Resource": "arn:aws:elasticfilesystem:<code class="replaceable"><span>{</span>REGION}</code>:<code class="replaceable"><span>{</span>ACCOUNT-ID}</code>:file-system/<code class="replaceable"><span>{</span>FILE SYSTEM ID}</code>"
+        }
+    ]
+}</code></pre>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The example policy shown uses the wildcard charcter ("*") to grant permissions for Lambda functions in the specified AWS account to 
+    perform any API operation on the filesystem. This includes deleting the filesystem. To limit the operations that other AWS accounts can 
+    perform on your filesystem, specify the actions you want to allow explicitly. For a list of possible API operations, see 
+      <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonelasticfilesystem.html">Actions, resources, and 
+      condition keys for Amazon Elastic File System</a>.</p></div></div>
+    <p> To configure cross-account file system mounting, you use the AWS Command Line Interface (AWS CLI) <code class="code">update-function-configuration</code> operation.</p>
+    <p>To mount a file system in another AWS account, run the following command. Use your own function name and replace the Amazon Resource 
+      Name (ARN) with the ARN of the Amazon EFS access point for the file system you want to mount. <code class="code">LocalMountPath</code> is the path where the 
+      function can access the file system, starting with <code class="code">/mnt/</code>. Ensure that the Lambda mount path matches the access point path for the 
+    filesystem. For example, if the access point is <code class="code">/efs</code>, the Lambda mount path must be <code class="code">/mnt/efs</code>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-function-configuration --function-name <code class="replaceable">MyFunction</code> \
+--file-system-configs Arn=<code class="replaceable">arn:aws:elasticfilesystem:us-east-1:222233334444:access-point/fsap-01234567</code>,LocalMountPath=/mnt/<code class="replaceable">test</code></code></code></pre>
+    
+   
+    <h2 id="configuration-filesystem-cloudformation">AWS CloudFormation and AWS SAM</h2>
+    
+    <p>You can use AWS CloudFormation and the AWS Serverless Application Model (AWS SAM) to automate the creation of Lambda applications. To enable a file
+      system connection on an AWS SAM <code class="code">AWS::Serverless::Function</code> resource, use the
+      <code class="code">FileSystemConfigs</code> property.</p>
+    
+    <div class="example"><h6>Example template.yml – File system configuration</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">Transform: AWS::Serverless-2016-10-31
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+  Subnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: VPC
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: <code class="replaceable">"us-west-2a"</code>
+  EfsSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId:
+        Ref: VPC
+      GroupDescription: "mnt target sg"
+      SecurityGroupIngress:
+      - IpProtocol: -1
+        CidrIp: "0.0.0.0/0"
+  FileSystem:
+    Type: AWS::EFS::FileSystem
+    Properties:
+      PerformanceMode: generalPurpose
+  AccessPoint:
+    Type: AWS::EFS::AccessPoint
+    Properties:
+      FileSystemId:
+        Ref: FileSystem
+      PosixUser:
+        Uid: "1001"
+        Gid: "1001"
+      RootDirectory:
+        CreationInfo:
+          OwnerGid: "1001"
+          OwnerUid: "1001"
+          Permissions: "755"
+  MountTarget1:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId:
+        Ref: FileSystem
+      SubnetId:
+        Ref: Subnet1
+      SecurityGroups:
+      - Ref: EfsSecurityGroup
+  MyFunctionWithEfs:
+    Type: <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html">AWS::Serverless::Function</a>
+    Properties:
+      Handler: index.handler
+      Runtime: python3.10
+      VpcConfig:
+        SecurityGroupIds:
+        - Ref: EfsSecurityGroup
+        SubnetIds:
+        - Ref: Subnet1
+      FileSystemConfigs:
+      - Arn: !GetAtt AccessPoint.Arn
+        LocalMountPath: "/mnt/efs"
+      Description: Use a file system.
+    DependsOn: "MountTarget1" 
+      </code></pre></div></div>
+    <p>You must add the <code class="code">DependsOn</code> to ensure that the mount targets are fully created before the Lambda
+      runs for the first time.</p>
+    <p>For the AWS CloudFormation <code class="code">AWS::Lambda::Function</code> type, the property name and fields are the same. For more
+      information, see <a href="./services-cloudformation.html">Using AWS Lambda with AWS CloudFormation</a>.</p>
+   
+    <h2 id="configuration-filesystem-samples">Sample applications</h2>
+    
+    <p>The GitHub repository for this guide includes a sample application that demonstrates the use of Amazon EFS with a
+      Lambda function.</p>
+    <div class="itemizedlist">
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://github.com/awsdocs/aws-lambda-developer-guide/tree/main/sample-apps/efs-nodejs" rel="noopener noreferrer" target="_blank"><span>efs-nodejs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A function that uses an Amazon EFS file
+          system in a Amazon VPC. This sample includes a VPC, file system, mount targets, and access point configured for use
+          with Lambda.</p>
+      </li></ul></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./configuration-vpc-endpoints.html">Inbound networking</div><div id="next" class="next-link" accesskey="n" href="./configuration-aliases.html">Aliases</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-filesystem.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-filesystem.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Configuring reserved concurrency - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="configuration-concurrency" /><meta name="default_state" content="configuration-concurrency" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html" /><meta name="description" content="This topic details how to manage and configure reserved concurrency. For a conceptual overview of these two types of concurrency controls, see Reserved concurrency and provisioned concurrency . For information on configuring provisioned concurrency, see" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-concurrency.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-concurrency.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-concurrency.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-concurrency.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-concurrency.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-concurrency.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-concurrency.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-concurrency.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-concurrency.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-concurrency.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-concurrency.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-concurrency.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-concurrency.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-concurrency.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-concurrency.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-concurrency.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/configuration-concurrency.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/configuration-concurrency.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Configuring reserved concurrency" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Configuring reserved concurrency - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-concurrency" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-concurrency.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-concurrency.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-concurrency.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda concurrency,configure Lambda networking,configure Lambda database access,configure Lambda code signing,Lambda concurrency,Lambda function scaling,function scaling,calculate Lambda concurrency,Lambda concurrency quotas,Lambda concurrency metrics,function concurrency,reserved concurrency,max concurrency,concurrency scaling,concurrency configuration,concurrency quotas&gt;" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Managing AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-managing.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda function scaling",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Configuring reserved concurrency",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-concurrency" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#configuring-concurrency-reserved">Configuring reserved concurrency</a><a href="#estimating-reserved-concurrency">Configuring concurrency with the Lambda API</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="configuration-concurrency">Configuring reserved concurrency</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In Lambda, <a href="./lambda-concurrency.html">concurrency</a> is the number of
+    in-flight requests your function is handling at the same time. There are two types
+    of concurrency controls available:</p><div class="itemizedlist">
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>Reserved concurrency – Reserved concurrency is the maximum number of
+        concurrent instances you want to allocate to your function. When a function has
+        reserved concurrency, no other function can use that concurrency. There is no
+        charge for configuring reserved concurrency for a function.</p>
+    </li><li class="listitem">
+      <p>Provisioned concurrency – Provisioned concurrency is the number of
+        pre-initialized execution environments you want to allocate to your function.
+        These execution environments are prepared to respond immediately to incoming
+        function requests. Configuring provisioned concurrency incurs charges to your
+        AWS account.</p>
+    </li></ul></div><p>This topic details how to manage and configure reserved concurrency. For a conceptual
+    overview of these two types of concurrency controls, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html#reserved-and-provisioned">Reserved concurrency
+    and provisioned concurrency</a>. For information on configuring provisioned concurrency,
+    see <a href="./provisioned-concurrency.html">Configuring provisioned concurrency</a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Lambda functions that are invoked by an Amazon MQ event source mapping have a default maximum concurrency. For Apache Active MQ, 
+the maximum number of concurrent instances is 5. For Rabbit MQ, the maximum number of concurrent instances is 1. Setting reserved or provisioned concurrency for your 
+function doesn't change these limits. To request an increase in the default maximum concurrency when using Amazon MQ, contact AWS Support.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#configuring-concurrency-reserved">Configuring reserved concurrency</a></li><li><a href="#estimating-reserved-concurrency">Configuring concurrency with the Lambda API</a></li></ul></div>
+    <h2 id="configuring-concurrency-reserved">Configuring reserved concurrency</h2>
+    
+    <p>You can configure reserved concurrency settings for a function using the Lambda
+      console or the Lambda API.</p>
+    <div class="procedure"><h6>To reserve concurrency for a function (console)</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the function you want to reserve concurrency for.</p>
+      </li><li>
+		    <p>Choose <b>Configuration</b> and then choose
+		      <b>Concurrency</b>.</p>
+	    </li><li>
+        <p>Under <b>Concurrency</b>, choose <b>Edit</b>. </p>
+      </li><li>
+        <p>Choose <b>Reserve concurrency</b>. Enter the amount of concurrency
+          to reserve for the function.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>You can reserve up to the <b>Unreserved account concurrency</b> value
+      minus 100. The remaining 100 units of concurrency are for functions that aren't using
+      reserved concurrency. For example, if your account has a concurrency limit of 1,000,
+      you cannot reserve all 1,000 units of concurrency to a single function.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/concurrency-reserve-over-limit.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        An error occurs if you try to reserve too much concurrency.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Reserving concurrency for a function impacts the concurrency pool that's
+      available to other functions. For example, if you reserve 100 units of concurrency
+      for <code class="code">function-a</code>, other functions in your account must share the
+      remaining 900 units of concurrency, even if <code class="code">function-a</code> doesn't use
+      all 100 reserved concurrency units.</p>
+    <p>To intentionally throttle a function, set its reserved concurrency to 0. This
+      stops your function from processing any events until you remove the limit.</p>
+    <p>To configure reserved concurrency with the Lambda API, use the following API
+      operations.</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="./API_PutFunctionConcurrency.html">PutFunctionConcurrency</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_GetFunctionConcurrency.html">GetFunctionConcurrency</a></p>
+      </li><li class="listitem">
+        <p><a href="./API_DeleteFunctionConcurrency.html">DeleteFunctionConcurrency</a></p>
+      </li></ul></div>
+    <p>For example, to configure reserved concurrency with the AWS Command Line Interface (CLI), use
+      the <code class="code">put-function-concurrency</code> command. The following command reserves
+      100 concurrency units for a function named <code class="code">my-function</code>:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws lambda put-function-concurrency --function-name my-function \
+    --reserved-concurrent-executions 100</code></pre>
+    <p>You should see output that looks like the following:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "ReservedConcurrentExecutions": 100
+}</code></pre>
+   
+    <h2 id="estimating-reserved-concurrency">Configuring concurrency with the Lambda API</h2>
+    <p>If your function is currently serving traffic, you can easily view its concurrency
+      metrics using <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/working_with_metrics.html">CloudWatch metrics</a>.
+      Specifically, the <code class="code">ConcurrentExecutions</code> metric shows you the number of
+      concurrent invocations for each function in your account.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/concurrency-concurrent-executions-metrics.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Graph showing concurrency for a function over time.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>The previous graph suggests that this function serves an average of 5 to 10
+      concurrent requests at any given time, and peaks at 20 requests on a typical day.
+      Suppose that there are many other functions in your account. <b>
+      If this function is critical to your application and you don't want to drop any
+      requests</b>, use a number greater than or equal to 20 as your reserved
+      concurrency setting.</p>
+    <p>Alternatively, recall that you can also <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html#calculating-concurrency">
+      calculate concurrency</a> using the following formula:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">Concurrency = (average requests per second) * (average request duration in seconds)</code></pre>
+    <p>Multiplying average requests per second with the average request duration in
+      seconds gives you a rough estimate of how much concurrency you need to reserve.
+      You can estimate average requests per second using the <code class="code">Invocation</code>
+      metric, and the average request duration in seconds using the <code class="code">Duration</code>
+      metric. See <a href="./monitoring-metrics.html">Working with Lambda function metrics</a>
+      for more details.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-concurrency.html">Function scaling</div><div id="next" class="next-link" accesskey="n" href="./provisioned-concurrency.html">Configuring provisioned concurrency</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-concurrency.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-concurrency.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

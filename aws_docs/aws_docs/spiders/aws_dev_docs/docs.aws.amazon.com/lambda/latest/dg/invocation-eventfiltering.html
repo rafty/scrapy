@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda event filtering - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="invocation-eventfiltering" /><meta name="default_state" content="invocation-eventfiltering" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html" /><meta name="description" content="Use event filtering with a Lambda event source mapping to filter out stream and queue events to your Lambda function based on certain filter criteria." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/invocation-eventfiltering.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/invocation-eventfiltering.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/invocation-eventfiltering.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/invocation-eventfiltering.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/invocation-eventfiltering.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/invocation-eventfiltering.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/invocation-eventfiltering.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/invocation-eventfiltering.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/invocation-eventfiltering.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/invocation-eventfiltering.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-eventfiltering.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-eventfiltering.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/invocation-eventfiltering.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/invocation-eventfiltering.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/invocation-eventfiltering.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/invocation-eventfiltering.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/invocation-eventfiltering.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/invocation-eventfiltering.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda event filtering" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda event filtering - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#invocation-eventfiltering" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventfiltering.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventfiltering.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventfiltering.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,invoke,trigger,kick off function,start function,send request to function,event source mapping,Lambda event filtering,Lambda filter criteria,Lambda Amazon SQS event filter,Lambda DynamoDB event filter" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Invoking Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda event filtering",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#invocation-eventfiltering" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#filtering-basics">Event filtering basics</a><a href="#filtering-criteria-not-met">Handling records that don't meet filter criteria</a><a href="#filtering-syntax">Filter rule syntax</a><a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a><a href="#filtering-cli">Attaching filter criteria to an event source mapping (AWS CLI)</a><a href="#filtering-sam">Attaching filter criteria to an event source mapping (AWS SAM)</a><a href="#filtering-by-service">Using filters with different AWS services</a><a href="#filtering-ddb">Filtering with DynamoDB</a><a href="#filtering-kinesis">Filtering with Kinesis</a><a href="#filtering-AMQ">Filtering with Amazon MQ</a><a href="#filtering-msk-smak">Filtering with Amazon MSK and self-managed Apache Kafka</a><a href="#filtering-SQS">Filtering with Amazon SQS</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="invocation-eventfiltering">Lambda event filtering</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use event filtering to control which records from a stream or queue Lambda sends to your function. For example, you can add a 
+    filter so that your function only processes Amazon SQS messages containing certain data parameters. Event filtering works with 
+    event source mappings. You can add filters to event source mappings for the following AWS services:</p><div class="itemizedlist">
+     
+     
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>Amazon DynamoDB</p>
+    </li><li class="listitem">
+      <p>Amazon Kinesis Data Streams</p>
+    </li><li class="listitem">
+      <p>Amazon MQ</p>
+    </li><li class="listitem">
+      <p>Amazon Managed Streaming for Apache Kafka (Amazon MSK)</p>
+    </li><li class="listitem">
+      <p>Self-managed Apache Kafka</p>
+    </li><li class="listitem">
+      <p>Amazon Simple Queue Service (Amazon SQS)</p>
+    </li></ul></div><p>Lambda doesn't support event filtering for Amazon DocumentDB.</p><p>By default, you can define up to five different filters for a single event source mapping. Your filters are logically ORed together. If a 
+    record from your event source satisfies one or more of your filters, Lambda includes the record in the next event it sends to your function.  
+    If none of your filters are satisfied, Lambda discards the record.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you need to define more than five filters for an event source, you can request a quota increase up to 10 filters for each event source. 
+      If you attempt to add more filters than your current quota permits, Lambda will return an error when you try and create the event source.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#filtering-basics">Event filtering basics</a></li><li><a href="#filtering-criteria-not-met">Handling records that don't meet filter criteria</a></li><li><a href="#filtering-syntax">Filter rule syntax</a></li><li><a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a></li><li><a href="#filtering-cli">Attaching filter criteria to an event source mapping (AWS CLI)</a></li><li><a href="#filtering-sam">Attaching filter criteria to an event source mapping (AWS SAM)</a></li><li><a href="#filtering-by-service">Using filters with different AWS services</a></li><li><a href="#filtering-ddb">Filtering with DynamoDB</a></li><li><a href="#filtering-kinesis">Filtering with Kinesis</a></li><li><a href="#filtering-AMQ">Filtering with Amazon MQ</a></li><li><a href="#filtering-msk-smak">Filtering with Amazon MSK and self-managed Apache Kafka</a></li><li><a href="#filtering-SQS">Filtering with Amazon SQS</a></li></ul></div>
+    <h2 id="filtering-basics">Event filtering basics</h2>
+    <p>A filter criteria (<code class="code">FilterCriteria</code>) object is a structure that consists of a list of filters (<code class="code">Filters</code>). 
+      Each filter is a structure that defines an event filtering pattern (<code class="code">Pattern</code>). A pattern is a string representation of a 
+      JSON filter rule. The structure of a <code class="code">FilterCriteria</code> object is as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+   "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"Metadata1\": [ rule1 ], \"data\": <span>{</span> \"Data1\": [ rule2 ] }}"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Metadata1": [ rule1 ],
+    "data": <span>{</span>
+        "Data1": [ rule2 ]
+    }
+}</code></pre>
+    <p>Your filter pattern can include metadata properties, data properties, or both. The available metadata parameters and the format of the 
+      data parameters vary according to the AWS service which is acting as the event source. For example, suppose your event source mapping 
+      receives the following record from an Amazon SQS queue:</p>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "messageId": "059f36b4-87a3-44ab-83d2-661975830a7d",
+    "receiptHandle": "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...",
+    "body": "<span>{</span>\n "City": "Seattle",\n "State": "WA",\n "Temperature": "46"\n}",
+    "attributes": <span>{</span>
+        "ApproximateReceiveCount": "1",
+        "SentTimestamp": "1545082649183",
+        "SenderId": "AIDAIENQZJOLO23YVJ4VO",
+        "ApproximateFirstReceiveTimestamp": "1545082649185"
+    },
+    "messageAttributes": <span>{</span>},
+    "md5OfBody": "e4e68fb7bd0e697a0ae8f1bb342846b3",
+    "eventSource": "aws:sqs",
+    "eventSourceARN": "arn:aws:sqs:us-east-2:123456789012:my-queue",
+    "awsRegion": "us-east-2"
+}</code></pre>  
+ <div class="itemizedlist">
+    
+    
+ <ul class="itemizedlist"><li class="listitem">
+     <p><b>Metadata properties</b> are the fields containing information about the event that created the record. 
+       In the example Amazon SQS record, the metadata properties include fields such as <code class="code">messageID</code>, <code class="code">eventSourceArn</code>, and <code class="code">awsRegion</code>.</p>
+   </li><li class="listitem">
+     <p><b>Data properties</b> are the fields of the record containing the data from your stream or queue. In the Amazon SQS event 
+       example, the key for the data field is <code class="code">body</code>, and the data properties are the fields <code class="code">City</code> <code class="code">State</code>, and <code class="code">Temperature</code>.</p>
+   </li></ul></div>
+    <p>Different types of event source use different key values for their data fields. To filter on data properties, make sure that you use 
+      the correct key in your filter’s pattern. For a list of data filtering keys, and to see examples of filter patterns for each supported AWS service, 
+      refer to <a href="#filtering-by-service">Using filters with different AWS services</a>.</p>
+      
+    <p>Event filtering can handle multi-level JSON filtering. For example, consider the following fragment of a record from a DynamoDB stream:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">"dynamodb": <span>{</span>
+    "Keys": <span>{</span>
+        "ID": <span>{</span>
+            "S": "ABCD"
+        }
+        "Number": <span>{</span>
+            "N": "1234"
+    },
+    ...
+}</code></pre>
+    <p>Suppose you want to process only those records where the value of the sort key <code class="code">Number</code> is 4567. In this case, your 
+      <code class="code">FilterCriteria</code> object would look like this:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"dynamodb\": <span>{</span> \"Keys\": <span>{</span> \"Number\": <span>{</span> \"N\": [ "4567" ] } } } }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "dynamodb": <span>{</span>
+        "Keys": <span>{</span>
+            "Number": <span>{</span>
+                "N": [ "4567" ]
+                }
+            }
+        }
+}</code></pre>
+   
+      <h2 id="filtering-criteria-not-met">Handling records that don't meet filter criteria</h2>
+      <p>The way in which records that don’t meet your filter are handled depends on the event source.</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem"><p>For <b>Amazon SQS</b>, if a  message doesn't satisfy your filter criteria, Lambda automatically removes the message from the queue. 
+          You don't have to manually delete these messages in Amazon SQS.</p>
+        </li><li class="listitem">
+          <p>For <b>Kinesis</b> and <b>DynamoDB</b>, once your filter criteria processes a record, the streams iterator advances past this record. If the record 
+            doesn't satisfy your filter criteria, you don't have to manually delete the record from your event source. After the retention period, 
+            Kinesis and DynamoDB automatically delete these old records. If you want records to be deleted sooner, see <a href="https://docs.aws.amazon.com/streams/latest/dev/kinesis-extended-retention.html">Changing the Data Retention Period</a>.</p>
+        </li><li class="listitem">
+          <p>For <b>Amazon MSK</b>, <b>self-managed Apache Kafka</b>, and <b>Amazon MQ</b> messages, Lambda drops messages that don't match all fields included in the filter. 
+            For self-managed Apache Kafka, Lambda commits offsets for matched and unmatched messages after successfully invoking the function. For Amazon MQ, Lambda 
+            acknowledges matched messages after successfully invoking the function and acknowledges unmatched messages when filtering them.</p>
+        </li></ul></div>
+     
+    <h2 id="filtering-syntax">Filter rule syntax</h2>
+    <p>For filter rules, Lambda supports the Amazon EventBridge rules and uses the same syntax as EventBridge. For more information, see
+        <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html">Amazon EventBridge event
+        patterns</a> in the <em>Amazon EventBridge User Guide</em>.</p>
+    <p>The following is a summary of all the comparison operators available for Lambda event filtering.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac31c67c21b7"><thead>
+          <tr>
+            <th>Comparison operator</th>
+            <th>Example</th>
+            <th>Rule syntax</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Null</p>
+            </td>
+            <td tabindex="-1">
+              <p>UserID is null</p>
+            </td>
+            <td tabindex="-1">
+              <p>"UserID": [ null ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Empty</p>
+            </td>
+            <td tabindex="-1">
+              <p>LastName is empty</p>
+            </td>
+            <td tabindex="-1">
+              <p>"LastName": [""]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Equals</p>
+            </td>
+            <td tabindex="-1">
+              <p>Name is "Alice"</p>
+            </td>
+            <td tabindex="-1">
+              <p>"Name": [ "Alice" ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Equals (ignore case)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Name is "Alice"</p>
+            </td>
+            <td tabindex="-1">
+              <p>"Name": [ <span>{</span> "equals-ignore-case": "alice" } ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>And</p>
+            </td>
+            <td tabindex="-1">
+              <p>Location is "New York" and Day is "Monday"</p>
+            </td>
+            <td tabindex="-1">
+              <p>"Location": [ "New York" ], "Day": ["Monday"]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Or</p>
+            </td>
+            <td tabindex="-1">
+              <p>PaymentType is "Credit" or "Debit"</p>
+            </td>
+            <td tabindex="-1">
+              <p>"PaymentType": [ "Credit", "Debit"]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Not</p>
+            </td>
+            <td tabindex="-1">
+              <p>Weather is anything but "Raining"</p>
+            </td>
+            <td tabindex="-1">
+              <p>"Weather": [ <span>{</span> "anything-but": [ "Raining" ] } ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Numeric (equals)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Price is 100</p>
+            </td>
+            <td tabindex="-1">
+              <p>"Price": [ <span>{</span> "numeric": [ "=", 100 ] } ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Numeric (range)</p>
+            </td>
+            <td tabindex="-1">
+              <p>Price is more than 10, and less than or equal to 20</p>
+            </td>
+            <td tabindex="-1">
+              <p>"Price": [ <span>{</span> "numeric": [ "&gt;", 10, "&lt;=", 20 ] } ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Exists</p>
+            </td>
+            <td tabindex="-1">
+              <p>ProductName exists</p>
+            </td>
+            <td tabindex="-1">
+              <p>"ProductName": [ <span>{</span> "exists": true } ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Does not exist</p>
+            </td>
+            <td tabindex="-1">
+              <p>ProductName does not exist</p>
+            </td>
+            <td tabindex="-1">
+              <p>"ProductName": [ <span>{</span> "exists": false } ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Begins with</p>
+            </td>
+            <td tabindex="-1">
+              <p>Region is in the US</p>
+            </td>
+            <td tabindex="-1">
+              <p>"Region": [ <span>{</span>"prefix": "us-" } ]</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Ends with</p>
+            </td>
+            <td tabindex="-1">
+              <p>FileName ends with a .png extension.</p>
+            </td>
+            <td tabindex="-1">
+              <p>"FileName": [ <span>{</span> "suffix": ".png" } ] </p>
+            </td>
+          </tr>
+        </table></div></div>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Like EventBridge, for strings, Lambda uses exact character-by-character matching without case-folding or any other
+        string normalization. For numbers, Lambda also uses string representation. For example, 300, 300.0, and 3.0e2 are
+        not considered equal.</p></div></div>
+   
+    <h2 id="filtering-console">Attaching filter criteria to an event source mapping (console)</h2>
+    <p>Follow these steps to create a new event source mapping with filter criteria using the Lambda console.</p>
+    <div class="procedure"><h6>To create a new event source mapping with filter criteria (console)</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda
+          console.</p>
+      </li><li>
+        <p>Choose the name of a function to create an event source mapping for.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add trigger</b>.</p>
+      </li><li>
+        <p>For <b>Trigger configuration</b>, choose a trigger type that supports event filtering. For a list of supported services, 
+          refer to the list at the beginning of this page.</p>
+      </li><li>
+        <p>Expand <b>Additional settings</b>.</p>
+      </li><li>
+        <p>Under <b>Filter criteria</b>, choose <b>Add</b>, and then define and enter your filters. For example, you can enter the
+          following.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "Metadata" : [ 1, 2 ] }</code></pre>
+        <p>This instructs Lambda to process only the records where field <code class="code">Metadata</code> is equal to 1 or 2. You can continue to select 
+        <b>Add</b> to add more filters up to the maximum allowed number.</p>
+      </li><li>
+        <p>When you have finished adding your filters, choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>When you enter filter criteria using the console, you enter only the filter pattern and don't need to provide the <code class="code">Pattern</code> 
+      key or escape quotes. In step 6 of the preceding instructions, <code class="code"><span>{</span> "Metadata" : [ 1, 2 ] }</code> corresponds to the following
+      <code class="code">FilterCriteria</code>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+   "Filters": [
+      <span>{</span>
+          "Pattern": "<span>{</span> \"Metadata\" : [ 1, 2 ] }"
+      }
+   ]
+}</code></pre>
+    <p>After creating your event source mapping in the console, you can see the formatted <code class="code">FilterCriteria</code>
+      in the trigger details. For more examples of creating event filters using the console, see <a href="#filtering-by-service">Using filters with different AWS services</a>.</p>
+   
+    <h2 id="filtering-cli">Attaching filter criteria to an event source mapping (AWS CLI)</h2>
+    <p>Suppose you want an event source mapping to have the following <code class="code">FilterCriteria</code>:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+   "Filters": [
+      <span>{</span>
+          "Pattern": "<span>{</span> \"Metadata\" : [ 1, 2 ] }"
+      }
+   ]
+}</code></pre>
+    <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+      command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:sqs:us-east-2:123456789012:my-queue</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"Metadata\" : [ 1, 2 ]}"}]}'</code></pre>
+    <p>This <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/create-event-source-mapping.html">create-event-source-mapping</a> command creates a new Amazon SQS event source mapping for function
+        <code class="code">my-function</code> with the specified <code class="code">FilterCriteria</code>.</p>
+    <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"Metadata\" : [ 1, 2 ]}"}]}'</code></pre>
+    <p>Note that to update an event source mapping, you need its UUID. You can get the UUID from a
+      <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/list-event-source-mappings.html">list-event-source-mappings</a> call. 
+      Lambda also returns the UUID in the <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/create-event-source-mapping.html">create-event-source-mapping</a> CLI
+      response.</p>
+    <p>To remove filter criteria from an event source, you can run the following <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/update-event-source-mapping.html">update-event-source-mapping</a>
+      command with an empty <code class="code">FilterCriteria</code> object.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria "<span>{</span>}"</code></pre>
+    <p>For more examples of creating event filters using the AWS CLI, see <a href="#filtering-by-service">Using filters with different AWS services</a>.</p>
+   
+    <h2 id="filtering-sam">Attaching filter criteria to an event source mapping (AWS SAM)</h2>
+    <p>
+      Suppose you want to configure an event source in AWS SAM to use the following filter criteria:
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+   "Filters": [
+      <span>{</span>
+          "Pattern": "<span>{</span> \"Metadata\" : [ 1, 2 ] }"
+      }
+   ]
+}</code></pre>
+    <p>
+      To add these filter criteria to your event source mapping, insert the following snippet into the YAML template for your event source.
+    </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria: 
+  Filters: 
+    - Pattern: '<span>{</span>"Metadata": [1, 2]}'</code></pre>
+    <p>
+      For more information on creating and configuring an AWS SAM template for an event source mapping, see the <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-property-function-eventsource.html">
+        EventSource</a> section of the AWS SAM Developer Guide. Fore more examples of creating event filters using AWS SAM templates, see <a href="#filtering-by-service">Using filters with different AWS services</a>.
+    </p>
+   
+    <h2 id="filtering-by-service">Using filters with different AWS services</h2>
+    <p>Different types of event source use different key values for their data fields. To filter on data properties, make sure that you use 
+      the correct key in your filter’s pattern. The following table gives the filtering keys for each supported AWS service.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac31c67c29b5"><thead>
+          <tr>
+            <th>AWS service</th>
+            <th>Filtering key</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">DynamoDB</td>
+            <td tabindex="-1"><code class="code">dynamodb</code></td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Kinesis</td>
+            <td tabindex="-1"><code class="code">data</code></td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Amazon MQ</td>
+            <td tabindex="-1"><code class="code">data</code></td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Amazon MSK</td>
+            <td tabindex="-1"><code class="code">value</code></td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Self-managed Apache Kafka</td>
+            <td tabindex="-1"><code class="code">value</code></td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Amazon SQS</td>
+            <td tabindex="-1"><code class="code">body</code></td>
+          </tr>
+        </table></div></div>
+    <p>The following sections give examples of filter patterns for different types of event source. They also provide definitions of 
+      supported incoming data formats and filter pattern body formats for each supported service.</p>
+   
+    <h2 id="filtering-ddb">Filtering with DynamoDB</h2>
+    <p>Suppose you have a DynamoDB table with the primary key <code class="code">CustomerName</code> and attributes <code class="code">AccountManager</code> and 
+      <code class="code">PaymentTerms</code>. The following shows an example record from your DynamoDB table’s stream.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+     "eventID": "1",
+     "eventVersion": "1.0",
+     "dynamodb": <span>{</span>
+         "ApproximateCreationDateTime": "1678831218.0"
+         "Keys": <span>{</span>
+             "CustomerName": <span>{</span>
+                 "S": "AnyCompany Industries"
+             },
+         "NewImage": <span>{</span>
+             "AccountManager": <span>{</span>
+                 "S": "Pat Candella"
+             },
+             "PaymentTerms": <span>{</span>
+                 "S": "60 days"
+             },
+             "CustomerName": <span>{</span>
+                 "S": "AnyCompany Industries"
+     },
+     "SequenceNumber": "111",
+     "SizeBytes": 26,
+     "StreamViewType": "NEW_AND_OLD_IMAGES"
+ }</code></pre>
+    <p>To filter based on the key and attribute values in your DynamoDB table, use the <code class="code">dynamodb</code> key in the record. Suppose you 
+      want your function to process only those records where the primary key <code class="code">CustomerName</code> is “AnyCompany Industries.” The 
+      <code class="code">FilterCriteria</code> object would be as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+     "Filters": [
+          <span>{</span>
+              "Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"Keys\" : <span>{</span> \"CustomerName\" : <span>{</span> \"S\" : [ \"AnyCompany Industries\" ] } } } }"
+          }
+      ]
+ }</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+     "dynamodb": <span>{</span>
+          "Keys": <span>{</span>
+              "CustomerName": <span>{</span>
+                  "S": [ "AnyCompany Industries" ]
+                  }
+              }
+          }
+ }</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "dynamodb" : <span>{</span> "Keys" : <span>{</span> "CustomerName" : <span>{</span> "S" : [ "AnyCompany Industries" ] } } } }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:dynamodb:us-east-2:123456789012:table/my-table</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"Keys\" : <span>{</span> \"CustomerName\" : <span>{</span> \"S\" : [ \"AnyCompany Industries\" ] } } } }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"Keys\" : <span>{</span> \"CustomerName\" : <span>{</span> \"S\" : [ \"AnyCompany Industries\" ] } } } }"}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+   Filters:
+     - Pattern: '<span>{</span> "dynamodb" : <span>{</span> "Keys" : <span>{</span> "CustomerName" : <span>{</span> "S" : [ "AnyCompany Industries" ] } } } }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>With DynamoDB, you can also use the <code class="code">NewImage</code> and <code class="code">OldImage</code> keys to filter for attribute values. Suppose you want 
+      to filter records where the <code class="code">AccountManager</code> attribute in the latest table image is “Pat Candella” or "Shirley Rodriguez." The 
+      <code class="code">FilterCriteria</code> object would be as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"NewImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Pat Candella\", \"Shirley Rodriguez\" ] } } } }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "dynamodb": <span>{</span>
+        "NewImage": <span>{</span>
+            "AccountManager": <span>{</span>
+                "S": [ "Pat Candella", "Shirley Rodriguez" ]
+            }
+        }
+    }
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "dynamodb" : <span>{</span> "NewImage" : <span>{</span> "AccountManager" : <span>{</span> "S" : [ "Pat Candella", "Shirley Rodriguez" ] } } } }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:dynamodb:us-east-2:123456789012:table/my-table</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"NewImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Pat Candella\", \"Shirley Rodriguez\" ] } } } }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"NewImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Pat Candella\", \"Shirley Rodriguez\" ] } } } }"}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "dynamodb" : <span>{</span> "NewImage" : <span>{</span> "AccountManager" : <span>{</span> "S" : [ "Pat Candella", "Shirley Rodriguez" ] } } } }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>You can also create filters using Boolean AND expressions. These expressions can include both your table's key and attribute parameters. 
+    Suppose you want to filter records where the <code class="code">NewImage</code> value of <code class="code">AccountManager</code> is "Pat Candella" and the 
+    <code class="code">OldImage</code> value is "Terry Whitlock". The <code class="code">FilterCriteria</code> object would be as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"NewImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Pat Candella\" ] } } } , \"dynamodb\" : <span>{</span> \"OldImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Terry Whitlock\" ] } } } }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> 
+    "dynamodb" : <span>{</span> 
+        "NewImage" : <span>{</span> 
+            "AccountManager" : <span>{</span> 
+                "S" : [ 
+                    "Pat Candella" 
+                ] 
+            } 
+        } 
+    }, 
+    "dynamodb": <span>{</span> 
+        "OldImage": <span>{</span> 
+            "AccountManager": <span>{</span> 
+                "S": [ 
+                    "Terry Whitlock" 
+                ] 
+            } 
+        } 
+    } 
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "dynamodb" : <span>{</span> "NewImage" : <span>{</span> "AccountManager" : <span>{</span> "S" : [ "Pat Candella" ] } } } , "dynamodb" : <span>{</span> "OldImage" : <span>{</span> "AccountManager" : <span>{</span> "S" : [ "Terry Whitlock" ] } } } }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:dynamodb:us-east-2:123456789012:table/my-table</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"NewImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Pat Candella\" ] } } } , \"dynamodb\" : <span>{</span> \"OldImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Terry Whitlock\" ] } } } } "}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"dynamodb\" : <span>{</span> \"NewImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Pat Candella\" ] } } } , \"dynamodb\" : <span>{</span> \"OldImage\" : <span>{</span> \"AccountManager\" : <span>{</span> \"S\" : [ \"Terry Whitlock\" ] } } } } "}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "dynamodb" : <span>{</span> "NewImage" : <span>{</span> "AccountManager" : <span>{</span> "S" : [ "Pat Candella" ] } } } , "dynamodb" : <span>{</span> "OldImage" : <span>{</span> "AccountManager" : <span>{</span> "S" : [ "Terry Whitlock" ] } } } }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>DynamoDB event filtering doesn’t support the use of numeric operators (numeric equals and numeric range). Even if items in your 
+        table are stored as numbers, these parameters are converted to strings in the JSON record object.</p></div></div>
+    <p>To properly filter events from DynamoDB sources, both the data field and your filter criteria for the data field (<code class="code">dynamodb</code>) 
+      must be in valid JSON format. If either field isn't in a valid JSON format, Lambda drops the message or throws an exception. The following 
+      table summarizes the specific behavior: </p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac31c67c31c47"><thead>
+          <tr>
+            <th>Incoming data format</th>
+            <th>Filter pattern format for data properties</th>
+            <th>Resulting action</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda throws an exception at the time of the event source mapping creation or update. The filter pattern
+                for data properties must be in a valid JSON format.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda drops the record.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda throws an exception at the time of the event source mapping creation or update. The filter pattern
+                for data properties must be in a valid JSON format.</p>
+            </td>
+          </tr>
+        </table></div></div>
+   
+    <h2 id="filtering-kinesis">Filtering with Kinesis</h2>
+    <p>Suppose a producer is putting JSON formatted data into your Kinesis data stream. An example record would look like the following, with the 
+      JSON data converted to a Base64 encoded string in the <code class="code">data</code> field.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "kinesis": <span>{</span>
+        "kinesisSchemaVersion": "1.0",
+        "partitionKey": "1",
+        "sequenceNumber": "49590338271490256608559692538361571095921575989136588898",
+        "data": "eyJSZWNvcmROdW1iZXIiOiAiMDAwMSIsICJUaW1lU3RhbXAiOiAieXl5eS1tbS1kZFRoaDptbTpzcyIsICJSZXF1ZXN0Q29kZSI6ICJBQUFBIn0=",
+        "approximateArrivalTimestamp": 1545084650.987
+        },
+    "eventSource": "aws:kinesis",
+    "eventVersion": "1.0",
+    "eventID": "shardId-000000000006:49590338271490256608559692538361571095921575989136588898",
+    "eventName": "aws:kinesis:record",
+    "invokeIdentityArn": "arn:aws:iam::123456789012:role/lambda-role",
+    "awsRegion": "us-east-2",
+    "eventSourceARN": "arn:aws:kinesis:us-east-2:123456789012:stream/lambda-stream"
+}</code></pre>
+    <p>As long as the data the producer puts into the stream is valid JSON, you can use event filtering to filter records using the <code class="code">data</code> 
+      key. Suppose a producer is putting records into your Kinesis stream in the following JSON format.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "record": 12345,
+    "order": <span>{</span>
+        "type": "buy",
+        "stock": "ANYCO",
+        "quantity": 1000
+        }
+}</code></pre>
+    <p>To filter only those records where the order type is “buy,” the <code class="code">FilterCriteria</code> object would be as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"data\" : <span>{</span> \"order\" : <span>{</span> \"type\" : [ \"buy\" ] } } }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "data": <span>{</span>
+        "order": <span>{</span>
+            "type": [ "buy" ]
+            }
+      }
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "data" : <span>{</span> "order" : <span>{</span> "type" : [ "buy" ] } } }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:kinesis:us-east-2:123456789012:stream/my-stream</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"data\" : <span>{</span> \"order\" : <span>{</span> \"type\" : [ \"buy\" ] } } }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"data\" : <span>{</span> \"order\" : <span>{</span> \"type\" : [ \"buy\" ] } } }"}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "data" : <span>{</span> "order" : <span>{</span> "type" : [ "buy" ] } } }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>To properly filter events from Kinesis sources, both the data field and your filter criteria for the data field must be in valid JSON format. 
+      If either field isn't in a valid JSON format, Lambda drops the message or throws an exception. The following table summarizes the specific behavior: </p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac31c67c33c25"><thead>
+          <tr>
+            <th>Incoming data format</th>
+            <th>Filter pattern format for data properties</th>
+            <th>Resulting action</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda throws an exception at the time of the event source mapping creation or update. The filter pattern
+                for data properties must be in a valid JSON format.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda drops the record.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Non-JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda throws an exception at the time of the event source mapping creation or update. The filter pattern
+                for data properties must be in a valid JSON format.</p>
+            </td>
+          </tr>
+        </table></div></div>
+     
+      <h3 id="filtering-kinesis-efo">Filtering Kinesis aggregated records</h3>
+      <p>With Kinesis, you can aggregate multiple records into a single Kinesis Data Streams record to increase your data throughput. Lambda can only apply 
+        filter criteria to aggregated records when you use Kinesis <a href="https://docs.aws.amazon.com/streams/latest/dev/enhanced-consumers.html">enhanced fan-out</a>. 
+        Filtering aggregated records with standard Kinesis isn't supported. When using enhanced fan-out, you configure a Kinesis dedicated-throughput consumer 
+        to act as the trigger for your Lambda function. Lambda then filters the aggregated records and passes only those records that meet your filter criteria.</p>
+      <p>To learn more about Kinesis record aggregation, refer to the <a href="https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html#kinesis-kpl-concepts-aggretation">Aggregation</a> 
+        section on the Kinesis Producer Library (KPL) Key Concepts page. To Learn more about using Lambda with Kinesis enhanced fan-out, see 
+        <a href="http://aws.amazon.com/blogs/compute/increasing-real-time-stream-processing-performance-with-amazon-kinesis-data-streams-enhanced-fan-out-and-aws-lambda/" rel="noopener noreferrer" target="_blank"><span>Increasing real-time stream processing performance with Amazon Kinesis Data Streams enhanced fan-out and AWS Lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+        on the AWS compute blog.</p>
+     
+   
+    <h2 id="filtering-AMQ">Filtering with Amazon MQ</h2>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When you update an event source mapping for Amazon MQ with new filter criteria, it can take up to 15 minutes for Lambda to apply your changes. 
+        Before this period has elapsed, previous filter settings can still be in effect. This is true even when the status of the event source 
+        mapping displayed in the console has changed from <code class="code">Enabling</code> to <code class="code">Enabled</code>.</p></div></div>
+    <p>Suppose your Amazon MQ message queue contains messages either in valid JSON format or as plain strings. An example record would look like the 
+      following, with the data converted to a Base64 encoded string in the <code class="code">data</code> field.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>ActiveMQ</dt><dd tab-id="activemq">
+          <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><span>{</span> 
+    "messageID": "ID:b-9bcfa592-423a-4942-879d-eb284b418fc8-1.mq.us-west-2.amazonaws.com-37557-1234520418293-4:1:1:1:1", 
+    "messageType": "jms/text-message",
+    "deliveryMode": 1,
+    "replyTo": null,
+    "type": null,
+    "expiration": "60000",
+    "priority": 1,
+    "correlationId": "myJMSCoID",
+    "redelivered": false,
+    "destination": <span>{</span> 
+      "physicalName": "testQueue" 
+    },
+    "data":"QUJDOkFBQUE=",
+    "timestamp": 1598827811958,
+    "brokerInTime": 1598827811958, 
+    "brokerOutTime": 1598827811959, 
+    "properties": <span>{</span>
+      "index": "1",
+      "doAlarm": "false",
+      "myCustomProperty": "value"
+    }
+}</code></pre>
+        </dd>
+      <dt>RabbitMQ</dt><dd tab-id="rabbitmq">
+          <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">
+<span>{</span>
+    "basicProperties": <span>{</span>
+        "contentType": "text/plain",
+        "contentEncoding": null,
+        "headers": <span>{</span>
+            "header1": <span>{</span>
+                "bytes": [
+                  118,
+                  97,
+                  108,
+                  117,
+                  101,
+                  49
+                ]
+            },
+            "header2": <span>{</span>
+                "bytes": [
+                  118,
+                  97,
+                  108,
+                  117,
+                  101,
+                  50
+                ]
+            },
+            "numberInHeader": 10
+        },
+        "deliveryMode": 1,
+        "priority": 34,
+        "correlationId": null,
+        "replyTo": null,
+        "expiration": "60000",
+        "messageId": null,
+        "timestamp": "Jan 1, 1970, 12:33:41 AM",
+        "type": null,
+        "userId": "AIDACKCEVSQ6C2EXAMPLE",
+        "appId": null,
+        "clusterId": null,
+        "bodySize": 80
+        },
+    "redelivered": false,
+    "data": "eyJ0aW1lb3V0IjowLCJkYXRhIjoiQ1pybWYwR3c4T3Y0YnFMUXhENEUifQ=="
+}
+                </code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    
+    <p>For both Active MQ and Rabbit MQ brokers, you can use event filtering to filter records using the <code class="code">data</code> key. Suppose your 
+      Amazon MQ queue contains messages in the following JSON format.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "timeout": 0,
+    "IPAddress": "203.0.113.254"
+}</code></pre>
+    <p>To filter only those records where the <code class="code">timeout</code> field is greater than 0, the <code class="code">FilterCriteria</code> object would be 
+      as follows.</p>    
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"data\" : <span>{</span> \"timeout\" : [ <span>{</span> \"numeric\": [ \"&gt;\", 0] } } ] } }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "data": <span>{</span>
+        "timeout": [ <span>{</span> "numeric": [ "&gt;", 0 ] } ]
+        }
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>to add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "data" : <span>{</span> "timeout" : [ <span>{</span> "numeric": [ "&gt;", 0 ] } ] } }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:mq:us-east-2:123456789012:broker:my-broker:b-8ac7cc01-5898-482d-be2f-a6b596050ea8</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"data\" : <span>{</span> \"timeout\" : [ <span>{</span> \"numeric\": [ \"&gt;\", 0 ] } ] } }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"data\" : <span>{</span> \"timeout\" : [ <span>{</span> \"numeric\": [ \"&gt;\", 0 ] } ] } }"}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "data" : <span>{</span> "timeout" : [ <span>{</span> "numeric": [ "&gt;", 0 ] } ] } }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs> 
+    <p>With Amazon MQ, you can also filter records where the message is a plain string. Suppose you want to process only records where the 
+      message begins with "Result: ". The <code class="code">FilterCriteria</code> object would look as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"data\" : [ <span>{</span> \"prefix\": \"Result: \" } ] }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "data": [
+        <span>{</span>
+        "prefix": "Result: "
+        }
+    ]
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "data" : [ <span>{</span> "prefix": "Result: " } ] }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:mq:us-east-2:123456789012:broker:my-broker:b-8ac7cc01-5898-482d-be2f-a6b596050ea8</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"data\" : [ <span>{</span> \"prefix\": \"Result: \" } ] }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"data\" : [ <span>{</span> \"prefix\": \"Result: \" } ] }"}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "data" : [ <span>{</span> "prefix": "Result " } ] }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>Amazon MQ messages must be UTF-8 encoded strings, either plain strings or in JSON format. That's because Lambda decodes Amazon MQ byte arrays into UTF-8 before 
+      applying filter criteria. If your messages use another encoding, such as UTF-16 or ASCII, or if the message format doesn't match the 
+      <code class="code">FilterCriteria</code> format, Lambda processes metadata filters only. The following table summarizes the specific behavior:</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac31c67c35c39"><thead>
+          <tr>
+            <th>Incoming message format</th>
+            <th>Filter pattern format for message properties</th>
+            <th>Resulting action</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Non-UTF-8 encoded string</p>
+            </td>
+            <td tabindex="-1">
+              <p>JSON, plain string, or no pattern</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+        </table></div></div>
+   
+    <h2 id="filtering-msk-smak">Filtering with Amazon MSK and self-managed Apache Kafka</h2>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When you update an event source mapping for Amazon MSK or self-managed Apache Kafka with new filter criteria, it can take up to 15 minutes for Lambda to apply your changes. 
+        Before this period has elapsed, previous filter settings can still be in effect. This is true even when the status of the event source 
+        mapping displayed in the console has changed from <code class="code">Enabling</code> to <code class="code">Enabled</code>.</p></div></div>
+    <p>Suppose a producer is writing messages to a topic in your Amazon MSK or self-managed Apache Kafka cluster, either in valid JSON format or as plain strings. An example record 
+      would look like the following, with the message converted to a Base64 encoded string in the <code class="code">value</code> field.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "mytopic-0":[
+        <span>{</span>
+            "topic":"mytopic",
+            "partition":0,
+            "offset":15,
+            "timestamp":1545084650987,
+            "timestampType":"CREATE_TIME",
+            "value":"SGVsbG8sIHRoaXMgaXMgYSB0ZXN0Lg==",
+            "headers":[]
+        }
+    ]
+}</code></pre>
+    <p>Suppose your Apache Kafka producer is writing messages to your topic in the following JSON format.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="JSON "><span>{</span>
+    "device_ID": "AB1234",
+    "session":<span>{</span>
+        "start_time": "yyyy-mm-ddThh:mm:ss",
+        "duration": 162
+    }
+}</code></pre>
+    <p>You can use the <code class="code">value</code> key to filter records. Suppose you wanted to filter only those records where <code class="code">device_ID</code> 
+      begins with the letters AB. The <code class="code">FilterCriteria</code> object would be as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"value\" : <span>{</span> \"device_ID\" : [ <span>{</span> \"prefix\": \"AB\" } ] } }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "value": <span>{</span>
+        "device_ID": [ <span>{</span> "prefix": "AB" } ]
+      }
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "value" : <span>{</span> "device_ID" : [ <span>{</span> "prefix":  "AB" } ] } }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:kafka:us-east-2:123456789012:cluster/my-cluster/b-8ac7cc01-5898-482d-be2f-a6b596050ea8</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"value\" : <span>{</span> \"device_ID\" : [ <span>{</span> \"prefix\":  \"AB\" } ] } }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"value\" : <span>{</span> \"device_ID\" : [ <span>{</span> \"prefix\":  \"AB\" } ] } }"}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "value" : <span>{</span> "device_ID" : [ <span>{</span> "prefix":  "AB" } ] } }'</code></pre> 
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>With Amazon MSK and self-managed Apache Kafka, you can also filter records where the message is a plain string. Suppose you want to ignore those messages where the string is 
+      "error". The <code class="code">FilterCriteria</code> object would look as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"value\" : [ <span>{</span> \"anything-but\": [ \"error\" ] } ] }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "value": [
+        <span>{</span>
+        "anything-but": [ "error" ]
+        }
+    ]
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "value" : [ <span>{</span> "anything-but": [ "error" ] } ] }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:kafka:us-east-2:123456789012:cluster/my-cluster/b-8ac7cc01-5898-482d-be2f-a6b596050ea8</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"value\" : [ <span>{</span> \"anything-but\": [ \"error\" ] } ] }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"value\" : [ <span>{</span> \"anything-but\": [ \"error\" ] } ] }"}]}'</code></pre>         
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "value" : [ <span>{</span> "anything-but": [ "error" ] } ] }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>Amazon MSK and self-managed Apache Kafka messages must be UTF-8 encoded strings, either plain strings or in JSON format. That's because Lambda decodes Amazon MSK byte arrays into UTF-8 before 
+      applying filter criteria. If your messages use another encoding, such as UTF-16 or ASCII, or if the message format doesn't match the 
+      <code class="code">FilterCriteria</code> format, Lambda processes metadata filters only. The following table summarizes the specific behavior:</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac31c67c37c39"><thead>
+          <tr>
+            <th>Incoming message format</th>
+            <th>Filter pattern format for message properties</th>
+            <th>Resulting action</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Non-UTF-8 encoded string</p>
+            </td>
+            <td tabindex="-1">
+              <p>JSON, plain string, or no pattern</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+        </table></div></div>
+   
+    <h2 id="filtering-SQS">Filtering with Amazon SQS</h2>
+    <p>Suppose your Amazon SQS queue contains messages in the following JSON format.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "RecordNumber": 0000,
+    "TimeStamp": "yyyy-mm-ddThh:mm:ss",
+    "RequestCode": "AAAA"
+}</code></pre>
+    <p>An example record for this queue would look as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "messageId": "059f36b4-87a3-44ab-83d2-661975830a7d",
+    "receiptHandle": "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...",
+    "body": "<span>{</span>\n "RecordNumber": 0000,\n "TimeStamp": "yyyy-mm-ddThh:mm:ss",\n "RequestCode": "AAAA"\n}",
+    "attributes": <span>{</span>
+        "ApproximateReceiveCount": "1",
+        "SentTimestamp": "1545082649183",
+        "SenderId": "AIDAIENQZJOLO23YVJ4VO",
+        "ApproximateFirstReceiveTimestamp": "1545082649185"
+        },
+    "messageAttributes": <span>{</span>},
+    "md5OfBody": "e4e68fb7bd0e697a0ae8f1bb342846b3",
+    "eventSource": "aws:sqs",
+    "eventSourceARN": "arn:aws:sqs:us-west-2:123456789012:my-queue",
+    "awsRegion": "us-west-2"
+}</code></pre>
+    <p>To filter based on the contents of your Amazon SQS messages, use the <code class="code">body</code> key in the Amazon SQS message record. Suppose you want to process 
+      only those records where the <code class="code">RequestCode</code> in your Amazon SQS message is “BBBB.” The <code class="code">FilterCriteria</code> object would be 
+      as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"body\" : <span>{</span> \"RequestCode\" : [ \"BBBB\" ] } }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "body": <span>{</span>
+        "RequestCode": [ "BBBB" ]
+        }
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "body" : <span>{</span> "RequestCode" : [ "BBBB" ] } }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:sqs:us-east-2:123456789012:my-queue</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"body\" : <span>{</span> \"RequestCode\" : [ \"BBBB\" ] } }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"body\" : <span>{</span> \"RequestCode\" : [ \"BBBB\" ] } }"}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "body" : <span>{</span> "RequestCode" : [ "BBBB" ] } }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>Suppose you want your function to process only those records where <code class="code">RecordNumber</code> is greater than 9999. The <code class="code">FilterCriteria</code> 
+      object would be as follows.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Filters": [
+        <span>{</span>
+            "Pattern": "<span>{</span> \"body\" : <span>{</span> \"RecordNumber\" : [ <span>{</span> \"numeric\": [ \"&gt;\", 9999 ] } ] } }"
+        }
+    ]
+}</code></pre>
+    <p>For added clarity, here is the value of the filter's <code class="code">Pattern</code> expanded in plain JSON. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "body": <span>{</span>
+        "RecordNumber": [
+            <span>{</span>
+                "numeric": [ "&gt;", 9999 ]
+            }
+        ]
+    }
+}</code></pre>
+    <p>You can add your filter using the console, AWS CLI or an AWS SAM template.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Console</dt><dd tab-id="console">
+          <p>To add this filter using the console, follow the instructions in <a href="#filtering-console">Attaching filter criteria to an event source mapping (console)</a> and enter the following 
+            string for the <b>Filter criteria</b>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> "body" : <span>{</span> "RecordNumber" : [ <span>{</span> "numeric": [ "&gt;", 9999 ] } ] } }</code></pre>
+        </dd>
+      <dt>AWS CLI</dt><dd tab-id="aws-cli">
+          <p>To create a new event source mapping with these filter criteria using the AWS Command Line Interface (AWS CLI), run the following
+            command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-event-source-mapping \
+    --function-name <code class="replaceable">my-function</code> \
+    --event-source-arn <code class="replaceable">arn:aws:sqs:us-east-2:123456789012:my-queue</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"body\" : <span>{</span> \"RecordNumber\" : [ <span>{</span> \"numeric\": [ \"&gt;\", 9999 ] } ] } }"}]}'</code></pre>
+          <p>To add these filter criteria to an existing event source mapping, run the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --filter-criteria '<span>{</span>"Filters": [<span>{</span>"Pattern": "<span>{</span> \"body\" : <span>{</span> \"RecordNumber\" : [ <span>{</span> \"numeric\": [ \"&gt;\", 9999 ] } ] } }"}]}'</code></pre>        
+        </dd>
+      <dt>AWS SAM</dt><dd tab-id="aws-sam">
+          <p>To add this filter using AWS SAM, add the following snippet to the YAML template for your event source.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="YAML ">FilterCriteria:
+  Filters:
+    - Pattern: '<span>{</span> "body" : <span>{</span> "RecordNumber" : [ <span>{</span> "numeric": [ "&gt;", 9999 ] } ] } }'</code></pre>
+        </dd>
+    </dl></awsdocs-tabs>
+    <p>For Amazon SQS, the message body can be any string. However, this can be problematic if your <code class="code">FilterCriteria</code> expect <code class="code">body</code> 
+      to be in a valid JSON format. The reverse scenario is also true—if the incoming message body is in JSON format but your filter criteria 
+      expects <code class="code">body</code> to be a plain string, this can lead to unintended behavior.</p>
+    <p>To avoid this issue, ensure that the format of body in your <code class="code">FilterCriteria</code> matches the expected format of <code class="code">body</code> in messages 
+      that you receive from your queue. Before filtering your messages, Lambda automatically evaluates the format of the incoming message body and 
+      of your filter pattern for <code class="code">body</code>. If there is a mismatch, Lambda drops the message. The following table summarizes this evaluation:</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac31c67c39c39"><thead>
+          <tr>
+            <th>Incoming message <code class="code">body</code> format</th>
+            <th>Filter pattern <code class="code">body</code> format</th>
+            <th>Resulting action</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda drops the message.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Plain string</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda drops the message.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>No filter pattern for data properties</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters (on the other metadata properties only) based on your filter criteria.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Valid JSON</p>
+            </td>
+            <td tabindex="-1">
+              <p>Lambda filters based on your filter criteria.</p>
+            </td>
+          </tr>
+        </table></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./invocation-eventsourcemapping.html">Event source mapping</div><div id="next" class="next-link" accesskey="n" href="./functions-states.html">Function states</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventfiltering.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-eventfiltering.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

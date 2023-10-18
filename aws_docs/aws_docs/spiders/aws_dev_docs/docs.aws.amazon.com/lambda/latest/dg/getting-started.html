@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Getting started with Lambda - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="getting-started" /><meta name="default_state" content="getting-started" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html" /><meta name="description" content="To get started with Lambda, use the Lambda console to create a function. In a few minutes, you can create and deploy a function and test it in the console." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/getting-started.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/getting-started.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/getting-started.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/getting-started.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/getting-started.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/getting-started.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/getting-started.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/getting-started.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/getting-started.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/getting-started.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/getting-started.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/getting-started.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/getting-started.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/getting-started.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/getting-started.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/getting-started.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/getting-started.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/getting-started.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Getting started with Lambda" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Getting started with Lambda - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#getting-started" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/getting-started.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/getting-started.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/getting-started.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,tutorial,functions,console,create function,deploy function,how to write function,how to create function" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Getting started with Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#getting-started" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#getting-started-prerequisites">Prerequisites</a><a href="#getting-started-create-function">Create a Lambda function with the console</a><a href="#get-started-invoke-manually">Invoke the Lambda function using the console</a><a href="#gettingstarted-cleanup">Clean up</a><a href="#getting-started-more-resources">Additional resources and next steps</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="getting-started">Getting started with Lambda</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To get started with Lambda, use the Lambda console to create a function. In a few minutes, you can create and deploy a
+    function and test it in the console.</p><p>As you carry out the tutorial, you'll learn some fundamental Lambda concepts, like how to pass arguments to 
+    your function using the Lambda <em>event object</em>. You'll also learn how to return log outputs from your function, and how to 
+    view your function's invocation logs in CloudWatch Logs.</p><p>To keep things simple, you create your function using either the Python or Node.js runtime. With these interpreted languages, you can edit 
+    function code directly in the console's built-in code editor. With compiled languages like Java and C#, you need to create a deployment package on 
+  your local build machine and upload it to Lambda. To learn about deploying functions to Lambda using other runtimes, see the links in the 
+    <a href="#getting-started-more-resources">Additional resources and next steps</a> section.</p><div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>To learn how to build <b>serverless solutions</b>, check out the <a href="https://docs.aws.amazon.com/serverless/latest/devguide/">Serverless Developer Guide</a>.</p></div></div>
+    <h2 id="getting-started-prerequisites">Prerequisites</h2>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Sign up for an AWS account" id="sign-up-for-aws" expanded="false"><p>If you do not have an AWS account, complete the following steps to create one.</p><div class="procedure"><h6>To sign up for an AWS account</h6><ol><li><p>Open <a href="https://portal.aws.amazon.com/billing/signup" rel="noopener noreferrer" target="_blank"><span>https://portal.aws.amazon.com/billing/signup</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li><p>Follow the online instructions.</p>
+  <p>Part of the sign-up procedure involves receiving a phone call and entering 
+  a verification code on the phone keypad.</p>
+  <p>When you sign up for an AWS account, an <em>AWS account root user</em> is created. The root user has access to all AWS services
+  and resources in the account. As a security best practice, <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">assign administrative access to an administrative user</a>, and use only the root user to perform <a href="https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html">tasks that require root user access</a>.</p>
+  </li></ol></div><p>AWS sends you a confirmation email after the sign-up process is
+complete. At any time, you can view your current account activity and manage your account by
+going to <a href="https://aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>https://aws.amazon.com/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and choosing <b>My
+  Account</b>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="Create an administrative user" id="create-an-admin" expanded="false"><p>After you sign up for an AWS account, create an administrative user so that you 
+don't use the root user for everyday tasks.</p><div class="procedure"><h6>Secure your AWS account root user</h6><ol><li>
+ 
+
+<p> Sign in to the <a href="https://console.aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>AWS Management Console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> as the account owner by choosing <b>Root user</b> and entering your AWS account email address. On the next page, enter your password.</p>
+ 
+ <p>For help signing in by using root user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial">Signing in as the root user</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li><li>
+ <p>Turn on multi-factor authentication (MFA) for your root user.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root">Enable a virtual MFA device for your AWS account root user (console)</a> in the <em>IAM User Guide</em>.</p> 
+</li></ol></div><div class="procedure"><h6>Create an administrative user</h6><ul><li>
+ <p>For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM Identity Center.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">Getting started</a> in the <em>AWS IAM Identity Center User Guide</em>.</p>
+</li></ul></div><div class="procedure"><h6>Sign in as the administrative user</h6><ul><li>
+
+<p>To sign in with your IAM Identity Center user, use the sign-in URL that was sent to your email address when you created the IAM Identity Center user.</p>
+
+<p>For help signing in using an IAM Identity Center user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html">Signing in to the AWS access portal</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li></ul></div></awsui-expandable-section></div>
+   
+    <h2 id="getting-started-create-function">Create a Lambda function with the console</h2>
+    <p>In this example, your function takes a JSON object containing two integer values labeled <code class="code">"length"</code> and <code class="code">"width"</code>. 
+      The function multiplies these values to calculate an area and returns this as a JSON string.</p>
+    <p>Your function also prints the calculated area, along with the name of its CloudWatch log group. Later in the tutorial, you’ll learn to use <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html">CloudWatch Logs</a> 
+      to view records of your functions’ invocation.</p>
+    <p>To create your function, you first use the console to create a basic Hello world function. In the following step, you then add your own 
+      function code.</p>
+        <div class="procedure"><h6>To create a Hello world Lambda function with the console</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+            <p>Choose <b>Create function</b>.</p>
+          </li><li>
+            <p>Select <b>Author from scratch</b>.</p>
+          </li><li>
+            <p>In the <b>Basic information</b> pane, for <b>Function name</b> enter 
+              <code class="code"><code class="userinput">myLambdaFunction</code></code>.</p>
+          </li><li>
+            <p>For <b>Runtime</b>, choose either <b>Node.js 18.x</b> or <b>Python 3.11</b></p>
+          </li><li>
+            <p>Leave <b>architecture</b> set to <b>x86_64</b> and choose <b>Create function</b>.</p>
+          </li></ol></div>
+    <p>Lambda creates a function that returns the message <code class="code">Hello from Lambda!</code> Lambda also creates an <em>execution role</em> 
+      for your function. An <a href="./lambda-intro-execution-role.html">execution role</a> is an AWS Identity and Access Management (IAM) role that grants a Lambda function 
+      permission to access AWS services and resources. For your function, the role that Lambda creates grants basic permissions to write to CloudWatch Logs.</p>
+      <p>You now use the console's built-in code editor to replace the Hello world code that Lambda created with your own function code.</p>
+    <awsdocs-tabs><dl style="display: none">
+      <dt>Node.js</dt><dd tab-id="node.js">
+          <div class="procedure"><h6>To modify the code in the console</h6><ol><li>
+              <p>Choose the <b>Code</b> tab.</p>
+              <p>In the console's built-in code editor, you should see the function code that Lambda 
+              created. If you don't see the <b>index.mjs</b> tab in the code editor, select <b>index.mjs</b> in the 
+              file explorer as shown on the following diagram.</p>
+              <div class="mediaobject">
+                 
+                  <img src="/images/lambda/latest/dg/images/getting-started-tutorial/nodejs_code_editor.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                  Diagram showing the console code editor with an arrow highlighting the index.mjs file in the file explorer&#xA;                " style="max-width:100%" /> 
+                 
+                 
+              </div>
+            </li><li>
+            <p>Paste the following code into the <b>index.mjs</b> tab, replacing the code that Lambda created.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">export const handler = async (event, context) =&gt; <span>{</span>
+  
+  const length = event.length;
+  const width = event.width;
+  var area = calculateArea(length, width);
+  console.log(`The area is $<span>{</span>area}`);
+        
+  console.log('CloudWatch log group: ', context.logGroupName);
+  
+  const data = <span>{</span>
+    "area": area,
+  };
+    return JSON.stringify(data);
+    
+  function calculateArea(length, width) <span>{</span>
+    return length * width;
+  }
+};</code></pre>
+          </li><li>
+              <p>Select <b>Deploy</b> to update your function's code. When Lambda has deployed the changes, the console displays 
+              a banner letting you know that it's successfully updated your function.</p>
+            </li></ol></div>
+          <h6>Understanding your function code</h6>
+          <p>Before you move to the next step, let's take a moment to look at the function code and understand some key Lambda concepts.</p>
+           
+            <div class="itemizedlist">
+               
+               
+               
+               
+            <ul class="itemizedlist"><li class="listitem">
+                <p>The Lambda handler:</p>
+                <p>Your Lambda function contains a Node.js function named <code class="code">handler</code>. A Lambda function in Node.js can contain more 
+                  than one Node.js function, but the <em>handler</em> function is always the entry point to your code. When your function is 
+                  invoked, Lambda runs this method. </p>
+                <p>When you created your Hello world function using the console, Lambda automatically set the name of the handler method for your 
+                  function to <code class="code">handler</code>. Be sure not to edit the name of this Node.js function. If you do, Lambda won’t be able to run your code 
+                  when you invoke your function.</p>
+                <p>To learn more about the Lambda handler in Node.js, see <a href="./nodejs-handler.html">AWS Lambda function handler in Node.js</a>.</p>
+              </li><li class="listitem">
+                <p>The Lambda event object:</p>
+                <p>The function <code class="code">handler</code> takes two arguments, <code class="code">event</code> and <code class="code">context</code>. An <em>event</em> 
+                  in Lambda is a JSON formatted document that contains data for your function to process.</p>
+                <p>If your function is invoked by another AWS service, the event object contains information about the event that caused the 
+                  invocation. For example, if an Amazon Simple Storage Service (Amazon S3) bucket invokes your function when an object is uploaded, the event will contain the 
+                  name of the Amazon S3 bucket and the object key.</p>
+                <p>In this example, you’ll create an event in the console by entering a JSON formatted document with two key-value pairs.</p>
+              </li><li class="listitem">
+                <p>The Lambda context object:</p>
+                <p>The second argument your function takes is <code class="code">context</code>. Lambda passes the <em>context object</em> to your 
+                  function automatically. The context object contains information about the function invocation and execution environment.</p>
+                <p>You can use the context object to output information about your function's invocation for monitoring purposes. In this example, 
+                  your function uses the <code class="code">logGroupName</code> parameter to output the name of its CloudWatch log group.</p>
+                <p>To learn more about the Lambda context object in Node.js, see <a href="./nodejs-context.html">AWS Lambda context object in Node.js</a>.</p>
+              </li><li class="listitem">
+                <p>Logging in Lambda:</p>
+                <p>With Node.js, you can use console methods like <code class="code">console.log</code> and <code class="code">console.error</code> to send information to your 
+                  function's log. The example code uses <code class="code">console.log</code> statements to output the calculated area and the name of the 
+                  function's CloudWatch Logs group. You can also use any logging library that writes to <code class="code">stdout</code> or <code class="code">stderr</code>. </p>
+                  <p>To learn more, see <a href="./nodejs-logging.html">AWS Lambda function logging in Node.js</a>. To learn about logging in other runtimes, see the 'Building with' pages 
+                    for the runtimes you're interested in.</p>
+              </li></ul></div>
+        </dd>
+      <dt>Python</dt><dd tab-id="python">
+          <div class="procedure"><h6>To modify the code in the console</h6><ol><li>
+              <p>Choose the <b>Code</b> tab.</p>
+              <p>In the console's built-in code editor, you should see the function code that Lambda 
+                created. If you don't see the <b>lambda_function.py</b> tab in the code editor, select <b>lambda_function.py</b> 
+                in the file explorer as shown on the following diagram.</p>
+              <div class="mediaobject">
+                 
+                  <img src="/images/lambda/latest/dg/images/getting-started-tutorial/python_code_editor.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                  Diagram showing the console code editor with an arrow highlighting the lambda_function.py file in the file explorer&#xA;                " style="max-width:100%" /> 
+                 
+                 
+              </div>
+            </li><li>
+              <p>Paste the following code into the <b>lambda_function.py</b> tab, replacing the code that Lambda created.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import json
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+def lambda_handler(event, context):
+    
+    # Get the length and width parameters from the event object. The 
+    # runtime converts the event object to a Python dictionary
+    length=event['length']
+    width=event['width']
+    
+    area = calculate_area(length, width)
+    print(f"The area is <span>{</span>area}")
+        
+    logger.info(f"CloudWatch logs group: <span>{</span>context.log_group_name}")
+    
+    # return the calculated area as a JSON string
+    data = <span>{</span>"area": area}
+    return json.dumps(data)
+    
+def calculate_area(length, width):
+    return length*width</code></pre>
+            </li><li>
+              <p>Select <b>Deploy</b> to update your function's code. When Lambda has deployed the changes, the console displays 
+                a banner letting you know that it's successfully updated your function.</p>
+            </li></ol></div>
+          <h6>Understanding your function code</h6>
+            <p>Before you move to the next step, let's take a moment to look at the function code and understand some key Lambda concepts.</p>
+           
+          <div class="itemizedlist">
+             
+             
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+              <p>The Lambda handler:</p>
+              <p>Your Lambda function contains a Python function named <code class="code">lambda_handler</code>. A Lambda function in Python can contain more 
+                than one Python function, but the <em>handler</em> function is always the entry point to your code. When your function is 
+                invoked, Lambda runs this method. </p>
+              <p>When you created your Hello world function using the console, Lambda automatically set the name of the handler method for your 
+                function to <code class="code">lambda_handler</code>. Be sure not to edit the name of this Python function. If you do, Lambda won’t be able to run your code 
+                when you invoke your function.</p>
+              <p>To learn more about the Lambda handler in Python, see <a href="./python-handler.html">Lambda function handler in Python</a>.</p>
+            </li><li class="listitem">
+              <p>The Lambda event object:</p>
+              <p>The function <code class="code">lambda_handler</code> takes two arguments, <code class="code">event</code> and <code class="code">context</code>. An <em>event</em> 
+                in Lambda is a JSON formatted document that contains data for your function to process.</p>
+              <p>If your function is invoked by another AWS service, the event object contains information about the event that caused the 
+                invocation. For example, if an Amazon Simple Storage Service (Amazon S3) bucket invokes your function when an object is uploaded, the event will contain the 
+                name of the Amazon S3 bucket and the object key.</p>
+              <p>In this example, you’ll create an event in the console by entering a JSON formatted document with two key-value pairs.</p>
+            </li><li class="listitem">
+              <p>The Lambda context object:</p>
+              <p>The second argument your function takes is <code class="code">context</code>. Lambda passes the <em>context object</em> to your 
+                function automatically. The context object contains information about the function invocation and execution environment.</p>
+              <p>You can use the context object to output information about your function's invocation for monitoring purposes. In this example, 
+                your function uses the <code class="code">log_group_name</code> parameter to output the name of its CloudWatch log group.</p>
+              <p>To learn more about the Lambda context object in Python, see <a href="./python-context.html">AWS Lambda context object in Python</a>.</p>
+            </li><li class="listitem">
+             <p>Logging in Lambda:</p>
+              <p>With Python, you can use either a <code class="code">print</code> statement or a Python logging library to send information to your function's 
+                log. To illustrate the difference in what's captured, the example code uses both methods. In a production application, we recommend 
+                that you use a logging library.</p>
+              <p>To learn more, see <a href="./python-logging.html">AWS Lambda function logging in Python</a>. To learn about logging in other runtimes, see the 
+              'Building with' pages for the runtimes you're interested in.</p>
+            </li></ul></div>
+        </dd>
+    </dl></awsdocs-tabs>
+   
+          <h2 id="get-started-invoke-manually">Invoke the Lambda function using the console</h2>
+        <p>To invoke your function using the Lambda console, you first create a test event to send to your function. The event is a JSON formatted 
+          document containing two key-value pairs with the keys <code class="code">"length"</code> and <code class="code">"width"</code>.</p>
+        <div class="procedure"><h6>To create the test event</h6><ol><li>
+            <p>In the <b>Code source</b> pane, choose <b>Test</b>.</p>
+          </li><li>
+            <p>Select <b>Create new event</b>.</p>
+          </li><li>
+            <p>For <b>Event name</b> enter <code class="userinput">myTestEvent</code>.</p>
+          </li><li>
+            <p>In the <b>Event JSON</b> panel, replace the default values by pasting in the following:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+  "length": 6,
+  "width": 7
+}</code></pre>
+          </li><li>
+            <p>Choose <b>Save</b>.</p>
+          </li></ol></div>
+        <p>You now test your function and use the Lambda console and CloudWatch Logs to view records of your function’s invocation.</p>
+        <div class="procedure"><h6>To test your function and view invocation records in the console</h6><ul><li>
+            <p>In the <b>Code source</b> pane, choose <b>Test</b>. When your function finishes running, you’ll see 
+              the response and function logs displayed in the <b>Execution results</b> tab. You should see results similar to the 
+              following.</p>
+            <awsdocs-tabs><dl style="display: none">
+              <dt>Node.js</dt><dd tab-id="node.js">
+                  <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">Test Event Name
+myTestEvent
+
+Response
+"<span>{</span>\"area\":42}"
+
+Function Logs
+START RequestId: 5c012b0a-18f7-4805-b2f6-40912935034a Version: $LATEST
+2023-08-31T23:39:45.313Z	5c012b0a-18f7-4805-b2f6-40912935034a	INFO	The area is 42
+2023-08-31T23:39:45.331Z	5c012b0a-18f7-4805-b2f6-40912935034a	INFO	CloudWatch log group:  /aws/lambda/myLambdaFunction
+END RequestId: 5c012b0a-18f7-4805-b2f6-40912935034a
+REPORT RequestId: 5c012b0a-18f7-4805-b2f6-40912935034a	Duration: 20.67 ms	Billed Duration: 21 ms	Memory Size: 128 MB	Max Memory Used: 66 MB	Init Duration: 163.87 ms
+
+Request ID
+5c012b0a-18f7-4805-b2f6-40912935034a</code></pre>
+                </dd>
+              <dt>Python</dt><dd tab-id="python">
+                  <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">Test Event Name
+myTestEvent
+
+Response
+"<span>{</span>\"area\": 42}"
+
+Function Logs
+START RequestId: 2d0b1579-46fb-4bf7-a6e1-8e08840eae5b Version: $LATEST
+The area is 42
+[INFO]	2023-08-31T23:43:26.428Z	2d0b1579-46fb-4bf7-a6e1-8e08840eae5b	CloudWatch logs group: /aws/lambda/myLambdaFunction
+END RequestId: 2d0b1579-46fb-4bf7-a6e1-8e08840eae5b
+REPORT RequestId: 2d0b1579-46fb-4bf7-a6e1-8e08840eae5b	Duration: 1.42 ms	Billed Duration: 2 ms	Memory Size: 128 MB	Max Memory Used: 39 MB	Init Duration: 123.74 ms
+
+Request ID
+2d0b1579-46fb-4bf7-a6e1-8e08840eae5b</code></pre>
+                </dd>
+            </dl></awsdocs-tabs>
+          </li></ul></div>
+        <p>In this example, you invoked your code using the console's test feature. This means that you can view your function's execution 
+        results directly in the console. When your function is invoked outside the console, you need to use CloudWatch Logs.</p>
+        <div class="procedure"><h6>To view your function's invocation records in CloudWatch Logs</h6><ol><li>
+                <p>Open the <a href="https://console.aws.amazon.com/cloudwatch/home#logs:" rel="noopener noreferrer" target="_blank"><span>Log groups</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> page of the CloudWatch console.</p>
+              </li><li>
+                <p>Choose the log group for your function (<code class="code">/aws/lambda/myLambdaFunction</code>). This is the log group name that your 
+                function printed to the console.</p>
+              </li><li>
+                <p>In the <b>Log streams</b> tab, choose the log stream for your function's invocation.</p>
+                <p>You should see output similar to the following:</p>
+                <awsdocs-tabs><dl style="display: none">
+                  <dt>Node.js</dt><dd tab-id="node.js">
+                      <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">INIT_START Runtime Version: nodejs:18.v10    Runtime Version ARN: arn:aws:lambda:us-west-2::runtime:e3aaabf6b92ef8755eaae2f4bfdcb7eb8c4536a5e044900570a42bdba7b869d9
+START RequestId: aba6c0fc-cf99-49d7-a77d-26d805dacd20 Version: $LATEST
+2023-08-23T22:04:15.809Z    5c012b0a-18f7-4805-b2f6-40912935034a  INFO	The area is 42
+2023-08-23T22:04:15.810Z    aba6c0fc-cf99-49d7-a77d-26d805dacd20  INFO  CloudWatch log group:  /aws/lambda/myLambdaFunction
+END RequestId: aba6c0fc-cf99-49d7-a77d-26d805dacd20
+REPORT RequestId: aba6c0fc-cf99-49d7-a77d-26d805dacd20    Duration: 17.77 ms    Billed Duration: 18 ms    Memory Size: 128 MB    Max Memory Used: 67 MB    Init Duration: 178.85 ms    </code></pre>
+                    </dd>
+                  <dt>Python</dt><dd tab-id="python">
+                      <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">INIT_START Runtime Version: python:3.11.v9    Runtime Version ARN: arn:aws:lambda:us-west-2::runtime:ca202755c87b9ec2b58856efb7374b4f7b655a0ea3deb1d5acc9aee9e297b072
+START RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e Version: $LATEST
+The area is 42
+[INFO]	2023-09-01T00:05:22.464Z	9315ab6b-354a-486e-884a-2fb2972b7d84	CloudWatch logs group: /aws/lambda/myLambdaFunction
+END RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e 
+REPORT RequestId: 9d4096ee-acb3-4c25-be10-8a210f0a9d8e    Duration: 1.15 ms    Billed Duration: 2 ms    Memory Size: 128 MB    Max Memory Used: 40 MB    </code></pre>
+                    </dd>
+                </dl></awsdocs-tabs>
+              </li></ol></div>
+       
+          <h2 id="gettingstarted-cleanup">Clean up</h2>
+          
+          <p>When you're finished working with the example function, delete it. You can also delete the log group that stores
+            the function's logs, and the <a href="./lambda-intro-execution-role.html">execution role</a> that the console created.</p>
+          <div class="procedure"><h6>To delete a Lambda function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+              <p>Choose a function.</p>
+            </li><li>
+              <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+            </li><li>
+              <p>In the <b>Delete function</b> dialog box, enter <em>delete</em>, and then choose <b>Delete</b>.</p>
+            </li></ol></div>
+          <div class="procedure"><h6>To delete the log group</h6><ol><li>
+              <p>Open the <a href="https://console.aws.amazon.com/cloudwatch/home#logs:" rel="noopener noreferrer" target="_blank"><span>Log groups page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the CloudWatch
+                console.</p>
+            </li><li>
+              <p>Select the function's log group (<code class="code">/aws/lambda/my-function</code>).</p>
+            </li><li>
+              <p>Choose <b>Actions</b>, <b>Delete log group(s)</b>.</p>
+            </li><li>
+              <p>In the <b>Delete log group(s)</b> dialog box, choose <b>Delete</b>.</p>
+            </li></ol></div>
+          <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+              <p>Open the <a href="https://console.aws.amazon.com/iam/home?#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the AWS Identity and Access Management (IAM)
+                console.</p>
+            </li><li>
+              <p>Select the function's execution role (for example, <code class="code">myLambdaFunction-role-<code class="replaceable">31exxmpl</code></code>).</p>
+            </li><li>
+              <p>Choose <b>Delete</b>.</p>
+            </li><li>
+              <p>In the <b>Delete role</b> dialog box, enter the role name and then choose <b>Delete</b>.</p>
+            </li></ol></div>
+          <p>You can automate the creation and cleanup of functions, log groups, and roles with AWS CloudFormation and the AWS Command Line Interface
+            (AWS CLI).</p>
+       
+        <h2 id="getting-started-more-resources">Additional resources and next steps</h2>
+        <p>Now you’ve created and tested a simple Lambda function using the console, take these next steps:</p>
+              <div class="itemizedlist">
+                 
+                 
+                 
+              <ul class="itemizedlist"><li class="listitem">
+                  <p>Learn to add dependencies to your code and deploy it using a .zip deployment package. Choose from the following links 
+                  for the languages you're interested in.</p>
+                  <awsdocs-tabs><dl style="display: none">
+                    <dt>Node.js</dt><dd tab-id="node.js">
+                        <p>See <a href="./nodejs-package.html">Deploy Node.js Lambda functions with .zip file archives</a></p>
+                      </dd>
+                    <dt>Typescript</dt><dd tab-id="typescript">
+                        <p>See <a href="./typescript-package.html">Deploy transpiled TypeScript code in Lambda with .zip file archives</a></p>
+                      </dd>
+                    <dt>Python</dt><dd tab-id="python">
+                        <p>See <a href="./python-package.html">Working with .zip file archives for Python Lambda functions</a></p>
+                      </dd>
+                    <dt>Ruby</dt><dd tab-id="ruby">
+                        <p>See <a href="./ruby-package.html">Working with .zip file archives for Ruby Lambda functions</a></p>
+                      </dd>
+                    <dt>Java</dt><dd tab-id="java">
+                        <p>See <a href="./java-package.html">Deploy Java Lambda functions with .zip or JAR file archives</a></p>
+                      </dd>
+                    <dt>Go</dt><dd tab-id="go">
+                        <p>See <a href="./golang-package.html">Deploy Go Lambda functions with .zip file archives</a></p>
+                      </dd>
+                    <dt>C#</dt><dd tab-id="c#">
+                        <p>See <a href="./csharp-package.html">Build and deploy C# Lambda functions with .zip file archives</a></p>
+                      </dd>
+                  </dl></awsdocs-tabs>
+                </li><li class="listitem">
+                  <p>Carry out the tutorial <a href="./with-s3-example.html">Using an Amazon S3 trigger to invoke a Lambda function</a> to learn how 
+                    to configure a Lambda function to be invoked by another AWS service.</p>
+                </li><li class="listitem">
+                  <p>Choose one of the following tutorials for a more complex example of using Lambda with other AWS services.</p>
+                  <div class="itemizedlist">
+                     
+                     
+                     
+                  <ul class="itemizedlist"><li class="listitem">
+                      <p><a href="./services-apigateway-tutorial.html">Using Lambda with API Gateway</a>: Create an Amazon API Gateway REST 
+                        API that invokes a Lambda function.</p>
+                    </li><li class="listitem">
+                      <p><a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-lambda-tutorial.html">Using a Lambda function to 
+                        access an Amazon RDS database</a>: Use a Lambda function to write data to an Amazon Relational Database Service (Amazon RDS) database through RDS Proxy.</p>
+                    </li><li class="listitem">
+                      <p><a href="./with-s3-tutorial.html">Using an Amazon S3 trigger to create thumbnail images</a>: Use a Lambda function to create a thumbnail every time an image file is uploaded to 
+                        an Amazon S3 bucket.</p>
+                    </li></ul></div>
+                </li></ul></div>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./welcome.html">What is AWS Lambda?</div><div id="next" class="next-link" accesskey="n" href="./lambda-foundation.html">Lambda foundations</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/getting-started.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/getting-started.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Logging Amazon Kendra Intelligent Ranking API calls with AWS CloudTrail logs - Amazon Kendra</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="cloudtrail-intelligent-ranking" /><meta name="default_state" content="cloudtrail-intelligent-ranking" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html" /><meta name="description" content="Amazon Kendra Intelligent Ranking is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in Amazon Kendra Intelligent Ranking. CloudTrail captures all API calls from Amazon Kendra intelligent Ranking as events, including code calls to the Amazon Kendra Intelligent Ranking APIs. If you create a trail, you can activate continuous delivery of CloudTrail events to and Amazon S3 bucket, including events for Amazon Kendra Intelligent Ranking. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in" /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Kendra" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Provides a conceptual overview of Amazon Kendra. Learn about Amazon Kendra features and get started indexing your documents using the console, CLI, and API." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/cloudtrail-intelligent-ranking.html" hreflang="x-default" /><meta name="feedback-item" content="Kendra" /><meta name="this_doc_product" content="Amazon Kendra" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'kendra'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Logging Amazon Kendra Intelligent Ranking API calls with AWS CloudTrail logs" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Logging Amazon Kendra Intelligent Ranking API calls with AWS CloudTrail logs - Amazon Kendra</title><meta name="pdf" content="/pdfs/kendra/latest/dg/kendra-dg.pdf#cloudtrail-intelligent-ranking" /><meta name="rss" content="amazon-kendra-release-notes.rss" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/cloudtrail-intelligent-ranking.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/cloudtrail-intelligent-ranking.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/cloudtrail-intelligent-ranking.html" /><meta name="keywords" content="Kendra,Amazon Kendra,search,intelligent search,natural language,index,question,keyword,data source,connector,FAQ,frequently asked question" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Monitoring and logging for Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/monitoring.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Logging Amazon Kendra Intelligent Ranking API calls with AWS CloudTrail logs",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/monitoring.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/kendra/latest/dg/kendra-dg.pdf#cloudtrail-intelligent-ranking" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/kendra/index.html">Amazon Kendra</a><a href="what-is-kendra.html">Developer Guide</a></div><div id="page-toc-src"><a href="#kendra-info-in-cloudtrail-intelligent-ranking">Amazon Kendra
+                    Intelligent Ranking information in CloudTrail</a><a href="#cloud-trail-intelligent-ranking-log-entry">Example: Amazon Kendra
+                    Intelligent Ranking log file entries</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="cloudtrail-intelligent-ranking">Logging Amazon Kendra Intelligent
+                Ranking API calls with AWS CloudTrail logs</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon Kendra Intelligent Ranking is integrated with AWS CloudTrail, a service that provides
+            a record of actions taken by a user, role, or an AWS service in Amazon Kendra
+            Intelligent Ranking. CloudTrail captures all API calls from Amazon Kendra intelligent Ranking
+            as events, including code calls to the Amazon Kendra Intelligent Ranking APIs. If you
+            create a trail, you can activate continuous delivery of CloudTrail events to and Amazon S3 bucket,
+            including events for Amazon Kendra Intelligent Ranking. If you don't configure a trail,
+            you can still view the most recent events in the CloudTrail console in <b>Event
+                history</b>. Using the information collected by CloudTrail, you can determine the
+            request that was made to Amazon Kendra Intelligent Ranking, the IP address from which
+            the request was made, who made the request, when it was made, and additional
+            details.</p><p>To learn more about CloudTrail, including how to configure and activate it, see the <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html">AWS CloudTrail User Guide</a>.</p>
+            <h2 id="kendra-info-in-cloudtrail-intelligent-ranking">Amazon Kendra
+                    Intelligent Ranking information in CloudTrail</h2>
+            <p>CloudTrail is activated on your AWS account when you create the account. When activity
+                occurs in Amazon Kendra Intelligent Ranking, that activity is recorded in a CloudTrail
+                event along with other AWS service events in the CloudTrail <b>Event
+                    history</b>. You can view, search, and download recent events in your
+                AWS account. For more information, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html">Viewing Events with CloudTrail Event
+                    History</a>.</p>
+            <p>For an ongoing record of events in your AWS account, including events for
+                Amazon Kendra Intelligent Ranking, create a trail. A <em>trail</em> is a configuration that allows CloudTrail to deliver events as log
+                files to a specified S3 bucket. By default, when you create a trail in the console,
+                the trail applies to all AWS Regions. The trail logs events from all Regions in
+                the AWS partition and delivers the log files to the S3 bucket that you specify.
+                Additionally, you can configure other AWS services to further analyze and act upon
+                the event data collected in CloudTrail logs. For more information, see: </p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail.html">Overview for Creating a Trail</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html#cloudtrail-aws-service-specific-topics-integrations">CloudTrail Supported Services and Integrations</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html">Configuring
+                            Amazon SNS Notifications for CloudTrail</a></p>
+                </li><li class="listitem">
+                    <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html">Receiving CloudTrail Log Files from Multiple Regions</a> and <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html">Receiving CloudTrail Log Files from Multiple Accounts</a></p>
+                </li></ul></div>
+            <p>CloudTrail logs all Amazon Kendra Intelligent Ranking actions, which are documented in
+                the <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_Reference.html">API
+                    Reference</a>. For example, calls to the
+                    <code class="code">CreateRescoreExecutionPlan</code> generate entries in the CloudTrail log
+                files.</p>
+            <p>Every event or log entry contains information about who generated the request. For
+                more information, see the <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html">CloudTrail
+                    userIdentity Element</a>.</p>
+         
+            <h2 id="cloud-trail-intelligent-ranking-log-entry">Example: Amazon Kendra
+                    Intelligent Ranking log file entries</h2>
+            <p>A <em>trail</em> is a configuration that allows delivery
+                of events as log files to a specified S3 bucket. CloudTrail log files contain one or more
+                log entries. An <em>event</em> represents a single request
+                from any source and includes information about the requested action, the date and
+                time of the action, request parameters, and so on. CloudTrail log files aren't an ordered
+                stack trace of the public API calls, so they don't appear in any specific order. </p>
+            <p>Calls to the <code class="code">CreateRescoreExecutionPlan</code> operation creates the
+                following entry.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+            "eventVersion": "1.08",
+            "userIdentity": <span>{</span>
+                "type": "<code class="replaceable">AssumedRole</code>",
+                "principalId": "<code class="replaceable">principal ID</code>",
+                "arn": "<code class="replaceable">ARN</code>",
+                "accountId": "<code class="replaceable">account ID</code>",
+                "accessKeyId": "<code class="replaceable">access key ID</code>",
+                "sessionContext": <span>{</span>
+                    "sessionIssuer": <span>{</span>
+                        "type": "Role",
+                        "principalId": "<code class="replaceable">principal ID</code>",
+                        "arn": "<code class="replaceable">ARN</code>",
+                        "accountId": "<code class="replaceable">account ID</code>",
+                        "userName": "<code class="replaceable">user name</code>"
+                    },
+                    "webIdFederationData": <span>{</span>},
+                    "attributes": <span>{</span>
+                        "creationDate": "<code class="replaceable">yyyy-mm-ddThh:mm:ssZ</code>",
+                        "mfaAuthenticated": "false"
+                    }
+                }
+            },
+            "eventTime": "<code class="replaceable">yyyy-mm-ddThh:mm:ssZ</code>",
+            "eventSource": "kendra-ranking.amazonaws.com",
+            "eventName": "<code class="replaceable">CreateRescoreExecutionPlan</code>",
+            "awsRegion": "<code class="replaceable">region</code>",
+            "sourceIPAddress": "<code class="replaceable">source IP address</code>",
+            "userAgent": "<code class="replaceable">user agent</code>",
+            "requestParameters": <span>{</span>
+                "name": "<code class="replaceable">name</code>",
+                "description": "<code class="replaceable">description</code>",
+                "clientToken": "<code class="replaceable">client token</code>"
+            },
+            "responseElements": <span>{</span>
+                "id": "<code class="replaceable">rescore execution plan ID</code>",
+                "arn": "<code class="replaceable">rescore execution plan ARN</code>"
+            },
+            "requestID": "<code class="replaceable">request ID</code>",
+            "eventID": "<code class="replaceable">event ID</code>",
+            "readOnly": false,
+            "eventType": "AwsApiCall",
+            "managementEvent": true,
+            "recipientAccountId": "<code class="replaceable">account ID</code>",
+            "eventCategory": "<code class="replaceable">Management</code>",
+            "tlsDetails": <span>{</span>
+                "tlsVersion": "<code class="replaceable">TLS version</code>",
+                "cipherSuite": "<code class="replaceable">cipher suite</code>",
+                "clientProvidedHostHeader": "kendra-ranking.<code class="replaceable">[region]</code>.api.aws"
+            }
+        }</code></pre>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./cloudtrail.html">Monitoring Amazon Kendra API calls with CloudTrail</div><div id="next" class="next-link" accesskey="n" href="./cloudwatch-metrics.html">Monitoring Amazon Kendra with CloudWatch</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/cloudtrail-intelligent-ranking.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/cloudtrail-intelligent-ranking.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

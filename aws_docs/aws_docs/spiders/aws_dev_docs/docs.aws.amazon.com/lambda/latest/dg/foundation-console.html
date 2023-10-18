@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda console - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="foundation-console" /><meta name="default_state" content="foundation-console" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-console.html" /><meta name="description" content="Use the Lambda console to configure applications, functions, code signing configurations, and layers." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-console.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/foundation-console.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/foundation-console.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/foundation-console.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/foundation-console.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-console.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-console.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/foundation-console.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/foundation-console.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/foundation-console.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/foundation-console.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/foundation-console.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/foundation-console.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/foundation-console.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/foundation-console.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/foundation-console.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/foundation-console.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/foundation-console.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/foundation-console.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/foundation-console.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/foundation-console.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-console.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda console" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda console - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#foundation-console" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-console.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-console.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-console.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda foundations",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda console",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#foundation-console" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#foundation-applications">Applications</a><a href="#foundation-functions">Functions</a><a href="#foundation-code-signing">Code signing</a><a href="#foundation-layers">Layers</a><a href="#code-editor">Edit code using the console editor</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="foundation-console">Lambda console</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use the Lambda console to configure applications, functions, code signing
+    configurations, and layers. This page provides an explanation for how to edit code using the
+    console editor.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#foundation-applications">Applications</a></li><li><a href="#foundation-functions">Functions</a></li><li><a href="#foundation-code-signing">Code signing</a></li><li><a href="#foundation-layers">Layers</a></li><li><a href="#code-editor">Edit code using the console editor</a></li></ul></div>
+    <h2 id="foundation-applications">Applications</h2>
+    <p>The <a href="./deploying-lambda-apps.html">Applications</a> page displays a list of applications that were
+      deployed using AWS CloudFormation or other tools, including the AWS Serverless Application Model (AWS SAM). Filter to find applications based on
+      keywords.</p>
+   
+    <h2 id="foundation-functions">Functions</h2>
+  <p>The functions page shows you a list of functions defined for your account in this region.  The initial console
+      flow to create a function depends on whether the function uses a <a href="./images-create.html">container
+        image</a> or <a href="./configuration-function-zip.html">.zip file archive</a> for the deployment package.
+    Many of the optional <a href="./configuration-function-common.html">configuration tasks</a> are common to both types of function.</p> 
+    <p>The console provides a <a href="#code-editor">code editor</a> for your convenience. </p>
+   
+    <h2 id="foundation-code-signing">Code signing</h2>
+    <p>You can attach a <a href="./configuration-codesigning.html">code signing</a> configuration to a function.
+      With code signing, you can ensure that the code has been signed by an approved source and has not been altered
+      since signing, and that the code signature has not expired or been revoked.</p>
+   
+    <h2 id="foundation-layers">Layers</h2>
+    <p>Create <a href="./chapter-layers.html">layers</a> to separate your .zip archive function code from its
+      dependencies. A layer is a .zip file archive that contains libraries, a custom runtime, or other dependencies.
+      With layers, you can use libraries in your function without needing to include them in your deployment
+      package.</p>
+   
+    <h2 id="code-editor">Edit code using the console editor</h2>
+    <p>You can use the code editor in the Lambda console to write, test, and view the execution results of your Lambda
+      function code. The code editor supports languages that do not require compiling, such as Node.js and Python. The
+      code editor supports only .zip file archive deployment packages, and the size of the deployment package must be
+      less than 3 MB. </p>
+    <p>The code editor includes the <em>menu bar</em>, <em>windows</em>, and the
+      <em>editor pane</em>.</p>
+    <p></p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/code-editor/code-editor.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+       
+    </div>
+    <p>For a list of what the commands do, see the <a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/menu-commands.html">menu bar commands reference</a> in the <em>AWS Cloud9
+        User Guide</em>. Note that some of the commands listed in that reference are not available in the code
+      editor.</p>
+    <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#code-editor-files">Working with files and folders</a></li><li><a href="#code-editor-code">Working with code</a></li><li><a href="#code-editor-fullscreen">Working in fullscreen mode</a></li><li><a href="#code-editor-prefs">Working with preferences</a></li></ul></div>
+     
+      <h3 id="code-editor-files">Working with files and folders</h3>
+      <p>You can use the <b>Environment</b> window in the code editor to create, open, and manage files
+        for your function.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/code-editor/code-editor-env.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+         
+      </div>
+      <p><b>To show or hide the Environment window</b>, choose the
+        <b>Environment</b> button. If the <b>Environment</b> button is not visible, choose
+        <b>Window, Environment</b> on the menu bar.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/code-editor/code-editor-env-button.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+         
+      </div>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/code-editor/code-editor-env-menu.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+         
+      </div>
+      <p></p>
+      <p><b>To open a single file and show its contents in the editor pane</b>, double-click
+        the file in the <b>Environment</b> window.</p>
+      <p><b>To open multiple files and show their contents in the editor pane</b>, choose the
+        files in the <b>Environment</b> window. Right-click the selection, and then choose
+        <b>Open</b>.</p>    
+      <p><b>To create a new file</b>, do one of the following:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>In the <b>Environment</b> window, right-click the folder where you want the new file to
+            go, and then choose <b>New File</b>. Enter the file's name and extension, and then press
+              <b>Enter</b>.</p>
+        </li><li class="listitem">
+          <p>Choose <b>File, New File</b> on the menu bar. When you're ready to save the file, choose
+            <b>File, Save</b> or <b>File, Save As</b> on the menu bar. Then use the
+            <b>Save As</b> dialog box that displays to name the file and choose where to save it.</p>
+        </li><li class="listitem">
+          <p>In the tab buttons bar in the editor pane, choose the <b>+</b> button, and then choose
+            <b>New File</b>. When you're ready to save the file, choose <b>File, Save</b> or
+            <b>File, Save As</b> on the menu bar. Then use the <b>Save As</b> dialog box
+            that displays to name the file and choose where to save it.</p>
+          <p></p>
+          <div class="mediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/code-editor/code-editor-env-new.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+             
+          </div>
+          <p></p>
+        </li></ul></div>
+      <p><b>To create a new folder</b>, right-click the folder in the
+          <b>Environment</b> window where you want the new folder to go, and then choose <b>New
+          Folder</b>. Enter the folder's name, and then press <b>Enter</b>.</p>
+      <p><b>To save a file</b>, with the file open and its contents visible in the editor
+        pane, choose <b>File, Save</b> on the menu bar.</p>
+      <p><b>To rename a file or folder</b>, right-click the file or folder in the
+          <b>Environment</b> window. Enter the replacement name, and then press <b>Enter</b>.</p>
+      <p><b>To delete files or folders</b>, choose the files or folders in the
+        <b>Environment</b> window. Right-click the selection, and then choose <b>Delete</b>.
+        Then confirm the deletion by choosing <b>Yes</b> (for a single selection) or <b>Yes to
+          All</b>.</p>
+      <p><b>To cut, copy, paste, or duplicate files or folders</b>, choose the files or
+        folders in the <b>Environment</b> window. Right-click the selection, and then choose
+        <b>Cut</b>, <b>Copy</b>, <b>Paste</b>, or
+        <b>Duplicate</b>, respectively.</p>
+      <p><b>To collapse folders</b>, choose the gear icon in the
+        <b>Environment</b> window, and then choose <b>Collapse All Folders</b>. </p>
+      <p></p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/code-editor/code-editor-env-collapse.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+         
+      </div>
+      <p><b>To show or hide hidden files</b>, choose the gear icon in the
+        <b>Environment</b> window, and then choose <b>Show Hidden Files</b>.</p>
+      <p><b>To see environment variables that are configured for the function</b>, do the
+        following:</p>
+    <div class="procedure"><ol><li>
+        <p>Choose the <b>Code</b> tab.</p>
+      </li><li>
+        <p>Choose the <b>Environment Variables</b> tab.</p>
+      </li><li>
+        <p>Choose <b>Tools</b>, <b>Show Environment Variables</b>.</p>
+      </li></ol></div>
+    <p>Environment variables remain encrypted when listed in the console code editor. If you enabled encryption helpers for encryption in transit, then those settings remain unchanged. For more information, see <a href="./configuration-envvars.html#configuration-envvars-encryption">Securing environment variables</a>.</p>
+<p>The environment variables list is read-only and is available only on the Lambda console. This file is not included when you download the function's .zip file archive, and you can't add environment variables by uploading this file.</p>
+     
+     
+      <h3 id="code-editor-code">Working with code</h3>
+      <p>Use the editor pane in the code editor to view and write code.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/code-editor/code-editor-editor-pane.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+         
+      </div>
+      <p></p>
+       
+        <h4 id="code-editor-code-tab-buttons">Working with tab buttons</h4>
+        <p>Use the <em>tab buttons bar</em> to select, view, and create files.</p>
+        <p></p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/code-editor/code-editor-tab-buttons-bar.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+           
+        </div>
+        <p></p>
+        <p><b>To display an open file's contents</b>, do one of the following:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Choose the file's tab.</p>
+          </li><li class="listitem">
+            <p>Choose the drop-down menu button in the tab buttons bar, and then choose the file's name.</p>
+            <p></p>
+            <div class="mediaobject">
+               
+                <img src="/images/lambda/latest/dg/images/code-editor/code-editor-drop-down-list.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+               
+            </div>
+            <p></p>
+          </li></ul></div>
+        <p><b>To close an open file</b>, do one of the following:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>Choose the <b>X</b> icon in the file's tab.</p>
+          </li><li class="listitem">
+            <p>Choose the file's tab. Then choose the drop-down menu button in the tab buttons bar, and choose
+              <b>Close Pane</b>.</p>
+          </li></ul></div>
+        <p><b>To close multiple open files</b>, choose the drop-down menu in the tab buttons
+          bar, and then choose <b>Close All Tabs in All Panes</b> or <b>Close All But Current
+            Tab</b> as needed.</p>
+        <p><b>To create a new file</b>, choose the <b>+</b> button in the tab
+          buttons bar, and then choose <b>New File</b>. When you're ready to save the file, choose
+          <b>File, Save</b> or <b>File, Save As</b> on the menu bar. Then use the
+          <b>Save As</b> dialog box that displays to name the file and choose where to save it.</p>
+       
+       
+        <h4 id="code-editor-code-status-bar">Working with the status bar</h4>
+        <p>Use the status bar to move quickly to a line in the active file and to change how code is displayed.</p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/code-editor/code-editor-status-bar.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+           
+        </div>
+        <p></p>
+        <p><b>To move quickly to a line in the active file</b>, choose the line selector,
+          enter the line number to go to, and then press <b>Enter</b>.</p>
+        <p></p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/code-editor/code-editor-line-selector.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+           
+        </div>
+        <p></p>
+        <p><b>To change the code color scheme in the active file</b>, choose the code color
+          scheme selector, and then choose the new code color scheme. </p>
+        <p></p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/code-editor/code-editor-code-color.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+           
+        </div>
+        <p><b>To change in the active file whether soft tabs or spaces are used, the tab size, or
+          whether to convert to spaces or tabs</b>, choose the spaces and tabs selector, and then choose the new
+          settings.</p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/code-editor/code-editor-spaces-tabs.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+           
+        </div>
+        <p><b>To change for all files whether to show or hide invisible characters or the gutter,
+          auto-pair brackets or quotes, wrap lines, or the font size</b>, choose the gear icon, and then choose
+          the new settings. </p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/code-editor/code-editor-status-bar-settings.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+           
+        </div>
+        <p></p>
+       
+     
+     
+      <h3 id="code-editor-fullscreen">Working in fullscreen mode</h3>
+      <p>You can expand the code editor to get more room to work with your code.</p>
+      <p>To expand the code editor to the edges of the web browser window, choose the <b>Toggle
+        fullscreen</b> button in the menu bar.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/code-editor/code-editor-menu-bar-fullscreen.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+         
+      </div>
+      <p></p>
+      <p>To shrink the code editor to its original size, choose the <b>Toggle fullscreen</b> button
+        again.</p>
+      <p>In fullscreen mode, additional options are displayed on the menu bar: <b>Save</b> and
+        <b>Test</b>. Choosing <b>Save</b> saves the function code. Choosing
+        <b>Test</b> or <b>Configure Events</b> enables you to create or edit the function's
+        test events. </p>
+     
+     
+      <h3 id="code-editor-prefs">Working with preferences</h3>
+      <p>You can change various code editor settings such as which coding hints and warnings are displayed, code
+        folding behaviors, code autocompletion behaviors, and much more. </p>
+      <p>To change code editor settings, choose the <b>Preferences</b> gear icon in the menu bar.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/code-editor/code-editor-menu-bar-preferences.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+         
+      </div>
+      <p>For a list of what the settings do, see the following references in the <em>AWS Cloud9 User
+        Guide</em>.</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/settings-project.html#settings-project-change">Project settings that you can change</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/cloud9/latest/user-guide/settings-user.html#settings-user-change">User setting changes you can
+            make</a></p>
+        </li></ul></div>
+      <p>Note that some of the settings listed in those references are not available in the code editor.</p>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./foundation-networking.html">Private networking</div><div id="next" class="next-link" accesskey="n" href="./foundation-arch.html">Instruction sets (ARM/x86)</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-console.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-console.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>FunctionConfiguration - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="API_FunctionConfiguration" /><meta name="default_state" content="API_FunctionConfiguration" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/API_FunctionConfiguration.html" /><meta name="description" content="Details about a function's configuration." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/API_FunctionConfiguration.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/API_FunctionConfiguration.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="FunctionConfiguration" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>FunctionConfiguration - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#API_FunctionConfiguration" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_FunctionConfiguration.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_FunctionConfiguration.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/API_FunctionConfiguration.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Types,FunctionConfiguration" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "API reference",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Reference.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Data Types",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Types.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "FunctionConfiguration",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/API_Types.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#API_FunctionConfiguration" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#API_FunctionConfiguration_Contents">Contents</a><a href="#API_FunctionConfiguration_SeeAlso">See Also</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="API_FunctionConfiguration">FunctionConfiguration</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Details about a function's configuration.</p>
+      <h2 id="API_FunctionConfiguration_Contents">Contents</h2>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+      <dl>
+            <dt id="SSS-Type-FunctionConfiguration-Architectures"><span class="term">
+               <b>
+                  Architectures
+               </b>
+            </span></dt>
+            <dd>
+               <p>The instruction set architecture that the function supports. Architecture is a string array with one of the 
+      valid values. The default architecture value is <code class="code">x86_64</code>.</p>
+               <p>Type: Array of strings</p>
+               <p>Array Members: Fixed number of 1 item.</p>
+               <p>Valid Values: <code class="code">x86_64 | arm64</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-CodeSha256"><span class="term">
+               <b>
+                  CodeSha256
+               </b>
+            </span></dt>
+            <dd>
+               <p>The SHA256 hash of the function's deployment package.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-CodeSize"><span class="term">
+               <b>
+                  CodeSize
+               </b>
+            </span></dt>
+            <dd>
+               <p>The size of the function's deployment package, in bytes.</p>
+               <p>Type: Long</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-DeadLetterConfig"><span class="term">
+               <b>
+                  DeadLetterConfig
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's dead letter queue.</p>
+               <p>Type: <a href="./API_DeadLetterConfig.html">DeadLetterConfig</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-Description"><span class="term">
+               <b>
+                  Description
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's description.</p>
+               <p>Type: String</p>
+               <p>Length Constraints: Minimum length of 0. Maximum length of 256.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-Environment"><span class="term">
+               <b>
+                  Environment
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html">environment variables</a>. Omitted from AWS CloudTrail logs.</p>
+               <p>Type: <a href="./API_EnvironmentResponse.html">EnvironmentResponse</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-EphemeralStorage"><span class="term">
+               <b>
+                  EphemeralStorage
+               </b>
+            </span></dt>
+            <dd>
+               <p>The size of the function’s <code class="code">/tmp</code> directory in MB. The default value is 512, but it can be any
+      whole number between 512 and 10,240 MB.</p>
+               <p>Type: <a href="./API_EphemeralStorage.html">EphemeralStorage</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-FileSystemConfigs"><span class="term">
+               <b>
+                  FileSystemConfigs
+               </b>
+            </span></dt>
+            <dd>
+               <p>Connection settings for an <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html">Amazon EFS file system</a>.</p>
+               <p>Type: Array of <a href="./API_FileSystemConfig.html">FileSystemConfig</a> objects</p>
+               <p>Array Members: Maximum number of 1 item.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-FunctionArn"><span class="term">
+               <b>
+                  FunctionArn
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's Amazon Resource Name (ARN).</p>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">arn:(aws[a-zA-Z-]*)?:lambda:[a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1}:\d<span>{</span>12}:function:[a-zA-Z0-9-_\.]+(:(\$LATEST|[a-zA-Z0-9-_]+))?</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-FunctionName"><span class="term">
+               <b>
+                  FunctionName
+               </b>
+            </span></dt>
+            <dd>
+               <p>The name of the function.</p>
+               <p>Type: String</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 170.</p>
+               <p>Pattern: <code class="code">(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1}:)?(\d<span>{</span>12}:)?(function:)?([a-zA-Z0-9-_\.]+)(:(\$LATEST|[a-zA-Z0-9-_]+))?</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-Handler"><span class="term">
+               <b>
+                  Handler
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function that Lambda calls to begin running your function.</p>
+               <p>Type: String</p>
+               <p>Length Constraints: Maximum length of 128.</p>
+               <p>Pattern: <code class="code">[^\s]+</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-ImageConfigResponse"><span class="term">
+               <b>
+                  ImageConfigResponse
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's image configuration values.</p>
+               <p>Type: <a href="./API_ImageConfigResponse.html">ImageConfigResponse</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-KMSKeyArn"><span class="term">
+               <b>
+                  KMSKeyArn
+               </b>
+            </span></dt>
+            <dd>
+               <p>The AWS KMS key that's used to encrypt the function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption">environment variables</a>. When <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html">Lambda SnapStart</a> is activated, this key is also used to encrypt the function's snapshot. This key is
+      returned only if you've configured a customer managed key.</p>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">(arn:(aws[a-zA-Z-]*)?:[a-z0-9-.]+:.*)|()</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-LastModified"><span class="term">
+               <b>
+                  LastModified
+               </b>
+            </span></dt>
+            <dd>
+               <p>The date and time that the function was last updated, in <a href="https://www.w3.org/TR/NOTE-datetime" rel="noopener noreferrer" target="_blank"><span>ISO-8601 format</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-LastUpdateStatus"><span class="term">
+               <b>
+                  LastUpdateStatus
+               </b>
+            </span></dt>
+            <dd>
+               <p>The status of the last update that was performed on the function. This is first set to <code class="code">Successful</code>
+      after function creation completes.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">Successful | Failed | InProgress</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-LastUpdateStatusReason"><span class="term">
+               <b>
+                  LastUpdateStatusReason
+               </b>
+            </span></dt>
+            <dd>
+               <p>The reason for the last update that was performed on the function.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-LastUpdateStatusReasonCode"><span class="term">
+               <b>
+                  LastUpdateStatusReasonCode
+               </b>
+            </span></dt>
+            <dd>
+               <p>The reason code for the last update that was performed on the function.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">EniLimitExceeded | InsufficientRolePermissions | InvalidConfiguration | InternalError | SubnetOutOfIPAddresses | InvalidSubnet | InvalidSecurityGroup | ImageDeleted | ImageAccessDenied | InvalidImage | KMSKeyAccessDenied | KMSKeyNotFound | InvalidStateKMSKey | DisabledKMSKey | EFSIOError | EFSMountConnectivityError | EFSMountFailure | EFSMountTimeout | InvalidRuntime | InvalidZipFileException | FunctionError</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-Layers"><span class="term">
+               <b>
+                  Layers
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">layers</a>.</p>
+               <p>Type: Array of <a href="./API_Layer.html">Layer</a> objects</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-MasterArn"><span class="term">
+               <b>
+                  MasterArn
+               </b>
+            </span></dt>
+            <dd>
+               <p>For Lambda@Edge functions, the ARN of the main function.</p>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">arn:(aws[a-zA-Z-]*)?:lambda:[a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1}:\d<span>{</span>12}:function:[a-zA-Z0-9-_]+(:(\$LATEST|[a-zA-Z0-9-_]+))?</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-MemorySize"><span class="term">
+               <b>
+                  MemorySize
+               </b>
+            </span></dt>
+            <dd>
+               <p>The amount of memory available to the function at runtime.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 128. Maximum value of 10240.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-PackageType"><span class="term">
+               <b>
+                  PackageType
+               </b>
+            </span></dt>
+            <dd>
+               <p>The type of deployment package. Set to <code class="code">Image</code> for container image and set <code class="code">Zip</code> for .zip file archive.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">Zip | Image</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-RevisionId"><span class="term">
+               <b>
+                  RevisionId
+               </b>
+            </span></dt>
+            <dd>
+               <p>The latest updated revision of the function or alias.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-Role"><span class="term">
+               <b>
+                  Role
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's execution role.</p>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">arn:(aws[a-zA-Z-]*)?:iam::\d<span>{</span>12}:role/?[a-zA-Z_0-9+=,.@\-_/]+</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-Runtime"><span class="term">
+               <b>
+                  Runtime
+               </b>
+            </span></dt>
+            <dd>
+               <p>The identifier of the function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime</a>. Runtime is required if the deployment package is a .zip file archive.</p>
+               <p>The following list includes deprecated runtimes. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy">Runtime deprecation policy</a>.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">nodejs | nodejs4.3 | nodejs6.10 | nodejs8.10 | nodejs10.x | nodejs12.x | nodejs14.x | nodejs16.x | java8 | java8.al2 | java11 | python2.7 | python3.6 | python3.7 | python3.8 | python3.9 | dotnetcore1.0 | dotnetcore2.0 | dotnetcore2.1 | dotnetcore3.1 | dotnet6 | nodejs4.3-edge | go1.x | ruby2.5 | ruby2.7 | provided | provided.al2 | nodejs18.x | python3.10 | java17 | ruby3.2 | python3.11</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-RuntimeVersionConfig"><span class="term">
+               <b>
+                  RuntimeVersionConfig
+               </b>
+            </span></dt>
+            <dd>
+               <p>The ARN of the runtime and any errors that occured.</p>
+               <p>Type: <a href="./API_RuntimeVersionConfig.html">RuntimeVersionConfig</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-SigningJobArn"><span class="term">
+               <b>
+                  SigningJobArn
+               </b>
+            </span></dt>
+            <dd>
+               <p>The ARN of the signing job.</p>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1})?:(\d<span>{</span>12})?:(.*)</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-SigningProfileVersionArn"><span class="term">
+               <b>
+                  SigningProfileVersionArn
+               </b>
+            </span></dt>
+            <dd>
+               <p>The ARN of the signing profile version.</p>
+               <p>Type: String</p>
+               <p>Pattern: <code class="code">arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\-])+:([a-z]<span>{</span>2}(-gov)?-[a-z]+-\d<span>{</span>1})?:(\d<span>{</span>12})?:(.*)</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-SnapStart"><span class="term">
+               <b>
+                  SnapStart
+               </b>
+            </span></dt>
+            <dd>
+               <p>Set <code class="code">ApplyOn</code> to <code class="code">PublishedVersions</code> to create a snapshot of the initialized execution
+      environment when you publish a function version. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html">Improving startup performance with Lambda SnapStart</a>.</p>
+               <p>Type: <a href="./API_SnapStartResponse.html">SnapStartResponse</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-State"><span class="term">
+               <b>
+                  State
+               </b>
+            </span></dt>
+            <dd>
+               <p>The current state of the function. When the state is <code class="code">Inactive</code>, you can reactivate the function by
+      invoking it.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">Pending | Active | Inactive | Failed</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-StateReason"><span class="term">
+               <b>
+                  StateReason
+               </b>
+            </span></dt>
+            <dd>
+               <p>The reason for the function's current state.</p>
+               <p>Type: String</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-StateReasonCode"><span class="term">
+               <b>
+                  StateReasonCode
+               </b>
+            </span></dt>
+            <dd>
+               <p>The reason code for the function's current state. When the code is <code class="code">Creating</code>, you can't invoke or
+      modify the function.</p>
+               <p>Type: String</p>
+               <p>Valid Values: <code class="code">Idle | Creating | Restoring | EniLimitExceeded | InsufficientRolePermissions | InvalidConfiguration | InternalError | SubnetOutOfIPAddresses | InvalidSubnet | InvalidSecurityGroup | ImageDeleted | ImageAccessDenied | InvalidImage | KMSKeyAccessDenied | KMSKeyNotFound | InvalidStateKMSKey | DisabledKMSKey | EFSIOError | EFSMountConnectivityError | EFSMountFailure | EFSMountTimeout | InvalidRuntime | InvalidZipFileException | FunctionError</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-Timeout"><span class="term">
+               <b>
+                  Timeout
+               </b>
+            </span></dt>
+            <dd>
+               <p>The amount of time in seconds that Lambda allows a function to run before stopping it.</p>
+               <p>Type: Integer</p>
+               <p>Valid Range: Minimum value of 1.</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-TracingConfig"><span class="term">
+               <b>
+                  TracingConfig
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's AWS X-Ray tracing configuration.</p>
+               <p>Type: <a href="./API_TracingConfigResponse.html">TracingConfigResponse</a> object</p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-Version"><span class="term">
+               <b>
+                  Version
+               </b>
+            </span></dt>
+            <dd>
+               <p>The version of the Lambda function.</p>
+               <p>Type: String</p>
+               <p>Length Constraints: Minimum length of 1. Maximum length of 1024.</p>
+               <p>Pattern: <code class="code">(\$LATEST|[0-9]+)</code>
+               </p>
+               <p>Required: No</p>
+            </dd>
+          
+            <dt id="SSS-Type-FunctionConfiguration-VpcConfig"><span class="term">
+               <b>
+                  VpcConfig
+               </b>
+            </span></dt>
+            <dd>
+               <p>The function's networking configuration.</p>
+               <p>Type: <a href="./API_VpcConfigResponse.html">VpcConfigResponse</a> object</p>
+               <p>Required: No</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="API_FunctionConfiguration_SeeAlso">See Also</h2>
+      <p>For more information about using this API in one of the language-specific AWS SDKs, see the following:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForCpp/lambda-2015-03-31/FunctionConfiguration">AWS SDK for C++</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForGoV1/lambda-2015-03-31/FunctionConfiguration">AWS SDK for Go</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForJavaV2/lambda-2015-03-31/FunctionConfiguration">AWS SDK for Java V2</a>
+            </p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://docs.aws.amazon.com/goto/SdkForRubyV3/lambda-2015-03-31/FunctionConfiguration">AWS SDK for Ruby V3</a>
+            </p>
+         </li></ul></div>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./API_FunctionCodeLocation.html">FunctionCodeLocation</div><div id="next" class="next-link" accesskey="n" href="./API_FunctionEventInvokeConfig.html">FunctionEventInvokeConfig</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/API_FunctionConfiguration.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/API_FunctionConfiguration.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

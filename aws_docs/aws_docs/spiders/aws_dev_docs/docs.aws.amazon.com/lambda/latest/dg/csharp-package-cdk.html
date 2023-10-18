@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using the AWS Cloud Development Kit (AWS CDK) - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="csharp-package-cdk" /><meta name="default_state" content="csharp-package-cdk" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-cdk.html" /><meta name="description" content="Learn how to download, build, and deploy a sample Hello World .NET application using AWS CDK." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-cdk.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/csharp-package-cdk.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/csharp-package-cdk.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/csharp-package-cdk.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/csharp-package-cdk.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-cdk.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-cdk.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/csharp-package-cdk.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/csharp-package-cdk.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/csharp-package-cdk.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/csharp-package-cdk.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/csharp-package-cdk.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/csharp-package-cdk.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/csharp-package-cdk.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/csharp-package-cdk.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/csharp-package-cdk.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/csharp-package-cdk.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/csharp-package-cdk.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/csharp-package-cdk.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/csharp-package-cdk.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/csharp-package-cdk.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/csharp-package-cdk.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using the AWS Cloud Development Kit (AWS CDK)" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using the AWS Cloud Development Kit (AWS CDK) - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#csharp-package-cdk" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-cdk.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-cdk.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-cdk.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,.zip,deploy,deployment package,C#,.NET,Lambda layers with .NET,Lambda layers with C#,dotnet,AWS CDK" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with C#",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Build and deploy C# Lambda functions with .zip file archives",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/csharp-package.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Using the AWS Cloud Development Kit (AWS CDK)",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/csharp-package.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#csharp-package-cdk" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#csharp-package-cdk-prereqs">Prerequisites</a><a href="#csharp-package-cdk-deploy">Deploy a sample AWS CDK application</a><a href="#csharp-package-cdk-next">Next steps</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="csharp-package-cdk">Using the AWS Cloud Development Kit (AWS CDK)</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The AWS Cloud Development Kit (AWS CDK) is an open-source software development framework for defining cloud infrastructure as code with modern programming 
+    languages and frameworks like .NET. AWS CDK projects are executed to generate AWS CloudFormation templates which are then used to deploy your code.</p><p>To build and deploy an example Hello world .NET application using the AWS CDK, follow the instructions in the following sections. The sample 
+    application implements a basic API backend consisting of an API Gateway endpoint and a Lambda function. API Gateway invokes the Lambda function when 
+    you send an HTTP GET request to the endpoint. The function returns a Hello world message, along with the IP address of the Lambda instance that 
+    processes your request.</p>
+      <h2 id="csharp-package-cdk-prereqs">Prerequisites</h2>
+      <div class="variablelist">
+         
+         
+      <dl>
+          <dt><b><span class="term">.NET 6 SDK</span></b></dt>
+          <dd>
+            <p>Install the <a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0" rel="noopener noreferrer" target="_blank"><span>.NET 6</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> SDK and 
+              Runtime.</p>
+          </dd>
+        
+          <dt><b><span class="term">AWS CDK version 2</span></b></dt>
+          <dd>
+            <p>To learn how to install the latest version of the AWS CDK see 
+              <a href="https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html">Getting started with the AWS CDK</a> in the 
+              <em>AWS Cloud Development Kit (AWS CDK) v2 Developer Guide</em>.</p>
+          </dd>
+        </dl></div>
+     
+      <h2 id="csharp-package-cdk-deploy">Deploy a sample AWS CDK application</h2>
+      <div class="procedure"><ol><li>
+          <p>Create a project directory for the sample application and navigate into it.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">mkdir hello-world
+cd hello-world</code></code></pre>
+        </li><li>
+            <p>Initialize a new AWS CDK application by running the following command.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">cdk init app --language csharp</code></code></pre>
+          <p>The command creates the following files and directories in your project directory</p>
+          <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">├── README.md
+├── cdk.json
+└── src
+    ├── HelloWorld
+    │   ├── GlobalSuppressions.cs
+    │   ├── HelloWorld.csproj
+    │   ├── HelloWorldStack.cs
+    │   └── Program.cs
+    └── HelloWorld.sln</code></pre>
+        </li><li>
+          <p>Open the <code class="code">src</code> directory and create a new Lambda function using the .NET CLI. This is the function you will deploy 
+          using the AWS CDK. In this example, you create a Hello world function named <code class="code">HelloWorldLambda</code>using the 
+            <code class="code">lambda.EmptyFunction</code> template.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">cd src
+dotnet new lambda.EmptyFunction -n HelloWorldLambda</code></code></pre>
+          <p>After this step, your directory structure inside your project directory should look like the following.</p>
+          <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight">├── README.md
+├── cdk.json
+└── src
+    ├── HelloWorld
+    │   ├── GlobalSuppressions.cs
+    │   ├── HelloWorld.csproj
+    │   ├── HelloWorldStack.cs
+    │   └── Program.cs
+    ├── HelloWorld.sln
+    └── HelloWorldLambda
+        ├── src
+        │   └── HelloWorldLambda
+        │       ├── Function.cs
+        │       ├── HelloWorldLambda.csproj
+        │       ├── Readme.md
+        │       └── aws-lambda-tools-defaults.json
+        └── test
+            └── HelloWorldLambda.Tests
+                ├── FunctionTest.cs
+                └── HelloWorldLambda.Tests.csproj</code></pre>
+        </li><li>
+          <p>Open the <code class="code">HelloWorldStack.cs</code> file from the <code class="code">src/HelloWorld</code> directory. Replace the contents of the file with 
+          the following code.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">using Amazon.CDK;
+using Amazon.CDK.AWS.Lambda;
+using Amazon.CDK.AWS.Logs;
+using Constructs;
+
+namespace CdkTest
+<span>{</span>
+    public class HelloWorldStack : Stack
+    <span>{</span>
+        internal HelloWorldStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
+        <span>{</span>
+            var buildOption = new BundlingOptions()
+            <span>{</span>
+                Image = Runtime.DOTNET_6.BundlingImage,
+                User = "root",
+                OutputType = BundlingOutput.ARCHIVED,
+                Command = new string[]<span>{</span>
+            "/bin/sh",
+                "-c",
+                " dotnet tool install -g Amazon.Lambda.Tools"+
+                " &amp;&amp; dotnet build"+
+                " &amp;&amp; dotnet lambda package --output-package /asset-output/function.zip"
+                }
+            };
+
+             var helloWorldLambdaFunction = new Function(this, "HelloWorldFunction", new FunctionProps
+            <span>{</span>
+                Runtime = Runtime.DOTNET_6,
+                MemorySize = 1024,
+                LogRetention = RetentionDays.ONE_DAY,
+                Handler = "HelloWorldLambda::HelloWorldLambda.Function::FunctionHandler",
+                Code = Code.FromAsset("./src/HelloWorldLambda/src/HelloWorldLambda", new Amazon.CDK.AWS.S3.Assets.AssetOptions
+                <span>{</span>
+                    Bundling = buildOption
+                }),
+            });
+        }
+    }
+}</code></pre>
+          <p>This is the code to compile and bundle the application code, as well as the definition of the Lambda function itself. the 
+          <code class="code">BundlingOptions</code> object allows a zip file to be created, along with a set of commands that are used to generate the 
+          contents of the zip file. In this instance, the <code class="code">dotnet lambda package</code> command is used to compile and generate the zip 
+          file.</p>
+        </li><li>
+        <p>To deploy your application, run the following command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">cdk deploy</code></code></pre>
+      </li><li>
+          <p>Invoke your deployed Lambda function using the .NET Lambda CLI.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">dotnet lambda invoke-function HelloWorldFunction -p "hello world"</code></code></pre>
+        </li><li>
+          <p>After you've finished testing, you can delete the resources you created, unless you want to retain them. Run the following 
+          command to delete your resources.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">cdk destroy</code></code></pre>
+        </li></ol></div>
+      
+      
+     
+      <h2 id="csharp-package-cdk-next">Next steps</h2>
+      <p>To learn more about using AWS CDK to build and deploy Lambda functions using .NET, see the following resources:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-csharp.html">Working with the AWS CDK in C#</a></p>
+        </li><li class="listitem">
+          <p><a href="http://aws.amazon.com/blogs/modernizing-with-aws/build-package-publish-dotnet-csharp-lambda-functions-aws-cdk/" rel="noopener noreferrer" target="_blank"><span>Build, package, and 
+          publish .NET C# Lambda functions with the AWS CDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+        </li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./csharp-package-sam.html">Using the AWS Serverless Application Model (AWS SAM)</div><div id="next" class="next-link" accesskey="n" href="./csharp-package-asp.html">Deploy ASP.NET applications</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-cdk.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/csharp-package-cdk.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

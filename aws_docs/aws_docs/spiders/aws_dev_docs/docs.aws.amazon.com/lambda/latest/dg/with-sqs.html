@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using Lambda with Amazon SQS - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-sqs" /><meta name="default_state" content="with-sqs" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html" /><meta name="description" content="Use a Lambda function to process messages from an Amazon SQS queue." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-sqs.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-sqs.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-sqs.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-sqs.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-sqs.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-sqs.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-sqs.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-sqs.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-sqs.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-sqs.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sqs.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sqs.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-sqs.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-sqs.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-sqs.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-sqs.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-sqs.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-sqs.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using Lambda with Amazon SQS" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using Lambda with Amazon SQS - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-sqs" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,Lambda process SQS event,Lambda function SQS message trigger,Lambda message queue event source" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Lambda with Amazon SQS",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-sqs" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#example-standard-queue-message-event"> Example standard queue message event  </a><a href="#sample-fifo-queues-message-event"> Example FIFO queue message event</a><a href="#events-sqs-queueconfig">Configuring a queue to use with Lambda</a><a href="#events-sqs-permissions">Execution role permissions</a><a href="#events-sqs-eventsource">Configuring a queue as an event source</a><a href="#events-sqs-scaling">Scaling and processing</a><a href="#events-sqs-max-concurrency">Maximum concurrency</a><a href="#events-sqs-api">Event source mapping APIs</a><a href="#services-sqs-backoff-strategy">Backoff strategy for failed invocations</a><a href="#services-sqs-batchfailurereporting">Implementing partial batch responses</a><a href="#services-sqs-params">Amazon SQS configuration parameters</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-sqs">Using Lambda with Amazon SQS</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you want to send data to a target other than a Lambda function or enrich the data before sending it, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html">
+    Amazon EventBridge Pipes</a>.</p></div></div><p>You can use a Lambda function to process messages in an Amazon Simple Queue Service (Amazon SQS) queue. Lambda <a href="./invocation-eventsourcemapping.html">event source mappings</a> support <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html">standard queues</a> and <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html">first-in, first-out
+      (FIFO) queues</a>. With Amazon SQS, you can offload tasks from one component of your application by sending them to
+    a queue and processing them asynchronously.</p><p>Lambda polls the queue and invokes your Lambda function <a href="./invocation-sync.html">synchronously</a> with
+    an event that contains queue messages. Lambda reads messages in batches and invokes your function once for each
+    batch. When your function successfully processes a batch, Lambda deletes its messages from the queue. </p><p>When Lambda reads a batch, the messages stay in the queue but are hidden for the length of the queue's <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">visibility
+    timeout</a>. If your function successfully processes the batch, Lambda deletes the messages from the queue. By
+    default, if your function encounters an error while processing a batch, all messages in that batch become visible in
+    the queue again. For this reason, your function code must be able to process the same message multiple times without
+    unintended side effects.</p><p>To prevent Lambda from processing a message multiple times, you can either configure your event source 
+    mapping to include <a href="#services-sqs-batchfailurereporting">batch item failures</a> in your function response, or you can
+    use the Amazon SQS API action <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html">DeleteMessage</a> to 
+    remove messages from the queue as your Lambda function successfully processes them. For more information on using the Amazon SQS API, see the <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/">Amazon Simple Queue Service API Reference</a></p><div class="highlights"><h6>Sections</h6><ul><li><a href="#example-standard-queue-message-event"> Example standard queue message event  </a></li><li><a href="#sample-fifo-queues-message-event"> Example FIFO queue message event</a></li><li><a href="#events-sqs-queueconfig">Configuring a queue to use with Lambda</a></li><li><a href="#events-sqs-permissions">Execution role permissions</a></li><li><a href="#events-sqs-eventsource">Configuring a queue as an event source</a></li><li><a href="#events-sqs-scaling">Scaling and processing</a></li><li><a href="#events-sqs-max-concurrency">Configuring maximum concurrency for Amazon SQS event sources</a></li><li><a href="#events-sqs-api">Event source mapping APIs</a></li><li><a href="#services-sqs-backoff-strategy">Backoff strategy for failed invocations</a></li><li><a href="#services-sqs-batchfailurereporting">Implementing partial batch responses</a></li><li><a href="#services-sqs-params">Amazon SQS configuration parameters</a></li><li><a href="./with-sqs-example.html">Tutorial: Using Lambda with Amazon SQS</a></li><li><a href="./with-sqs-cross-account-example.html">Tutorial: Using a cross-account Amazon SQS queue as an event
+      source</a></li><li><a href="./with-sqs-create-package.html">Sample Amazon SQS function code</a></li><li><a href="./with-sqs-example-use-app-spec.html">AWS SAM template for an Amazon SQS application</a></li></ul></div>
+    <h2 id="example-standard-queue-message-event"> Example standard queue message event  </h2>
+  
+  <div class="example"><h6>Example Amazon SQS message event (standard queue)</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "Records": [
+        <span>{</span>
+            "messageId": "059f36b4-87a3-44ab-83d2-661975830a7d",
+            "receiptHandle": "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...",
+            "body": "Test message.",
+            "attributes": <span>{</span>
+                "ApproximateReceiveCount": "1",
+                "SentTimestamp": "1545082649183",
+                "SenderId": "AIDAIENQZJOLO23YVJ4VO",
+                "ApproximateFirstReceiveTimestamp": "1545082649185"
+            },
+            "messageAttributes": <span>{</span>},
+            "md5OfBody": "e4e68fb7bd0e697a0ae8f1bb342846b3",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:us-east-2:123456789012:my-queue",
+            "awsRegion": "us-east-2"
+        },
+        <span>{</span>
+            "messageId": "2e1424d4-f796-459a-8184-9c92662be6da",
+            "receiptHandle": "AQEBzWwaftRI0KuVm4tP+/7q1rGgNqicHq...",
+            "body": "Test message.",
+            "attributes": <span>{</span>
+                "ApproximateReceiveCount": "1",
+                "SentTimestamp": "1545082650636",
+                "SenderId": "AIDAIENQZJOLO23YVJ4VO",
+                "ApproximateFirstReceiveTimestamp": "1545082650649"
+            },
+            "messageAttributes": <span>{</span>},
+            "md5OfBody": "e4e68fb7bd0e697a0ae8f1bb342846b3",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:us-east-2:123456789012:my-queue",
+            "awsRegion": "us-east-2"
+        }
+    ]
+}</code></pre></div></div>
+  <p>By default, Lambda polls up to 10 messages in your queue at once and sends that batch to your function. To avoid
+    invoking the function with a small number of records, you can tell the event source to buffer records for up to 5
+    minutes by configuring a batch window. Before invoking the function, Lambda continues to poll messages from the SQS
+    standard queue until the batch window expires, the <a href="./gettingstarted-limits.html">invocation payload size
+      quota</a> is reached, or the configured maximum batch size is
+    reached.</p>
+  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you're using a batch window and your SQS queue contains very low traffic, Lambda might wait for up to 20
+      seconds before invoking your function. This is true even if you set a batch window lower than 20 seconds.</p></div></div>
+   
+    <h2 id="sample-fifo-queues-message-event"> Example FIFO queue message event</h2>
+    <p>For FIFO queues, records contain additional attributes that are related to deduplication and sequencing.</p>
+    <div class="example"><h6>Example Amazon SQS message event (FIFO queue)</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "Records": [
+        <span>{</span>
+            "messageId": "11d6ee51-4cc7-4302-9e22-7cd8afdaadf5",
+            "receiptHandle": "AQEBBX8nesZEXmkhsmZeyIE8iQAMig7qw...",
+            "body": "Test message.",
+            "attributes": <span>{</span>
+                "ApproximateReceiveCount": "1",
+                "SentTimestamp": "1573251510774",
+                <code class="userinput">"SequenceNumber": "18849496460467696128",
+                "MessageGroupId": "1",</code>
+                "SenderId": "AIDAIO23YVJENQZJOL4VO",
+                <code class="userinput">"MessageDeduplicationId": "1",</code>
+                "ApproximateFirstReceiveTimestamp": "1573251510774"
+            },
+            "messageAttributes": <span>{</span>},
+            "md5OfBody": "e4e68fb7bd0e697a0ae8f1bb342846b3",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:us-east-2:123456789012:fifo.fifo",
+            "awsRegion": "us-east-2"
+        }
+    ]
+}</code></pre></div></div>
+   
+    <h2 id="events-sqs-queueconfig">Configuring a queue to use with Lambda</h2>
+    
+    <p><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-create-queue.html">Create an SQS queue</a>
+      to serve as an event source for your Lambda function. Then configure the queue to allow time for your Lambda
+      function to process each batch of events—and for Lambda to retry in response to throttling errors as it
+      scales up.</p>
+    
+    <p>To allow your function time to process each batch of records, set the source queue's <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">visibility timeout</a> to at
+      least six times the <a href="./configuration-function-common.html#configuration-common-summary">timeout that you configure</a> on your
+      function. The extra time allows for Lambda to retry if your function is throttled while processing a previous
+      batch.</p>
+    
+    <p>If your function fails to process a message multiple times, Amazon SQS can send it to a <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html">dead-letter queue</a>. If your function returns an error, all items in the batch return to the queue. After the <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">visibility timeout</a> occurs, Lambda receives
+      the message again. To send messages to a second queue after a number of receives, configure a dead-letter queue on
+      your source queue.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Make sure that you configure the dead-letter queue on the source queue, not on the Lambda function. The
+        dead-letter queue that you configure on a function is used for the function's <a href="./invocation-async.html">asynchronous invocation queue</a>, not for event source queues.</p></div></div>
+    <p>If your function returns an error, or can't be invoked because it's at maximum concurrency, processing might
+      succeed with additional attempts. To give messages a better chance to be processed before sending them to the
+      dead-letter queue, set the <code class="code">maxReceiveCount</code> on the source queue's redrive policy to at least <b>5</b>.</p>
+    
+   
+    <h2 id="events-sqs-permissions">Execution role permissions</h2>
+    <p>Lambda needs the following permissions to manage messages in your Amazon SQS queue. Add them to your function's
+      <a href="./lambda-intro-execution-role.html">execution role</a>.</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html">sqs:ReceiveMessage</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html">sqs:DeleteMessage</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html">sqs:GetQueueAttributes</a></p>
+      </li></ul></div>
+    <p>Optionally, if you're using an encrypted queue, you also need to add the following permission to your
+      execution role:</p>
+    <div class="itemizedlist">
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html">kms:Decrypt</a></p>
+      </li></ul></div>
+   
+    <h2 id="events-sqs-eventsource">Configuring a queue as an event source</h2>
+    
+    <p>Create an event source mapping to tell Lambda to send items from your queue to a Lambda function. You can create
+      multiple event source mappings to process items from multiple queues with a single function. When Lambda invokes
+      the target function, the event can contain multiple items, up to a configurable maximum <em>batch
+        size</em>.</p>
+    <p>To configure your function to read from Amazon SQS in the Lambda console, create an <b>SQS</b>
+      trigger.</p>
+    
+    <div class="procedure"><h6>To create a trigger</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the name of a function.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add trigger</b>.</p>
+      </li><li>
+        <p>Choose the <b>SQS</b> trigger type.</p>
+      </li><li>
+        <p>Configure the required options, and then choose <b>Add</b>.</p>
+      </li></ol></div>
+    
+    <div class="variablelist">
+      <p>Lambda supports the following options for Amazon SQS event sources:</p>
+       
+       
+     
+       
+      
+       
+    <dl>
+          <dt><b><span class="term">SQS queue</span></b></dt>
+        <dd>
+          <p>The Amazon SQS queue to read records from.</p>
+        </dd>
+    
+          <dt><b><span class="term">Enable trigger</span></b></dt>
+       <dd>
+          <p>The status of the event source mapping. <b>Enable trigger</b> is selected by default.</p>
+       </dd>
+    
+      <dt><b><span class="term">Batch size</span></b></dt>
+      <dd>
+       <p>The number of records to send to the function in each batch. For a standard queue, this can be up to 10,000 records. For a FIFO queue, the maximum is 10. For a batch size over 10, you must also set the batch window (<code class="code">MaximumBatchingWindowInSeconds</code>) to at least 1 second.</p>
+        <p>Configure your <a href="https://serverlessland.com/content/service/lambda/guides/aws-lambda-operator-guide/configurations#timeouts" rel="noopener noreferrer" target="_blank"><span>function timeout</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to allow enough time to process an entire batch of items. If items take a long time to process, choose a smaller batch size. A large batch size can improve efficiency for workloads that are very fast or have a lot of overhead. If you configure <a href="./configuration-concurrency.html">reserved concurrency</a> on your function, set a minimum of five concurrent executions to reduce the chance of throttling errors when Lambda invokes your function.</p> 
+      <p>Lambda passes all of the records in the batch to the function in a single call, as long as the total size of the events doesn't exceed the <a href="./gettingstarted-limits.html">invocation payload size quota</a> for synchronous invocation (6 MB). Both Lambda and Amazon SQS generate metadata for each record. This additional metadata is counted towards the total payload size and can cause the total number of records sent in a batch to be lower than your configured batch size. The metadata fields that Amazon SQS sends can be variable in length. For more information about the Amazon SQS metadata fields, see the <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html">ReceiveMessage</a> API operation documentation in the <em>Amazon Simple Queue Service API Reference</em>.</p>
+      </dd>
+      
+          <dt><b><span class="term">Batch window</span></b></dt>
+        <dd>
+          <p>The maximum amount of time to gather records before invoking the function, in seconds. This applies only to standard queues.</p>
+          <p>If you're using a batch window greater than 0 seconds, you must account for the increased processing time in your queue's <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">visibility timeout</a>. We recommend setting your queue's visibility timeout to six times your <a href="./configuration-function-common.html#configuration-common-summary">function timeout</a>, plus the value of <code class="code">MaximumBatchingWindowInSeconds</code>. This allows time for your Lambda function to process each batch of events and to retry in the event of a throttling error.</p>
+          <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If your batch window is greater than 0, and <code class="code">(batch window) + (function timeout) &gt; (queue visibility timeout)</code>, then your effective queue visibility timeout is <code class="code">(batch window) + (function timeout) + 30s</code>.</p></div></div>
+          <p>When messages become available, Lambda starts processing messages in batches. Lambda starts processing five batches at a time with
+          five concurrent invocations of your function. If messages are still available, Lambda adds up to 60 more instances of your function a minute, 
+          up to a maximum of 1,000 function instances. To learn more about function scaling and concurrency, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html">Lambda function scaling</a>.</p>
+          <p>To process more messages, you can optimize your Lambda function for higher throughput. See <a href="http://aws.amazon.com/blogs/compute/understanding-how-aws-lambda-scales-when-subscribed-to-amazon-sqs-queues/#:~:text=If there are more messages,messages from the SQS queue." rel="noopener noreferrer" target="_blank"><span>Understanding how AWS Lambda scales with Amazon SQS standard queues</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        </dd>
+     
+        <dt><b><span class="term">Maximum concurrency</span></b></dt>
+        <dd>
+          <p>The maximum number of concurrent functions that the event source can invoke. For more information, see <a href="#events-sqs-max-concurrency">Configuring maximum concurrency for Amazon SQS event sources</a>.</p>
+      </dd>
+      
+        <dt><b><span class="term">Filter criteria</span></b></dt>
+        <dd>
+          <p>Add filter criteria to control which events Lambda sends to your function for processing. For more information, see <a href="./invocation-eventfiltering.html">Lambda event filtering</a>.</p>
+      </dd>
+      </dl></div>
+   
+      <h2 id="events-sqs-scaling">Scaling and processing</h2>
+      
+      <p>For standard queues, Lambda uses <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html">long polling</a> to
+        poll a queue until it becomes active. When messages are available, Lambda starts processing five batches at a
+        time with five concurrent invocations of your function. If messages are still available, Lambda increases the number of processes that are reading batches by up to 60 more instances per minute. The maximum number of batches that an event source mapping can process simultaneously is 1,000.</p>
+      
+      <p>For FIFO queues, Lambda sends messages to your function in the order that it receives them. When you send a
+        message to a FIFO queue, you specify a <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html">message group
+        ID</a>. Amazon SQS ensures that messages in the same group are delivered to Lambda in order. Lambda sorts the
+        messages into groups and sends only one batch at a time for a group. If your function returns an error, the
+        function attempts all retries on the affected messages before Lambda receives additional messages from the same
+        group.</p>
+      <p>Your function can scale in concurrency to the number of active message groups. For more information, see
+          <a href="http://aws.amazon.com/blogs/compute/new-for-aws-lambda-sqs-fifo-as-an-event-source/" rel="noopener noreferrer" target="_blank"><span>SQS FIFO as an event
+          source</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the AWS Compute Blog.</p>
+     
+        <h2 id="events-sqs-max-concurrency">Configuring maximum concurrency for Amazon SQS event sources</h2>
+        <p>The maximum concurrency setting limits the number of concurrent instances of the function that an Amazon SQS
+          event source can invoke. Maximum concurrency is an event source-level setting. If you have multiple Amazon SQS
+          event sources mapped to one function, each event source can have a separate maximum concurrency setting.
+          You can use maximum concurrency to prevent one queue from using all of the function's
+          <a href="./configuration-concurrency.html">reserved concurrency</a> or the rest of the
+          <a href="./gettingstarted-limits.html">account's concurrency quota</a>. There is no charge for
+          configuring maximum concurrency on an Amazon SQS event source.</p>
+        <p>Importantly, maximum concurrency and reserved concurrency are two independent settings. Don't set
+          maximum concurrency higher than the function's reserved concurrency. If you configure maximum concurrency,
+          make sure that your function's reserved concurrency is greater than or equal to the total maximum
+          concurrency for all Amazon SQS event sources on the function. Otherwise, Lambda may throttle your messages.</p>
+        <p>If maximum concurrency is not set, Lambda can scale your Amazon SQS event source up to your account's total
+          concurrency quota, which is 1,000 by default.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For FIFO queues, concurrent invocations are capped either by the number of
+            <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html">message group IDs</a>
+            (<code class="code">messageGroupId</code>) or the maximum concurrency setting—whichever is lower. For example,
+            if you have six message group IDs and maximum concurrency is set to 10, your function can have a maximum
+            of six concurrent invocations.</p></div></div>
+        <p>You can configure maximum concurrency on new and existing Amazon SQS event source mappings.</p>
+        <div class="procedure"><h6>Configure maximum concurrency using the Lambda console</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+            <p>Choose the name of a function.</p>
+          </li><li>
+            <p>Under <b>Function overview</b>, choose <b>SQS</b>. This opens the <b>Configuration</b> tab.</p>
+          </li><li>
+            <p>Select the Amazon SQS trigger and choose <b>Edit</b>.</p>
+          </li><li>
+            <p>For <b>Maximum concurrency</b>, enter a number between 2 and 1,000. To turn off maximum concurrency, leave the box empty.</p>
+          </li><li>
+            <p>Choose <b>Save</b>.</p>
+          </li></ol></div>
+         
+          <h6>Configure maximum concurrency using the AWS Command Line Interface (AWS CLI)</h6>
+          <p>Use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span>update-event-source-mapping</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command with the <code class="code">--scaling-config</code> option. Example:</p>
+         
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --scaling-config <code class="replaceable">'<span>{</span>"MaximumConcurrency":5}'</code></code></pre>
+        <p>To turn off maximum concurrency, enter an empty value for <code class="code">--scaling-config</code>:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+    --uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+    --scaling-config <code class="replaceable">"<span>{</span>}"</code></code></pre>
+         
+          <h6>Configure maximum concurrency using the Lambda API</h6>
+          <p>Use the <a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a> or <a href="./API_UpdateEventSourceMapping.html">UpdateEventSourceMapping</a> action with a <a href="./API_ScalingConfig.html">ScalingConfig</a> object.</p>
+         
+     
+    <h2 id="events-sqs-api">Event source mapping APIs</h2>
+    
+    <p>To manage an event source with the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI)</a> or an <a href="http://aws.amazon.com/getting-started/tools-sdks/" rel="noopener noreferrer" target="_blank"><span>AWS SDK</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, you can use the following API operations:</p>
+    <div class="itemizedlist">
+        
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p> <a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p> <a href="./API_ListEventSourceMappings.html">ListEventSourceMappings</a>  </p>
+      </li><li class="listitem">
+        <p> <a href="./API_GetEventSourceMapping.html">GetEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p><a href="./API_UpdateEventSourceMapping.html">UpdateEventSourceMapping</a>  </p>
+      </li><li class="listitem">
+        <p><a href="./API_DeleteEventSourceMapping.html">DeleteEventSourceMapping</a>  </p>
+      </li></ul></div>
+    
+    <p>The following example uses the AWS CLI to map a function named <code class="code">my-function</code> to an Amazon SQS queue that
+      is specified by its Amazon Resource Name (ARN), with a batch size of 5 and a batch window of 60 seconds.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-event-source-mapping --function-name my-function --batch-size 5 \
+--maximum-batching-window-in-seconds 60 \
+--event-source-arn arn:aws:sqs:<code class="replaceable">us-east-2:123456789012:my-queue</code></code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "UUID": "2b733gdc-8ac3-cdf5-af3a-1827b3b11284",
+    "BatchSize": 5,
+    "MaximumBatchingWindowInSeconds": 60,
+    "EventSourceArn": "arn:aws:sqs:us-east-2:123456789012:my-queue",
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+    "LastModified": 1541139209.351,
+    "State": "Creating",
+    "StateTransitionReason": "USER_INITIATED"
+}</code></pre>
+   
+    <h2 id="services-sqs-backoff-strategy">Backoff strategy for failed invocations</h2>
+    <p>When an invocation fails, Lambda attempts to retry the invocation while implementing a backoff strategy.
+      The backoff strategy differs slightly depending on whether Lambda encountered the failure due to an error in
+      your function code, or due to throttling.</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>If your <b>function code</b> caused the error, Lambda gradually backs off
+          retries by reducing the amount of concurrency allocated to your Amazon SQS event source mapping. If invocations
+          continue to fail, Lambda eventually drops the message without retrying.</p>
+      </li><li class="listitem">
+        <p>If the invocation fails due to <b>throttling</b>, Lambda gradually backs off
+          retries by reducing the amount of concurrency allocated to your Amazon SQS event source mapping. Lambda continues
+          to retry the message until the message's timestamp exceeds your queue's visibility timeout, at which point
+          Lambda drops the message.</p>
+      </li></ul></div>
+   
+    <h2 id="services-sqs-batchfailurereporting">Implementing partial batch responses</h2>
+    <p>When your Lambda function encounters an error while processing a batch, all messages in that batch become
+      visible in the queue again by default, including messages that Lambda processed successfully. As a result, your
+      function can end up processing the same message several times.</p>
+    <p>To avoid reprocessing successfully processed messages in a failed batch, you can configure your event source mapping to make only the failed messages visible again. This is called a partial batch response. To turn on partial batch responses, specify <code class="code">ReportBatchItemFailures</code> for the <a href="./API_UpdateEventSourceMapping.html#SSS-UpdateEventSourceMapping-request-FunctionResponseTypes">FunctionResponseTypes</a> action when configuring your event source mapping. This lets your function
+      return a partial success, which can help reduce the number of unnecessary retries on records.</p>
+    <p>When <code class="code">ReportBatchItemFailures</code> is activated, Lambda doesn't <a href="#services-sqs-backoff-strategy">scale down message polling</a> when function invocations fail. If you expect some messages to fail—and you don't want those failures to impact the message processing rate—use <code class="code">ReportBatchItemFailures</code>.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Keep the following in mind when using partial batch responses:</p><div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>If your function throws an exception, the entire batch is considered a complete failure.</p>
+        </li><li class="listitem">
+          <p>If you're using this feature with a FIFO queue, your function should stop processing messages after the
+            first failure and return all failed and unprocessed messages in <code class="code">batchItemFailures</code>. This helps
+            preserve the ordering of messages in your queue.</p>
+        </li></ul></div></div></div>
+    <div class="procedure"><h6>To activate partial batch reporting</h6><ol><li>
+        <p>Review the <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/lambda-event-filtering-partial-batch-responses-for-sqs/best-practices-partial-batch-responses.html">Best practices for implementing partial batch responses</a>.</p>
+      </li><li>
+        <p>Run the following command to activate <code class="code">ReportBatchItemFailures</code> for your function. To retrieve your event source mapping's UUID, run the <a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/list-event-source-mappings.html">list-event-source-mappings</a> AWS CLI command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda update-event-source-mapping \
+--uuid <code class="replaceable">"a1b2c3d4-5678-90ab-cdef-11111EXAMPLE"</code> \
+--function-response-types <code class="userinput">"ReportBatchItemFailures"</code></code></pre>
+      </li><li>
+        <p>Update your function code to catch all exceptions and return failed messages in a <code class="code">batchItemFailures</code> JSON response. The <code class="code">batchItemFailures</code> response must include a list of message IDs, as <code class="code">itemIdentifier</code> JSON values.</p>
+        <p>For example, suppose you have a batch of five messages, with message IDs <code class="code">id1</code>, <code class="code">id2</code>, <code class="code">id3</code>, <code class="code">id4</code>, and <code class="code">id5</code>. Your function successfully processes <code class="code">id1</code>, <code class="code">id3</code>, and <code class="code">id5</code>. To make messages <code class="code">id2</code> and <code class="code">id4</code> visible again in your queue, your function should return the following response:  </p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span> 
+  "batchItemFailures": [ 
+        <span>{</span>
+            "itemIdentifier": "id2"
+        },
+        <span>{</span>
+            "itemIdentifier": "id4"
+        }
+    ]
+}</code></pre>
+        <p>Here are some examples of function code that return the list of failed message IDs in the batch:</p>
+        <awsdocs-tabs><dl style="display: none">
+    <dt>.NET</dt><dd tab-id=".net">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">AWS SDK for .NET</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/tree/main/lambda-function-sqs-report-batch-item-failures#code-examples" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Reporting SQS batch item failures with Lambda using .NET.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">using Amazon.Lambda.Core;
+using Amazon.Lambda.SQSEvents;
+
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+namespace sqsSample;
+
+public class Function
+<span>{</span>
+    public async Task&lt;SQSBatchResponse&gt; FunctionHandler(SQSEvent evnt, ILambdaContext context)
+    <span>{</span>
+        List&lt;SQSBatchResponse.BatchItemFailure&gt; batchItemFailures = new List&lt;SQSBatchResponse.BatchItemFailure&gt;();
+        foreach(var message in evnt.Records)
+        <span>{</span>
+            try
+            <span>{</span>
+                //process your message
+                await ProcessMessageAsync(message, context);
+            }
+            catch (System.Exception)
+            <span>{</span>
+                //Add failed message identifier to the batchItemFailures list
+                batchItemFailures.Add(new SQSBatchResponse.BatchItemFailure<span>{</span>ItemIdentifier=message.MessageId}); 
+            }
+        }
+        return new SQSBatchResponse(batchItemFailures);
+    }
+
+    private async Task ProcessMessageAsync(SQSEvent.SQSMessage message, ILambdaContext context)
+    <span>{</span>
+        if (String.IsNullOrEmpty(message.Body))
+        <span>{</span>
+            throw new Exception("No Body in SQS Message.");
+        }
+        context.Logger.LogInformation($"Processed message <span>{</span>message.Body}");
+        // TODO: Do interesting work based on the new message
+        await Task.CompletedTask;
+    }
+}
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Java</dt><dd tab-id="java">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Java 2.x</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/tree/main/lambda-function-sqs-report-batch-item-failures#readme" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Reporting SQS batch item failures with Lambda using Java.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="java ">import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.SQSEvent;
+import com.amazonaws.services.lambda.runtime.events.SQSBatchResponse;
+ 
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class ProcessSQSMessageBatch implements RequestHandler&lt;SQSEvent, SQSBatchResponse&gt; <span>{</span>
+    @Override
+    public SQSBatchResponse handleRequest(SQSEvent sqsEvent, Context context) <span>{</span>
+ 
+         List&lt;SQSBatchResponse.BatchItemFailure&gt; batchItemFailures = new ArrayList&lt;SQSBatchResponse.BatchItemFailure&gt;();
+         String messageId = "";
+         for (SQSEvent.SQSMessage message : sqsEvent.getRecords()) <span>{</span>
+             try <span>{</span>
+                 //process your message
+                 messageId = message.getMessageId();
+             } catch (Exception e) <span>{</span>
+                 //Add failed message identifier to the batchItemFailures list
+                 batchItemFailures.add(new SQSBatchResponse.BatchItemFailure(messageId));
+             }
+         }
+         return new SQSBatchResponse(batchItemFailures);
+     }
+}
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>Python</dt><dd tab-id="python">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for Python (Boto3)</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/tree/main/lambda-function-sqs-report-batch-item-failures#code-examples" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Reporting SQS batch item failures with Lambda using Python.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">import json
+def lambda_handler(event, context):
+    if event:
+        batch_item_failures = []
+        sqs_batch_response = <span>{</span>}
+     
+        for record in event["Records"]:
+            try:
+                # process message
+            except Exception as e:
+                batch_item_failures.append(<span>{</span>"itemIdentifier": record['messageId']})
+        
+        sqs_batch_response["batchItemFailures"] = batch_item_failures
+        return sqs_batch_response
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs>
+      </li></ol></div>
+    <p>If the failed events do not return to the queue, see <a href="https://aws.amazon.com/premiumsupport/knowledge-center/lambda-sqs-report-batch-item-failures/" rel="noopener noreferrer" target="_blank"><span>How do I troubleshoot Lambda function SQS ReportBatchItemFailures?</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the AWS Knowledge Center.</p>
+     
+      <h3 id="sqs-batchfailurereporting-conditions">Success and failure conditions</h3>
+      <p>Lambda treats a batch as a complete success if your function returns any of the following:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>An empty <code class="code">batchItemFailures</code> list</p>
+        </li><li class="listitem">
+          <p>A null <code class="code">batchItemFailures</code> list</p>
+        </li><li class="listitem">
+          <p>An empty <code class="code">EventResponse</code></p>
+        </li><li class="listitem">
+          <p>A null <code class="code">EventResponse</code></p>
+        </li></ul></div>
+      <p>Lambda treats a batch as a complete failure if your function returns any of the following:</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>An invalid JSON response</p>
+        </li><li class="listitem">
+          <p>An empty string <code class="code">itemIdentifier</code></p>
+        </li><li class="listitem">
+          <p>A null <code class="code">itemIdentifier</code></p>
+        </li><li class="listitem">
+          <p>An <code class="code">itemIdentifier</code> with a bad key name</p>
+        </li><li class="listitem">
+          <p>An <code class="code">itemIdentifier</code> value with a message ID that doesn't exist</p>
+        </li></ul></div>
+     
+     
+      <h3 id="sqs-batchfailurereporting-metrics">CloudWatch metrics</h3>
+      <p>To determine whether your function is correctly reporting batch item failures, you can monitor the
+          <code class="code">NumberOfMessagesDeleted</code> and <code class="code">ApproximateAgeOfOldestMessage</code> Amazon SQS metrics in
+        Amazon CloudWatch.</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">NumberOfMessagesDeleted</code> tracks the number of messages removed from your queue. If this
+            drops to 0, this is a sign that your function response is not correctly returning failed messages.</p>
+        </li><li class="listitem">
+          <p><code class="code">ApproximateAgeOfOldestMessage</code> tracks how long the oldest message has stayed in your queue.
+            A sharp increase in this metric can indicate that your function is not correctly returning failed
+            messages.</p>
+        </li></ul></div>
+     
+   
+    <h2 id="services-sqs-params">Amazon SQS configuration parameters</h2>
+    <p>All Lambda event source types share the same <a href="./API_CreateEventSourceMapping.html">CreateEventSourceMapping</a> and <a href="./API_UpdateEventSourceMapping.html">UpdateEventSourceMapping</a>
+      API operations. However, only some of the parameters apply to Amazon SQS.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac81d247c59b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Event source parameters that apply to Amazon SQS</div></th></tr>
+          <tr>
+            <th>Parameter</th>
+            <th>Required</th>
+            <th>Default</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>BatchSize</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>10</p>
+            </td>
+            <td tabindex="-1">
+              <p>For standard queues, the maximum is 10,000. For FIFO queues, the maximum is 10.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Enabled</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>true</p>
+            </td>
+            <td tabindex="-1"> </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>EventSourceArn</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1"></td>
+            <td tabindex="-1">
+              <p>The ARN of the data stream or a stream consumer</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>FunctionName</p>
+            </td>
+            <td tabindex="-1">
+              <p>Y</p>
+            </td>
+            <td tabindex="-1"> </td>
+            <td tabindex="-1"> </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>FilterCriteria</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="./invocation-eventfiltering.html">Lambda event filtering</a></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>FunctionResponseTypes</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1"> </td>
+            <td tabindex="-1">
+              <p>To let your function report specific failures in a batch, include the value
+                  <code class="code">ReportBatchItemFailures</code> in <code class="code">FunctionResponseTypes</code>. For more information, see
+                  <a href="#services-sqs-batchfailurereporting">Implementing partial batch responses</a>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>MaximumBatchingWindowInSeconds</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p>0</p>
+            </td>
+            <td tabindex="-1"> </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>ScalingConfig</p>
+            </td>
+            <td tabindex="-1">
+              <p>N</p>
+            </td>
+            <td tabindex="-1">
+              <p> </p>
+            </td>
+            <td tabindex="-1">
+              <p><a href="#events-sqs-max-concurrency">Configuring maximum concurrency for Amazon SQS event sources</a></p>
+            </td>
+          </tr>
+        </table></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-sns-create-package.html">Sample code</div><div id="next" class="next-link" accesskey="n" href="./with-sqs-example.html">Tutorial</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

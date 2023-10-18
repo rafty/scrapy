@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Burst concurrency - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="burst-concurrency" /><meta name="default_state" content="burst-concurrency" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/burst-concurrency.html" /><meta name="description" content="As your function receives more requests, Lambda automatically scales up the number of execution environments to handle these requests until you reach your account concurrency limit. However, there’s a limit to how fast Lambda can scale. In most cases, you don’t need to worry about this limitation, but there are a few special cases where you should take this into account:" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/burst-concurrency.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/burst-concurrency.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/burst-concurrency.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/burst-concurrency.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/burst-concurrency.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/burst-concurrency.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/burst-concurrency.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/burst-concurrency.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/burst-concurrency.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/burst-concurrency.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/burst-concurrency.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/burst-concurrency.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/burst-concurrency.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/burst-concurrency.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/burst-concurrency.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/burst-concurrency.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/burst-concurrency.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/burst-concurrency.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/burst-concurrency.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/burst-concurrency.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/burst-concurrency.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/burst-concurrency.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Burst concurrency" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Burst concurrency - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#burst-concurrency" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/burst-concurrency.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/burst-concurrency.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/burst-concurrency.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda concurrency,configure Lambda networking,configure Lambda database access,configure Lambda code signing,Lambda concurrency,Lambda function scaling,function scaling,calculate Lambda concurrency,Lambda concurrency quotas,Lambda concurrency metrics,Lambda burst concurrency,Lambda burst limit,Lambda burst quota" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Managing AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-managing.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda function scaling",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Burst concurrency",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#burst-concurrency" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#burst-limits">Burst concurrency rate limits</a><a href="#burst-example">Understanding and visualizing burst concurrency</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="burst-concurrency">Burst concurrency</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>As your function receives more requests, Lambda automatically scales up the number of
+    execution environments to handle these requests until you reach your account concurrency
+    limit. However, there’s a limit to how fast Lambda can scale. In most cases, you don’t need
+    to worry about this limitation, but there are a few special cases where you should take
+    this into account:</p><div class="itemizedlist">
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p>When you deploy a <b>new</b> function and expect a
+        large <b>initial</b> burst of traffic</p>
+    </li><li class="listitem">
+      <p>When you expect <b>existing</b> functions to experience
+        a <b>sudden</b> burst of traffic</p>
+    </li></ul></div><p>In response to sudden bursts of traffic, Lambda might not scale up immediately to
+    handle all incoming requests. This is to protect against over-scaling. Your burst
+    concurrency quota is the maximum rate at which functions in your account can scale in
+    response to bursts (i.e. how quickly Lambda can create new execution environments).
+    Burst concurrency quota is an account-level limit. This section discusses how Lambda
+    determines your burst concurrency quota, and details burst concurrency scaling behavior
+    for specific burst scenarios.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#burst-limits">Burst concurrency rate limits</a></li><li><a href="#burst-example">Understanding and visualizing burst concurrency</a></li></ul></div>
+    <h2 id="burst-limits">Burst concurrency rate limits</h2>
+    <p>When you deploy new functions, Lambda can immediately scale those functions up to
+      between 500 and 3,000 execution environment instances to handle an initial burst of
+      traffic. The exact maximum depends on the AWS Region:</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac35c17c35c11b5"><thead>
+          <tr>
+            <th>Regions</th>
+            <th>Burst concurrency limit</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>US West (Oregon), US East (N. Virginia), Europe (Ireland)</p>
+            </td>
+            <td tabindex="-1">
+              <p>3,000</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Asia Pacific (Tokyo), Europe (Frankfurt), US East (Ohio)</p>
+            </td>
+            <td tabindex="-1">
+              <p>1,000</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>All other Regions</p>
+            </td>
+            <td tabindex="-1">
+              <p>500</p>
+            </td>
+          </tr>
+        </table></div></div>
+    <p>If you need a burst concurrency limit increase, please inquire further through AWS Support.
+      Service Quotas do not support changes in burst limits at this time.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Your burst concurrency limit cannot exceed your account concurrency limit. For
+        example, the initial burst concurrency limit of 3,000 in US West (Oregon), US East
+        (N. Virginia), and Europe (Ireland) is higher than the default account concurrency
+        limit of 1,000. So, by default, initial bursts in these three Regions can scale only
+        up to 1,000. To take advantage of the full 3,000 units of burst concurrency available
+        to your functions in these three Regions, <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">request an account
+        concurrency limit increase</a>.</p></div></div>
+    <p>After the initial burst increase, Lambda continues to scale up your function based
+      on the following rules:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>If your function needs additional scaling, Lambda can scale up by a maximum of
+          500 additional execution environment instances (burst quota units) per minute,
+          regardless of the Region.</p>
+      </li><li class="listitem">
+        <p>Each minute, you continue to accrue 500 burst quota units. If your function
+          doesn’t require this level of scaling, Lambda saves up any unused units in an
+          imaginary “bucket”, up until the bucket reaches the maximum burst concurrency
+          limit in your Region. For instance, your bucket can continue to accrue 500 units
+          per minute until it reaches 3,000 units in US East (N. Virginia). When your
+          function encounters future bursts, Lambda draws from your bucket to scale up
+          your function.</p>
+      </li></ul></div>
+    <p>In all cases, Lambda can continue to scale at the fastest rate available to you
+      as long as you haven’t reached your account concurrency limit. If requests come in
+      faster than your function can scale, or if your function is at maximum concurrency,
+      additional requests fail with a throttling error (429 status code).</p>
+   
+    <h2 id="burst-example">Understanding and visualizing burst concurrency</h2>
+    <p>This section contains animations of a scaling example to help you understand Lambda
+      burst concurrency behavior. In this scenario, assume that you have active Lambda functions
+      in the US East (N. Virginia) region, and you have an account concurrency limit of
+      10,000. Suppose that over the span of several minutes, your functions encounter the
+      following traffic pattern:</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/burst-concurrency-final.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        How Lambda responds to a particular traffic pattern involving several&#xA;          spikes in traffic.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>In the following animations, we'll break down how Lambda scales in response to each
+      of the three bursts. In order to fully understand the animations, here is an explanation
+      of the various components of the graph:</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac35c17c35c13b9"><thead>
+          <tr>
+            <th>Component</th>
+            <th>Significance</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p>x-axis</p>
+            </td>
+            <td tabindex="-1">
+              <p>Time</p>
+            </td>
+            <td tabindex="-1">
+              <p></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>y-axis</p>
+            </td>
+            <td tabindex="-1">
+              <p>Concurrent requests</p>
+            </td>
+            <td tabindex="-1">
+              <p></p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Solid black line</p>
+            </td>
+            <td tabindex="-1">
+              <p>The actual number of concurrent requests that your functions are
+                handling.</p>
+            </td>
+            <td tabindex="-1">
+              <div class="itemizedlist">
+                 
+                 
+              <ul class="itemizedlist"><li class="listitem">
+                  <p>At 8:59, your functions are handling 0 concurrent requests.</p>
+                </li><li class="listitem">
+                  <p>At 9:00, your functions are handling 2,000 concurrent requests.</p>
+                </li></ul></div>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Shaded blue region</p>
+            </td>
+            <td tabindex="-1">
+              <p>The number of active execution environments that Lambda has provisioned
+                for your functions.</p>
+            </td>
+            <td tabindex="-1">
+              <div class="itemizedlist">
+                 
+                 
+              <ul class="itemizedlist"><li class="listitem">
+                  <p>At 8:59, Lambda has provisioned 0 execution environments.</p>
+                </li><li class="listitem">
+                  <p>At 9:00, Lambda has provisioned 2,000 execution environments.</p>
+                </li></ul></div>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Shaded green region</p>
+            </td>
+            <td tabindex="-1">
+              <p>The theoretical maximum scaling capacity of your functions, given your
+                current burst concurrency quota.</p>
+            </td>
+            <td tabindex="-1">
+              <div class="itemizedlist">
+                 
+                 
+              <ul class="itemizedlist"><li class="listitem">
+                  <p>At 8:59, your functions can scale to 3,000 execution environments
+                    at maximum.</p>
+                </li><li class="listitem">
+                  <p>At 9:00, your functions can still scale to just 3,000 execution
+                    environments at maximum.</p>
+                </li></ul></div>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p>Orange "bucket" on the right side of the graph</p>
+            </td>
+            <td tabindex="-1">
+              <p>The burst quota that's currently available to you.</p>
+            </td>
+            <td tabindex="-1">
+              <div class="itemizedlist">
+                 
+              <ul class="itemizedlist"><li class="listitem">
+                  <p>At 9:07, the end of this scenario, the maximum burst quota available
+                    to you is 1,000.</p>
+                </li></ul></div>
+            </td>
+          </tr>
+        </table></div></div>
+     
+      <h3 id="burst-example-part-1">Part 1: Handling burst #1 (8:58 - 9:00)</h3>
+      <p>The first animation depicts how Lambda handles an initial burst of 2,000
+        concurrent requests.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/burst-concurrency-1.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          An animation illustrating how Lambda scales in response to burst #1.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <p>Here's an explanation of this animation:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>At 8:58, you have the entire burst quota of 3,000 available to you. Though
+            your functions receive 0 requests until 9:00, Lambda can scale your functions to
+            up to 3,000 execution environments immediately, if need be.</p>
+        </li><li class="listitem">
+          <p>At 9:00, your functions suddenly experience a burst of 2,000 concurrent
+            requests. Lambda uses 2,000 out of the 3,000 burst quota available to provision
+            2,000 execution environments. Lambda then handles all 2,000 incoming requests.
+            You have a remaining burst quota of 1,000, which Lambda saves for potential use
+            later.</p>
+        </li></ul></div>
+     
+     
+      <h3 id="burst-example-part-2">Part 2: Accumulating unused burst quota
+          (9:00 - 9:02)</h3>
+      <p>The second animation depicts how Lambda accumulates burst quota units if they
+        go unused.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/burst-concurrency-2.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          An animation illustrating how Lambda accumulates unused burst quota&#xA;            units.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <p>Here's an explanation of this animation:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>From 9:00 to 9:01, actual concurrent requests stay under 2,000, so there's
+            no need for Lambda to continue to scale up.</p>
+        </li><li class="listitem">
+          <p>At 9:01, you get 500 additional burst quota units. Since you don't need to
+            use any right now, Lambda saves all 500 units, bringing your total available
+            burst quota to 1,500. Notice how this increases the theoretical maximum
+            scaling capacity up to 3,500.</p>
+        </li><li class="listitem">
+          <p>The same thing occurs from 9:01 to 9:02. At 9:02, you get an additional
+            500 units, bringing your total available burst quota to 2,000. This increases
+            the theoretical maximum scaling capacity to 4,000.</p>
+        </li></ul></div>
+     
+     
+      <h3 id="burst-example-part-3">Part 3: Handling burst #2 (9:02 - 9:03)</h3>
+      <p>The third animation depicts how Lambda uses your accumulated burst quota to
+        handle a second burst.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/burst-concurrency-3.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          An animation illustrating how Lambda scales in response to burst #2.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <p>Here's an explanation of this animation:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>Shortly after 9:02, your functions suddenly experience a burst of 2,000
+            additional concurrent requests, or 4,000 total. Lambda uses all 2,000 of your
+            available burst quota units to provision 2,000 more execution environments.
+            Lambda then handles all 4,000 incoming requests. Your remaining burst quota
+            is 0.</p>
+        </li><li class="listitem">
+          <p>At 9:03, you again accumulate 500 units.</p>
+        </li></ul></div>
+     
+     
+      <h3 id="burst-example-part-4">Part 4: Handling burst #3 and throttling
+          (9:03 - 9:04)</h3>
+      <p>The fourth animation depicts a scenario in which your functions experience
+        temporary throttling in response to a burst.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/burst-concurrency-4.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          An animation illustrating how Lambda scales in response to burst #3.&#xA;            It also involves an example of temporary throttling.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <p>Here's an explanation of this animation:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>At 9:04, you again accumulate 500 units. Your available burst quota is
+            1,000.</p>
+        </li><li class="listitem">
+          <p>Shortly after 9:04, your functions suddenly experience a burst of 1,500
+            additional concurrent requests, or 5,500 total. Lambda uses all 1,000 of
+            your available quota to provision 1,000 more execution environments. Lambda
+            can then handle 5,000 incoming requests, but 500 requests experience
+            throttling.</p>
+        </li></ul></div>
+     
+     
+      <h3 id="burst-example-part-5">Part 5: Recovery (9:04 - 9:05)</h3>
+      <p>The fifth animation depicts how Lambda quickly uses new burst quota units
+        to recover from temporary throttling.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/burst-concurrency-5.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          An animation illustrating how Lambda recovers from throttling.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <p>Here's an explanation of this animation:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>At 9:05, you again accumulate 500 units. Your available burst quota is
+            now 500.</p>
+        </li><li class="listitem">
+          <p>Immediately, Lambda uses these 500 units to provision 500 execution
+            environments. This ends throttling, since Lambda can handle all 5,500
+            incoming requests. Your available burst quota is 0.</p>
+        </li></ul></div>
+     
+     
+      <h3 id="burst-example-part-6">Part 6: Conclusion (9:05 - 9:07)</h3>
+      <p>The sixth and final animation depicts how Lambda continues to accumulate
+        burst quota units, even if they aren't needed.</p>
+      <div class="mediaobject">
+         
+          <img src="/images/lambda/latest/dg/images/burst-concurrency-6.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;          An animation illustrating how Lambda continues accumulating burst quota&#xA;            units.&#xA;        " style="max-width:100%" />
+         
+         
+      </div>
+      <p>Here's an explanation of this animation:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>At 9:06, you again accumulate 500 units. Your available burst quota is
+            now 500.</p>
+        </li><li class="listitem">
+          <p>At 9:07, you again accumulate 500 units. Your available burst quota is
+            now 1,000.</p>
+        </li></ul></div>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Unused execution environments are frozen while they're waiting for
+          requests and don't incur any charges. If they sit idle for a prolonged
+          period of time, Lambda automatically shuts them down.</p></div></div>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./provisioned-concurrency.html">Configuring provisioned concurrency</div><div id="next" class="next-link" accesskey="n" href="./monitoring-concurrency.html">Monitoring concurrency</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/burst-concurrency.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/burst-concurrency.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

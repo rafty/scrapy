@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Example workflows using other AWS services - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="monitoring-servicemap" /><meta name="default_state" content="monitoring-servicemap" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-servicemap.html" /><meta name="description" content="This page shows workflows you can use for AWS X-Ray, AWS Trusted Advisor and CloudWatch ServiceLens to trace and troubleshoot your Lambda functions." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-servicemap.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/monitoring-servicemap.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/monitoring-servicemap.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/monitoring-servicemap.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/monitoring-servicemap.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-servicemap.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-servicemap.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/monitoring-servicemap.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/monitoring-servicemap.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/monitoring-servicemap.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/monitoring-servicemap.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/monitoring-servicemap.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/monitoring-servicemap.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/monitoring-servicemap.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/monitoring-servicemap.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/monitoring-servicemap.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/monitoring-servicemap.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/monitoring-servicemap.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/monitoring-servicemap.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/monitoring-servicemap.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/monitoring-servicemap.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-servicemap.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Example workflows using other AWS services" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Example workflows using other AWS services - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#monitoring-servicemap" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-servicemap.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-servicemap.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-servicemap.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Monitoring and troubleshooting Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Example workflows using other AWS services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#monitoring-servicemap" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#monitoring-troubleshooting-prereqs">Prerequisites</a><a href="#monitoring-troubleshooting-pricing">Pricing</a><a href="#monitoring-servicemap-example">Viewing a service map</a><a href="#monitoring-tracing-example">Viewing trace details</a><a href="#monitoring-ta-example">Using Trusted Advisor to view recommendations</a><a href="#monitoring-troubleshooting-next-up">What's next?</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="monitoring-servicemap">Example workflows using other AWS services</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>AWS Lambda integrates with other AWS services to help you monitor, trace, debug, and troubleshoot your Lambda functions. This page shows workflows you can use with AWS X-Ray, AWS Trusted Advisor and CloudWatch ServiceLens to trace and troubleshoot your Lambda functions.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#monitoring-troubleshooting-prereqs">Prerequisites</a></li><li><a href="#monitoring-troubleshooting-pricing">Pricing</a></li><li><a href="#monitoring-servicemap-example">Example AWS X-Ray workflow to view a service map</a></li><li><a href="#monitoring-tracing-example">Example AWS X-Ray workflow to view trace details</a></li><li><a href="#monitoring-ta-example">Example AWS Trusted Advisor workflow to view recommendations</a></li><li><a href="#monitoring-troubleshooting-next-up">What's next?</a></li></ul></div>
+    <h2 id="monitoring-troubleshooting-prereqs">Prerequisites</h2>
+    <p>The following section describes the steps to using AWS X-Ray and Trusted Advisor to troubleshoot your Lambda functions.</p>
+     
+      <h3 id="monitoring-troubleshooting-prereqs-xray">Using AWS X-Ray</h3>
+        <p>AWS X-Ray needs to be enabled on the Lambda console to complete the AWS X-Ray workflows on this page. If your execution role does not have the required permissions, the Lambda console will attempt to add them to your execution role.</p>
+        <div class="procedure"><h6>To enable AWS X-Ray on the Lambda console</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+            <p>Choose your function.</p>
+          </li><li>
+            <p>Choose the <b>Configuration</b> tab. </p>
+          </li><li>
+            <p>On the <b>Monitoring tools</b> pane, choose <b>Edit</b>.</p>
+          </li><li>
+            <p>Under <b>AWS X-Ray</b>, turn on <b>Active tracing</b>.</p>
+          </li><li>
+            <p>Choose <b>Save</b>.</p>
+          </li></ol></div>
+     
+     
+      <h3 id="monitoring-troubleshooting-prereqs-trustedadvisor">Using AWS Trusted Advisor</h3>
+      <p>AWS Trusted Advisor inspects your AWS environment and makes recommendations on ways you can save money, improve system availability and performance, and help close security gaps. You can use Trusted Advisor checks to evaluate the Lambda functions and applications in your AWS account. The checks provide recommended steps to take and resources for more information.</p>
+      <div class="itemizedlist">
+         
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>For more information on AWS support plans for Trusted Advisor checks, see <a href="https://console.aws.amazon.com/support/plans/home?#/" rel="noopener noreferrer" target="_blank"><span>Support plans</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        </li><li class="listitem">
+          <p>For more information about the checks for Lambda, see <a href="http://aws.amazon.com/premiumsupport/technology/trusted-advisor/best-practice-checklist/" rel="noopener noreferrer" target="_blank"><span>AWS Trusted Advisor best practice checklist</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        </li><li class="listitem">
+          <p>For more information on how to use the Trusted Advisor console, see <a href="https://docs.aws.amazon.com/awssupport/latest/user/get-started-with-aws-trusted-advisor.html">Get started with AWS Trusted Advisor</a>.</p>
+        </li><li class="listitem">
+          <p>For instructions on how to allow and deny console access to Trusted Advisor, see <a href="https://docs.aws.amazon.com/awssupport/latest/user/security-trusted-advisor.html#iam-policy-examples-trusted-advisor">IAM policy examples</a>.</p>
+        </li></ul></div>
+   
+   
+    <h2 id="monitoring-troubleshooting-pricing">Pricing</h2>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>With AWS X-Ray you pay only for what you use, based on the number of traces recorded, retrieved, and scanned. For more information, see <a href="http://aws.amazon.com/xray/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS X-Ray Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li class="listitem">
+        <p>Trusted Advisor cost optimization checks are included with AWS Business and Enterprise support subscriptions. For more information, see <a href="http://aws.amazon.com/premiumsupport/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS Trusted Advisor Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li></ul></div>
+   
+    <h2 id="monitoring-servicemap-example">Example AWS X-Ray workflow to view a service map</h2>
+  <p>If you've enabled AWS X-Ray, you can view a ServiceLens service map on the CloudWatch console. A service map displays your service endpoints and resources as nodes and highlights the traffic, latency, and errors for each node and its connections. </p>
+  <p>You can choose a node to see detailed insights about the correlated metrics, logs, and traces associated with that part of the service. This enables you to investigate problems and their effect on an application.</p>  
+  <div class="procedure"><h6>To view service map and traces using the CloudWatch console</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+      <p>Choose a function.</p>
+    </li><li>
+      <p>Choose <b>Monitoring</b>.</p>
+    </li><li>
+      <p>Choose <b>View traces in X-Ray</b>.</p>
+    </li><li>
+      <p>Choose <b>Service map</b>.</p>
+    </li><li>
+      <p>Choose from the predefined time ranges, or choose a custom time range.</p>
+    </li><li>
+      <p>To troubleshoot requests, choose a filter.</p>
+    </li></ol></div>
+ 
+    <h2 id="monitoring-tracing-example">Example AWS X-Ray workflow to view trace details</h2>
+    <p>If you've enabled AWS X-Ray, you can use the single-function view on the CloudWatch Lambda Insights dashboard to show the distributed trace data of a function invocation error. For example, if the application logs message shows an error, you can open the ServiceLens traces view to see the distributed trace data and the other services handling the transaction.</p>
+    <div class="procedure"><h6>To view trace details of a function</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/cloudwatch/home#lambda-insights:functions" rel="noopener noreferrer" target="_blank"><span>single-function
+            view</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the CloudWatch console.</p>
+      </li><li>
+        <p>Choose the <b>Application logs</b> tab.</p>
+      </li><li>
+        <p>Use the <b>Timestamp</b> or <b>Message</b> to identify the invocation request that you want to troubleshoot.</p>
+      </li><li>
+        <p>To show the <b>Most recent 1000 invocations</b>, choose the <b>Invocations</b>
+          tab.</p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/lambainsights-invocations-request-id.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            Sorting the most recent 1000 invocations by request ID.&#xA;          " style="max-width:100%" />
+           
+           
+        </div>
+      </li><li>
+        <p>Choose the <b>Request ID</b> column to sort entries in ascending alphabetical order.</p>
+      </li><li>
+        <p>In the <b>Trace</b> column, choose <b>View</b>.</p>
+        <p>The <b>Trace details</b> page opens in the ServiceLens traces view.</p>
+        <div class="mediaobject">
+           
+            <img src="/images/lambda/latest/dg/images/lambdainsights-trace-details.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;            Function trace details in the ServiceLens traces view.&#xA;          " style="max-width:100%" />
+           
+           
+        </div>
+      </li></ol></div>
+   
+    <h2 id="monitoring-ta-example">Example AWS Trusted Advisor workflow to view recommendations</h2>
+    <p>Trusted Advisor checks Lambda functions in all AWS Regions to identify functions with the highest potential cost savings, and deliver actionable recommendations for optimization. It analyzes your Lambda usage data such as function execution time, billed duration, memory used, memory configured, timeout configuration and errors.</p>
+    <p>For example, the <em>Lambda Functions with High Error Rate</em> check recommends that you use AWS X-Ray or CloudWatch to detect errors with your Lambda functions.</p>
+    <div class="procedure"><h6>To check for functions with high error rates</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/trustedadvisor" rel="noopener noreferrer" target="_blank"><span>Trusted Advisor</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> console.</p>
+      </li><li>
+        <p>Choose the <b>Cost Optimization</b> category.</p>
+      </li><li>
+        <p>Scroll down to <b>AWS Lambda Functions with High Error Rates</b>. Expand the section to see
+          the results and the recommended actions.</p>
+      </li></ol></div>
+   
+    <h2 id="monitoring-troubleshooting-next-up">What's next?</h2>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Learn more about how to integrate traces, metrics, logs, and alarms in <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ServiceLens.html">Using ServiceLens to Monitor the Health of Your Applications</a>.</p>
+      </li><li class="listitem">
+        <p>Learn more about how to get a list of Trusted Advisor checks in <a href="https://docs.aws.amazon.com/awssupport/latest/user/trustedadvisor.html">Using Trusted Advisor as a web service</a>.</p>
+      </li></ul></div>
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./monitoring-code-profiler.html">Code profiler</div><div id="next" class="next-link" accesskey="n" href="./chapter-layers.html">Lambda layers</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-servicemap.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/monitoring-servicemap.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

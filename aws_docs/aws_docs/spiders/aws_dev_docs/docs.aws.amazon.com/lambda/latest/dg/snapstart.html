@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Improving startup performance with Lambda SnapStart - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="snapstart" /><meta name="default_state" content="snapstart" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html" /><meta name="description" content="Use Lambda SnapStart for Java to reduce cold start time without provisioning additional resources or implementing complex performance optimizations." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/snapstart.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/snapstart.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/snapstart.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/snapstart.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/snapstart.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/snapstart.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/snapstart.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/snapstart.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/snapstart.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/snapstart.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/snapstart.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/snapstart.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/snapstart.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/snapstart.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/snapstart.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/snapstart.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/snapstart.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/snapstart.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Improving startup performance with Lambda SnapStart" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Improving startup performance with Lambda SnapStart - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#snapstart" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,cold start,java initialization,Lambda function startup time,Lambda Java performance optimization,Lambda Java function cold start" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Improving startup performance with Lambda SnapStart",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#snapstart" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#snapstart-runtimes">Supported features and limitations</a><a href="#snapstart-supported-regions">Supported Regions</a><a href="#snapstart-compatibility">Compatibility considerations</a><a href="#snapstart-pricing">Pricing</a><a href="#snapstart-concurrency">SnapStart and provisioned concurrency</a><a href="#snapstart-resources">Additional resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="snapstart">Improving startup performance with Lambda SnapStart</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Lambda SnapStart for Java can improve startup performance for latency-sensitive applications by up to 10x at no
+    extra cost, typically with no changes to your function code. The largest contributor to startup latency (often
+    referred to as cold start time) is the time that Lambda spends initializing the function, which includes loading the
+    function's code, starting the runtime, and initializing the function code.</p><p>With SnapStart, Lambda initializes your function when you publish a function version. Lambda takes a <a href="http://aws.amazon.com/blogs/opensource/firecracker-open-source-secure-fast-microvm-serverless/" rel="noopener noreferrer" target="_blank"><span>Firecracker
+      microVM</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> snapshot of the memory and disk state of the initialized <a href="./lambda-runtime-environment.html">execution environment</a>, encrypts the snapshot, and caches it
+    for low-latency access. When you invoke the function version for the first time, and as the invocations scale up,
+    Lambda resumes new execution environments from the cached snapshot instead of initializing them from scratch, improving
+    startup latency.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If your applications depend on uniqueness of state, you must evaluate your function code and verify that it is
+      resilient to snapshot operations. For more information, see <a href="./snapstart-uniqueness.html">Handling uniqueness with Lambda SnapStart</a>.</p></div></div>
+    <h2 id="snapstart-runtimes">Supported features and limitations</h2>
+    <p>SnapStart supports the Java 11 and Java 17 (<code class="code">java11</code> and <code class="code">java17</code>) <a href="./lambda-runtimes.html">managed runtimes</a>. Other managed runtimes (such as <code class="code">nodejs18.x</code> and <code class="code">python3.11</code>), <a href="./runtimes-custom.html">custom runtimes</a>, and container images are not supported.</p>
+    <p>SnapStart does not support <a href="./provisioned-concurrency.html">provisioned concurrency</a>, the
+        <a href="./foundation-arch.html">arm64 architecture</a>, <a href="./services-efs.html">Amazon Elastic File System (Amazon EFS)</a>, or ephemeral
+      storage greater than 512 MB.</p>
+    <p>To work with SnapStart, you can use the Lambda console, the AWS Command Line Interface (AWS CLI), the Lambda API, the AWS SDK for Java, AWS CloudFormation, AWS Serverless Application Model (AWS SAM), and AWS Cloud Development Kit (AWS CDK). For more information, see <a href="./snapstart-activate.html">Activating and managing Lambda SnapStart</a>.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can use SnapStart only on <a href="./configuration-versions.html#configuration-versions-config">published function
+          versions</a> and <a href="./configuration-aliases.html">aliases</a> that point to versions. You can't use
+        SnapStart on a function's unpublished version ($LATEST).</p></div></div>
+   
+    <h2 id="snapstart-supported-regions">Supported Regions</h2>
+    <p>SnapStart is available in the following AWS Regions:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+	     
+	     
+	     
+       
+	     
+       
+       
+       
+       
+       
+       
+       
+       
+	     
+	     
+       
+	     
+       
+    <ul class="itemizedlist"><li class="listitem"><p>US East (N. Virginia)</p></li><li class="listitem"><p>US East (Ohio)</p></li><li class="listitem"><p>US West (N. California)</p></li><li class="listitem"><p>US West (Oregon)</p></li><li class="listitem"><p>Africa (Cape Town)</p></li><li class="listitem"><p>Asia Pacific (Hong Kong)</p></li><li class="listitem"><p>Asia Pacific (Jakarta)</p></li><li class="listitem"><p>Asia Pacific (Mumbai)</p></li><li class="listitem"><p>Asia Pacific (Osaka)</p></li><li class="listitem"><p>Asia Pacific (Seoul)</p></li><li class="listitem"><p>Asia Pacific (Singapore)</p></li><li class="listitem"><p>Asia Pacific (Sydney)</p></li><li class="listitem"><p>Asia Pacific (Tokyo)</p></li><li class="listitem"><p>Canada (Central)</p></li><li class="listitem"><p>Europe (Frankfurt)</p></li><li class="listitem"><p>Europe (Ireland)</p></li><li class="listitem"><p>Europe (London)</p></li><li class="listitem"><p>Europe (Milan)</p></li><li class="listitem"><p>Europe (Paris)</p></li><li class="listitem"><p>Europe (Stockholm)</p></li><li class="listitem"><p>Middle East (Bahrain)</p></li><li class="listitem"><p>South America (São Paulo)</p></li></ul></div>
+   
+    <h2 id="snapstart-compatibility">Compatibility considerations</h2>
+    <div class="variablelist">
+      <p>With SnapStart, Lambda uses a single snapshot as the initial state for multiple execution environments. If
+        your function uses any of the following during the <a href="./lambda-runtime-environment.html#runtimes-lifecycle-ib">initialization
+          phase</a>, then you might need to make some changes before using SnapStart:</p>
+       
+       
+       
+    <dl>
+        <dt><b><span class="term">Uniqueness</span></b></dt>
+        <dd>
+          <p>If your initialization code generates unique content that is included in the snapshot, then the content might not be unique when it is reused across execution environments. To maintain uniqueness when using SnapStart, you must generate unique content after initialization. This includes unique IDs, unique secrets, and entropy that's used to generate pseudorandomness. To learn how to restore uniqueness, see <a href="./snapstart-uniqueness.html">Handling uniqueness with Lambda SnapStart</a>.</p>
+        </dd>
+      
+        <dt><b><span class="term">Network connections</span></b></dt>
+        <dd>
+          <p>The state of connections that your function establishes during the initialization phase isn't guaranteed when Lambda resumes your function from a snapshot. Validate the state of your network connections and re-establish them as necessary.
+            In most cases, network connections that an AWS SDK establishes automatically resume. For other connections, review the <a href="./snapstart-best-practices.html">best
+              practices</a>. </p>
+        </dd>
+      
+        <dt><b><span class="term">Temporary data</span></b></dt>
+        <dd>
+          <p>Some functions download or initialize ephemeral data, such as temporary credentials or cached
+            timestamps, during the initialization phase. Refresh ephemeral data in the function handler before using it, even when not using SnapStart.</p>
+        </dd>
+      </dl></div>
+   
+    <h2 id="snapstart-pricing">SnapStart pricing</h2>
+    <p>There's no additional cost for SnapStart. You're charged based on the number of requests for your functions,
+      the time that it takes your code to run, and the memory configured for your function. Duration is calculated from
+      the time that your code begins running until it returns or otherwise ends, rounded up to the nearest 1 ms.</p>
+    <p>Duration charges apply to code that runs in the function <a href="./java-handler.html">handler</a>, initialization code that's declared outside of the handler, the time it takes for the runtime (JVM) to load, and any code that runs in a <a href="./snapstart-runtime-hooks.html">runtime hook</a>. For more information about how Lambda calculates duration, see <a href="./snapstart-monitoring.html">Monitoring for Lambda SnapStart</a>.</p>
+    <p>For functions configured with SnapStart, Lambda periodically recycles the execution
+      environments and re-runs your initialization code. For resiliency, Lambda creates snapshots in multiple
+      Availability Zones. Charges apply each time that Lambda re-runs your initialization code in another Availability
+      Zone. For more information about how Lambda calculates charges, see <a href="http://aws.amazon.com/lambda/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+   
+    <h2 id="snapstart-concurrency">Comparing Lambda SnapStart and provisioned concurrency</h2>
+    <p>Both Lambda SnapStart and <a href="./provisioned-concurrency.html">provisioned concurrency</a> can reduce
+      cold starts and outlier latencies when a function scales up. SnapStart helps you improve startup performance by up
+      to 10x at no extra cost. Provisioned concurrency keeps functions initialized and ready to respond in double-digit milliseconds. Configuring provisioned concurrency incurs charges to your AWS account. Use provisioned concurrency if your application has strict cold start latency requirements. You can't use both SnapStart and provisioned concurrency on the same function version.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>SnapStart works best when used with function invocations at scale. Functions that are invoked infrequently might not experience the same performance improvements.</p></div></div>
+   
+    <h2 id="snapstart-resources">Additional resources</h2>
+    <p>In addition to reading the other topics in this chapter, we also recommend that you try the <a href="https://catalog.workshops.aws/java-on-aws-lambda/en-US/03-snapstart" rel="noopener noreferrer" target="_blank"><span>Starting up faster with AWS Lambda SnapStart</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> workshop and watch the <a href="https://www.youtube.com/watch?v=ZbnAithBNYY" rel="noopener noreferrer" target="_blank"><span>Fast cold starts for your Java functions</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> session from AWS re:Invent 2022.</p>
+  <div class="highlights"><h6>Topics</h6><ul><li><a href="./snapstart-activate.html">Activating and managing Lambda SnapStart</a></li><li><a href="./snapstart-uniqueness.html">Handling uniqueness with Lambda SnapStart</a></li><li><a href="./snapstart-runtime-hooks.html">Runtime hooks for Lambda SnapStart</a></li><li><a href="./snapstart-monitoring.html">Monitoring for Lambda SnapStart</a></li><li><a href="./snapstart-security.html">Security model for Lambda SnapStart</a></li><li><a href="./snapstart-best-practices.html">Best practices for working with Lambda SnapStart</a></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./services-stepfunctions.html">Orchestration examples</div><div id="next" class="next-link" accesskey="n" href="./snapstart-activate.html">Activating SnapStart</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

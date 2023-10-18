@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS Lambda function testing in C# - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="dotnet-csharp-testing" /><meta name="default_state" content="dotnet-csharp-testing" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-csharp-testing.html" /><meta name="description" content="Learn how to test serverless functions written in C#." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-csharp-testing.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/dotnet-csharp-testing.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AWS Lambda function testing in C#" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS Lambda function testing in C# - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#dotnet-csharp-testing" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-csharp-testing.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-csharp-testing.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-csharp-testing.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,testing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with C#",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "AWS Lambda function testing in C#",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-csharp.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#dotnet-csharp-testing" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#dotnet-csharp-testing-techniques-for-serverless-applications">Testing your serverless applications</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="dotnet-csharp-testing">AWS Lambda function testing in C#</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>See the <a href="./testing-guide.html">Testing functions</a> chapter for a complete introduction to techniques and best practices for testing serverless solutions. 
+    </p></div></div><p>
+    Testing serverless functions uses traditional test types and techniques, but you must also consider testing serverless applications as a whole. Cloud-based tests will provide the <strong>most accurate</strong> measure of quality of both your functions and serverless applications.
+  </p><p>
+    A serverless application architecture includes managed services that provide critical application functionality through API calls. For this reason, your development cycle should include automated tests that verify functionality when your function and services interact. 
+  </p><p>
+    If you do not create cloud-based tests, you could encounter issues due to differences between your local environment and the deployed environment. Your continuous integration process should run tests against a suite of resources provisioned in the cloud before promoting your code to the next deployment environment, such as QA, Staging, or Production.
+  </p><p>
+    Continue reading this short guide to learn about testing strategies for serverless applications, or visit the <a href="https://github.com/aws-samples/serverless-test-samples" rel="noopener noreferrer" target="_blank"><span>Serverless Test Samples repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to dive in with practical examples, specific to your chosen language and runtime.
+  </p><p>
+    <span class="inlinemediaobject">
+     
+    <img src="/images/lambda/latest/dg/images/test-type-illustration.png" class="aws-docs-img-whiteBg aws-docs-img-xs-padding" alt="illustration showing the relationship between types of tests" style="max-width:100%" />
+     
+  </span>
+  </p><p>
+    For serverless testing, you will still write <em>unit</em>, <em>integration</em> and <em>end-to-end</em> tests.
+  </p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><strong>Unit tests</strong> - Tests that run against an isolated block of code. For example, verifying the business logic to calculate the delivery charge given a particular item and destination.</p>
+    </li><li class="listitem">
+      <p><strong>Integration tests</strong> - Tests involving two or more components or services that interact, typically in a cloud environment. For example, verifying a function processes events from a queue.</p>
+    </li><li class="listitem">
+      <p><strong>End-to-end tests</strong> - Tests that verify behavior across an entire application. For example, ensuring infrastructure is set up correctly and that events flow between services as expected to record a customer's order.</p>
+    </li></ul></div>
+    <h2 id="dotnet-csharp-testing-techniques-for-serverless-applications">Testing your serverless applications</h2>
+    <p>
+      You will generally use a mix of approaches to test your serverless application code, including testing in the cloud, testing with mocks, and occasionally testing with emulators.
+    </p>
+     
+      <h3 id="dotnet-csharp-testing-in-the-cloud">Testing in the cloud</h3>
+      
+      <p>
+        Testing in the cloud is valuable for all phases of testing, including unit tests, integration tests, and end-to-end tests. You run tests against code deployed in the cloud and interacting with cloud-based services. This approach provides the <strong>most accurate</strong> measure of quality of your code. 
+      </p>
+      <p>
+        A convenient way to debug your Lambda function in the cloud is through the console with a test event. A <em>test event</em> is a JSON input to your function. If your function does not require input, the event can be an empty JSON document <code class="code">(<span>{</span>})</code>. The console provides sample events for a variety of service integrations. After creating an event in the console, you can share it with your team to make testing easier and consistent.  
+      </p>
+
+     <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p><a href="./testing-functions.html">Testing a function in the console</a> is a quick way to get started, but automating your test cycles ensures application quality and development speed.
+        </p></div></div>
+
+
+      
+     
+     
+      <h3 id="dotnet-csharp-testing-tools">Testing tools</h3>
+      <p>To accelerate your development cycle, there are a number of tools and techniques you can use when testing your functions. For example, 
+        <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/using-sam-cli-sync.html">AWS SAM Accelerate</a> and 
+        <a href="https://docs.aws.amazon.com/cdk/v2/guide/cli.html#cli-deploy-watch">AWS CDK watch mode</a> both decrease the time required to update 
+      cloud environments.</p>
+      <p>The way you define your Lambda function code makes it simple to add unit tests. Lambda requires a public, parameterless constructor to 
+      initialize your class. Introducing a second, internal constructor gives you control of the dependencies your application uses.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+
+namespace GetProductHandler;
+
+public class Function
+<span>{</span>
+    private readonly IDatabaseRepository _repo;
+    
+    public Function(): this(null)
+    <span>{</span>
+    }
+    
+    internal Function(IDatabaseRepository repo)
+    <span>{</span>
+        this._repo = repo ?? new DatabaseRepository();
+    }
+    
+    public async Task&lt;APIGatewayProxyResponse&gt; FunctionHandler(APIGatewayProxyRequest request)
+    <span>{</span>
+        var id = request.PathParameters["id"];
+        
+        var databaseRecord = await this._repo.GetById(id);
+        
+        return new APIGatewayProxyResponse 
+        <span>{</span>
+            StatusCode = (int)HttpStatusCode.OK,
+            Body = JsonSerializer.Serialize(databaseRecord)
+        };
+    }
+}</code></pre>
+      <p>To write a test for this function, you can initialize a new instance of your <code class="code">Function</code> class and pass in a mocked 
+        implementation of the <code class="code">IDatabaseRepository</code>. The below examples uses <code class="code">XUnit</code>, <code class="code">Moq</code>, and 
+        <code class="code">FluentAssertions</code> to write a simple test ensuring the <code class="code">FunctionHandler</code> returns a 200 status code.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">using Xunit;
+using Moq;
+using FluentAssertions;
+
+public class FunctionTests
+<span>{</span>
+    [Fact]
+    public async Task TestLambdaHandler_WhenInputIsValid_ShouldReturn200StatusCode()
+    <span>{</span>
+        // Arrange
+        var mockDatabaseRepository = new Mock&lt;IDatabaseRepository&gt;();
+        
+        var functionUnderTest = new Function(mockDatabaseRepository.Object);
+        
+        // Act
+        var response = await functionUnderTest.FunctionHandler(new APIGatewayProxyRequest());
+        
+        // Assert
+        response.StatusCode.Should().Be(200);
+    }
+}</code></pre>
+      <p>For more detailed examples, including examples of asynchronous tests, see the <a href="https://github.com/aws-samples/serverless-test-samples/tree/main/dotnet-test-samples" rel="noopener noreferrer" target="_blank"><span>.NET testing samples repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      on GitHub.</p>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./csharp-tracing.html">Tracing</div><div id="next" class="next-link" accesskey="n" href="./lambda-powershell.html">Building with PowerShell</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-csharp-testing.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/dotnet-csharp-testing.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

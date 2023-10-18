@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Private networking with VPC - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="foundation-networking" /><meta name="default_state" content="foundation-networking" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-networking.html" /><meta name="description" content="Use VPC networking to securely connect Lambda functions to other AWS resources." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-networking.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/foundation-networking.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/foundation-networking.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/foundation-networking.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/foundation-networking.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-networking.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-networking.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/foundation-networking.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/foundation-networking.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/foundation-networking.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/foundation-networking.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/foundation-networking.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/foundation-networking.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/foundation-networking.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/foundation-networking.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/foundation-networking.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/foundation-networking.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/foundation-networking.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/foundation-networking.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/foundation-networking.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/foundation-networking.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-networking.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Private networking with VPC" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Private networking with VPC - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#foundation-networking" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-networking.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-networking.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-networking.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,function vpc configuration,Lambda networking" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda foundations",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Private networking with VPC",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#foundation-networking" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#foundation-nw-concepts">VPC network elements</a><a href="#foundation-nw-connecting">Connecting Lambda functions to your VPC</a><a href="#foundation-nw-shared-subnets">Shared subnets</a><a href="#foundation-nw-eni">Lambda Hyperplane ENIs</a><a href="#foundation-nw-addressing">Connections</a><a href="#foundation-nw-ipv6">IPv6 support</a><a href="#foundation-nw-security">Security</a><a href="#foundation-nw-obs">Observability</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="foundation-networking">Private networking with VPC</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon Virtual Private Cloud (Amazon VPC) is a virtual network in the AWS cloud, dedicated to your AWS account. You can use Amazon VPC to
+    create a private network for resources such as databases, cache instances, or internal services. For more
+    information about Amazon VPC, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">What is
+      Amazon VPC?</a></p><p>A Lambda function always runs inside a VPC owned by the Lambda service. Lambda applies network access and security
+    rules to this VPC and Lambda maintains and monitors the VPC automatically. If your Lambda function needs to access the
+    resources in your account VPC, <a href="./configuration-vpc.html"> configure the function to access the VPC</a>.
+    Lambda provides managed resources named Hyperplane ENIs, which your Lambda function uses to connect from the Lambda VPC
+    to an ENI (Elastic network interface) in your account VPC.</p><p>There's no additional charge for using a VPC or a Hyperplane ENI. There are charges for some VPC components,
+    such as NAT gateways. For more information, see <a href="http://aws.amazon.com/vpc/pricing" rel="noopener noreferrer" target="_blank"><span>Amazon VPC Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#foundation-nw-concepts">VPC network elements</a></li><li><a href="#foundation-nw-connecting">Connecting Lambda functions to your VPC</a></li><li><a href="#foundation-nw-shared-subnets">Shared subnets</a></li><li><a href="#foundation-nw-eni">Lambda Hyperplane ENIs</a></li><li><a href="#foundation-nw-addressing">Connections</a></li><li><a href="#foundation-nw-ipv6">IPv6 support</a></li><li><a href="#foundation-nw-security">Security</a></li><li><a href="#foundation-nw-obs">Observability</a></li></ul></div>
+    <h2 id="foundation-nw-concepts">VPC network elements</h2>
+    <p>Amazon VPC networks includes the following network elements:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Elastic network interface – <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ElasticNetworkInterfaces.html">elastic network interface</a> is a logical
+          networking component in a VPC that represents a virtual network card. </p>
+      </li><li class="listitem">
+        <p>Subnet – A range of IP addresses in your VPC. You can add AWS resources to a specified subnet. Use
+          a public subnet for resources that must connect to the internet, and a private subnet for resources that don't
+          connect to the internet. </p>
+      </li><li class="listitem">
+        <p>Security group – use security groups to control access to the AWS resources in each subnet.</p>
+      </li><li class="listitem">
+        <p>Access control list (ACL) – use a network ACL to provide additional security in a subnet. The 
+          default subnet ACL allows all inbound and outbound traffic.</p>
+      </li><li class="listitem">
+        <p>Route table – contains a set of routes that AWS uses to direct the network traffic for your VPC.
+          You can explicitly associate a subnet with a particular route table. By default, the subnet is associated with
+          the main route table.</p>
+      </li><li class="listitem">
+        <p>Route – each route in a route table specifies a range of IP addresses and the destination where
+          Lambda sends the traffic for that range. The route also specifies a target, which is the gateway, network
+          interface, or connection through which to send the traffic.</p>
+      </li><li class="listitem">
+        <p>NAT gateway – An AWS Network Address Translation (NAT) service that controls access from a private
+          VPC private subnet to the Internet.</p>
+      </li><li class="listitem">
+        <p>VPC endpoints – You can use an Amazon VPC endpoint to create private connectivity to services
+          hosted in AWS, without requiring access over the internet or through a NAT device, VPN connection, or AWS Direct Connect
+          connection. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-services-overview.html">AWS PrivateLink and
+            VPC endpoints</a>.</p>
+      </li></ul></div>
+
+        <div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>To configure your Lambda function to access a VPC and subnet, you can use the Lambda Console or the API.</p><p>Refer to the <code class="code">VpcConfig</code> section in <a href="./API_CreateFunction.html">CreateFunction</a> to configure your function. See <a href="./configuration-vpc.html#vpc-configuring">Configuring VPC access (console)</a> and <a href="./configuration-vpc.html#vpc-configuring-api">Configuring VPC access (API)</a> for detailed steps.</p></div></div>
+
+
+    <p>For more information about Amazon VPC networking definitions, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html"> How Amazon VPC works</a> in the Amazon VPC Developer Guide and the 
+      <a href="http://aws.amazon.com/vpc/faqs.html" rel="noopener noreferrer" target="_blank"><span>Amazon VPC FAQs.</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+    </p>
+   
+    <h2 id="foundation-nw-connecting">Connecting Lambda functions to your VPC</h2>
+    <p>A Lambda function always runs inside a VPC owned by the Lambda service. By default, a Lambda function isn't connected to VPCs in your account. When you connect a function to a VPC in your account, the function can't access the internet unless your VPC provides
+      access.</p>
+    <p>Lambda accesses resources in your VPC using a Hyperplane ENI. Hyperplane ENIs provide NAT capabilities from the
+      Lambda VPC to your account VPC using VPC-to-VPC NAT (V2N). V2N provides connectivity from the Lambda VPC to your
+      account VPC, but not in the other direction.</p>
+    <p>When you create a Lambda function (or update its VPC settings), Lambda allocates a Hyperplane ENI for each
+      subnet in your function's VPC configuration. Multiple Lambda functions can share a network interface, if the
+      functions share the same subnet and security group. </p>
+    <p>To connect to another AWS service, you can use <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html">VPC endpoints</a> for private
+      communications between your VPC and supported AWS services. An alternative approach is to use a <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT gateway</a> to route
+      outbound traffic to another AWS service. </p>
+    <p>To give your function access to the internet, route outbound traffic to a NAT gateway in a public subnet. The
+      NAT gateway has a public IP address and can connect to the internet through the VPC's internet gateway. </p>
+    <p>For information about how to configure Lambda VPC networking, see <a href="./configuration-vpc.html">Connecting outbound networking to resources in a VPC</a> and <a href="./configuration-vpc-endpoints.html">Connecting inbound interface VPC endpoints for Lambda</a>.</p>
+   
+     <h2 id="foundation-nw-shared-subnets">Shared subnets</h2>
+     <p>VPC sharing allows multiple AWS accounts to create their application resources, such as Amazon EC2 instances and Lambda functions, in shared, centrally-managed virtual private clouds (VPCs). In this model, the account that owns the VPC (owner) shares one or more subnets with other accounts (participants) that belong to the same AWS Organization.</p>
+ 
+     <p>To access private resources, connect your function to a private shared subnet in your VPC. The subnet owner must share a subnet with you before you can connect a function to it. The subnet owner can also unshare the subnet a later time, thereby removing connectivity. For details on how to share, unshare, and manage VPC resources in shared subnets, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html">How to share your VPC with other accounts</a> in the Amazon VPC guide.
+     </p>
+   
+    <h2 id="foundation-nw-eni">Lambda Hyperplane ENIs</h2>
+    <p>The Hyperplane ENI is a managed network resource that the Lambda service creates and manages. Multiple
+      execution environments in the Lambda VPC can use a Hyperplane ENI to securely access resources inside of VPCs in
+      your account. Hyperplane ENIs provide NAT capabilities from the Lambda VPC to your account VPC. For more
+      information about Hyperplane ENIs, see <a href="http://aws.amazon.com/blogs/compute/announcing-improved-vpc-networking-for-aws-lambda-functions/" rel="noopener noreferrer" target="_blank"><span>Improved VPC networking for AWS Lambda
+        functions </span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the AWS compute blog.</p>
+    <p>Each unique security group and subnet combination in your account requires a different network interface.
+      Functions in the account that share the same security group and subnet combination use the same network
+      interfaces. </p>
+    <p>Because the functions in your account share the ENI resources, the ENI lifecycle is more complex than other
+      Lambda resources. The following sections describe the ENI lifecycle.</p>
+    <div class="highlights" id="inline-topiclist"><h6>ENI lifecycle</h6><ul><li><a href="#foundation-nw-eni-create">Creating ENIs</a></li><li><a href="#foundation-nw-eni-man">Managing ENIs</a></li><li><a href="#foundation-nw-eni-delete">Deleting ENIs</a></li></ul></div>
+     
+      <h3 id="foundation-nw-eni-create">Creating ENIs</h3>
+      <p>Lambda may create Hyperplane ENI resources for a newly created VPC-enabled function or for a VPC
+        configuration change to an existing function. The function remains in pending state while Lambda creates the
+        required resources. When the Hyperplane ENI is ready, the function transitions to active state and the ENI
+        becomes available for use. Lambda can require several minutes to create a Hyperplane ENI. </p>
+      <p>For a newly created VPC-enabled function, any invocations or other API actions that operate on the function
+        fail until the function state transitions to active. </p>
+      <p>For a VPC configuration change to an existing function, any function invocations continue to use the
+        Hyperplane ENI associated with the old subnet and security group configuration until the function state
+        transitions to active. </p>
+      <p>If a Lambda function remains idle for consecutive weeks, Lambda reclaims the unused Hyperplane ENIs and sets
+        the function state to idle. The next invocation causes Lambda to reactivate the idle function. The invocation
+        fails, and the function enters pending state until Lambda completes the creation or allocation of a Hyperplane
+        ENI. </p>
+      <p>For more
+        information about function states, see  <a href="./functions-states.html">Lambda function states</a>.</p>
+     
+     
+      <h3 id="foundation-nw-eni-man">Managing ENIs</h3>
+      <p>Lambda uses permissions in your function's execution role to create and manage network interfaces. Lambda
+        creates a Hyperplane ENI when you define a unique subnet plus security group combination for a VPC-enabled
+        function in an account. Lambda reuses the Hyperplane ENI for other VPC-enabled functions in your account that use
+        the same subnet and security group combination. </p>
+      <p>There is no quota on the number of Lambda functions that can use the same Hyperplane ENI. However, each
+        Hyperplane ENI supports up to 65,000 connections/ports. If the number of connections exceeds 65,000, Lambda
+        creates a new Hyperplane ENI to provide additional connections.</p>
+      <p>When you update your function configuration to access a different VPC, Lambda terminates connectivity to the
+        Hyperplane ENI in the previous VPC. The process to update the connectivity to a new VPC can take several
+        minutes. During this time, invocations to the function continue to use the previous VPC. After the update is
+        complete, new invocations start using the Hyperplane ENI in the new VPC. At this point, the Lambda function is no
+        longer connected to the previous VPC. </p>
+     
+     
+      <h3 id="foundation-nw-eni-delete">Deleting ENIs</h3>
+      <p>When you update a function to remove its VPC configuration, Lambda requires up to 20 minutes to delete the
+        attached Hyperplane ENI. Lambda only deletes the ENI if no other function (or published function version) is
+        using that Hyperplane ENI. </p>
+      <p>Lambda relies on permissions in the function <a href="./lambda-intro-execution-role.html"> execution
+          role</a> to delete the Hyperplane ENI. If you delete the execution role before Lambda deletes the Hyperplane
+        ENI, Lambda won't be able to delete the Hyperplane ENI. You can manually perform the deletion.</p>
+      <p>Lambda doesn't delete network interfaces that are in use by functions or function versions in your account.
+        You can use the <a href="https://github.com/awslabs/aws-support-tools/tree/master/Lambda/FindEniMappings" rel="noopener noreferrer" target="_blank"><span>Lambda ENI Finder</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> to identify the functions or function versions that are using a Hyperplane ENI. For
+        any functions or function versions that you no longer need, you can remove the VPC configuration so that Lambda
+        deletes the Hyperplane ENI.</p>
+     
+   
+    <h2 id="foundation-nw-addressing">Connections</h2>
+      <p>Lambda supports two types of connections: TCP (Transmission Control Protocol) and UDP (User Datagram
+      Protocol).</p>
+    <p>When you create a VPC, Lambda automatically creates a set of DHCP options and associates them with the VPC. You
+      can configure your own DHCP options set for your VPC. For more details, refer to <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html">Amazon VPC DHCP options</a>.</p>
+    <p>Amazon provides a DNS server (the Amazon Route 53 resolver) for your VPC. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html">DNS support for your VPC</a>.</p>
+   
+    <h2 id="foundation-nw-ipv6">IPv6 support</h2>
+    <div class="variablelist">
+    <p>Lambda supports inbound and outbound IPv6 connections.</p>
+     
+     
+  <dl>
+        <dt><b><span class="term">Inbound</span></b></dt>
+        <dd>
+			<p>To invoke your function over IPv6, use <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#dual-stack-endpoints">dual-stack endpoints</a>. Dual-stack endpoints support both IPv4 and IPv6. Lambda dual-stack endpoints use the following syntax:</p> <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="replaceable">protocol</code>://lambda.<code class="replaceable">us-east-1</code>.api.aws</code></pre>
+			<p>You can also use <a href="./lambda-urls.html">Lambda function URLs</a> to invoke functions over IPv6. Function URL endpoints have the following format:</p>
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">https://<code class="replaceable">url-id</code>.lambda-url.<code class="replaceable">us-east-1</code>.on.aws</code></pre>
+        </dd>
+    
+        <dt><b><span class="term">Outbound</span></b></dt>
+        <dd>
+            <p>Your function can connect to resources in dual-stack subnets over IPv6. This option is turned off by default. To allow outbound IPv6 traffic, <a href="./configuration-vpc.html#vpc-configuring">use the console</a> or the <code class="code">--vpc-config Ipv6AllowedForDualStack=true</code> option with the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/create-function.html" rel="noopener noreferrer" target="_blank"><span>create-function</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> or <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-configuration.html" rel="noopener noreferrer" target="_blank"><span>update-function-configuration</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To allow IPv6 traffic, all of the subnets that are connected to the function must be dual-stack subnets.</p></div></div>
+            <p>You can update your function code to explicitly connect to subnet resources over IPv6. The following Python example opens a socket and connects to an IPv6 server.</p>
+            <div class="example"><h6>Example  — Connect to IPv6 server</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">def connect_to_server(event, context):
+    server_address = event['host']
+    server_port = event['port']
+    message = event['message']
+    run_connect_to_server(server_address, server_port, message)
+
+def run_connect_to_server(server_address, server_port, message):
+    sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM, 0)
+    try:
+        # Send data
+        sock.connect((server_address, int(server_port), 0, 0))
+        sock.sendall(message.encode())
+        BUFF_SIZE = 4096
+        data = b''
+        while True:
+            segment = sock.recv(BUFF_SIZE)
+            data += segment
+            # Either 0 or end of data
+            if len(segment) &lt; BUFF_SIZE:
+                break
+        return data
+    finally:
+        sock.close()
+</code></pre></div></div>
+        </dd>
+    </dl></div>
+   
+    <h2 id="foundation-nw-security">Security</h2>
+    <p>AWS provides <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html"><em>security groups</em></a> and <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html"><em>network
+          ACLs</em></a> to increase security in your VPC. Security groups control inbound and outbound traffic
+      for your instances, and network ACLs control inbound and outbound traffic for your subnets. Security groups
+      provide enough access control for most subnets. You can use network ACLs if you want an additional layer of
+      security for your VPC. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html">Internetwork traffic privacy in
+        Amazon VPC</a>. Every subnet that you create is automatically associated with the VPC's default network ACL. You
+      can change the association, and you can change the contents of the default network ACL. </p>
+    <p>For general security best practices, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-best-practices.html">VPC security best
+        practices</a>. For details on how you can use IAM to manage access to the Lambda API and resources, see
+        <a href="./lambda-permissions.html">AWS Lambda permissions</a>.</p>
+    <p>You can use Lambda-specific condition keys for VPC settings to provide additional permission controls for your
+      Lambda functions. For more information about VPC condition keys, see <a href="./configuration-vpc.html#vpc-conditions">Using IAM
+        condition keys for VPC settings</a>.</p>
+
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Lambda functions can be invoked from the public internet or <a href="http://aws.amazon.com/privatelink" rel="noopener noreferrer" target="_blank"><span>AWS PrivateLink</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> endpoints. 
+    You can access your <a href="./lambda-urls.html">Function URLs</a> through the public Internet only. While Lambda functions do support AWS PrivateLink, Function URLs do not.
+    </p></div></div>
+
+   
+    <h2 id="foundation-nw-obs">Observability</h2>
+    <p>You can use <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html">VPC Flow Logs</a> 
+      to capture information about the IP traffic going to and from network interfaces in your
+      VPC. You can publish Flow log data to Amazon CloudWatch Logs or Amazon S3. After you've created a flow log, you can retrieve and
+      view its data in the chosen destination. </p>
+    <p>Note: when you attach a function to a VPC, the CloudWatch log messages do not use the VPC routes. Lambda sends them
+      using the regular routing for logs.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./gettingstarted-package.html">Deployment packages</div><div id="next" class="next-link" accesskey="n" href="./foundation-console.html">Lambda console</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-networking.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/foundation-networking.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

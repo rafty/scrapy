@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Monitoring for Lambda SnapStart - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="snapstart-monitoring" /><meta name="default_state" content="snapstart-monitoring" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-monitoring.html" /><meta name="description" content="CloudWatch records the Init Duration and Restore Duration for Lambda SnapStart functions." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-monitoring.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/snapstart-monitoring.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/snapstart-monitoring.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/snapstart-monitoring.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/snapstart-monitoring.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-monitoring.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-monitoring.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/snapstart-monitoring.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/snapstart-monitoring.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/snapstart-monitoring.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/snapstart-monitoring.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/snapstart-monitoring.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/snapstart-monitoring.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/snapstart-monitoring.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/snapstart-monitoring.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/snapstart-monitoring.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/snapstart-monitoring.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/snapstart-monitoring.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/snapstart-monitoring.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/snapstart-monitoring.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/snapstart-monitoring.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-monitoring.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Monitoring for Lambda SnapStart" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Monitoring for Lambda SnapStart - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#snapstart-monitoring" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-monitoring.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-monitoring.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-monitoring.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,cold start,java initialization,Lambda function startup time,Lambda Java performance optimization,Lambda Java function cold start,logs for SnapStart function,Lambda SnapStart CloudWatch Logs,Tracing for SnapStart,X-Ray for SnapStart,Telemetry API and SnapStart" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Improving startup performance with Lambda SnapStart",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Monitoring for Lambda SnapStart",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#snapstart-monitoring" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#snapstart-cloudwatch">CloudWatch logs</a><a href="#snapstart-xray">AWS X-Ray</a><a href="#snapstart-telemetry">Telemetry API</a><a href="#snapstart-metrics">API Gateway and function URL metrics</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="snapstart-monitoring">Monitoring for Lambda SnapStart</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can monitor your Lambda SnapStart functions using Amazon CloudWatch, AWS X-Ray, and the <a href="./telemetry-api.html">Lambda Telemetry API</a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The <code class="code">AWS_LAMBDA_LOG_GROUP_NAME</code> and <code class="code">AWS_LAMBDA_LOG_STREAM_NAME</code> <a href="./configuration-envvars.html#configuration-envvars-runtime">environment variables</a> are not available in Lambda SnapStart functions.</p></div></div>
+      <h2 id="snapstart-cloudwatch">CloudWatch for SnapStart</h2>
+      <p>There are a few differences with the <a href="./monitoring-cloudwatchlogs.html">CloudWatch log stream</a> format
+      for SnapStart functions:</p>
+      <div class="itemizedlist">      
+             
+             
+      <ul class="itemizedlist"><li class="listitem">
+              <p><span class="topcom">Initialization logs</span> – When a new execution environment is created, the <code class="code">REPORT</code> doesn't include the <code class="code">Init Duration</code> field. That's because Lambda initializes SnapStart functions when you create a version instead of during function invocation. For SnapStart functions, the <code class="code">Init Duration</code> field is in the <code class="code">INIT_REPORT</code> record. This record shows duration details for the <a href="./lambda-runtime-environment.html#runtimes-lifecycle-ib">Init phase</a>, including the duration of any <code class="code">beforeCheckpoint</code> <a href="./snapstart-runtime-hooks.html">runtime hooks</a>.</p>
+            </li><li class="listitem">
+              <p><span class="topcom">Invocation logs</span> – When a new execution environment is created, the <code class="code">REPORT</code> includes the <code class="code">Restore Duration</code> and <code class="code">Billed Restore Duration</code> fields:</p>
+          <div class="itemizedlist">
+             
+           
+          <ul class="itemizedlist"><li class="listitem">
+              <p><code class="code">Restore Duration</code>: The time it takes for Lambda to restore a snapshot, load the runtime (JVM), and run any <code class="code">afterRestore</code> runtime hooks. The process of restoring snapshots can include time spent on activities outside the MicroVM. This time is reported in <code class="code">Restore Duration</code>.</p>
+            </li><li class="listitem">
+              <p><code class="code">Billed Restore Duration</code>: The time it takes for Lambda to load the runtime (JVM) and run any <code class="code">afterRestore</code> hooks. You are not charged for the time it takes to restore a snapshot.</p>
+            </li></ul></div>
+        </li></ul></div>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Duration charges apply to code that runs in the function <a href="./java-handler.html">handler</a>, initialization code that's declared outside of the handler, the time it takes for the runtime (JVM) to load, and any code that runs in a <a href="./snapstart-runtime-hooks.html">runtime hook</a>. For more information, see <a href="./snapstart.html#snapstart-pricing">SnapStart pricing</a>.</p></div></div>
+      <p>The cold start duration is the sum of <code class="code">Restore Duration</code> + <code class="code">Duration</code>.</p>
+      <p>The following example is a Lambda Insights query that returns the latency percentiles for SnapStart
+      functions. For more information about Lambda Insights queries, see <a href="./monitoring-insights.html#monitoring-insights-queries">Example workflow using queries to troubleshoot a function</a>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">filter @type = "REPORT"
+  | parse @log /\d+:\/aws\/lambda\/(?&lt;function&gt;.*)/
+  | parse @message /Restore Duration: (?&lt;restoreDuration&gt;.*?) ms/
+  | stats
+count(*) as invocations,
+pct(@duration+coalesce(@initDuration,0)+coalesce(restoreDuration,0), 50) as p50,
+pct(@duration+coalesce(@initDuration,0)+coalesce(restoreDuration,0), 90) as p90,
+pct(@duration+coalesce(@initDuration,0)+coalesce(restoreDuration,0), 99) as p99,
+pct(@duration+coalesce(@initDuration,0)+coalesce(restoreDuration,0), 99.9) as p99.9
+group by function, (ispresent(@initDuration) or ispresent(restoreDuration)) as coldstart
+  | sort by coldstart desc</code></pre>
+       
+        <h2 id="snapstart-xray">X-Ray active tracing for SnapStart</h2>
+        <p>You can use <a href="./services-xray.html">X-Ray</a> to trace requests to Lambda SnapStart functions. There are a few differences with the X-Ray subsegments for SnapStart functions:</p>
+      <div class="itemizedlist">
+             
+           
+      <ul class="itemizedlist"><li class="listitem">
+              <p>There is no <code class="code">Initialization</code> subsegment for SnapStart functions.</p>
+            </li><li class="listitem">
+              <p>The <code class="code">Restore</code> subsegment shows the time it takes for Lambda to restore a snapshot, load the runtime (JVM), and run any <code class="code">afterRestore</code> <a href="./snapstart-runtime-hooks.html">runtime hooks</a>. The process of restoring snapshots can include time spent on activities outside the MicroVM. This time is reported in the <code class="code">Restore</code> subsegment. You aren't charged for the time spent outside the microVM to restore a snapshot.</p>
+            </li></ul></div>
+     
+        <h2 id="snapstart-telemetry">Telemetry API events for SnapStart</h2>
+        <p>Lambda sends the following SnapStart events to the <a href="./telemetry-api.html">Telemetry API</a>:</p>
+        <div class="itemizedlist">
+           
+         
+       
+  <ul class="itemizedlist"><li class="listitem">
+          <p><a href="./telemetry-schema-reference.html#platform-restoreStart">platform.restoreStart</a> – Shows the time when the <a href="./lambda-runtime-environment.html#runtimes-lifecycle-restore">Restore phase</a> started.</p>
+        </li><li class="listitem">
+          <p><a href="./telemetry-schema-reference.html#platform-restoreRuntimeDone">platform.restoreRuntimeDone</a> – Shows whether the <code class="code">Restore</code> phase
+          was successful. Lambda sends this message when the runtime sends a <code class="code">restore/next</code> runtime API
+          request. There are three possible statuses: success, failure, and timeout.</p>
+        </li><li class="listitem">
+        <p><a href="./telemetry-schema-reference.html#platform-restoreReport">platform.restoreReport</a> – Shows how long the <code class="code">Restore</code> phase lasted
+          and how many milliseconds you were billed for during this phase.</p>
+      </li></ul></div>
+     
+    <h2 id="snapstart-metrics">Amazon API Gateway and function URL metrics</h2>
+    <p>If you create a web API <a href="./services-apigateway.html">using API Gateway</a>, then you can use the <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html">IntegrationLatency</a> metric to measure end-to-end latency (the time between when API Gateway relays a request
+      to the backend and when it receives a response from the backend).</p>
+    <p>If you're using a <a href="./lambda-urls.html">Lambda function URL</a>, then you can use the <a href="./urls-monitoring.html">UrlRequestLatency</a> metric to measure end-to-end latency (the time between when
+      the function URL receives a request and when the function URL returns a response).</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./snapstart-runtime-hooks.html">Runtime hooks</div><div id="next" class="next-link" accesskey="n" href="./snapstart-security.html">Security model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-monitoring.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/snapstart-monitoring.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

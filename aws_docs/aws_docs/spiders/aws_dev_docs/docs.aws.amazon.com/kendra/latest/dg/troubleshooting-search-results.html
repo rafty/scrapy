@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Troubleshooting document search results - Amazon Kendra</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="troubleshooting-search-results" /><meta name="default_state" content="troubleshooting-search-results" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/troubleshooting-search-results.html" /><meta name="description" content="This section can help you fix issues in your Amazon Kendra search results." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Kendra" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Provides a conceptual overview of Amazon Kendra. Learn about Amazon Kendra features and get started indexing your documents using the console, CLI, and API." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/kendra/latest/dg/troubleshooting-search-results.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/troubleshooting-search-results.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/kendra/latest/dg/troubleshooting-search-results.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/troubleshooting-search-results.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/kendra/latest/dg/troubleshooting-search-results.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/troubleshooting-search-results.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/troubleshooting-search-results.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/troubleshooting-search-results.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/kendra/latest/dg/troubleshooting-search-results.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/troubleshooting-search-results.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/kendra/latest/dg/troubleshooting-search-results.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/troubleshooting-search-results.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/kendra/latest/dg/troubleshooting-search-results.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/troubleshooting-search-results.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/troubleshooting-search-results.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/troubleshooting-search-results.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/kendra/latest/dg/troubleshooting-search-results.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/troubleshooting-search-results.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/kendra/latest/dg/troubleshooting-search-results.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/kendra/latest/dg/troubleshooting-search-results.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/kendra/latest/dg/troubleshooting-search-results.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/kendra/latest/dg/troubleshooting-search-results.html" hreflang="x-default" /><meta name="feedback-item" content="Kendra" /><meta name="this_doc_product" content="Amazon Kendra" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'kendra'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Troubleshooting document search results" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Troubleshooting document search results - Amazon Kendra</title><meta name="pdf" content="/pdfs/kendra/latest/dg/kendra-dg.pdf#troubleshooting-search-results" /><meta name="rss" content="amazon-kendra-release-notes.rss" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/troubleshooting-search-results.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/troubleshooting-search-results.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/kendra/latest/dg/troubleshooting-search-results.html" /><meta name="keywords" content="Kendra,Amazon Kendra,search,intelligent search,natural language,index,question,keyword,data source,connector,FAQ,frequently asked question" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Kendra",
+        "item" : "https://docs.aws.amazon.com/kendra/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Troubleshooting",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/troubleshooting.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Troubleshooting document search results",
+        "item" : "https://docs.aws.amazon.com/kendra/latest/dg/troubleshooting.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/kendra/latest/dg/kendra-dg.pdf#troubleshooting-search-results" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/kendra/index.html">Amazon Kendra</a><a href="what-is-kendra.html">Developer Guide</a></div><div id="page-toc-src"><a href="#troubleshooting-search-results-results-not-relevant">My search
+                    results are not relevant to my search query</a><a href="#troubleshooting-search-results-missing-docs-only-hundred">Why do I
+                    only see 100 results?</a><a href="#troubleshooting-search-results-missing-docs-expected-missing">Why
+                    are documents that I expect to see missing?</a><a href="#troubleshooting-search-results-missing-docs-acl">Why do I see
+                    documents that have an ACL policy?</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="troubleshooting-search-results">Troubleshooting document search
+                results</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This section can help you fix issues in your Amazon Kendra search results.</p>
+            <h2 id="troubleshooting-search-results-results-not-relevant">My search
+                    results are not relevant to my search query</h2>
+            <p>If your search results seem irrelevant, it might be for the following reasons:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Results with <code class="code">LOW</code> confidence are included in the results. You 
+                        can filter out results with <code class="code">LOW</code> confidence by using the 
+                        <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_QueryResultItem.html">QueryResultItem</a>'s 
+                        <code class="code">ScoreAttributes</code> field to exclude any result with a value of 
+                        <code class="code">LOW</code>. Amazon Kendra assigns each result a confidence bucket value of 
+                        either <code class="code">VERY_HIGH</code>, <code class="code">HIGH</code>, <code class="code">MEDIUM</code> and <code class="code">LOW</code>. 
+                        These values indicate the level of confidence that a result is relevant to a query. Also, 
+                        irrespective of confidence buckets, Amazon Kendra returns three types of results in 
+                        the following order: <code class="code">ANSWER</code> (suggested answer excerpt), 
+                        <code class="code">QUESTION_ANSWER</code> (FAQ) and <code class="code">DOCUMENT</code> (document excerpt). Therefore, 
+                        it is possible for a <code class="code">LOW</code> confidence <code class="code">QUESTION_ANSWER</code> result to be 
+                        positioned above a <code class="code">VERY_HIGH</code> confidence <code class="code">DOCUMENT</code> result. However, 
+                        it isn't always necessarily true that <code class="code">LOW</code> confidence <code class="code">QUESTION_ANSWER</code> 
+                        is a better result than the <code class="code">VERY_HIGH</code> confidence <code class="code">DOCUMENT</code>.</p>
+                </li><li class="listitem">
+                    <p>Certain metadata fields or attributes are boosted to a very high value, affecting the ranking 
+                        of results. Amazon Kendra searches your index using multiple parameters such as document 
+                        title, text, date, and custom text fields or attributes. You can experiment with different 
+                        boosting values to get the best results across all queries. You can also use dynamic 
+                        <a href="https://docs.aws.amazon.com/kendra/latest/dg/tuning.html">relevance tuning</a> at the 
+                        query level to use different boosting values for each query.</p>
+                </li><li class="listitem">
+                    <p>Your users are using specialized terms when they query for information and there's no custom 
+                        synonyms set up for your index to handle these specialized terms. For more details on how and 
+                        when to use synonyms, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/index-synonyms.html">Adding custom synonyms to an index</a>.</p>
+                </li></ul></div>
+         
+            <h2 id="troubleshooting-search-results-missing-docs-only-hundred">Why do I
+                    only see 100 results?</h2>
+            <p>Amazon Kendra returns the total count of relevant documents. The top 100 are returned per
+                query by default. The results are paginated. You can use <code class="code">PageNumber</code> to
+                access different pages. </p>
+            <p>You can configure Amazon Kendra to return up to 1,000 documents or search results per
+                query, with up to 100 results per page. To return more than 100 results, you can
+                request this by contacting <a href="https://console.aws.amazon.com/servicequotas/" rel="noopener noreferrer" target="_blank"><span>Quotas
+                    Support</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Increasing the number of search results could impact
+                latency.</p>
+         
+            <h2 id="troubleshooting-search-results-missing-docs-expected-missing">Why
+                    are documents that I expect to see missing?</h2>
+            <p>Amazon Kendra supports access control lists (ACLs) based on user and groups. 
+                Amazon Kendra ingests ACL policies via connectors. If an index does not configure 
+                an ACL, only documents matching the attribute filter for user and group will be shown. 
+                If a user or group attribute filter is provided, documents without an ACL will not be shown.</p>
+            <p> If you are using token-based access control, documents without an ACL policy and
+                documents that match the user and groups will be shown.</p>
+         
+            <h2 id="troubleshooting-search-results-missing-docs-acl">Why do I see
+                    documents that have an ACL policy?</h2>
+            <p>If an index does not configure an access control policy, then user and groups can
+                be provided by the filter. If no user and group filter is applied, then all related
+                documents will be returned. Any ACL policy will be ignored.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./troubleshooting-data-sources.html">Troubleshooting data sources</div><div id="next" class="next-link" accesskey="n" href="./troubleshooting-general.html">Troubleshooting general issues</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/troubleshooting-search-results.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Kendra&amp;topic_url=https://docs.aws.amazon.com/en_us/kendra/latest/dg/troubleshooting-search-results.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

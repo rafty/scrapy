@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using Lambda with the AWS CLI - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="gettingstarted-awscli" /><meta name="default_state" content="gettingstarted-awscli" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html" /><meta name="description" content="Use the AWS Lambda API with the AWS Command Line Interface." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-awscli.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-awscli.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-awscli.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-awscli.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-awscli.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-awscli.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-awscli.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-awscli.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-awscli.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-awscli.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-awscli.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-awscli.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-awscli.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-awscli.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-awscli.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-awscli.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/gettingstarted-awscli.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/gettingstarted-awscli.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using Lambda with the AWS CLI" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using Lambda with the AWS CLI - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-awscli" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-awscli.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-awscli.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-awscli.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda concurrency,configure Lambda networking,configure Lambda database access,configure Lambda code signing,cli,command line,function cli examples,create function cli,list functions cli,get function cli" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Managing AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-managing.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Lambda with the AWS CLI",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-managing.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-awscli" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#with-userapp-walkthrough-custom-events-deploy">Prerequisites</a><a href="#with-userapp-walkthrough-custom-events-create-iam-role">Create the execution role</a><a href="#with-userapp-walkthrough-custom-events-upload">Create the function</a><a href="#cli-update-function">Update the function</a><a href="#with-userapp-walkthrough-custom-events-list-functions">List the Lambda functions in your
+        account</a><a href="#with-userapp-walkthrough-custom-events-get-configuration">Retrieve a Lambda function</a><a href="#with-userapp-walkthrough-custom-events-delete-function">Clean up</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="gettingstarted-awscli">Using Lambda with the AWS CLI</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can use the AWS Command Line Interface to manage functions and other AWS Lambda resources. The AWS CLI uses the AWS SDK for Python (Boto) to
+    interact with the Lambda API. You can use it to learn about the API, and apply that knowledge in building
+    applications that use Lambda with the AWS SDK. </p><p>In this tutorial, you manage and invoke Lambda functions with the AWS CLI. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">What is the
+    AWS CLI?</a> in the <em>AWS Command Line Interface User Guide</em>.</p>
+    <h2 id="with-userapp-walkthrough-custom-events-deploy">Prerequisites</h2>
+    
+    <p>This tutorial assumes that you have some knowledge of basic Lambda operations and the Lambda console. If you
+      haven't already, follow the instructions in <a href="./getting-started.html#getting-started-create-function">Create a Lambda function with the console</a>. </p>
+     <p>To complete the following steps, you need the <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a>. Commands and the expected output are listed in separate blocks:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="nohighlight"><code class="userinput">aws --version</code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"></div><code class="">aws-cli/2.0.57 Python/3.7.4 Darwin/19.6.0 exe/x86_64</code></pre>
+    <p>For long commands, an escape character (<code class="code">\</code>) is used to split a command over multiple lines.</p>
+    <p>On Linux and macOS, use your preferred shell and package manager.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+    To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+     Example CLI commands in this guide use Linux formatting. Commands which include inline JSON documents must be reformatted if you are using the Windows CLI.
+    </p></div></div>
+   
+    <h2 id="with-userapp-walkthrough-custom-events-create-iam-role">Create the execution role</h2>
+    <p>Create the <a href="./lambda-intro-execution-role.html">execution role</a> that gives your function
+      permission to access AWS resources. To create an execution role with the AWS CLI, use the
+        <code class="code">create-role</code> command.</p>
+     <p>In the following example, you specify the trust policy inline. Requirements for escaping quotes in the JSON string vary
+      depending on your shell.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws iam create-role --role-name lambda-ex --assume-role-policy-document '<span>{</span>"Version": "2012-10-17","Statement": [<span>{</span> "Effect": "Allow", "Principal": <span>{</span>"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]}'</code></code></pre>
+    
+    <p>You can also define the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#delegation">trust policy</a> for the role 
+        using a JSON file. In the following example, <code>trust-policy.json</code> is a file in the current directory. This trust policy     
+       allows Lambda to use the role's permissions by giving the service principal <code class="code">lambda.amazonaws.com</code>
+       permission to call the AWS Security Token Service (AWS STS) <code class="code">AssumeRole</code> action.</p>
+    <div class="example"><h6>Example trust-policy.json</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="json "><span>{</span>
+  "Version": "2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "Service": "lambda.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}</code></pre><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws iam create-role --role-name lambda-ex --assume-role-policy-document file://trust-policy.json</code></code></pre></div></div>
+  <p>You should see the following output:</p>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Role": <span>{</span>
+        "Path": "/",
+        "RoleName": "lambda-ex",
+        "RoleId": "AROAQFOXMPL6TZ6ITKWND",
+        "Arn": "arn:aws:iam::123456789012:role/lambda-ex",
+        "CreateDate": "2020-01-17T23:19:12Z",
+        "AssumeRolePolicyDocument": <span>{</span>
+            "Version": "2012-10-17",
+            "Statement": [
+                <span>{</span>
+                    "Effect": "Allow",
+                    "Principal": <span>{</span>
+                        "Service": "lambda.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        }
+    }
+}</code></pre>  
+<p>To add permissions to the role, use the <b>attach-policy-to-role</b> command. Start by adding the
+        <code class="code">AWSLambdaBasicExecutionRole</code> managed policy.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws iam attach-role-policy --role-name lambda-ex --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole</code></code></pre> <p>The <b>AWSLambdaBasicExecutionRole</b> policy has the
+      permissions that the function needs to write logs to CloudWatch Logs.</p>
+   
+    <h2 id="with-userapp-walkthrough-custom-events-upload">Create the function</h2>
+    
+    <p>The following example logs the values of environment variables and the event object.</p>
+    <div class="example"><h6>Example index.js</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nodejs ">exports.handler = async function(event, context) <span>{</span>
+  console.log("ENVIRONMENT VARIABLES\n" + JSON.stringify(process.env, null, 2))
+  console.log("EVENT\n" + JSON.stringify(event, null, 2))
+  return context.logStreamName
+}</code></pre></div></div>
+    
+    <div class="procedure"><h6>To create the function</h6><ol><li>
+        <p>Copy the sample code into a file named <code>index.js</code>.</p>
+      </li><li>
+        <p>Create a deployment package.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip function.zip index.js</code></code></pre>
+      </li><li>
+        <p>Create a Lambda function with the <code class="code">create-function</code> command. Replace the highlighted text in the
+          role ARN with your account ID.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name my-function \
+--zip-file fileb://function.zip --handler index.handler --runtime nodejs18.x \
+--role arn:aws:iam::<code class="replaceable">123456789012</code>:role/lambda-ex</code></code></pre>
+        <p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "FunctionName": "my-function",
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+    "Runtime": "nodejs18.x",
+    "Role": "arn:aws:iam::123456789012:role/lambda-ex",
+    "Handler": "index.handler",
+    "CodeSha256": "FpFMvUhayLkOoVBpNuNiIVML/tuGv2iJQ7t0yWVTU8c=",
+    "Version": "$LATEST",
+    "TracingConfig": <span>{</span>
+        "Mode": "PassThrough"
+    },
+    "RevisionId": "88ebe1e1-bfdf-4dc3-84de-3017268fa1ff",
+    ...
+}</code></pre>
+      </li></ol></div>
+     <p>To get logs for an invocation from the command line, use the <code class="code">--log-type</code> option. The response
+    includes a <code class="code">LogResult</code> field that contains up to 4 KB of base64-encoded logs from the invocation.</p>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda invoke --function-name my-function out --log-type Tail</code></code></pre>
+  <p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "StatusCode": 200,
+    "LogResult": "U1RBUlQgUmVxdWVzdElkOiA4N2QwNDRiOC1mMTU0LTExZTgtOGNkYS0yOTc0YzVlNGZiMjEgVmVyc2lvb...",
+    "ExecutedVersion": "$LATEST"
+}</code></pre>
+  <p>You can use the <code class="code">base64</code> utility to decode the logs.</p>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda invoke --function-name my-function out --log-type Tail \
+--query 'LogResult' --output text |  base64 -d</code></code></pre>
+<p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">START RequestId: 57f231fb-1730-4395-85cb-4f71bd2b87b8 Version: $LATEST
+  "AWS_SESSION_TOKEN": "AgoJb3JpZ2luX2VjELj...", "_X_AMZN_TRACE_ID": "Root=1-5d02e5ca-f5792818b6fe8368e5b51d50;Parent=191db58857df8395;Sampled=0"",ask/lib:/opt/lib",
+END RequestId: 57f231fb-1730-4395-85cb-4f71bd2b87b8
+REPORT RequestId: 57f231fb-1730-4395-85cb-4f71bd2b87b8  Duration: 79.67 ms      Billed Duration: 80 ms         Memory Size: 128 MB     Max Memory Used: 73 MB</code></pre>
+  <p>The <code class="code">base64</code> utility is available on Linux, macOS, and <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>Ubuntu on Windows</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For macOS, the command
+    is <code class="code">base64 -D</code>.</p>
+     <p>To get full log events from the command line, you can include the log stream name in the output of your
+      function, as shown in the preceding example. The following example script invokes a function named
+        <code class="code">my-function</code> and downloads the last five log events.</p>
+    <div class="example"><h6>Example get-logs.sh Script</h6><div class="example-contents"><p>This example requires that <code class="code">my-function</code> returns a log stream ID.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">#!/bin/bash
+aws lambda invoke --function-name my-function --cli-binary-format raw-in-base64-out --payload '<span>{</span>"key": "value"}' out
+sed -i'' -e 's/"//g' out
+sleep 15
+aws logs get-log-events --log-group-name /aws/lambda/my-function --log-stream-name $(cat out) --limit 5</code></pre></div></div>
+    <p>The script uses <code class="code">sed</code> to remove quotes from the output file, and sleeps for 15 seconds to allow
+      time for the logs to be available. The output includes the response from Lambda and the output from the
+        <code class="code">get-log-events</code> command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">./get-logs.sh</code></code></pre>
+    <p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "StatusCode": 200,
+    "ExecutedVersion": "$LATEST"
+}
+<span>{</span>
+    "events": [
+        <span>{</span>
+            "timestamp": 1559763003171,
+            "message": "START RequestId: 4ce9340a-b765-490f-ad8a-02ab3415e2bf Version: $LATEST\n",
+            "ingestionTime": 1559763003309
+        },
+        <span>{</span>
+            "timestamp": 1559763003173,
+            "message": "2019-06-05T19:30:03.173Z\t4ce9340a-b765-490f-ad8a-02ab3415e2bf\tINFO\tENVIRONMENT VARIABLES\r<span>{</span>\r  \"AWS_LAMBDA_FUNCTION_VERSION\": \"$LATEST\",\r ...",
+            "ingestionTime": 1559763018353
+        },
+        <span>{</span>
+            "timestamp": 1559763003173,
+            "message": "2019-06-05T19:30:03.173Z\t4ce9340a-b765-490f-ad8a-02ab3415e2bf\tINFO\tEVENT\r<span>{</span>\r  \"key\": \"value\"\r}\n",
+            "ingestionTime": 1559763018353
+        },
+        <span>{</span>
+            "timestamp": 1559763003218,
+            "message": "END RequestId: 4ce9340a-b765-490f-ad8a-02ab3415e2bf\n",
+            "ingestionTime": 1559763018353
+        },
+        <span>{</span>
+            "timestamp": 1559763003218,
+            "message": "REPORT RequestId: 4ce9340a-b765-490f-ad8a-02ab3415e2bf\tDuration: 26.73 ms\tBilled Duration: 27 ms \tMemory Size: 128 MB\tMax Memory Used: 75 MB\t\n",
+            "ingestionTime": 1559763018353
+        }
+    ],
+    "nextForwardToken": "f/34783877304859518393868359594929986069206639495374241795",
+    "nextBackwardToken": "b/34783877303811383369537420289090800615709599058929582080"
+}</code></pre>  
+      <h2 id="cli-update-function">Update the function</h2>
+      <p>After you create a function, you can configure additional capabilities for the function, such as triggers,
+    network access, and file system access. You can also adjust resources associated with the function, such as memory
+    and concurrency. These configurations apply to functions defined as .zip file archives and to functions defined as
+    container images.</p>
+      <p>Use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-configuration.html" rel="noopener noreferrer" target="_blank"><span>update-function-configuration</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to configure functions. The following example sets the function memory to 256 MB.</p>
+    <div class="example"><h6>Example update-function-configuration command</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-function-configuration \
+--function-name my-function \
+--memory-size 256</code></code></pre></div></div>
+    <h2 id="with-userapp-walkthrough-custom-events-list-functions">List the Lambda functions in your
+        account</h2>
+    <p>Run the following AWS CLI <code class="code">list-functions</code> command to retrieve a list of functions that you have
+      created. </p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda list-functions --max-items 10</code></code></pre>
+    <p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Functions": [
+        <span>{</span>
+            "FunctionName": "cli",
+            "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+            "Runtime": "nodejs18.x",
+            "Role": "arn:aws:iam::123456789012:role/lambda-ex",
+            "Handler": "index.handler",
+            ...
+        },
+        <span>{</span>
+            "FunctionName": "random-error",
+            "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:random-error",
+            "Runtime": "nodejs18.x",
+            "Role": "arn:aws:iam::123456789012:role/lambda-role",
+            "Handler": "index.handler",
+            ...
+        },
+        ...
+      ],
+      "NextToken": "eyJNYXJrZXIiOiBudWxsLCAiYm90b190cnVuY2F0ZV9hbW91bnQiOiAxMH0="
+} </code></pre>
+    <p>In response, Lambda returns a list of up to 10 functions. If there are more functions you can retrieve,
+        <code class="code">NextToken</code> provides a marker you can use in the next <code class="code">list-functions</code> request. The
+      following <code class="code">list-functions</code> AWS CLI command is an example that shows the <code class="code">--starting-token</code>
+      parameter.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda list-functions --max-items 10 --starting-token <code class="replaceable">eyJNYXJrZXIiOiBudWxsLCAiYm90b190cnVuY2F0ZV9hbW91bnQiOiAxMH0=</code></code></code></pre>
+   
+    <h2 id="with-userapp-walkthrough-custom-events-get-configuration">Retrieve a Lambda function</h2>
+    <p>The Lambda CLI <code class="code">get-function</code> command returns Lambda function metadata and a presigned URL that you
+      can use to download the function's deployment package.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda get-function --function-name my-function</code></code></pre>
+    <p>You should see the following output:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Configuration": <span>{</span>
+        "FunctionName": "my-function",
+        "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+        "Runtime": "nodejs18.x",
+        "Role": "arn:aws:iam::123456789012:role/lambda-ex",
+        "CodeSha256": "FpFMvUhayLkOoVBpNuNiIVML/tuGv2iJQ7t0yWVTU8c=",
+        "Version": "$LATEST",
+        "TracingConfig": <span>{</span>
+            "Mode": "PassThrough"
+        },
+        "RevisionId": "88ebe1e1-bfdf-4dc3-84de-3017268fa1ff",
+        ...
+    },
+    "Code": <span>{</span>
+        "RepositoryType": "S3",
+        "Location": "https://awslambda-us-east-2-tasks.s3.us-east-2.amazonaws.com/snapshots/123456789012/my-function-4203078a-b7c9-4f35-..."
+    }
+}</code></pre>
+    <p>For more information, see <a href="./API_GetFunction.html">GetFunction</a>.</p>
+   
+    <h2 id="with-userapp-walkthrough-custom-events-delete-function">Clean up</h2>
+    <p>Run the following <code class="code">delete-function</code> command to delete the <code class="code">my-function</code>
+      function.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda delete-function --function-name my-function</code></code></pre>
+    <p>Delete the IAM role you created in the IAM console. For information about deleting a role, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_manage_delete.html">Deleting roles or instance profiles</a> in the
+        <em>IAM User Guide</em>. </p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-managing.html">Managing functions</div><div id="next" class="next-link" accesskey="n" href="./lambda-concurrency.html">Function scaling</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-awscli.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-awscli.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

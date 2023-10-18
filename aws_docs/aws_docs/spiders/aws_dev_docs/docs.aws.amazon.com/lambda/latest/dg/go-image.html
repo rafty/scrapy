@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Deploy Go Lambda functions with container images - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="go-image" /><meta name="default_state" content="go-image" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/go-image.html" /><meta name="description" content="Deploy your Go Lambda function code as a container image using an AWS provided base image or the runtime interface client." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/go-image.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/go-image.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/go-image.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/go-image.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/go-image.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/go-image.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/go-image.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/go-image.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/go-image.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/go-image.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/go-image.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/go-image.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/go-image.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/go-image.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/go-image.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/go-image.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/go-image.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/go-image.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/go-image.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/go-image.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/go-image.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/go-image.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Deploy Go Lambda functions with container images" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Deploy Go Lambda functions with container images - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#go-image" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/go-image.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/go-image.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/go-image.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Golang,Go,Docker" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with Go",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Deploy Go Lambda functions with container images",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-golang.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#go-image" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#go-image-base">AWS base images for Go</a><a href="#go-image-clients">Go runtime interface client</a><a href="#go-image-al2">Using the provided.al2 AWS base image</a><a href="#go-image-other">Using a non-AWS base image</a><a href="#go-image-v1">Using the Go 1.x base image</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="go-image">Deploy Go Lambda functions with container images</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>There are three ways to build a container image for a Go Lambda function:</p><div class="itemizedlist">
+	 
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="#go-image-al2">Using the provided.al2 AWS base image</a></p>
+      <p>Go is implemented differently than other managed runtimes. Because Go compiles to native code, Lambda treats Go as a custom runtime. We recommend that you use the <a href="https://gallery.ecr.aws/lambda/provided" rel="noopener noreferrer" target="_blank"><span>provided.al2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> base image for custom runtimes to build Go images for Lambda. To make the image compatible with Lambda, you must include the <code class="code">aws-lambda-go/lambda</code> package in the image.</p>
+    </li><li class="listitem">
+      <p><a href="#go-image-other">Using a non-AWS base image</a></p>
+      <p>You can use an alternative base image from another container registry, such as Alpine Linux or Debian. You can also use a custom image created by your organization. To make the image compatible with Lambda, you must include the <code class="code">aws-lambda-go/lambda</code> package in the image.</p>
+    </li><li class="listitem">
+      <p><a href="#go-image-v1">Using the AWS base image for Go 1.x (legacy)</a></p>
+      <p>Lambda will continue to support the Go 1.x base image until maintenance support for the Amazon Linux AMI ends on December 31, 2023. We recommend that you <a href="#go-image-al2">use the provided.al2 custom runtime</a> instead of the <a href="https://gallery.ecr.aws/lambda/go" rel="noopener noreferrer" target="_blank"><span>Go 1.x base image</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+    </li></ul></div><div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>To reduce the time it takes for Lambda container functions to become active, see <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#use-multi-stage-builds" rel="noopener noreferrer" target="_blank"><span>Use multi-stage builds</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Docker documentation. To build efficient container images, follow the <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/" rel="noopener noreferrer" target="_blank"><span>Best practices for writing Dockerfiles</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div><p>This page explains how to build, test, and deploy container images for Lambda.</p>
+    <h2 id="go-image-base">AWS base images for Go</h2>
+    <p>AWS provides the following base image for Go:</p>
+    
+    <div class="table-container"><div class="table-contents"><table id="w917aac65c25c13b7"><thead>
+          <tr>
+            <th>Tags</th>
+            <th>Runtime</th>
+            <th>Operating system</th>
+            <th>Dockerfile</th>
+            <th>Deprecation</th>
+          </tr>
+        </thead>
+      <tr>
+            <td tabindex="-1"><p>1</p></td>
+            <td tabindex="-1">Go 1.x</td>
+            <td tabindex="-1">Amazon Linux</td>
+            <td tabindex="-1"><a href="https://github.com/aws/aws-lambda-base-images/blob/go1.x/Dockerfile.go1.x" rel="noopener noreferrer" target="_blank"><span>Dockerfile
+                for Go 1.x on GitHub</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            <td tabindex="-1">
+              <p>Dec 31, 2023</p>
+            </td>  
+          </tr>
+    </table></div></div>
+    <p>Amazon Elastic Container Registry repository: <a href="https://gallery.ecr.aws/lambda/go" rel="noopener noreferrer" target="_blank"><span>gallery.ecr.aws/lambda/go</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+   
+    <h2 id="go-image-clients">Go runtime interface client</h2>
+    <p>The <code class="code">aws-lambda-go/lambda</code>
+      package includes an implementation of the runtime interface. For examples of how to use <code class="code">aws-lambda-go/lambda</code> in your image, see <a href="#go-image-al2">Using the provided.al2 AWS base image</a> or <a href="#go-image-other">Using a non-AWS base image</a>.</p>
+   
+    <h2 id="go-image-al2">Using the provided.al2 AWS base image</h2>
+    <p>Go is implemented differently than other managed runtimes. Because Go compiles to native code, Lambda treats Go
+      as a custom runtime. We recommend that you use the <code class="code">provided.al2</code> base image for custom runtimes to
+      build container images for Go functions.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aac65c25c19b5"><thead>
+          <tr>
+            <th>Tags</th>
+            <th>Runtime</th>
+            <th>Operating system</th>
+            <th>Dockerfile</th>
+            <th>Deprecation</th>
+          </tr>
+        </thead>
+      <tr>
+            <td tabindex="-1"><p>al2</p></td>
+            <td tabindex="-1">Custom Runtime</td>
+            <td tabindex="-1">Amazon Linux 2</td>
+            <td tabindex="-1"><a href="https://github.com/aws/aws-lambda-base-images/blob/provided.al2/Dockerfile.provided.al2" rel="noopener noreferrer" target="_blank"><span>Dockerfile
+                for Custom Runtime on GitHub</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            <td tabindex="-1">
+              <p></p>
+            </td>  
+          </tr>
+      <tr>
+            <td tabindex="-1"><p>alami</p></td>
+            <td tabindex="-1">Custom Runtime</td>
+            <td tabindex="-1">Amazon Linux</td>
+            <td tabindex="-1"><a href="https://github.com/aws/aws-lambda-base-images/blob/provided/Dockerfile.provided" rel="noopener noreferrer" target="_blank"><span>Dockerfile
+                for Custom Runtime on GitHub</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+            <td tabindex="-1">
+              <p>Dec 31, 2023</p>
+            </td>  
+          </tr>
+    </table></div></div>
+    <p>For more information
+      about these base images, see <a href="https://gallery.ecr.aws/lambda/provided" rel="noopener noreferrer" target="_blank"><span>provided</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> in the Amazon ECR
+      public gallery.</p>
+      <p>You must include the <a href="https://github.com/aws/aws-lambda-go" rel="noopener noreferrer" target="_blank"><span>aws-lambda-go/lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package with your Go handler. This package implements the
+      programming model for Go, including the runtime interface.</p>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Prerequisites" id="go-custom-prerequisites" expanded="false"><div class="itemizedlist">
+      <p>To complete the steps in this section, you must have the following:</p>
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Go</p>
+      </li><li class="listitem">
+          <p><a href="https://docs.docker.com/get-docker" rel="noopener noreferrer" target="_blank"><span>Docker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a></p>
+      </li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Creating an image from the provided.al2 base image" id="go-custom-create" expanded="false"><div class="procedure"><h6>To build and deploy a Go function with the <code class="code">provided.al2</code> base image.</h6><ol><li>
+          <p>Create a directory for the project, and then switch to that directory.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mkdir hello
+cd hello</code></pre>
+        </li><li>
+          <p>Initialize a new Go module.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">go mod init <code class="replaceable">example.com/hello-world</code></code></pre>
+        </li><li>
+          <p>Add the <b>lambda</b> library as a dependency of your new module.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">go get github.com/aws/aws-lambda-go/lambda</code></pre>
+        </li><li>
+            <p>Create a file named <code>main.go</code> and then open it in a text editor. This is the code for the Lambda function. You can use the following sample code for testing, or replace it with your own.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="go ">package main
+
+import (
+	"context"
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
+)
+
+func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) <span>{</span>
+	response := events.APIGatewayProxyResponse<span>{</span>
+		StatusCode: 200,
+		Body:       "\"Hello from Lambda!\"",
+	}
+	return response, nil
+}
+
+func main() <span>{</span>
+	lambda.Start(handler)
+}</code></pre>
+          </li><li>
+        <p>Use a text editor to create a Dockerfile in your project directory. The following example Dockerfile uses a <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#use-multi-stage-builds" rel="noopener noreferrer" target="_blank"><span>multi-stage build</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. This allows you to use a different base image in each step. You can use one image, such as a <a href="https://hub.docker.com/_/golang" rel="noopener noreferrer" target="_blank"><span>Go base image</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, to compile your code and build the executable binary. You can then use a different image, such as <code class="code">provided.al2</code>, in the final <code class="code">FROM</code> statement to define the image that you deploy to Lambda. The build process is separated from the final deployment image, so the final image only contains the files needed to run the application.</p>
+        <p>You can use the optional <code class="code">lambda.norpc</code> tag to exclude the Remote Procedure Call (RPC) component of the <a href="https://github.com/aws/aws-lambda-go/tree/master/lambda" rel="noopener noreferrer" target="_blank"><span>lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> 
+      library. The RPC component is only required when using the Go 1.x runtime. Excluding the RPC reduces the size of the deployment package.</p>
+        <div class="example"><h6>Example — Multi-stage build Dockerfile</h6><div class="example-contents"><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Make sure that the version of Go that you specify in your Dockerfile (for example, <code class="code">golang:1.20</code>) is the same version of Go that you used to create your application.</p></div></div></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="dockerfile ">FROM <code class="replaceable">golang:1.20</code> as build
+WORKDIR /helloworld
+# Copy dependencies list
+COPY go.mod go.sum ./
+# Build with optional lambda.norpc tag
+COPY main.go .
+RUN go build <code class="replaceable">-tags lambda.norpc</code> -o main main.go
+# Copy artifacts to a clean image
+FROM <code class="replaceable">public.ecr.aws/lambda/provided:al2</code>
+COPY --from=build /helloworld/main ./main
+ENTRYPOINT [ "./main" ]</code></pre>
+      </li><li>
+        <p>Build the Docker image with the <a href="https://docs.docker.com/engine/reference/commandline/build/" rel="noopener noreferrer" target="_blank"><span>docker build</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command. The
+          following example names the image <code class="code">docker-image</code> and gives it the <code class="code">test</code> <a href="https://docs.docker.com/engine/reference/commandline/build/#tag" rel="noopener noreferrer" target="_blank"><span>tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker build --platform linux/amd64 -t <code class="replaceable">docker-image</code>:<code class="replaceable">test</code> .</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The command specifies the <code class="code">--platform linux/amd64</code> option to ensure that your container is compatible with the Lambda execution environment regardless of the  
+       architecture of your build machine. If you intend to create a Lambda function using the ARM64 instruction set architecture, be sure to change the command to use the <code class="code">--platform linux/arm64</code> 
+       option instead.</p></div></div>
+      </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="(Optional) Test the image locally" id="go-custom-test" expanded="false"><p>Use the <a href="./images-test.html">runtime interface emulator</a> to locally test your image. The runtime interface emulator is included in the <code class="code">provided.al2</code> base image.</p><div class="procedure"><h6>To run the runtime interface emulator on your local machine</h6><ol><li>
+      <p>Start the Docker image with the <b>docker run</b> command. Note the following:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">docker-image</code> is the image name and <code class="code">test</code> is the tag.</p>
+        </li><li class="listitem">
+        <p><code class="code">./main</code> is the <code class="code">ENTRYPOINT</code> from your Dockerfile.</p>
+        </li></ul></div>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -d -v ~/.aws-lambda-rie:/aws-lambda -p 9000:8080 \
+--entrypoint /aws-lambda/aws-lambda-rie \
+<code class="replaceable">docker-image:test</code> \
+    <code class="replaceable">./main</code></code></pre>
+      <p>This command runs the image as a container and creates a local endpoint at
+        <code class="code">localhost:9000/2015-03-31/functions/function/invocations</code>.</p>
+    </li><li>
+      <p>From a new terminal window, post an event to the following endpoint using a <b>curl</b>
+        command:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<span>{</span>}'</code></pre>
+      <p>This command invokes the function with an empty event and returns a response. Some functions might require a JSON payload. Example:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<code class="replaceable"><span>{</span>"payload":"hello world!"}</code>'</code></pre>
+    </li><li>
+      <p>Get the container ID.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker ps</code></pre>
+    </li><li>
+      <p>Use the <a href="https://docs.docker.com/engine/reference/commandline/kill/" rel="noopener noreferrer" target="_blank"><span>docker kill</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to stop the container. In this command, replace <code class="code">3766c4ab331c</code> with the container ID from the previous step.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker kill <code class="replaceable">3766c4ab331c</code></code></pre>
+    </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Deploying the image" id="go-custom-deploy" expanded="false"><div class="procedure"><h6>To upload the image to Amazon ECR and create the Lambda function</h6><ol><li>
+          <p>Run the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/get-login-password.html" rel="noopener noreferrer" target="_blank"><span>get-login-password</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to authenticate the Docker CLI to your Amazon ECR registry.</p>
+        <div class="itemizedlist">
+         
+         
+        <ul class="itemizedlist"><li class="listitem">
+          <p>Set the <code class="code">--region</code> value to the AWS Region where you want to create the Amazon ECR repository.</p>
+        </li><li class="listitem">
+          <p>Replace <code class="code">111122223333</code> with your AWS account ID.</p>
+        </li></ul></div>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws ecr get-login-password --region <code class="replaceable">us-east-1</code> | docker login --username AWS --password-stdin <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com</code></pre>
+          
+        </li><li>
+        <p>Create a repository in Amazon ECR using the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/create-repository.html" rel="noopener noreferrer" target="_blank"><span>create-repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws ecr create-repository --repository-name <code class="replaceable">hello-world</code> --region <code class="replaceable">us-east-1</code> --image-scanning-configuration scanOnPush=true --image-tag-mutability MUTABLE</code></pre>
+        
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The Amazon ECR repository must be in the same AWS Region as the Lambda function.</p></div></div>
+        <p>If successful, you see a response like this:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "repository": <span>{</span>
+        "repositoryArn": "arn:aws:ecr:us-east-1:111122223333:repository/hello-world",
+        "registryId": "111122223333",
+        "repositoryName": "hello-world",
+        "repositoryUri": "111122223333.dkr.ecr.us-east-1.amazonaws.com/hello-world",
+        "createdAt": "2023-03-09T10:39:01+00:00",
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": <span>{</span>
+            "scanOnPush": true
+        },
+        "encryptionConfiguration": <span>{</span>
+            "encryptionType": "AES256"
+        }
+    }
+}</code></pre>
+        
+      </li><li>
+        <p>Copy the <code class="code">repositoryUri</code> from the output in the previous step.</p>
+      </li><li>
+        <p>Run the <a href="https://docs.docker.com/engine/reference/commandline/tag/" rel="noopener noreferrer" target="_blank"><span>docker tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to tag your local image into your Amazon ECR repository as the latest version. In this command:</p> 
+        <div class="itemizedlist">
+         
+         
+        <ul class="itemizedlist"><li class="listitem">
+          <p>Replace <code class="code">docker-image:test</code> with the name and <a href="https://docs.docker.com/engine/reference/commandline/build/#tag" rel="noopener noreferrer" target="_blank"><span>tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of your Docker image.</p>
+        </li><li class="listitem">
+          <p>Replace <code class="code">&lt;ECRrepositoryUri&gt;</code> with the <code class="code">repositoryUri</code> that you copied. Make sure to include <code class="code">:latest</code> at the end of the URI.</p>
+        </li></ul></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker tag docker-image:test &lt;ECRrepositoryUri&gt;:latest</code></pre>
+      <p>Example:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker tag <code class="replaceable">docker-image</code>:<code class="replaceable">test</code> <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest</code></pre>
+      
+      </li><li>
+      <p>Run the <a href="https://docs.docker.com/engine/reference/commandline/push/" rel="noopener noreferrer" target="_blank"><span>docker push</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to deploy your local image to the Amazon ECR repository. Make sure to include <code class="code">:latest</code> at the end of the repository URI.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker push <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest</code></pre>
+
+      </li><li>
+      <p><a href="./gettingstarted-awscli.html#with-userapp-walkthrough-custom-events-create-iam-role">Create an execution role</a> for the function, if you don't already have one. You need the Amazon Resource Name (ARN) of the role in the next step.</p>
+      </li><li>
+        <p>Create the Lambda function. For <code class="code">ImageUri</code>, specify the repository URI from earlier. Make sure to include <code class="code">:latest</code> at the end of the URI.</p>
+		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-function \
+  --function-name <code class="replaceable">hello-world</code> \
+  --package-type Image \
+  --code ImageUri=<code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest \
+  --role <code class="replaceable">arn:aws:iam::111122223333:role/lambda-ex</code></code></pre>
+  		
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can create a function using an image in a different AWS account, as long as the image is in the same Region as the Lambda function. For more information, see <a href="./images-create.html#configuration-images-xaccount-permissions"> Amazon ECR cross-account permissions</a>.</p></div></div>  
+      </li><li>
+      <p>Invoke the function.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda invoke --function-name <code class="replaceable">hello-world</code> response.json</code></pre>
+      <p>You should see a response like this:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "ExecutedVersion": "$LATEST", 
+  "StatusCode": 200
+}</code></pre>
+    </li><li>
+    <p>To see the output of the function, check the <code>response.json</code> file.</p>
+    </li></ol></div><p>To update the function code, you must build the image again, upload the new image to the Amazon ECR repository, and then use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-code.html" rel="noopener noreferrer" target="_blank"><span>update-function-code</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to deploy the image to the Lambda function.</p></awsui-expandable-section></div>
+   
+    <h2 id="go-image-other">Using a non-AWS base image</h2>
+    <p>You can build a container image for Go from a non-AWS base image. The example Dockerfile in the following steps uses an
+      <a href="https://hub.docker.com/_/golang/" rel="noopener noreferrer" target="_blank"><span>Alpine base image</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>You must include the <a href="https://github.com/aws/aws-lambda-go" rel="noopener noreferrer" target="_blank"><span>aws-lambda-go/lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package with your Go handler. This package implements the
+      programming model for Go, including the runtime interface.</p>
+   <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Prerequisites" id="go-alt-prerequisites" expanded="false"><div class="itemizedlist">
+      <p>To complete the steps in this section, you must have the following:</p>
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Go</p>
+      </li><li class="listitem">
+          <p><a href="https://docs.docker.com/get-docker" rel="noopener noreferrer" target="_blank"><span>Docker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a></p>
+      </li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Creating an image from an alternative base image" id="go-alt-create" expanded="false"><div class="procedure"><h6>To build and deploy a Go function with an Alpine base image</h6><ol><li>
+          <p>Create a directory for the project, and then switch to that directory.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mkdir hello
+cd hello</code></pre>
+        </li><li>
+          <p>Initialize a new Go module.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">go mod init <code class="replaceable">example.com/hello-world</code></code></pre>
+        </li><li>
+          <p>Add the <b>lambda</b> library as a dependency of your new module.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">go get github.com/aws/aws-lambda-go/lambda</code></pre>
+        </li><li>
+            <p>Create a file named <code>main.go</code> and then open it in a text editor. This is the code for the Lambda function. You can use the following sample code for testing, or replace it with your own.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="go ">package main
+
+import (
+	"context"
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
+)
+
+func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) <span>{</span>
+	response := events.APIGatewayProxyResponse<span>{</span>
+		StatusCode: 200,
+		Body:       "\"Hello from Lambda!\"",
+	}
+	return response, nil
+}
+
+func main() <span>{</span>
+	lambda.Start(handler)
+}</code></pre>
+          </li><li>
+        <p>Use a text editor to create a Dockerfile in your project directory. The following example Dockerfile uses an
+      <a href="https://hub.docker.com/_/golang/" rel="noopener noreferrer" target="_blank"><span>Alpine base image</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <div class="example"><h6>Example Dockerfile</h6><div class="example-contents"><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Make sure that the version of Go that you specify in your Dockerfile (for example, <code class="code">golang:1.20</code>) is the same version of Go that you used to create your application.</p></div></div></div></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="dockerfile ">FROM golang:1.20.2-alpine3.16 as build
+WORKDIR /helloworld
+# Copy dependencies list
+COPY go.mod go.sum ./
+# Build
+COPY main.go .
+RUN go build -o main main.go
+# Copy artifacts to a clean image
+FROM alpine:3.16
+COPY --from=build /helloworld/main /main
+ENTRYPOINT [ "/main" ]</code></pre>
+      </li><li>
+        <p>Build the Docker image with the <a href="https://docs.docker.com/engine/reference/commandline/build/" rel="noopener noreferrer" target="_blank"><span>docker build</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command. The
+          following example names the image <code class="code">docker-image</code> and gives it the <code class="code">test</code> <a href="https://docs.docker.com/engine/reference/commandline/build/#tag" rel="noopener noreferrer" target="_blank"><span>tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker build --platform linux/amd64 -t <code class="replaceable">docker-image</code>:<code class="replaceable">test</code> .</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The command specifies the <code class="code">--platform linux/amd64</code> option to ensure that your container is compatible with the Lambda execution environment regardless of the  
+       architecture of your build machine. If you intend to create a Lambda function using the ARM64 instruction set architecture, be sure to change the command to use the <code class="code">--platform linux/arm64</code> 
+       option instead.</p></div></div>
+      </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="(Optional) Test the image locally" id="go-alt-test" expanded="false"><p>Use the <a href="./images-test.html">runtime interface emulator</a> to locally test the image. You can <a href="./images-test.html#images-rie-build">build the emulator into your image</a> or install it on your local machine.</p><div class="procedure"><h6>To install and run the runtime interface emulator on your local machine</h6><ol><li>
+          <p>From your project directory, run the following command to download the runtime interface emulator (x86-64 architecture) from GitHub and install it on your local machine.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">mkdir -p ~/.aws-lambda-rie &amp;&amp; \
+    curl -Lo ~/.aws-lambda-rie/aws-lambda-rie https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie &amp;&amp; \
+    chmod +x ~/.aws-lambda-rie/aws-lambda-rie</code></pre>
+          <p>To install the arm64 emulator, replace the GitHub repository URL in the previous command with the following:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie-arm64</code></pre>
+        </li><li>
+          <p>Start the Docker image with the <b>docker run</b> command. Note the following:</p>
+          <div class="itemizedlist">
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+            <p><code class="code">docker-image</code> is the image name and <code class="code">test</code> is the tag.</p>
+            </li><li class="listitem">
+            <p><code class="code">/main</code> is the <code class="code">ENTRYPOINT</code> from your Dockerfile.</p>
+            </li></ul></div>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -d -v ~/.aws-lambda-rie:/aws-lambda -p 9000:8080 \
+    --entrypoint /aws-lambda/aws-lambda-rie \
+    <code class="replaceable">docker-image:test</code> \
+        <code class="replaceable">/main</code></code></pre>
+          <p>This command runs the image as a container and creates a local endpoint at
+            <code class="code">localhost:9000/2015-03-31/functions/function/invocations</code>.</p>
+        </li><li>
+          <p>Post an event to the following endpoint using a <b>curl</b>
+            command:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<span>{</span>}'</code></pre>
+          <p>This command invokes the function with an empty event and returns a response. Some functions might require a JSON payload. Example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<code class="replaceable"><span>{</span>"payload":"hello world!"}</code>'</code></pre>
+        </li><li>
+          <p>Get the container ID.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker ps</code></pre>
+        </li><li>
+          <p>Use the <a href="https://docs.docker.com/engine/reference/commandline/kill/" rel="noopener noreferrer" target="_blank"><span>docker kill</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to stop the container. In this command, replace <code class="code">3766c4ab331c</code> with the container ID from the previous step.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker kill <code class="replaceable">3766c4ab331c</code></code></pre>
+        </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Deploying the image" id="go-alt-deploy" expanded="false"><div class="procedure"><h6>To upload the image to Amazon ECR and create the Lambda function</h6><ol><li>
+          <p>Run the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/get-login-password.html" rel="noopener noreferrer" target="_blank"><span>get-login-password</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to authenticate the Docker CLI to your Amazon ECR registry.</p>
+        <div class="itemizedlist">
+         
+         
+        <ul class="itemizedlist"><li class="listitem">
+          <p>Set the <code class="code">--region</code> value to the AWS Region where you want to create the Amazon ECR repository.</p>
+        </li><li class="listitem">
+          <p>Replace <code class="code">111122223333</code> with your AWS account ID.</p>
+        </li></ul></div>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws ecr get-login-password --region <code class="replaceable">us-east-1</code> | docker login --username AWS --password-stdin <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com</code></pre>
+          
+        </li><li>
+        <p>Create a repository in Amazon ECR using the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/create-repository.html" rel="noopener noreferrer" target="_blank"><span>create-repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws ecr create-repository --repository-name <code class="replaceable">hello-world</code> --region <code class="replaceable">us-east-1</code> --image-scanning-configuration scanOnPush=true --image-tag-mutability MUTABLE</code></pre>
+        
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The Amazon ECR repository must be in the same AWS Region as the Lambda function.</p></div></div>
+        <p>If successful, you see a response like this:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "repository": <span>{</span>
+        "repositoryArn": "arn:aws:ecr:us-east-1:111122223333:repository/hello-world",
+        "registryId": "111122223333",
+        "repositoryName": "hello-world",
+        "repositoryUri": "111122223333.dkr.ecr.us-east-1.amazonaws.com/hello-world",
+        "createdAt": "2023-03-09T10:39:01+00:00",
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": <span>{</span>
+            "scanOnPush": true
+        },
+        "encryptionConfiguration": <span>{</span>
+            "encryptionType": "AES256"
+        }
+    }
+}</code></pre>
+        
+      </li><li>
+        <p>Copy the <code class="code">repositoryUri</code> from the output in the previous step.</p>
+      </li><li>
+        <p>Run the <a href="https://docs.docker.com/engine/reference/commandline/tag/" rel="noopener noreferrer" target="_blank"><span>docker tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to tag your local image into your Amazon ECR repository as the latest version. In this command:</p> 
+        <div class="itemizedlist">
+         
+         
+        <ul class="itemizedlist"><li class="listitem">
+          <p>Replace <code class="code">docker-image:test</code> with the name and <a href="https://docs.docker.com/engine/reference/commandline/build/#tag" rel="noopener noreferrer" target="_blank"><span>tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of your Docker image.</p>
+        </li><li class="listitem">
+          <p>Replace <code class="code">&lt;ECRrepositoryUri&gt;</code> with the <code class="code">repositoryUri</code> that you copied. Make sure to include <code class="code">:latest</code> at the end of the URI.</p>
+        </li></ul></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker tag docker-image:test &lt;ECRrepositoryUri&gt;:latest</code></pre>
+      <p>Example:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker tag <code class="replaceable">docker-image</code>:<code class="replaceable">test</code> <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest</code></pre>
+      
+      </li><li>
+      <p>Run the <a href="https://docs.docker.com/engine/reference/commandline/push/" rel="noopener noreferrer" target="_blank"><span>docker push</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to deploy your local image to the Amazon ECR repository. Make sure to include <code class="code">:latest</code> at the end of the repository URI.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker push <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest</code></pre>
+
+      </li><li>
+      <p><a href="./gettingstarted-awscli.html#with-userapp-walkthrough-custom-events-create-iam-role">Create an execution role</a> for the function, if you don't already have one. You need the Amazon Resource Name (ARN) of the role in the next step.</p>
+      </li><li>
+        <p>Create the Lambda function. For <code class="code">ImageUri</code>, specify the repository URI from earlier. Make sure to include <code class="code">:latest</code> at the end of the URI.</p>
+		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-function \
+  --function-name <code class="replaceable">hello-world</code> \
+  --package-type Image \
+  --code ImageUri=<code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest \
+  --role <code class="replaceable">arn:aws:iam::111122223333:role/lambda-ex</code></code></pre>
+  		
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can create a function using an image in a different AWS account, as long as the image is in the same Region as the Lambda function. For more information, see <a href="./images-create.html#configuration-images-xaccount-permissions"> Amazon ECR cross-account permissions</a>.</p></div></div>  
+      </li><li>
+      <p>Invoke the function.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda invoke --function-name <code class="replaceable">hello-world</code> response.json</code></pre>
+      <p>You should see a response like this:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "ExecutedVersion": "$LATEST", 
+  "StatusCode": 200
+}</code></pre>
+    </li><li>
+    <p>To see the output of the function, check the <code>response.json</code> file.</p>
+    </li></ol></div><p>To update the function code, you must build the image again, upload the new image to the Amazon ECR repository, and then use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-code.html" rel="noopener noreferrer" target="_blank"><span>update-function-code</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to deploy the image to the Lambda function.</p></awsui-expandable-section></div>
+   
+    <h2 id="go-image-v1">Using the AWS base image for Go 1.x (legacy)</h2>
+    <p>We recommend that you use the <code class="code">provided.al2</code> custom runtime instead of the <a href="https://gallery.ecr.aws/lambda/go" rel="noopener noreferrer" target="_blank"><span>Go 1.x base image</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Lambda will continue to support the Go 1.x base image until maintenance support for the Amazon Linux AMI ends on December 31, 2023. For more information about Amazon Linux AMI support, see <a href="http://aws.amazon.com/amazon-linux-ami/faqs/" rel="noopener noreferrer" target="_blank"><span>Amazon Linux AMI FAQs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    <p>If you're using the Go 1.x base image, you must migrate your functions to <code class="code">provided.al2</code>. No code changes are required for this migration. The only required changes relate to how you build your deployment package and which runtime you use to create your function. For more information, see <a href="#go-image-al2">Using the provided.al2 AWS base image</a>.</p>
+  <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Prerequisites" id="go-image-prerequisites" expanded="false"><div class="itemizedlist">
+      <p>To complete the steps in this section, you must have the following:</p>
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Go</p>
+      </li><li class="listitem">
+          <p><a href="https://docs.docker.com/get-docker" rel="noopener noreferrer" target="_blank"><span>Docker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS Command Line Interface (AWS CLI) version 2</a></p>
+      </li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Creating an image from a base image" id="go-image-create" expanded="false"><div class="procedure"><ol><li>
+        <p>Create a directory for the project, and then switch to that directory.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mkdir hello
+cd hello</code></pre>
+      </li><li>
+        <p>Initialize a new Go module.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">go mod init <code class="replaceable">example.com/hello-world</code></code></pre>
+      </li><li>
+        <p>Add the <b>lambda</b> library as a dependency of your new module.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">go get github.com/aws/aws-lambda-go/lambda</code></pre>
+      </li><li>
+          <p>Create a file named <code>main.go</code> and then open it in a text editor. This is the code for the Lambda function. You can use the following sample code for testing, or replace it with your own.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="go ">package main
+
+import (
+	"context"
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
+)
+
+func handler(ctx context.Context, event events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) <span>{</span>
+	response := events.APIGatewayProxyResponse<span>{</span>
+		StatusCode: 200,
+		Body:       "\"Hello from Lambda!\"",
+	}
+	return response, nil
+}
+
+func main() <span>{</span>
+	lambda.Start(handler)
+}</code></pre>
+        </li><li>
+          <p>Build the Go project. This command creates an executable called <code>main</code>.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">GOOS=linux GOARCH=amd64 go build -o main <code class="replaceable">main.go</code></code></pre>
+          <p>Setting <code class="code">GOOS</code> to <code class="code">linux</code> and <code class="code">GOARCH</code> to <code class="code">amd64</code> ensures that the compiled executable is compatible with the architecture of the Go base image, even if you compile it in a non-Linux environment.</p>
+        </li><li>
+          <p>Create a new Dockerfile. The example Dockerfile uses the following configuration:</p>
+          <div class="itemizedlist">
+             
+             
+             
+          <ul class="itemizedlist"><li class="listitem">
+              <p><code class="code">FROM</code>: The <a href="https://gallery.ecr.aws/lambda/go" rel="noopener noreferrer" target="_blank"><span>URI of the base image</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> that you want to use.</p>
+            </li><li class="listitem">
+              <p><code class="code">COPY</code>: Copies the function code into the <code>/var/task</code> directory in your image.</p>
+            </li><li class="listitem">
+              <p><code class="code">CMD</code>: The Lambda function handler or executable.</p>
+            </li></ul></div>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="dockerfile ">FROM <code class="replaceable">public.ecr.aws/lambda/go:1</code>
+
+# Copy function handler executable
+COPY <code class="replaceable">main</code> $<span>{</span>LAMBDA_TASK_ROOT}
+
+# Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
+CMD [ "<code class="replaceable">main</code>" ]</code></pre>
+        </li><li>
+          <p>Build the Docker image with the <a href="https://docs.docker.com/engine/reference/commandline/build/" rel="noopener noreferrer" target="_blank"><span>docker build</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command. The
+          following example names the image <code class="code">docker-image</code> and gives it the <code class="code">test</code> <a href="https://docs.docker.com/engine/reference/commandline/build/#tag" rel="noopener noreferrer" target="_blank"><span>tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker build --platform linux/amd64 -t <code class="replaceable">docker-image</code>:<code class="replaceable">test</code> .</code></pre>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The command specifies the <code class="code">--platform linux/amd64</code> option to ensure that your container is compatible with the Lambda execution environment regardless of the  
+       architecture of your build machine. If you intend to create a Lambda function using the ARM64 instruction set architecture, be sure to change the command to use the <code class="code">--platform linux/arm64</code> 
+       option instead.</p></div></div>
+        </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="(Optional) Test the image locally" id="go-image-test" expanded="false"><div class="procedure"><ol><li>
+          <p>Start the Docker image with the <b>docker run</b> command. In this example,
+              <code class="code">docker-image</code> is the image name and <code class="code">test</code> is the tag.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker run -p 9000:8080 <code class="replaceable">docker-image</code>:<code class="replaceable">test</code></code></pre>
+          <p>This command runs the image as a container and creates a local endpoint at
+            <code class="code">localhost:9000/2015-03-31/functions/function/invocations</code>.</p>
+        </li><li>
+          <p>From a new terminal window, post an event to the following endpoint using a <b>curl</b>
+            command:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<span>{</span>}'</code></pre>
+          <p>This command invokes the function with an empty event and returns a response. If you're using your own function code rather than the sample function code, you might want to invoke the function with a JSON payload. Example:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '<code class="replaceable"><span>{</span>"payload":"hello world!"}</code>'</code></pre>
+        </li><li>
+          <p>Get the container ID.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">docker ps</code></pre>
+        </li><li>
+          <p>Use the <a href="https://docs.docker.com/engine/reference/commandline/kill/" rel="noopener noreferrer" target="_blank"><span>docker kill</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to stop the container. In this command, replace <code class="code">3766c4ab331c</code> with the container ID from the previous step.</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker kill <code class="replaceable">3766c4ab331c</code></code></pre>
+        </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Deploying the image" id="go-image-deploy" expanded="false"><div class="procedure"><h6>To upload the image to Amazon ECR and create the Lambda function</h6><ol><li>
+          <p>Run the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/get-login-password.html" rel="noopener noreferrer" target="_blank"><span>get-login-password</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to authenticate the Docker CLI to your Amazon ECR registry.</p>
+        <div class="itemizedlist">
+         
+         
+        <ul class="itemizedlist"><li class="listitem">
+          <p>Set the <code class="code">--region</code> value to the AWS Region where you want to create the Amazon ECR repository.</p>
+        </li><li class="listitem">
+          <p>Replace <code class="code">111122223333</code> with your AWS account ID.</p>
+        </li></ul></div>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws ecr get-login-password --region <code class="replaceable">us-east-1</code> | docker login --username AWS --password-stdin <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com</code></pre>
+          
+        </li><li>
+        <p>Create a repository in Amazon ECR using the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/create-repository.html" rel="noopener noreferrer" target="_blank"><span>create-repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws ecr create-repository --repository-name <code class="replaceable">hello-world</code> --region <code class="replaceable">us-east-1</code> --image-scanning-configuration scanOnPush=true --image-tag-mutability MUTABLE</code></pre>
+        
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The Amazon ECR repository must be in the same AWS Region as the Lambda function.</p></div></div>
+        <p>If successful, you see a response like this:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "repository": <span>{</span>
+        "repositoryArn": "arn:aws:ecr:us-east-1:111122223333:repository/hello-world",
+        "registryId": "111122223333",
+        "repositoryName": "hello-world",
+        "repositoryUri": "111122223333.dkr.ecr.us-east-1.amazonaws.com/hello-world",
+        "createdAt": "2023-03-09T10:39:01+00:00",
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": <span>{</span>
+            "scanOnPush": true
+        },
+        "encryptionConfiguration": <span>{</span>
+            "encryptionType": "AES256"
+        }
+    }
+}</code></pre>
+        
+      </li><li>
+        <p>Copy the <code class="code">repositoryUri</code> from the output in the previous step.</p>
+      </li><li>
+        <p>Run the <a href="https://docs.docker.com/engine/reference/commandline/tag/" rel="noopener noreferrer" target="_blank"><span>docker tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to tag your local image into your Amazon ECR repository as the latest version. In this command:</p> 
+        <div class="itemizedlist">
+         
+         
+        <ul class="itemizedlist"><li class="listitem">
+          <p>Replace <code class="code">docker-image:test</code> with the name and <a href="https://docs.docker.com/engine/reference/commandline/build/#tag" rel="noopener noreferrer" target="_blank"><span>tag</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of your Docker image.</p>
+        </li><li class="listitem">
+          <p>Replace <code class="code">&lt;ECRrepositoryUri&gt;</code> with the <code class="code">repositoryUri</code> that you copied. Make sure to include <code class="code">:latest</code> at the end of the URI.</p>
+        </li></ul></div>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker tag docker-image:test &lt;ECRrepositoryUri&gt;:latest</code></pre>
+      <p>Example:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker tag <code class="replaceable">docker-image</code>:<code class="replaceable">test</code> <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest</code></pre>
+      
+      </li><li>
+      <p>Run the <a href="https://docs.docker.com/engine/reference/commandline/push/" rel="noopener noreferrer" target="_blank"><span>docker push</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to deploy your local image to the Amazon ECR repository. Make sure to include <code class="code">:latest</code> at the end of the repository URI.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">docker push <code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest</code></pre>
+
+      </li><li>
+      <p><a href="./gettingstarted-awscli.html#with-userapp-walkthrough-custom-events-create-iam-role">Create an execution role</a> for the function, if you don't already have one. You need the Amazon Resource Name (ARN) of the role in the next step.</p>
+      </li><li>
+        <p>Create the Lambda function. For <code class="code">ImageUri</code>, specify the repository URI from earlier. Make sure to include <code class="code">:latest</code> at the end of the URI.</p>
+		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda create-function \
+  --function-name <code class="replaceable">hello-world</code> \
+  --package-type Image \
+  --code ImageUri=<code class="replaceable">111122223333</code>.dkr.ecr.<code class="replaceable">us-east-1</code>.amazonaws.com/<code class="replaceable">hello-world</code>:latest \
+  --role <code class="replaceable">arn:aws:iam::111122223333:role/lambda-ex</code></code></pre>
+  		
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You can create a function using an image in a different AWS account, as long as the image is in the same Region as the Lambda function. For more information, see <a href="./images-create.html#configuration-images-xaccount-permissions"> Amazon ECR cross-account permissions</a>.</p></div></div>  
+      </li><li>
+      <p>Invoke the function.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws lambda invoke --function-name <code class="replaceable">hello-world</code> response.json</code></pre>
+      <p>You should see a response like this:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+  "ExecutedVersion": "$LATEST", 
+  "StatusCode": 200
+}</code></pre>
+    </li><li>
+    <p>To see the output of the function, check the <code>response.json</code> file.</p>
+    </li></ol></div><p>To update the function code, you must build the image again, upload the new image to the Amazon ECR repository, and then use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-code.html" rel="noopener noreferrer" target="_blank"><span>update-function-code</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command to deploy the image to the Lambda function.</p></awsui-expandable-section></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./golang-package.html">Deploy .zip file archives</div><div id="next" class="next-link" accesskey="n" href="./golang-logging.html">Logging</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/go-image.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/go-image.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

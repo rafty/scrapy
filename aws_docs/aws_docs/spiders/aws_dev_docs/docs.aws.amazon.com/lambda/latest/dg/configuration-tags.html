@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Using tags on Lambda functions - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="configuration-tags" /><meta name="default_state" content="configuration-tags" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-tags.html" /><meta name="description" content="Use tags to grant attribute-based access to your Lambda functions or to organize them by owner, project, or department." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-tags.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-tags.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/configuration-tags.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-tags.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/configuration-tags.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-tags.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-tags.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-tags.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/configuration-tags.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-tags.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/configuration-tags.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-tags.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/configuration-tags.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-tags.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-tags.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-tags.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/configuration-tags.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-tags.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/configuration-tags.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/configuration-tags.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/configuration-tags.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-tags.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Using tags on Lambda functions" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Using tags on Lambda functions - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-tags" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-tags.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-tags.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-tags.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,configure Lambda concurrency,configure Lambda networking,configure Lambda database access,configure Lambda code signing,tagging,ABAC,filtering" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Managing AWS Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-managing.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using tags on Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-managing.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#configuration-tags" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#permissions-required-for-working-with-tags-cli">Permissions</a><a href="#using-tags-with-the-console">Using tags with the console</a><a href="#configuration-tags-cli">Using tags with the AWS CLI</a><a href="#configuration-tags-restrictions">Requirements for tags</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="configuration-tags">Using tags on Lambda functions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can tag AWS Lambda functions to activate <a href="./attribute-based-access-control.html">attribute-based access
+      control (ABAC)</a> and to organize them by owner, project, or department. Tags are free-form key-value pairs
+    that are supported across AWS services for use in ABAC, filtering resources, and <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">adding detail to billing reports.</a></p><p>Tags apply at the function level, not to versions or aliases. Tags are not part of the version-specific configuration that Lambda creates a snapshot of when you publish a version.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#permissions-required-for-working-with-tags-cli">Permissions required for working with tags</a></li><li><a href="#using-tags-with-the-console">Using tags with the Lambda console</a></li><li><a href="#configuration-tags-cli">Using tags with the AWS CLI</a></li><li><a href="#configuration-tags-restrictions">Requirements for tags</a></li></ul></div>
+    <h2 id="permissions-required-for-working-with-tags-cli">Permissions required for working with tags</h2>
+    <p>Grant appropriate permissions to the AWS Identity and Access Management
+      (IAM) identity (user,
+      group, or role) for the person working with the function:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>lambda:ListTags </b>– When a function has tags, grant this permission
+          to anyone who needs to call <code class="code">GetFunction</code> or <code class="code">ListTags</code> on it.</p>
+      </li><li class="listitem">
+        <p><b>lambda:TagResource</b> – Grant this permission to anyone who needs to
+          call <code class="code">CreateFunction</code> or <code class="code">TagResource</code>.</p>
+      </li></ul></div>
+    <p>For more information, see <a href="./access-control-identity-based.html">Identity-based IAM policies for Lambda</a>.</p>
+   
+    <h2 id="using-tags-with-the-console">Using tags with the Lambda console</h2>
+    
+    <p>You can use the Lambda console to create functions that have tags, add tags to existing functions, and filter
+      functions by tags that you add.</p>
+      <div class="procedure"><h6>To add tags when you create a function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+          <p>Choose <b>Create function</b>.</p>
+        </li><li>
+          <p>Choose <b>Author from scratch</b> or <b>Container image</b>. </p>
+        </li><li>
+          <p>Under <b>Basic information</b>, do the following:</p>
+          <ol><li>
+              <p>For <b>Function name</b>, enter the function name. Function names are limited to 64 characters in length.</p>
+            </li><li>
+              <p>For <b>Runtime</b>, choose the language version to use for your function.</p>
+            </li><li>
+              <p>(Optional) For <b>Architecture</b>, choose the <a href="./foundation-arch.html">instruction set architecture</a> to use for your function. The default architecture is x86_64.
+                When you build the deployment package for your function, make sure that it is compatible with the
+                instruction set architecture that you choose.</p>
+            </li></ol>
+        </li><li>
+          <p>Expand <b>Advanced
+            settings</b>,
+            and then select <b>Enable tags</b>.</p>
+        </li><li>
+          <p>Choose <b>Add new tag</b>, and then enter a <b>Key</b> and an optional
+              <b>Value</b>. To add more tags, repeat this step.</p>
+        </li><li>
+          <p>Choose <b>Create function</b>.</p>
+        </li></ol></div>
+      <div class="procedure"><h6>To add tags to an existing function</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+          <p>Choose the name of a function.</p>
+        </li><li>
+          <p>Choose
+            <b>Configuration</b>,
+            and then choose <b>Tags</b>.</p>
+        </li><li>
+          <p>Under <b>Tags</b>, choose <b>Manage tags</b>.</p>
+        </li><li>
+          <p>Choose <b>Add new tag</b>, and then enter a <b>Key</b> and an optional
+              <b>Value</b>. To add more tags, repeat this step.</p>
+          <div class="mediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/configuration-tags-add.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;              Tagging a function in the Lambda console.&#xA;            " style="max-width:100%" />
+             
+             
+          </div>
+        </li><li>
+          <p>Choose <b>Save</b>.</p>
+        </li></ol></div>
+    
+      <div class="procedure"><h6>To filter functions with tags</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+          <p>Choose the search bar to see a list of function attributes and tag keys.</p>
+          <div class="mediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/configuration-tags-key.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;              Tags in the function search bar.&#xA;            " style="max-width:100%" />
+             
+             
+          </div>
+        </li><li>
+          <p>Choose a tag key to see a list of values that are in use in the current AWS Region.</p>
+        </li><li>
+          <p>Choose a value to see functions with that value, or choose <b>(all values)</b> to see all
+            functions that have a tag with that key.</p>
+          <div class="mediaobject">
+             
+              <img src="/images/lambda/latest/dg/images/configuration-tags-value.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;              Filtering by tag value.&#xA;            " style="max-width:100%" />
+             
+             
+          </div>
+        </li></ol></div>
+      <p>The search bar also supports searching for tag keys. Enter <code class="code">tag</code> to see only a list of tag keys,
+        or enter the name of a key to find it in the list.</p>
+      
+   
+    <h2 id="configuration-tags-cli">Using tags with the AWS CLI</h2>
+     
+      <h3 id="creating-tags-when-you-create-a-function-cli">Adding and removing tags</h3>
+      <p>To create a new Lambda function with tags, use the <b>create-function</b> command with the --tags
+        option.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name <code class="replaceable">my-function</code>
+--handler index.js --runtime nodejs18.x \
+--role arn:aws:iam::<code class="replaceable">123456789012</code>:role/<code class="replaceable">lambda-role</code> \
+--tags Department=Marketing,CostCenter=1234ABCD</code></code></pre>
+      <p>To add tags to an existing function, use the <b>tag-resource</b>
+        command.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda tag-resource \
+--resource arn:aws:lambda:<code class="replaceable">us-east-2:123456789012:function:my-function</code> \
+--tags Department=Marketing,CostCenter=1234ABCD</code></code></pre>
+      <p>To remove tags, use the <b>untag-resource</b>
+        command.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda untag-resource --resource <code class="replaceable">arn:aws:lambda:us-east-1:123456789012:function:my-function</code> \
+--tag-keys <code class="replaceable">Department</code></code></code></pre>
+     
+     
+      <h3 id="viewing-tags-on-a-function-cli">Viewing tags on a function</h3>
+
+      <p>If you want to view the tags that are applied to a specific Lambda function, you can use either of the
+        following AWS CLI commands:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="./API_ListTags.html">ListTags</a> – To view a list of the tags associated with this function, include your Lambda
+            function ARN (Amazon Resource Name):</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda list-tags --resource <code class="replaceable">arn:aws:lambda:us-east-1:123456789012:function:my-function</code></code></code></pre>
+        </li><li class="listitem">
+          <p><a href="./API_GetFunction.html">GetFunction</a> – To view a list of the tags associated with this function, include your Lambda
+            function name:</p>
+          <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda get-function --function-name <code class="replaceable">my-function</code></code></code></pre>
+        </li></ul></div>
+      
+
+       
+        <h4 id="filtering-functions-by-tag-cli">Filtering functions by tag</h4>
+        <p>You can use the AWS Resource Groups Tagging API <a href="https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html">GetResources</a> API operation to
+          filter your resources by tags. The <code class="code">GetResources</code>
+          operation receives up to 10 filters, with each filter containing a tag key and up to 10 tag values. You
+          provide <code class="code">GetResources</code>
+          with a
+            <code class="code">ResourceType</code> to filter by specific resource types.</p>
+        <p>For more information about AWS Resource Groups, see <a href="https://docs.aws.amazon.com/ARG/latest/userguide/resource-groups.html">What are resource groups?</a> in the <em>AWS Resource Groups
+            and Tags User Guide</em>. </p>
+       
+     
+   
+    <h2 id="configuration-tags-restrictions">Requirements for tags</h2>
+    <p>The following requirements apply to tags:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>Maximum number of tags per resource: 50</p>
+      </li><li class="listitem">
+        <p>Maximum key length: 128 Unicode characters in UTF-8</p>
+      </li><li class="listitem">
+        <p>Maximum value length: 256 Unicode characters in UTF-8</p>
+      </li><li class="listitem">
+        <p>Tag keys and values are case sensitive.</p>
+      </li><li class="listitem">
+        <p>Do not use the <code class="code">aws:</code> prefix in your tag names or values because it is reserved for AWS use.
+          You can't edit or delete tag names or values with this prefix. Tags with this prefix do not count against your
+          tags per resource limit.</p>
+      </li><li class="listitem">
+        <p>If you plan to use your tagging schema across multiple services and resources, remember that other
+          services may have restrictions on allowed characters. Generally allowed characters are: letters, spaces, and
+          numbers representable in UTF-8, plus the following special characters: + - = . _ : / @.</p>
+      </li></ul></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./configuration-codesigning.html">Code signing</div><div id="next" class="next-link" accesskey="n" href="./testing-guide.html">Testing functions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-tags.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/configuration-tags.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

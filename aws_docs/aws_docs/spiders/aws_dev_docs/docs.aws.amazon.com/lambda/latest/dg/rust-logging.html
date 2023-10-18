@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda function logging in Rust - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="rust-logging" /><meta name="default_state" content="rust-logging" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/rust-logging.html" /><meta name="description" content="This page describes how to view metrics for Rust functions using Amazon CloudWatch." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/rust-logging.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/rust-logging.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/rust-logging.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/rust-logging.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/rust-logging.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/rust-logging.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/rust-logging.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/rust-logging.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/rust-logging.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/rust-logging.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/rust-logging.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/rust-logging.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/rust-logging.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/rust-logging.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/rust-logging.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/rust-logging.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/rust-logging.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/rust-logging.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/rust-logging.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/rust-logging.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/rust-logging.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/rust-logging.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda function logging in Rust" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda function logging in Rust - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#rust-logging" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/rust-logging.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/rust-logging.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/rust-logging.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Rust Lambda,Rust functions,Rust Lambda function,Rust Lambda logging,Rust function metrics,Rust CloudWatch Logs" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with Rust",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-rust.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda function logging in Rust",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-rust.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#rust-logging" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#rust-logging-function">Creating a function that writes logs</a><a href="#rust-logging-tracing">Advanced logging with the Tracing crate</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="rust-logging">Lambda function logging in Rust</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The <a href="https://github.com/awslabs/aws-lambda-rust-runtime" rel="noopener noreferrer" target="_blank"><span>Rust runtime client</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is an experimental package. It is subject to change and intended only for evaluation purposes.</p></div></div><p>AWS Lambda automatically monitors Lambda functions on your behalf and sends logs to Amazon CloudWatch. Your Lambda function comes with a CloudWatch Logs log group and a log stream for each instance of your function. The Lambda runtime environment sends details about each invocation to the log stream, and relays logs and other output from your function's code. For more information, see <a href="./monitoring-cloudwatchlogs.html">Accessing Amazon CloudWatch logs for AWS Lambda</a>. This page describes how to produce log output from your Lambda function's code.</p>
+    <h2 id="rust-logging-function">Creating a function that writes logs</h2>
+  <p>To output logs from your function code, you can use any logging function that writes
+    to <code class="code">stdout</code> or <code class="code">stderr</code>, such as
+    the <code class="code">println!</code> macro. The following example uses <code class="code">println!</code> to
+    print a message when the function handler starts and before it finishes.</p>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">use lambda_runtime::<span>{</span>service_fn, LambdaEvent, Error};
+use serde_json::<span>{</span>json, Value};
+async fn handler(event: LambdaEvent&lt;Value&gt;) -&gt; Result&lt;Value, Error&gt; <span>{</span>
+    println!("Rust function invoked");
+    let payload = event.payload;
+    let first_name = payload["firstName"].as_str().unwrap_or("world");
+    println!("Rust function responds to <span>{</span>}", &amp;first_name);
+    Ok(json!(<span>{</span> "message": format!("Hello, <span>{</span>first_name}!") }))
+}
+
+#[tokio::main]
+async fn main() -&gt; Result&lt;(), Error&gt; <span>{</span>
+    lambda_runtime::run(service_fn(handler)).await
+}
+</code></pre>
+ 
+  <h2 id="rust-logging-tracing">Advanced logging with the Tracing crate</h2>
+  <p><a href="https://crates.io/crates/tracing" rel="noopener noreferrer" target="_blank"><span>Tracing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> is a framework for
+    instrumenting Rust programs to collect structured, event-based diagnostic information. This framework provides utilities to customize logging output levels and formats, like creating
+    structured JSON log messages. To use this framework, you must initialize
+    a <code class="code">subscriber</code> before implementing the function handler. Then, you can use
+    tracing macros like <code class="code">debug</code>, <code class="code">info</code>, and <code class="code">error</code>, to specify the level of logging that you want for each scenario.</p>
+<div class="example"><h6>Example — Using the Tracing crate</h6><div class="example-contents"><p>Note the following:</p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><code class="code">tracing_subscriber::fmt().json()</code>: When this option is included, logs are
+        formatted in JSON. To use this option, you must include the <code class="code">json</code> feature
+        in the <code class="code">tracing-subscriber</code> dependency (for
+        example,<code class="code">tracing-subscriber = <span>{</span> version = "0.3.11", features = ["json"] }</code>).</p>
+    </li><li class="listitem">
+      <p><code class="code">#[tracing::instrument(skip(event), fields(req_id = %event.context.request_id))]</code>:
+        This annotation generates a span every time the handler is invoked. The span adds the
+        request ID to each log line.</p>
+    </li><li class="listitem">
+      <p><code class="code"><span>{</span> %first_name }</code>: This construct adds the <code class="code">first_name</code> field to the log line where it's used. The value for this
+        field corresponds to the variable with the same name.</p>
+    </li></ul></div><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">use lambda_runtime::<span>{</span>service_fn, Error, LambdaEvent};
+use serde_json::<span>{</span>json, Value};
+#[tracing::instrument(skip(event), fields(req_id = %event.context.request_id))]
+async fn handler(event: LambdaEvent&lt;Value&gt;) -&gt; Result&lt;Value, Error&gt; <span>{</span>
+    tracing::info!("Rust function invoked");
+    let payload = event.payload;
+    let first_name = payload["firstName"].as_str().unwrap_or("world");
+    tracing::info!(<span>{</span> %first_name }, "Rust function responds to event");
+    Ok(json!(<span>{</span> "message": format!("Hello, <span>{</span>first_name}!") }))
+}
+
+#[tokio::main]
+async fn main() -&gt; Result&lt;(), Error&gt; <span>{</span>
+    tracing_subscriber::fmt().json()
+        .with_max_level(tracing::Level::INFO)
+        // this needs to be set to remove duplicated information in the log.
+        .with_current_span(false)
+        // this needs to be set to false, otherwise ANSI color codes will
+        // show up in a confusing manner in CloudWatch logs.
+        .with_ansi(false)
+        // disabling time is handy because CloudWatch will add the ingestion time.
+        .without_time()
+        // remove the name of the function from every log entry
+        .with_target(false)
+        .init();
+    lambda_runtime::run(service_fn(handler)).await
+}
+</code></pre></div></div>
+  <p>When this Rust function is invoked, it prints two log lines similar to the following:</p>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>"level":"INFO","fields":<span>{</span>"message":"Rust function invoked"},"spans":[<span>{</span>"req_id":"45daaaa7-1a72-470c-9a62-e79860044bb5","name":"handler"}]}
+<span>{</span>"level":"INFO","fields":<span>{</span>"message":"Rust function responds to event","first_name":"David"},"spans":[<span>{</span>"req_id":"45daaaa7-1a72-470c-9a62-e79860044bb5","name":"handler"}]}</code></pre>
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./rust-package.html">Deploy .zip file archives</div><div id="next" class="next-link" accesskey="n" href="./rust-exceptions.html">Errors</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/rust-logging.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/rust-logging.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

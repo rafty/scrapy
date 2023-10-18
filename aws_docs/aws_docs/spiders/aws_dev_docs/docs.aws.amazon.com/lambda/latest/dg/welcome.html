@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>What is AWS Lambda? - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="welcome" /><meta name="default_state" content="welcome" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html" /><meta name="description" content="Lambda is a compute service that lets you build applications without provisioning or managing servers." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/welcome.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/welcome.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/welcome.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/welcome.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/welcome.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/welcome.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/welcome.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/welcome.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/welcome.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/welcome.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/welcome.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/welcome.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/welcome.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/welcome.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/welcome.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/welcome.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/welcome.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/welcome.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="What is AWS Lambda?" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>What is AWS Lambda? - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#welcome" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/welcome.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/welcome.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/welcome.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,compute,function,High Availability" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "What is AWS Lambda?",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#welcome" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#when-to-use-lambda">When to use Lambda</a><a href="#features">Key features</a></div><awsdocs-doc-page-banner></awsdocs-doc-page-banner><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="welcome">What is AWS Lambda?</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>AWS Lambda is a compute service that lets you run code without provisioning or managing servers.</p><p> Lambda runs your code
+    on a high-availability compute infrastructure and performs all of the administration of the compute resources,
+    including server and operating system maintenance, capacity provisioning and automatic scaling, and
+    logging. With Lambda, all you need to do is supply your code in one of the language runtimes that Lambda supports.</p><p>You organize your code into Lambda functions. The Lambda service runs your function only when needed and scales automatically. You only pay for the compute time that you consume—there is no charge when your code is not running. For more information, see <a href="http://aws.amazon.com/lambda/pricing/" rel="noopener noreferrer" target="_blank"><span>AWS Lambda Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="awsdocs-note awsdocs-tip"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Tip</h6></div><div class="awsdocs-note-text"><p>To learn how to build <b>serverless solutions</b>, check out the <a href="https://docs.aws.amazon.com/serverless/latest/devguide/">Serverless Developer Guide</a>.</p></div></div>
+    <h2 id="when-to-use-lambda">When to use Lambda</h2>
+    <p>Lambda is an ideal compute service for application scenarios that need to scale up rapidly, and scale down to
+      zero when not in demand. For example, you can use Lambda for:</p>
+  <div class="itemizedlist">
+     
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><b>File processing:</b> Use Amazon Simple Storage Service (Amazon S3) to trigger Lambda data processing in real time after an upload.</p>
+    </li><li class="listitem">
+      <p><b>Stream processing:</b> Use Lambda and Amazon Kinesis to process real-time streaming data for application activity tracking, transaction order processing, clickstream analysis, data cleansing, log filtering, indexing, social media analysis, Internet of Things (IoT) device data telemetry, and metering.</p>
+    </li><li class="listitem">
+      <p><b>Web applications:</b> Combine Lambda with other AWS services to build powerful web applications that automatically scale up and down and run in a highly available configuration across multiple data centers.</p>
+    </li><li class="listitem">
+      <p><b>IoT backends:</b> Build serverless backends using Lambda to handle web, mobile, IoT, and third-party API requests.</p>
+    </li><li class="listitem">
+      <p><b>Mobile backends:</b> Build backends using Lambda and Amazon API Gateway  to authenticate and process API requests. Use AWS Amplify to easily integrate with your iOS, Android, Web, and React Native frontends.</p>
+    </li></ul></div>
+    <p>When using Lambda, you are responsible only for your code. Lambda manages the compute fleet that offers a
+      balance of memory, CPU, network, and other resources to run your code. Because Lambda manages these resources, you
+      cannot log in to compute instances or customize the operating system on provided
+        runtimes.</p>
+    <p>Lambda performs operational and administrative activities on your behalf, including managing
+      capacity, monitoring, and logging your Lambda functions. </p>
+      
+     <p>If you do need to manage your compute resources, AWS has other compute services to consider, such
+      as:</p>
+    
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem"><p>
+      AWS App Runner builds and deploys containerized web applications automatically, load balances traffic with encryption, scales to meet your traffic needs, and allows for the configuration of how services are accessed and communicate with other AWS applications in a private Amazon VPC. </p>
+      </li><li class="listitem"><p> AWS Fargate with Amazon ECS runs containers without having to provision, configure, or scale clusters of virtual
+          machines.</p>
+      </li><li class="listitem"><p>Amazon EC2 lets you customize
+        operating system, network and security settings, and the entire software stack. You are responsible for
+        provisioning capacity, monitoring fleet health and performance, and using Availability Zones for fault
+        tolerance.</p></li></ul></div>
+   
+    <h2 id="features">Key features</h2>
+    <p>The following key features help you develop Lambda applications that are scalable, secure, and easily
+      extensible:</p>
+
+    <div class="variablelist">
+       
+      
+       
+
+       
+      
+       
+      
+       
+      
+       
+  
+       
+      
+       
+           
+       
+
+       
+      
+       
+
+       
+
+       
+      
+    <dl>
+        <dt><b><span class="term"><a href="./configuration-function-common.html">Configuring function options</a></span></b></dt>
+        <dd>
+          <p>Configure your Lambda function using the console or AWS CLI.</p>
+        </dd>
+      
+        <dt><b><span class="term"> <a href="./configuration-envvars.html">Environment variables</a></span></b></dt>
+        <dd>
+          <p>Use environment variables to adjust your function's behavior without updating code.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./configuration-versions.html">Versions</a></span></b></dt>
+        <dd>
+          <p>Manage the deployment of your functions with versions, so that, for example, a new function can be used for beta testing without affecting users of the stable production version.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./images-create.html">Container images</a></span></b></dt>
+        <dd>
+          <p>Create a container image for a Lambda function by using an AWS provided base image or an alternative base
+            image so that you can reuse your existing container tooling or deploy larger workloads that rely on sizable dependencies, such as machine learning.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./chapter-layers.html">Layers</a></span></b></dt>
+        <dd>
+          <p>Package libraries and other dependencies to reduce the size of deployment archives and makes it faster to deploy your code.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./runtimes-extensions-api.html">Lambda extensions</a></span></b></dt>
+        <dd>
+          <p>Augment your Lambda functions with tools for monitoring, observability, security, and governance.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./lambda-urls.html">Function URLs</a></span></b></dt>
+        <dd>
+          <p>Add a dedicated HTTP(S) endpoint to your Lambda function.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./configuration-response-streaming.html">Response streaming</a></span></b></dt>
+        <dd>
+          <p>Configure your Lambda function URLs to stream response payloads back to clients from Node.js functions, to improve time to first byte (TTFB) performance or to return larger payloads.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./lambda-concurrency.html">Concurrency and scaling controls</a></span></b></dt>
+        <dd>
+          <p>Apply fine-grained control over the scaling and responsiveness of your production applications.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./configuration-codesigning.html">Code signing</a></span></b></dt>
+        <dd>
+          <p>Verify that only approved developers publish unaltered, trusted code in your Lambda functions </p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./foundation-networking.html">Private networking</a></span></b></dt>
+        <dd>
+          <p>Create a private network for resources such as databases, cache instances, or internal services.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./configuration-filesystem.html">File system access</a></span></b></dt>
+        <dd>
+          <p>Configure a function to mount an Amazon Elastic File System (Amazon EFS) to a local directory, so that your function code can access and modify shared resources safely and at high concurrency.</p>
+        </dd>
+      
+        <dt><b><span class="term"><a href="./snapstart.html">Lambda SnapStart for Java</a></span></b></dt>
+        <dd>
+          <p>Improve startup performance for <b>Java runtimes</b> by up to 10x at no extra cost, typically with no changes to your function code.</p>
+        </dd>
+      </dl></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="next" class="next-link" accesskey="n" href="./getting-started.html">Getting started</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/welcome.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/welcome.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

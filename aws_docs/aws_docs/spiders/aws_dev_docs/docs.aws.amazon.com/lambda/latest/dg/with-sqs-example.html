@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutorial: Using Lambda with Amazon SQS - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="with-sqs-example" /><meta name="default_state" content="with-sqs-example" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs-example.html" /><meta name="description" content="Learn how to create a Lambda function that consumes messages from an Amazon SQS queue." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs-example.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-sqs-example.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/with-sqs-example.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-sqs-example.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/with-sqs-example.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs-example.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs-example.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-sqs-example.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/with-sqs-example.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-sqs-example.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/with-sqs-example.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-sqs-example.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/with-sqs-example.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sqs-example.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sqs-example.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-sqs-example.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/with-sqs-example.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-sqs-example.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/with-sqs-example.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-sqs-example.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/with-sqs-example.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/with-sqs-example.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tutorial: Using Lambda with Amazon SQS" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tutorial: Using Lambda with Amazon SQS - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-sqs-example" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs-example.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs-example.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs-example.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,triggers,event,event object,other AWS service,using Lambda with DynamoDB database,using Lambda with SQS queue service,using Lambda with SNS notification service,Lambda process SQS event,Lambda function SQS message trigger,Lambda message queue event source,Amazon SQS,tutorial,queue,messages,Node.js" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Using AWS Lambda with other services",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Using Lambda with Amazon SQS",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Tutorial: Using Lambda with Amazon SQS",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#with-sqs-example" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#with-sqs-prepare">Prerequisites</a><a href="#with-sqs-create-execution-role">Create the execution role</a><a href="#with-sqs-create-function">Create the function</a><a href="#with-sqs-create-test-function">Test the function</a><a href="#with-sqs-configure-sqs">Create an Amazon SQS queue</a><a href="#with-sqs-attach-notification-configuration">Configure the event source</a><a href="#with-sqs-test-message">Send a test message</a><a href="#with-sqs-check-logs">Check the logs</a><a href="#cleanup">Clean up your resources</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="with-sqs-example">Tutorial: Using Lambda with Amazon SQS</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In this tutorial, you create a Lambda function that consumes messages from an <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html">Amazon Simple Queue Service (Amazon SQS)</a> queue. The Lambda function runs whenever a new message is added to the queue. The function writes the messages to an Amazon CloudWatch Logs stream. The following diagram shows the AWS 
+    resources you use to complete the tutorial.</p><div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sqs_tut_resources.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Diagram showing Amazon SQS message, Lambda function, and CloudWatch Logs stream&#xA;      " style="max-width:100%" />
+       
+       
+    </div><p>To complete this tutorial, you carry out the following steps:</p><div class="orderedlist">
+       
+       
+       
+       
+    <ol><li>
+        <p>Create a Lambda function that writes messages to CloudWatch Logs.</p>
+      </li><li>
+        <p>Create an Amazon SQS queue.</p>
+      </li><li>
+        <p>Create a Lambda event source mapping. The event source mapping reads the Amazon SQS queue and invokes your Lambda function when a new message is added.</p>
+      </li><li>
+        <p>Test the setup by adding messages to your queue and monitoring the results in 
+        CloudWatch Logs.</p>
+      </li></ol></div>
+    <h2 id="with-sqs-prepare">Prerequisites</h2>
+    <div class="collapsible" data-expand-section="_collapse_all_"><awsui-expandable-section variant="container" header="Sign up for an AWS account" id="sign-up-for-aws" expanded="false"><p>If you do not have an AWS account, complete the following steps to create one.</p><div class="procedure"><h6>To sign up for an AWS account</h6><ol><li><p>Open <a href="https://portal.aws.amazon.com/billing/signup" rel="noopener noreferrer" target="_blank"><span>https://portal.aws.amazon.com/billing/signup</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li><p>Follow the online instructions.</p>
+  <p>Part of the sign-up procedure involves receiving a phone call and entering 
+  a verification code on the phone keypad.</p>
+  <p>When you sign up for an AWS account, an <em>AWS account root user</em> is created. The root user has access to all AWS services
+  and resources in the account. As a security best practice, <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">assign administrative access to an administrative user</a>, and use only the root user to perform <a href="https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html">tasks that require root user access</a>.</p>
+  </li></ol></div><p>AWS sends you a confirmation email after the sign-up process is
+complete. At any time, you can view your current account activity and manage your account by
+going to <a href="https://aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>https://aws.amazon.com/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and choosing <b>My
+  Account</b>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="Create an administrative user" id="create-an-admin" expanded="false"><p>After you sign up for an AWS account, create an administrative user so that you 
+don't use the root user for everyday tasks.</p><div class="procedure"><h6>Secure your AWS account root user</h6><ol><li>
+ 
+
+<p> Sign in to the <a href="https://console.aws.amazon.com/" rel="noopener noreferrer" target="_blank"><span>AWS Management Console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> as the account owner by choosing <b>Root user</b> and entering your AWS account email address. On the next page, enter your password.</p>
+ 
+ <p>For help signing in by using root user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/console-sign-in-tutorials.html#introduction-to-root-user-sign-in-tutorial">Signing in as the root user</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li><li>
+ <p>Turn on multi-factor authentication (MFA) for your root user.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html#enable-virt-mfa-for-root">Enable a virtual MFA device for your AWS account root user (console)</a> in the <em>IAM User Guide</em>.</p> 
+</li></ol></div><div class="procedure"><h6>Create an administrative user</h6><ul><li>
+ <p>For your daily administrative tasks, grant administrative access to an administrative user in AWS IAM Identity Center.</p>
+ <p>For instructions, see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html">Getting started</a> in the <em>AWS IAM Identity Center User Guide</em>.</p>
+</li></ul></div><div class="procedure"><h6>Sign in as the administrative user</h6><ul><li>
+
+<p>To sign in with your IAM Identity Center user, use the sign-in URL that was sent to your email address when you created the IAM Identity Center user.</p>
+
+<p>For help signing in using an IAM Identity Center user, see <a href="https://docs.aws.amazon.com/signin/latest/userguide/iam-id-center-sign-in-tutorial.html">Signing in to the AWS access portal</a> in the <em>AWS Sign-In User Guide</em>.</p>
+</li></ul></div></awsui-expandable-section><awsui-expandable-section variant="container" header="Install the AWS Command Line Interface" id="install_aws_cli" expanded="false"><p>If you have not yet installed the AWS Command Line Interface, follow the steps at  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">Installing or updating the latest version of the AWS CLI</a> 
+          to install it.</p><p>The tutorial requires a command line terminal or shell to run commands. In Linux and macOS, use your preferred shell and package manager.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>In Windows, some Bash CLI commands that you commonly use with Lambda (such as <code class="code">zip</code>) are not supported by the operating system's built-in terminals. 
+            To get a Windows-integrated version of Ubuntu and Bash, <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" rel="noopener noreferrer" target="_blank"><span>install the Windows Subsystem for Linux</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.
+          </p></div></div></awsui-expandable-section></div>
+   
+    <h2 id="with-sqs-create-execution-role">Create the execution role</h2>
+      <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sqs_tut_steps1.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 1 create the execution role&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>An <a href="./lambda-intro-execution-role.html">execution role</a> is an AWS Identity and Access Management (IAM) role that grants a Lambda function permission to access AWS services and resources. To allow 
+      your function to read items from Amazon SQS, attach the <b>AWSLambdaSQSQueueExecutionRole</b> permissions policy.</p>
+    <div class="procedure"><h6>To create an execution role and attach an Amazon SQS permissions policy</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+      </li><li>
+        <p>Choose <b>Create role</b>.</p>
+      </li><li>
+        <p>For <b>Trusted entity type</b>, choose <b>AWS service</b>.</p>
+      </li><li>
+        <p>For <b>Use case</b>, choose <b>Lambda</b>.</p>
+      </li><li>
+        <p>Choose <b>Next</b>.</p>
+      </li><li>
+        <p>In the <b>Permissions policies</b> search box, enter <code class="userinput">AWSLambdaSQSQueueExecutionRole</code>.</p>
+      </li><li>
+        <p>Select the <b>AWSLambdaSQSQueueExecutionRole</b> policy, and
+          then choose <b>Next</b>.</p>
+      </li><li>
+        <p>Under <b>Role details</b>, for <b>Role name</b>, enter
+          <code class="userinput">lambda-sqs-role</code>, then choose <b>Create role</b>.</p>
+      </li></ol></div>
+    <p>After role creation, note down the Amazon Resource Name (ARN) of your execution role. You'll
+      need it in later steps.</p>
+   
+    <h2 id="with-sqs-create-function">Create the function</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sqs_tut_steps2.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 2 create the Lambda function&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Create a Lambda function that processes your Amazon SQS messages. The function code logs the body of
+      the Amazon SQS message to CloudWatch Logs.</p>
+    <p>This tutorial uses the Node.js 18.x runtime, but we've also provided
+      example code in other runtime languages. You can select the tab in the following box to see code
+      for the runtime you're interested in. The JavaScript code you'll use in this step is in the first
+      example shown in the <b>JavaScript</b> tab.</p>
+    <awsdocs-tabs><dl style="display: none">
+    <dt>.NET</dt><dd tab-id=".net">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">AWS SDK for .NET</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/tree/main/integration-sqs-to-lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Consuming an SQS event with Lambda using .NET.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="csharp ">using Amazon.Lambda.Core;
+using Amazon.Lambda.SQSEvents;
+
+
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+
+namespace SqsIntegrationSampleCode
+<span>{</span>
+    public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
+    <span>{</span>
+        foreach (var message in evnt.Records)
+        <span>{</span>
+            await ProcessMessageAsync(message, context);
+        }
+
+        context.Logger.LogInformation("done");
+    }
+
+    private async Task ProcessMessageAsync(SQSEvent.SQSMessage message, ILambdaContext context)
+    <span>{</span>
+        try
+        <span>{</span>
+            context.Logger.LogInformation($"Processed message <span>{</span>message.Body}");
+
+            // TODO: Do interesting work based on the new message
+            await Task.CompletedTask;
+        }
+        catch (Exception e)
+        <span>{</span>
+            //You can use Dead Letter Queue to handle failures. By configuring a Lambda DLQ.
+            context.Logger.LogError($"An error occurred");
+            throw;
+        }
+
+    }
+}
+
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+    <dt>JavaScript</dt><dd tab-id="javascript">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term">SDK for JavaScript (v2)</span></b></dt>
+        <dd>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>
+                    There's more on GitHub. Find the complete example and learn how to set up and run in the
+                    <a href="https://github.com/aws-samples/serverless-snippets/blob/main/integration-sqs-to-lambda#code-examples" rel="noopener noreferrer" target="_blank"><span>Serverless examples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> repository.
+                </p></div></div>
+             
+                <p>Consuming an SQS event with Lambda using JavaScript.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">exports.handler = async (event, context) =&gt; <span>{</span>
+  for (const message of event.Records) <span>{</span>
+    await processMessageAsync(message);
+  }
+  console.info("done");
+};
+
+async function processMessageAsync(message) <span>{</span>
+  try <span>{</span>
+    console.log(`Processed message $<span>{</span>message.body}`);
+    // TODO: Do interesting work based on the new message
+    await Promise.resolve(1); //Placeholder for actual async work
+  } catch (err) <span>{</span>
+    console.error("An error occurred");
+    throw err;
+  }
+}
+
+</code></pre>
+             
+             
+                <p>Consuming an SQS event with Lambda using TypeScript.</p>
+                
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="javascript ">import <span>{</span> SQSEvent, Context, SQSHandler, SQSRecord } from "aws-lambda";
+
+export const functionHandler: SQSHandler = async (
+  event: SQSEvent,
+  context: Context
+): Promise&lt;void&gt; =&gt; <span>{</span>
+  for (const message of event.Records) <span>{</span>
+    await processMessageAsync(message);
+  }
+  console.info("done");
+};
+
+async function processMessageAsync(message: SQSRecord): Promise&lt;any&gt; <span>{</span>
+  try <span>{</span>
+    console.log(`Processed message $<span>{</span>message.body}`);
+    // TODO: Do interesting work based on the new message
+    await Promise.resolve(1); //Placeholder for actual async work
+  } catch (err) <span>{</span>
+    console.error("An error occurred");
+    throw err;
+  }
+}
+
+</code></pre>
+             
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs>
+    <div class="procedure"><h6>To create a Node.js Lambda function</h6><ol><li>
+        <p>Create a directory for the project, and then switch to that directory.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mkdir sqs-tutorial
+cd sqs-tutorial</code></pre>
+      </li><li>
+        <p>Copy the sample JavaScript code into a new file named <code>index.js</code>.</p>
+      </li><li>
+        <p>Create a deployment package using the following <code class="code">zip</code> command.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">zip function.zip index.js</code></code></pre>
+      </li><li>
+        <p>Create a Lambda function using the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/create-function.html" rel="noopener noreferrer" target="_blank"><span>create-function</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>
+          AWS CLI command. For the <code class="code">role</code> parameter, enter the ARN of the execution role
+          that you created earlier.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-function --function-name ProcessSQSRecord \
+--zip-file fileb://function.zip --handler index.handler --runtime nodejs18.x \
+<code class="userinput">--role arn:aws:iam::<code class="replaceable">111122223333</code>:role/lambda-sqs-role</code></code></code></pre>
+      </li></ol></div>
+   
+    <h2 id="with-sqs-create-test-function">Test the function</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sqs_tut_steps3.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 3 test the Lambda function&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Invoke your Lambda function manually using the <code class="code">invoke</code> AWS CLI command and a sample Amazon SQS
+      event.</p>
+    <div class="procedure"><h6>To invoke the Lambda function with a sample event</h6><ol><li>
+        <p>Save the following JSON as a file named <code>input.json</code>. This JSON simulates an event that Amazon SQS might send to your Lambda function, where
+            <code class="code">"body"</code> contains the actual message from the queue. In this example, the message is <code class="code">"test"</code>.</p> 
+        <div class="example"><h6>Example  Amazon SQS event</h6><div class="example-contents"><p>This is a test event—you don't need to change the message or the account number.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Records": [
+        <span>{</span>
+            "messageId": "059f36b4-87a3-44ab-83d2-661975830a7d",
+            "receiptHandle": "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...",
+            "body": "test",
+            "attributes": <span>{</span>
+                "ApproximateReceiveCount": "1",
+                "SentTimestamp": "1545082649183",
+                "SenderId": "AIDAIENQZJOLO23YVJ4VO",
+                "ApproximateFirstReceiveTimestamp": "1545082649185"
+            },
+            "messageAttributes": <span>{</span>},
+            "md5OfBody": "098f6bcd4621d373cade4e832627b4f6",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:us-east-1:111122223333:my-queue",
+            "awsRegion": "us-east-1"
+        }
+    ]
+}</code></pre></div></div>
+      </li><li>
+        <p>Run the following <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/invoke.html" rel="noopener noreferrer" target="_blank"><span>invoke</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> AWS CLI command. This command returns CloudWatch logs in the response. For more information about retrieving logs, see <a href="./monitoring-cloudwatchlogs.html#monitoring-cloudwatchlogs-cli">Accessing logs with the AWS CLI</a>.</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda invoke --function-name ProcessSQSRecord --payload file://input.json out --log-type Tail \
+--query 'LogResult' --output text --cli-binary-format raw-in-base64-out | base64 --decode</code></code></pre>
+        <p>The <b>cli-binary-format</b> option is required if you're using AWS CLI version 2. To make this the default setting, run <code class="code">aws configure set cli-binary-format raw-in-base64-out</code>. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html#cli-configure-options-list">AWS CLI supported global command line options</a>.</p>
+        </li><li>
+        <p>Find the <code class="code">INFO</code> log in the response. This is where the Lambda function logs the message body.
+          You should see logs that look like this:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">2023-09-11T22:45:04.271Z	348529ce-2211-4222-9099-59d07d837b60	INFO	Processed message test
+2023-09-11T22:45:04.288Z	348529ce-2211-4222-9099-59d07d837b60	INFO	done</code></pre>
+      </li></ol></div>
+   
+    <h2 id="with-sqs-configure-sqs">Create an Amazon SQS queue</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sqs_tut_steps4.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 4 create the Amazon SQS queue&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Create an Amazon SQS queue that the Lambda function can use as an event source.</p>
+    <div class="procedure"><h6>To create a queue</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/sqs" rel="noopener noreferrer" target="_blank"><span>Amazon SQS console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li>
+        <p>Choose <b>Create queue</b>.</p>
+      </li><li>
+        <p>Enter a name for the queue. Leave all other options at the default settings.</p>
+      </li><li>
+        <p>Choose <b>Create queue</b>.</p>
+      </li></ol></div>
+    <p>After creating the queue, note down its ARN. You need this in the next step when you
+      associate the queue with your Lambda function.</p>
+   
+    <h2 id="with-sqs-attach-notification-configuration">Configure the event source</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sqs_tut_steps5.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 5 configure event source mapping&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <p>Connect the Amazon SQS queue to your Lambda function by creating an <a href="./invocation-eventsourcemapping.html">event source mapping</a>. The event source mapping reads the Amazon SQS queue and invokes your Lambda function when a new message is added.</p>
+    <p>To create a mapping between your Amazon SQS queue and your Lambda function, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/create-event-source-mapping.html" rel="noopener noreferrer" target="_blank"><span>create-event-source-mapping</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> AWS CLI command. Example:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda create-event-source-mapping --function-name ProcessSQSRecord  --batch-size 10 \
+--event-source-arn arn:aws:sqs:<code class="replaceable">us-east-1:111122223333:my-queue</code></code></code></pre>
+    <p>To get a list of your event source mappings, use the <a href="https://awscli.amazonaws.com/v2/documentation/api/2.1.29/reference/lambda/list-event-source-mappings.html" rel="noopener noreferrer" target="_blank"><span>list-event-source-mappings</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> command. Example:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda list-event-source-mappings --function-name ProcessSQSRecord</code></code></pre>
+   
+    <h2 id="with-sqs-test-message">Send a test message</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sqs_tut_steps6.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 6 send test message&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <div class="procedure"><h6>To send an Amazon SQS message to the Lambda function</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/sqs" rel="noopener noreferrer" target="_blank"><span>Amazon SQS console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li>
+        <p>Choose the queue that you created earlier.</p>
+      </li><li>
+        <p>Choose <b>Send and receive messages</b>.</p>
+      </li><li>
+        <p>Under <b>Message body</b>, enter a test message, such as "this is a test message."</p>
+      </li><li>
+        <p>Choose <b>Send message</b>.</p>
+      </li></ol></div>
+    <p>Lambda polls the queue for updates. When there is a new message, Lambda invokes your function with this new
+      event data from the queue. If the function handler returns without exceptions, Lambda considers the message successfully processed and
+      begins reading new messages in the queue. After successfully processing a message, Lambda automatically deletes it
+      from the queue. If the handler throws an exception, Lambda considers the batch of messages not successfully
+      processed, and Lambda invokes the function with the same batch of messages.</p>
+     
+    <h2 id="with-sqs-check-logs">Check the CloudWatch logs</h2>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sqs_tut_steps7.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Step 6 send test message&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    <div class="procedure"><h6>To confirm that the function processed the message</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose the <b>ProcessSQSRecord</b> function.</p>
+      </li><li>
+        <p>Choose <b>Monitor</b>.</p>
+      </li><li>
+         <p>Choose <b>View CloudWatch logs</b>.</p>
+      </li><li>
+        <p>In the CloudWatch console, choose the <b>Log stream</b> for the function.</p>
+      </li><li>
+        <p>Find the <code class="code">INFO</code> log. This is where the Lambda function logs the message body. You should see the message that you sent from the Amazon SQS queue. Example:</p>
+        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">2023-09-11T22:49:12.730Z b0c41e9c-0556-5a8b-af83-43e59efeec71 INFO <code class="userinput">Processed message this is a test message.</code></code></pre>
+      </li></ol></div>
+   
+    <h2 id="cleanup">Clean up your resources</h2>
+     
+    <p>You can now delete the resources that you created for this tutorial, unless you want to retain them. By deleting AWS resources that you're no longer using, you prevent unnecessary charges to your AWS account.</p>
+    
+    <div class="procedure"><h6>To delete the execution role</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/iam/home#/roles" rel="noopener noreferrer" target="_blank"><span>Roles page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the IAM console.</p>
+  </li><li>
+    <p>Select the execution role that you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter the name of the role in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+    
+    <div class="procedure"><h6>To delete the Lambda function</h6><ol><li>
+    <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+  </li><li>
+    <p>Select the function that you created.</p>
+  </li><li>
+    <p>Choose <b>Actions</b>, <b>Delete</b>.</p>
+  </li><li>
+    <p>Type <code class="userinput">delete</code> in the text input field and choose <b>Delete</b>.</p>
+  </li></ol></div>
+     
+    <div class="procedure"><h6>To delete the Amazon SQS queue</h6><ol><li>
+    <p>Sign in to the AWS Management Console and open the Amazon SQS console at
+         <a href="https://console.aws.amazon.com/sqs/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/sqs/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  </li><li>
+    <p>Select the queue you created.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li><li>
+    <p>Enter <code class="userinput">confirm</code> in the text input field.</p>
+  </li><li>
+    <p>Choose <b>Delete</b>.</p>
+  </li></ol></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./with-sqs.html">SQS</div><div id="next" class="next-link" accesskey="n" href="./with-sqs-cross-account-example.html">SQS cross-account tutorial</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs-example.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/with-sqs-example.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

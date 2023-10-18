@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Converting Lambda Telemetry API Event objects to OpenTelemetry Spans - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="telemetry-otel-spans" /><meta name="default_state" content="telemetry-otel-spans" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-otel-spans.html" /><meta name="description" content="Learn how to convert Lambda Telemetry API Event objects to OTel Spans using Span Events or Child Spans." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-otel-spans.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/telemetry-otel-spans.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/telemetry-otel-spans.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/telemetry-otel-spans.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/telemetry-otel-spans.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-otel-spans.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-otel-spans.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/telemetry-otel-spans.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/telemetry-otel-spans.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/telemetry-otel-spans.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/telemetry-otel-spans.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/telemetry-otel-spans.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/telemetry-otel-spans.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/telemetry-otel-spans.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/telemetry-otel-spans.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/telemetry-otel-spans.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/telemetry-otel-spans.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/telemetry-otel-spans.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/telemetry-otel-spans.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/telemetry-otel-spans.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/telemetry-otel-spans.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/telemetry-otel-spans.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Converting Lambda Telemetry API Event objects to OpenTelemetry Spans" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Converting Lambda Telemetry API Event objects to OpenTelemetry Spans - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#telemetry-otel-spans" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-otel-spans.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-otel-spans.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-otel-spans.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,Lambda extensions,Lambda function monitoring,Lambda extensions partners,Lambda external extensions,Lambda internal extensions,Telemetry API,Lambda telemetry API,Lambda extensions telemetry,Lambda runtime telemetry,Lambda telemetry subscribe,Telemetry API OTel,Telemetry API Otel Spans,Lambda telemetry OTel,Lambda Event to OTel,Lambda telemetry to OTel" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Lambda extensions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-extensions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda Telemetry API",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/telemetry-api.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Converting Lambda Telemetry API Event objects to OpenTelemetry Spans",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/telemetry-api.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#telemetry-otel-spans" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#telemetry-otel-span-events">Map to OTel Spans with Span Events</a><a href="#telemetry-otel-child-spans">Map to OTel Spans with Child Spans</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="telemetry-otel-spans">Converting Lambda Telemetry API <code class="code">Event</code> objects to OpenTelemetry
+      Spans</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The AWS Lambda Telemetry API schema is semantically compatible with OpenTelemetry (OTel). This means
+    that you can convert your AWS Lambda Telemetry API <code class="code">Event</code> objects to OpenTelemetry (OTel)
+    Spans. When converting, you shouldn't map a single <code class="code">Event</code> object to a single OTel Span. Instead, you
+    should present all three events related to a lifecycle phase in a single OTel Span. For example, the <code class="code">start</code>,
+    <code class="code">runtimeDone</code>, and <code class="code">runtimeReport</code> events represent a single function invocation. Present
+    all three of these events as a single OTel Span.</p><p>You can convert your events using Span Events or Child (nested) Spans. The tables on this page describe the
+    mappings between Telemetry API schema properties and OTel Span properties for both approaches. For more information
+    about OTel Spans, see <a href="https://opentelemetry.io/docs/reference/specification/trace/api/#span" rel="noopener noreferrer" target="_blank"><span>Span</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the <b>Tracing API</b> page of the OpenTelemetry Docs website.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#telemetry-otel-span-events">Map to OTel Spans with Span Events</a></li><li><a href="#telemetry-otel-child-spans">Map to OTel Spans with Child Spans</a></li></ul></div>
+    <h2 id="telemetry-otel-span-events">Map to OTel Spans with Span Events</h2>
+    <p>In the following tables, <code class="code">e</code> represents the event coming from the telemetry
+      source.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aad105c45c51b9b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Mapping the <code class="code">*Start</code> events</div></th></tr>
+          <tr>
+            <th>OpenTelemetry</th>
+            <th>Lambda Telemetry API schema</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Name</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Your extension generates this value based on the <code class="code">type</code> field.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.StartTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.time</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.EndTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>N/A, because the event hasn't completed yet.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Kind</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Set to <code class="code">Server</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Status</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Set to <code class="code">Unset</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.TraceId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the AWS X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">TraceId</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.ParentId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">Parent</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.tracing.spanId</code> if available. Otherwise, generate a new
+                <code class="code">SpanId</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanContext.TraceState</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>N/A for an X-Ray trace context.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanContext.TraceFlags</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">Sampled</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Attributes</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Your extension can add any custom values here.</p>
+            </td>
+          </tr>
+        </table></div></div>
+    <div class="table-container"><div class="table-contents"><table id="w917aad105c45c51b9b7"><thead><tr><th class="table-header" colspan="100"><div class="title">Mapping the <code class="code">*RuntimeDone</code> events</div></th></tr>
+          <tr>
+            <th>OpenTelemetry</th>
+            <th>Lambda Telemetry API schema</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Name</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Your extension generates the value based on the <code class="code">type</code> field.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.StartTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.time</code> from the matching <code class="code">*Start</code> event.</p>
+              <p>Alternatively, use <code class="code">e.time - e.metrics.durationMs</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.EndTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>N/A, because the event hasn't completed yet.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Kind</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Set to <code class="code">Server</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Status</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>If <code class="code">e.status</code> doesn't equal <code class="code">success</code>, then set to <code class="code">Error</code>.</p>
+              <p>Otherwise, set to <code class="code">Ok</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Events[]</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.spans[]</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Events[i].Name</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.spans[i].name</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Events[i].Time</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.spans[i].start</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.TraceId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the AWS X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">TraceId</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.ParentId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">Parent</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use the same <code class="code">SpanId</code> from the <code class="code">*Start</code> event. If unavailable, then use
+                  <code class="code">e.tracing.spanId</code>, or generate a new <code class="code">SpanId</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanContext.TraceState</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>N/A for an X-Ray trace context.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanContext.TraceFlags</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">Sampled</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Attributes</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Your extension can add any custom values here.</p>
+            </td>
+          </tr>
+        </table></div></div>
+    <div class="table-container"><div class="table-contents"><table id="w917aad105c45c51b9b9"><thead><tr><th class="table-header" colspan="100"><div class="title">Mapping the <code class="code">*Report</code> events</div></th></tr>
+          <tr>
+            <th>OpenTelemetry</th>
+            <th>Lambda Telemetry API schema</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Name</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Your extension generates the value based on the <code class="code">type</code> field.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.StartTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.time</code> from the matching <code class="code">*Start</code> event.</p>
+              <p>Alternatively, use <code class="code">e.time - e.metrics.durationMs</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.EndTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.time</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Kind</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Set to <code class="code">Server</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Status</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use the same value as the <code class="code">*RuntimeDone</code> event.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.TraceId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the AWS X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">TraceId</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.ParentId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">Parent</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use the same <code class="code">SpanId</code> from the <code class="code">*Start</code> event. If unavailable, then use
+                  <code class="code">e.tracing.spanId</code>, or generate a new <code class="code">SpanId</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanContext.TraceState</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>N/A for an X-Ray trace context.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanContext.TraceFlags</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">Sampled</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Attributes</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Your extension can add any custom values here.</p>
+            </td>
+          </tr>
+        </table></div></div>
+   
+    <h2 id="telemetry-otel-child-spans">Map to OTel Spans with Child Spans</h2>
+    <p>The following table describes how to convert Lambda Telemetry API events into OTel Spans with Child (nested)
+      Spans for <code class="code">*RuntimeDone</code> Spans. For <code class="code">*Start</code> and <code class="code">*Report</code> mappings, refer to the
+      tables in <a href="#telemetry-otel-span-events">Map to OTel Spans with Span Events</a>, as they're the same for Child Spans. In this table,
+        <code class="code">e</code> represents the event coming from the telemetry source.</p>
+    <div class="table-container"><div class="table-contents"><table id="w917aad105c45c51c11b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Mapping the <code class="code">*RuntimeDone</code> events</div></th></tr>
+          <tr>
+            <th>OpenTelemetry</th>
+            <th>Lambda Telemetry API schema</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Name</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Your extension generates the value based on the <code class="code">type</code> field.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.StartTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.time</code> from the matching <code class="code">*Start</code> event.</p>
+              <p>Alternatively, use <code class="code">e.time - e.metrics.durationMs</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.EndTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>N/A, because the event hasn't completed yet.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Kind</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Set to <code class="code">Server</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Status</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>If <code class="code">e.status</code> doesn't equal <code class="code">success</code>, then set to <code class="code">Error</code>.</p>
+              <p>Otherwise, set to <code class="code">Ok</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.TraceId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the AWS X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">TraceId</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.ParentId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">Parent</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use the same <code class="code">SpanId</code> from the <code class="code">*Start</code> event. If unavailable, then use
+                  <code class="code">e.tracing.spanId</code>, or generate a new <code class="code">SpanId</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanContext.TraceState</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>N/A for an X-Ray trace context.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.SpanContext.TraceFlags</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Parse the X-Ray header found in <code class="code">e.tracing.value</code>, then use the <code class="code">Sampled</code>
+                value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">Span.Attributes</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Your extension can add any custom values here.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].Name</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.spans[i].name</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].StartTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.spans[i].start</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].EndTime</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use <code class="code">e.spans[i].start + e.spans[i].durations</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].Kind</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Same as parent <code class="code">Span.Kind</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].Status</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Same as parent <code class="code">Span.Status</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].TraceId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Same as parent <code class="code">Span.TraceId</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].ParentId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Use parent <code class="code">Span.SpanId</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].SpanId</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Generate a new <code class="code">SpanId</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].SpanContext.TraceState</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>N/A for an X-Ray trace context.</p>
+            </td>
+          </tr>
+          <tr>
+            <td tabindex="-1">
+              <p><code class="code">ChildSpan[i].SpanContext.TraceFlags</code></p>
+            </td>
+            <td tabindex="-1">
+              <p>Same as parent <code class="code">Span.SpanContext.TraceFlags</code>.</p>
+            </td>
+          </tr>
+        </table></div></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./telemetry-schema-reference.html">Event schema reference</div><div id="next" class="next-link" accesskey="n" href="./runtimes-logs-api.html">Logs API</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-otel-spans.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/telemetry-otel-spans.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

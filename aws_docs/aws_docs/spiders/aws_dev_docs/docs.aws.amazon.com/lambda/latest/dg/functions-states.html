@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda function states - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="functions-states" /><meta name="default_state" content="functions-states" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html" /><meta name="description" content="Lambda includes a state field in the function configuration for all functions to indicate when your function is ready to invoke. State provides information about the current status of the function, including whether you can successfully invoke the function. Function states do not change the behavior of function invocations or how your function runs the code. Function states include:" /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/functions-states.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/functions-states.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/functions-states.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/functions-states.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/functions-states.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/functions-states.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/functions-states.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/functions-states.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/functions-states.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/functions-states.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/functions-states.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/functions-states.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/functions-states.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/functions-states.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/functions-states.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/functions-states.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/functions-states.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/functions-states.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda function states" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda function states - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#functions-states" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/functions-states.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/functions-states.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/functions-states.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,invoke,trigger,kick off function,start function,send request to function,event source mapping" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Invoking Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda function states",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#functions-states" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#functions-states-updating">Function states while updating</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="functions-states">Lambda function states</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Lambda includes a state field in the function configuration for all functions to indicate when your function is ready to invoke. <code class="code">State</code> provides information about the current status of the function, including whether you can successfully invoke the function. 
+    Function states do not change the behavior of function invocations or how your function runs the code. Function states include:</p><div class="itemizedlist">
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><code class="code">Pending</code> – After Lambda creates the function, it sets the state to pending. While in pending state, Lambda attempts to create or configure resources for the function, such as VPC or EFS resources. 
+        Lambda does not invoke a function during pending state. Any invocations or other API actions that operate on the function will fail.</p>
+    </li><li class="listitem">
+      <p><code class="code">Active</code> – Your function transitions to active state after Lambda completes resource configuration and provisioning. 
+        Functions can only be successfully invoked while active.</p>
+    </li><li class="listitem">
+      <p><code class="code">Failed</code> – Indicates that resource configuration or provisioning encountered an error.</p>
+    </li><li class="listitem">
+      <p><code class="code">Inactive</code> – A function becomes inactive when it has been idle long enough for Lambda to reclaim the external resources that were configured for it. 
+        When you try to invoke a function that is inactive, the invocation fails and Lambda sets the function to pending state until the function resources are recreated. 
+        If Lambda fails to recreate the resources, the function is set to the inactive state.</p>
+    </li></ul></div><p>If you are using SDK-based automation workflows or calling Lambda’s service APIs directly, ensure that you check a function's state before invocation to verify that it is active. 
+    You can do this with the Lambda API action <a href="./API_GetFunction.html">GetFunction</a>, or by configuring a waiter using the 
+    <a href="https://github.com/aws/aws-sdk-java-v2" rel="noopener noreferrer" target="_blank"><span>AWS SDK for Java 2.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda get-function --function-name my-function --query 'Configuration.[State, LastUpdateStatus]'</code></code></pre><p>You should see the following output:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">[
+ "Active",
+ "Successful" 
+]</code></pre><p>Functions have two other attributes, <code class="code">StateReason</code> and <code class="code">StateReasonCode</code>. 
+    These provide information and context about the function’s state when it is not active for troubleshooting issues.</p><p>The following operations fail while function creation is pending:</p><div class="itemizedlist">
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="./API_Invoke.html">Invoke</a></p>
+    </li><li class="listitem">
+      <p><a href="./API_UpdateFunctionCode.html">UpdateFunctionCode</a></p>
+    </li><li class="listitem">
+      <p><a href="./API_UpdateFunctionConfiguration.html">UpdateFunctionConfiguration</a></p>
+    </li><li class="listitem">
+      <p><a href="./API_PublishVersion.html">PublishVersion</a></p>
+    </li></ul></div>
+    <h2 id="functions-states-updating">Function states while updating</h2>  
+    <p>Lambda provides additional context for functions undergoing updates with the <code class="code">LastUpdateStatus</code> attribute, which can have the following statuses:</p>
+    <div class="itemizedlist">
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">InProgress</code> – An update is happening on an existing function. While a function update is in progress, 
+          invocations go to the function’s previous code and configuration.</p>
+      </li><li class="listitem">
+        <p><code class="code">Successful</code> – The update has completed. Once Lambda finishes the update, this stays set until a further update.</p>
+      </li><li class="listitem">
+        <p><code class="code">Failed</code> – The function update has failed. Lambda aborts the update and the function’s previous code and configuration remain available.</p>
+      </li></ul></div>
+  <div class="example"><div class="example-contents"><p>The following is the result of <code class="code">get-function-configuration</code> on a function undergoing an update.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "FunctionName": "my-function",
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function",
+    "Runtime": "nodejs18.x",
+    "VpcConfig": <span>{</span>
+        "SubnetIds": [
+            "subnet-071f712345678e7c8",
+            "subnet-07fd123456788a036",
+            "subnet-0804f77612345cacf"
+        ],
+        "SecurityGroupIds": [
+            "sg-085912345678492fb"
+        ],
+        "VpcId": "vpc-08e1234569e011e83"
+    },
+    <code class="userinput">"State": "Active",
+    "LastUpdateStatus": "InProgress"</code>,
+    ...
+}</code></pre></div></div>
+    <p><a href="./API_FunctionConfiguration.html">FunctionConfiguration</a> has two other attributes, <code class="code">LastUpdateStatusReason</code> and <code class="code">LastUpdateStatusReasonCode</code>, 
+      to help troubleshoot issues with updating.</p>
+  <p>The following operations fail while an asynchronous update is in progress:</p>
+  <div class="itemizedlist">
+     
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="./API_UpdateFunctionCode.html">UpdateFunctionCode</a></p>
+    </li><li class="listitem">
+      <p><a href="./API_UpdateFunctionConfiguration.html">UpdateFunctionConfiguration</a></p>
+    </li><li class="listitem">
+      <p><a href="./API_PublishVersion.html">PublishVersion</a></p>
+    </li><li class="listitem">
+      <p><a href="./API_TagResource.html">TagResource</a></p>
+    </li></ul></div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./invocation-eventfiltering.html">Event filtering</div><div id="next" class="next-link" accesskey="n" href="./invocation-retries.html">Error handling</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/functions-states.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/functions-states.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

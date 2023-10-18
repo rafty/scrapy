@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Asynchronous invocation - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="invocation-async" /><meta name="default_state" content="invocation-async" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html" /><meta name="description" content="When you invoke a Lambda function asynchronously, Lambda places the request in a queue and returns a success response without additional information. A separate process dequeues requests and invokes your function synchronously." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/invocation-async.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/invocation-async.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/invocation-async.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/invocation-async.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/invocation-async.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/invocation-async.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/invocation-async.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/invocation-async.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/invocation-async.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/invocation-async.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-async.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-async.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/invocation-async.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/invocation-async.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/invocation-async.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/invocation-async.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/invocation-async.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/invocation-async.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Asynchronous invocation" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Asynchronous invocation - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#invocation-async" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-async.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-async.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-async.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,invoke,trigger,kick off function,start function,send request to function,event source mapping,queue events,set up Lambda function to process later,lambda function delayed start,invoke Lambda with SNS,invoke Lambda with S3" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Invoking Lambda functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Asynchronous invocation",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#invocation-async" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#async-overview">How Lambda handles asynchronous invocations</a><a href="#invocation-async-errors">Configuring error handling for asynchronous invocation</a><a href="#invocation-async-destinations">Configuring destinations for asynchronous invocation</a><a href="#invocation-async-api">Asynchronous invocation configuration API</a><a href="#invocation-dlq">Dead-letter queues</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="invocation-async">Asynchronous invocation</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Several AWS services, such as Amazon Simple Storage Service (Amazon S3) and Amazon Simple Notification Service (Amazon SNS), invoke functions asynchronously to
+    process events. When you invoke a function asynchronously, you don't wait for a response from the function code. You
+    hand off the event to Lambda and Lambda handles the rest. You can configure how Lambda handles errors, and can send
+    invocation records to a downstream resource such as Amazon Simple Queue Service (Amazon SQS) or Amazon EventBridge (EventBridge) to chain together components of your application.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#async-overview">How Lambda handles asynchronous invocations</a></li><li><a href="#invocation-async-errors">Configuring error handling for asynchronous invocation</a></li><li><a href="#invocation-async-destinations">Configuring destinations for asynchronous invocation</a></li><li><a href="#invocation-async-api">Asynchronous invocation configuration API</a></li><li><a href="#invocation-dlq">Dead-letter queues</a></li></ul></div>
+    <h2 id="async-overview">How Lambda handles asynchronous invocations</h2>
+    <p>The following diagram shows clients invoking a Lambda function asynchronously. Lambda queues the events before
+      sending them to the function.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/features-async.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Clients invoke a function asynchronously. Lambda queues the events before sending them to the&#xA;          function.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    
+    <p>For asynchronous invocation, Lambda places the event in a queue and returns a success response without
+      additional information. A separate process reads events from the queue and sends them to your function. To invoke
+      a function asynchronously, set the invocation type parameter to <code class="code">Event</code>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda invoke \
+  --function-name my-function  \
+      --invocation-type Event \
+          --cli-binary-format raw-in-base64-out \
+              --payload '<span>{</span> "key": "value" }' response.json</code>
+  </code></pre>
+    <p>The <b>cli-binary-format</b> option is required if you're using AWS CLI version 2. To make this the default setting, run <code class="code">aws configure set cli-binary-format raw-in-base64-out</code>. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html#cli-configure-options-list">AWS CLI supported global command line options</a>.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "StatusCode": 202
+}</code></pre>
+    
+    <p>The output file (<code class="code">response.json</code>) doesn't contain any information, but is still created when you
+      run this command. If Lambda isn't able to add the event to the queue, the error message appears in the command
+      output.</p>
+    
+    <p>Lambda manages the function's asynchronous event queue and attempts to retry on errors. If the function returns
+      an error, Lambda attempts to run it two more times, with a one-minute wait between the first two attempts, and two
+      minutes between the second and third attempts. Function errors include errors returned by the function's code and
+      errors returned by the function's runtime, such as timeouts.</p>
+    
+    <p>If the function doesn't have enough concurrency available to process all events, additional requests are
+      throttled. For throttling errors (429) and system errors (500-series), Lambda returns the event to the queue and
+      attempts to run the function again for up to 6 hours. The retry interval increases exponentially from 1 second
+      after the first attempt to a maximum of 5 minutes. If the queue contains many entries, Lambda increases the retry
+      interval and reduces the rate at which it reads events from the queue.</p>
+    
+    <p>Even if your function doesn't return an error, it's possible for it to receive the same event from Lambda
+      multiple times because the queue itself is eventually consistent. If the function can't keep up with incoming
+      events, events might also be deleted from the queue without being sent to the function. Ensure that your function
+      code gracefully handles duplicate events, and that you have enough concurrency available to handle all
+      invocations.</p>
+    
+    <p>When the queue is very long, new events might age out before Lambda has a chance to send them to your function.
+      When an event expires or fails all processing attempts, Lambda discards it. You can <a href="#invocation-async-errors">configure error handling</a> for a function to reduce the number of retries
+      that Lambda performs, or to discard unprocessed events more quickly.</p>
+    <p>You can also configure Lambda to send an invocation record to another service. Lambda supports the following
+        <a href="#invocation-async-destinations">destinations</a> for asynchronous invocation. Note that SQS FIFO queues and 
+    SNS FIFO topics are not supported.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Amazon SQS</b> – A standard SQS queue.</p>
+      </li><li class="listitem">
+        <p><b>Amazon SNS</b> – A standard SNS topic.</p>
+      </li><li class="listitem">
+        <p><b>AWS Lambda</b> – A Lambda function.</p>
+      </li><li class="listitem">
+        <p><b>Amazon EventBridge</b> – An EventBridge event bus.</p>
+      </li></ul></div>
+    <p>The invocation record contains details about the request and response in JSON format. You can configure
+      separate destinations for events that are processed successfully, and events that fail all processing attempts.
+      Alternatively, you can configure a standard Amazon SQS queue or standard Amazon SNS topic as a <a href="#invocation-dlq">dead-letter
+        queue</a> for discarded events. For dead-letter queues, Lambda only sends the content of the event, without
+      details about the response.</p>
+    <p>If Lambda can't send a record to a destination you have configured, it sends a <code class="code">DestinationDeliveryFailures</code> metric to 
+    Amazon CloudWatch. This can happen if your configuration includes an unsupported destination type, such as an Amazon SQS FIFO queue or an Amazon SNS FIFO 
+    topic. Delivery errors can also occur due to permissions errors and size limits. For more information on Lambda invocation metrics, 
+    see <a href="./monitoring-metrics.html#monitoring-metrics-invocation">Invocation metrics</a>.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To prevent a function from triggering, you can set the function's reserved concurrency to zero. When you set
+        reserved concurrency to zero for an asynchronously-invoked function, Lambda begins sending new events to the
+        configured <a href="#invocation-dlq">dead-letter queue</a> or the on-failure <a href="#invocation-async-destinations">event destination</a>, without any retries. To process events that
+        were sent while reserved concurrency was set to zero, you need to consume the events from the dead-letter queue
+        or the on-failure event destination.</p></div></div>
+   
+    <h2 id="invocation-async-errors">Configuring error handling for asynchronous invocation</h2>
+    
+    <p>Use the Lambda console to configure error handling settings on a function, a version, or an alias.</p>
+    <div class="procedure"><h6>To configure error handling</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>Choose <b>Configuration</b> and then choose <b>Asynchronous
+          invocation</b>.</p>
+      </li><li>
+        <p>Under <b>Asynchronous invocation</b>, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>Configure the following settings.</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>Maximum age of event</b> – The maximum amount of time Lambda retains an event
+              in the asynchronous event queue, up to 6 hours.</p>
+          </li><li class="listitem">
+            <p><b>Retry attempts</b> – The number of times Lambda retries when the function
+              returns an error, between 0 and 2.</p>
+          </li></ul></div>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>When an invocation event exceeds the maximum age or fails all retry attempts, Lambda discards it. To retain a
+      copy of discarded events, configure a failed-event destination.</p>
+   
+    <h2 id="invocation-async-destinations">Configuring destinations for asynchronous invocation</h2>
+    
+    <p>To send records of asynchronous invocations to another service, add a destination to your function. You can
+      configure separate destinations for events that fail processing and events that are successfully processed. Like
+      error handling settings, you can configure destinations on a function, a version, or an alias.</p>
+    
+    <p>The following example shows a function that is processing asynchronous invocations. When the function returns
+      a success response or exits without throwing an error, Lambda sends a record of the invocation to an EventBridge event
+      bus. When an event fails all processing attempts, Lambda sends an invocation record to a standard Amazon SQS queue.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/features-destinations.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Lambda sends invocation records to a queue or event bus destination, depending on the result.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    
+    <p>To send events to a destination, your function needs additional permissions. Add a policy with the required
+      permissions to your function's <a href="./lambda-intro-execution-role.html">execution role</a>. Each destination
+      service requires a different permission, as follows:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Amazon SQS</b> – <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html">sqs:SendMessage</a>
+        </p>
+      </li><li class="listitem">
+        <p><b>Amazon SNS</b> – <a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">sns:Publish</a>
+        </p>
+      </li><li class="listitem">
+        <p><b>Lambda</b> – <a href="./API_Invoke.html">InvokeFunction</a> </p>
+      </li><li class="listitem">
+        <p><b>EventBridge</b> – <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html">events:PutEvents</a></p>
+      </li></ul></div>
+    <p>Add destinations to your function in the Lambda console's function visualization.</p>
+    <div class="procedure"><h6>To configure a destination for asynchronous invocation records</h6><ol><li><p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p></li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>Under <b>Function overview</b>, choose <b>Add destination</b>.</p>
+      </li><li>
+        <p>For <b>Source</b>, choose <b>Asynchronous invocation</b>.</p>
+      </li><li>
+        <p>For <b>Condition</b>, choose from the following options:</p>
+        <div class="itemizedlist">
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p><b>On failure</b> – Send a record when the event fails all processing attempts or
+              exceeds the maximum age.</p>
+          </li><li class="listitem">
+            <p><b>On success</b> – Send a record when the function successfully processes an
+              asynchronous invocation.</p>
+          </li></ul></div>
+      </li><li>
+        <p>For <b>Destination type</b>, choose the type of resource that receives the invocation
+          record.</p>
+      </li><li>
+        <p>For <b>Destination</b>, choose a resource.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>When an invocation matches the condition, Lambda sends a JSON document with details about the invocation to the
+      destination.</p>
+      
+      <div class="itemizedlist">
+        <h6>Destination-specific JSON format</h6>
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>For Amazon SQS and Amazon SNS (<code class="code">SnsDestination</code> and <code class="code">SqsDestination</code>), the invocation record is passed as the <code class="code">Message</code> to the destination.</p>
+        </li><li class="listitem">
+          <p>For Lambda (<code class="code">LambdaDestination</code>), the invocation record is passed as the payload to the function.</p>
+        </li><li class="listitem">
+          <p>For EventBridge (<code class="code">EventBridgeDestination</code>), the invocation record is passed as the <code class="code">detail</code> in the <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html">PutEvents</a> call. The value for the <code class="code">source</code> event field is <code class="code">lambda</code>. The value for the <code class="code">detail-type</code> event field is either <em>Lambda Function Invocation Result – Success</em> or <em>Lambda Function Invocation Result – Failure</em>. The <code class="code">resource</code> event field contains the function and destination Amazon Resource Names (ARNs). For other event fields, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/aws-events.html">Amazon EventBridge events</a>.</p>
+        </li></ul></div>
+      <p>The following example shows an invocation record for an event that failed three processing attempts
+      due to a function error.</p>
+    <div class="example"><h6>Example invocation record</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "version": "1.0",
+    "timestamp": "2019-11-14T18:16:05.568Z",
+    "requestContext": <span>{</span>
+        "requestId": "e4b46cbf-b738-xmpl-8880-a18cdf61200e",
+        "functionArn": "arn:aws:lambda:us-east-2:123456789012:function:my-function:$LATEST",
+        "condition": "RetriesExhausted",
+        "approximateInvokeCount": 3
+    },
+    "requestPayload": <span>{</span>
+        "ORDER_IDS": [
+            "9e07af03-ce31-4ff3-xmpl-36dce652cb4f",
+            "637de236-e7b2-464e-xmpl-baf57f86bb53",
+            "a81ddca6-2c35-45c7-xmpl-c3a03a31ed15"
+        ]
+    },
+    "responseContext": <span>{</span>
+        "statusCode": 200,
+        "executedVersion": "$LATEST",
+        "functionError": "Unhandled"
+    },
+    "responsePayload": <span>{</span>
+        "errorMessage": "RequestId: e4b46cbf-b738-xmpl-8880-a18cdf61200e Process exited before completing request"
+    }
+}</code></pre></div></div>
+    <p>The invocation record contains details about the event, the response, and the reason that the record was
+      sent.</p>
+       
+        <h3 id="destinations-tracing">Tracing requests to destinations</h3>
+        <p>You can use X-Ray to see a connected view of each request as it's queued, processed by a Lambda function, and passed to the destination service. When you activate X-Ray tracing for a function or a service that invokes a function, Lambda adds an X-Ray header to the request and passes the header to the destination service. Traces from upstream services are automatically linked to traces from downstream Lambda functions and destination services, creating an end-to-end view of the entire application. For more information about tracing, see <a href="./services-xray.html">Using AWS Lambda with AWS X-Ray</a>.</p>
+       
+   
+    <h2 id="invocation-async-api">Asynchronous invocation configuration API</h2>
+    
+    <p>To manage asynchronous invocation settings with the AWS CLI or AWS SDK, use the following API
+      operations.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_PutFunctionEventInvokeConfig.html">PutFunctionEventInvokeConfig</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_GetFunctionEventInvokeConfig.html">GetFunctionEventInvokeConfig</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_UpdateFunctionEventInvokeConfig.html">UpdateFunctionEventInvokeConfig</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_ListFunctionEventInvokeConfigs.html">ListFunctionEventInvokeConfigs</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/API_DeleteFunctionEventInvokeConfig.html">DeleteFunctionEventInvokeConfig</a></p>
+      </li></ul></div>
+    <p>To configure asynchronous invocation with the AWS CLI, use the <code class="code">put-function-event-invoke-config</code>
+      command. The following example configures a function with a maximum event age of 1 hour and no retries.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda put-function-event-invoke-config --function-name error \
+--maximum-event-age-in-seconds 3600 --maximum-retry-attempts 0</code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "LastModified": 1573686021.479,
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:error:$LATEST",
+    "MaximumRetryAttempts": 0,
+    "MaximumEventAgeInSeconds": 3600,
+    "DestinationConfig": <span>{</span>
+        "OnSuccess": <span>{</span>},
+        "OnFailure": <span>{</span>}
+    }
+}</code></pre>
+    <p>The <code class="code">put-function-event-invoke-config</code> command overwrites any existing configuration on the
+      function, version, or alias. To configure an option without resetting others, use
+        <code class="code">update-function-event-invoke-config</code>. The following example configures Lambda to send a record to a standard
+      SQS queue named <code class="code">destination</code> when an event can't be processed.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-function-event-invoke-config --function-name error \
+--destination-config '<span>{</span>"OnFailure":<span>{</span>"Destination": "arn:aws:sqs:us-east-2:123456789012:destination"}}'</code></code></pre>
+    <p>You should see the following output:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+    "LastModified": 1573687896.493,
+    "FunctionArn": "arn:aws:lambda:us-east-2:123456789012:function:error:$LATEST",
+    "MaximumRetryAttempts": 0,
+    "MaximumEventAgeInSeconds": 3600,
+    "DestinationConfig": <span>{</span>
+        "OnSuccess": <span>{</span>},
+        <code class="userinput">"OnFailure": <span>{</span>
+            "Destination": "arn:aws:sqs:us-east-2:123456789012:destination"
+        }</code>
+    }
+}</code></pre>
+   
+    <h2 id="invocation-dlq">Dead-letter queues</h2>
+    
+    <p>As an alternative to an <a href="#invocation-async-destinations">on-failure destination</a>, you can
+      configure your function with a dead-letter queue to save discarded events for further processing. A dead-letter
+      queue acts the same as an on-failure destination in that it is used when an event fails all processing attempts or
+      expires without being processed. However, a dead-letter queue is part of a function's version-specific
+      configuration, so it is locked in when you publish a version. On-failure destinations also support additional
+      targets and include details about the function's response in the invocation record.</p>
+    
+    <p>To reprocess events in a dead-letter queue, you can set it as an event source for your Lambda function.
+      Alternatively, you can manually retrieve the events.</p>
+    
+    <p>You can choose an Amazon SQS standard queue or Amazon SNS standard topic for your dead-letter queue. FIFO queues and 
+      Amazon SNS FIFO topics are not supported. If you don't have a queue or topic,
+      create one. Choose the target type that matches your use case.</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-create-queue.html">Amazon SQS queue</a> – A queue holds failed events
+          until they're retrieved. Choose an Amazon SQS standard queue if you expect a single entity, such as a Lambda function or CloudWatch
+          alarm, to process the failed event. For more information, see <a href="./with-sqs.html">Using Lambda with Amazon SQS</a>.</p>
+        <p>Create a queue in the <a href="https://console.aws.amazon.com/sqs" rel="noopener noreferrer" target="_blank"><span>Amazon SQS console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/sns/latest/gsg/CreateTopic.html">Amazon SNS topic</a> – A topic relays failed events to
+          one or more destinations. Choose an Amazon SNS standard topic if you expect multiple entities to act on a failed event. For
+          example, you can configure a topic to send events to an email address, a Lambda function, and/or an HTTP
+          endpoint. For more information, see <a href="./with-sns.html">Using AWS Lambda with Amazon SNS</a>.</p>
+        <p>Create a topic in the <a href="https://console.aws.amazon.com/sns/home" rel="noopener noreferrer" target="_blank"><span>Amazon SNS console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      </li></ul></div>
+    
+    <p>To send events to a queue or topic, your function needs additional permissions. Add a policy with the required
+      permissions to your function's <a href="./lambda-intro-execution-role.html">execution role</a>.</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Amazon SQS</b> – <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html">sqs:SendMessage</a>
+        </p>
+      </li><li class="listitem">
+        <p><b>Amazon SNS</b> – <a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">sns:Publish</a>
+        </p>
+      </li></ul></div>
+    
+    <p>If the target queue or topic is encrypted with a customer managed key, the execution role must also be a user
+      in the key's <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">resource-based policy</a>.</p>
+    
+    <p>After creating the target and updating your function's execution role, add the dead-letter queue to your
+      function. You can configure multiple functions to send events to the same target.</p>
+    <div class="procedure"><h6>To configure a dead-letter queue</h6><ol><li> <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p> </li><li>
+        <p>Choose a function.</p>
+      </li><li>
+        <p>Choose <b>Configuration</b> and then choose <b>Asynchronous
+          invocation</b>.</p>
+      </li><li>
+        <p>Under <b>Asynchronous invocation</b>, choose <b>Edit</b>.</p>
+      </li><li>
+        <p>Set <b>DLQ resource</b> to <b>Amazon SQS</b> or <b>Amazon SNS</b>.</p>
+      </li><li>
+        <p>Choose the target queue or topic.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>To configure a dead-letter queue with the AWS CLI, use the <code class="code">update-function-configuration</code>
+      command.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><code class="userinput">aws lambda update-function-configuration --function-name my-function \
+--dead-letter-config TargetArn=<code class="replaceable">arn:aws:sns:us-east-2:123456789012:my-topic</code></code></code></pre>
+    
+    <p>Lambda sends the event to the dead-letter queue as-is, with additional information in attributes. You can use
+      this information to identify the error that the function returned, or to correlate the event with logs or an
+      AWS X-Ray trace.</p>
+    <div class="itemizedlist">
+      <h6>Dead-letter queue message attributes</h6>
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>RequestID</b> (String) – The ID of the invocation request. Request IDs
+          appear in function logs. You can also use the X-Ray SDK to record the request ID on an attribute in the
+          trace. You can then search for traces by request ID in the X-Ray console. For an example, see the <a href="./samples-errorprocessor.html">error processor sample</a>.</p>
+      </li><li class="listitem">
+        <p><b>ErrorCode</b> (Number) – The HTTP status code.</p>
+      </li><li class="listitem">
+        <p><b>ErrorMessage</b> (String) – The first 1 KB of the error
+          message.</p>
+      </li></ul></div>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/invocation-dlq-attributes.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Dead-letter queue event attributes in the Amazon SQS console.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    
+    <p>If Lambda can't send a message to the dead-letter queue, it deletes the event and emits the <a href="./monitoring-metrics.html">DeadLetterErrors</a> metric. This can happen because of lack of permissions, or
+      if the total size of the message exceeds the limit for the target queue or topic. For example, if an Amazon SNS
+      notification with a body close to 256 KB triggers a function that results in an error, the
+      additional event data added by Amazon SNS, combined with the attributes added by Lambda, can cause the message to exceed
+      the maximum size allowed in the dead-letter queue. </p>
+    <p>If you're using Amazon SQS as an event source, configure a dead-letter queue on the Amazon SQS queue itself and not on
+      the Lambda function. For more information, see <a href="./with-sqs.html">Using Lambda with Amazon SQS</a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./invocation-sync.html">Synchronous invocation</div><div id="next" class="next-link" accesskey="n" href="./invocation-eventsourcemapping.html">Event source mapping</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-async.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/invocation-async.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

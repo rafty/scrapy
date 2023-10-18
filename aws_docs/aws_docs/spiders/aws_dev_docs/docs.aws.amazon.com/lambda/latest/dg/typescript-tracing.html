@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tracing TypeScript code in AWS Lambda - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="typescript-tracing" /><meta name="default_state" content="typescript-tracing" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-tracing.html" /><meta name="description" content="Learn how to instrument TypeScript Lambda functions using X-Ray tracing." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-tracing.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/typescript-tracing.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/typescript-tracing.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/typescript-tracing.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/typescript-tracing.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-tracing.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-tracing.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/typescript-tracing.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/typescript-tracing.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/typescript-tracing.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/typescript-tracing.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/typescript-tracing.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/typescript-tracing.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/typescript-tracing.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/typescript-tracing.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/typescript-tracing.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/typescript-tracing.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/typescript-tracing.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/typescript-tracing.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/typescript-tracing.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/typescript-tracing.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/typescript-tracing.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Tracing TypeScript code in AWS Lambda" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Tracing TypeScript code in AWS Lambda - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#typescript-tracing" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-tracing.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-tracing.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-tracing.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,TypeScript function,TypeScript Lambda,TypeScript define function,TypeScript Lambda function,trace TypeScript Lambda function,instrument TypeScript Lambda function,Lambda TypeScript tracing,Lambda TypeScript telemetry" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Building Lambda functions with TypeScript",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Tracing TypeScript code in AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#typescript-tracing" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#typescript-tracing-sam">Using Powertools for AWS Lambda (TypeScript) and AWS SAM for tracing</a><a href="#typescript-tracing-cdk">Using Powertools for AWS Lambda (TypeScript) and the AWS CDK for tracing</a><a href="#typescript-tracing-interpretation">Interpreting an X-Ray trace</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="typescript-tracing">Tracing TypeScript code in AWS Lambda</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Lambda integrates with AWS X-Ray to help you trace, debug, and optimize Lambda applications. You can use X-Ray
+    to trace a request as it traverses resources in your application, which may include Lambda functions and other AWS
+    services.</p><p>To send tracing data to X-Ray, you can use one of three SDK libraries:</p><div class="itemizedlist">
+     
+     
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><a href="http://aws.amazon.com/otel" rel="noopener noreferrer" target="_blank"><span>AWS Distro for OpenTelemetry (ADOT)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A secure, production-ready,
+        AWS-supported distribution of the OpenTelemetry (OTel) SDK.</p>
+    </li><li class="listitem">
+      <p><a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs.html">AWS X-Ray SDK for Node.js</a> – An SDK
+        for generating and sending trace data to X-Ray.</p>
+    </li><li class="listitem">
+      <p><a href="https://docs.powertools.aws.dev/lambda-typescript/" rel="noopener noreferrer" target="_blank"><span>Powertools for AWS Lambda (TypeScript)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – A developer toolkit to implement 
+      Serverless best practices and increase developer velocity.</p>
+    </li></ul></div><p>Each of the SDKs offer ways to send your telemetry data to the X-Ray service.
+    You can then use X-Ray to view, filter, and gain insights into your application's performance metrics to identify
+    issues and opportunities for optimization.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>The X-Ray and Powertools for AWS Lambda SDKs are part of a tightly integrated instrumentation solution offered by AWS. 
+The ADOT Lambda Layers are part of an industry-wide standard for tracing instrumentation that collect more data in general, but may not be 
+suited for all use cases. You can implement end-to-end tracing in X-Ray using either solution. To learn more about choosing between them, see 
+<a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html#xray-instrumenting-choosing">Choosing between the AWS 
+Distro for Open Telemetry and X-Ray SDKs</a>.</p></div></div><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#typescript-tracing-sam">Using Powertools for AWS Lambda (TypeScript) and AWS SAM for tracing</a></li><li><a href="#typescript-tracing-cdk">Using Powertools for AWS Lambda (TypeScript) and the AWS CDK for tracing</a></li><li><a href="#typescript-tracing-interpretation">Interpreting an X-Ray trace</a></li></ul></div>
+    <h2 id="typescript-tracing-sam">Using Powertools for AWS Lambda (TypeScript) and AWS SAM for tracing</h2>
+    <p>Follow the steps below to download, build, and deploy a sample Hello World TypeScript application with integrated <a href="https://docs.powertools.aws.dev/lambda-typescript" rel="noopener noreferrer" target="_blank"><span>Powertools for AWS Lambda (TypeScript)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> modules using the AWS SAM. This application implements a 
+      basic API backend and uses Powertools for emitting logs, metrics, and traces. It consists of an Amazon API Gateway endpoint and a Lambda function. 
+      When you send a GET request to the API Gateway endpoint, the Lambda function invokes, sends logs and metrics using Embedded Metric Format to CloudWatch, and 
+      sends traces to AWS X-Ray. The function returns a <code class="code">hello world</code> message.</p>
+	     <div class="itemizedlist">
+    <h6>Prerequisites</h6>
+    <p>To complete the steps in this section, you must have the following:</p>
+     
+     
+     
+<ul class="itemizedlist"><li class="listitem">
+      <p>Node.js 18.x or later</p>
+    </li><li class="listitem">
+      <p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI version 2</a></p>
+    </li><li class="listitem">
+      <p><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">AWS SAM CLI version 1.75 or later</a>. If you have an older version of the AWS SAM CLI, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/manage-sam-cli-versions.html#manage-sam-cli-versions-upgrade">Upgrading the AWS SAM CLI</a>.</p>
+    </li></ul></div>
+        <div class="procedure"><h6>Deploy a sample AWS SAM application</h6><ol><li>
+              <p>Initialize the application using the Hello World TypeScript template.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">sam init --app-template hello-world-powertools-typescript --name sam-app --package-type Zip --runtime nodejs18.x --no-tracing</code></pre>
+            </li><li>
+              <p>Build the app.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">cd sam-app &amp;&amp; sam build</code></pre>
+            </li><li>
+              <p>Deploy the app.</p>
+              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam deploy --guided</code></pre>
+            </li><li>
+              <p>Follow the on-screen prompts. To accept the default options provided in the interactive experience, press <code class="code">Enter</code>.</p>
+              <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For <b>HelloWorldFunction may not have authorization defined, Is this okay?</b>, make sure to enter <code class="code">y</code>.</p></div></div>
+            </li><li>
+            <p>Get the URL of the deployed application:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws cloudformation describe-stacks --stack-name sam-app --query 'Stacks[0].Outputs[?OutputKey==`HelloWorldApi`].OutputValue' --output text</code></pre>
+          </li><li>
+            <p>Invoke the API endpoint:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl <code class="replaceable">&lt;URL_FROM_PREVIOUS_STEP&gt;</code></code></pre>
+            <p>If successful, you'll see this response:</p>
+            <pre class="programlisting"><div class="code-btn-container"></div><code class=""><span>{</span>"message":"hello world"}</code></pre>
+          </li><li>
+            <p>To get the traces for the function, run <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-traces.html">sam traces</a>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam traces</code></pre> 
+            <p>The trace output looks like this:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">XRay Event [revision 1] at (2023-01-31T11:29:40.527000) with id (1-11a2222-111a222222cb33de3b95daf9) and duration (0.483s)
+  - 0.425s - sam-app/Prod [HTTP: 200]
+    - 0.422s - Lambda [HTTP: 200]
+  - 0.406s - sam-app-HelloWorldFunction-Xyzv11a1bcde [HTTP: 200]
+  - 0.172s - sam-app-HelloWorldFunction-Xyzv11a1bcde
+    - 0.179s - Initialization
+    - 0.112s - Invocation
+      - 0.052s - ## app.lambdaHandler
+        - 0.001s - ### MySubSegment
+    - 0.059s - Overhead</code></pre>
+          </li><li>
+            <p>This is a public API endpoint that is accessible over the internet. We recommend that you delete the endpoint after testing.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam delete</code></pre> 
+          </li></ol></div>
+		  <p>X-Ray doesn't trace all requests to your application. X-Ray applies a sampling algorithm
+    to ensure that tracing is efficient, while still providing a representative sample of all requests. The sampling rate is
+    1 request per second and 5 percent of additional requests.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You cannot configure the X-Ray sampling rate for your functions.</p></div></div>
+	 
+            <h2 id="typescript-tracing-cdk">Using Powertools for AWS Lambda (TypeScript) and the AWS CDK for tracing</h2>
+            <p>Follow the steps below to download, build, and deploy a sample Hello World TypeScript application with integrated <a href="https://docs.powertools.aws.dev/lambda-typescript" rel="noopener noreferrer" target="_blank"><span>Powertools for AWS Lambda (TypeScript)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> modules using the AWS CDK. This application implements a 
+              basic API backend and uses Powertools for emitting logs, metrics, and traces. It consists of an Amazon API Gateway endpoint and a Lambda function. 
+              When you send a GET request to the API Gateway endpoint, the Lambda function invokes, sends logs and metrics using Embedded Metric Format to CloudWatch, and 
+              sends traces to AWS X-Ray. The function returns a <code class="code">hello world</code> message.</p>
+			<div class="itemizedlist">
+      <h6>Prerequisites</h6>
+      <p>To complete the steps in this section, you must have the following:</p>
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+          <p>Node.js 18.x or later</p>
+      </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI version 2</a></p>
+      </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_prerequisites">AWS CDK version 2</a></p>
+      </li><li class="listitem">
+        <p><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">AWS SAM CLI version 1.75 or later</a>. If you have an older version of the AWS SAM CLI, see <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/manage-sam-cli-versions.html#manage-sam-cli-versions-upgrade">Upgrading the AWS SAM CLI</a>.</p>
+      </li></ul></div>
+            <div class="procedure"><h6>Deploy a sample AWS Cloud Development Kit (AWS CDK) application</h6><ol><li>
+                <p>Create a project directory for your new application.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">mkdir hello-world
+cd hello-world</code></pre>
+              </li><li>
+                <p>Initialize the app.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">cdk init app --language typescript</code></pre>
+              </li><li>
+                <p>Add the <a href="https://www.npmjs.com/package/@types/aws-lambda" rel="noopener noreferrer" target="_blank"><span>@types/aws-lambda</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> package as a development dependency.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">npm install -D @types/aws-lambda</code></pre>
+              </li><li>
+                <p>Install the Powertools <a href="https://docs.powertools.aws.dev/lambda-typescript/latest/core/tracer/" rel="noopener noreferrer" target="_blank"><span>Tracer utility</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">npm install @aws-lambda-powertools/tracer</code></pre>
+              </li><li>
+                <p>Open the <b>lib</b> directory. You should see a file called <b>hello-world-stack.ts</b>. Create new two new files in this directory: <b>hello-world.function.ts</b> and <b>hello-world.ts</b>.</p>
+              </li><li>
+                <p>Open <b>hello-world.function.ts</b> and add the following code to the file. This is the code for the Lambda function.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import <span>{</span> APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
+import <span>{</span> Tracer } from '@aws-lambda-powertools/tracer';
+const tracer = new Tracer();
+
+export const handler = async (event: APIGatewayEvent, context: Context): Promise&lt;APIGatewayProxyResult&gt; =&gt; <span>{</span>
+  // Get facade segment created by Lambda
+  const segment = tracer.getSegment();
+
+  // Create subsegment for the function and set it as active
+  const handlerSegment = segment.addNewSubsegment(`## $<span>{</span>process.env._HANDLER}`);
+  tracer.setSegment(handlerSegment);
+
+  // Annotate the subsegment with the cold start and serviceName
+  tracer.annotateColdStart();
+  tracer.addServiceNameAnnotation();
+
+  // Add annotation for the awsRequestId
+  tracer.putAnnotation('awsRequestId', context.awsRequestId);
+  // Create another subsegment and set it as active
+  const subsegment = handlerSegment.addNewSubsegment('### MySubSegment');
+  tracer.setSegment(subsegment);
+  let response: APIGatewayProxyResult = <span>{</span>
+    statusCode: 200,
+    body: JSON.stringify(<span>{</span>
+      message: 'hello world',
+    }),
+  };
+  // Close subsegments (the Lambda one is closed automatically)
+  subsegment.close(); // (### MySubSegment)
+  handlerSegment.close(); // (## index.handler)
+
+  // Set the facade segment as active again (the one created by Lambda)
+  tracer.setSegment(segment);
+  return response;
+};</code></pre>
+              </li><li>
+                <p>Open <b>hello-world.ts</b> and add the following code to the file. This contains the <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda_nodejs-readme.html">NodejsFunction construct</a>, which creates the Lambda function, configures environment variables for Powertools, and sets log retention to one week. It also includes the <a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_apigateway.LambdaRestApi.html">LambdaRestApi construct</a>, which creates the REST API.</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import <span>{</span> Construct } from 'constructs';
+import <span>{</span> NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import <span>{</span> LambdaRestApi } from 'aws-cdk-lib/aws-apigateway';
+import <span>{</span> CfnOutput } from 'aws-cdk-lib';
+import <span>{</span> Tracing } from 'aws-cdk-lib/aws-lambda';
+
+export class HelloWorld extends Construct <span>{</span>
+  constructor(scope: Construct, id: string) <span>{</span>
+    super(scope, id);
+    const helloFunction = new NodejsFunction(this, 'function', <span>{</span>
+      environment: <span>{</span>
+        POWERTOOLS_SERVICE_NAME: 'helloWorld',
+      },
+      tracing: Tracing.ACTIVE,
+    });
+    const api = new LambdaRestApi(this, 'apigw', <span>{</span>
+      handler: helloFunction,
+    });
+    new CfnOutput(this, 'apiUrl', <span>{</span>
+      exportName: 'apiUrl',
+      value: api.url,
+    });
+  }
+}</code></pre>
+            </li><li>
+            <p>Open <b>hello-world-stack.ts</b>. This is the code that defines your <a href="https://docs.aws.amazon.com/cdk/v2/guide/stacks.html">AWS CDK stack</a>. Replace the code with the following:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">import <span>{</span> Stack, StackProps } from 'aws-cdk-lib';
+import <span>{</span> Construct } from 'constructs';
+import <span>{</span> HelloWorld } from './hello-world';
+  
+export class HelloWorldStack extends Stack <span>{</span>
+  constructor(scope: Construct, id: string, props?: StackProps) <span>{</span>
+    super(scope, id, props);
+    new HelloWorld(this, 'hello-world');
+  }
+}</code></pre>
+              </li><li>
+                <p>Deploy your application.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">cd ..
+cdk deploy</code></pre>
+              </li><li>
+                <p>Get the URL of the deployed application:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">aws cloudformation describe-stacks --stack-name HelloWorldStack --query 'Stacks[0].Outputs[?ExportName==`apiUrl`].OutputValue' --output text</code></pre>
+              </li><li>
+                <p>Invoke the API endpoint:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">curl <code class="replaceable">&lt;URL_FROM_PREVIOUS_STEP&gt;</code></code></pre>
+                <p>If successful, you'll see this response:</p>
+                <pre class="programlisting"><div class="code-btn-container"></div><code class=""><span>{</span>"message":"hello world"}</code></pre>
+              </li><li>
+            <p>To get the traces for the function, run <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-traces.html">sam traces</a>.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">sam traces</code></pre> 
+            <p>The trace output looks like this:</p>
+<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">XRay Event [revision 1] at (2023-01-31T11:50:06.997000) with id (1-11a2222-111a222222cb33de3b95daf9) and duration (0.449s)
+  - 0.350s - HelloWorldStack-helloworldfunction111A2BCD-Xyzv11a1bcde [HTTP: 200]
+  - 0.157s - HelloWorldStack-helloworldfunction111A2BCD-Xyzv11a1bcde
+    - 0.169s - Initialization
+    - 0.058s - Invocation
+      - 0.055s - ## index.handler
+        - 0.000s - ### MySubSegment
+    - 0.099s - Overhead</code></pre>
+              </li><li>
+                <p>This is a public API endpoint that is accessible over the internet. We recommend that you delete the endpoint after testing.</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="">cdk destroy</code></pre> 
+              </li></ol></div>
+         
+    <h2 id="typescript-tracing-interpretation">Interpreting an X-Ray trace</h2>
+	<p>After you've configured active tracing, you can observe specific requests
+    through your application. <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ServiceLens.html">
+    CloudWatch ServiceLens</a> provides information about your application and all its components. The following example shows a trace from
+    the sample application:</p>
+	<div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sample-typescript-servicemap.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        The X-Ray service map for the sample application&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./typescript-exceptions.html">Errors</div><div id="next" class="next-link" accesskey="n" href="./lambda-python.html">Building with Python</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-tracing.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/typescript-tracing.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

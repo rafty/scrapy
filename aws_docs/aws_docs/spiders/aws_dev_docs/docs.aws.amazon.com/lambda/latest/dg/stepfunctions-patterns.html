@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>State machine application patterns - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="stepfunctions-patterns" /><meta name="default_state" content="stepfunctions-patterns" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/stepfunctions-patterns.html" /><meta name="description" content="Learn how to apply state machine application patterns to your Step Functions state machines using Lambda." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/stepfunctions-patterns.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/stepfunctions-patterns.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/stepfunctions-patterns.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/stepfunctions-patterns.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/stepfunctions-patterns.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/stepfunctions-patterns.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/stepfunctions-patterns.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/stepfunctions-patterns.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/stepfunctions-patterns.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/stepfunctions-patterns.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/stepfunctions-patterns.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/stepfunctions-patterns.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/stepfunctions-patterns.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/stepfunctions-patterns.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/stepfunctions-patterns.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/stepfunctions-patterns.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/stepfunctions-patterns.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/stepfunctions-patterns.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/stepfunctions-patterns.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/stepfunctions-patterns.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/stepfunctions-patterns.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/stepfunctions-patterns.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="State machine application patterns" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>State machine application patterns - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#stepfunctions-patterns" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/stepfunctions-patterns.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/stepfunctions-patterns.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/stepfunctions-patterns.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Orchestrating functions with Step Functions",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-stepfunctions.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "State machine application patterns",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-stepfunctions.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#stepfunctions-patterns" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#statemachine-components">State machine components</a><a href="#stepfunctions-application-patterns">State machine application patterns</a><a href="#stepfunctions-patterns-state-machines">Applying patterns to state machines</a><a href="#statemachine-example">Example branching application pattern</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="stepfunctions-patterns">State machine application patterns</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In Step Functions, you orchestrate your resources using state machines, which are defined using a JSON-based, structured language called <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon States
+      Language</a>.</p><div class="highlights" id="inline-topiclist"><h6>Sections</h6><ul><li><a href="#statemachine-components">State machine components</a></li><li><a href="#stepfunctions-application-patterns">State machine application patterns</a></li><li><a href="#stepfunctions-patterns-state-machines">Applying patterns to state machines</a></li><li><a href="#statemachine-example">Example branching application pattern</a></li></ul></div>
+        <h2 id="statemachine-components">State machine components</h2>
+        <p>State machines contain elements called <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-states.html">states</a> that make up your workflow. The logic of each state determines which state comes next, what data to pass along, and when to terminate the workflow. A state is referred to by its name, which can be any string, but which must be unique within the scope of the entire state machine.</p>
+      <p>To create a state machine that uses Lambda, you need the following components:</p>
+      <div class="orderedlist">
+       
+       
+       
+    <ol><li>
+        <p>An AWS Identity and Access Management (IAM) role for Lambda with one or more permissions policies (such as <a href="https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AWSLambdaRole" rel="noopener noreferrer" target="_blank"><span>AWSLambdaRole</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> service permissions).</p>
+      </li><li>
+        <p>One or more Lambda functions (with the IAM role attached) for your specific runtime.</p>
+      </li><li>
+        <p>A state machine authored in Amazon States Language.</p>
+      </li></ol></div>
+     
+        <h2 id="stepfunctions-application-patterns">State machine application patterns</h2>
+        <p>You can create complex orchestrations for state machines using application patterns such as:</p>
+        <div class="itemizedlist">
+         
+          
+         
+             
+    <ul class="itemizedlist"><li class="listitem">
+            <p><b>Catch and retry</b> – Handle errors using sophisticated catch-and-retry functionality.</p>
+        </li><li class="listitem">
+          <p><b>Branching</b> – Design your workflow to choose different branches based on Lambda function output.</p>
+      </li><li class="listitem">
+        <p><b>Chaining</b> – Connect functions into a series of steps, with the output of one step providing the input to the next step. </p>
+    </li><li class="listitem">
+            <p><b>Parallelism</b> – Run functions in parallel, or use dynamic parallelism to invoke a function for every member of any array. </p>
+        </li></ul></div>
+     
+        <h2 id="stepfunctions-patterns-state-machines">Applying patterns to state machines</h2>
+        <div class="variablelist">
+        <p>The following shows how you can apply these application patterns to a state machine within an Amazon States Language definition.</p>
+         
+         
+         
+           
+                
+    <dl>
+            <dt><b><span class="term">Catch and Retry</span></b></dt>
+            <dd>
+                <p>A <code class="code">Catch</code> field and a <code class="code">Retry</code> field add catch-and-retry logic to a state machine. <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-fallback-states">Catch</a>
+              (<code class="code">"Type": "Catch"</code>) is an array of objects that define a fallback state. <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-retrying-after-an-error">Retry</a> (<code class="code">"Type": "Retry"</code>) is an array of objects that define a retry policy if the state encounters runtime errors.</p>
+            </dd>
+        
+            <dt><b><span class="term">Branching</span></b></dt>
+            <dd>
+                <p>A <code class="code">Choice</code> state adds branching logic to a state machine. <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-choice-state.html">Choice</a> (<code class="code">"Type":
+              "Choice"</code>) is an array of rules that determine which state the state machine transitions to next.</p>
+            </dd>
+        
+            <dt><b><span class="term">Chaining</span></b></dt>
+            <dd>
+                <p>A "Chaining" pattern describes multiple Lambda functions connected together in a state machine. You can use chaining to create reusable workflow invocations from a <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-nested-workflows.html">Task</a> (<code class="code">"Type": "Task"</code>) state of a state machine.</p>
+            </dd>
+        
+            <dt><b><span class="term">Parallelism</span></b></dt>
+            <dd>
+                <p>A <code class="code">Parallel</code> state adds parallelism logic to a state machine. You can use a <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-parallel-state.html">Parallel</a> state (<code class="code">"Type": "Parallel"</code>) to create parallel branches of invocation in your state machine.</p>
+            </dd>
+        
+            <dt><b><span class="term">Dynamic parallelism</span></b></dt>
+            <dd>
+                <p>A <code class="code">Map</code> state adds dynamic "for-each" loop logic to a state machine. You can use a <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-map-state.html">Map</a> state (<code class="code">"Type": "Map"</code>) to run a set of steps for each element of an input array in a state machine. While the <code class="code">Parallel</code> state invokes multiple branches of steps using the same input, a <code class="code">Map</code> state invokes the same steps for multiple entries of the array.</p>
+            </dd>
+        </dl></div>
+    <p>In addition to application patterns, Step Functions supports various <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html">service integration patterns</a>, including the ability to pause a workflow for human approval, or to call a legacy system or other third party.</p>
+     
+    <h2 id="statemachine-example">Example branching application pattern</h2>
+    <p>In the following example, the <code class="code">WhichCoat</code> state machine defined in the Amazon States Language (ASL) definition shows a branching application pattern with a <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-choice-state.html">Choice</a> state (<code class="code">"Type": "Choice"</code>). If the condition of one of the three <code class="code">Choice</code> states is met, the Lambda function is invoked as a <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-task-state.html">Task</a>:</p>
+    <div class="orderedlist">
+       
+       
+       
+    <ol><li>
+        <p>The <code class="code">WearHeavyCoat</code> state invokes the <code class="code">wear_heavy_coat</code> Lambda function and returns a message.</p>
+      </li><li>
+        <p>The <code class="code">WearLightJacket</code> state invokes the <code class="code">wear_light_jacket</code> Lambda function and returns a message.</p>
+      </li><li>
+        <p>The <code class="code">None</code> state invokes the <code class="code">no_jacket</code> Lambda function and returns a message.</p>
+      </li></ol></div>
+    <p>The <code class="code">WhichCoat</code> state machine has the following structure:</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/sample-stepfunctions-wearcoat.png" class="aws-docs-img-whiteBg aws-docs-img-padding" style="max-width:100%" />
+       
+    </div>
+    <div class="example"><h6>Example Amazon States Language definition</h6><div class="example-contents"><p>The following Amazon States Language definition of the <code class="code">WhichCoat</code> state machine uses a <code class="code">Variable</code>
+        <a href="https://docs.aws.amazon.com/step-functions/latest/dg/input-output-contextobject.html">context object</a> called <code class="code">Weather</code>. If one of the three conditions in <code class="code">StringEquals</code> is met, the Lambda function defined in the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-task-state.html#amazon-states-language-task-state-specifying-resource-arns"><code class="code">Resource</code> field's Amazon Resource Name (ARN)</a> is invoked.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+        "Comment":"Coat Indicator State Machine",   
+        "StartAt":"WhichCoat",   
+        "States":<span>{</span>
+            "WhichCoat":<span>{</span>
+                "Type":"Choice",         
+                "Choices":[
+                <span>{</span>
+                    <code class="userinput">"Variable":"$.Weather",</code>               
+                    <code class="userinput">"StringEquals":"FREEZING",</code>                 
+                    "Next":"WearHeavyCoat"            
+                },            
+                <span>{</span>
+                    <code class="userinput">"Variable":"$.Weather",</code>               
+                    <code class="userinput">"StringEquals":"COOL",</code>                 
+                    "Next":"WearLightJacket"            
+                },            
+                <span>{</span>
+                    <code class="userinput">"Variable":"$.Weather",</code>               
+                    <code class="userinput">"StringEquals":"WARM",</code>                 
+                    "Next":"None"            
+                }
+                ]
+            },      
+            "WearHeavyCoat":<span>{</span>
+                "Type":"Task",         
+                <code class="userinput">"Resource":"arn:aws:lambda:us-west-2:01234567890:function:wear_heavy_coat",</code>         
+                "End":true      
+            },      
+            "WearLightJacket":<span>{</span>
+                "Type":"Task",         
+                <code class="userinput">"Resource":"arn:aws:lambda:us-west-2:01234567890:function:wear_light_jacket",</code>         
+                "End":true      
+            },      
+            "None":<span>{</span>
+                "Type":"Task",         
+                <code class="userinput">"Resource":"arn:aws:lambda:us-west-2:01234567890:function:no_coat",</code>         
+                "End":true      
+            }
+        }
+    }</code></pre><p></p></div></div>
+    <div class="example"><h6>Example Python function</h6><div class="example-contents"><p>The following Lambda function in Python (<code class="code">wear_heavy_coat</code>) can be invoked for the state machine defined in the previous example. If the <code class="code">WhichCoat</code> state machine equals a string value of <code class="code">FREEZING</code>, the <code class="code">wear_heavy_coat</code> function is invoked from Lambda, and the user receives the message that corresponds with the function: "You should wear a heavy coat today."</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="python ">from __future__ import print_function
+
+import datetime
+
+        
+def wear_heavy_coat(message, context):
+    print(message)
+        
+    response = <span>{</span>}
+    response['Weather'] = message['Weather']
+    response['Timestamp'] = datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")
+    response['Message'] = 'You should wear a heavy coat today.'    
+            
+    return response
+    </code></pre></div></div>
+    <div class="example"><h6>Example invocation data</h6><div class="example-contents"><p>The following input data runs the <code class="code">WearHeavyCoat</code> state that invokes the <code class="code">wear_heavy_coat</code> Lambda function, when the <code class="code">Weather</code> variable is equal to a string value of <code class="code">FREEZING</code>.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class=""><span>{</span>
+    "Weather":"FREEZING"
+}</code></pre></div></div>
+    <p>For more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/tutorial-creating-lambda-state-machine.html">Creating a Step Functions State Machine That Uses Lambda</a> in the <em>AWS Step Functions Developer Guide</em>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-stepfunctions.html">Orchestrating functions</div><div id="next" class="next-link" accesskey="n" href="./stepfunctions-lc.html">Manage state machines</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/stepfunctions-patterns.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/stepfunctions-patterns.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Lambda concepts - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="gettingstarted-concepts" /><meta name="default_state" content="gettingstarted-concepts" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-concepts.html" /><meta name="description" content="Learn about Lambda concepts such as functions, execution environments, deployment packages, layers, runtimes, extensions, events, and concurrency." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-concepts.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-concepts.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-concepts.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-concepts.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-concepts.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-concepts.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-concepts.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-concepts.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-concepts.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-concepts.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-concepts.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-concepts.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-concepts.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-concepts.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-concepts.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-concepts.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-concepts.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-concepts.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-concepts.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/gettingstarted-concepts.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/gettingstarted-concepts.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-concepts.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Lambda concepts" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Lambda concepts - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-concepts" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-concepts.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-concepts.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-concepts.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,function,execution environment,deployment package,layers,extensions" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda foundations",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Lambda concepts",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-concepts" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#gettingstarted-concepts-function">Function</a><a href="#gettingstarted-concepts-trigger">Trigger</a><a href="#gettingstarted-concepts-event">Event</a><a href="#gettingstarted-concepts-ee">Execution environment</a><a href="#gettingstarted-concepts-arch">Instruction set architecture</a><a href="#gettingstarted-concepts-dp">Deployment package</a><a href="#gettingstarted-concepts-runtime">Runtime</a><a href="#gettingstarted-concepts-layer">Layer</a><a href="#gettingstarted-concepts-extensions">Extension</a><a href="#gettingstarted-concepts-concurrency">Concurrency</a><a href="#gettingstarted-concepts-qualifier">Qualifier</a><a href="#gettingstarted-concepts-destinations">Destination</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="gettingstarted-concepts">Lambda concepts</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Lambda runs instances of your function to process events. You can invoke your function directly using the Lambda
+    API, or you can configure an AWS service or resource to invoke your function.</p><div class="highlights" id="inline-topiclist"><h6>Concepts</h6><ul><li><a href="#gettingstarted-concepts-function">Function</a></li><li><a href="#gettingstarted-concepts-trigger">Trigger</a></li><li><a href="#gettingstarted-concepts-event">Event</a></li><li><a href="#gettingstarted-concepts-ee">Execution environment</a></li><li><a href="#gettingstarted-concepts-arch">Instruction set architecture</a></li><li><a href="#gettingstarted-concepts-dp">Deployment package</a></li><li><a href="#gettingstarted-concepts-runtime">Runtime</a></li><li><a href="#gettingstarted-concepts-layer">Layer</a></li><li><a href="#gettingstarted-concepts-extensions">Extension</a></li><li><a href="#gettingstarted-concepts-concurrency">Concurrency</a></li><li><a href="#gettingstarted-concepts-qualifier">Qualifier</a></li><li><a href="#gettingstarted-concepts-destinations">Destination</a></li></ul></div>
+    <h2 id="gettingstarted-concepts-function">Function</h2>
+    
+    <p>A <em>function</em> is a resource that you can invoke to run your code in Lambda. A function has
+      code to process the <a href="#gettingstarted-concepts-event">events</a> that you pass into the function or
+      that other AWS services send to the function.</p>
+   
+    <h2 id="gettingstarted-concepts-trigger">Trigger</h2>
+    
+    <p>A <em>trigger</em> is a resource or configuration that invokes a Lambda function. Triggers include
+      AWS services that you can configure to invoke a function and <a href="./invocation-eventsourcemapping.html">event
+        source mappings</a>. An event source mapping is a resource in Lambda that reads items from a stream or queue
+      and invokes a function. For more information, see <a href="./lambda-invocation.html">Invoking Lambda functions</a> and <a href="./lambda-services.html">Using AWS Lambda with other services</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-event">Event</h2>
+    
+    <p>An <em>event</em> is a JSON-formatted document that contains data for a Lambda function to process.
+      The runtime converts the event to an object and passes it to your function code. When you invoke a function, you
+      determine the structure and contents of the event.</p>
+    <div class="example"><h6>Example custom event – weather data</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "TemperatureK": 281,
+  "WindKmh": -3,
+  "HumidityPct": 0.55,
+  "PressureHPa": 1020
+}</code></pre></div></div>
+    <p>When an AWS service invokes your function, the service defines the shape of the event.</p>
+    <div class="example"><h6>Example service event – Amazon SNS notification</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight"><span>{</span>
+  "Records": [
+    <span>{</span>
+      "Sns": <span>{</span>
+        "Timestamp": "2019-01-02T12:45:07.000Z",
+        "Signature": "tcc6faL2yUC6dgZdmrwh1Y4cGa/ebXEkAi6RibDsvpi+tE/1+82j...65r==",
+        "MessageId": "95df01b4-ee98-5cb9-9903-4c221d41eb5e",
+        "Message": "Hello from SNS!",
+        ...</code></pre></div></div>
+    <p>For more information about events from AWS services, see <a href="./lambda-services.html">Using AWS Lambda with other services</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-ee">Execution environment</h2>
+    
+    <p>An <em>execution environment</em> provides a secure and isolated runtime environment for your
+      Lambda function. An execution environment manages the processes and resources that are required to run the
+      function. The execution environment provides lifecycle support for the function and for any <a href="#gettingstarted-concepts-extensions">extensions</a> associated with your function.</p>
+    <p>For more information, see <a href="./lambda-runtime-environment.html">Lambda execution environment</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-arch">Instruction set architecture</h2>
+    <p> The <em>instruction set architecture</em> determines the type of computer processor that Lambda
+      uses to run the function. Lambda provides a choice of instruction set architectures:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>arm64 – 64-bit ARM architecture, for the AWS Graviton2 processor.</p>
+      </li><li class="listitem">
+        <p>x86_64 – 64-bit x86 architecture, for x86-based processors.</p>
+      </li></ul></div>
+    <p>For more information, see <a href="./foundation-arch.html">Lambda instruction set architectures (ARM/x86)</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-dp">Deployment package</h2>
+    <p>You deploy your Lambda function code using a <em>deployment package</em>. Lambda
+      supports two types of deployment packages:</p>
+    <div class="itemizedlist">
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p>A .zip file archive that contains your function code and its dependencies. Lambda provides the operating
+          system and runtime for your function.</p>
+      </li><li class="listitem">
+        <p>A container image that is compatible with the <a href="https://opencontainers.org/" rel="noopener noreferrer" target="_blank"><span>Open Container
+            Initiative (OCI)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> specification. You add your function code and dependencies to the image. You must
+          also include the operating system and a Lambda runtime.</p>
+      </li></ul></div>
+    <p>For more information, see <a href="./gettingstarted-package.html">Lambda deployment packages</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-runtime">Runtime</h2>
+    <p>The <em>runtime</em> provides a language-specific environment that runs in an execution
+      environment. The runtime relays invocation events, context information, and responses between Lambda and the
+      function. You can use runtimes that Lambda provides, or build your own. If you package your code as a .zip file
+      archive, you must configure your function to use a runtime that matches your programming language. For a container
+      image, you include the runtime when you build the image.</p>
+    <p>For more information, see <a href="./lambda-runtimes.html">Lambda runtimes</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-layer">Layer</h2>
+    <p>A Lambda <em>layer</em> is a .zip file archive that can contain additional code or other content. A
+      layer can contain libraries, a <a href="./runtimes-custom.html">custom runtime</a>, data, or configuration
+      files.</p>   
+    <p>Layers provide a convenient way to package libraries and other dependencies that you can use with your Lambda
+      functions. Using layers reduces the size of uploaded deployment archives and makes it faster to deploy your code.
+      Layers also promote code sharing and separation of responsibilities so that you can iterate faster on writing
+      business logic.</p>
+    <p>You can include up to five layers per function. Layers count towards the standard Lambda <a href="./gettingstarted-limits.html">deployment size quotas</a>. 
+      When you include a layer in a function, the contents are extracted to the <code class="code">/opt</code>
+      directory in the execution environment.</p> 
+    <p>By default, the layers that you create are private to your AWS account. You can choose to share a layer with
+      other accounts or to make the layer public. If your functions consume a layer that a different account published,
+      your functions can continue to use the layer version after it has been deleted, or after your permission to access
+      the layer is revoked. However, you cannot create a new function or update functions using a deleted layer
+      version.</p>
+    <p>Functions deployed as a container image do not use layers. Instead, you package your preferred runtime,
+      libraries, and other dependencies into the container image when you build the image.</p>
+    <p>For more information, see <a href="./chapter-layers.html">Working with Lambda layers</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-extensions">Extension</h2>
+    
+    <p>Lambda <em>extensions</em> enable you to augment your functions. For example, you can use
+      extensions to integrate your functions with your preferred monitoring, observability, security, and governance
+      tools. You can choose from a broad set of tools that <a href="http://aws.amazon.com/lambda/partners/" rel="noopener noreferrer" target="_blank"><span>AWS Lambda
+        Partners</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> provides, or you can <a href="./runtimes-extensions-api.html">create your own Lambda
+        extensions</a>.</p>
+    <p>An internal extension runs in the runtime process and shares the same lifecycle as the runtime. An external
+      extension runs as a separate process in the execution environment. The external extension is initialized before
+      the function is invoked, runs in parallel with the function's runtime, and continues to run after the function
+      invocation is complete.</p>
+    <p>For more information, see <a href="./lambda-extensions.html">Lambda extensions</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-concurrency">Concurrency</h2>
+    
+    <p><em>Concurrency</em> is the number of requests that your function is serving at any given time.
+      When your function is invoked, Lambda provisions an instance of it to process the event. When the function code
+      finishes running, it can handle another request. If the function is invoked again while a request is still being
+      processed, another instance is provisioned, increasing the function's concurrency.</p>
+    <p>Concurrency is subject to <a href="./gettingstarted-limits.html">quotas</a> at the AWS Region level. You
+      can configure individual functions to limit their concurrency, or to enable them to reach a specific level of
+      concurrency. For more information, see <a href="./configuration-concurrency.html">Configuring reserved concurrency</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-qualifier">Qualifier</h2>
+    
+    <p>When you invoke or view a function, you can include a <em>qualifier</em> to specify a version or
+      alias. A <em>version</em> is an immutable snapshot of a function's code and configuration that has a
+      numerical qualifier. For example, <code class="code">my-function:1</code>. An <em>alias</em> is a pointer to a
+      version that you can update to map to a different version, or split traffic between two versions. For example,
+      <code class="code">my-function:BLUE</code>. You can use versions and aliases together to provide a stable interface for
+      clients to invoke your function.</p>
+    <p>For more information, see <a href="./configuration-versions.html">Lambda  function versions</a>.</p>
+   
+    <h2 id="gettingstarted-concepts-destinations">Destination</h2>
+    
+    <p>A <em>destination</em> is an AWS resource where Lambda can send events from an asynchronous invocation. 
+      You can configure a destination for events that fail processing. Some services also support a 
+      destination for events that are successfully processed.</p>
+    <p>For more information, see <a href="./invocation-async.html#invocation-async-destinations">Configuring destinations for asynchronous invocation</a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./lambda-foundation.html">Lambda foundations</div><div id="next" class="next-link" accesskey="n" href="./foundation-progmodel.html">Programming model</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-concepts.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-concepts.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

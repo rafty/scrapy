@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Additional Lambda features - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="gettingstarted-features" /><meta name="default_state" content="gettingstarted-features" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-features.html" /><meta name="description" content="Learn about Lambda features that can help you manage your functions." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-features.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-features.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/gettingstarted-features.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-features.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/gettingstarted-features.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-features.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-features.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-features.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/gettingstarted-features.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-features.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/gettingstarted-features.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-features.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/gettingstarted-features.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-features.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-features.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-features.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/gettingstarted-features.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-features.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/gettingstarted-features.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/gettingstarted-features.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/gettingstarted-features.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-features.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Additional Lambda features" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Additional Lambda features - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-features" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=186" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-features.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-features.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-features.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda foundations",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Additional Lambda features",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-foundation.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#gettingstarted-features" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#gettingstarted-features-scaling">Scaling</a><a href="#gettingstarted-features-concurrency">Concurrency controls</a><a href="#gettingstarted-features-urls">Function URLs</a><a href="#gettingstarted-features-async">Asynchronous invocation</a><a href="#gettingstarted-features-eventsourcemapping">Event source mappings</a><a href="#gettingstarted-features-destinations">Destinations</a><a href="#gettingstarted-features-blueprints">Function blueprints</a><a href="#gettingstarted-features-tools">Testing and deployment tools</a><a href="#gettingstarted-features-templates">Application templates</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="gettingstarted-features">Additional Lambda features</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Lambda provides a management console and API for managing and invoking functions. It provides runtimes that
+    support a standard set of features so that you can easily switch between languages and frameworks, depending on your
+    needs. In addition to functions, you can also create versions, aliases, layers, and custom runtimes.</p><div class="highlights" id="inline-topiclist"><h6>Advanced features</h6><ul><li><a href="#gettingstarted-features-scaling">Scaling</a></li><li><a href="#gettingstarted-features-concurrency">Concurrency controls</a></li><li><a href="#gettingstarted-features-urls">Function URLs</a></li><li><a href="#gettingstarted-features-async">Asynchronous invocation</a></li><li><a href="#gettingstarted-features-eventsourcemapping">Event source mappings</a></li><li><a href="#gettingstarted-features-destinations">Destinations</a></li><li><a href="#gettingstarted-features-blueprints">Function blueprints</a></li><li><a href="#gettingstarted-features-tools">Testing and deployment tools</a></li><li><a href="#gettingstarted-features-templates">Application templates</a></li></ul></div>
+    <h2 id="gettingstarted-features-scaling">Scaling</h2>
+    
+    <p>Lambda manages the infrastructure that runs your code, and scales automatically in response to incoming
+      requests. When your function is invoked more quickly than a single instance of your function can process events,
+      Lambda scales up by running additional instances. When traffic subsides, inactive instances are frozen or stopped.
+      You pay only for the time that your function is initializing or processing events.</p>
+  
+    <p>For more information, see <a href="./lambda-concurrency.html">Lambda function scaling</a>.</p>
+   
+    <h2 id="gettingstarted-features-concurrency">Concurrency controls</h2>
+    
+    <p>Use concurrency settings to ensure that your production applications are highly available and highly
+      responsive.</p>
+    <p>To prevent a function from using too much concurrency, and to reserve a portion of your account's
+      available concurrency for a function, use <em>reserved concurrency</em>. Reserved concurrency splits
+      the pool of available concurrency into subsets. A function with reserved concurrency only uses concurrency from
+      its dedicated pool.</p>
+
+    
+    <p>To enable functions to scale without fluctuations in latency, use <em>provisioned
+      concurrency</em>. For functions that take a long time to initialize, or that require extremely low latency
+      for all invocations, provisioned concurrency enables you to pre-initialize instances of your function and keep
+      them running at all times. Lambda integrates with Application Auto Scaling to support autoscaling for provisioned concurrency based
+      on utilization.</p>
+    <p>For more information, see <a href="./configuration-concurrency.html">Configuring reserved concurrency</a>.</p>
+   
+    <h2 id="gettingstarted-features-urls">Function URLs</h2>
+    <p>Lambda offers built-in HTTP(S) endpoint support through <em>function URLs</em>. With function URLs,
+      you can assign a dedicated HTTP endpoint to your Lambda function. When your function URL is configured, you can use
+      it to invoke your function through a web browser, curl, Postman, or any HTTP client.</p>
+    <p>You can add a function URL to an existing function, or create a new function with a function URL. For more
+      information, see <a href="./urls-invocation.html">Invoking Lambda function URLs</a>.</p>
+   
+    <h2 id="gettingstarted-features-async">Asynchronous invocation</h2>
+    
+    <p>When you invoke a function, you can choose to invoke it synchronously or asynchronously. With <a href="./invocation-sync.html">synchronous invocation</a>, you wait for the function to process the event and
+      return a response. With asynchronous invocation, Lambda queues the event for processing and returns a response
+      immediately.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/features-async.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Lambda queues asynchronous invocation events before sending them to the function.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    
+    <p>For asynchronous invocations, Lambda handles retries if the function returns an error or is throttled. To
+      customize this behavior, you can configure error handling settings on a function, version, or alias. You can also
+      configure Lambda to send events that failed processing to a dead-letter queue, or to send a record of any
+      invocation to a <a href="#gettingstarted-features-destinations">destination</a>.</p>
+    <p>For more information, see <a href="./invocation-async.html">Asynchronous invocation</a>.</p>
+   
+    <h2 id="gettingstarted-features-eventsourcemapping">Event source mappings</h2>
+    
+    <p>To process items from a stream or queue, you can create an <em>event source mapping</em>. An event
+      source mapping is a resource in Lambda that reads items from an Amazon Simple Queue Service (Amazon SQS) queue, an Amazon Kinesis stream, or an
+      Amazon DynamoDB stream, and sends the items to your function in batches. Each event that your function processes can
+      contain hundreds or thousands of items.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/features-eventsourcemapping.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        An event source mapping reading records from a Kinesis stream.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    
+    <p>Event source mappings maintain a local queue of unprocessed items and handle retries if the function returns
+      an error or is throttled. You can configure an event source mapping to customize batching behavior and error
+      handling, or to send a record of items that fail processing to a destination.</p>
+    <p>For more information, see <a href="./invocation-eventsourcemapping.html">Lambda event source mappings</a>.</p>
+   
+    <h2 id="gettingstarted-features-destinations">Destinations</h2>
+    
+    <p>A destination is an AWS resource that receives invocation records for a function. For <a href="#gettingstarted-features-async">asynchronous invocation</a>, you can configure Lambda to send
+      invocation records to a queue, topic, function, or event bus. You can configure separate destinations for
+      successful invocations and events that failed processing. The invocation record contains details about the event,
+      the function's response, and the reason that the record was sent.</p>
+    <div class="mediaobject">
+       
+        <img src="/images/lambda/latest/dg/images/features-destinations.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;        Lambda sends invocation records to a queue or event bus destination, depending on the result.&#xA;      " style="max-width:100%" />
+       
+       
+    </div>
+    
+    <p>For <a href="#gettingstarted-features-eventsourcemapping">event source mappings</a> that read from
+      streams, you can configure Lambda to send a record of batches that failed processing to a queue or topic. A failure
+      record for an event source mapping contains metadata about the batch, and it points to the items in the
+      stream.</p>
+    <p>For more information, see <a href="./invocation-async.html#invocation-async-destinations">Configuring destinations for asynchronous invocation</a> and the error handling sections of <a href="./with-ddb.html">Using AWS Lambda with Amazon DynamoDB</a> and <a href="./with-kinesis.html">Using AWS Lambda with Amazon Kinesis</a>.</p>
+   
+    <h2 id="gettingstarted-features-blueprints">Function blueprints</h2>
+    
+    <p>When you create a function in the Lambda console, you can choose to start from scratch, use a blueprint, or use a
+        <a href="./gettingstarted-package.html#gettingstarted-package-images">container image</a>. A
+      blueprint provides sample code that shows how to use Lambda with an AWS service or a popular third-party
+      application. Blueprints include sample code and function configuration presets for Node.js and Python
+      runtimes.</p>
+    <p>Blueprints are provided for use under the <a href="http://aws.amazon.com/asl/" rel="noopener noreferrer" target="_blank"><span>Amazon Software License</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. 
+      They are available only in the Lambda console.</p>
+   
+    <h2 id="gettingstarted-features-tools">Testing and deployment tools</h2>
+    
+    <p>Lambda supports deploying code as is or as <a href="./gettingstarted-package.html#gettingstarted-package-images">container
+        images</a>. You can use AWS services and popular community tools like the Docker command line interface (CLI) to author, build, and deploy your Lambda functions. To set up the Docker CLI, see <a href="https://docs.docker.com/get-docker" rel="noopener noreferrer" target="_blank"><span>Get Docker</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Docker
+      Docs website. For an introduction to using Docker with AWS, see <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html">Getting started with Amazon ECR using the AWS CLI</a> in
+      the <em>Amazon Elastic Container Registry User Guide</em>.</p>
+
+      
+      <p>The <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI</a> and <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">AWS SAM CLI</a> are command line tools for managing Lambda application stacks. In addition to commands for managing
+    application stacks with the AWS CloudFormation API, the AWS CLI supports higher-level commands that simplify tasks such as uploading
+    deployment packages and updating templates. The AWS SAM CLI provides additional functionality, including validating
+    templates, testing locally, and integrating with CI/CD systems.</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html">Installing the AWS SAM CLI</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-test-and-debug.html">Testing and debugging serverless
+              applications with AWS SAM</a></p>
+        </li><li class="listitem">
+          <p><a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html">Deploying serverless applications using CI/CD systems with AWS SAM</a></p>
+        </li></ul></div>
+
+   
+    <h2 id="gettingstarted-features-templates">Application templates</h2>
+    
+    <p>You can use the Lambda console to create an application with a continuous delivery pipeline. Application
+      templates in the Lambda console include code for one or more functions, an application template that defines
+      functions and supporting AWS resources, and an infrastructure template that defines an AWS CodePipeline pipeline. The
+      pipeline has build and deploy stages that run every time you push changes to the included Git repository.</p>
+    
+    <p>Application templates are provided for use under the <a href="https://spdx.org/licenses/MIT-0.html" rel="noopener noreferrer" target="_blank"><span>MIT No
+        Attribution</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> license. They are available only in the Lambda console.</p>
+    <p>For more information, see <a href="./applications-tutorial.html">Creating an application with continuous delivery in the Lambda
+      console</a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./foundation-arch.html">Instruction sets (ARM/x86)</div><div id="next" class="next-link" accesskey="n" href="./lambda-runtimes.html">Lambda runtimes</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-features.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/gettingstarted-features.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>
